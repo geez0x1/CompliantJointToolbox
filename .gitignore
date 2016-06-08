@@ -1,0 +1,7 @@
+build/
+slprj/
+*.mexa64
+*.mexw64
+*.asv
+*.r2014a
+*.r2013b
