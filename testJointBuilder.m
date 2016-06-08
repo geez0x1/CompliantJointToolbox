@@ -7,11 +7,10 @@ jb.overwrite = 1;
 
 %% Build various types of joint models
 
-allParams = {'WMBig10k_wes';
-    'WMBig10k_ds'
+allParams = {'CE_Big';
+    'WMBig10k_ds';
     'WMBig10k';
-    'WMBig2300_ds';
-    'WMBig2800'}
+    'WMBig2300_ds'};
 nPar = numel(allParams);
 
 disp('Creating various joint types..');
