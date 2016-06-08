@@ -5,7 +5,7 @@ function [ tests ] = genericJointTest
 % The main function collects all of the local test functions 
 % into a test array. Since it is the main function, the function name 
 % corresponds to the name of your .m file and follows the naming convention 
-% of starting or ending in the word ‘test', which is case-insensitive.
+% of starting or ending in the word 'test', which is case-insensitive.
 %
 % To run tests from the command prompt, use the runtests command with your
 % MATLAB test file as input. For example:
@@ -80,7 +80,7 @@ end
 
 % Individual test functions are included as local functions in the same 
 % MATLAB file as the main (test-generating) function. These test function 
-% names must begin or end with the case-insensitive word, ‘test'. Each of 
+% names must begin or end with the case-insensitive word, 'test'. Each of 
 %the local test functions must accept a single input, which is a function 
 % test case object, testCase. The Unit Test Framework automatically 
 % generates this object.
