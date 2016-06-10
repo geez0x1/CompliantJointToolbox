@@ -1,12 +1,34 @@
-%% [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N [, ff_comp_switch] )
 % Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
 % H transfer functions, and the PD derivative gain Kd_opt that critically
 % damps the closed-loop poles for fixed-output force control.
-% Arguments:
-% jointName: Joint object class name
-% Kp, Ki, Kd, N: PID gains and derivative cut-off frequency (if Kd=-1, the
-% resulting PD D-gain will be set to Kd_opt)
-% ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
+%
+%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N [, ff_comp_switch] )
+%
+% Inputs:
+%   jointName: Joint object class name
+%              Kp, Ki, Kd, N: PID gains and derivative cut-off frequency (if Kd=-1, the
+%              resulting PD D-gain will be set to Kd_opt).
+%   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
+%
+% Outputs:
+%   P: Plant transfer function
+%   G: Controller transfer function
+%   H: Closed-loop transfer function
+%   Kd_opt: Optimal PD derivative gain that critically damps the closed-loop poles for
+%           fixed-output force control.
+%
+% Notes::
+%
+%
+% Examples::
+%
+%
+% Author::
+%  Joern Malzahn, jorn.malzahn@iit.it
+%  Wesley Roozing, wesley.roozing@iit.it
+%
+%
+
 function [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N, ff_comp_switch )
     %% Default arguments
     

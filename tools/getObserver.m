@@ -1,8 +1,33 @@
-%% [sys_hat, L, Cc] = getObserver(jointObj jOb, outputIdx, place_gain, [Q, R])
-% Calculate an observer for the joint object j with outputs specified by 
+% Calculate an observer for the joint object jOb with outputs specified by 
 % [outputIdx]. The closed-loop poles based on LQR (with matrices Q, R) are
-% multiplied by the place_gain to obtain the observer poles. This function
-% returns the observer sys_hat, Kalman gain L, and output matrix Cc.
+% multiplied by the place_gain to obtain the observer poles.
+%
+%   [sys_hat, L, Cc] = getObserver(jointObj jOb, outputIdx, place_gain, [Q, R])
+%
+% Inputs:
+%   jointObj jOb: Joint object
+%   outputIdx: Joint outputs measured by the observer
+%   place_gain: Pole placement gain
+%   Q: LQR state weight
+%   R: LQR input weight
+%
+% Outputs:
+%   sys_hat: State observer dynamic system
+%   L: Observer gain
+%   Cc: Output matrix that selects the outputs specified by outputIdx from
+%       the output matrix C of the joint object.
+%
+% Notes::
+%
+%
+% Examples::
+%
+%
+% Author::
+%  Joern Malzahn, jorn.malzahn@iit.it
+%  Wesley Roozing, wesley.roozing@iit.it
+%
+% See also getKalman.
 
 function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     %% Parameters

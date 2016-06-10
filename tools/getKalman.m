@@ -1,8 +1,33 @@
-%% [kest, L, Cc] = getKalman(jointObj jOb, outputIdx,  var_u, var_y)
 % Calculate an optimal Kalman observer for the jointObj jOb with outputs
-% specified by [outputIdx]. It returns the Kalman estimator kest, Kalman
-% gain L, and output matrix Cc. The input and measurement variances are
-% given by var_u, var_y, respectively.
+% specified by [outputIdx] and input and measurement variances var_u, var_y,
+% respectively.It returns the Kalman estimator kest, Kalman gain L, and
+% output matrix Cc.
+%
+%   [kest, L, Cc] = getKalman(jointObj jOb, outputIdx,  var_u, var_y)
+%
+% Inputs:
+%   jointObj jOb: Joint object
+%   outputIdx: Joint outputs measured by the Kalman filter
+%   var_u: Input variance
+%   var_y: Output variance
+%
+% Outputs:
+%   kest: Kalman estimator dynamic system
+%   L: Kalman gain
+%   Cc: Output matrix that selects the outputs specified by outputIdx from
+%       the output matrix C of the joint object.
+%
+% Notes::
+%
+%
+% Examples::
+%
+%
+% Author::
+%  Joern Malzahn, jorn.malzahn@iit.it
+%  Wesley Roozing, wesley.roozing@iit.it
+%
+% See also getObserver.
 
 function [kest, L, Cc] = getKalman(jOb, outputIdx, var_u, var_y)
     %% Get state-space model
