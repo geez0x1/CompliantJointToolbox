@@ -6,6 +6,7 @@ The Compliant Joint Toolbox (CJT) for MATLAB is being developed to ease the mode
 **Authors:**
 
 Jörn Malzahn
+
 Wesley Roozing
 
 ## Getting started
