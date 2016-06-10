@@ -1,10 +1,61 @@
-%% [A, B, C, I, D, K] = rigid_gearbox(obj)
-% Get dynamics matrices - rigid gearbox
+%RIGID_GEARBOX Get linear dynamics matrices - rigid gearbox
+%
+% [A, B, C, I, D, K] = jointObj.rigid_gearbox
+%
+% jointObj is the instance of the joint class object for which this
+% function has been called.
+%
+% Outputs::
+%   A:   System matrix
+%   B:   Input matrix
+%   C:   Output matrix
+%   I:   Inertia matrix
+%   D:   Damping matrix
+%   K:   Stiffness matrix
+%
+% Notes::
+%  This function is identical to full_dyn, but with the difference that the
+%  gearbox is now considered to be rigid. This leads to a reduced
+%  model structure by an order of two.
+%
+% Examples::
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also full_dyn.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [A, B, C, I, D, K] = rigid_gearbox(obj)
     
-    % x = [q_g, q_b, q_g_dot, q_b_dot]'
-
+    % The computations below assume a state vector definition according to:
+    % x = [q_g, q_b, q_g_dot, q_b_dot]', where 
+    % q_g is the gearbox output angle
+    % q_b is the flange angle (output of the torsion bar)
+    %
+    % The '_dot' denotes the temporal derivative.
+    
+    
     % Inertia matrix
     I = diag([obj.I_m + obj.I_g, obj.I_b]);
 

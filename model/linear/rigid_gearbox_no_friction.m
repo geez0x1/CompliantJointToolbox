@@ -1,9 +1,58 @@
-%% [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
-% Get dynamics matrices - rigid gearbox, no friction
+% RIGID_GEARBOX_NO_FRICTION Get linear dynamics matrices - rigid gearbox without
+% friction
+%
+% [A, B, C, I, D, K] = jointObj.rigid_gearbox_no_friction
+%
+% jointObj is the instance of the joint class object for which this
+% function has been called.
+%
+% Outputs::
+%   A:   System matrix
+%   B:   Input matrix
+%   C:   Output matrix
+%   I:   Inertia matrix
+%   D:   Damping matrix
+%   K:   Stiffness matrix
+%
+% Notes::
+%  This function is identical to rigid_gearbox, but with the
+%  difference that all friction coefficients are set to zero.
+%
+% Examples::
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also full_dyn, rigid_gearbox.
 
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
 function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
     
-    % x = [q_g, q_b, q_g_dot, q_b_dot]'
+    % The computations below assume a state vector definition according to:
+    % x = [q_g, q_b, q_g_dot, q_b_dot]', where 
+    % q_g is the gearbox output angle
+    % q_b is the flange angle (output of the torsion bar)
+    %
+    % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
     I = diag([obj.I_m + obj.I_g, obj.I_b]);

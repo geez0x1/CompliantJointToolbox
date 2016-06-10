@@ -1,9 +1,59 @@
-%% [A, B, C, I, D, K] = output_fixed(obj)
-% Get dynamics matrices - output link fixed
+%OUTPUT_FIXED_NO_FRICTION  Get linear dynamics matrices - output link fixed, no
+% friction
+%
+% [A, B, C, I, D, K] = jointObj.output_fixed_no_friction
+%
+% jointObj is the instance of the joint class object for which this
+% function has been called.
+%
+% Outputs::
+%   A:   System matrix
+%   B:   Input matrix
+%   C:   Output matrix
+%   I:   Inertia matrix
+%   D:   Damping matrix
+%   K:   Stiffness matrix
+%
+% Notes::
+%  This function is identical to output_fixed, but with the difference that all
+%  friction coefficients are set to zero.
+%
+% Examples::
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also full_dyn.
 
-function [A, B, C, I, D, K] = output_fixed(obj)
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
+
+function [A, B, C, I, D, K] = output_fixed_no_friction(obj)
     
-    % x = [q_m, q_g, q_m_dot, q_g_dot]'
+    % The computations below assume a state vector definition according to:
+    % x = [q_m, q_g, q_m_dot, q_g_dot,]', where 
+    % q_m is the motor angle,
+    % q_g is the gearbox output angle
+    %
+    % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
     I = diag([obj.I_m , obj.I_g]);

@@ -1,5 +1,5 @@
 %% [A, B, C, I, D, K] = output_fixed_rigid_gearbox_TJ(obj)
-% Get dynamics matrices - output link fixed, gearbox rigid, torque-jerk
+% Get linear dynamics matrices - output link fixed, gearbox rigid, torque-jerk
 % states
 
 function [A, B, C, I, D, K] = output_fixed_rigid_gearbox_TJ(obj)
