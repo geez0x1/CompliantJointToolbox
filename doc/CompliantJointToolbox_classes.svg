@@ -102,11 +102,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="1046.6705"
-     inkscape:cy="58.414603"
+     inkscape:zoom="1.979899"
+     inkscape:cx="246.33798"
+     inkscape:cy="158.33054"
      inkscape:document-units="px"
-     inkscape:current-layer="g4351"
+     inkscape:current-layer="g4309"
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="739"
@@ -128,7 +128,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -249,7 +249,7 @@
            x="-583.90558"
            y="277.29559"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
-           id="tspan4321"></tspan><tspan
+           id="tspan4321" /><tspan
            sodipodi:role="line"
            x="-583.90558"
            y="286.67059"
@@ -264,7 +264,7 @@
            x="-583.90558"
            y="305.42059"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
-           id="tspan4323"></tspan><tspan
+           id="tspan4323" /><tspan
            sodipodi:role="line"
            x="-583.90558"
            y="314.79559"
@@ -279,7 +279,7 @@
            x="-583.90558"
            y="333.54559"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
-           id="tspan4325"></tspan><tspan
+           id="tspan4325" /><tspan
            sodipodi:role="line"
            x="-583.90558"
            y="342.92059"
@@ -294,7 +294,7 @@
            x="-583.90558"
            y="361.67059"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
-           id="tspan7637"></tspan><tspan
+           id="tspan7637" /><tspan
            sodipodi:role="line"
            x="-583.90558"
            y="371.04559"
@@ -746,12 +746,12 @@
              id="tspan5631-4"
              y="206.0101"
              x="355.37598"
-             sodipodi:role="line">full</tspan><tspan
+             sodipodi:role="line">full_dyn</tspan><tspan
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
              id="tspan5700"
              y="215.3851"
              x="355.37598"
-             sodipodi:role="line">full_no_friction</tspan><tspan
+             sodipodi:role="line">full_dyn_no_friction</tspan><tspan
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
              id="tspan5702"
              y="224.7601"
