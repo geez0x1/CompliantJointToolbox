@@ -5,12 +5,11 @@ The Compliant Joint Toolbox (CJT) for MATLAB is being developed to ease the mode
 
 **Authors:**
 
-JÃ¶rn Malzahn
-
+Jörn Malzahn
 Wesley Roozing
 
 ## Getting started
-1. To set up the required paths, run `setSEApaths.m`.
+1. To set up the required paths, run `setCJTPaths.m`.
 2. In the root of the toolbox, you will find the following directories:
 
     - `lib`: Simulink blocks that come with the library - controllers, models and observers;
