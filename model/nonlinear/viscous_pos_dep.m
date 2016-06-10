@@ -1,15 +1,52 @@
-function [ tau ] = viscous_pos_dep(obj, x)
 %VISCOUS_POS_DEP Calculate position-dependent viscous friction
-% Arguments:
-% jointObj obj
-% state x
+%
+% [tau] = jointObj.viscous_pos_dep(x)
+%
+% jointObj is the instance of the joint class object for which this
+% function has been called.
+%
+% Inputs::
+%   x:   state vector depending on the model type as
+%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  continuous_full
+%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 continuous_rigid_gearbox
+%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 continuous_output_fixed
+%     x = [q_g, q_g_dot]'                               continuous_output_fixed_rigid_gearbox
+%
+% Outputs::
+%   tau: friction torque
+%
+% Notes::
+%  THIS FILE IS A PROOF OF CONCEPT AND NEEDS TO BE FINISHED
+%
+% Examples::
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also full_dyn, coulomb, viscous_asym.
 
-    % x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  continuous_full
-    % x = [q_g, q_b, q_g_dot, q_b_dot]'                 continuous_rigid_gearbox
-    % x = [q_m, q_g, q_m_dot, q_g_dot]'                 continuous_output_fixed
-    % x = [q_g, q_g_dot]'                               continuous_output_fixed_rigid_gearbox
-    
-    % THIS FILE IS A PROOF OF CONCEPT AND NEEDS TO BE FINISHED
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
+
+function [ tau ] = viscous_pos_dep(obj, x)
     
     % Temp
     a = 1e-6;   % Amplitude
