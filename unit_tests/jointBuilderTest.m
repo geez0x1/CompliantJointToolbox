@@ -54,11 +54,9 @@ clc;
 testCase.('TestData').JB = jointBuilder;
 testCase.('TestData').JB.overwrite = 1; % Overwrite existing model files.
 
-testCase.('TestData').allParams = {'WMBig10k_wes';
-    'WMBig10k_ds'
+testCase.('TestData').allParams = {'WMBig10k_ds';
     'WMBig10k';
-    'WMBig2300_ds';
-    'WMBig2800'};
+    'WMBig2300_ds'};
 
 
 end
