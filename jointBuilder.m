@@ -21,10 +21,13 @@ classdef jointBuilder
         
         %__________________________________________________________________
         % Build a joint object file
-        function className = buildJoint(this, paramName, modelName, nonlinearModelName)
+        function className = buildJoint(this, paramName, modelName, nonlinearModelName, className)
             % buildJoint(paramName, modelName, nonlinearModelName)
             % Builds a joint model file in the build/ directory based on
             % the supplied parameter and model names
+
+            % Eval parameters
+            eval(paramName);
             
             % Process nonlinear model names
             if ~exist('nonlinearModelName', 'var')
@@ -43,12 +46,13 @@ classdef jointBuilder
             end
             
             % Create class name
-            eval(paramName);
-            className = [paramName '_' modelName];
-            if ~isempty(nonlinearModelName)
-                className = [className '_' nonlinearModelNameStr];
+            if (~exist('className', 'var'))
+                className = [paramName '_' modelName];
+                if ~isempty(nonlinearModelName)
+                    className = [className '_' nonlinearModelNameStr];
+                end
             end
-            className(isspace(className)) = [];
+            className(isspace(className)) = []; % Remove any spaces
             
             % Fix long filenames
             classNameLong = className;

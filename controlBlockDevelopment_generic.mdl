@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.606"
+    ComputedModelVersion    "1.607"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -51,11 +51,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[1032.0, 541.0]
-	ZoomFactor		[1.0]
-	Offset			[156.91904761904766, -50.39761904761906]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"760"
+	Extents			[1032.0, 536.0]
+	ZoomFactor		[0.8]
+	Offset			[301.16666666666663, -169.66666666666663]
       }
     }
   }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 04 14:49:16 2016"
-  RTWModifiedTimeStamp	  368706302
-  ModelVersionFormat	  "1.%<AutoIncrement:606>"
+  LastModifiedDate	  "Fri Jun 10 11:31:04 2016"
+  RTWModifiedTimeStamp	  387459059
+  ModelVersionFormat	  "1.%<AutoIncrement:607>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -919,7 +919,7 @@ Model {
   System {
     Name		    "controlBlockDevelopment_generic"
     Location		    [268, 48, 1354, 776]
-    Open		    on
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -938,7 +938,7 @@ Model {
       Name		      "Bus\nSelector"
       SID		      "40"
       Ports		      [1, 3]
-      Position		      [870, 237, 875, 303]
+      Position		      [870, 227, 875, 293]
       ZOrder		      183
       ShowName		      off
       OutputSignals	      "GearPos,LinkPos,Torque"
@@ -1002,7 +1002,7 @@ Model {
       Name		      "GearPos"
       SID		      "41"
       Ports		      [1]
-      Position		      [1010, 184, 1040, 216]
+      Position		      [1010, 174, 1040, 206]
       ZOrder		      184
       ScopeSpecificationString "C++SS(StrPVP('Location','[309, 1434, 946, 1768]'),StrPVP('Open','off'),StrPVP('ZoomMod"
       "e','yonly'),MxPVP('AxesTitles',24,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',28,'struct(''Fig"
@@ -1034,13 +1034,13 @@ Model {
 	  Type			  "edit"
 	  Name			  "jointObj"
 	  Prompt		  "Joint Object"
-	  Value			  "BMTestRig_continuous_output_fixed_coulomb_asym"
+	  Value			  "my_joint"
 	}
       }
       System {
 	Name			"Generic Controller"
 	Location		[268, 48, 1354, 776]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1051,7 +1051,7 @@ Model {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"80"
 	Block {
 	  BlockType		  Inport
 	  Name			  "Reference"
@@ -1150,7 +1150,7 @@ Model {
       "'-','LineWidth',0.4,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{"
       "[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','60','TimeRangeFrames','60'),extmgr.Configuration('Too"
       "ls','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Measurements',true,'Version','2015b"
-      "')),'Version','2015b','Location',[898 669 1593 1031],'VisibleAtModelOpen','on')"
+      "')),'Version','2015b','Location',[893 673 1598 1036],'VisibleAtModelOpen','on')"
     }
     Block {
       BlockType		      Reference
@@ -1159,11 +1159,11 @@ Model {
       Ports		      [1, 1]
       Position		      [640, 234, 810, 286]
       ZOrder		      221
-      LibraryVersion	      "1.31"
+      LibraryVersion	      "1.63"
       SourceBlock	      "SEA_library_models/Joint models/JointModel"
       SourceType	      ""
       ContentPreviewEnabled   off
-      jointObj		      "BMTestRig_continuous_output_fixed"
+      jointObj		      "my_joint"
       fc_vel		      "100"
       fc_torque		      "100"
       input_delay	      "0"
@@ -1178,7 +1178,7 @@ Model {
       Name		      "LinkPos"
       SID		      "42"
       Ports		      [1]
-      Position		      [1010, 254, 1040, 286]
+      Position		      [1010, 244, 1040, 276]
       ZOrder		      185
       ScopeSpecificationString "C++SS(StrPVP('Location','[253, 1347, 961, 1714]'),StrPVP('Open','off'),StrPVP('ZoomMod"
       "e','yonly'),MxPVP('AxesTitles',24,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',28,'struct(''Fig"
@@ -1228,7 +1228,7 @@ Model {
       Name		      "Torque"
       SID		      "46"
       Ports		      [1]
-      Position		      [1010, 319, 1040, 351]
+      Position		      [1010, 309, 1040, 341]
       ZOrder		      189
       ScopeSpecificationString "C++SS(StrPVP('Location','[11, 81, 662, 481]'),StrPVP('Open','off'),MxPVP('AxesTitles',"
       "24,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',28,'struct(''FigureColor'',''[0.501960784313725"
@@ -1258,17 +1258,17 @@ Model {
       ZOrder		      550
       SrcBlock		      "JointModel"
       SrcPort		      1
-      Points		      [25, 0; 0, 10]
+      Points		      [25, 0]
+      Branch {
+	ZOrder			585
+	Points			[0, 71; -474, 0; 0, -51]
+	DstBlock		"Generic Controller"
+	DstPort			2
+      }
       Branch {
 	ZOrder			569
 	DstBlock		"Bus\nSelector"
 	DstPort			1
-      }
-      Branch {
-	ZOrder			568
-	Points			[0, 61; -474, 0; 0, -51]
-	DstBlock		"Generic Controller"
-	DstPort			2
       }
     }
     Line {
@@ -1294,7 +1294,7 @@ Model {
       }
       Branch {
 	ZOrder			487
-	Points			[0, 90]
+	Points			[0, 100]
 	DstBlock		"Mux"
 	DstPort			2
       }

@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.623"
+    ComputedModelVersion    "1.624"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -53,7 +53,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1032.0, 541.0]
+	Extents			[1032.0, 536.0]
 	ZoomFactor		[1.0]
 	Offset			[151.68024134465634, -57.719047619047785]
       }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 25 11:17:22 2016"
-  RTWModifiedTimeStamp	  378299839
-  ModelVersionFormat	  "1.%<AutoIncrement:623>"
+  LastModifiedDate	  "Fri Jun 10 11:30:21 2016"
+  RTWModifiedTimeStamp	  387459008
+  ModelVersionFormat	  "1.%<AutoIncrement:624>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1033,7 +1033,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "971"
+    SIDHighWatermark	    "979"
     Block {
       BlockType		      Lookup_n-D
       Name		      "1-D Lookup\nTable"
@@ -1141,21 +1141,21 @@ Model {
       "('Color',[0 1 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineSty"
       "le','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.4,'"
       "Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible',"
-      "'on')}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'1-D Lookup Table'}},'ShowContent',true,'Place"
-      "ment',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-12.5','MaxYLimReal','12.5','YLabelReal','','MinYLimMa"
-      "g','0.00000','MaxYLimMag','12.5','LegendVisibility','on','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesCol"
-      "or',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;"
-      "1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0."
-      "274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LineP"
-      "ropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct("
-      "'Color',[1 0 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 1 1],'LineStyl"
-      "e','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.4,'M"
-      "arker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','"
-      "on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on')}},'UserDefinedChanne"
-      "lNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','60','TimeRang"
-      "eFrames','60'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutoscale','XY'),"
-      "extmgr.Configuration('Tools','Measurements',true,'Version','2015b')),'Version','2015b','Location',[882 665 1609 "
-      "1047],'VisibleAtModelOpen','on')"
+      "'on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)},'Displ"
+      "ayPropertyDefaults',struct('MinYLimReal','-12.5','MaxYLimReal','12.5','YLabelReal','','MinYLimMag','0.00000','Ma"
+      "xYLimMag','12.5','LegendVisibility','on','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'Axe"
+      "sTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882"
+      "353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 "
+      "1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',"
+      "{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[1 0 1],"
+      "'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 1 1],'LineStyle','-','LineWidt"
+      "h',0.4,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.4,'Marker','none','V"
+      "isible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Col"
+      "or',[0 0 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'Nu"
+      "mLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','60','TimeRangeFrames','60'),e"
+      "xtmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutoscale','XY'),extmgr.Configura"
+      "tion('Tools','Measurements',true,'Version','2015b')),'Version','2015b','Location',[882 665 1609 1047],'VisibleAt"
+      "ModelOpen','on')"
     }
     Block {
       BlockType		      Reference
@@ -1168,7 +1168,7 @@ Model {
       SourceBlock	      "SEA_library_models/Joint models/JointModel"
       SourceType	      ""
       ContentPreviewEnabled   off
-      jointObj		      "WMBig10k_continuous_output_fixed_nonLin_disturbed"
+      jointObj		      "my_joint"
       fc_vel		      "100"
       fc_torque		      "100"
       input_delay	      "0"
@@ -1282,21 +1282,21 @@ Model {
       "ible','on'),struct('Color',[0 1 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color"
       "',[1 0 0],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-'"
       ",'LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.4,'Marker'"
-      ",'none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',2,'LineNames',{{'1-D Lookup Table','<GearPos"
-      ">'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-244.73624','MaxYLimReal"
-      "','48.92584','YLabelReal','','MinYLimMag',' 0.00000','MaxYLimMag','244.73624','LegendVisibility','On','XGrid',tr"
-      "ue,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.06666666666"
-      "66667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8313725490"
-      "19608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650"
-      "980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth"
-      "',0.4,'Marker','none','Visible','on'),struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Vi"
-      "sible','on'),struct('Color',[0 1 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Colo"
-      "r',[1 0 0],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-"
-      "','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.4,'Marker"
-      "','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Pl"
-      "acement',1),'TimeRangeSamples','60','TimeRangeFrames','60'),extmgr.Configuration('Tools','Plot Navigation',true,"
-      "'AutoscaleMode','Auto','AutoscaleSecondaryAxes',true),extmgr.Configuration('Tools','Measurements',true,'Version'"
-      ",'2015b')),'Version','2015b','Location',[36 671 870 1048],'VisibleAtModelOpen','on')"
+      ",'none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Pla"
+      "cement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-244.73624','MaxYLimReal','48.92584','YLabelReal',''"
+      ",'MinYLimMag',' 0.00000','MaxYLimMag','244.73624','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhas"
+      "e',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.6"
+      "23529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.7"
+      "17647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<Sig"
+      "nalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.4,'Marker','none','Visib"
+      "le','on'),struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',"
+      "[0 1 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','"
+      "LineWidth',0.4,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.4,'Marker','"
+      "none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.4,'Marker','none','Visible','on')}},'"
+      "UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSample"
+      "s','60','TimeRangeFrames','60'),extmgr.Configuration('Tools','Plot Navigation',true,'AutoscaleMode','Auto','Auto"
+      "scaleSecondaryAxes',true),extmgr.Configuration('Tools','Measurements',true,'Version','2015b')),'Version','2015b'"
+      ",'Location',[36 671 870 1048],'VisibleAtModelOpen','on')"
     }
     Line {
       ZOrder		      550
@@ -1394,149 +1394,20 @@ Stateflow {
     name		    "openLoop_inputFromFile"
     created		    "25-Aug-2015 12:13:59"
     isLibrary		    0
-    firstTarget		    9
+    firstTarget		    2
     sfVersion		    80000006
   }
-  chart {
-    id			    2
-    name		    "JointModel/nonLinDynamicsFcn"
-    windowPosition	    [422 539.941 189 413]
-    viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 3600 1200 1.180555555555556]
-    treeNode		    [0 3 0 0]
-    firstTransition	    7
-    firstJunction	    6
-    viewObj		    2
-    machine		    1
-    toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
-    ssIdHighWaterMark	    5
-    decomposition	    CLUSTER_CHART
-    type		    EML_CHART
-    firstData		    4
-    chartFileNumber	    2
-    disableImplicitCasting  1
-    eml {
-      name		      "nonLinDynamics"
-    }
-  }
-  state {
-    id			    3
-    labelString		    "eML_blk_kernel()"
-    position		    [18 64.5 118 66]
-    fontSize		    12
-    chart		    2
-    treeNode		    [2 0 0 0]
-    superState		    SUBCHART
-    subviewer		    2
-    ssIdNumber		    1
-    type		    FUNC_STATE
-    decomposition	    CLUSTER_STATE
-    eml {
-      isEML		      1
-      script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.verbose = 0.000000;\nparams.debug = 0.00000"
-      "0;\nparams.I_m = 1.388142;\nparams.I_g = 0.925387;\nparams.I_b = 0.086700;\nparams.k_g = 75000.000000;\nparams.k"
-      "_b = 13678.000000;\nparams.d_m = 3.590000;\nparams.d_g = 3.590000;\nparams.d_b = 3.590000;\nparams.d_m_n = 3.400"
-      "000;\nparams.d_g_n = 3.400000;\nparams.d_b_n = 3.400000;\nparams.d_mg = 296.000000;\nparams.d_gb = 35.000000;\np"
-      "arams.d_cm = 11.347000;\nparams.d_cg = 11.347000;\nparams.d_cb = 0.000000;\nparams.d_cm_n = 11.667000;\nparams.d"
-      "_cg_n = 11.667000;\nparams.d_cb_n = 0.000000;\nparams.n = 100.000000;\nparams.k_t = 0.045500;\nparams.r = 0.0990"
-      "00;\nparams.x = 0.000000;\nparams.Ts = 0.001000;\nparams.name = 'WMBig10k_continuous_output_fixed_nonLin_disturb"
-      "ed';\nparams.paramName = 'WMBig10k';\nparams.modelName = 'continuous_output_fixed';\n%params.nonlinearModelName "
-      "= {'coulomb_asym', 'viscous_asym'}; % Cell arrays are not supported for code generation.\ntau =coulomb_asym(para"
-      "ms,x) +viscous_asym(params,x);\n	end\n\n"
-      editorLayout	      "100 M4x1[205 227 1080 733]"
-    }
-  }
-  data {
-    id			    4
-    ssIdNumber		    4
-    name		    "x"
-    linkNode		    [2 0 5]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    5
-    ssIdNumber		    5
-    name		    "tau"
-    linkNode		    [2 4 0]
-    scope		    OUTPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  junction {
-    id			    6
-    position		    [23.5747 49.5747 7]
-    chart		    2
-    linkNode		    [2 0 0]
-    subviewer		    2
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    7
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [28.125 13.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      6
-      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    2
-    linkNode		    [2 0 0]
-    dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    2
-    drawStyle		    SMART
-    slide {
-      sticky		      BOTH_STICK
-    }
-    executionOrder	    1
-    ssIdNumber		    2
-  }
-  instance {
-    id			    8
-    name		    "JointModel/nonLinDynamicsFcn"
-    machine		    1
-    chart		    2
-  }
   target {
-    id			    9
+    id			    2
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
-    linkNode		    [1 0 10]
+    linkNode		    [1 0 3]
   }
   target {
-    id			    10
+    id			    3
     name		    "rtw"
     machine		    1
-    linkNode		    [1 9 0]
+    linkNode		    [1 2 0]
   }
 }

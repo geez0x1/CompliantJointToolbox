@@ -1,7 +1,7 @@
-%% [A, B, C, I, D, K] = continuous_full(obj)
+%% [A, B, C, I, D, K] = full_dyn(obj)
 % Get dynamics matrices - default
 
-function [A, B, C, I, D, K] = continuous_full(obj)
+function [A, B, C, I, D, K] = full_dyn(obj)
     
     % x = [q_m, q_g, q_b, q_m_dot, q_g_dot, q_b_dot]'
 

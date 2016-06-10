@@ -1,7 +1,7 @@
-%% [A, B, C, I, D, K] = continuous_rigid_gearbox_no_friction(obj)
-% Get dynamics matrices - rigid gearbox, no friction
+%% [A, B, C, I, D, K] = rigid_gearbox(obj)
+% Get dynamics matrices - rigid gearbox
 
-function [A, B, C, I, D, K] = continuous_rigid_gearbox_no_friction(obj)
+function [A, B, C, I, D, K] = rigid_gearbox(obj)
     
     % x = [q_g, q_b, q_g_dot, q_b_dot]'
 
@@ -9,8 +9,9 @@ function [A, B, C, I, D, K] = continuous_rigid_gearbox_no_friction(obj)
     I = diag([obj.I_m + obj.I_g, obj.I_b]);
 
     % Damping matrix
-    d_m     = 0*obj.d_m;
-    d_b     = 0*obj.d_b;
+    d_m     = obj.d_m;
+    d_g     = obj.d_g;
+    d_b     = obj.d_b;
     d_gb	= obj.d_gb; % shorthands %#ok<*PROP>
     D = [   d_m + d_g + d_gb,       -d_gb; ...
             -d_gb,                  d_b + d_gb      ];

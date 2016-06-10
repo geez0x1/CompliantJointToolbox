@@ -485,7 +485,7 @@ classdef genericJoint < handle
         end
        
         function out = dq_over_dm(obj)
-            % DQ_OVER_DM Motor slope [rad s^(-1) /Nm ]
+            % DQ_OVER_DM Motor slope [rad s^(-1) / Nm]
             %
             %   slope = gj.dq_over_dm
             %

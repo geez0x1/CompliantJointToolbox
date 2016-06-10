@@ -1,7 +1,7 @@
-%% [A, B, C, I, D, K] = continuous_full_no_friction(obj)
+%% [A, B, C, I, D, K] = full_dyn_no_friction(obj)
 % Get dynamics matrices - default, no friction
 
-function [A, B, C, I, D, K] = continuous_full_no_friction(obj)
+function [A, B, C, I, D, K] = full_dyn_no_friction(obj)
     
     % x = [q_m, q_g, q_b, q_m_dot, q_g_dot, q_b_dot]'
 

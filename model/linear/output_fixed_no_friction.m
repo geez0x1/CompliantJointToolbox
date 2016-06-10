@@ -1,7 +1,7 @@
-%% [A, B, C, I, D, K] = continuous_output_fixed(obj)
+%% [A, B, C, I, D, K] = output_fixed(obj)
 % Get dynamics matrices - output link fixed
 
-function [A, B, C, I, D, K] = continuous_output_fixed(obj)
+function [A, B, C, I, D, K] = output_fixed(obj)
     
     % x = [q_m, q_g, q_m_dot, q_g_dot]'
 

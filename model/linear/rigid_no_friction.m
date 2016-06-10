@@ -1,7 +1,7 @@
-%% [A, B, C, I, D, K] = continuous_rigid(obj)
-% Get dynamics matrices - fully rigid
+%% [A, B, C, I, D, K] = rigid_no_friction(obj)
+% Get dynamics matrices - fully rigid, no friction
 
-function [A, B, C, I, D, K] = continuous_rigid(obj)
+function [A, B, C, I, D, K] = rigid_no_friction(obj)
     
     % x = [q_b, q_b_dot]'
 
@@ -9,10 +9,7 @@ function [A, B, C, I, D, K] = continuous_rigid(obj)
     I = obj.I_m + obj.I_g + obj.I_b;
 
     % Damping matrix
-    d_m = obj.d_m;
-    d_g = obj.d_g;
-    d_b = obj.d_b; % shorthands %#ok<*PROP>
-    D = d_m + d_g + d_b;
+    D = 0;
 
     % There is no stiffness (rigid joint)
     K = 0;
@@ -26,7 +23,7 @@ function [A, B, C, I, D, K] = continuous_rigid(obj)
     n   = obj.n;
     B	= [0, k_t*n/I(1,1)]';
     
-        % Output
+    % Output
     C = [1, 0;  ... % motor position
          1, 0;  ... % gear position
          1, 0;  ... % link position

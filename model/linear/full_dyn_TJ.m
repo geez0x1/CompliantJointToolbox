@@ -1,12 +1,12 @@
-%% [A, B, C, I, D, K] = continuous_full_TJ(obj)
+%% [A, B, C, I, D, K] = full_dyn_TJ(obj)
 % Get dynamics matrices - default, torque-jerk states
 
-function [A, B, C, I, D, K] = continuous_full_TJ(obj)
+function [A, B, C, I, D, K] = full_dyn_TJ(obj)
     
     % x = [tau_g, tau_l, tau_e, tau_g_dot, tau_l_dot, tau_e_dot]'
     
     % Get position-velocity states
-    [A, B, C, I, D, K] = obj.continuous_full();
+    [A, B, C, I, D, K] = obj.full();
 
     k_g = obj.k_g;
     k_b = obj.k_b;

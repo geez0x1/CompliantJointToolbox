@@ -1,7 +1,7 @@
-%% [A, B, C, I, D, K] = continuous_output_fixed_rigid_gearbox(obj)
+%% [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj)
 % Get dynamics matrices - output link fixed, gearbox rigid
 
-function [A, B, C, I, D, K] = continuous_output_fixed_rigid_gearbox(obj)
+function [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj)
     
     % x = [q_g, q_g_dot]'
 
