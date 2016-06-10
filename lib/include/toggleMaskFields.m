@@ -1,8 +1,47 @@
-%% toggleMaskFields( blockH, checkbox, fields [, onDirection ])
-% Enable/disable mask fields based on the settings of checkboxes (supports
-% multiple fields by using a cell for the 'fields' argument).
-% Example: toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');
-% Example: toggleMaskFields(gcbh, 'noise_disabled', {'var_u', 'var_y'}, 'off');
+% TOGGLEMASKFIELDS Enable/disable mask fields based on the settings of checkboxes
+% (supports multiple fields by using a cell for the 'fields' argument).
+%
+% toggleMaskFields( blockH, checkbox, fields [, onDirection ])
+%
+% Inputs::
+%
+% blockH:      handle to the Simulink block under consideration
+% checkbox:    handle to the toggled checkbox
+% fields:      cell array of fields in the mask 
+% onDirection: Either 'on' or 'off'. By default, enabling the checkbox
+%              enables the fields ('on')
+%
+% Examples::
+%  1)
+%   toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');
+%  2)
+%   toggleMaskFields(gcbh, 'noise_disabled', {'var_u', 'var_y'}, 'off');
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also mask_LQR_Full_Measured_State.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [] = toggleMaskFields( blockH, checkbox, fields, onDirection )
     % Set default for onDirection
