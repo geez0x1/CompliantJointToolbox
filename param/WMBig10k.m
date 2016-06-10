@@ -1,4 +1,36 @@
-% WALK-MAN Big Motor with 10000 Nm/rad torsion bar
+%WMBIG10K Parameter script for the WALK-MAN Big Motor with > 10000 Nm/rad torsion bar
+%
+%
+% Notes::
+%  All inertiae/damping is reflected to link side using n^2
+%  The parameters in this script are partially obtained from experimental identification
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also genericJoint, full_dyn, WMBig10k.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
+
 n = 100;
 % Inertiae
 params.('I_m')      = 1.38 * 1.0059;       %% Motor rotor inertia [kg m^2]
