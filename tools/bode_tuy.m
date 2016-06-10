@@ -1,6 +1,29 @@
-%% [f, mag_db, phase] = bode_tuy(t, u, y)
 % Compute magnitude and phase in frequency domain from equidistantly 
 % sampled I/O signals.
+%
+%   [f, mag_db, phase] = bode_tuy(t, u, y)
+%
+% Inputs:
+%   t: time vector
+%   u: input data vector
+%   y: output data vector
+%
+% Outputs:
+%   f: frequency vector
+%   mag_db: output magnitude vector in [db]
+%   phase: output phase in [deg]
+%
+% Notes::
+%   
+%
+% Examples::
+%
+%
+% Author::
+%  Joern Malzahn, jorn.malzahn@iit.it
+%  Wesley Roozing, wesley.roozing@iit.it
+%
+% See also bode_tuyplot.
 
 function [f, mag_db, phase] = bode_tuy(t, u, y)
     

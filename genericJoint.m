@@ -116,7 +116,7 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %  Wesley Roozing, wesley.roozing@iit.it
             %
-            % See also jointBuilder, WMBigJoint.
+            % See also jointBuilder.
             
             % Apply properties
             this.verbose	= params.verbose;
@@ -193,7 +193,7 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %  Wesley Roozing, wesley.roozing@iit.it
             %
-            % See also genericJoint, jointBuilder, WMBigJoint.
+            % See also genericJoint, jointBuilder.
             
             params	= struct;
             p       = properties(this);

@@ -1,18 +1,45 @@
-%% [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, f_c, id_Np, id_Nz, f_c_FF, f_c_DOB)
-% This function calculates the approximated closed-loop transfer function
+% This function calculates the estimated closed-loop transfer function
 % Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
 % plication control scheme. This is the experimental data version, that
 % takes input-output data of the plant to approximate a plant model.
-% This function returns the approximated closed-loop transfer function
+% This function returns the estimated closed-loop transfer function
 % Pc, DOB filter Q_td, feed-forward filter Q_ff, DOB plant inversion +
-% filter PQ_td, and feed-forward plant in version + filter PQ_ff.
+% filter PQ_td, and feed-forward plant inversion + filter PQ_ff.
+%
+%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
+%
+% Inputs:
+%   jointName: Joint class name
+%   t: Time data vector
+%   u: Input data vector
+%   y: Output data vector
+%   id_Np: Number of poles in model identification
+%   id_Nz: Number of zeroes in model identification
+%   f_c_FF: Feed-forward Q-filter cut-off frequency in [Hz]
+%   f_c_DOB: DOB Q-filter cut-off frequency in [Hz]
+%
+% Outputs:
+%   Pc: Estimated closed-loop transfer function
+%   Q_td: DOB Q-filter
+%   Q_ff: Feed-forward Q-filter
+%   PQ_td: Inverted plant + DOB Q-filter
+%   PQ_ff: Inverted plant + Feed-forward Q-filter
+%
+% Notes::
+%
+%
+% Examples::
+%
+%
+% Author::
+%  Joern Malzahn, jorn.malzahn@iit.it
+%  Wesley Roozing, wesley.roozing@iit.it
+%
+% See also getLinearDOB.
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, f_c, id_Np, id_Nz, f_c_FF, f_c_DOB)
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
 
     %% Default parameters
-    if (~exist('f_c', 'var'))
-        f_c = 60;    	% Model identification cut-off frequency [Hz]
-    end
     if (~exist('id_Np', 'var'))
         id_Np = 4;       % Model number of poles []
     end
@@ -39,8 +66,6 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
     % Cut-off frequencies
     omega_c_FF      = 2 * pi * f_c_FF;  % Feed-forward (model inv) LPF cutoff frequency [rad/s]
     omega_c_DOB     = 2 * pi * f_c_DOB; % DOB cutoff frequency [rad/s]
-    %omega_c = 2 * pi * f_c;
-    % The model identification cut-off is only used for displaying atm
 
     % Resample data to obtain uniform sampling for tfest()
     Ts      = j.Ts;         % Sampling time [s]
@@ -62,8 +87,6 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
     Options = tfestOptions;
     Options.Display = 'on';
     Options.InitMethod = 'all';
-    %Options.SearchMethod = 'gna';
-    %Options.Focus = [0 30*2*pi];
     Pc = tfest(d, id_Np, id_Nz, Options);
     
     % Ensure Pc has unit DC gain
@@ -78,13 +101,16 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
 
     %% Plot original data and Pc approximation
     figure(1); clf;
+    
+    % Get max plotting frequency
+    maxPlotFreq = 2*max(omega_c_FF, omega_c_DOB);
 
     % Magnitude
     subplot(2,1,1); hold on;
     semilogx(f,mag_db);
     semilogx(f,mag_db_Pc, 'r');
     grid on
-    xlim([0.1 f_c]);
+    xlim([0.1 maxPlotFreq]);
     ylabel('Magnitude [dB]');
     legend('Experimental data', 'Pc');
 
@@ -93,7 +119,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
     semilogx(f,phase);
     semilogx(f,phase_Pc, 'r');
     grid on;
-    xlim([0.1 f_c]);
+    xlim([0.1 maxPlotFreq]);
     xlabel('Frequency [Hz]');
     ylabel('Phase [deg]');
 
