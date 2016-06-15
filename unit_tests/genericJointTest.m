@@ -1,4 +1,3 @@
-function [ tests ] = genericJointTest
 %GENERICJOINTTEST Test implementation of the generic joint class.
 %
 % About this main function:
@@ -10,16 +9,44 @@ function [ tests ] = genericJointTest
 % To run tests from the command prompt, use the runtests command with your
 % MATLAB test file as input. For example:
 %
-%   results = runtests('exampleTest.m')
+%   results = runtests('genericJointTest.m')
 %
 % Alternatively, you can run tests using the run function.
 %
-%   results = run(exampleTest)
+%   results = run(genericJointTest)
 %
 % To analyze the test results, examine the output structure from runtests
 % or run. For each test, the result contains the name of the test function,
 % whether it passed, failed, or didn't complete, and the time it took to
 % run the test.
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also genericJoint.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
+
+function [ tests ] = genericJointTest
     tests = functiontests(localfunctions);
 end
 
