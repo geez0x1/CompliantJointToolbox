@@ -25,7 +25,7 @@
 %  Joern Malzahn
 %  Wesley Roozing
 %
-% See also full_dyn, coulomb, viscous_asym.
+% See also full_dyn, coulomb.
 
 % Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
