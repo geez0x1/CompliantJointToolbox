@@ -1,17 +1,19 @@
-% This function creates a DOB from a linear model jOb with outputs
-% specified by [outputIdx]. It returns the plant model, Q-filter with
-% cut-off frequency omega_c, and the inverted plant + filter. The doPlot
-% flag plots Bode plots of the resulting transfer functions.
+% GETLINEARDOB Compute linear disturbance observer transfer functions.
 %
 %   [Pc, Q_td, PQ_td] = getLinearDOB(jointObj jOb, omega_c, outputIdx, doPlot)
 %
-% Inputs:
-%   jointObj jOb: Joint object
+%   This function creates a DOB from a linear model jOb with outputs
+%   specified by [outputIdx]. It returns the plant model, Q-filter with
+%   cut-off frequency omega_c, and the inverted plant + filter. The doPlot
+%   flag plots Bode plots of the resulting transfer functions.
+%
+% Inputs::
+%   jointObj: Joint object
 %   omega_c: DOB Q-filter cut-off frequency in [rad/s]
 %   outputIdx: Joint outputs measured by the observer
 %   doPlot: Whether to plot the results
 %
-% Outputs:
+% Outputs::
 %   Pc: Plant transfer function
 %   Q_td: Low-pass filter (Q-filter) with cut-off frequency omega_c
 %   PQ_td: Inverted plant + filter
@@ -23,10 +25,30 @@
 %
 %
 % Author::
-%  Joern Malzahn, jorn.malzahn@iit.it
-%  Wesley Roozing, wesley.roozing@iit.it
+%  Joern Malzahn
+%  Wesley Roozing
 %
+% See also getLinearDOB_fromData, getObserver, getKalman.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
     %% Get joint object and state-space system with 1 output

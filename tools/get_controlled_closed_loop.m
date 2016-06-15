@@ -1,16 +1,18 @@
-% Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
-% H transfer functions, and the PD derivative gain Kd_opt that critically
-% damps the closed-loop poles for fixed-output force control.
+% GET_CONTROLLED_CLOSED_LOOP Outputs closed loop transfer functions.
 %
 %   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N [, ff_comp_switch] )
 %
-% Inputs:
-%   jointName: Joint object class name
-%              Kp, Ki, Kd, N: PID gains and derivative cut-off frequency (if Kd=-1, the
+%   Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
+%   H transfer functions, and the PD derivative gain Kd_opt that critically
+%   damps the closed-loop poles for fixed-output force control.
+%
+% Inputs::
+%   jointName: Joint object class name Kp, Ki, Kd, N: PID gains and 
+%              derivative cut-off frequency (if Kd=-1, the
 %              resulting PD D-gain will be set to Kd_opt).
 %   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
 %
-% Outputs:
+% Outputs::
 %   P: Plant transfer function
 %   G: Controller transfer function
 %   H: Closed-loop transfer function
@@ -24,10 +26,31 @@
 %
 %
 % Author::
-%  Joern Malzahn, jorn.malzahn@iit.it
-%  Wesley Roozing, wesley.roozing@iit.it
+%  Joern Malzahn
+%  Wesley Roozing
 %
+% See also getObserver, getKalman.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
+
 
 function [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N, ff_comp_switch )
     %% Default arguments

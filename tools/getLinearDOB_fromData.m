@@ -1,14 +1,17 @@
-% This function calculates the estimated closed-loop transfer function
-% Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
-% plication control scheme. This is the experimental data version, that
-% takes input-output data of the plant to approximate a plant model.
-% This function returns the estimated closed-loop transfer function
-% Pc, DOB filter Q_td, feed-forward filter Q_ff, DOB plant inversion +
-% filter PQ_td, and feed-forward plant inversion + filter PQ_ff.
+% GETLINEARDOB_FROMDATA Estimate linear disturbance observer transfer
+% functions from experimental data.
 %
 %   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
 %
-% Inputs:
+%  This function calculates the estimated closed-loop transfer function
+%  Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
+%  plication control scheme. This is the experimental data version, that
+%  takes input-output data of the plant to approximate a plant model.
+%  This function returns the estimated closed-loop transfer function
+%  Pc, DOB filter Q_td, feed-forward filter Q_ff, DOB plant inversion +
+%  filter PQ_td, and feed-forward plant inversion + filter PQ_ff.
+%
+% Inputs::
 %   jointName: Joint class name
 %   t: Time data vector
 %   u: Input data vector
@@ -18,7 +21,7 @@
 %   f_c_FF: Feed-forward Q-filter cut-off frequency in [Hz]
 %   f_c_DOB: DOB Q-filter cut-off frequency in [Hz]
 %
-% Outputs:
+% Outputs::
 %   Pc: Estimated closed-loop transfer function
 %   Q_td: DOB Q-filter
 %   Q_ff: Feed-forward Q-filter
@@ -32,10 +35,30 @@
 %
 %
 % Author::
-%  Joern Malzahn, jorn.malzahn@iit.it
-%  Wesley Roozing, wesley.roozing@iit.it
+%  Joern Malzahn
+%  Wesley Roozing
 %
-% See also getLinearDOB.
+% See also getLinearDOB, getObserver, getKalman.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
 

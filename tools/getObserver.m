@@ -1,11 +1,13 @@
-% Calculate an observer for the joint object jOb with outputs specified by 
-% [outputIdx]. The closed-loop poles based on LQR (with matrices Q, R) are
-% multiplied by the place_gain to obtain the observer poles.
+% GETOBSERVER Determine state observer gains
 %
-%   [sys_hat, L, Cc] = getObserver(jointObj jOb, outputIdx, place_gain, [Q, R])
+%   [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, [Q, R])
+%
+%  Calculate an observer for the joint object jointObj with outputs specified by 
+%  [outputIdx]. The closed-loop poles based on LQR (with matrices Q, R) are
+%  multiplied by the place_gain to obtain the observer poles.
 %
 % Inputs:
-%   jointObj jOb: Joint object
+%   jointObj: Joint object
 %   outputIdx: Joint outputs measured by the observer
 %   place_gain: Pole placement gain
 %   Q: LQR state weight
@@ -17,6 +19,7 @@
 %   Cc: Output matrix that selects the outputs specified by outputIdx from
 %       the output matrix C of the joint object.
 %
+%
 % Notes::
 %
 %
@@ -24,10 +27,30 @@
 %
 %
 % Author::
-%  Joern Malzahn, jorn.malzahn@iit.it
-%  Wesley Roozing, wesley.roozing@iit.it
+%  Joern Malzahn
+%  Wesley Roozing
 %
-% See also getKalman.
+% See also getLinearDOB, getKalman.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     %% Parameters
