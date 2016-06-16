@@ -1,4 +1,4 @@
-% SETCJTPATH Script to add the Compliant Joint Toolbox (CJT) to your Matlab
+% SETCJTPATH Script that adds the Compliant Joint Toolbox (CJT) to your Matlab
 % search path.
 %
 % Author::
@@ -35,7 +35,7 @@ if ~exist([pwd, filesep, 'build'], 'dir')
     mkdir([pwd, filesep, 'build']);
 end
 
-% Add recursive paths
+% Add paths recursively
 addpath(genpath([pwd, filesep, 'build']));
 addpath(genpath([pwd, filesep, 'lib']));
 addpath(genpath([pwd, filesep, 'model']));
@@ -44,4 +44,4 @@ addpath(genpath([pwd, filesep, 'templates']));
 addpath(genpath([pwd, filesep, 'tools']));
 
 % Status
-disp('Added Compliant Joint Toolbox paths.');
+disp('Added Compliant Joint Toolbox (CJT) paths.');
