@@ -20,12 +20,12 @@
 %   Ki: Inner control loop integral gain
 %   Kd: Inner control loop derivative gain
 %   N: DOB order
-%   pid_form: Flag that determins if PID controller is given in product or
-%             summation form
-%   ff_comp_switch: Flag that determins if torque feedforward is active or
-%                   not (default: true)
-%   f_c_FF:  Feed-forward cutoff frequency [Hz] (default: 40)
-%   f_c_DOB:  DOB cutoff frequency [Hz] (default: 60)
+%   pid_form: Flag that determines whether PID controller is constructed in
+%             product or summation form
+%   ff_comp_switch: Flag that determins whether torque feedforward is
+%                   active or not (default: true)
+%   f_c_FF: Feed-forward cutoff frequency [Hz] (default: 40)
+%   f_c_DOB: DOB cutoff frequency [Hz] (default: 60)
 %
 % Outputs::
 %   Pc: Estimated closed-loop transfer function
