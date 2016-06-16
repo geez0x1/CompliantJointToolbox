@@ -61,7 +61,7 @@ classdef jointBuilder
         % Remove all created files
         function purge(this)
             if (exist(this.buildDir, 'dir'))
-                rmdir(this.buildDir,'s');
+                delete([this.buildDir filesep '*']);
             end
         end
         
@@ -174,9 +174,10 @@ classdef jointBuilder
             fprintf(fid, [getDynStr '\n\n'], modelName);
             
             % getNonlinearDynamics
+            getNonlinDynStr = fileread('getNonlinearDynamics.m');
+            getNonlinDynStr = regexprep(getNonlinDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
             if (~isempty(nonlinearModelName))
                 % There are nonlinear terms
-                getNonlinDynStr = fileread('getNonlinearDynamics.m');
                 fStr = '';
                 for i=1:length(nonlinearModelName)
                    fStr = strcat(fStr, nonlinearModelName(i), '(obj, x)');
@@ -185,14 +186,11 @@ classdef jointBuilder
                    end
                 end
                 fStr = strcat(fStr, ';');
-                getNonlinDynStr = regexprep(getNonlinDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
-                fprintf(fid, [getNonlinDynStr '\n\n'], char(fStr));
             else
                 % No nonlinear terms
-                getNonlinDynStr = fileread('getNonlinearDynamics_none.m');
-                getNonlinDynStr = regexprep(getNonlinDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
-                fprintf(fid, [getNonlinDynStr '\n\n'], nonlinearModelName);
+                fStr = 'zeros(size(x)); % No nonlinear dynamics!';
             end
+            fprintf(fid, [getNonlinDynStr '\n\n'], char(fStr));
             
             % End methods
             fprintf(fid,'\tend\n\n');
