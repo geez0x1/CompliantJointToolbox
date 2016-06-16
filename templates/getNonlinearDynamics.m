@@ -42,5 +42,5 @@
 %% For more information on the toolbox and contact to the authors visit
 %% <https://github.com/geez0x1/CompliantJointToolbox>
 function tau = getNonlinearDynamics(obj, x)
-    tau = %s(obj, x);
+    tau = %s
 end

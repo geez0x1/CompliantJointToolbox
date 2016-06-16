@@ -60,7 +60,9 @@ classdef jointBuilder
         %__________________________________________________________________
         % Remove all created files
         function purge(this)
-            rmdir(this.buildDir,'s');
+            if (exist(this.buildDir, 'dir'))
+                rmdir(this.buildDir,'s');
+            end
         end
         
         %__________________________________________________________________
@@ -70,26 +72,36 @@ classdef jointBuilder
             % Builds a joint model file in the build/ directory based on
             % the supplied parameter and model names
 
-            % Eval parameters
+            % Evaluate parameters
             eval(paramName);
             
-            % Process nonlinear model names
+            % Process nonlinear model names to create the class name as
+            % well as the nonlinear model property fo the class
             if ~exist('nonlinearModelName', 'var')
+                % No nonlinear dynamics
                 nonlinearModelName = '';
                 nonlinearModelNameCellStr = '''''';
             else
-                nonlinearModelName_multiple = 0; % default
+                % One or multiple nonlinear dynamics components included
+                
+                % If the argument is a cell, we're dealing with multiple
+                % nonlinear dynamics components
                 if (iscell(nonlinearModelName) && length(nonlinearModelName) > 1)
-                    nonlinearModelName_multiple = 1;
+                    % Multiple components
                     nonlinearModelNameStr = strjoin(nonlinearModelName, '_');
                     nonlinearModelNameCellStr = strcat('{''', strtrim(strjoin(nonlinearModelName, ''', ''')), '''}');
                 else
+                    % Single component
                     nonlinearModelNameStr = nonlinearModelName;
                     nonlinearModelNameCellStr = ['''' nonlinearModelName ''''];
+                    
+                    % Turn nonlinearModelName into a cell so we can process
+                    % them in the same way
+                    nonlinearModelName = {nonlinearModelName};
                 end
             end
             
-            % Create class name
+            % If no used-defined name is given, create the class name
             if (~exist('className', 'var'))
                 className = [paramName '_' modelName];
                 if ~isempty(nonlinearModelName)
@@ -98,15 +110,15 @@ classdef jointBuilder
             end
             className(isspace(className)) = []; % Remove any spaces
             
+            % Joint name is equal to the long class name since the name
+            % character limit only applies to filenames
+            jointName = className;
+            
             % Fix long filenames
             classNameLong = className;
             if (length(className) > 63-2) % -2 for .m extension
                 className = [className(1:63-2-3) '_xx']; % -3 for '_xx'
             end
-            
-            % Joint name is equal to the long class name since the limit
-            % only applies to filenames
-            jointName = classNameLong;
             
             % Create build directory if necessary
             if ~exist(this.buildDir,'dir')
@@ -130,18 +142,21 @@ classdef jointBuilder
                     fid = fopen(classFName,'w+');
             end
             
-            %% Class definition
+            
+            % Class definition
             fprintf(fid,'%% %s\n\n', classNameLong);
             fprintf(fid,'classdef %s < genericJoint\n\n', className);
             
             % Description
             % ...
             
-            %% Private properties
+            
+            % Private properties
             fprintf(fid,'\tproperties (SetAccess = private)\n');
             fprintf(fid,'\tend\n\n');
             
-            %% Methods
+            
+            % Methods
             fprintf(fid,'\tmethods\n');
             
             % Constructor
@@ -159,23 +174,19 @@ classdef jointBuilder
             fprintf(fid, [getDynStr '\n\n'], modelName);
             
             % getNonlinearDynamics
-            if (~isempty(nonlinearModelName) && nonlinearModelName_multiple)
-                % Multiple nonlinear terms
-                getNonlinDynStr = fileread('getNonlinearDynamics_multiple.m');
+            if (~isempty(nonlinearModelName))
+                % There are nonlinear terms
+                getNonlinDynStr = fileread('getNonlinearDynamics.m');
                 fStr = '';
                 for i=1:length(nonlinearModelName)
-                   fStr = strcat(fStr, nonlinearModelName(i), '(obj, x, dx)');
+                   fStr = strcat(fStr, nonlinearModelName(i), '(obj, x)');
                    if (i < length(nonlinearModelName))
                        fStr = strcat(fStr, '+');
                    end
                 end
+                fStr = strcat(fStr, ';');
                 getNonlinDynStr = regexprep(getNonlinDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
                 fprintf(fid, [getNonlinDynStr '\n\n'], char(fStr));
-            elseif ~isempty(nonlinearModelName)
-                % Single nonlinear term
-                getNonlinDynStr = fileread('getNonlinearDynamics.m');
-                getNonlinDynStr = regexprep(getNonlinDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
-                fprintf(fid, [getNonlinDynStr '\n\n'], nonlinearModelName);
             else
                 % No nonlinear terms
                 getNonlinDynStr = fileread('getNonlinearDynamics_none.m');
@@ -186,10 +197,10 @@ classdef jointBuilder
             % End methods
             fprintf(fid,'\tend\n\n');
             
-            %% End class definition
+            % End class definition
             fprintf(fid,'end\n');
             
-            %% Close file
+            % Close file
             fclose(fid);
             
             % Status
