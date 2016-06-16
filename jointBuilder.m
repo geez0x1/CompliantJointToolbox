@@ -77,7 +77,7 @@ classdef jointBuilder
             
             % Process nonlinear model names to create the class name as
             % well as the nonlinear model property fo the class
-            if ~exist('nonlinearModelName', 'var')
+            if (~exist('nonlinearModelName', 'var') || isempty(nonlinearModelName))
                 % No nonlinear dynamics
                 nonlinearModelName = '';
                 nonlinearModelNameCellStr = '''''';
