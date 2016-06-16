@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-9.0, 19.0, 960.0, 1040.0]
+      Location		      [0.0, 27.0, 1680.0, 1023.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -43,9 +43,9 @@ Library {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "3"
-	  Extents		  [711.0, 856.0]
+	  Extents		  [1451.0, 857.0]
 	  ZoomFactor		  [1.0]
-	  Offset		  [-5.1357142857145277, -223.12142857142703]
+	  Offset		  [-14.269047619047853, -239.45476190476069]
 	}
 	Object {
 	  $ObjectID		  6
@@ -66,9 +66,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jun 16 11:56:07 2016"
-  RTWModifiedTimeStamp	  387978938
-  ModelVersionFormat	  "1.%<AutoIncrement:152>"
+  LastModifiedDate	  "Thu Jun 16 13:29:33 2016"
+  RTWModifiedTimeStamp	  387984572
+  ModelVersionFormat	  "1.%<AutoIncrement:153>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -999,7 +999,7 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[-9, 19, 951, 1059]
+	Location		[0, 27, 1680, 1050]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1033,7 +1033,7 @@ Library {
 	      Type		      "edit"
 	      Name		      "jointObj"
 	      Prompt		      "Joint Object"
-	      Value		      "WMBig_TestRig_continuous_output_fixed"
+	      Value		      "My_joint"
 	    }
 	  }
 	  System {
@@ -1152,7 +1152,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object (fixed output model)"
-		Value			"WMBig_TestRig_continuous_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		23
@@ -1642,7 +1642,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object (fixed output model)"
-		Value			"WMBig_TestRig_continuous_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		29
@@ -2083,7 +2083,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object (fixed output model)"
-		Value			"WMBig_TestRig_continuous_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		34
@@ -2104,7 +2104,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR Full Measured State"
-	    Location		    [-9, 19, 951, 1059]
+	    Location		    [-9, 27, 951, 1067]
 	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2408,7 +2408,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"WMBig_TestRig_continuous_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		38
@@ -2938,7 +2938,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object (fixed output model)"
-		Value			"WMBig_TestRig_continuous_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		45
@@ -3535,7 +3535,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"WMBig_TestRig_continuous_output_fixed_rigid_gearbox"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		49
@@ -3995,7 +3995,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"WMBig_TestRig_continuous_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		58
@@ -4619,7 +4619,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"WMBig_TestRig_continuous_output_fixed_rigid_gearbox"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		86
@@ -5556,7 +5556,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"WMBig_TestRig_continuous_output_fixed_rigid_gearbox"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		114

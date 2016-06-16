@@ -41,10 +41,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
+	LoadSaveID		"4"
 	Extents			[1467.0, 902.0]
-	ZoomFactor		[1.0]
-	Offset			[0.0, 0.0]
+	ZoomFactor		[2.5]
+	Offset			[29.661904761904793, 122.84761904761919]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 11 10:43:36 2016"
-  RTWModifiedTimeStamp	  377003575
-  ModelVersionFormat	  "1.%<AutoIncrement:63>"
+  LastModifiedDate	  "Thu Jun 16 13:29:12 2016"
+  RTWModifiedTimeStamp	  387984550
+  ModelVersionFormat	  "1.%<AutoIncrement:64>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -911,8 +911,8 @@ Library {
       Variant		      off
       System {
 	Name			"Joint models"
-	Location		[-1688, -282, 8, 780]
-	Open			off
+	Location		[-1632, 27, 64, 1089]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -990,7 +990,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"WMBig_TestRig_continuous_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		20
@@ -1058,7 +1058,7 @@ Library {
 	  System {
 	    Name		    "JointModel"
 	    Location		    [-1632, 27, 64, 1089]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1069,8 +1069,8 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "288"
+	    ZoomFactor		    "60"
+	    SIDHighWatermark	    "343"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorCurrent [A]"
@@ -1527,7 +1527,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"31"
+		SIDHighWatermark	"36"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
