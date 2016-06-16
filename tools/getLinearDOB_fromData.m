@@ -178,8 +178,15 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
 
 
     %% Save results
-    saveName = [mfilename,'_results.mat'];
-    save(saveName, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
-    disp(['Data saved to ', mfilename,'.mat']);
+    % Offer to save results
+    fname	= 'DOB_results.mat';
+    ansr	= 'temp';
+    while (~strcmpi(ansr, 'y') && ~strcmpi(ansr, 'n') && ~strcmp(ansr, ''))
+        ansr = input(['Do you want to save the results to ' fname ' [Y/n]?'], 's');
+    end
+    if (strcmp(ansr, '') || strcmpi(ansr, 'y'))
+        save(fname, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
+        disp(['Data saved to ' fname]);
+    end
     
 end
