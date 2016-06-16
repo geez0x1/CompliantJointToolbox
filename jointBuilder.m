@@ -100,11 +100,12 @@ classdef jointBuilder
             
             % Fix long filenames
             classNameLong = className;
-            if (length(className) > 63-2)
-                className = [className(1:63-2-3) '_xx'];
+            if (length(className) > 63-2) % -2 for .m extension
+                className = [className(1:63-2-3) '_xx']; % -3 for '_xx'
             end
             
-            % Joint name is equal to the long class name
+            % Joint name is equal to the long class name since the limit
+            % only applies to filenames
             jointName = classNameLong;
             
             % Create build directory if necessary
