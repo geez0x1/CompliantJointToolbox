@@ -5,7 +5,7 @@ The Compliant Joint Toolbox (CJT) for MATLAB is being developed to ease the mode
 
 **Authors:**
 
-Jörn Malzahn
+Joern Malzahn
 
 Wesley Roozing
 
@@ -13,6 +13,7 @@ Wesley Roozing
 1. To set up the required paths, run `setCJTPaths.m`.
 2. In the root of the toolbox, you will find the following directories:
 
+    - `examples`: A set of MATLAB and Simulink examples demonstrating various functionalities;
     - `lib`: Simulink blocks that come with the library - controllers, models and observers;
     - `model`: Mathematical description of the various models and their components;
     - `param`: Parameter files for several example actuators;
