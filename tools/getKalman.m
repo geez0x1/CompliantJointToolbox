@@ -61,9 +61,9 @@ function [kest, L, Cc] = getKalman(jOb, outputIdx, var_u, var_y)
     C       = sys.C;
     %D       = sys.D;
 
-    % Create system with outputs specified
+    % Create system with current input and outputs specified
     Ac   	= A;
-    Bc   	= B;
+    Bc   	= B(:,1);
     Cc    	= C(outputIdx,:);
     %Dc   	= zeros(size(Cc,1), 1);
 

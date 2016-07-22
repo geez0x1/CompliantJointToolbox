@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-8.0, 27.0, 1382.0, 744.0]
+      Location		      [177.0, 49.0, 1382.0, 744.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -52,9 +52,9 @@ Library {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "1"
-	  Extents		  [1328.0, 560.0]
+	  Extents		  [1328.0, 547.0]
 	  ZoomFactor		  [1.5]
-	  Offset		  [-177.86666666666702, 38.000000000000142]
+	  Offset		  [-144.00000000000045, 59.733333333333434]
 	}
 	PropName		"EditorsInfo"
       }
@@ -66,9 +66,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jun 16 13:29:51 2016"
-  RTWModifiedTimeStamp	  387984590
-  ModelVersionFormat	  "1.%<AutoIncrement:67>"
+  LastModifiedDate	  "Fri Jul 22 17:25:39 2016"
+  RTWModifiedTimeStamp	  391109056
+  ModelVersionFormat	  "1.%<AutoIncrement:69>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -930,7 +930,7 @@ Library {
   }
   System {
     Name		    "SEA_library_observers"
-    Location		    [-8, 27, 1374, 771]
+    Location		    [177, 49, 1559, 793]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -956,7 +956,7 @@ Library {
       Variant		      off
       System {
 	Name			"Observers"
-	Location		[-8, 27, 1374, 771]
+	Location		[177, 49, 1559, 793]
 	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -986,18 +986,9 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    20
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "[A, B, C, I, D, K] = jointObj.getDynamicsMatrices;\n\ndimSelect = getDimSelectorMatrix( joint"
-	    "Obj );\n\n% nEl = 3;                    % Number of position variables in the joint bus\n% sysOrder = size(A,2); "
-	    "      % Actual system order\n% \n% %% Now compute the dimension selector matrix, which extracts the required \n% "
-	    "% motionvariables from the joint bus. The information is already encoded in\n% % the dynamical system C matrix. W"
-	    "e just have to find the unique rows. We\n% % do that by dropping the non-unique ones to zero.\n% \n% dimSelect = "
-	    "C(1:nEl, 1:sysOrder); % transpose of dimension selector matrix to \n%                                   % be dete"
-	    "rmined, based on the dynamical system C matrix\n% \n% selectMask = zeros(1,nEl);        % this will be the mask t"
-	    "hat drops non-unique ones to zero\n% [~, idx] = unique(dimSelect,'rows','stable'); % find indexes of unique ones\n"
-	    "% selectMask(idx) = 1;              % mark unique ones\n% selectMask = repmat(selectMask,sysOrder,1); % duplicate"
-	    " mask rowwise to obtain a mask \n%                                     % matrix of appropriate system order\n% \n"
-	    "% % Apply th emask\n% dimSelect = dimSelect.'  .* selectMask; % now transpose the dimension selector and apply th"
-	    "e mask\n"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Cre"
+	    "ate a mask matrix to select the proper joint angles and velocities\n% for a joint model from the joint bus\ndimSe"
+	    "lect = getDimSelectorMatrix(jointObj);"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
@@ -1020,7 +1011,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Generalized momentum DOB"
-	    Location		    [155, 1050, 1521, 1818]
+	    Location		    [177, 49, 1559, 793]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1032,7 +1023,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "60"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "input"
@@ -1621,11 +1612,11 @@ Library {
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Par"
 	    "ameters\nN_outputs   	= size(C,1);\n\n% Get Kalman observer\n[kest, L, Cc]	= getKalman(jointObj, outputs_measured"
-	    ", var_u, var_y);\n\n% Discretize using Tustin transform\nkest_tust = c2d(kest, jointObj.Ts, 'tustin');\n\n% Get d"
-	    "emuxing indices\ndemux_N         = size(kest.C,1);                       % Kalman state-space block output size\n"
-	    "demux_yIdx      = 1:length(outputs_measured);           % Estimated outputs indices\ndemux_stateIdx	= length(outp"
-	    "uts_measured)+1:demux_N;	% Estimated state indices\n\n% Output\n%disp('Kalman gain L:');\n%disp(L);\n%disp('Estim"
-	    "ator kest:')\n%kest\n%disp('Original dynamic system sys:');\n%jointObj.getStateSpace()"
+	    ", var_u, var_y);\n\n% Discretize using Tustin transform\nkest_tust       = c2d(kest, jointObj.Ts, 'tustin');\n\n%"
+	    " Get demuxing indices\ndemux_N         = size(kest.C,1);                       % Kalman state-space block output "
+	    "size\ndemux_yIdx      = 1:length(outputs_measured);           % Estimated outputs indices\ndemux_stateIdx	= lengt"
+	    "h(outputs_measured)+1:demux_N;	% Estimated state indices\n\n% Output\n%disp('Kalman gain L:');\n%disp(L);\n%disp("
+	    "'Estimator kest:')\n%kest\n%disp('Original dynamic system sys:');\n%jointObj.getStateSpace()"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      4
@@ -1662,7 +1653,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Kalman observer"
-	    Location		    [146, 1042, 1530, 1827]
+	    Location		    [177, 49, 1559, 793]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1674,7 +1665,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "u"
@@ -1746,12 +1737,12 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [955, 187, 1050, 223]
 	      ZOrder		      263
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
-	      sys		      kest_tust
-	      IC		      []
+	      sys		      "kest_tust"
+	      IC		      "[]"
 	    }
 	    Block {
 	      BlockType		      Mux
@@ -1970,13 +1961,7 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    28
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "mask_Linear_Transfer_Function_DOB\n\n% % Make sure local values are defined\n% Pc      = 0;\n"
-	    "% Q_td 	= 0;\n% PQ_td	= 0;\n% \n% % If filename is given, assume the model and filters can be found in there\n% i"
-	    "f (loadData)\n%     if (isempty(modelFname))\n%         error('Error: Model/filters data file not found!');\n%   "
-	    "      return;\n%     else\n%         % Load file\n%         load(modelFname);\n%     end\n% else\n% 	% Get linear"
-	    " DOB based on a model\n%     [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, 2*pi*f_c, measIdx, doPlot);\n% end\n% \n%"
-	    " % Discretize using Tustin transform\n% Q_td_tust	= c2d(Q_td, jointObj.Ts, 'tustin');\n% PQ_td_tust	= c2d(PQ_td, "
-	    "jointObj.Ts, 'tustin');"
+	    Initialization	    "mask_Linear_Transfer_Function_DOB"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -2031,7 +2016,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Linear transfer function DOB"
-	    Location		    [155, 1050, 1521, 1818]
+	    Location		    [177, 49, 1559, 793]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2043,7 +2028,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "input"
@@ -2121,12 +2106,12 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [455, 177, 550, 213]
 	      ZOrder		      288
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
-	      sys		      Q_td_tust
-	      IC		      []
+	      sys		      "Q_td_tust"
+	      IC		      "[]"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2135,12 +2120,12 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [455, 262, 550, 298]
 	      ZOrder		      289
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
-	      sys		      PQ_td_tust
-	      IC		      []
+	      sys		      "PQ_td_tust"
+	      IC		      "[]"
 	    }
 	    Block {
 	      BlockType		      Mux
@@ -2354,7 +2339,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Luenberger observer"
-	    Location		    [155, 1050, 1521, 1818]
+	    Location		    [177, 49, 1559, 793]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2366,7 +2351,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "u"
@@ -2465,12 +2450,12 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1030, 242, 1125, 278]
 	      ZOrder		      262
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
-	      sys		      sys_hat_tust
-	      IC		      []
+	      sys		      "sys_hat_tust"
+	      IC		      "[]"
 	      Port {
 		PortNumber		1
 		Name			"x^"

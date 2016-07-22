@@ -61,7 +61,6 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
-
     %% Default parameters
     if (~exist('id_Np', 'var'))
         id_Np = 4;       % Model number of poles []

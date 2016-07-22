@@ -365,13 +365,13 @@ classdef genericJoint < handle
             props = properties(obj);
             
             % Blacklist (non-variable property names)
-            blacklist = {'verbose';
-                'debug';
-                'name';
-                'paramName';
-                'modelName';
-                'nonlinearModelName';
-                };
+            blacklist = {   'verbose';
+                            'debug';
+                            'name';
+                            'paramName';
+                            'modelName';
+                            'nonlinearModelName';
+                        };
             
             % Get symbolic properties
             symProps	= setdiff(props, blacklist);
@@ -408,8 +408,6 @@ classdef genericJoint < handle
             % See also t_p, p_rce, genericJoint, jointBuilder.
             
             out = obj.k_t*obj.i_c*obj.n;
-            
-            
         end
         
         function out = t_p(obj)
@@ -561,8 +559,8 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
-            out = obj.v_0*obj.i_c;
             
+            out = obj.v_0*obj.i_c;
         end
             
         function out = p_rcm(obj)
@@ -587,8 +585,8 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
-            out = obj.dq_r*obj.t_c;
             
+            out = obj.dq_r*obj.t_c;
         end
         
         function out = p_peakm(obj)
@@ -613,6 +611,7 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
+            
             out = obj.dq_p*obj.t_p;
         end
         
@@ -671,47 +670,40 @@ classdef genericJoint < handle
             ymax = 1.02*obj.dq_c;
             h = figure;
             hold on
-            
                        
-            %% torque speed line
+            % torque speed line
             slope = obj.dq_over_dm;
             mVals = (0:1/100:1)*obj.t_stall;
             linCurve =  obj.dq_0 - slope*mVals;
             plot(mVals, linCurve,'k','DisplayName','Torque-Speed Line')
             
-            %% Nominal operating point
+            % Nominal operating point
             plot(obj.t_c,obj.dq_r,'bo', 'DisplayName', 'Nominal Operating Point')
             
-            %% Friction
-%             speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
+            % Friction
+            %speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
             speedVals = (0:1/nVals:1)*obj.dq_c;
             Mc = obj.d_cm + obj.d_cg + obj.d_cb; % Static part
             Mv = (obj.d_m + obj.d_g + obj.d_b)*speedVals;
             Mf = Mc + Mv;
             plot(Mf,speedVals,'r:','DisplayName','Friction Torque')
             
-
-            
-            %% Plot limits
+            % Plot limits
             speedVals = obj.p_rcm./mVals;
             plot(mVals,speedVals,'r.', 'DisplayName','Rated Mechanical Power')
             speedVals = obj.p_peakm./mVals;
             plot(mVals,speedVals,'b.', 'DisplayName','Peak Mechanical Power')
-            
             plot([0,xmax], obj.dq_c*[1,1],'k--','DisplayName','Maximum Continous Speed')
             plot(obj.t_c*[1,1], [0,ymax],'k:','DisplayName','Maximum Continous Torque')
             
-            
-            %% Annotations and Figure Style
+            % Annotations and Figure Style
             xlim([0,xmax]);
             ylim([0,ymax]);
             xlabel('torque [Nm]')
             ylabel('speed [rad/s]')
             box on
             
-            legend show
-                
-            
+            legend show;
         end
         
     end
@@ -773,8 +765,7 @@ classdef genericJoint < handle
         %
         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
         tau = getNonlinearDynamics(obj, x, dx)
+        
     end
     
-    
 end
-

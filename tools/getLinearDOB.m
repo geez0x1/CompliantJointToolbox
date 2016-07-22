@@ -51,14 +51,16 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
-    %% Get joint object and state-space system with 1 output
-    sys     = jOb.getStateSpace();
-    sys     = ss(sys.A, sys.B, sys.C(outputIdx,:), 0);
-    Pc      = tf(sys);
-    
+    % Default parameters
 	if ~exist('doPlot','var')
 		doPlot = 0;
     end
+
+    
+    %% Get joint object and state-space system with current input and specified output
+    sys     = jOb.getStateSpace();
+    sys     = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
+    Pc      = tf(sys);
 
     
     %% Design low-pass Butterworth filters
@@ -77,17 +79,18 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
     bodeOpt.FreqUnits	= 'Hz';
     
     % Plot if required
-	if doPlot
-		figure(5); clf; hold on;
-		bode(Pc, bodeOpt);
-		bode(inv(Pc), bodeOpt);
-		bode(Q_td, bodeOpt);
-		bode(PQ_td, bodeOpt);
-		xlim([0.1 100]);
-		grid on;
-		legend('P_c', 'P_c^{-1}', 'Q_{td}', 'PQ_{td}');
-	end
+    if doPlot
+        figure(5); clf; hold on;
+        bode(Pc, bodeOpt);
+        bode(inv(Pc), bodeOpt);
+        bode(Q_td, bodeOpt);
+        bode(PQ_td, bodeOpt);
+        xlim([0.1 100]);
+        grid on;
+        legend('P_c', 'P_c^{-1}', 'Q_{td}', 'PQ_{td}');
+    end
 
+    
     %% Save results so we don't have to recalculate them all the time
     save('DOB_results.mat', 'Pc', 'Q_td', 'PQ_td');
     disp('Saved Pc, Q_td, PQ_td to DOB_results.mat');

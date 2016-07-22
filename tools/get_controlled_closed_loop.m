@@ -65,7 +65,6 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd
     % Get joint object
     j = eval(jointName);
     
-    
     % Control/system parameters
     k_b    	= j.k_b;            % Torsion bar stiffness [Nm/rad]
     n       = j.n;           	% Gearbox transmission ratio []
@@ -87,9 +86,9 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd
     end
     
     
-    % Get state-space system with torque output
+    % Get state-space system with current input and torque output
     sys         = j.getStateSpace();
-    sys         = ss(sys.A, sys.B, sys.C(2,:), 0);
+    sys         = ss(sys.A, sys.B(:,1), sys.C(2,:), 0);
     sys         = k_b * sys; % Multiply by k_b to get torque output
     
     

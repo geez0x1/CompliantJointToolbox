@@ -50,7 +50,7 @@ function [ dimSelect ] = getDimSelectorMatrix( jointObj )
 
     
     %% Now compute the dimension selector matrix, which extracts the required 
-    % motionvariables from the joint bus. The information is already encoded in
+    % motion variables from the joint bus. The information is already encoded in
     % the dynamical system C matrix. We just have to find the unique rows. We
     % do that by dropping the non-unique ones to zero.
 
@@ -63,7 +63,7 @@ function [ dimSelect ] = getDimSelectorMatrix( jointObj )
     selectMask = repmat(selectMask,halfSysOrder,1); % duplicate mask rowwise to obtain a mask 
                                         % matrix of appropriate system order
 
-    % Apply th emask
+    % Apply the mask
     dimSelect = dimSelect.'  .* selectMask; % now transpose the dimension selector and apply the mask
 
 end

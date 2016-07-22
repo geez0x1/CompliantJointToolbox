@@ -79,7 +79,8 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
     % Input
     k_t = obj.k_t;
     n   = obj.n;
-    B	= [0, 0, k_t*n/I(1,1), 0]';
+    B	= [ 0, 0, k_t*n/I(1,1),	0; ...
+            0, 0, 0,            1/I(2,2)	]';
     
         % Output
     C = [1, 0, 0, 0;  ... % motor position

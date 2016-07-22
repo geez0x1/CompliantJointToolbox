@@ -56,26 +56,26 @@ function [ tau ] = viscous_pos_dep(obj, x)
     c = zeros(size(x));
     
     % Build coefficient vector
-    if (strcmp(obj.modelName, 'continuous_full'))
+    if (strcmp(obj.modelName, 'full_dyn'))
         c = [0, 0, 0, ...
                 a * sin(x(1)/d + p), ...
                 a * sin(x(2)/d + p), ...
                 a * sin(x(3)/d + p)       ]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
         c = [0, 0, ...
                 a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n, ...
                 a * sin(x(2)*d + p)       ]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed'))
+    elseif (strcmp(obj.modelName, 'output_fixed'))
         c = [0, 0, ...
                 a * sin(x(1)/d + p), ...
                 a * sin(x(2)/d + p)       ]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
         c = [0, a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid'))
+    elseif (strcmp(obj.modelName, 'rigid'))
         c = a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n;
         
     end

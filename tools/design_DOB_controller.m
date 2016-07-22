@@ -104,9 +104,9 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, K
     omega_c_DOB = 2 * pi * f_c_DOB; % DOB LPF cutoff frequency [rad/s]
     
     
-    %% Get state-space system with torque output
+    %% Get state-space system with current input and torque output
     sys         = j.getStateSpace();
-    sys         = ss(sys.A, sys.B, sys.C(2,:), 0);
+    sys         = ss(sys.A, sys.B(:,1), sys.C(2,:), 0);
     sys         = k_b * sys;  % Multiply by k_b to get torque output
     
 

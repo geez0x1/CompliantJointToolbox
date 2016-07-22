@@ -82,7 +82,8 @@ function [A, B, C, I, D, K] = full_dyn_no_friction(obj)
     % Input
     k_t = obj.k_t;
     n   = obj.n;
-    B	= [0, 0, 0, k_t*n/I(1,1), 0, 0]';
+    B	= [ 0, 0, 0, k_t*n/I(1,1),  0, 0; ...
+            0, 0, 0, 0,             0, 1/I(3,3) ]';
     
     % Output
     C = eye(size(A,2));

@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 1023.0]
+      Location		      [0.0, 0.0, 1920.0, 1080.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -43,18 +43,18 @@ Library {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "3"
-	  Extents		  [1451.0, 857.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [-14.269047619047853, -239.45476190476069]
+	  Extents		  [1691.0, 901.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [-143.93086869482511, -115.96430048242462]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "187"
-	  Extents		  [711.0, 856.0]
-	  ZoomFactor		  [0.3]
-	  Offset		  [-358.10595238095243, -1162.2571428571439]
+	  Extents		  [1691.0, 901.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [-60.830153112767107, 178.68479023225052]
 	}
 	PropName		"EditorsInfo"
       }
@@ -66,9 +66,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jun 16 13:29:33 2016"
-  RTWModifiedTimeStamp	  387984572
-  ModelVersionFormat	  "1.%<AutoIncrement:153>"
+  LastModifiedDate	  "Fri Jul 22 17:22:13 2016"
+  RTWModifiedTimeStamp	  391108933
+  ModelVersionFormat	  "1.%<AutoIncrement:167>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -999,7 +999,7 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[0, 27, 1680, 1050]
+	Location		[0, 0, 1920, 1080]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1011,7 +1011,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Generic Controller"
@@ -1050,7 +1050,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -1128,22 +1128,9 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    21
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "%% Get state-space model\nsys     = jointObj.getStateSpace();\nsys     = ss(sys.A, sys.B, eye"
-	    "(size(sys.A)), 0);\nTs      = jointObj.Ts;\n\n% Shorthands\nA       = sys.A;\nB       = sys.B;\nC       = sys.C;\n"
-	    "D       = sys.D;\n\n% Create system with 1 output\nAc          = A;\nBc          = B;\nCc          = C(2,:);\nDc "
-	    "         = 0;\nsysc        = ss(Ac, Bc, Cc, Dc);\n\n\n%% Design LQR controller\n\n% Weights\n%Q = diag([0 1000 0 "
-	    "0]);\n%R = 1e-6;\n\n% Calculate LQR gain matrix K\n[K_lqr, S, e] = lqr(sys, Q, R);\n\n% Calculate reference input"
-	    " premultiplication N\n% SISO, using position as output\na           = [zeros(length(Bc),1); 1];\nN           = in"
-	    "v([Ac, Bc; Cc, Dc]) * a;\nN_x         = N(1:end-1);\nN_u         = N(end);\nN           = N_u + K_lqr * N_x;\n\n%"
-	    " Output results\n%disp('Calculated gain matrix K:');\n%disp(K_lqr);\n%disp('and premultiplication matrix N:');\n%"
-	    "disp(N);\n\n\n%% Design Kalman filter\n\n% x_dot	= Ax + Bu + Gw   	State equation\n% y  	= Cx + Du + Hw + v	Measu"
-	    "rement equation\n\n% Define variances\n%var_u       = 0.12^2;           % Input noise variance\n%var_y_pos	 = 1.8"
-	    "e-10;          % Position measurement noise variance\n%var_y_vel   = (2/Ts^2) * 1.8e-10;% Velocity measurement no"
-	    "ise variance\n\n% Build G, H\nG = B * var_u; 	% Additive noise on the current (adding to u)\nH = 0;\n\n% Construc"
-	    "t matrices\nA_hat	= Ac;\nB_hat	= [Bc, G];\nC_hat	= Cc;\nD_hat	= [zeros(size(Cc,1),1), H];\nsys_hat = ss(A_hat, B_"
-	    "hat, C_hat, D_hat);\n\n% Define Kalman variance matrices\nQn = 1;\nRn = var_y_pos;  	% Additive noise on the posi"
-	    "tion measurement\n\n% Calculate Kalman gains\n[kest,L,P] = kalman(sys_hat,Qn,Rn);\n\n% Display results\n%disp('Ca"
-	    "lculated Kalman filter gain L:');\n%disp(L);\n%disp('and estimator state-space model kest.');\n%disp(kest);\n\n"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% THI"
+	    "S USES THE GEARBOX POSITION AT THE MOMENT, SHOULD USE TORQUE!\n[K_lqr, N]      = getLQR(jointObj, 2, Q, R);\n[kes"
+	    "t, L, Cc]	= getKalman(jointObj, 2, var_u, var_y);"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
@@ -1178,8 +1165,8 @@ Library {
 	      Object {
 		$ObjectID		26
 		Type			"edit"
-		Name			"var_y_pos"
-		Prompt			"Position measurement noise variance"
+		Name			"var_y"
+		Prompt			"Measurement noise variance"
 		Value			"1.8e-10"
 	      }
 	      PropName		      "Parameters"
@@ -1187,7 +1174,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + Kalman (LQG)"
-	    Location		    [-1680, -276, -314, 692]
+	    Location		    [0, 0, 1920, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1199,7 +1186,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -1621,19 +1608,10 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    27
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "%% Get state-space model\nsys     = jointObj.getStateSpace();\nsys     = ss(sys.A, sys.B, eye"
-	    "(size(sys.A)), 0);\n\n% Shorthands\nA       = sys.A;\nB       = sys.B;\nC       = sys.C;\nD       = sys.D;\n\n% C"
-	    "reate system with 1 output\nAc   	= A;\nBc   	= B;\nCc    	= C(2,:);\nDc   	= 0;\nsysc   	= ss(Ac, Bc, Cc, Dc);\n"
-	    "\n\n%% Design LQR controller\n\n% Weights\n%Q = diag([0 1000 0 0]);\n%R = 1e-6;\n\n% Calculate LQR gain matrix K\n"
-	    "[K_lqr, S, e] = lqr(sys, Q, R);\n\n% Calculate reference input premultiplication N\n% SISO, using position as out"
-	    "put\na           = [zeros(length(Bc),1); 1];\nN           = inv([Ac, Bc; Cc, Dc]) * a;\nN_x         = N(1:end-1);"
-	    "\nN_u         = N(end);\nN           = N_u + K_lqr * N_x;\n\n% Display result\n%disp('Calculated gain matrix K:')"
-	    ";\n%disp(K_lqr);\n%disp('and premultiplication matrix N:');\n%disp(N);\n\n\n%% Design state observer\n\n% Obtain "
-	    "closed-loop controller poles for observer design\ncl_poles	= eig(A-B*K_lqr);\nobs_poles	= place_gain * min(real(c"
-	    "l_poles)) * ones(size(cl_poles));\nfor i=1:length(obs_poles)\n   obs_poles(i) = obs_poles(i) - i; % Make poles di"
-	    "stinct\nend\n\n% Calculate observer gain by placing poles\nL = place(Ac', Cc', obs_poles)';\n\n% Show results\n%d"
-	    "isp('Calculated observer gain L:');\n%disp(L);\n\n% Construct observer\nA_hat	= A;\nB_hat	= [B, L];\nC_hat	= eye("
-	    "size(A));\nD_hat	= zeros(size(C_hat,1),size(B_hat,2));\nsys_hat = ss(A_hat, B_hat, C_hat, D_hat);\n\n"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n%[K_l"
+	    "qr, sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)\n% THIS USES THE GEARBOX POSITION AT THE"
+	    " MOMENT, SHOULD USE TORQUE!\n[K_lqr, N]          = getLQR(jointObj, 2, Q, R);\n[sys_hat, L, Cc]	= getObserver(joi"
+	    "ntObj, 2, place_gain, Q, R);"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      4
@@ -1670,7 +1648,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + state observer"
-	    Location		    [-1688, -290, 8, 776]
+	    Location		    [0, 27, 1680, 1050]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1682,7 +1660,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2074,7 +2052,8 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    32
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "[ K_lqr, V, Aex, Bex, Cex] = mask_LQR_Full_Measured_State( jointObj, Q, R )"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n[ K_l"
+	    "qr, V, Aex, Bex, Cex] = mask_LQR_Full_Measured_State( jointObj, Q, R )"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
@@ -2104,7 +2083,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR Full Measured State"
-	    Location		    [-9, 27, 951, 1067]
+	    Location		    [0, 27, 1920, 1107]
 	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2116,7 +2095,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "30"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2929,7 +2908,8 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    43
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "[ K_lqr, V, Ar, Br, Cr] = mask_PI_LQR_Full_Measured_State( jointObj, Q, R )"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n[ K_l"
+	    "qr, V, Ar, Br, Cr] = mask_PI_LQR_Full_Measured_State( jointObj, Q, R )"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
@@ -3527,6 +3507,7 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    47
 	    $ClassName		    "Simulink.Mask"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      8
@@ -3987,6 +3968,7 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    56
 	    $ClassName		    "Simulink.Mask"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      11
@@ -4169,7 +4151,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF with inner-loop DOB\nand state observer"
-	    Location		    [-9, 19, 951, 1059]
+	    Location		    [0, 0, 1920, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4181,7 +4163,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -4296,7 +4278,7 @@ Library {
 	      ZOrder		      321
 	      ForegroundColor	      "red"
 	      BackgroundColor	      "yellow"
-	      LibraryVersion	      "1.66"
+	      LibraryVersion	      "1.68"
 	      SourceBlock	      "SEA_library_observers/Observers/Linear transfer function DOB"
 	      SourceType	      ""
 	      ContentPreviewEnabled   off
@@ -4320,7 +4302,7 @@ Library {
 	      Ports		      [2, 2]
 	      Position		      [960, 833, 1050, 897]
 	      ZOrder		      322
-	      LibraryVersion	      "1.66"
+	      LibraryVersion	      "1.68"
 	      SourceBlock	      "SEA_library_observers/Observers/Luenberger observer"
 	      SourceType	      ""
 	      ContentPreviewEnabled   off
@@ -4598,19 +4580,22 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    84
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Paine\n% Calculate the approximated closed-loop transfer function Pc and\n% filters Q_* etc"
-	    ".\n% This is the standalone code, that does not require measurement data\n% from a simulink model to design the m"
-	    "odel.\n% However, it uses a linear state-space model to estimate the transfer\n% function of the plant, thus the "
-	    "results are fundamentally different from\n% the experimental version.\n\n% Default values (off)\nQ_td    = tf(0);"
-	    "\nQ_ff    = tf(0);\nPQ_td	= tf(0);\nPQ_ff	= tf(0);\n\n% If DOB is disabled, stop here\nif (DOB_enable_switch ~= 2"
-	    ")\n    return;\nend\n\n% If filename is given, assume the model and filters can be found in there\nif (loadData)\n"
-	    "    if (isempty(modelFname))\n        error('Error: Model/filters data file not found!');\n    else\n        % Lo"
-	    "ad file and exit\n        load(modelFname);\n    end\nelse\n    %% If no filename is given with model&filters fro"
-	    "m experimental identifica-\n    % tion, do a linear simulation to obtain their approximate values (this\n    % wi"
-	    "ll significantly influence the results)\n\n    [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj.na"
-	    "me, Kp, Ki, Kd, N, 'parallel', ff_comp_switch, f_c_FF, f_c_DOB);\nend\n\n% Discretize using Tustin transform\nQ_t"
-	    "d_tust	= c2d(Q_td, jointObj.Ts, 'tustin');\nPQ_td_tust	= c2d(PQ_td, jointObj.Ts, 'tustin');\nPQ_ff_tust  = c2d(PQ"
-	    "_ff, jointObj.Ts, 'tustin');\n"
+	    Initialization	    "% Calculate the approximated closed-loop transfer function Pc and\n% filters Q_* etc.\n% This"
+	    " is the standalone code, that does not require measurement data\n% from a simulink model to design the model.\n% "
+	    "However, it uses a linear state-space model to estimate the transfer\n% function of the plant, thus the results a"
+	    "re fundamentally different from\n% the experimental version.\n\n% Get linear dynamics matrices\n[A, B, C, I, D, K"
+	    "] = jointObj.getDynamicsMatrices();\n\n% Default values (off)\nQ_td    = tf(0);\nQ_ff    = tf(0);\nPQ_td	= tf(0);"
+	    "\nPQ_ff	= tf(0);\n\n% Check if DOB is enabled\nif (DOB_enable_switch == 2)\n    % If filename is given, assume th"
+	    "e model and filters can be found in there\n    if (loadData)\n        if (isempty(modelFname))\n            error"
+	    "('Error: Model/filters data file not found!');\n        else\n            % Load file and exit\n            load("
+	    "modelFname);\n        end\n    else\n        %% If no filename is given with model&filters from experimental iden"
+	    "tifica-\n        % tion, do a linear simulation to obtain their approximate values (this\n        % will signific"
+	    "antly influence the results)\n\n        [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller( jointObj.name, .."
+	    ".\n                                                                Kp, Ki, Kd, N, 'parallel', ...\n              "
+	    "                                                  ff_comp_switch, ...\n                                          "
+	    "                      f_c_FF, f_c_DOB             );\n    end\nend\n\n% Discretize using Tustin transform\nQ_td_t"
+	    "ust	= c2d(Q_td, jointObj.Ts, 'tustin');\nPQ_td_tust	= c2d(PQ_td, jointObj.Ts, 'tustin');\nPQ_ff_tust  = c2d(PQ_ff"
+	    ", jointObj.Ts, 'tustin');\n"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      12
@@ -4834,7 +4819,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp with outer-loop\nDOB and optional prefilter"
-	    Location		    [-9, 19, 951, 1059]
+	    Location		    [0, 0, 1920, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4846,7 +4831,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "60"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -5608,7 +5593,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp."
-	    Location		    [-1928, -320, 8, 776]
+	    Location		    [0, 27, 1680, 1050]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -5620,7 +5605,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -5687,7 +5672,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [765, 372, 910, 408]
 	      ZOrder		      334
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
