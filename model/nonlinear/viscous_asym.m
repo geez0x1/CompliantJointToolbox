@@ -66,23 +66,23 @@ function [ tau ] = viscous_asym(obj, x)
     % Because the positive part is built into the linear dynamics, we
     % compensate for them in this asymmetric nonlinear model to obtain the
     % desired damping values. For the same reason, the positive part is zero.
-    if (strcmp(obj.modelName, 'continuous_full'))
+    if (strcmp(obj.modelName, 'full_dyn'))
         c       = [0, 0, 0, 0,              0,              0               ]';
         c_neg	= [0, 0, 0, -d_m + d_m_n,	-d_g + d_g_n,	-d_b + d_b_n	]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
         c       = [0, 0, 0,                             0               ]';
         c_neg   = [0, 0, -d_m - d_g + d_m_n + d_g_n,	-d_g + d_g_n	]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed'))
+    elseif (strcmp(obj.modelName, 'output_fixed'))
         c       = [0, 0, 0,             0               ]';
         c_neg   = [0, 0, -d_m + d_m_n,	-d_g + d_g_n	]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
         c       = [0, 0                             ]';
         c_neg   = [0, -d_m - d_g + d_m_n + d_g_n	]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid'))
+    elseif (strcmp(obj.modelName, 'rigid'))
         c       = 0;
         c_neg   = -d_m - d_g - d_b + d_m_n + d_g_n + d_b_n;
         

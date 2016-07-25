@@ -64,7 +64,7 @@ function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     
     %% Get state-space model
     sys     = jOb.getStateSpace();
-    sys     = ss(sys.A, sys.B, eye(size(sys.A)), 0);
+    sys     = ss(sys.A, sys.B, sys.C, 0);
 
     % Shorthands
     A       = sys.A;
@@ -97,10 +97,10 @@ function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     %% Design state observer
 
     % Obtain closed-loop controller poles for observer design
-    cl_poles	= eig(A-Bc*K_lqr);
+    cl_poles	= eig(A - Bc * K_lqr);
     obs_poles	= place_gain * min(real(cl_poles)) * ones(size(cl_poles));
     for i=1:length(obs_poles)
-       obs_poles(i) = obs_poles(i) - place_gain*i; % Make poles distinct
+       obs_poles(i) = obs_poles(i) - place_gain * i; % Make poles distinct
     end
 
     % Calculate observer gain by placing poles

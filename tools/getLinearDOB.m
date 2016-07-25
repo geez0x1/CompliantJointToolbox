@@ -62,6 +62,13 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
     sys     = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
     Pc      = tf(sys);
 
+    % Check if Pc is a dynamic system
+    % If we select the output position for a fixed-output plant for
+    % example, Pc will be a static gain of 0, and a DOB cannot be
+    % constructed.
+    if (order(Pc) == 0)
+        error('getLinearDOB error: Plant Pc has zero order for the chosen output, cannot continue.');
+    end
     
     %% Design low-pass Butterworth filters
 

@@ -52,9 +52,9 @@ Library {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "3"
-	  Extents		  [591.0, 836.0]
+	  Extents		  [611.0, 854.0]
 	  ZoomFactor		  [0.8]
-	  Offset		  [83.666666666666629, -323.00000000000045]
+	  Offset		  [97.283333333333189, -385.40000000000072]
 	}
 	PropName		"EditorsInfo"
       }
@@ -66,9 +66,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 25 13:46:31 2016"
-  RTWModifiedTimeStamp	  391355180
-  ModelVersionFormat	  "1.%<AutoIncrement:190>"
+  LastModifiedDate	  "Mon Jul 25 14:50:54 2016"
+  RTWModifiedTimeStamp	  391359053
+  ModelVersionFormat	  "1.%<AutoIncrement:194>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1168,7 +1168,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "50"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2019,11 +2019,10 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    34
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n%[ K_"
-	    "lqr, V, Aex, Bex, Cex] = mask_LQR_Full_Measured_State( jointObj, Q, R )\n\n% Get LQR gain and premultiplication m"
-	    "atrix N\n[K_lqr, N]          = getLQR(jointObj, outputs_measured, Q, R);\n\n% Get selector to obtain full state f"
-	    "rom outputs y\n% This makes use of the fact that the first 6 outputs are the states\noutputToStates      = C(1:6,"
-	    ":)';"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Get"
+	    " LQR gain and premultiplication matrix N\n[K_lqr, N]          = getLQR(jointObj, outputs_measured, Q, R);\n\n% Ge"
+	    "t selector to obtain full state from outputs y\n% This makes use of the fact that the first 6 outputs are the sta"
+	    "tes\noutputToStates      = C(1:6,:)';"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      4
@@ -2072,7 +2071,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "80"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2924,7 +2923,7 @@ Library {
 		Type			"edit"
 		Name			"N"
 		Prompt			"Filter coefficient N"
-		Value			"2*pi*100"
+		Value			"2*pi*200"
 	      }
 	      Object {
 		$ObjectID		52
@@ -3359,10 +3358,11 @@ Library {
 	    "tifica-\n        % tion, do a linear simulation to obtain their approximate values (this\n        % will signific"
 	    "antly influence the results)\n\n        [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller( jointObj.name, .."
 	    ".\n                                                                Kp, Ki, Kd, N, 'parallel', ...\n              "
-	    "                                                  ff_comp_switch, ...\n                                          "
-	    "                      f_c_FF, f_c_DOB             );\n    end\nend\n\n% Discretize using Tustin transform\nQ_td_t"
-	    "ust	= c2d(Q_td, jointObj.Ts, 'tustin');\nPQ_td_tust	= c2d(PQ_td, jointObj.Ts, 'tustin');\nPQ_ff_tust  = c2d(PQ_ff"
-	    ", jointObj.Ts, 'tustin');\n"
+	    "                                                  7, ... % Torque output\n                                       "
+	    "                         ff_comp_switch, ...\n                                                                f_c"
+	    "_FF, f_c_DOB             );\n    end\nend\n\n% Discretize using Tustin transform\nQ_td_tust	= c2d(Q_td, jointObj."
+	    "Ts, 'tustin');\nPQ_td_tust	= c2d(PQ_td, jointObj.Ts, 'tustin');\nPQ_ff_tust  = c2d(PQ_ff, jointObj.Ts, 'tustin');"
+	    "\n"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      12
@@ -3401,7 +3401,7 @@ Library {
 		Type			"edit"
 		Name			"N"
 		Prompt			"Derivative filter coefficient N"
-		Value			"2*pi*100"
+		Value			"2*pi*200"
 	      }
 	      Object {
 		$ObjectID		61
@@ -4338,7 +4338,7 @@ Library {
 		Type			"edit"
 		Name			"N"
 		Prompt			"Filter coefficient N"
-		Value			"2*pi*100"
+		Value			"2*pi*200"
 	      }
 	      Object {
 		$ObjectID		89
@@ -4360,7 +4360,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp."
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [0, 25, 840, 1050]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4372,7 +4372,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "60"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"

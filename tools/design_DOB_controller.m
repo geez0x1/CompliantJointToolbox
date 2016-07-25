@@ -67,11 +67,13 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, Ki, Kd, N, pid_form, ff_comp_switch, f_c_FF, f_c_DOB)
-
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB)
     %% Default parameters
     if (~exist('pid_form', 'var'))
         pid_form = 'ideal';
+    end
+    if (~exist('outputIdx', 'var'))
+        outputIdx = 7; % Torque
     end
     if (~exist('ff_comp_switch', 'var'))
         ff_comp_switch = 1;     % Feed-forward/compensation (1=Compensation, 2=Feed-forward)
@@ -104,10 +106,9 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, K
     omega_c_DOB = 2 * pi * f_c_DOB; % DOB LPF cutoff frequency [rad/s]
     
     
-    %% Get state-space system with current input and torque output
+    %% Get state-space system with current input and specified output
     sys         = j.getStateSpace();
-    sys         = ss(sys.A, sys.B(:,1), sys.C(2,:), 0);
-    sys         = k_b * sys;  % Multiply by k_b to get torque output
+    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
     
 
     %% Build closed-loop system

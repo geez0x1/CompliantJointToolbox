@@ -53,19 +53,19 @@ function [ tau ] = coulomb(obj, x)
     c = zeros(size(x));
     
     % Build coefficient vector
-    if (strcmp(obj.modelName, 'continuous_full'))
+    if (strcmp(obj.modelName, 'full_dyn'))
         c = [0, 0, 0, obj.d_cm, obj.d_cg, obj.d_cb]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
         c = [0, 0, obj.d_cm + obj.d_cg, obj.d_cb]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed'))
+    elseif (strcmp(obj.modelName, 'output_fixed'))
         c = [0, 0, obj.d_cm, obj.d_cg]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
         c = [0, obj.d_cm + obj.d_cg]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid'))
+    elseif (strcmp(obj.modelName, 'rigid'))
         c = obj.d_cm + obj.d_cg + obj.d_cb;
         
     end
