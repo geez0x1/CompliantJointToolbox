@@ -52,8 +52,8 @@
 
 function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
     % Default parameters
-	if ~exist('doPlot','var')
-		doPlot = 0;
+    if ~exist('doPlot','var')
+        doPlot = 0;
     end
 
     
@@ -69,6 +69,7 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
     if (order(Pc) == 0)
         error('getLinearDOB error: Plant Pc has zero order for the chosen output, cannot continue.');
     end
+    
     
     %% Design low-pass Butterworth filters
 

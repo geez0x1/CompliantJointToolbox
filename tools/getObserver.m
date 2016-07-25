@@ -60,6 +60,9 @@ function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     if ~exist('R', 'var')
         R = 1e-6;
     end
+    if (length(outputIdx) > 1)
+        error('getLQR error: More than one output weight specified.');
+    end
 
     
     %% Get state-space model

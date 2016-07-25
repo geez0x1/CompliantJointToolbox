@@ -9,8 +9,8 @@
 % Inputs:
 %   jointObj jOb: Joint object
 %   outputIdx: Joint outputs to be controlled for reference
-%   Q: State weight
-%   R: Input weight
+%   Q: State weights
+%   R: Input weights
 %
 % Outputs:
 %   K_lqr: Optimal LQR gain
@@ -57,7 +57,7 @@ function [K_lqr, N] = getLQR(jOb, outputIdx, Q, R)
         R = 1e-6;
     end
     if (length(outputIdx) > 1)
-        error('getLQR error: More than one output specified.');
+        error('getLQR error: More than one output weight specified.');
     end
     
     % Shorthands
@@ -67,7 +67,7 @@ function [K_lqr, N] = getLQR(jOb, outputIdx, Q, R)
     C       = sys.C;
     D       = sys.D;
     
-    % Get state-space model
+    % Get state-space model with full state output
     sys     = ss(A, B, eye(size(A)), 0);
     
     
