@@ -54,7 +54,7 @@ function [A, B, C, I, D, K] = output_fixed(obj)
     % q_g is the gearbox output angle
     %
     % The '_dot' denotes the temporal derivative.
-    
+
     % Inertia matrix
     I = diag([obj.I_m , obj.I_g]);
 
@@ -83,13 +83,13 @@ function [A, B, C, I, D, K] = output_fixed(obj)
             0, 0, 0,            0       ]';
     
     % Output
-    C = [1, 0, 0, 0;  ... % motor position
-         0, 1, 0, 0;  ... % gear position
-         0, 0, 0, 0;  ... % link position
-         0, 0, 1, 0;  ... % motor velocity
-         0, 0, 0, 1;  ... % gear velocity
-         0, 0, 0, 0;];... % link velocity
+    C = [   1, 0,   0, 0; ...	% motor position
+            0, 1,   0, 0; ...	% gear position
+            0, 0,   0, 0; ...	% link position
+            0, 0,   1, 0; ...	% motor velocity
+            0, 0,   0, 1; ...	% gear velocity
+            0, 0,   0, 0; ...	% link velocity
+            0, k_b, 0, 0    ];	% Torsion bar torque
     
-
 end
 

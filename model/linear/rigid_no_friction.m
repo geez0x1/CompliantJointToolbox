@@ -74,11 +74,12 @@ function [A, B, C, I, D, K] = rigid_no_friction(obj)
             0, 1/I(1,1)         ]';
     
     % Output
-    C = [1, 0;  ... % motor position
-         1, 0;  ... % gear position
-         1, 0;  ... % link position
-         0, 1;  ... % motor velocity
-         0, 1;  ... % gear velocity
-         0, 1;];... % link velocity
+    C = [   1, 	0; ...	% motor position
+            1, 	0; ...	% gear position
+            1, 	0; ...	% link position
+            0, 	1; ...	% motor velocity
+            0, 	1; ...	% gear velocity
+            0, 	1; ...	% link velocity
+            0,	0   ];  % Torsion bar torque
             
 end

@@ -54,8 +54,7 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
     % q_b is the flange angle (output of the torsion bar)
     %
     % The '_dot' denotes the temporal derivative.
-    
-    
+
     % Inertia matrix
     I = diag([obj.I_m + obj.I_g, obj.I_b]);
 
@@ -80,14 +79,15 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
     k_t = obj.k_t;
     n   = obj.n;
     B	= [ 0, 0, k_t*n/I(1,1),	0; ...
-            0, 0, 0,            1/I(2,2)	]';
+            0, 0, 0,            1/I(2,2)    ]';
     
-        % Output
-    C = [1, 0, 0, 0;  ... % motor position
-         1, 0, 0, 0;  ... % gear position
-         0, 1, 0, 0;  ... % link position
-         0, 0, 1, 0;  ... % motor velocity
-         0, 0, 1, 0;  ... % gear velocity
-         0, 0, 0, 1;];... % link velocity
+	% Output
+    C = [   1,      0,      0, 0; ...	% motor position
+            1,      0,      0, 0; ...	% gear position
+            0,      1,      0, 0; ...	% link position
+            0,      0,      1, 0; ...	% motor velocity
+            0,      0,      1, 0; ...	% gear velocity
+            0,      0,      0, 1; ...   % link velocity
+            k_b,    -k_b,	0, 0 ];     % Torsion bar torque
             
 end

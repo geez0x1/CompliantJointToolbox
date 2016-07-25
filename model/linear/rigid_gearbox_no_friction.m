@@ -16,7 +16,7 @@
 %
 % Notes::
 %  This function is identical to rigid_gearbox, but with the
-%  difference that all friction coefficients are set to zero.
+%  difference that the bearing friction coefficients are set to zero.
 %
 % Examples::
 %
@@ -58,8 +58,8 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
     I = diag([obj.I_m + obj.I_g, obj.I_b]);
 
     % Damping matrix
-    d_m     = 0*obj.d_m;
-    d_b     = 0*obj.d_b;
+    d_m     = 0 * obj.d_m;
+    d_b     = 0 * obj.d_b;
     d_gb	= obj.d_gb; % shorthands %#ok<*PROP>
     D = [   d_m + d_g + d_gb,       -d_gb; ...
             -d_gb,                  d_b + d_gb      ];
@@ -79,12 +79,13 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
     B	= [ 0, 0, k_t*n/I(1,1),	0; ...
             0, 0, 0,            1/I(2,2)    ]';
     
-        % Output
-    C = [1, 0, 0, 0;  ... % motor position
-         1, 0, 0, 0;  ... % gear position
-         0, 1, 0, 0;  ... % link position
-         0, 0, 1, 0;  ... % motor velocity
-         0, 0, 1, 0;  ... % gear velocity
-         0, 0, 0, 1;];... % link velocity
+	% Output
+    C = [   1,      0,      0, 0; ...	% motor position
+            1,      0,      0, 0; ...	% gear position
+            0,      1,      0, 0; ...	% link position
+            0,      0,      1, 0; ...	% motor velocity
+            0,      0,      1, 0; ...	% gear velocity
+            0,      0,      0, 1; ...   % link velocity
+            k_b,    -k_b,	0, 0 ];     % Torsion bar torque
             
 end
