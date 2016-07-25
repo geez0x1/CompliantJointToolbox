@@ -56,6 +56,9 @@ function [K_lqr, N] = getLQR(jOb, outputIdx, Q, R)
     if ~exist('R', 'var')
         R = 1e-6;
     end
+    if (length(outputIdx) > 1)
+        error('getLQR error: More than one output specified.');
+    end
     
     % Shorthands
     sys     = jOb.getStateSpace();
@@ -89,7 +92,6 @@ function [K_lqr, N] = getLQR(jOb, outputIdx, Q, R)
     Dc   	= 0;
     
     % Calculate reference input premultiplication N
-    % SISO, using position as output
     a           = [zeros(length(Bc),1); 1];
     N           = inv([Ac, Bc; Cc, Dc]) * a;
     N_x         = N(1:end-1);
