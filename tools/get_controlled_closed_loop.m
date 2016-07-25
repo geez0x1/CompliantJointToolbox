@@ -1,20 +1,23 @@
 % GET_CONTROLLED_CLOSED_LOOP Outputs closed loop transfer functions.
 %
-%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N [, ff_comp_switch] )
+%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch] )
 %
 %   Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
 %   H transfer functions, and the PD derivative gain Kd_opt that critically
 %   damps the closed-loop poles for fixed-output force control.
 %
 % Inputs::
-%   jointName: Joint object class name Kp, Ki, Kd, N: PID gains and 
-%              derivative cut-off frequency (if Kd=-1, the
-%              resulting PD D-gain will be set to Kd_opt).
+%   jointName: Joint object class name
+%   Kp, Ki, Kd, N: PID gains and derivative cut-off frequency (if Kd=-1, the
+%                  resulting controller D-gain will be set to Kd_opt).
+%   pid_form: Flag that determines whether PID controller is constructed in
+%             product (ideal) or summation (parallel) form
+%   outputIdx: Controlled/observed plant output (default: 7, torque)
 %   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
 %
 % Outputs::
 %   P: Plant transfer function
-%   G: Controller transfer function
+%   G: PID Controller transfer function
 %   H: Closed-loop transfer function
 %   Kd_opt: Optimal PD derivative gain that critically damps the closed-loop poles for
 %           fixed-output force control.
@@ -52,15 +55,21 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N, ff_comp_switch )
-    % Default arguments
+function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointName, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
+    %% Default arguments
+    if (~exist('pid_form', 'var'))
+        pid_form = 'ideal';     % Ideal PID form (series) by default
+    end
+    if (~exist('outputIdx', 'var'))
+        outputIdx = 7;          % Controlled/observed plant output (default: 7, torque)
+    end
     if (~exist('ff_comp_switch', 'var'))
         ff_comp_switch = 1;     % Feed-forward/compensation
                                 % (1=Compensation (default), 2=Feed-forward)
     end
     
     
-    % Get variables
+    %% Get variables
     
     % Get joint object
     j = eval(jointName);
@@ -86,31 +95,37 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd
     end
     
     
-    % Get state-space system with current input and torque output
+    %% Get state-space system with current input and specified output
     sys         = j.getStateSpace();
-    sys         = ss(sys.A, sys.B(:,1), sys.C(2,:), 0);
-    sys         = k_b * sys; % Multiply by k_b to get torque output
+    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
     
     
-    % Build closed-loop system
+    %% Build closed-loop system
     
-    % Controllers
-    G    	= pid(Kp, Kp*Ki, Kp*Kd, 1/N); % PID controller
-    G.u  	= 'e';
-    G.y 	= 'pid_u';
+    % PID controller
+    if (strcmpi(pid_form, 'ideal'))
+        G = pid(Kp, Kp*Ki, Kp*Kd, 1/N);     % ideal PID controller
+    elseif (strcmpi(pid_form, 'parallel'))
+        G = pid(Kp, Ki, Kd, 1/N);           % parallel PID controller
+    else
+        error('Invalid PID form');
+    end
+    G.u    = 'e';
+    G.y    = 'pid_u';
+
     
     % See whether we need to build a closed-loop system with compensation or
     % feed-forward for the spring force
-    if (ff_comp_switch == 1)        % Compensation
+    if (ff_comp_switch == 1)            % Compensation
         % Compensation term
         C2      = 1 / (n * k_t);
         
         % Closed-loop transfer function
         P       = tf(sys);
-        P2      = feedback(P, C2, +1); % Positive feedback for the comp/FF
+        P2      = feedback(P, C2, +1);	% Positive feedback for the comp/FF
         Pf      = feedback(P2 * G, 1);
         
-    elseif (ff_comp_switch == 2)    % Feed-forward
+    elseif (ff_comp_switch == 2)        % Feed-forward
         % Feed-forward term
         C2      = tf(1 / (n * k_t));
         C2.u    = 'r';
