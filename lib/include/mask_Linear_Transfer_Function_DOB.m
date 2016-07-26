@@ -43,7 +43,6 @@ if (loadData)
 else
     % Get linear DOB based on model
     [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, 2*pi*f_c, measIdx, doPlot);
-    save('test.mat', 'jointObj', 'Pc', 'Q_td', 'PQ_td');
 end
 
 % Check if the necessary variables exist
