@@ -63,6 +63,7 @@ params.('k_t')      = 0.0455;               %% Torque constant [Nm/A]
 params.('r')        = 0.099;                %% Armature resistance [Ohm]
 params.('x')        = 0;                    %% Armature inductance [H]
 params.('Ts')       = 1E-3;                 %% Sampling time [s]
+% Operating/max conditions
 params.('v_0')     	= 24;					%% Operating voltage [V]
 params.('i_c')      = 20;					%% Max. continuous current [A]
 params.('i_p')		= 20; 					%% Peak current [A]
