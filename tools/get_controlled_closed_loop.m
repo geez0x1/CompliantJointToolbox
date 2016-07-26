@@ -54,7 +54,6 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-
 function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointName, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
     %% Default arguments
     if (~exist('pid_form', 'var'))

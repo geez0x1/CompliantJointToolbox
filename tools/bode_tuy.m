@@ -45,7 +45,6 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-
 function [f, mag_db, phase] = bode_tuy(t, u, y)
     
     % Get timestep

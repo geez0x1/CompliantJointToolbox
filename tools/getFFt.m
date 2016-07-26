@@ -1,4 +1,3 @@
-function [f, amp] = getFFt(t, signal)
 % GETFRUEQUENCIES Perform Fast Fourier Transform on a signal.
 % =========================================================================
 %
@@ -43,7 +42,8 @@ function [f, amp] = getFFt(t, signal)
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 %
-    
+
+function [f, amp] = getFFt(t, signal)
     % compute sampling time, constant samping intervals are assumed
     Ts = mean(diff(t));
 
