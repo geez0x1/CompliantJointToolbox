@@ -6,11 +6,12 @@
 % function has been called.
 %
 % Inputs::
-%   x:   state vector depending on the model type as
-%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  continuous_full
-%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 continuous_rigid_gearbox
-%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 continuous_output_fixed
-%     x = [q_g, q_g_dot]'                               continuous_output_fixed_rigid_gearbox
+%   x: state vector depending on the model type as
+%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  full_dyn
+%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 rigid_gearbox
+%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 output_fixed
+%     x = [q_g, q_g_dot]'                               output_fixed_rigid_gearbox
+%     x = [q_g, q_g_dot]'                               rigid
 %
 % Outputs::
 %   tau: friction torque
