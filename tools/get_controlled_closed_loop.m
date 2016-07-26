@@ -1,13 +1,13 @@
 % GET_CONTROLLED_CLOSED_LOOP Outputs closed loop transfer functions.
 %
-%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch] )
+%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch] )
 %
 %   Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
 %   H transfer functions, and the PD derivative gain Kd_opt that critically
 %   damps the closed-loop poles for fixed-output force control.
 %
 % Inputs::
-%   jointName: Joint object class name
+%   jointObj: Joint object
 %   Kp, Ki, Kd, N: PID gains and derivative cut-off frequency (if Kd=-1, the
 %                  resulting controller D-gain will be set to Kd_opt).
 %   pid_form: Flag that determines whether PID controller is constructed in
@@ -54,7 +54,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointName, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
+function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
     %% Default arguments
     if (~exist('pid_form', 'var'))
         pid_form = 'ideal';     % Ideal PID form (series) by default
@@ -70,23 +70,25 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointName, Kp, Ki, Kd,
     
     %% Get variables
     
-    % Get joint object
-    j = eval(jointName);
-    
     % Control/system parameters
-    k_b    	= j.k_b;            % Torsion bar stiffness [Nm/rad]
-    n       = j.n;           	% Gearbox transmission ratio []
-    k_t     = j.k_t;        	% Torque constant [Nm/A]
+    k_b    	= jointObj.k_b; 	% Torsion bar stiffness [Nm/rad]
+    n       = jointObj.n;    	% Gearbox transmission ratio []
+    k_t     = jointObj.k_t;     % Torque constant [Nm/A]
+    I_m     = jointObj.I_m;     % Motor rotor inertia [kg m^2]   
+    I_g     = jointObj.I_g;     % Gear inertia [kg m^2]
+    d_m     = jointObj.d_m;     % Motor Damping [Nms/rad]
+    d_g     = jointObj.d_g;     % Gearbox damping [Nms/rad]
+    d_gb    = jointObj.d_gb;    % Torsion bar damping [Nms/rad]
     
     % Optimal (specified damping ratio of poles) gains
     zeta = 1.0; % Critical damping
-    Kd_opt = 	(   2*(j.I_m + j.I_g) * ...
+    Kd_opt = 	(   2*(I_m + I_g) * ...
                     sqrt( ...
-                        (j.k_b * j.k_t * Kp * j.n + j.k_b) / ...
-                        (j.I_m + j.I_g) ...
+                        (k_b * k_t * Kp * n + k_b) / ...
+                        (I_m + I_g) ...
                     ) * zeta ...
-                    - (j.d_m + j.d_g + j.d_gb) ...
-                ) / (j.k_b * j.k_t * Kp * j.n);
+                    - (d_m + d_g + d_gb) ...
+                ) / (k_b * k_t * Kp * n);
     
     % Set derivative gain Kd to Kd_opt if set to -1
     if (Kd == -1)
@@ -95,7 +97,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointName, Kp, Ki, Kd,
     
     
     %% Get state-space system with current input and specified output
-    sys         = j.getStateSpace();
+    sys         = jointObj.getStateSpace();
     sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
     
     

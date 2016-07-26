@@ -1,7 +1,7 @@
 % GETLINEARDOB_FROMDATA Estimate linear disturbance observer transfer
 % functions from experimental data.
 %
-%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
+%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
 %
 %  This function calculates the estimated closed-loop transfer function
 %  Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
@@ -12,7 +12,7 @@
 %  filter PQ_td, and feed-forward plant inversion + filter PQ_ff.
 %
 % Inputs::
-%   jointName: Joint class name
+%   jointObj: Joint object
 %   t: Time data vector
 %   u: Input data vector
 %   y: Output data vector
@@ -60,7 +60,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
     %% Default parameters
     if (~exist('id_Np', 'var'))
         id_Np = 4;       % Model number of poles []
@@ -81,9 +81,6 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
 
 
     %% Get variables
-    
-    % Get joint object
-    jointObj = eval(jointName);
     
     % Cut-off frequencies
     omega_c_FF      = 2 * pi * f_c_FF;  % Feed-forward (model inv) LPF cutoff frequency [rad/s]
@@ -176,14 +173,10 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
     legend('P_c', 'P_c^{-1}', 'Q_{td}', 'Q_{ff}', 'PQ_{td}', 'PQ_{ff}');
 
 
-    %% Save results
-    % Offer to save results
-    fname	= 'DOB_results.mat';
-    ansr	= 'temp';
-    while (~strcmpi(ansr, 'y') && ~strcmpi(ansr, 'n') && ~strcmp(ansr, ''))
-        ansr = input(['Do you want to save the results to ' fname ' [Y/n]?'], 's');
-    end
-    if (strcmp(ansr, '') || strcmpi(ansr, 'y'))
+    %% Optionally save results
+    
+    fname = 'DOB_fromData_results.mat';
+    if confirm(['Do you want to save the results to ' fname ' [Y/n]?'], 1)
         save(fname, 'jointObj', 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
         disp(['Data saved to ' fname]);
     end

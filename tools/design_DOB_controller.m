@@ -1,7 +1,7 @@
 % DESIGN_DOB_CONTROLLER Designs all parameters of a DOB based torque control
 % scheme.
 %
-% [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB])
+% [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB])
 %
 % This function calculates the approximated closed-loop transfer function
 % Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
@@ -15,7 +15,7 @@
 % filter PQ_td, and feed-forward plant in version + filter PQ_ff.
 %
 % Inputs::
-%   jointName: Joint class name
+%   jointObj: Joint object
 %   Kp: Inner control loop proportional gain
 %   Ki: Inner control loop integral gain
 %   Kd: Inner control loop derivative gain
@@ -68,8 +68,18 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB)
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB)
     %% Default parameters
+    if (~exist('pid_form', 'var'))
+        pid_form = 'ideal';     % Ideal PID form (series) by default
+    end
+    if (~exist('outputIdx', 'var'))
+        outputIdx = 7;          % Controlled/observed plant output (default: 7, torque)
+    end
+    if (~exist('ff_comp_switch', 'var'))
+        ff_comp_switch = 1;     % Feed-forward/compensation
+                                % (1=Compensation (default), 2=Feed-forward)
+    end
     if (~exist('f_c_FF', 'var'))
         f_c_FF	= 40;           % Feed-forward cutoff frequency [Hz]
     end
@@ -83,9 +93,6 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, K
     
 
     %% Get variables
-    
-    % Get joint object
-    j = eval(jointName);
 
     % Cut-off frequencies
     omega_c_FF  = 2 * pi * f_c_FF;  % Feed-forward (model inv) LPF cutoff frequency [rad/s]
@@ -95,7 +102,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, K
     %% Build closed-loop system
 
     % Get controlled closed loop dynamics
-    [~, ~, Pc, ~] =  get_controlled_closed_loop(jointName, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch);
+    [~, ~, Pc, ~] =  get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch);
 
 
     %% Design low-pass Butterworth filters
@@ -129,9 +136,12 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointName, Kp, K
 %     legend('Gf', 'P_c', 'P_c^{-1}', 'Q_{td}', 'Q_{ff}', 'PQ_{td}', 'PQ_{ff}');
 
 
-    %% Save results so we don't have to recalculate them all the time
-    fName = 'design_results.mat';
-    save(fName, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
-    disp(['Data saved to ' fName]);
+    %% Optionally save results
+    
+    fname = 'design_DOB_controller_results.mat';
+    if confirm(['Do you want to save the results to ' fname ' [y/N]?'], 0)
+        save(fname, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
+        disp(['Data saved to ' fname]);
+    end
     
 end

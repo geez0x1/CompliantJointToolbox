@@ -1,8 +1,8 @@
 % GETLINEARDOB Compute linear disturbance observer transfer functions.
 %
-%   [Pc, Q_td, PQ_td] = getLinearDOB(jointObj jOb, omega_c, outputIdx, doPlot)
+%   [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx, doPlot)
 %
-%   This function creates a DOB from a linear model jOb with outputs
+%   This function creates a DOB from a linear model jointObj with outputs
 %   specified by [outputIdx]. It returns the plant model, Q-filter with
 %   cut-off frequency omega_c, and the inverted plant + filter. The doPlot
 %   flag plots Bode plots of the resulting transfer functions.
@@ -50,7 +50,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
+function [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx , doPlot)
     % Default parameters
     if ~exist('doPlot','var')
         doPlot = 0;
@@ -58,7 +58,7 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
 
     
     %% Get joint object and state-space system with current input and specified output
-    sys     = jOb.getStateSpace();
+    sys     = jointObj.getStateSpace();
     sys     = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
     Pc      = tf(sys);
 
@@ -99,9 +99,12 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
     end
 
     
-    %% Save results so we don't have to recalculate them all the time
-    % TODO make this optional
-    %save('DOB_results.mat', 'Pc', 'Q_td', 'PQ_td');
-    %disp('Saved Pc, Q_td, PQ_td to DOB_results.mat');
+    %% Optionally save results
+    
+    fname = 'DOB_results.mat';
+    if confirm(['Do you want to save the results to ' fname ' [y/N]?'], 0)
+        save(fname, 'jointObj', 'Pc', 'Q_td', 'PQ_td');
+        disp(['Data saved to ' fname]);
+    end
     
 end
