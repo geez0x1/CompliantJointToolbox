@@ -41,10 +41,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
+	LoadSaveID		"9"
 	Extents			[591.0, 834.0]
-	ZoomFactor		[1.0]
-	Offset			[-57.550000000000182, -239.48333333333403]
+	ZoomFactor		[0.5]
+	Offset			[-65.307142857142935, -626.31904761904752]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jul 26 13:48:47 2016"
-  RTWModifiedTimeStamp	  391441725
-  ModelVersionFormat	  "1.%<AutoIncrement:196>"
+  LastModifiedDate	  "Tue Jul 26 13:59:54 2016"
+  RTWModifiedTimeStamp	  391442237
+  ModelVersionFormat	  "1.%<AutoIncrement:200>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -945,7 +945,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "532"
+    SIDHighWatermark	    "534"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -959,7 +959,7 @@ Library {
       System {
 	Name			"Controllers"
 	Location		[0, 27, 840, 1052]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -970,7 +970,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"200"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Generic Controller"
@@ -1091,9 +1091,9 @@ Library {
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Par"
 	    "ameters\nN_outputs       = size(C,1);\n\n% Get LQR gain and Kalman observer\n[K_lqr, N]  	= getLQR(jointObj, outp"
-	    "uts_measured, Q, R);\n[kest, L, Cc]	= getKalman(jointObj, 2, var_u, var_y);\n\n% Indexes of output states\nkest_s"
-	    "tateIdx   = kest.OutputGroup.StateEstimate;\n\n% Discretize using Tustin transform\nkest_tust       = c2d(kest, j"
-	    "ointObj.Ts, 'tustin');"
+	    "utIdx, Q, R);\n[kest, L, Cc]	= getKalman(jointObj, outputIdx, var_u, var_y);\n\n% Indexes of output states\nkest_"
+	    "stateIdx   = kest.OutputGroup.StateEstimate;\n\n% Discretize using Tustin transform\nkest_tust       = c2d(kest, "
+	    "jointObj.Ts, 'tustin');"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -1107,8 +1107,8 @@ Library {
 	      Object {
 		$ObjectID		22
 		Type			"edit"
-		Name			"outputs_measured"
-		Prompt			"Measured outputs (indices)"
+		Name			"outputIdx"
+		Prompt			"Measured output"
 		Value			"[2]"
 	      }
 	      Object {
@@ -1144,8 +1144,8 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + Kalman (LQG)"
-	    Location		    [0, 25, 840, 1050]
-	    Open		    off
+	    Location		    [0, 27, 840, 1052]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1161,7 +1161,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "Reference"
 	      SID		      "10"
-	      Position		      [990, 300, 1020, 315]
+	      Position		      [990, 230, 1020, 245]
 	      ZOrder		      217
 	      BlockRotation	      270
 	      BlockMirror	      on
@@ -1172,7 +1172,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "JointBus"
 	      SID		      "507"
-	      Position		      [230, 520, 260, 535]
+	      Position		      [150, 520, 180, 535]
 	      ZOrder		      285
 	      BlockRotation	      270
 	      Port		      "2"
@@ -1183,7 +1183,7 @@ Library {
 	      Name		      "Bus\nSelector"
 	      SID		      "508"
 	      Ports		      [1, 7]
-	      Position		      [310, 427, 315, 533]
+	      Position		      [230, 427, 235, 533]
 	      ZOrder		      287
 	      ShowName		      off
 	      OutputSignals	      "MotorPos,GearPos,LinkPos,MotorVelFiltered,GearVelFiltered,LinkVelFiltered,Torque"
@@ -1270,7 +1270,7 @@ Library {
 	      Name		      "Mux2"
 	      SID		      "509"
 	      Ports		      [7, 1]
-	      Position		      [425, 427, 430, 533]
+	      Position		      [345, 427, 350, 533]
 	      ZOrder		      288
 	      ShowName		      off
 	      Inputs		      "7"
@@ -1285,7 +1285,7 @@ Library {
 	      BlockRotation	      270
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      Gain		      "N / jointObj.k_b"
+	      Gain		      "N"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -1313,11 +1313,11 @@ Library {
 	      Name		      "Selector3"
 	      SID		      "510"
 	      Ports		      [1, 1]
-	      Position		      [465, 448, 495, 512]
+	      Position		      [385, 448, 415, 512]
 	      ZOrder		      286
 	      InputPortWidth	      "N_outputs"
 	      IndexOptions	      "Index vector (dialog)"
-	      Indices		      "outputs_measured"
+	      Indices		      "outputIdx"
 	      OutputSizes	      "1"
 	    }
 	    Block {
@@ -1339,6 +1339,27 @@ Library {
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
+	    }
+	    Block {
+	      BlockType		      ZeroOrderHold
+	      Name		      "Zero-Order\nHold1"
+	      SID		      "533"
+	      Position		      [465, 465, 500, 495]
+	      ZOrder		      346
+	      ShowName		      off
+	      SampleTime	      "jointObj.Ts"
+	    }
+	    Block {
+	      BlockType		      ZeroOrderHold
+	      Name		      "Zero-Order\nHold2"
+	      SID		      "534"
+	      Position		      [990, 280, 1020, 315]
+	      ZOrder		      347
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      ShowName		      off
+	      SampleTime	      "jointObj.Ts"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -1389,7 +1410,7 @@ Library {
 	      ZOrder		      5
 	      SrcBlock		      "Reference"
 	      SrcPort		      1
-	      DstBlock		      "Premultiplication"
+	      DstBlock		      "Zero-Order\nHold2"
 	      DstPort		      1
 	    }
 	    Line {
@@ -1493,8 +1514,8 @@ Library {
 	      ZOrder		      18
 	      SrcBlock		      "Selector3"
 	      SrcPort		      1
-	      DstBlock		      "Mux"
-	      DstPort		      2
+	      DstBlock		      "Zero-Order\nHold1"
+	      DstPort		      1
 	    }
 	    Line {
 	      Name		      "x^"
@@ -1515,6 +1536,20 @@ Library {
 		DstBlock		"Gain2"
 		DstPort			1
 	      }
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "Zero-Order\nHold1"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "Zero-Order\nHold2"
+	      SrcPort		      1
+	      DstBlock		      "Premultiplication"
+	      DstPort		      1
 	    }
 	  }
 	}
@@ -1579,7 +1614,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + state observer"
-	    Location		    [960, 9, 1915, 1089]
+	    Location		    [0, 27, 840, 1052]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1591,7 +1626,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "60"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
