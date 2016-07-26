@@ -100,7 +100,8 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jOb, omega_c, outputIdx , doPlot)
 
     
     %% Save results so we don't have to recalculate them all the time
-    save('DOB_results.mat', 'Pc', 'Q_td', 'PQ_td');
-    disp('Saved Pc, Q_td, PQ_td to DOB_results.mat');
+    % TODO make this optional
+    %save('DOB_results.mat', 'Pc', 'Q_td', 'PQ_td');
+    %disp('Saved Pc, Q_td, PQ_td to DOB_results.mat');
     
 end

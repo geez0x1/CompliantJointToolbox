@@ -83,15 +83,15 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
     %% Get variables
     
     % Get joint object
-    j = eval(jointName);
+    jointObj = eval(jointName);
     
     % Cut-off frequencies
     omega_c_FF      = 2 * pi * f_c_FF;  % Feed-forward (model inv) LPF cutoff frequency [rad/s]
     omega_c_DOB     = 2 * pi * f_c_DOB; % DOB cutoff frequency [rad/s]
 
     % Resample data to obtain uniform sampling for tfest()
-    Ts      = j.Ts;         % Sampling time [s]
-    t_RS    = 0:Ts:max(t);  % Resampled time
+    Ts      = jointObj.Ts; 	% Sampling time [s]
+    t_RS    = 0:Ts:max(t);	% Resampled time
     u       = interp1(t, u, t_RS)';
     y       = interp1(t, y, t_RS)';
     t       = t_RS';
@@ -184,7 +184,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
         ansr = input(['Do you want to save the results to ' fname ' [Y/n]?'], 's');
     end
     if (strcmp(ansr, '') || strcmpi(ansr, 'y'))
-        save(fname, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
+        save(fname, 'jointObj', 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
         disp(['Data saved to ' fname]);
     end
     
