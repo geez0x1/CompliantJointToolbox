@@ -43,8 +43,8 @@ Library {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"3"
 	Extents			[591.0, 834.0]
-	ZoomFactor		[0.8]
-	Offset			[97.283333333333189, -385.40000000000072]
+	ZoomFactor		[1.0]
+	Offset			[-57.550000000000182, -239.48333333333403]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jul 26 07:47:17 2016"
-  RTWModifiedTimeStamp	  391420035
-  ModelVersionFormat	  "1.%<AutoIncrement:195>"
+  LastModifiedDate	  "Tue Jul 26 13:48:47 2016"
+  RTWModifiedTimeStamp	  391441725
+  ModelVersionFormat	  "1.%<AutoIncrement:196>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -945,7 +945,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "527"
+    SIDHighWatermark	    "532"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -970,7 +970,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"80"
+	ZoomFactor		"100"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Generic Controller"
@@ -1524,8 +1524,8 @@ Library {
 	  SID			  "28"
 	  Ports			  [2, 2]
 	  Position		  [260, 21, 390, 114]
-	  ZOrder		  469
-	  LibraryVersion	  "*1.167"
+	  ZOrder		  502
+	  LibraryVersion	  "*1.195"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -1534,8 +1534,8 @@ Library {
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Par"
 	    "ameters\nN_outputs = size(C,1);\n\n% Get LQR gain and state observer\n[K_lqr, N]          = getLQR(jointObj, outp"
-	    "uts_measured, Q, R);\n[sys_hat, L, Cc]	= getObserver(jointObj, outputs_measured, place_gain, Q, R);\n\n% Discreti"
-	    "ze using Tustin transform\nsys_hat_tust = c2d(sys_hat, jointObj.Ts, 'tustin');"
+	    "utIdx, Q, R);\n[sys_hat, L, Cc]	= getObserver(jointObj, outputIdx, place_gain, Q, R);\n\n% Discretize using Tusti"
+	    "n transform\nsys_hat_tust = c2d(sys_hat, jointObj.Ts, 'tustin');"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
@@ -1544,28 +1544,28 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"W2k_output_fixed"
+		Value			"W2k_full_dyn"
 	      }
 	      Object {
 		$ObjectID		29
 		Type			"edit"
-		Name			"outputs_measured"
-		Prompt			"Measured outputs (indices)"
-		Value			"[2]"
+		Name			"outputIdx"
+		Prompt			"Measured output"
+		Value			"3"
 	      }
 	      Object {
 		$ObjectID		30
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
-		Value			"diag([0 1000 0 0])"
+		Value			"diag([0 0 1000 0 0 1e-4])"
 	      }
 	      Object {
 		$ObjectID		31
 		Type			"edit"
 		Name			"R"
 		Prompt			"Input weighing matrix R"
-		Value			"5e-6"
+		Value			"5e-9"
 	      }
 	      Object {
 		$ObjectID		32
@@ -1579,7 +1579,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + state observer"
-	    Location		    [0, 25, 840, 1050]
+	    Location		    [960, 9, 1915, 1089]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1591,12 +1591,12 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "40"
+	    ZoomFactor		    "60"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
 	      SID		      "29"
-	      Position		      [990, 285, 1020, 300]
+	      Position		      [990, 245, 1020, 260]
 	      ZOrder		      217
 	      BlockRotation	      270
 	      BlockMirror	      on
@@ -1607,7 +1607,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "JointBus"
 	      SID		      "498"
-	      Position		      [65, 535, 95, 550]
+	      Position		      [20, 535, 50, 550]
 	      ZOrder		      281
 	      BlockRotation	      270
 	      Port		      "2"
@@ -1618,7 +1618,7 @@ Library {
 	      Name		      "Bus\nSelector"
 	      SID		      "499"
 	      Ports		      [1, 7]
-	      Position		      [145, 442, 150, 548]
+	      Position		      [100, 442, 105, 548]
 	      ZOrder		      283
 	      ShowName		      off
 	      OutputSignals	      "MotorPos,GearPos,LinkPos,MotorVelFiltered,GearVelFiltered,LinkVelFiltered,Torque"
@@ -1731,7 +1731,7 @@ Library {
 	      Name		      "Mux2"
 	      SID		      "500"
 	      Ports		      [7, 1]
-	      Position		      [260, 442, 265, 548]
+	      Position		      [215, 442, 220, 548]
 	      ZOrder		      284
 	      ShowName		      off
 	      Inputs		      "7"
@@ -1741,12 +1741,12 @@ Library {
 	      BlockType		      Gain
 	      Name		      "Premultiplication"
 	      SID		      "37"
-	      Position		      [990, 335, 1020, 365]
+	      Position		      [990, 355, 1020, 385]
 	      ZOrder		      242
 	      BlockRotation	      270
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      Gain		      "N/jointObj.k_b"
+	      Gain		      "N"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -1756,11 +1756,11 @@ Library {
 	      Name		      "Selector3"
 	      SID		      "501"
 	      Ports		      [1, 1]
-	      Position		      [300, 463, 330, 527]
+	      Position		      [255, 463, 285, 527]
 	      ZOrder		      282
 	      InputPortWidth	      "N_outputs"
 	      IndexOptions	      "Index vector (dialog)"
-	      Indices		      "outputs_measured"
+	      Indices		      "outputIdx"
 	      OutputSizes	      "1"
 	    }
 	    Block {
@@ -1798,6 +1798,27 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      ZeroOrderHold
+	      Name		      "Zero-Order\nHold1"
+	      SID		      "529"
+	      Position		      [345, 480, 380, 510]
+	      ZOrder		      345
+	      ShowName		      off
+	      SampleTime	      "jointObj.Ts"
+	    }
+	    Block {
+	      BlockType		      ZeroOrderHold
+	      Name		      "Zero-Order\nHold2"
+	      SID		      "532"
+	      Position		      [990, 295, 1020, 330]
+	      ZOrder		      348
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      ShowName		      off
+	      SampleTime	      "jointObj.Ts"
+	    }
+	    Block {
 	      BlockType		      Outport
 	      Name		      "u"
 	      SID		      "44"
@@ -1815,114 +1836,83 @@ Library {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      Name		      "<Torque>"
 	      ZOrder		      1
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
-	      SrcPort		      7
-	      DstBlock		      "Mux2"
-	      DstPort		      7
+	      SrcBlock		      "Zero-Order\nHold2"
+	      SrcPort		      1
+	      DstBlock		      "Premultiplication"
+	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "x^"
-	      ZOrder		      27
-	      SrcBlock		      "Discrete State-Space"
+	      ZOrder		      2
+	      SrcBlock		      "Zero-Order\nHold1"
 	      SrcPort		      1
-	      Points		      [53, 0]
+	      DstBlock		      "Sum3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "Reference"
+	      SrcPort		      1
+	      DstBlock		      "Zero-Order\nHold2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "u"
+	      ZOrder		      4
+	      Labels		      [1, 1]
+	      SrcBlock		      "Sum2"
+	      SrcPort		      1
+	      Points		      [54, 0]
 	      Branch {
-		ZOrder			3
-		Labels			[1, 1]
-		DstBlock		"Gain2"
+		ZOrder			5
+		DstBlock		"u"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			4
-		Points			[0, 85]
-		Branch {
-		  ZOrder		  25
-		  DstBlock		  "Gain"
-		  DstPort		  1
-		}
-		Branch {
-		  ZOrder		  6
-		  Labels		  [1, 1]
-		  DstBlock		  "x_hat"
-		  DstPort		  1
-		}
+		ZOrder			6
+		Points			[0, -60; -573, 0; 0, 40]
+		DstBlock		"Mux"
+		DstPort			1
 	      }
 	    }
 	    Line {
 	      ZOrder		      7
-	      SrcBlock		      "Mux2"
+	      SrcBlock		      "Premultiplication"
 	      SrcPort		      1
-	      DstBlock		      "Selector3"
+	      DstBlock		      "Sum2"
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "<MotorPos>"
 	      ZOrder		      8
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
+	      SrcBlock		      "Gain2"
 	      SrcPort		      1
-	      DstBlock		      "Mux2"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "<GearVelFiltered>"
-	      ZOrder		      9
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
-	      SrcPort		      5
-	      DstBlock		      "Mux2"
-	      DstPort		      5
-	    }
-	    Line {
-	      Name		      "<LinkPos>"
-	      ZOrder		      10
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
-	      SrcPort		      3
-	      DstBlock		      "Mux2"
-	      DstPort		      3
-	    }
-	    Line {
-	      Name		      "<LinkVelFiltered>"
-	      ZOrder		      11
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
-	      SrcPort		      6
-	      DstBlock		      "Mux2"
-	      DstPort		      6
-	    }
-	    Line {
-	      Name		      "<GearPos>"
-	      ZOrder		      12
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
-	      SrcPort		      2
-	      DstBlock		      "Mux2"
+	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
 	    Line {
-	      Name		      "<MotorVelFiltered>"
-	      ZOrder		      13
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
-	      SrcPort		      4
-	      DstBlock		      "Mux2"
-	      DstPort		      4
-	    }
-	    Line {
-	      ZOrder		      14
-	      SrcBlock		      "JointBus"
+	      ZOrder		      9
+	      SrcBlock		      "Mux"
 	      SrcPort		      1
-	      Points		      [0, -35]
-	      DstBlock		      "Bus\nSelector"
+	      DstBlock		      "Discrete State-Space"
 	      DstPort		      1
 	    }
 	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "Selector3"
+	      SrcPort		      1
+	      DstBlock		      "Zero-Order\nHold1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "Sum3"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
 	      Name		      "y^"
-	      ZOrder		      15
+	      ZOrder		      12
 	      Labels		      [1, 0]
 	      SrcBlock		      "Gain"
 	      SrcPort		      1
@@ -1931,65 +1921,110 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "JointBus"
+	      SrcPort		      1
+	      Points		      [0, -35]
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<MotorVelFiltered>"
+	      ZOrder		      14
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      4
+	      DstBlock		      "Mux2"
+	      DstPort		      4
+	    }
+	    Line {
+	      Name		      "<GearPos>"
+	      ZOrder		      15
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      2
+	      DstBlock		      "Mux2"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<LinkVelFiltered>"
 	      ZOrder		      16
-	      SrcBlock		      "Sum3"
-	      SrcPort		      1
-	      DstBlock		      "Mux"
-	      DstPort		      2
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      6
+	      DstBlock		      "Mux2"
+	      DstPort		      6
 	    }
 	    Line {
+	      Name		      "<LinkPos>"
 	      ZOrder		      17
-	      SrcBlock		      "Selector3"
-	      SrcPort		      1
-	      DstBlock		      "Sum3"
-	      DstPort		      1
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      3
+	      DstBlock		      "Mux2"
+	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      28
-	      SrcBlock		      "Mux"
-	      SrcPort		      1
-	      DstBlock		      "Discrete State-Space"
-	      DstPort		      1
+	      Name		      "<GearVelFiltered>"
+	      ZOrder		      18
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      5
+	      DstBlock		      "Mux2"
+	      DstPort		      5
 	    }
 	    Line {
+	      Name		      "<MotorPos>"
 	      ZOrder		      19
-	      SrcBlock		      "Gain2"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
 	      SrcPort		      1
-	      DstBlock		      "Sum2"
-	      DstPort		      2
+	      DstBlock		      "Mux2"
+	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      20
-	      SrcBlock		      "Premultiplication"
+	      SrcBlock		      "Mux2"
 	      SrcPort		      1
-	      DstBlock		      "Sum2"
+	      DstBlock		      "Selector3"
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "u"
+	      Name		      "x^"
 	      ZOrder		      21
-	      Labels		      [1, 1]
-	      SrcBlock		      "Sum2"
+	      SrcBlock		      "Discrete State-Space"
 	      SrcPort		      1
-	      Points		      [54, 0]
+	      Points		      [53, 0]
 	      Branch {
 		ZOrder			22
-		Points			[0, -60; -573, 0; 0, 40]
-		DstBlock		"Mux"
-		DstPort			1
+		Points			[0, 85]
+		Branch {
+		  ZOrder		  23
+		  Labels		  [1, 1]
+		  DstBlock		  "x_hat"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  24
+		  DstBlock		  "Gain"
+		  DstPort		  1
+		}
 	      }
 	      Branch {
-		ZOrder			23
-		DstBlock		"u"
+		ZOrder			25
+		Labels			[1, 1]
+		DstBlock		"Gain2"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      24
-	      SrcBlock		      "Reference"
-	      SrcPort		      1
-	      DstBlock		      "Premultiplication"
-	      DstPort		      1
+	      Name		      "<Torque>"
+	      ZOrder		      26
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      7
+	      DstBlock		      "Mux2"
+	      DstPort		      7
 	    }
 	  }
 	}

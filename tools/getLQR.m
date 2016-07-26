@@ -65,10 +65,10 @@ function [K_lqr, N] = getLQR(jointObj, outputIdx, Q, R)
     A       = sys.A;
     B       = sys.B(:,1); % Use only the current input
     C       = sys.C;
-    D       = sys.D;
+    D       = sys.D(:,1); % Use only the current input
     
-    % Get state-space model with full state output
-    sys     = ss(A, B, eye(size(A)), 0);
+    % Get state-space model with current input
+    sys     = ss(A, B, C, D);
     
     
     %% Check some dimensions

@@ -71,13 +71,13 @@ function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
 
     % Shorthands
     A       = sys.A;
-    B       = sys.B;
+    B       = sys.B(:,1); % Use only the current input
     C       = sys.C;
-    D       = sys.D;
+    D       = sys.D(:,1); % Use only the current input
 
     % Create system with current input and outputs specified
     Ac   	= A;
-    Bc   	= B(:,1);
+    Bc   	= B;
     Cc    	= C(outputIdx,:);
     Dc   	= D(outputIdx,1);
     sys     = ss(Ac, Bc, Cc, Dc);
@@ -103,7 +103,7 @@ function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     cl_poles	= eig(A - Bc * K_lqr);
     obs_poles	= place_gain * min(real(cl_poles)) * ones(size(cl_poles));
     for i=1:length(obs_poles)
-       obs_poles(i) = obs_poles(i) - place_gain * i; % Make poles distinct
+       obs_poles(i) = obs_poles(i) * 1.1^(i-1); % Make poles distinct
     end
 
     % Calculate observer gain by placing poles
