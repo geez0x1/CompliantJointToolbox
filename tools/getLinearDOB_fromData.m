@@ -175,10 +175,12 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
 
     %% Optionally save results
     
-    fname = 'DOB_fromData_results.mat';
-    if confirm(['Do you want to save the results to ' fname ' [Y/n]?'], 1)
-        save(fname, 'jointObj', 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
-        disp(['Data saved to ' fname]);
-    end
+    % Disabled as this causes problems when calling automatically from
+    % Simulink masks
+%     fname = 'DOB_fromData_results.mat';
+%     if confirm(['Do you want to save the results to ' fname ' [Y/n]?'], 1)
+%         save(fname, 'jointObj', 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
+%         disp(['Data saved to ' fname]);
+%     end
     
 end

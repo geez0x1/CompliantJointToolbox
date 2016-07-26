@@ -138,10 +138,12 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
 
     %% Optionally save results
     
-    fname = 'design_DOB_controller_results.mat';
-    if confirm(['Do you want to save the results to ' fname ' [y/N]?'], 0)
-        save(fname, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
-        disp(['Data saved to ' fname]);
-    end
+    % Disabled as this causes problems when calling automatically from
+    % Simulink masks
+%     fname = 'design_DOB_controller_results.mat';
+%     if confirm(['Do you want to save the results to ' fname ' [y/N]?'], 0)
+%         save(fname, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
+%         disp(['Data saved to ' fname]);
+%     end
     
 end
