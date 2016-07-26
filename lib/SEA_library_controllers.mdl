@@ -41,10 +41,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"9"
+	LoadSaveID		"3"
 	Extents			[591.0, 834.0]
-	ZoomFactor		[0.5]
-	Offset			[-65.307142857142935, -626.31904761904752]
+	ZoomFactor		[2.0]
+	Offset			[190.66666666666652, 21.883333333332473]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jul 26 13:59:54 2016"
-  RTWModifiedTimeStamp	  391442237
-  ModelVersionFormat	  "1.%<AutoIncrement:200>"
+  LastModifiedDate	  "Tue Jul 26 14:03:36 2016"
+  RTWModifiedTimeStamp	  391442608
+  ModelVersionFormat	  "1.%<AutoIncrement:202>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -959,7 +959,7 @@ Library {
       System {
 	Name			"Controllers"
 	Location		[0, 27, 840, 1052]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1102,21 +1102,21 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object (fixed output model)"
-		Value			"W2k_output_fixed"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		22
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured output"
-		Value			"[2]"
+		Value			"3"
 	      }
 	      Object {
 		$ObjectID		23
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
-		Value			"diag([0 1000 0 0])"
+		Value			"diag([0 0 1000 0 0 0])"
 	      }
 	      Object {
 		$ObjectID		24
@@ -1145,7 +1145,7 @@ Library {
 	  System {
 	    Name		    "LQR + Kalman (LQG)"
 	    Location		    [0, 27, 840, 1052]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1156,7 +1156,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "50"
+	    ZoomFactor		    "60"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -1579,7 +1579,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"W2k_full_dyn"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		29
@@ -1593,14 +1593,14 @@ Library {
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
-		Value			"diag([0 0 1000 0 0 1e-4])"
+		Value			"diag([0 0 1000 0 0 0])"
 	      }
 	      Object {
 		$ObjectID		31
 		Type			"edit"
 		Name			"R"
 		Prompt			"Input weighing matrix R"
-		Value			"5e-9"
+		Value			"5e-6"
 	      }
 	      Object {
 		$ObjectID		32
@@ -2078,9 +2078,9 @@ Library {
 	    $ObjectID		    33
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Get"
-	    " LQR gain and premultiplication matrix N\n[K_lqr, N]          = getLQR(jointObj, outputs_measured, Q, R);\n\n% Ge"
-	    "t selector to obtain full state from outputs y\n% This makes use of the fact that the first 6 outputs are the sta"
-	    "tes\noutputToStates      = C(1:6,:)';"
+	    " LQR gain and premultiplication matrix N\n[K_lqr, N]          = getLQR(jointObj, outputIdx, Q, R);\n\n% Get selec"
+	    "tor to obtain full state from outputs y\n% This makes use of the fact that the first 6 outputs are the states\nou"
+	    "tputToStates      = C(1:6,:)';"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      4
@@ -2094,16 +2094,16 @@ Library {
 	      Object {
 		$ObjectID		35
 		Type			"edit"
-		Name			"outputs_measured"
-		Prompt			"Measured outputs (indices)"
-		Value			"[2]"
+		Name			"outputIdx"
+		Prompt			"Measured output"
+		Value			"3"
 	      }
 	      Object {
 		$ObjectID		36
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
-		Value			"diag([0 1000 0 0])"
+		Value			"diag([0 0 1000 0 0 0])"
 	      }
 	      Object {
 		$ObjectID		37
