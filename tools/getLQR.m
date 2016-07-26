@@ -7,7 +7,7 @@
 %  respectively.
 %
 % Inputs:
-%   jointObj jOb: Joint object
+%   jointObj: Joint object
 %   outputIdx: Joint outputs to be controlled for reference
 %   Q: State weights
 %   R: Input weights
@@ -48,7 +48,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [K_lqr, N] = getLQR(jOb, outputIdx, Q, R)
+function [K_lqr, N] = getLQR(jointObj, outputIdx, Q, R)
     %% Parameters
     if ~exist('Q', 'var')
         Q = diag([0 1000 0 0]);
@@ -61,7 +61,7 @@ function [K_lqr, N] = getLQR(jOb, outputIdx, Q, R)
     end
     
     % Shorthands
-    sys     = jOb.getStateSpace();
+    sys     = jointObj.getStateSpace();
     A       = sys.A;
     B       = sys.B(:,1); % Use only the current input
     C       = sys.C;
@@ -89,7 +89,7 @@ function [K_lqr, N] = getLQR(jOb, outputIdx, Q, R)
     Ac   	= A;
     Bc   	= B;
     Cc    	= C(outputIdx,:);
-    Dc   	= 0;
+    Dc   	= D(outputIdx,1); % Use only the current input
     
     % Calculate reference input premultiplication N
     a           = [zeros(length(Bc),1); 1];

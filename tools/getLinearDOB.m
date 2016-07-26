@@ -59,7 +59,7 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx , doPlot)
     
     %% Get joint object and state-space system with current input and specified output
     sys     = jointObj.getStateSpace();
-    sys     = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
+    sys     = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
     Pc      = tf(sys);
 
     % Check if Pc is a dynamic system

@@ -98,7 +98,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     
     %% Get state-space system with current input and specified output
     sys         = jointObj.getStateSpace();
-    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), 0);
+    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
     
     
     %% Build closed-loop system

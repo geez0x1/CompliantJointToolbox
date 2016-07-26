@@ -52,7 +52,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
+function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     %% Parameters
     if ~exist('Q', 'var')
         Q = diag([0 1000 0 0]);
@@ -66,8 +66,8 @@ function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
 
     
     %% Get state-space model
-    sys     = jOb.getStateSpace();
-    sys     = ss(sys.A, sys.B, sys.C, 0);
+    sys     = jointObj.getStateSpace();
+    sys     = ss(sys.A, sys.B, sys.C, sys.D);
 
     % Shorthands
     A       = sys.A;
@@ -79,7 +79,7 @@ function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     Ac   	= A;
     Bc   	= B(:,1);
     Cc    	= C(outputIdx,:);
-    Dc   	= 0;
+    Dc   	= D(outputIdx,1);
     sys     = ss(Ac, Bc, Cc, Dc);
     
     
@@ -94,7 +94,7 @@ function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     
     %% Design LQR controller
     
-    [K_lqr, ~] = getLQR(jOb, outputIdx, Q, R);
+    [K_lqr, ~] = getLQR(jointObj, outputIdx, Q, R);
 
 
     %% Design state observer
