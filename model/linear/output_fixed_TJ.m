@@ -51,7 +51,7 @@ function [A, B, C, I, D, K] = output_fixed_TJ(obj)
     % x = [tau_g, tau_l, tau_g_dot, tau_l_dot]'
 
     % Get position-velocity states
-    [A, B, C, I, D, K] = obj.output_fixed();
+    [A, B, C, I, D, K] = output_fixed(obj);
 
     k_g = obj.k_g;
     k_b = obj.k_b; % shorthands %#ok<*PROP>

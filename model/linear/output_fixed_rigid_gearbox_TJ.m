@@ -7,7 +7,7 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox_TJ(obj)
     % x = [tau_l, tau_l_dot]'
 
     % Get position-velocity states
-    [A, B, C, I, D, K] = obj.output_fixed_rigid_gearbox();
+    [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj);
 
     T = -obj.k_b;
 
