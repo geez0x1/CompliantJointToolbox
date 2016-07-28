@@ -57,11 +57,11 @@ classdef genericJoint < handle
         d_b     % Torsion bar damping [Nms/rad]
         % Asymmetric viscous friction
         d_m_n   % Motor Damping - negative direction [Nms/rad]
-        d_g_n	% Gearbox Damping - negative direction [Nms/rad]
-        d_b_n	% Torsion bar damping - negative direction [Nms/rad]
+        d_g_n   % Gearbox Damping - negative direction [Nms/rad]
+        d_b_n   % Torsion bar damping - negative direction [Nms/rad]
         % Linear internal viscous friction
-        d_mg	% Gearbox internal damping [Nms/rad]
-        d_gb	% Torsion bar internal damping [Nms/rad]
+        d_mg    % Gearbox internal damping [Nms/rad]
+        d_gb    % Torsion bar internal damping [Nms/rad]
         % Coulomb friction
         d_cm    % Motor Coulomb damping [Nm]
         d_cg    % Gearbox Coulomb damping [Nm]
@@ -87,7 +87,7 @@ classdef genericJoint < handle
         name                % Joint name
         paramName           % Parameter name
         modelName           % Model name
-        nonlinearModelName	% Nonlinear model name
+        nonlinearModelName  % Nonlinear model name
         
     end
     
@@ -119,12 +119,12 @@ classdef genericJoint < handle
             % See also jointBuilder.
             
             % Apply properties
-            this.verbose	= params.verbose;
+            this.verbose    = params.verbose;
             this.debug      = params.debug;
             
             % Mechanical Properties
             % Inertiae
-            this.I_m	= params.I_m;       % Motor rotor inertia [kg m^2] (link side)
+            this.I_m    = params.I_m;       % Motor rotor inertia [kg m^2] (link side)
             this.I_g    = params.I_g;       % Motor-side gear inertia [kg m^2] (link side)
             this.I_b    = params.I_b;       % Torsion bar inertia [kg m^2] (link side)
             % Stiffnesses
@@ -135,23 +135,23 @@ classdef genericJoint < handle
             this.d_g    = params.d_g;       % Gearbox damping [Nms/rad]
             this.d_b    = params.d_b;       % Torsion bar damping [Nms/rad]
             % Asymmetric viscous friction
-            this.d_m_n 	= params.d_m_n; 	% Motor Damping - negative direction [Nms/rad]
-            this.d_g_n 	= params.d_g_n;   	% Gearbox Damping - negative direction [Nms/rad]
-            this.d_b_n 	= params.d_b_n;   	% Torsion bar damping - negative direction [Nms/rad]
+            this.d_m_n  = params.d_m_n;     % Motor Damping - negative direction [Nms/rad]
+            this.d_g_n  = params.d_g_n;     % Gearbox Damping - negative direction [Nms/rad]
+            this.d_b_n  = params.d_b_n;     % Torsion bar damping - negative direction [Nms/rad]
             % Linear internal viscous friction
-            this.d_mg 	= params.d_mg;   	% Gearbox internal damping [Nms/rad]
-            this.d_gb 	= params.d_gb;   	% Torsion bar internal damping [Nms/rad]
+            this.d_mg   = params.d_mg;      % Gearbox internal damping [Nms/rad]
+            this.d_gb   = params.d_gb;      % Torsion bar internal damping [Nms/rad]
             % Coulomb friction
             this.d_cm   = params.d_cm;      % Motor Coulomb damping [Nm]
             this.d_cg   = params.d_cg;      % Gearbox Coulomb damping [Nm]
             this.d_cb   = params.d_cb;      % Torsion bar Coulomb damping [Nm]
             % Asymmetric Coulomb friction
             this.d_cm_n = params.d_cm_n;    % Motor Coulomb damping - negative direction [Nm]
-            this.d_cg_n = params.d_cg_n;	% Gearbox Coulomb damping - negative direction [Nm]
-            this.d_cb_n = params.d_cb_n; 	% Torsion bar Coulomb damping - negative direction [Nm]
+            this.d_cg_n = params.d_cg_n;    % Gearbox Coulomb damping - negative direction [Nm]
+            this.d_cb_n = params.d_cb_n;    % Torsion bar Coulomb damping - negative direction [Nm]
             % Misc
             this.n      = params.n;         % Gear ratio []
-            this.k_t	= params.k_t;       % Torque constant [Nm/A]
+            this.k_t    = params.k_t;       % Torque constant [Nm/A]
             this.r      = params.r;         % Armature resistance [Ohm]
             this.x      = params.x;         % Armature inductance [H]
             this.Ts     = params.Ts;        % Sampling time [s]
@@ -159,14 +159,14 @@ classdef genericJoint < handle
             this.v_0    = params.v_0;       % Operating voltage [V]
             this.i_c    = params.i_c;       % Max. continuous current [A]
             this.i_p    = params.i_p;       % Peak stall current [A]
-            this.dq_c 	= params.dq_c;      % Max. continuous speed (output)[rad/s]
-            this.dq_p  	= params.dq_p;  	% Max. peak speed (output) [rad/s]
+            this.dq_c   = params.dq_c;      % Max. continuous speed (output)[rad/s]
+            this.dq_p   = params.dq_p;      % Max. peak speed (output) [rad/s]
             
             % Desciptive Properties
             this.name               = params.name;                  % Joint descriptive name
             this.paramName          = params.paramName;             % Parameter name
             this.modelName          = params.modelName;             % Model name
-            this.nonlinearModelName	= params.nonlinearModelName;    % Nonlinear model name
+            this.nonlinearModelName = params.nonlinearModelName;    % Nonlinear model name
         end
         
         
@@ -195,7 +195,7 @@ classdef genericJoint < handle
             %
             % See also genericJoint, jointBuilder.
             
-            params	= struct;
+            params  = struct;
             p       = properties(this);
             
             % Put all properties
@@ -230,7 +230,7 @@ classdef genericJoint < handle
             %  Wesley Roozing, wesley.roozing@iit.it
             %
             % See also getStateSpaceD, genericJoint, jointBuilder.
-            [A, B, C, ~, ~, ~]	= obj.getDynamicsMatrices();
+            [A, B, C, ~, ~, ~]  = obj.getDynamicsMatrices();
             D                   = 0;
             sys                 = ss(A, B, C, D);
         end
@@ -333,7 +333,7 @@ classdef genericJoint < handle
             %
             % See also getStateSpaceD, getTFd, genericJoint, jointBuilder.
             sys     = obj.getStateSpaceD();
-            sysd	= tf(sys);
+            sysd    = tf(sys);
         end
         
         
@@ -374,7 +374,7 @@ classdef genericJoint < handle
                         };
             
             % Get symbolic properties
-            symProps	= setdiff(props, blacklist);
+            symProps    = setdiff(props, blacklist);
             nProps      = numel(symProps);
             
             % Set each symbolic property to symbolic
