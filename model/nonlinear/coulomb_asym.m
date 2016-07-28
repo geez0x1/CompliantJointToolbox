@@ -52,17 +52,17 @@ function [ tau ] = coulomb_asym(obj, x)
     
     % Preallocate coefficient vectors
     c       = zeros(size(x));
-    c_neg	= zeros(size(x));
+    c_neg   = zeros(size(x));
     cc      = zeros(size(x));
     
     % Build coefficient vector
     if (strcmp(obj.modelName, 'full_dyn'))
-        c       = [0, 0, 0, obj.d_cm,	obj.d_cg,	obj.d_cb]';
-        c_neg	= [0, 0, 0, obj.d_cm_n, obj.d_cg_n, obj.d_cb_n]';
+        c       = [0, 0, 0, obj.d_cm,   obj.d_cg,   obj.d_cb]';
+        c_neg   = [0, 0, 0, obj.d_cm_n, obj.d_cg_n, obj.d_cb_n]';
         
     elseif (strcmp(obj.modelName, 'rigid_gearbox'))
         c       = [0, 0, obj.d_cm + obj.d_cg,       obj.d_cb]';
-        c_neg   = [0, 0, obj.d_cm_n + obj.d_cg_n,	obj.d_cb_n]';
+        c_neg   = [0, 0, obj.d_cm_n + obj.d_cg_n,   obj.d_cb_n]';
         
     elseif (strcmp(obj.modelName, 'output_fixed'))
         c       = [0, 0, obj.d_cm,      obj.d_cg]';

@@ -52,7 +52,7 @@ function [ tau ] = viscous_asym(obj, x)
     
     % Preallocate coefficient vectors
     c       = zeros(size(x));
-    c_neg	= zeros(size(x));
+    c_neg   = zeros(size(x));
     cc      = zeros(size(x));
     
     % Get some shorthands
@@ -69,19 +69,19 @@ function [ tau ] = viscous_asym(obj, x)
     % desired damping values. For the same reason, the positive part is zero.
     if (strcmp(obj.modelName, 'full_dyn'))
         c       = [0, 0, 0, 0,              0,              0               ]';
-        c_neg	= [0, 0, 0, -d_m + d_m_n,	-d_g + d_g_n,	-d_b + d_b_n	]';
+        c_neg   = [0, 0, 0, -d_m + d_m_n,   -d_g + d_g_n,   -d_b + d_b_n    ]';
         
     elseif (strcmp(obj.modelName, 'rigid_gearbox'))
         c       = [0, 0, 0,                             0               ]';
-        c_neg   = [0, 0, -d_m - d_g + d_m_n + d_g_n,	-d_g + d_g_n	]';
+        c_neg   = [0, 0, -d_m - d_g + d_m_n + d_g_n,    -d_g + d_g_n    ]';
         
     elseif (strcmp(obj.modelName, 'output_fixed'))
         c       = [0, 0, 0,             0               ]';
-        c_neg   = [0, 0, -d_m + d_m_n,	-d_g + d_g_n	]';
+        c_neg   = [0, 0, -d_m + d_m_n,  -d_g + d_g_n    ]';
         
     elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
         c       = [0, 0                             ]';
-        c_neg   = [0, -d_m - d_g + d_m_n + d_g_n	]';
+        c_neg   = [0, -d_m - d_g + d_m_n + d_g_n    ]';
         
     elseif (strcmp(obj.modelName, 'rigid'))
         c       = 0;
