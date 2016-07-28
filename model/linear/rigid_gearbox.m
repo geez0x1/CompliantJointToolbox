@@ -62,7 +62,7 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
     d_m     = obj.d_m;
     d_g     = obj.d_g;
     d_b     = obj.d_b;
-    d_gb	= obj.d_gb; % shorthands %#ok<*PROP>
+    d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
     D = [   d_m + d_g + d_gb,       -d_gb; ...
             -d_gb,                  d_b + d_gb      ];
 
@@ -81,13 +81,13 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
     B	= [ 0, 0, k_t*n/I(1,1),	0; ...
             0, 0, 0,            1/I(2,2)    ]';
     
-	% Output
-    C = [   1,      0,      0, 0; ...	% motor position
-            1,      0,      0, 0; ...	% gear position
-            0,      1,      0, 0; ...	% link position
-            0,      0,      1, 0; ...	% motor velocity
-            0,      0,      1, 0; ...	% gear velocity
+    % Output
+    C = [   1,      0,      0, 0; ...   % motor position
+            1,      0,      0, 0; ...   % gear position
+            0,      1,      0, 0; ...   % link position
+            0,      0,      1, 0; ...   % motor velocity
+            0,      0,      1, 0; ...   % gear velocity
             0,      0,      0, 1; ...   % link velocity
-            k_b,    -k_b,	0, 0 ];     % Torsion bar torque
+            k_b,    -k_b,   0, 0 ];     % Torsion bar torque
             
 end

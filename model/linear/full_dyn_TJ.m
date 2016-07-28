@@ -50,24 +50,22 @@
 function [A, B, C, I, D, K] = full_dyn_TJ(obj)
     
     % The computations below assume a state vector definition according to:
-    % x = [tau_g, tau_l, tau_e, tau_g_dot, tau_l_dot, tau_e_dot]'
+    % x = [tau_g, tau_l, q_b, tau_g_dot, tau_l_dot, q_b_dot]'
     
     % Get position-velocity states
     [A, B, C, I, D, K] = full_dyn(obj);
 
     k_g = obj.k_g;
-    k_b = obj.k_b;
-    k_e = obj.k_e; % shorthands %#ok<*PROP>
-    T = [   -k_g,	k_g,	0;
-            0,      -k_b,	k_b;
-            0,      0,      k_e     ];
+    k_b = obj.k_b; % shorthands %#ok<*PROP>
+    T = [   -k_g,   k_g,    0;
+            0,      -k_b,   k_b;
+            0,      0,      1       ];
 
-    Tx = [	T,                  zeros(size(T));
-            zeros(size(T)),  	T                   ];
+    Tx = [  T,                  zeros(size(T));
+            zeros(size(T)),     T               ];
 
-    A = Tx*A/Tx;
-    B = Tx*B;
-    
-    C = Tx\C;
+    A = Tx \ A * Tx;
+    B = Tx \ B;
+    C = C * Tx;
     
 end

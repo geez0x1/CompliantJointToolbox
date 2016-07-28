@@ -62,8 +62,8 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox_no_friction(obj)
     D = 0 * (obj.d_m + obj.d_g + obj.d_gb);
 
     % Stiffness matrix
-    k_b	= obj.k_b;
-    K	= k_b;
+    k_b = obj.k_b;
+    K   = k_b;
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I)); ...
@@ -75,14 +75,14 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox_no_friction(obj)
     B   = [ 0, k_t*n/I(1,1); ...
             0, 0                ]';
     
-	% Output
+    % Output
     C = [   1,      0; ... % motor position
             1,      0; ... % gear position
             0,      0; ... % link position
             0,      1; ... % motor velocity
             0,      1; ... % gear velocity
             0,      0; ... % link velocity
-            k_b,	0   ]; % Torsion bar torque
+            k_b,    0   ]; % Torsion bar torque
 
 end
 

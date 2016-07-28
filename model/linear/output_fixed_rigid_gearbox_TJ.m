@@ -11,11 +11,11 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox_TJ(obj)
 
     T = -obj.k_b;
 
-    Tx = [	T,                  zeros(size(T));
+    Tx = [  T,                  zeros(size(T));
             zeros(size(T)),     T               ];
 
-    A = Tx*A/Tx;
-    B = Tx*B;
-    C = Tx\C;
+    A = Tx \ A * Tx;
+    B = Tx \ B;
+    C = C * Tx;
     
 end
