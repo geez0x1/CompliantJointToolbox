@@ -49,9 +49,10 @@
 function [ tau ] = cogging(jointObj, x)
     
     % Cogging parameters
-    a1	= jointObj.cog_a1; 	% Cosine amplitude [Nm] (gearbox side)
-    a2  = jointObj.cog_a2; 	% Sine amplitude [Nm] (gearbox side)
-    f	= jointObj.cog_f;	% Spatial frequency [periods/revolution]
+    a1      = jointObj.cog_a1;      % Cosine amplitude [Nm]
+    a2      = jointObj.cog_a2;      % Sine amplitude [Nm]
+    f       = jointObj.cog_f;       % Spatial frequency [periods/revolution]
+    omega	= 2 * pi * f;           % Spatial frequency [rad/revolution]
     
     % Preallocate coefficient vector
     c = zeros(size(x));
@@ -61,29 +62,29 @@ function [ tau ] = cogging(jointObj, x)
         c = [   0;
                 0;
                 0;
-                a1 * cos(f * x(1)) + a2 * sin(f * x(1));
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1));
                 0;
                 0                                           ];
         
     elseif (strcmp(jointObj.modelName, 'rigid_gearbox'))
         c = [   0;
                 0;
-                a1 * cos(f * x(1)) + a2 * sin(f * x(1));
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1));
                 0                                           ];
         
     elseif (strcmp(jointObj.modelName, 'output_fixed'))
         c = [   0;
                 0;
-                a1 * cos(f * x(1)) + a2 * sin(f * x(1));
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1));
                 0                                           ];
         
     elseif (strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox'))
         c = [   0;
-                a1 * cos(f * x(1)) + a2 * sin(f * x(1));	];
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1))     ];
         
     elseif (strcmp(jointObj.modelName, 'rigid'))
         c = [   0;
-                a1 * cos(f * x(1)) + a2 * sin(f * x(1));	];
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1)) 	];
         
     end
 
