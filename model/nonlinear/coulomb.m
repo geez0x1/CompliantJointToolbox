@@ -1,6 +1,6 @@
 %COULOMB Calculate Coulomb friction torques
 %
-% [tau] = jointObj.coulomb(x)
+% [tau] = coulomb(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.

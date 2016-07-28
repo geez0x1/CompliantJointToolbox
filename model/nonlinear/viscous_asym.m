@@ -1,6 +1,6 @@
 %VISCOUS_ASYM Calculate asymetric viscous friction torques
 %
-% [tau] = jointObj.viscous_asym(x)
+% [tau] = viscous_asym(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.

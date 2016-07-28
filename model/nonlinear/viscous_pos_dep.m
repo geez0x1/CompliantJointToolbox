@@ -1,6 +1,6 @@
 %VISCOUS_POS_DEP Calculate position-dependent viscous friction
 %
-% [tau] = jointObj.viscous_pos_dep(x)
+% [tau] = viscous_pos_dep(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
