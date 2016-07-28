@@ -70,6 +70,10 @@ classdef genericJoint < handle
         d_cm_n  % Motor Coulomb damping - negative direction [Nm]
         d_cg_n  % Gearbox Coulomb damping - negative direction [Nm]
         d_cb_n  % Torsion bar Coulomb damping - negative direction [Nm]
+        % Cogging
+        cog_a1	% Cosine amplitude [Nm]
+        cog_a2	% Sine amplitude [Nm]
+        cog_f	% Spatial frequency [periods/revolution]
         % Misc
         n       % Gear ratio []
         k_t     % Torque constant [Nm/A]
@@ -149,6 +153,10 @@ classdef genericJoint < handle
             this.d_cm_n = params.d_cm_n;    % Motor Coulomb damping - negative direction [Nm]
             this.d_cg_n = params.d_cg_n;    % Gearbox Coulomb damping - negative direction [Nm]
             this.d_cb_n = params.d_cb_n;    % Torsion bar Coulomb damping - negative direction [Nm]
+            % Cogging
+            this.cog_a1 = params.cog_a1;    % Cosine amplitude [Nm]
+            this.cog_a2 = params.cog_a2;    % Sine amplitude [Nm]
+            this.cog_f  = params.cog_f;     % Spatial frequency [periods/revolution]
             % Misc
             this.n      = params.n;         % Gear ratio []
             this.k_t    = params.k_t;       % Torque constant [Nm/A]
