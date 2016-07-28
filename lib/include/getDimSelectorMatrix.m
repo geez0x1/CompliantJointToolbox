@@ -6,7 +6,7 @@ function [ dimSelect ] = getDimSelectorMatrix( jointObj )
 % jointObj is the object defining the model to use.
 %
 % dimSelect is a ['linear system order'/2 x 3]  matrix. The matrix can be used to select the joint angles relevant to the joint model out of a full 
-% 			vector of joint values (motor, gear, link). Same story for joint velocities.
+% vector of joint values (motor, gear, link). Same story for joint velocities.
 %
 % Notes::
 %

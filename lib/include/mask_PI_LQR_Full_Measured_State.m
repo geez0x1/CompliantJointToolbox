@@ -60,11 +60,11 @@ D       = sys.D;
 sys     = ss(A, B, eye(size(sys.A)), 0);
 
 % Create system with 1 output
-Ac   	= A;
-Bc   	= B;
-Cc    	= jointObj.k_b * C(2,:);
-Dc   	= 0;
-sysc   	= ss(Ac, Bc, Cc, Dc);
+Ac      = A;
+Bc      = B;
+Cc      = jointObj.k_b * C(2,:);
+Dc      = 0;
+sysc    = ss(Ac, Bc, Cc, Dc);
 
 
 %% Design LQR controller
@@ -78,14 +78,14 @@ sysc   	= ss(Ac, Bc, Cc, Dc);
 % Cex = Cc;
 
 % Augmented plant: here we augment by an integral action
-r	= size(Cc,1);       % Number of controlled outputs
+r   = size(Cc,1);       % Number of controlled outputs
 Ar  = zeros(r, r);      % Controller system matrix
 Br  = eye(r);           % Controller input matrix
 Cr  = eye(r);
 Er  = -1;
 
-Ai  = [	Ac,     zeros(size(Ac,1), r); ...
-        Br*Cc,	Ar                      ];
+Ai  = [ Ac,     zeros(size(Ac,1), r); ...
+        Br*Cc,  Ar                      ];
 Bi  = [Bc; zeros(r, size(Bc,2))];
 Ci  = [Cc, zeros(size(Cc,1), r)];
 
@@ -100,9 +100,9 @@ sysi = ss(Ai,Bi,Ci,0);
 Aex = Ac - Bc * K_lqr(1:end-1);
 
 % Design premultiplication
-V	= 1 / (Cc * inv(eye(size(Aex)) - Aex) * Bc);
-Bex	= Bc * V;
-Cex	= Cc;
+V   = 1 / (Cc * inv(eye(size(Aex)) - Aex) * Bc);
+Bex = Bc * V;
+Cex = Cc;
 
 end
 

@@ -86,17 +86,17 @@ function [K_lqr, N] = getLQR(jointObj, outputIdx, Q, R)
     [K_lqr, ~, ~] = lqr(sys, Q, R);
     
     % Create system with outputs specified for reference
-    Ac   	= A;
-    Bc   	= B;
-    Cc    	= C(outputIdx,:);
-    Dc   	= D(outputIdx,1); % Use only the current input
+    Ac      = A;
+    B       = B;
+    Cc      = C(outputIdx,:);
+    Dc      = D(outputIdx,1); % Use only the current input
     
     % Calculate reference input premultiplication N
-    a           = [zeros(length(Bc),1); 1];
-    N           = inv([Ac, Bc; Cc, Dc]) * a;
-    N_x         = N(1:end-1);
-    N_u         = N(end);
-    N           = N_u + K_lqr * N_x;
+    a       = [zeros(length(Bc),1); 1];
+    N       = inv([Ac, Bc; Cc, Dc]) * a;
+    N_x     = N(1:end-1);
+    N_u     = N(end);
+    N       = N_u + K_lqr * N_x;
 
 end
 

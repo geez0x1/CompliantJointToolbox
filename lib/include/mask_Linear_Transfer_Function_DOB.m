@@ -28,8 +28,8 @@
 
 % Make sure local values are defined
 Pc      = 0;
-Q_td 	= 0;
-PQ_td	= 0;
+Q_td    = 0;
+PQ_td   = 0;
 
 % If filename is given, assume the model and filters can be found in there
 if (loadData)
@@ -51,8 +51,8 @@ if (~exist('jointObj', 'var') || ~exist('Q_td', 'var') || ~exist('PQ_td', 'var')
 end
 
 % Get linear dynamics matrices
-[A, B, C, I, D, K]	= jointObj.getDynamicsMatrices();
+[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();
 
 % Discretize using Tustin transform
-Q_td_tust	= c2d(Q_td, jointObj.Ts, 'tustin');
-PQ_td_tust	= c2d(PQ_td, jointObj.Ts, 'tustin');
+Q_td_tust   = c2d(Q_td, jointObj.Ts, 'tustin');
+PQ_td_tust  = c2d(PQ_td, jointObj.Ts, 'tustin');

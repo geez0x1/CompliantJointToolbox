@@ -62,26 +62,26 @@ function [kest, L, Cc] = getKalman(jointObj, outputIdx, var_u, var_y)
     %D       = sys.D;
 
     % Create system with current input and outputs specified
-    Ac   	= A;
-    Bc   	= B(:,1);
-    Cc    	= C(outputIdx,:);
-    %Dc   	= D(outputIdx,1);
+    Ac      = A;
+    Bc      = B(:,1);
+    Cc      = C(outputIdx,:);
+    %Dc     = D(outputIdx,1);
 
 
     %% Design Kalman filter
 
-    % x_dot	= Ax + Bu + Gw   	State equation
-    % y  	= Cx + Du + Hw + v	Measurement equation
+    % x_dot = Ax + Bu + Gw      State equation
+    % y     = Cx + Du + Hw + v  Measurement equation
 
     % Build G, H
-    G = Bc;                   	% Additive noise on the current (adding to u)
-    H = zeros(size(Cc,1),1);	% No input noise feed-through
+    G = Bc;                     % Additive noise on the current (adding to u)
+    H = zeros(size(Cc,1),1);    % No input noise feed-through
 
     % Construct sys_hat
-    A_hat	= Ac;
-    B_hat	= [Bc, G];
-    C_hat	= Cc;
-    D_hat	= [zeros(size(Cc,1),1), H];
+    A_hat   = Ac;
+    B_hat   = [Bc, G];
+    C_hat   = Cc;
+    D_hat   = [zeros(size(Cc,1),1), H];
     sys_hat = ss(A_hat, B_hat, C_hat, D_hat);
 
     % Define Kalman variance matrices

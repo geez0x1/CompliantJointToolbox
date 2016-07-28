@@ -74,17 +74,17 @@ function [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx , doPlot)
     %% Design low-pass Butterworth filters
 
     % Q_td
-    [a, b]	= butter(order(Pc), omega_c, 's');
-    Q_td	= tf(a,b);
+    [a, b]  = butter(order(Pc), omega_c, 's');
+    Q_td    = tf(a,b);
 
     % Pc^-1 * Q_td
-    PQ_td	= inv(Pc) * Q_td;
+    PQ_td   = inv(Pc) * Q_td;
 
 
     %% Show Bode plots of results
     % Bode options
     bodeOpt             = bodeoptions;
-    bodeOpt.FreqUnits	= 'Hz';
+    bodeOpt.FreqUnits   = 'Hz';
     
     % Plot if required
     if doPlot

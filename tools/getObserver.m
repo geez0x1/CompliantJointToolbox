@@ -76,10 +76,10 @@ function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     D       = sys.D(:,1); % Use only the current input
 
     % Create system with current input and outputs specified
-    Ac   	= A;
-    Bc   	= B;
-    Cc    	= C(outputIdx,:);
-    Dc   	= D(outputIdx,1);
+    Ac      = A;
+    Bc      = B;
+    Cc      = C(outputIdx,:);
+    Dc      = D(outputIdx,1);
     sys     = ss(Ac, Bc, Cc, Dc);
     
     
@@ -100,8 +100,8 @@ function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     %% Design state observer
 
     % Obtain closed-loop controller poles for observer design
-    cl_poles	= eig(A - Bc * K_lqr);
-    obs_poles	= place_gain * min(real(cl_poles)) * ones(size(cl_poles));
+    cl_poles    = eig(A - Bc * K_lqr);
+    obs_poles   = place_gain * min(real(cl_poles)) * ones(size(cl_poles));
     for i=1:length(obs_poles)
        obs_poles(i) = obs_poles(i) * 1.1^(i-1); % Make poles distinct
     end
@@ -110,10 +110,10 @@ function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     L = place(Ac', Cc', obs_poles)';
 
     % Construct observer
-    A_hat	= A;
-    B_hat	= [Bc, L];
-    C_hat	= eye(size(A));
-    D_hat	= zeros(size(C_hat,1), size(B_hat,2));
+    A_hat   = A;
+    B_hat   = [Bc, L];
+    C_hat   = eye(size(A));
+    D_hat   = zeros(size(C_hat,1), size(B_hat,2));
     sys_hat = ss(A_hat, B_hat, C_hat, D_hat);
     
     % Display results

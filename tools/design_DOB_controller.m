@@ -81,10 +81,10 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
                                 % (1=Compensation (default), 2=Feed-forward)
     end
     if (~exist('f_c_FF', 'var'))
-        f_c_FF	= 40;           % Feed-forward cutoff frequency [Hz]
+        f_c_FF  = 40;           % Feed-forward cutoff frequency [Hz]
     end
     if (~exist('f_c_DOB', 'var'))
-        f_c_DOB	= 60;           % DOB cutoff frequency [Hz]
+        f_c_DOB = 60;           % DOB cutoff frequency [Hz]
     end
 
     % Bode options
@@ -126,7 +126,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
 %     figure(2); clf; hold on;
 %     bode(Gf,        bodeOpt);
 %     bode(Pc,        bodeOpt);
-%     bode(inv(Pc),	bodeOpt);
+%     bode(inv(Pc),   bodeOpt);
 %     bode(Q_td,      bodeOpt);
 %     bode(Q_ff,      bodeOpt);
 %     bode(PQ_td,     bodeOpt);

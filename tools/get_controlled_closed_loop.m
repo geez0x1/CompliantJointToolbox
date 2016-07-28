@@ -71,8 +71,8 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     %% Get variables
     
     % Control/system parameters
-    k_b    	= jointObj.k_b; 	% Torsion bar stiffness [Nm/rad]
-    n       = jointObj.n;    	% Gearbox transmission ratio []
+    k_b     = jointObj.k_b;     % Torsion bar stiffness [Nm/rad]
+    n       = jointObj.n;       % Gearbox transmission ratio []
     k_t     = jointObj.k_t;     % Torque constant [Nm/A]
     I_m     = jointObj.I_m;     % Motor rotor inertia [kg m^2]   
     I_g     = jointObj.I_g;     % Gear inertia [kg m^2]
@@ -82,7 +82,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     
     % Optimal (specified damping ratio of poles) gains
     zeta = 1.0; % Critical damping
-    Kd_opt = 	(   2*(I_m + I_g) * ...
+    Kd_opt =    (   2*(I_m + I_g) * ...
                     sqrt( ...
                         (k_b * k_t * Kp * n + k_b) / ...
                         (I_m + I_g) ...
@@ -123,7 +123,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
         
         % Closed-loop transfer function
         P       = tf(sys);
-        P2      = feedback(P, C2, +1);	% Positive feedback for the comp/FF
+        P2      = feedback(P, C2, +1);  % Positive feedback for the comp/FF
         Pf      = feedback(P2 * G, 1);
         
     elseif (ff_comp_switch == 2)        % Feed-forward

@@ -63,16 +63,16 @@
 function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
     %% Default parameters
     if (~exist('id_Np', 'var'))
-        id_Np = 4;       % Model number of poles []
+        id_Np   = 4;    % Model number of poles []
     end
     if (~exist('id_Nz', 'var'))
-        id_Nz = 1;       % Model number of zeros []
+        id_Nz   = 1;    % Model number of zeros []
     end
     if (~exist('f_c_FF', 'var'))
-        f_c_FF	= 40;	% Feed-forward cutoff frequency [Hz]
+        f_c_FF  = 40;   % Feed-forward cutoff frequency [Hz]
     end
     if (~exist('f_c_DOB', 'var'))
-        f_c_DOB	= 60;	% DOB cutoff frequency [Hz]
+        f_c_DOB = 60;   % DOB cutoff frequency [Hz]
     end
 
     % Bode options
@@ -87,8 +87,8 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     omega_c_DOB     = 2 * pi * f_c_DOB; % DOB cutoff frequency [rad/s]
 
     % Resample data to obtain uniform sampling for tfest()
-    Ts      = jointObj.Ts; 	% Sampling time [s]
-    t_RS    = 0:Ts:max(t);	% Resampled time
+    Ts      = jointObj.Ts;  % Sampling time [s]
+    t_RS    = 0:Ts:max(t);  % Resampled time
     u       = interp1(t, u, t_RS)';
     y       = interp1(t, y, t_RS)';
     t       = t_RS';
@@ -114,8 +114,8 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
 
     % Get magnitude and phase of Pc over f
     [mag_Pc, phase_Pc] = bode(Pc, 2*pi*f);
-    mag_db_Pc	= mag2db(mag_Pc(:));
-    phase_Pc	= phase_Pc(:);
+    mag_db_Pc   = mag2db(mag_Pc(:));
+    phase_Pc    = phase_Pc(:);
 
 
     %% Plot original data and Pc approximation
