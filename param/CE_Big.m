@@ -32,9 +32,9 @@
 
 n = 100;
 % Inertiae
-params.('I_m')      = 3.04E-005 * n^2;    %% Motor rotor inertia [kg m^2]
-params.('I_g')      = 1.33 * 6.6944E-005 * n^2;    %% Gear inertia [kg m^2] % TO BE UPDATED!
-params.('I_b')      = 8.6719E-006 * n^2;    %% Torsion bar inertia [kg m^2] % TO BE UPDATED!
+params.('I_m')      = 3.04E-005 * n^2;              %% Motor rotor inertia [kg m^2]
+params.('I_g')      = 1.33 * 6.6944E-005 * n^2;     %% Gear inertia [kg m^2] % TO BE UPDATED!
+params.('I_b')      = 8.6719E-006 * n^2;            %% Torsion bar inertia [kg m^2] % TO BE UPDATED!
 % Stiffnesses
 params.('k_g')      = 31e3;             	%% Gearbox stiffness [Nm/rad]
 params.('k_b')      = 31e3;                 %% Torsion bar stiffness [Nm/rad] % TO BE UPDATED! The strain based torque sensor is super stiff.
@@ -57,6 +57,10 @@ params.('d_cb')     = 0.0;                  %% Torsion bar Coulomb damping [Nm] 
 params.('d_cm_n')   = 0.0;                  %% Motor Coulomb damping - negative direction [Nm]
 params.('d_cg_n')   = 0.0;                  %% Gearbox Coulomb damping - negative direction [Nm]
 params.('d_cb_n')   = 0.0;                  %% Torsion bar Coulomb damping - negative direction [Nm]
+% Cogging
+params.('cog_a1')   = 3.0 / n;              %% Cosine amplitude [Nm] (gearbox side)
+params.('cog_a2')   = 0.0 / n;              %% Sine amplitude [Nm] (gearbox side)
+params.('cog_f')    = 6;                    %% Spatial frequency [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0455;               %% Torque constant [Nm/A]
