@@ -71,7 +71,7 @@ function [f, mag_db, phase] = bode_tuy(t, u, y)
     
     % Calculate phase in degrees and unwrap until the phase starts within
     % -90..+90 degrees.
-    phase = unwrap((180/pi) * angle(H(1:NFFT/2+1)));
+    phase = (180/pi) *unwrap( angle(H(1:NFFT/2+1)));
     if (phase(1) > 90)
         while (phase(1) > 90)
             phase = phase - 180;    
