@@ -15,7 +15,7 @@
 %   K:   Stiffness matrix
 %
 % Notes::
-%  This function is identical to output_fixed, but with the difference that all
+%  This function is identical to output_fixed, but with the difference that the bearing
 %  friction coefficients are set to zero.
 %
 % Examples::
@@ -59,18 +59,18 @@ function [A, B, C, I, D, K] = output_fixed_no_friction(obj)
     I = diag([obj.I_m , obj.I_g]);
 
     % Damping matrix
-    d_m     = 0*obj.d_m;
-    d_g     = 0*obj.d_g;
+    d_m     = 0 * obj.d_m;
+    d_g     = 0 * obj.d_g;
     d_mg    = obj.d_mg;
-    d_gb	= obj.d_gb; % shorthands %#ok<*PROP>
-    D = [	d_m + d_mg, 	-d_mg; ...
-            -d_mg,      	d_g + d_mg + d_gb	];
+    d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
+    D = [   d_m + d_mg,     -d_mg; ...
+            -d_mg,          d_g + d_mg + d_gb   ];
 
     % Stiffness matrix
     k_g = obj.k_g;
     k_b = obj.k_b; % shorthands %#ok<*PROP>
-    K = [   k_g,    	-k_g; ...
-            -k_g,    	k_g + k_b   ];
+    K = [   k_g,        -k_g; ...
+            -k_g,       k_g + k_b   ];
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I)); ...
@@ -78,17 +78,18 @@ function [A, B, C, I, D, K] = output_fixed_no_friction(obj)
         
     % Input
     k_t = obj.k_t;
-    n	= obj.n;
-    B	= [0, 0, k_t*n/I(1,1), 0]';
+    n   = obj.n;
+    B   = [ 0, 0, k_t*n/I(1,1), 0; ...
+            0, 0, 0,            0       ]';
     
     % Output
-    C = [1, 0, 0, 0;  ... % motor position
-         0, 1, 0, 0;  ... % gear position
-         0, 0, 0, 0;  ... % link position
-         0, 0, 1, 0;  ... % motor velocity
-         0, 0, 0, 1;  ... % gear velocity
-         0, 0, 0, 0;];... % link velocity
+    C = [   1, 0,   0, 0; ...   % motor position
+            0, 1,   0, 0; ...   % gear position
+            0, 0,   0, 0; ...   % link position
+            0, 0,   1, 0; ...   % motor velocity
+            0, 0,   0, 1; ...   % gear velocity
+            0, 0,   0, 0; ...   % link velocity
+            0, k_b, 0, 0    ];  % Torsion bar torque
     
-
 end
 

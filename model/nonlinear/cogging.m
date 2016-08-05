@@ -1,4 +1,4 @@
-%VISCOUS_POS_DEP Calculate position-dependent viscous friction
+%COGGING Calculate magnetic cogging torque
 %
 % [tau] = viscous_pos_dep(jointObj, x)
 %
@@ -14,10 +14,9 @@
 %     x = [q_g, q_g_dot]'                               rigid
 %
 % Outputs::
-%   tau: friction torque
+%   tau: cogging torque
 %
 % Notes::
-%  THIS FILE IS A PROOF OF CONCEPT AND NEEDS TO BE FINISHED
 %
 % Examples::
 %
@@ -25,7 +24,7 @@
 %  Joern Malzahn
 %  Wesley Roozing
 %
-% See also full_dyn, coulomb, viscous_asym.
+% See also 
 
 % Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
@@ -47,42 +46,49 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ tau ] = viscous_pos_dep(obj, x)
+function [ tau ] = cogging(jointObj, x)
     
-    % Temp
-    a = 1e-6;   % Amplitude
-    d = 1/2;    % Frequency
-    p = pi;     % Phase
+    % Cogging parameters
+    a1      = jointObj.cog_a1;      % Cosine amplitude [Nm]
+    a2      = jointObj.cog_a2;      % Sine amplitude [Nm]
+    f       = jointObj.cog_f;       % Spatial frequency [periods/revolution]
+    omega	= 2 * pi * f;           % Spatial frequency [rad/revolution]
     
     % Preallocate coefficient vector
     c = zeros(size(x));
     
     % Build coefficient vector
-    if (strcmp(obj.modelName, 'full_dyn'))
-        c = [0, 0, 0, ...
-                a * sin(x(1)/d + p), ...
-                a * sin(x(2)/d + p), ...
-                a * sin(x(3)/d + p)       ]';
+    if (strcmp(jointObj.modelName, 'full_dyn'))
+        c = [   0;
+                0;
+                0;
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1));
+                0;
+                0                                           ];
         
-    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
-        c = [0, 0, ...
-                a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n, ...
-                a * sin(x(2)*d + p)       ]';
+    elseif (strcmp(jointObj.modelName, 'rigid_gearbox'))
+        c = [   0;
+                0;
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1));
+                0                                           ];
         
-    elseif (strcmp(obj.modelName, 'output_fixed'))
-        c = [0, 0, ...
-                a * sin(x(1)/d + p), ...
-                a * sin(x(2)/d + p)       ]';
+    elseif (strcmp(jointObj.modelName, 'output_fixed'))
+        c = [   0;
+                0;
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1));
+                0                                           ];
         
-    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
-        c = [0, a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n]';
+    elseif (strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox'))
+        c = [   0;
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1))     ];
         
-    elseif (strcmp(obj.modelName, 'rigid'))
-        c = a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n;
+    elseif (strcmp(jointObj.modelName, 'rigid'))
+        c = [   0;
+                a1 * cos(omega * x(1)) + a2 * sin(omega * x(1)) 	];
         
     end
 
-    % Calculate position-dependent viscous friction torques
+    % Calculate cogging torques
     tau = -c .* x;
 
 end

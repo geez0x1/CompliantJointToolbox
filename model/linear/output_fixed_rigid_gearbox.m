@@ -48,8 +48,6 @@
 
 function [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj)
     
-    % x = [q_g, q_g_dot]'
-
     % The computations below assume a state vector definition according to:
     % x = [q_g, q_g_dot,]', where 
     % q_g is the gearbox output angle
@@ -63,7 +61,8 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj)
     D = obj.d_m + obj.d_g + obj.d_gb;
 
     % Stiffness matrix
-    K = obj.k_b;
+    k_b = obj.k_b;
+    K   = k_b;
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I)); ...
@@ -72,15 +71,17 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj)
     % Input
     k_t = obj.k_t;
     n   = obj.n;
-    B	= [0, k_t*n/I(1,1)]';
+    B   = [ 0, k_t*n/I(1,1); ...
+            0, 0                ]';
     
-        % Output
-    C = [1, 0;  ... % motor position
-         1, 0;  ... % gear position
-         0, 0;  ... % link position
-         0, 1;  ... % motor velocity
-         0, 1;  ... % gear velocity
-         0, 0;];... % link velocity
+    % Output
+    C = [   1,      0; ... % motor position
+            1,      0; ... % gear position
+            0,      0; ... % link position
+            0,      1; ... % motor velocity
+            0,      1; ... % gear velocity
+            0,      0; ... % link velocity
+            k_b,    0   ]; % Torsion bar torque
 
 end
 

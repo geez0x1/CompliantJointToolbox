@@ -1,17 +1,18 @@
 %COULOMB Calculate Coulomb friction torques
 %
-% [tau] = jointObj.coulomb(x)
+% [tau] = coulomb(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
 %
 %
 % Inputs::
-%   x:   state vector depending on the model type as
-%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  continuous_full
-%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 continuous_rigid_gearbox
-%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 continuous_output_fixed
-%     x = [q_g, q_g_dot]'                               continuous_output_fixed_rigid_gearbox
+%   x: state vector depending on the model type as
+%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  full_dyn
+%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 rigid_gearbox
+%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 output_fixed
+%     x = [q_g, q_g_dot]'                               output_fixed_rigid_gearbox
+%     x = [q_g, q_g_dot]'                               rigid
 %
 % Outputs::
 %   tau: friction torque
@@ -53,19 +54,19 @@ function [ tau ] = coulomb(obj, x)
     c = zeros(size(x));
     
     % Build coefficient vector
-    if (strcmp(obj.modelName, 'continuous_full'))
+    if (strcmp(obj.modelName, 'full_dyn'))
         c = [0, 0, 0, obj.d_cm, obj.d_cg, obj.d_cb]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
         c = [0, 0, obj.d_cm + obj.d_cg, obj.d_cb]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed'))
+    elseif (strcmp(obj.modelName, 'output_fixed'))
         c = [0, 0, obj.d_cm, obj.d_cg]';
         
-    elseif (strcmp(obj.modelName, 'continuous_output_fixed_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
         c = [0, obj.d_cm + obj.d_cg]';
         
-    elseif (strcmp(obj.modelName, 'continuous_rigid'))
+    elseif (strcmp(obj.modelName, 'rigid'))
         c = obj.d_cm + obj.d_cg + obj.d_cb;
         
     end

@@ -27,8 +27,8 @@
 %% <https://github.com/geez0x1/CompliantJointToolbox>
 function this = %s(verbose, debug)
     %% Verbosity and debugging
-    params.verbose		= 0;
-    params.debug		= 0;
+    params.verbose  = 0;
+    params.debug    = 0;
     if exist('verbose', 'var') params.verbose = verbose; end
     if exist('debug', 'var') params.debug = debug; end
 

@@ -47,10 +47,10 @@ function [] = toggleMaskFields( blockH, checkbox, fields, onDirection )
     % Set default for onDirection
     if (~exist('onDirection', 'var'))
         onDirection     = 'on';     % By default, enabling the checkbox enables the fields
-        offDirection	= 'off';
+        offDirection    = 'off';
     elseif (~strcmpi(onDirection, 'on') && ~strcmpi(onDirection, 'off'))
         onDirection     = 'on';     % By default, enabling the checkbox enables the fields
-        offDirection	= 'off';
+        offDirection    = 'off';
     else
         if (strcmpi(onDirection, 'on'))
             offDirection = 'off';   % Checkbox off = fields off (default)
@@ -60,8 +60,8 @@ function [] = toggleMaskFields( blockH, checkbox, fields, onDirection )
     end
 
     % Get block mask names, mask enables
-    MaskNames	= get(blockH, 'MaskNames');
-    MaskEnables	= get(blockH, 'MaskEnables');
+    MaskNames   = get(blockH, 'MaskNames');
+    MaskEnables = get(blockH, 'MaskEnables');
 
     % Find the index/indices of the field(s)
     if (iscell(fields)) % Multiple fields
