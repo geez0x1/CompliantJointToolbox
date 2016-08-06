@@ -1,23 +1,20 @@
 % GET_CONTROLLED_CLOSED_LOOP Outputs closed loop transfer functions.
 %
-%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch] )
+%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N [, ff_comp_switch] )
 %
 %   Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
 %   H transfer functions, and the PD derivative gain Kd_opt that critically
 %   damps the closed-loop poles for fixed-output force control.
 %
 % Inputs::
-%   jointObj: Joint object
-%   Kp, Ki, Kd, N: PID gains and derivative cut-off frequency (if Kd=-1, the
-%                  resulting controller D-gain will be set to Kd_opt).
-%   pid_form: Flag that determines whether PID controller is constructed in
-%             product (ideal) or summation (parallel) form
-%   outputIdx: Controlled/observed plant output (default: 7, torque)
+%   jointName: Joint object class name Kp, Ki, Kd, N: PID gains and 
+%              derivative cut-off frequency (if Kd=-1, the
+%              resulting PD D-gain will be set to Kd_opt).
 %   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
 %
 % Outputs::
 %   P: Plant transfer function
-%   G: PID Controller transfer function
+%   G: Controller transfer function
 %   H: Closed-loop transfer function
 %   Kd_opt: Optimal PD derivative gain that critically damps the closed-loop poles for
 %           fixed-output force control.
@@ -54,41 +51,35 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
-    %% Default arguments
-    if (~exist('pid_form', 'var'))
-        pid_form = 'ideal';     % Ideal PID form (series) by default
-    end
-    if (~exist('outputIdx', 'var'))
-        outputIdx = 7;          % Controlled/observed plant output (default: 7, torque)
-    end
+
+function [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointName, Kp, Ki, Kd, N, ff_comp_switch )
+    % Default arguments
     if (~exist('ff_comp_switch', 'var'))
         ff_comp_switch = 1;     % Feed-forward/compensation
                                 % (1=Compensation (default), 2=Feed-forward)
     end
     
     
-    %% Get variables
+    % Get variables
+    
+    % Get joint object
+    j = eval(jointName);
+    
     
     % Control/system parameters
-    k_b     = jointObj.k_b;     % Torsion bar stiffness [Nm/rad]
-    n       = jointObj.n;       % Gearbox transmission ratio []
-    k_t     = jointObj.k_t;     % Torque constant [Nm/A]
-    I_m     = jointObj.I_m;     % Motor rotor inertia [kg m^2]   
-    I_g     = jointObj.I_g;     % Gear inertia [kg m^2]
-    d_m     = jointObj.d_m;     % Motor Damping [Nms/rad]
-    d_g     = jointObj.d_g;     % Gearbox damping [Nms/rad]
-    d_gb    = jointObj.d_gb;    % Torsion bar damping [Nms/rad]
+    k_b    	= j.k_b;            % Torsion bar stiffness [Nm/rad]
+    n       = j.n;           	% Gearbox transmission ratio []
+    k_t     = j.k_t;        	% Torque constant [Nm/A]
     
     % Optimal (specified damping ratio of poles) gains
     zeta = 1.0; % Critical damping
-    Kd_opt =    (   2*(I_m + I_g) * ...
+    Kd_opt = 	(   2*(j.I_m + j.I_g) * ...
                     sqrt( ...
-                        (k_b * k_t * Kp * n + k_b) / ...
-                        (I_m + I_g) ...
+                        (j.k_b * j.k_t * Kp * j.n + j.k_b) / ...
+                        (j.I_m + j.I_g) ...
                     ) * zeta ...
-                    - (d_m + d_g + d_gb) ...
-                ) / (k_b * k_t * Kp * n);
+                    - (j.d_m + j.d_g + j.d_gb) ...
+                ) / (j.k_b * j.k_t * Kp * j.n);
     
     % Set derivative gain Kd to Kd_opt if set to -1
     if (Kd == -1)
@@ -96,37 +87,31 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     end
     
     
-    %% Get state-space system with current input and specified output
-    sys         = jointObj.getStateSpace();
-    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
+    % Get state-space system with torque output
+    sys         = j.getStateSpace();
+    sys         = ss(sys.A, sys.B, sys.C(2,:), 0);
+    sys         = k_b * sys; % Multiply by k_b to get torque output
     
     
-    %% Build closed-loop system
+    % Build closed-loop system
     
-    % PID controller
-    if (strcmpi(pid_form, 'ideal'))
-        G = pid(Kp, Kp*Ki, Kp*Kd, 1/N);     % ideal PID controller
-    elseif (strcmpi(pid_form, 'parallel'))
-        G = pid(Kp, Ki, Kd, 1/N);           % parallel PID controller
-    else
-        error('Invalid PID form');
-    end
-    G.u    = 'e';
-    G.y    = 'pid_u';
-
+    % Controllers
+    G    	= pid(Kp, Kp*Ki, Kp*Kd, 1/N); % PID controller
+    G.u  	= 'e';
+    G.y 	= 'pid_u';
     
     % See whether we need to build a closed-loop system with compensation or
     % feed-forward for the spring force
-    if (ff_comp_switch == 1)            % Compensation
+    if (ff_comp_switch == 1)        % Compensation
         % Compensation term
         C2      = 1 / (n * k_t);
         
         % Closed-loop transfer function
         P       = tf(sys);
-        P2      = feedback(P, C2, +1);  % Positive feedback for the comp/FF
+        P2      = feedback(P, C2, +1); % Positive feedback for the comp/FF
         Pf      = feedback(P2 * G, 1);
         
-    elseif (ff_comp_switch == 2)        % Feed-forward
+    elseif (ff_comp_switch == 2)    % Feed-forward
         % Feed-forward term
         C2      = tf(1 / (n * k_t));
         C2.u    = 'r';

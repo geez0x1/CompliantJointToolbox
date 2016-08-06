@@ -52,7 +52,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
+function [sys_hat, L, Cc] = getObserver(jOb, outputIdx, place_gain, Q, R)
     %% Parameters
     if ~exist('Q', 'var')
         Q = diag([0 1000 0 0]);
@@ -60,60 +60,73 @@ function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     if ~exist('R', 'var')
         R = 1e-6;
     end
-    if (length(outputIdx) > 1)
-        error('getLQR error: More than one output weight specified.');
-    end
 
     
     %% Get state-space model
-    sys     = jointObj.getStateSpace();
-    sys     = ss(sys.A, sys.B, sys.C, sys.D);
+    sys     = jOb.getStateSpace();
+    sys     = ss(sys.A, sys.B, eye(size(sys.A)), 0);
 
     % Shorthands
     A       = sys.A;
-    B       = sys.B(:,1); % Use only the current input
+    B       = sys.B;
     C       = sys.C;
-    D       = sys.D(:,1); % Use only the current input
+    D       = sys.D;
 
-    % Create system with current input and outputs specified
-    Ac      = A;
-    Bc      = B;
-    Cc      = C(outputIdx,:);
-    Dc      = D(outputIdx,1);
-    sys     = ss(Ac, Bc, Cc, Dc);
+    % Create system with outputs specified
+    Ac   	= A;
+    Bc   	= B;
+    Cc    	= C(outputIdx,:);
+    Dc   	= 0;
     
     
     %% Check some dimensions
     if (size(Q) ~= size(Ac))
         error('getObserver error: size(Q) ~= size(Ac)');
+        return;
     end
     if (length(R) ~= size(Bc,2))
-        error('getObserver error: size(R) ~= size(Bc)');
+        error('getObserver error: size(Q) ~= size(Ac)');
+        return;
     end
 
     
     %% Design LQR controller
-    
-    [K_lqr, ~] = getLQR(jointObj, outputIdx, Q, R);
+
+    % Calculate LQR gain matrix K for full state feedback
+    [K_lqr, ~, ~] = lqr(sys, Q, R);
+
+    % Calculate reference input premultiplication N
+    % SISO, using position as output
+    a           = [zeros(length(Bc),1); 1];
+    N           = inv([Ac, Bc; Cc, Dc]) * a;
+    N_x         = N(1:end-1);
+    N_u         = N(end);
+    N           = N_u + K_lqr * N_x;
+
+    % Display results
+    %disp('Calculated gain matrix K:');
+    %disp(K_lqr);
+    %disp('and premultiplication matrix N:');
+    %disp(N);
 
 
     %% Design state observer
 
     % Obtain closed-loop controller poles for observer design
-    cl_poles    = eig(A - Bc * K_lqr);
-    obs_poles   = place_gain * min(real(cl_poles)) * ones(size(cl_poles));
+    cl_poles	= eig(A-B*K_lqr);
+    obs_poles	= place_gain * min(real(cl_poles)) * ones(size(cl_poles));
     for i=1:length(obs_poles)
-       obs_poles(i) = obs_poles(i) * 1.1^(i-1); % Make poles distinct
+       obs_poles(i) = obs_poles(i) - place_gain*i; % Make poles distinct
     end
 
     % Calculate observer gain by placing poles
     L = place(Ac', Cc', obs_poles)';
 
     % Construct observer
-    A_hat   = A;
-    B_hat   = [Bc, L];
-    C_hat   = eye(size(A));
-    D_hat   = zeros(size(C_hat,1), size(B_hat,2));
+    A_hat	= A;
+    B_hat	= [B, L];
+    C_hat	= eye(size(A));
+    D_hat	= zeros(size(C_hat,1), size(B_hat,2));
     sys_hat = ss(A_hat, B_hat, C_hat, D_hat);
     
     % Display results

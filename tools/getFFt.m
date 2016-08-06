@@ -1,3 +1,4 @@
+function [f, amp] = getFFt(t, signal)
 % GETFRUEQUENCIES Perform Fast Fourier Transform on a signal.
 % =========================================================================
 %
@@ -42,23 +43,19 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 %
+ 
 
-function [f, amp] = getFFt(t, signal)
-    % compute sampling time, constant samping intervals are assumed
-    Ts = mean(diff(t));
+Ts = mean( diff(t) );    % compute sampling time , constant samping intervals are assumed
 
-    % fft size
-    l = length(signal);
-    b=2^nextpow2(l);
+l = length(signal);
+b=2^nextpow2(l);   % fft size
 
-    % two-sided spectrum
-    F = fft(signal,b)/l;
+F = fft(signal,b)/l; % two-side spectrum
 
-    % create frequency vector up to Nyquist frequency
-    f = 0.5/Ts*linspace(0,1,b/2);
+f = 0.5/Ts*linspace(0,1,b/2);  % create frequency vector up to Nyquist frequency
 
-    % single-sided amplitude spectrum
-    amp = 2*abs(F(1:b/2));
+amp = 2*abs(F(1:b/2)); % single side amplitude spectrum
 
-end
+
+
 

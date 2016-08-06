@@ -42,9 +42,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4"
-	Extents			[1467.0, 889.0]
-	ZoomFactor		[4.0]
-	Offset			[57.840476190476181, 205.39761904761912]
+	Extents			[1467.0, 902.0]
+	ZoomFactor		[2.5]
+	Offset			[29.661904761904793, 122.84761904761919]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jul 22 17:16:26 2016"
-  RTWModifiedTimeStamp	  391108585
-  ModelVersionFormat	  "1.%<AutoIncrement:70>"
+  LastModifiedDate	  "Thu Jun 16 13:29:12 2016"
+  RTWModifiedTimeStamp	  387984550
+  ModelVersionFormat	  "1.%<AutoIncrement:64>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -795,14 +795,6 @@ Library {
       ContinuousStateAttributes	"''"
     }
     Block {
-      BlockType		      Mux
-      Inputs		      "4"
-      DisplayOption	      "none"
-      UseBusObject	      off
-      BusObject		      "BusObject"
-      NonVirtualBus	      off
-    }
-    Block {
       BlockType		      Outport
       Port		      "1"
       OutMin		      "[]"
@@ -931,13 +923,13 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"400"
+	ZoomFactor		"250"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointModel"
 	  SID			  "3"
-	  Ports			  [2, 1]
-	  Position		  [120, 291, 290, 344]
+	  Ports			  [1, 1]
+	  Position		  [120, 289, 290, 341]
 	  ZOrder		  221
 	  LibraryVersion	  "*1.62"
 	  ModelCloseFcn		  "sfsave"
@@ -948,10 +940,47 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    18
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Get"
-	    " other properties\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\n\n% Handle MATLAB fu"
-	    "nction block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If noise is disabled, overwrite the given variances\n"
-	    "if (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0;\nend"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\nhandl"
+	    "eMatlabFunctionBlock(gcb,jointObj);\n\n% % Other properties\nTs = jointObj.Ts;\nk_t = jointObj.k_t;\nk_b = jointO"
+	    "bj.k_b;\n\n% If noise is disabled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\n"
+	    "end\nif (output_noise_enabled == 0)\n	var_y = 0;\nend\n% \n% % ---------------------------------\n% % Edit conten"
+	    "ts of nonLinDynamicsFcn block\n% % ---------------------------------\n% thisBlock = gcb;\n% funName = 'nonLinDyna"
+	    "micsFcn';\n% fcnBlock = [thisBlock, '/', funName];\n% intBlock = [thisBlock, '/', 'Integrator'];\n% sumBlock = [t"
+	    "hisBlock, '/', 'Sum'];\n% %refBlock = get_param(fcnBlock,'ReferenceBlock');\n% \n% % Locate the property, which s"
+	    "tores the source code text\n% % r = slroot;\n% %  scriptBlock = r.find('-isa','Stateflow.EMChart','path',fcnBlock"
+	    ");\n% r = slroot;\n% scriptBlock = r.find('-isa','Stateflow.EMChart','path',fcnBlock);\n% if isempty(scriptBlock)"
+	    "\n%     load_system('simulink');\n%     add_block('simulink/User-Defined Functions/MATLAB Function',fcnBlock,...\n"
+	    "%         'Position', [630 312 700 358],...\n%         'Orientation', 'left');\n%     add_line(thisBlock,[funName"
+	    " '/1'], ['Sum/1'],'AutoRouting','On');\n%     add_line(thisBlock,[funName '/1'], ['nonLinearDynamicsScope/1'],'Au"
+	    "toRouting','On');\n%     add_line(thisBlock,'Integrator/1',[funName '/1'],'AutoRouting','On')\n%     \n%     scri"
+	    "ptBlock = r.find('-isa','Stateflow.EMChart','path',fcnBlock);\n%     if isempty(scriptBlock)\n%         error(mes"
+	    "sage('symbolic:sym:matlabFunctionBlock:CouldNotCreate', fcnBlock));\n%     end\n% end\n% if size(scriptBlock) > 1"
+	    "\n%     error(message('symbolic:sym:matlabFunctionBlock:AmbiguousBlock', fcnBlock));\n% end\n% if ~isa(scriptBloc"
+	    "k,'Stateflow.EMChart')\n%     error(message('symbolic:sym:matlabFunctionBlock:InvalidBlock', fcnBlock));\n% end\n"
+	    "%  \n%  \n% % The strategy is to write a temporary text file to format the code.\n% % Then read the file again an"
+	    "d paste the string into the source code\n% % property.\n% file = 'nonLinDynamicsFcnTMP.m';\n% fid = fopen(file,'w"
+	    "t+');\n% tmp = onCleanup(@()delete(file)); % file guard -> removes temporary file upon crash.\n% \n% fprintf(fid,"
+	    "'%s\\n',['function tau = nonLinDynamics(x)']);   % write signature\n% fprintf(fid,'%s\\n\\n',['%#codegen']);     "
+	    "                       % indicate possibility of code generation\n% \n% % Make parameters available inside the fu"
+	    "nction\n% s = jointObj.getParams();   % Get params struct\n% fields = fieldnames(s)';    % Get fieldnames\n% N = "
+	    "numel(fields);          % Loop through all fields and print\n% for i=1:N\n%     val = s.(fields{i});\n%     if (i"
+	    "snumeric(val))\n%         % Numeric values\n%         fprintf(fid, 'params.%s = %f;\\n', fields{i}, s.(fields{i})"
+	    ");\n%     elseif (iscell(val))\n%         % String cells\n%         fprintf(fid, '%%params.%s = {', fields{i});\n"
+	    "%         for j=1:length(val)\n%             fprintf(fid, '''%s''', s.(fields{i}){j});\n%             if (j < len"
+	    "gth(val))\n%                 fprintf(fid, ', ');\n%             end\n%         end\n%         fprintf(fid, '}; %%"
+	    " Cell arrays are not supported for code generation.\\n');\n%     else\n%         % Strings\n%         fprintf(fid"
+	    ", 'params.%s = ''%s'';\\n', fields{i}, s.(fields{i}));\n%     end\n% end\n% \n% % Write the nonlinear model code\n"
+	    "% argStr = '(params,x)';\n% nonlinearModelName = jointObj.nonLinearModelName;\n% nonlinearModelName_multiple = 0;"
+	    "\n% if (iscell(nonlinearModelName) && length(nonlinearModelName) > 1)\n%     nonlinearModelName_multiple = 1;\n% "
+	    "end\n% \n% fStr = '';\n% if (~isempty(nonlinearModelName) && nonlinearModelName_multiple)\n%     % Multiple nonli"
+	    "near terms\n%     for i=1:length(nonlinearModelName)\n%         fStr = strcat(fStr, nonlinearModelName(i), argStr"
+	    ");\n%         if (i < length(nonlinearModelName))\n%             fStr = strcat(fStr, char(' + '));\n%         end"
+	    "\n%     end\n% elseif ~isempty(nonlinearModelName)\n%     % Single nonlinear term\n%     fStr = strcat(nonlinearM"
+	    "odelName,argStr);\n% else\n%     % No nonlinear terms\n%     fStr = sprintf('%s',  'zeros(size(x))');\n% end\n% f"
+	    "Str = strcat('tau = ', fStr, ';');\n% fprintf(fid, '%s\\n', char(fStr));\n% \n% % End methods\n% fprintf(fid,'\\t"
+	    "end\\n\\n');\n% \n% \n% contents = fileread(file);\n% scriptBlock.Script = sprintf('%s\\n',contents);\n% save_sys"
+	    "tem\n% sfsave\n% \n% fclose(fid);\n% clear('tmp');\n% \n% outPortAddress = [fcnBlock, '/', 'tau'];\n% set_param(o"
+	    "utPortAddress,'PortDimensions',num2str(size(A,1)));\n% \n"
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -1041,22 +1070,13 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "60"
-	    SIDHighWatermark	    "514"
+	    SIDHighWatermark	    "343"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorCurrent [A]"
 	      SID		      "3:13"
-	      Position		      [-30, 438, 0, 452]
+	      Position		      [60, 448, 90, 462]
 	      ZOrder		      158
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "tau_e [Nm]"
-	      SID		      "3:399"
-	      Position		      [-30, 533, 0, 547]
-	      ZOrder		      211
-	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1172,17 +1192,6 @@ Library {
 	      ContentPreviewEnabled   off
 	      sys		      "c2d(tf([2*pi*fc_vel],[1 2*pi*fc_vel]),Ts)"
 	      IC		      "[]"
-	    }
-	    Block {
-	      BlockType		      Mux
-	      Name		      "Mux"
-	      SID		      "3:400"
-	      Ports		      [2, 1]
-	      Position		      [290, 436, 295, 474]
-	      ZOrder		      212
-	      ShowName		      off
-	      Inputs		      "2"
-	      DisplayOption	      "bar"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1347,7 +1356,7 @@ Library {
 	      Name		      "Sum3"
 	      SID		      "3:33"
 	      Ports		      [2, 1]
-	      Position		      [100, 435, 120, 455]
+	      Position		      [140, 445, 160, 465]
 	      ZOrder		      166
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1467,7 +1476,7 @@ Library {
 	      Name		      "currentNoise"
 	      SID		      "3:42"
 	      Ports		      [0, 1]
-	      Position		      [45, 370, 75, 400]
+	      Position		      [60, 375, 90, 405]
 	      ZOrder		      172
 	      LibraryVersion	      "1.358"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
@@ -1483,7 +1492,7 @@ Library {
 	      Name		      "input_delay"
 	      SID		      "3:43"
 	      Ports		      [1, 1]
-	      Position		      [190, 430, 220, 460]
+	      Position		      [235, 440, 265, 470]
 	      ZOrder		      184
 	      DelayTime		      "input_delay * jointObj.Ts"
 	      TransDelayFeedthrough   on
@@ -1518,7 +1527,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"51"
+		SIDHighWatermark	"36"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -1949,10 +1958,10 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      93
+	      ZOrder		      5
 	      SrcBlock		      "input_delay"
 	      SrcPort		      1
-	      DstBlock		      "Mux"
+	      DstBlock		      "B"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2036,7 +2045,7 @@ Library {
 	      ZOrder		      18
 	      SrcBlock		      "currentNoise"
 	      SrcPort		      1
-	      Points		      [30, 0]
+	      Points		      [55, 0]
 	      DstBlock		      "Sum3"
 	      DstPort		      1
 	    }
@@ -2521,21 +2530,6 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "LTI System4"
 	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      94
-	      SrcBlock		      "Mux"
-	      SrcPort		      1
-	      DstBlock		      "B"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      95
-	      SrcBlock		      "tau_e [Nm]"
-	      SrcPort		      1
-	      Points		      [254, 0; 0, -75]
-	      DstBlock		      "Mux"
-	      DstPort		      2
 	    }
 	  }
 	}

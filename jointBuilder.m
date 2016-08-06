@@ -91,11 +91,6 @@ classdef jointBuilder
                     nonlinearModelNameStr = strjoin(nonlinearModelName, '_');
                     nonlinearModelNameCellStr = strcat('{''', strtrim(strjoin(nonlinearModelName, ''', ''')), '''}');
                 else
-                    % In case one nonlinear model was given, but as a cell
-                    if (iscell(nonlinearModelName))
-                        nonlinearModelName = nonlinearModelName{:};
-                    end
-                    
                     % Single component
                     nonlinearModelNameStr = nonlinearModelName;
                     nonlinearModelNameCellStr = ['''' nonlinearModelName ''''];

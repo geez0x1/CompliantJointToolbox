@@ -1,18 +1,17 @@
 %VISCOUS_ASYM Calculate asymetric viscous friction torques
 %
-% [tau] = viscous_asym(jointObj, x)
+% [tau] = jointObj.viscous_asym(x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
 %
 %
 % Inputs::
-%   x: state vector depending on the model type as
-%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  full_dyn
-%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 rigid_gearbox
-%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 output_fixed
-%     x = [q_g, q_g_dot]'                               output_fixed_rigid_gearbox
-%     x = [q_g, q_g_dot]'                               rigid
+%   x:   state vector depending on the model type as
+%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  continuous_full
+%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 continuous_rigid_gearbox
+%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 continuous_output_fixed
+%     x = [q_g, q_g_dot]'                               continuous_output_fixed_rigid_gearbox
 %
 % Outputs::
 %   tau: friction torque
@@ -52,7 +51,7 @@ function [ tau ] = viscous_asym(obj, x)
     
     % Preallocate coefficient vectors
     c       = zeros(size(x));
-    c_neg   = zeros(size(x));
+    c_neg	= zeros(size(x));
     cc      = zeros(size(x));
     
     % Get some shorthands
@@ -67,23 +66,23 @@ function [ tau ] = viscous_asym(obj, x)
     % Because the positive part is built into the linear dynamics, we
     % compensate for them in this asymmetric nonlinear model to obtain the
     % desired damping values. For the same reason, the positive part is zero.
-    if (strcmp(obj.modelName, 'full_dyn'))
+    if (strcmp(obj.modelName, 'continuous_full'))
         c       = [0, 0, 0, 0,              0,              0               ]';
-        c_neg   = [0, 0, 0, -d_m + d_m_n,   -d_g + d_g_n,   -d_b + d_b_n    ]';
+        c_neg	= [0, 0, 0, -d_m + d_m_n,	-d_g + d_g_n,	-d_b + d_b_n	]';
         
-    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'continuous_rigid_gearbox'))
         c       = [0, 0, 0,                             0               ]';
-        c_neg   = [0, 0, -d_m - d_g + d_m_n + d_g_n,    -d_g + d_g_n    ]';
+        c_neg   = [0, 0, -d_m - d_g + d_m_n + d_g_n,	-d_g + d_g_n	]';
         
-    elseif (strcmp(obj.modelName, 'output_fixed'))
+    elseif (strcmp(obj.modelName, 'continuous_output_fixed'))
         c       = [0, 0, 0,             0               ]';
-        c_neg   = [0, 0, -d_m + d_m_n,  -d_g + d_g_n    ]';
+        c_neg   = [0, 0, -d_m + d_m_n,	-d_g + d_g_n	]';
         
-    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'continuous_output_fixed_rigid_gearbox'))
         c       = [0, 0                             ]';
-        c_neg   = [0, -d_m - d_g + d_m_n + d_g_n    ]';
+        c_neg   = [0, -d_m - d_g + d_m_n + d_g_n	]';
         
-    elseif (strcmp(obj.modelName, 'rigid'))
+    elseif (strcmp(obj.modelName, 'continuous_rigid'))
         c       = 0;
         c_neg   = -d_m - d_g - d_b + d_m_n + d_g_n + d_b_n;
         

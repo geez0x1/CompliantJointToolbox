@@ -25,6 +25,7 @@
 %
 % See also bode_tuy.
 
+
 % Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
 % This file is part of the Compliant Joint Toolbox (CJT).
@@ -44,6 +45,7 @@
 %
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
+
 
 function [f, mag_db, phase] = bode_tuyplot(t, u, y, varargin)
     

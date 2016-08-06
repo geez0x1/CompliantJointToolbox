@@ -57,11 +57,11 @@ classdef genericJoint < handle
         d_b     % Torsion bar damping [Nms/rad]
         % Asymmetric viscous friction
         d_m_n   % Motor Damping - negative direction [Nms/rad]
-        d_g_n   % Gearbox Damping - negative direction [Nms/rad]
-        d_b_n   % Torsion bar damping - negative direction [Nms/rad]
+        d_g_n	% Gearbox Damping - negative direction [Nms/rad]
+        d_b_n	% Torsion bar damping - negative direction [Nms/rad]
         % Linear internal viscous friction
-        d_mg    % Gearbox internal damping [Nms/rad]
-        d_gb    % Torsion bar internal damping [Nms/rad]
+        d_mg	% Gearbox internal damping [Nms/rad]
+        d_gb	% Torsion bar internal damping [Nms/rad]
         % Coulomb friction
         d_cm    % Motor Coulomb damping [Nm]
         d_cg    % Gearbox Coulomb damping [Nm]
@@ -70,17 +70,13 @@ classdef genericJoint < handle
         d_cm_n  % Motor Coulomb damping - negative direction [Nm]
         d_cg_n  % Gearbox Coulomb damping - negative direction [Nm]
         d_cb_n  % Torsion bar Coulomb damping - negative direction [Nm]
-        % Cogging
-        cog_a1	% Cosine amplitude [Nm]
-        cog_a2	% Sine amplitude [Nm]
-        cog_f	% Spatial frequency [periods/revolution]
         % Misc
         n       % Gear ratio []
         k_t     % Torque constant [Nm/A]
         r       % Armature resistance [Ohm]
         x       % Armature inductance [H]
         Ts      % Sampling time [s]
-        % Operating/max conditions
+        
         v_0     % Operating [V]
         i_c     % Max. continuous current [A]
         i_p     % Peak current [A]
@@ -91,7 +87,7 @@ classdef genericJoint < handle
         name                % Joint name
         paramName           % Parameter name
         modelName           % Model name
-        nonlinearModelName  % Nonlinear model name
+        nonlinearModelName	% Nonlinear model name
         
     end
     
@@ -123,12 +119,12 @@ classdef genericJoint < handle
             % See also jointBuilder.
             
             % Apply properties
-            this.verbose    = params.verbose;
+            this.verbose	= params.verbose;
             this.debug      = params.debug;
             
             % Mechanical Properties
             % Inertiae
-            this.I_m    = params.I_m;       % Motor rotor inertia [kg m^2] (link side)
+            this.I_m	= params.I_m;       % Motor rotor inertia [kg m^2] (link side)
             this.I_g    = params.I_g;       % Motor-side gear inertia [kg m^2] (link side)
             this.I_b    = params.I_b;       % Torsion bar inertia [kg m^2] (link side)
             % Stiffnesses
@@ -139,42 +135,38 @@ classdef genericJoint < handle
             this.d_g    = params.d_g;       % Gearbox damping [Nms/rad]
             this.d_b    = params.d_b;       % Torsion bar damping [Nms/rad]
             % Asymmetric viscous friction
-            this.d_m_n  = params.d_m_n;     % Motor Damping - negative direction [Nms/rad]
-            this.d_g_n  = params.d_g_n;     % Gearbox Damping - negative direction [Nms/rad]
-            this.d_b_n  = params.d_b_n;     % Torsion bar damping - negative direction [Nms/rad]
+            this.d_m_n 	= params.d_m_n; 	% Motor Damping - negative direction [Nms/rad]
+            this.d_g_n 	= params.d_g_n;   	% Gearbox Damping - negative direction [Nms/rad]
+            this.d_b_n 	= params.d_b_n;   	% Torsion bar damping - negative direction [Nms/rad]
             % Linear internal viscous friction
-            this.d_mg   = params.d_mg;      % Gearbox internal damping [Nms/rad]
-            this.d_gb   = params.d_gb;      % Torsion bar internal damping [Nms/rad]
+            this.d_mg 	= params.d_mg;   	% Gearbox internal damping [Nms/rad]
+            this.d_gb 	= params.d_gb;   	% Torsion bar internal damping [Nms/rad]
             % Coulomb friction
             this.d_cm   = params.d_cm;      % Motor Coulomb damping [Nm]
             this.d_cg   = params.d_cg;      % Gearbox Coulomb damping [Nm]
             this.d_cb   = params.d_cb;      % Torsion bar Coulomb damping [Nm]
             % Asymmetric Coulomb friction
             this.d_cm_n = params.d_cm_n;    % Motor Coulomb damping - negative direction [Nm]
-            this.d_cg_n = params.d_cg_n;    % Gearbox Coulomb damping - negative direction [Nm]
-            this.d_cb_n = params.d_cb_n;    % Torsion bar Coulomb damping - negative direction [Nm]
-            % Cogging
-            this.cog_a1 = params.cog_a1;    % Cosine amplitude [Nm]
-            this.cog_a2 = params.cog_a2;    % Sine amplitude [Nm]
-            this.cog_f  = params.cog_f;     % Spatial frequency [periods/revolution]
+            this.d_cg_n = params.d_cg_n;	% Gearbox Coulomb damping - negative direction [Nm]
+            this.d_cb_n = params.d_cb_n; 	% Torsion bar Coulomb damping - negative direction [Nm]
             % Misc
             this.n      = params.n;         % Gear ratio []
-            this.k_t    = params.k_t;       % Torque constant [Nm/A]
+            this.k_t	= params.k_t;       % Torque constant [Nm/A]
             this.r      = params.r;         % Armature resistance [Ohm]
             this.x      = params.x;         % Armature inductance [H]
             this.Ts     = params.Ts;        % Sampling time [s]
-            % Operating/max conditions
+            
             this.v_0    = params.v_0;       % Operating voltage [V]
-            this.i_c    = params.i_c;       % Max. continuous current [A]
-            this.i_p    = params.i_p;       % Peak stall current [A]
-            this.dq_c   = params.dq_c;      % Max. continuous speed (output)[rad/s]
-            this.dq_p   = params.dq_p;      % Max. peak speed (output) [rad/s]
+            this.i_c    = 65;%params.i_c;       % Max. continuous current [A]
+            this.i_p    = 65;%params.i_p;       % Peak stall current [A]
+            this.dq_c    = params.dq_c;     % Max. continuous speed (output)[rad/s]
+            this.dq_p    = params.dq_p;     % Max. peak speed (output) [rad/s]
             
             % Desciptive Properties
             this.name               = params.name;                  % Joint descriptive name
             this.paramName          = params.paramName;             % Parameter name
             this.modelName          = params.modelName;             % Model name
-            this.nonlinearModelName = params.nonlinearModelName;    % Nonlinear model name
+            this.nonlinearModelName	= params.nonlinearModelName;    % Nonlinear model name
         end
         
         
@@ -203,7 +195,7 @@ classdef genericJoint < handle
             %
             % See also genericJoint, jointBuilder.
             
-            params  = struct;
+            params	= struct;
             p       = properties(this);
             
             % Put all properties
@@ -238,9 +230,9 @@ classdef genericJoint < handle
             %  Wesley Roozing, wesley.roozing@iit.it
             %
             % See also getStateSpaceD, genericJoint, jointBuilder.
-            [A, B, C, ~, ~, ~]  = obj.getDynamicsMatrices();
-            D                   = 0;
-            sys                 = ss(A, B, C, D);
+            [A, B, C, ~, ~, ~] = obj.getDynamicsMatrices();
+            D = 0;
+            sys = ss(A, B, C, D);
         end
         
         %__________________________________________________________________
@@ -341,7 +333,7 @@ classdef genericJoint < handle
             %
             % See also getStateSpaceD, getTFd, genericJoint, jointBuilder.
             sys     = obj.getStateSpaceD();
-            sysd    = tf(sys);
+            sysd	= tf(sys);
         end
         
         
@@ -373,16 +365,16 @@ classdef genericJoint < handle
             props = properties(obj);
             
             % Blacklist (non-variable property names)
-            blacklist = {   'verbose';
-                            'debug';
-                            'name';
-                            'paramName';
-                            'modelName';
-                            'nonlinearModelName';
-                        };
+            blacklist = {'verbose';
+                'debug';
+                'name';
+                'paramName';
+                'modelName';
+                'nonlinearModelName';
+                };
             
             % Get symbolic properties
-            symProps    = setdiff(props, blacklist);
+            symProps	= setdiff(props, blacklist);
             nProps      = numel(symProps);
             
             % Set each symbolic property to symbolic
@@ -415,7 +407,9 @@ classdef genericJoint < handle
             %
             % See also t_p, p_rce, genericJoint, jointBuilder.
             
-            out = obj.k_t * obj.i_c * obj.n;
+            out = obj.k_t*obj.i_c*obj.n;
+            
+            
         end
         
         function out = t_p(obj)
@@ -441,7 +435,7 @@ classdef genericJoint < handle
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            out = obj.k_t * obj.i_p * obj.n;
+            out = obj.k_t*obj.i_p*obj.n;
         end
         
         function out = k_w(obj)
@@ -466,7 +460,7 @@ classdef genericJoint < handle
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            out = 1 / obj.k_t;
+            out = 1/obj.k_t;
         end
 
         function out = dq_0(obj)
@@ -490,7 +484,7 @@ classdef genericJoint < handle
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            out = obj.k_w * obj.v_0 / obj.n;
+            out = obj.k_w * obj.v_0/obj.n;
         end
        
         function out = dq_over_dm(obj)
@@ -515,7 +509,7 @@ classdef genericJoint < handle
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            out =  obj.dq_0 / obj.t_stall;
+            out =  obj.dq_0/obj.t_stall;
         end
         
         function out = dq_r(obj)
@@ -567,8 +561,8 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
+            out = obj.v_0*obj.i_c;
             
-            out = obj.v_0 * obj.i_c;
         end
             
         function out = p_rcm(obj)
@@ -593,8 +587,8 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
+            out = obj.dq_r*obj.t_c;
             
-            out = obj.dq_r * obj.t_c;
         end
         
         function out = p_peakm(obj)
@@ -619,8 +613,7 @@ classdef genericJoint < handle
             %  Joern Malzahn, jorn.malzahn@iit.it
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
-            
-            out = obj.dq_p * obj.t_p;
+            out = obj.dq_p*obj.t_p;
         end
         
         function out = t_stall(obj)
@@ -645,7 +638,7 @@ classdef genericJoint < handle
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            out = obj.v_0 / obj.r * obj.k_t * obj.n;
+            out = obj.v_0/obj.r*obj.k_t*obj.n;
         end
         
                 
@@ -674,44 +667,51 @@ classdef genericJoint < handle
             % See also i_c, i_p, genericJoint, jointBuilder.
             
             nVals = 100;
-            xmax = 1.5 * obj.t_c;
-            ymax = 1.02 * obj.dq_c;
+            xmax = 1.5*obj.t_c;
+            ymax = 1.02*obj.dq_c;
             h = figure;
             hold on
+            
                        
-            % torque speed line
+            %% torque speed line
             slope = obj.dq_over_dm;
-            mVals = (0:1/100:1) * obj.t_stall;
-            linCurve =  obj.dq_0 - slope * mVals;
-            plot(mVals, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
+            mVals = (0:1/100:1)*obj.t_stall;
+            linCurve =  obj.dq_0 - slope*mVals;
+            plot(mVals, linCurve,'k','DisplayName','Torque-Speed Line')
             
-            % Nominal operating point
-            plot(obj.t_c, obj.dq_r, 'bo', 'DisplayName', 'Nominal Operating Point')
+            %% Nominal operating point
+            plot(obj.t_c,obj.dq_r,'bo', 'DisplayName', 'Nominal Operating Point')
             
-            % Friction
-            %speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
-            speedVals = (0:1/nVals:1) * obj.dq_c;
+            %% Friction
+%             speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
+            speedVals = (0:1/nVals:1)*obj.dq_c;
             Mc = obj.d_cm + obj.d_cg + obj.d_cb; % Static part
-            Mv = (obj.d_m + obj.d_g + obj.d_b) * speedVals;
+            Mv = (obj.d_m + obj.d_g + obj.d_b)*speedVals;
             Mf = Mc + Mv;
-            plot(Mf, speedVals, 'r:', 'DisplayName', 'Friction Torque')
+            plot(Mf,speedVals,'r:','DisplayName','Friction Torque')
             
-            % Plot limits
-            speedVals = obj.p_rcm ./ mVals;
-            plot(mVals,speedVals, 'r.', 'DisplayName', 'Rated Mechanical Power')
-            speedVals = obj.p_peakm ./ mVals;
-            plot(mVals,speedVals, 'b.', 'DisplayName', 'Peak Mechanical Power')
-            plot([0,xmax], obj.dq_c * [1,1], 'k--', 'DisplayName', 'Maximum Continous Speed')
-            plot(obj.t_c*[1,1], [0,ymax], 'k:', 'DisplayName', 'Maximum Continous Torque')
+
             
-            % Annotations and Figure Style
+            %% Plot limits
+            speedVals = obj.p_rcm./mVals;
+            plot(mVals,speedVals,'r.', 'DisplayName','Rated Mechanical Power')
+            speedVals = obj.p_peakm./mVals;
+            plot(mVals,speedVals,'b.', 'DisplayName','Peak Mechanical Power')
+            
+            plot([0,xmax], obj.dq_c*[1,1],'k--','DisplayName','Maximum Continous Speed')
+            plot(obj.t_c*[1,1], [0,ymax],'k:','DisplayName','Maximum Continous Torque')
+            
+            
+            %% Annotations and Figure Style
             xlim([0,xmax]);
             ylim([0,ymax]);
             xlabel('torque [Nm]')
             ylabel('speed [rad/s]')
             box on
             
-            legend show;
+            legend show
+                
+            
         end
         
     end
@@ -773,7 +773,8 @@ classdef genericJoint < handle
         %
         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
         tau = getNonlinearDynamics(obj, x, dx)
-        
     end
     
+    
 end
+

@@ -1,17 +1,16 @@
 %VISCOUS_POS_DEP Calculate position-dependent viscous friction
 %
-% [tau] = viscous_pos_dep(jointObj, x)
+% [tau] = jointObj.viscous_pos_dep(x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
 %
 % Inputs::
-%   x: state vector depending on the model type as
-%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  full_dyn
-%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 rigid_gearbox
-%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 output_fixed
-%     x = [q_g, q_g_dot]'                               output_fixed_rigid_gearbox
-%     x = [q_g, q_g_dot]'                               rigid
+%   x:   state vector depending on the model type as
+%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  continuous_full
+%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 continuous_rigid_gearbox
+%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 continuous_output_fixed
+%     x = [q_g, q_g_dot]'                               continuous_output_fixed_rigid_gearbox
 %
 % Outputs::
 %   tau: friction torque
@@ -54,30 +53,29 @@ function [ tau ] = viscous_pos_dep(obj, x)
     d = 1/2;    % Frequency
     p = pi;     % Phase
     
-    % Preallocate coefficient vector
     c = zeros(size(x));
     
     % Build coefficient vector
-    if (strcmp(obj.modelName, 'full_dyn'))
+    if (strcmp(obj.modelName, 'continuous_full'))
         c = [0, 0, 0, ...
                 a * sin(x(1)/d + p), ...
                 a * sin(x(2)/d + p), ...
                 a * sin(x(3)/d + p)       ]';
         
-    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'continuous_rigid_gearbox'))
         c = [0, 0, ...
                 a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n, ...
                 a * sin(x(2)*d + p)       ]';
         
-    elseif (strcmp(obj.modelName, 'output_fixed'))
+    elseif (strcmp(obj.modelName, 'continuous_output_fixed'))
         c = [0, 0, ...
                 a * sin(x(1)/d + p), ...
                 a * sin(x(2)/d + p)       ]';
         
-    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
+    elseif (strcmp(obj.modelName, 'continuous_output_fixed_rigid_gearbox'))
         c = [0, a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n]';
         
-    elseif (strcmp(obj.modelName, 'rigid'))
+    elseif (strcmp(obj.modelName, 'continuous_rigid'))
         c = a * sin(x(1)*d + p) + a * sin(obj.n*x(1)*d + p) * obj.n;
         
     end
