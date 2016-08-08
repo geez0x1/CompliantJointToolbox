@@ -16,7 +16,9 @@
 % Notes::
 %  This function is identical to full_dyn, but with the difference that it 
 %  works with a transformed state vector. The transformed vector represents
-%  torques and jerks instead of positions and velocities.
+%  torques and jerks instead of positions and velocities, with the
+%  exception of the output link position and velocity, required to
+%  represent the overall position of the system.
 %
 % Examples::
 %
@@ -55,17 +57,21 @@ function [A, B, C, I, D, K] = full_dyn_TJ(obj)
     % Get position-velocity states
     [A, B, C, I, D, K] = full_dyn(obj);
 
+    % Define an invertible transformation matrix Tx that transforms the
+    % state x into a new state vector x_bar, s.t. x = Tx * x_bar and
+    % x_bar = T^-1 * x.
     k_g = obj.k_g;
     k_b = obj.k_b; % shorthands %#ok<*PROP>
     T = [   -k_g,   k_g,    0;
             0,      -k_b,   k_b;
             0,      0,      1       ];
-
     Tx = [  T,                  zeros(size(T));
             zeros(size(T)),     T               ];
+    Tx = inv(Tx);
 
+    % Apply similarity transform
     A = Tx \ A * Tx;
     B = Tx \ B;
-    C = C * Tx;
+    C = C * Tx; %#ok<MINV>
     
 end
