@@ -1,7 +1,7 @@
 % GETLINEARDOB_FROMDATA Estimate linear disturbance observer transfer
 % functions from experimental data.
 %
-%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
+%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
 %
 %  This function calculates the estimated closed-loop transfer function
 %  Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
@@ -12,7 +12,7 @@
 %  filter PQ_td, and feed-forward plant inversion + filter PQ_ff.
 %
 % Inputs::
-%   jointName: Joint class name
+%   jointObj: Joint object
 %   t: Time data vector
 %   u: Input data vector
 %   y: Output data vector
@@ -60,20 +60,19 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
-
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
     %% Default parameters
     if (~exist('id_Np', 'var'))
-        id_Np = 4;       % Model number of poles []
+        id_Np   = 4;    % Model number of poles []
     end
     if (~exist('id_Nz', 'var'))
-        id_Nz = 1;       % Model number of zeros []
+        id_Nz   = 1;    % Model number of zeros []
     end
     if (~exist('f_c_FF', 'var'))
-        f_c_FF	= 40;	% Feed-forward cutoff frequency [Hz]
+        f_c_FF  = 40;   % Feed-forward cutoff frequency [Hz]
     end
     if (~exist('f_c_DOB', 'var'))
-        f_c_DOB	= 60;	% DOB cutoff frequency [Hz]
+        f_c_DOB = 60;   % DOB cutoff frequency [Hz]
     end
 
     % Bode options
@@ -83,15 +82,12 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
 
     %% Get variables
     
-    % Get joint object
-    j = eval(jointName);
-    
     % Cut-off frequencies
     omega_c_FF      = 2 * pi * f_c_FF;  % Feed-forward (model inv) LPF cutoff frequency [rad/s]
     omega_c_DOB     = 2 * pi * f_c_DOB; % DOB cutoff frequency [rad/s]
 
     % Resample data to obtain uniform sampling for tfest()
-    Ts      = j.Ts;         % Sampling time [s]
+    Ts      = jointObj.Ts;  % Sampling time [s]
     t_RS    = 0:Ts:max(t);  % Resampled time
     u       = interp1(t, u, t_RS)';
     y       = interp1(t, y, t_RS)';
@@ -118,8 +114,8 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
 
     % Get magnitude and phase of Pc over f
     [mag_Pc, phase_Pc] = bode(Pc, 2*pi*f);
-    mag_db_Pc	= mag2db(mag_Pc(:));
-    phase_Pc	= phase_Pc(:);
+    mag_db_Pc   = mag2db(mag_Pc(:));
+    phase_Pc    = phase_Pc(:);
 
 
     %% Plot original data and Pc approximation
@@ -177,16 +173,14 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointName, t, u,
     legend('P_c', 'P_c^{-1}', 'Q_{td}', 'Q_{ff}', 'PQ_{td}', 'PQ_{ff}');
 
 
-    %% Save results
-    % Offer to save results
-    fname	= 'DOB_results.mat';
-    ansr	= 'temp';
-    while (~strcmpi(ansr, 'y') && ~strcmpi(ansr, 'n') && ~strcmp(ansr, ''))
-        ansr = input(['Do you want to save the results to ' fname ' [Y/n]?'], 's');
-    end
-    if (strcmp(ansr, '') || strcmpi(ansr, 'y'))
-        save(fname, 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
-        disp(['Data saved to ' fname]);
-    end
+    %% Optionally save results
+    
+    % Disabled as this causes problems when calling automatically from
+    % Simulink masks
+%     fname = 'DOB_fromData_results.mat';
+%     if confirm(['Do you want to save the results to ' fname ' [Y/n]?'], 1)
+%         save(fname, 'jointObj', 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
+%         disp(['Data saved to ' fname]);
+%     end
     
 end

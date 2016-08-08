@@ -26,26 +26,33 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-
 % Make sure local values are defined
 Pc      = 0;
-Q_td 	= 0;
-PQ_td	= 0;
+Q_td    = 0;
+PQ_td   = 0;
 
 % If filename is given, assume the model and filters can be found in there
 if (loadData)
-    if (isempty(modelFname))
+    if (isempty(modelFname) || ~exist(modelFname, 'file'))
         error('Error: Model/filters data file not found!');
-        return;
     else
         % Load file
+        clear jointObj; % Clear mask parameter
         load(modelFname);
     end
 else
-	% Get linear DOB based on a model
+    % Get linear DOB based on model
     [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, 2*pi*f_c, measIdx, doPlot);
 end
 
+% Check if the necessary variables exist
+if (~exist('jointObj', 'var') || ~exist('Q_td', 'var') || ~exist('PQ_td', 'var'))
+    error('Linear Transfer Function DOB error: Not all variables exist');
+end
+
+% Get linear dynamics matrices
+[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();
+
 % Discretize using Tustin transform
-Q_td_tust	= c2d(Q_td, jointObj.Ts/2, 'tustin');
-PQ_td_tust	= c2d(PQ_td, jointObj.Ts/2, 'tustin');
+Q_td_tust   = c2d(Q_td, jointObj.Ts, 'tustin');
+PQ_td_tust  = c2d(PQ_td, jointObj.Ts, 'tustin');

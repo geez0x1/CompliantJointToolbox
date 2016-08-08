@@ -48,21 +48,20 @@
 
 function [A, B, C, I, D, K] = rigid_gearbox_TJ(obj)
     
-    % x = [tau_l, tau_e, tau_l_dot, tau_e_dot]'
+    % x = [tau_l, q_b, tau_l_dot, q_b_dot]'
 
     % Get position-velocity states
-    [A, B, C, I, D, K] = obj.rigid_gearbox();
+    [A, B, C, I, D, K] = rigid_gearbox(obj);
 
-    k_b = obj.k_b;
-    k_e = obj.k_e; % shorthands %#ok<*PROP>
-    T = [   -k_b,	k_b;
-            0,      k_e     ];
+    k_b = obj.k_b; % shorthands %#ok<*PROP>
+    T = [   -k_b,   k_b;
+            0,      1       ];
 
-    Tx = [	T,                  zeros(size(T));
-            zeros(size(T)),     T               ];
+    Tx = [  T,                  zeros(size(T));
+            zeros(size(T)),     T               ];            
 
-    A = Tx*A/Tx;
-    B = Tx*B;
-    C = Tx\C;
+    A = Tx \ A * Tx;
+    B = Tx \ B;
+    C = C * Tx;
     
 end

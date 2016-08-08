@@ -1,6 +1,6 @@
 % GETKALMAN Compute Kalman observer gains.
 %
-%   [kest, L, Cc] = getKalman(jointObj jOb, outputIdx,  var_u, var_y)
+%   [kest, L, Cc] = getKalman(jointObj, outputIdx,  var_u, var_y)
 %
 %  Calculate an optimal Kalman observer for the joint object jointObj with 
 %  outputs specified by [outputIdx] and input and measurement variances var_u, var_y,
@@ -8,7 +8,7 @@
 %  output matrix Cc.
 %
 % Inputs:
-%   jointObj jOb: Joint object
+%   jointObj: Joint object
 %   outputIdx: Joint outputs measured by the Kalman filter
 %   var_u: Input variance
 %   var_y: Output variance
@@ -51,9 +51,9 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [kest, L, Cc] = getKalman(jOb, outputIdx, var_u, var_y)
+function [kest, L, Cc] = getKalman(jointObj, outputIdx, var_u, var_y)
     %% Get state-space model
-    sys     = jOb.getStateSpace();
+    sys     = jointObj.getStateSpace();
 
     % Shorthands
     A       = sys.A;
@@ -61,27 +61,27 @@ function [kest, L, Cc] = getKalman(jOb, outputIdx, var_u, var_y)
     C       = sys.C;
     %D       = sys.D;
 
-    % Create system with outputs specified
-    Ac   	= A;
-    Bc   	= B;
-    Cc    	= C(outputIdx,:);
-    %Dc   	= zeros(size(Cc,1), 1);
+    % Create system with current input and outputs specified
+    Ac      = A;
+    Bc      = B(:,1);
+    Cc      = C(outputIdx,:);
+    %Dc     = D(outputIdx,1);
 
 
     %% Design Kalman filter
 
-    % x_dot	= Ax + Bu + Gw   	State equation
-    % y  	= Cx + Du + Hw + v	Measurement equation
+    % x_dot = Ax + Bu + Gw      State equation
+    % y     = Cx + Du + Hw + v  Measurement equation
 
     % Build G, H
-    G = Bc;                   	% Additive noise on the current (adding to u)
-    H = zeros(size(Cc,1),1);	% No input noise feed-through
+    G = Bc;                     % Additive noise on the current (adding to u)
+    H = zeros(size(Cc,1),1);    % No input noise feed-through
 
     % Construct sys_hat
-    A_hat	= Ac;
-    B_hat	= [Bc, G];
-    C_hat	= Cc;
-    D_hat	= [zeros(size(Cc,1),1), H];
+    A_hat   = Ac;
+    B_hat   = [Bc, G];
+    C_hat   = Cc;
+    D_hat   = [zeros(size(Cc,1),1), H];
     sys_hat = ss(A_hat, B_hat, C_hat, D_hat);
 
     % Define Kalman variance matrices

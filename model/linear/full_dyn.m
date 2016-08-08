@@ -54,7 +54,7 @@ function [A, B, C, I, D, K] = full_dyn(obj)
     % q_b is the flange angle (output of the torsion bar)
     %
     % The '_dot' denotes the temporal derivative.
-    
+
     % Inertia matrix
     I = diag([obj.I_m, obj.I_g, obj.I_b]);
 
@@ -66,7 +66,7 @@ function [A, B, C, I, D, K] = full_dyn(obj)
     d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
     D = [   d_m + d_mg,     -d_mg,                  0; ...
             -d_mg,          d_g + d_mg + d_gb,      -d_gb; ...
-            0,              -d_gb,                  d_b + d_gb	];
+            0,              -d_gb,                  d_b + d_gb  ];
 
     % Stiffness matrix
     k_g = obj.k_g;
@@ -82,9 +82,11 @@ function [A, B, C, I, D, K] = full_dyn(obj)
     % Input
     k_t = obj.k_t;
     n   = obj.n;
-    B	= [0, 0, 0, k_t*n/I(1,1), 0, 0]';
+    B = [ 0, 0, 0, k_t*n/I(1,1),  0, 0; ...
+            0, 0, 0, 0,             0, 1/I(3,3) ]';
     
     % Output
-    C = eye(size(A,2));
+    C = [   eye(size(A,2)); ...         % All states
+            0, k_b, -k_b, 0, 0, 0   ];  % Torsion bar torque
 
 end
