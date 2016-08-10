@@ -58,7 +58,7 @@ params.('d_cm_n')   = 0.0;                  %% Motor Coulomb damping - negative 
 params.('d_cg_n')   = 0.0;                  %% Gearbox Coulomb damping - negative direction [Nm]
 params.('d_cb_n')   = 0.0;                  %% Torsion bar Coulomb damping - negative direction [Nm]
 % Cogging
-params.('cog_a1')   = 1e-2 * n;             %% Cosine amplitude [Nm]
+params.('cog_a1')   = 1e-3 * n;             %% Cosine amplitude [Nm]
 params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
 params.('cog_f')    = 6;                    %% Spatial frequency [periods/revolution]
 % Misc
