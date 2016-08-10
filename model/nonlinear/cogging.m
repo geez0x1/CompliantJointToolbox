@@ -89,7 +89,7 @@ function [ tau ] = cogging(jointObj, x)
     end
 
     % Calculate cogging torques
-    tau = -c .* x;
+    tau = c;
 
 end
 
