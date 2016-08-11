@@ -30,7 +30,9 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
+% Transmission ratio
 n = 100;
+
 % Inertiae
 params.('I_m')      = 2.63E-005 * n^2;      %% Motor rotor inertia [kg m^2]
 params.('I_g')      = 5.48E-005 * n^2;      %% Gear inertia [kg m^2]
@@ -57,19 +59,22 @@ params.('d_cb')     = 0.02;                 %% Torsion bar Coulomb damping [Nm]
 params.('d_cm_n')   = 5e-6 * n^2;           %% Motor Coulomb damping - negative direction [Nm]
 params.('d_cg_n')   = 5e-6 * n^2;           %% Gearbox Coulomb damping - negative direction [Nm]
 params.('d_cb_n')   = 0;                    %% Torsion bar Coulomb damping - negative direction [Nm]
+% Stiction
+params.('d_s')      = 8.9;                  %% Break away torque [Nm]
+params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
 % Cogging
 params.('cog_a1')   = 15e-3 * n;            %% Cosine amplitude [Nm]
 params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
-params.('cog_f')    = 6;                    %% Spatial frequency [periods/revolution]
+params.('cog_f')    = 13 * n;               %% Spatial frequency [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]
-params.('r')        = 0.099;                %% Armature resistance [Ohm]
-params.('x')        = 0.000168;             %% Armature inductance [H]
-params.('Ts')       = 1E-3;                 %% Sampling time [s]
+params.('r')        = 0.0885;               %% Armature resistance [Ohm]
+params.('x')        = 0.000140;             %% Armature inductance [H]
+params.('Ts')       = 1e-3;                 %% Sampling time [s]
 % Operating/max conditions
 params.('v_0')      = 24;                   %% Operating voltage [V]
-params.('i_c')      = 20;                   %% Max. continuous current [A]
-params.('i_p')      = 20;                   %% Peak current [A]
+params.('i_c')      = 40;                   %% Max. continuous current [A]
+params.('i_p')      = 40;                   %% Peak current [A]
 params.('dq_c')     = 5.86;                 %% Max. continuous speed (output) [rad/s]
 params.('dq_p')     = 5.86;                 %% Max. peak speed (output) [rad/s]

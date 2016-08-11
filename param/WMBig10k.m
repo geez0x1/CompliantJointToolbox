@@ -1,6 +1,5 @@
 %WMBIG10K Parameter script for the WALK-MAN Big Motor with > 10000 Nm/rad torsion bar
 %
-%
 % Notes::
 %  All inertiae/damping is reflected to link side using n^2
 %  The parameters in this script are partially obtained from experimental identification
@@ -31,46 +30,62 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
+% Transmission ratio
 n = 100;
+
+% Compute inertia distribution ratios
+% This is required to reasonably distribute identified values to individual
+% parts
+I_m_ds              = 5.480e-5*n^2;         %% Motor rotor inertia [kg m^2] (datasheet)
+I_g_ds              = 2.63e-5*n^2;          %% Gear inertia [kg m^2] (datasheet)
+I_b_ds              = 0.0867;               %% Torsion bar inertia [kg m^2]
+I_tot_ds            = I_m_ds + I_g_ds + I_b_ds; %% Total inertia [kg m^2]
+r_I_m               = I_m_ds / I_tot_ds;    %% Motor rotor inertia contribution ratio []
+r_I_g               = I_g_ds / I_tot_ds;    %% Gearbox inertia contribution ratio []
+r_I_b               = I_b_ds / I_tot_ds;    %% Torsion bar inertia contribution ratio []
+
 % Inertiae
-params.('I_m')      = 1.38 * 1.0059;        %% Motor rotor inertia [kg m^2]
-params.('I_g')      = 1.38 * 0.67057;       %% Gear inertia [kg m^2]
-params.('I_b')      = 0.0867;               %% Torsion bar inertia [kg m^2]
+params.('I_m')      = r_I_m * 1.1001;   	%% Motor rotor inertia [kg m^2]
+params.('I_g')      = r_I_g * 1.1001;       %% Gear inertia [kg m^2]
+params.('I_b')      = r_I_b * 1.1001;    	%% Torsion bar inertia [kg m^2]
 % Stiffnesses
 params.('k_g')      = 75e3;                 %% Gearbox stiffness [Nm/rad]
 params.('k_b')      = 13678;                %% Torsion bar stiffness [Nm/rad]
 % Linear viscous friction
-params.('d_m')      = 3.59;                 %% Motor Damping [Nms/rad]
-params.('d_g')      = 3.59;                 %% Gearbox damping [Nms/rad]
-params.('d_b')      = 3.59;                 %% Torsion bar damping [Nms/rad]
+params.('d_m')      = 14.786 * (1/10);    	%% Motor Damping [Nms/rad]
+params.('d_g')      = 14.786 * (8/10);      %% Gearbox damping [Nms/rad]
+params.('d_b')      = 14.786 * (1/10);      %% Torsion bar damping [Nms/rad]
 % Asymmetric viscous friction
-params.('d_m_n')    = 3.40;                 %% Motor Damping - negative direction [Nms/rad]
-params.('d_g_n')    = 3.40;                 %% Gearbox Damping - negative direction [Nms/rad]
-params.('d_b_n')    = 3.40;                 %% Torsion bar damping - negative direction [Nms/rad]
+params.('d_m_n')    = 16.162 * (1/10);      %% Motor Damping - negative direction [Nms/rad]
+params.('d_g_n')    = 16.162 * (8/10);      %% Gearbox Damping - negative direction [Nms/rad]
+params.('d_b_n')    = 16.162 * (1/10);      %% Torsion bar damping - negative direction [Nms/rad]
 % Linear internal viscous friction
-params.('d_mg')     = 296.0;                %% Gearbox internal damping [Nms/rad]
-params.('d_gb')     = 35.0;                 %% Torsion bar internal damping [Nms/rad]
+params.('d_mg')     = 296.0;                %% Gearbox internal damping [Nms/rad] (not identified)
+params.('d_gb')     = 35.0;                 %% Torsion bar internal damping [Nms/rad] (not identified)
 % Coulomb friction
-params.('d_cm')     = 11.347;               %% Motor Coulomb damping [Nm]
-params.('d_cg')     = 11.347;               %% Gearbox Coulomb damping [Nm]
-params.('d_cb')     = 0.0;                  %% Torsion bar Coulomb damping [Nm]
+params.('d_cm')     = 1.8579 * (1/10);      %% Motor Coulomb damping [Nm]
+params.('d_cg')     = 1.8579 * (8/10);   	%% Gearbox Coulomb damping [Nm]
+params.('d_cb')     = 1.8579 * (1/10);   	%% Torsion bar Coulomb damping [Nm]
 % Asymmetric Coulomb friction
-params.('d_cm_n')   = 11.667;               %% Motor Coulomb damping - negative direction [Nm]
-params.('d_cg_n')   = 11.667;               %% Gearbox Coulomb damping - negative direction [Nm]
-params.('d_cb_n')   = 0.0;                  %% Torsion bar Coulomb damping - negative direction [Nm]
+params.('d_cm_n')   = 2.4238 * (1/10);      %% Motor Coulomb damping - negative direction [Nm]
+params.('d_cg_n')   = 2.4238 * (8/10);      %% Gearbox Coulomb damping - negative direction [Nm]
+params.('d_cb_n')   = 2.4238 * (1/10);      %% Torsion bar Coulomb damping - negative direction [Nm]
+% Stiction
+params.('d_s')      = 8.9;                  %% Break away torque [Nm]
+params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
 % Cogging
 params.('cog_a1')   = 15e-3 * n;            %% Cosine amplitude [Nm]
 params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
-params.('cog_f')    = 6;                    %% Spatial frequency [periods/revolution]
+params.('cog_f')    = 13 * n;               %% Spatial frequency [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]
-params.('r')        = 0.099;                %% Armature resistance [Ohm]
-params.('x')        = 0.000168;             %% Armature inductance [H]
-params.('Ts')       = 1E-3;                 %% Sampling time [s]
+params.('r')        = 0.0885;               %% Armature resistance [Ohm]
+params.('x')        = 0.000140;             %% Armature inductance [H]
+params.('Ts')       = 1e-3;                 %% Sampling time [s]
 % Operating/max conditions
 params.('v_0')      = 24;                   %% Operating voltage [V]
-params.('i_c')      = 20;                   %% Max. continuous current [A]
-params.('i_p')      = 20;                   %% Peak current [A]
+params.('i_c')      = 40;                   %% Max. continuous current [A]
+params.('i_p')      = 40;                   %% Peak current [A]
 params.('dq_c')     = 5.86;                 %% Max. continuous speed (output) [rad/s]
 params.('dq_p')     = 5.86;                 %% Max. peak speed (output) [rad/s]
