@@ -1,7 +1,7 @@
 % GETLINEARDOB_FROMDATA Estimate linear disturbance observer transfer
 % functions from experimental data.
 %
-%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
+%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB [, roi])
 %
 %  This function calculates the estimated closed-loop transfer function
 %  Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
@@ -20,6 +20,7 @@
 %   id_Nz: Number of zeroes in model identification
 %   f_c_FF: Feed-forward Q-filter cut-off frequency in [Hz]
 %   f_c_DOB: DOB Q-filter cut-off frequency in [Hz]
+%   roi: Frequency range of interest in [Hz], sets x limits in produced plots (default [0.1,100])
 %
 % Outputs::
 %   Pc: Estimated closed-loop transfer function
@@ -60,7 +61,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB)
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB,varargin)
     %% Default parameters
     if (~exist('id_Np', 'var'))
         id_Np   = 4;    % Model number of poles []
@@ -75,6 +76,11 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
         f_c_DOB = 60;   % DOB cutoff frequency [Hz]
     end
 
+    roi = [0.1, 100];
+    if nargin > 8
+        roi = varargin{1};
+    end
+    
     % Bode options
     bodeOpt = bodeoptions;
     bodeOpt.FreqUnits = 'Hz';
@@ -119,17 +125,14 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
 
 
     %% Plot original data and Pc approximation
-    figure(1); clf;
+    figure();
     
-    % Get max plotting frequency
-    maxPlotFreq = 2*max(omega_c_FF, omega_c_DOB);
-
     % Magnitude
     subplot(2,1,1); hold on;
     semilogx(f,mag_db);
     semilogx(f,mag_db_Pc, 'r');
     grid on
-    xlim([0.1 maxPlotFreq]);
+    xlim(roi);
     ylabel('Magnitude [dB]');
     legend('Experimental data', 'Pc');
 
@@ -138,7 +141,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     semilogx(f,phase);
     semilogx(f,phase_Pc, 'r');
     grid on;
-    xlim([0.1 maxPlotFreq]);
+    xlim(roi);
     xlabel('Frequency [Hz]');
     ylabel('Phase [deg]');
 
@@ -161,14 +164,14 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
 
 
     %% Show Bode plots of results
-    figure(2); clf; hold on;
+    figure(); hold on;
     bode(Pc, bodeOpt);
     bode(inv(Pc), bodeOpt);
     bode(Q_td, bodeOpt);
     bode(Q_ff, bodeOpt);
     bode(PQ_td, bodeOpt);
     bode(PQ_ff, bodeOpt);
-    xlim([0.1 100]);
+    xlim(roi);
     grid on;
     legend('P_c', 'P_c^{-1}', 'Q_{td}', 'Q_{ff}', 'PQ_{td}', 'PQ_{ff}');
 
