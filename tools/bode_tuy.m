@@ -1,12 +1,13 @@
 % BODE_TUY Compute magnitude and phase in frequency domain from equidistantly 
 % sampled I/O signals.
 %
-%   [f, mag_db, phase] = bode_tuy(t, u, y)
+%   [f, mag_db, phase] = bode_tuy(t, u, y [, roi])
 %
 % Inputs::
 %   t: time vector
 %   u: input data vector
 %   y: output data vector
+%   roi: Frequency range of interest in [[Hz],[Hz]]
 %
 % Outputs::
 %   f: frequency vector
@@ -46,7 +47,12 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [f, mag_db, phase] = bode_tuy(t, u, y)
+function [f, mag_db, phase] = bode_tuy(t, u, y, roi)
+
+    % Default arguments
+    if (~exist('roi', 'var'))
+        roi = [0.1, 100];	% Region of interest [[Hz], [Hz]]
+    end
     
     % Get timestep
     dt      = mean(diff(t));
@@ -72,12 +78,13 @@ function [f, mag_db, phase] = bode_tuy(t, u, y)
     % Calculate phase in degrees and unwrap until the phase starts within
     % -90..+90 degrees.
     phase = (180/pi) * unwrap(angle(H(1:NFFT/2+1)));
-    if (phase(1) > 90)
-        while (phase(1) > 90)
+    [~, idx] = find(f >= roi(1), 1); % Find first frequency index that is within the ROI
+    if (phase(idx) > 90)
+        while (phase(idx) > 90)
             phase = phase - 180;    
         end
-    elseif (phase(1) < -90)
-        while (phase(1) < -90)
+    elseif (phase(idx) < -90)
+        while (phase(idx) < -90)
             phase = phase + 180;
         end
     end

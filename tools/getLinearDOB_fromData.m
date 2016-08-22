@@ -61,24 +61,22 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB,varargin)
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB, roi)
     %% Default parameters
     if (~exist('id_Np', 'var'))
-        id_Np   = 4;    % Model number of poles []
+        id_Np   = 4;        % Model number of poles []
     end
     if (~exist('id_Nz', 'var'))
-        id_Nz   = 1;    % Model number of zeros []
+        id_Nz   = 1;        % Model number of zeros []
     end
     if (~exist('f_c_FF', 'var'))
-        f_c_FF  = 40;   % Feed-forward cutoff frequency [Hz]
+        f_c_FF  = 40;       % Feed-forward cutoff frequency [Hz]
     end
     if (~exist('f_c_DOB', 'var'))
-        f_c_DOB = 60;   % DOB cutoff frequency [Hz]
+        f_c_DOB = 60;       % DOB cutoff frequency [Hz]
     end
-
-    roi = [0.1, 100];
-    if nargin > 8
-        roi = varargin{1};
+    if (~exist('roi', 'var'))
+        roi = [0.1, 100];	% Region of interest [[Hz], [Hz]]
     end
     
     % Bode options
@@ -113,10 +111,6 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     Options.Display = 'on';
     Options.InitMethod = 'all';
     Pc = tfest(d, id_Np, id_Nz, Options);
-    
-    % Ensure Pc has unit DC gain
-    %Pc = Pc / dcgain(Pc); % This is bad practice, but works if
-    %dcgain(Pc)~1
 
     % Get magnitude and phase of Pc over f
     [mag_Pc, phase_Pc] = bode(Pc, 2*pi*f);

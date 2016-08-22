@@ -1,12 +1,13 @@
 % BODE_TUYPLOT Compute and plot magnitude and phase in frequency domain from equidistantly 
 % sampled I/O signals.
 %
-%   [f, mag_db, phase] = bode_tuyplot(t, u, y [,lineseries properties])
+%   [f, mag_db, phase] = bode_tuyplot(t, u, y [, roi, lineseries properties])
 %
 % Inputs::
 %   t: time vector
 %   u: input data vector
 %   y: output data vector
+%   roi: Frequency range of interest in [[Hz],[Hz]] (default [0.1,100])
 %
 % Outputs::
 %   f: frequency vector
@@ -45,22 +46,27 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [f, mag_db, phase] = bode_tuyplot(t, u, y, varargin)
+function [f, mag_db, phase] = bode_tuyplot(t, u, y, roi, varargin)
+
+    % Default arguments
+    if (~exist('roi', 'var'))
+        roi = [0.1, 100];	% Region of interest [[Hz], [Hz]]
+    end
     
     % Get FFT
-    [f, mag_db, phase] = bode_tuy(t, u, y);
+    [f, mag_db, phase] = bode_tuy(t, u, y, roi);
     
     % Magnitude
-    subplot(2,1,1); hold on;
+    subplot(2,1,1); hold on; grid on;
     plot(f, mag_db,varargin{:});
-    grid on
+    xlim(roi);
     ylabel('Magnitude [dB]');
     set(gca,'XScale','log');
 
     % Phase
-    subplot(2,1,2); hold on;
+    subplot(2,1,2); hold on; grid on;
     plot(f, phase,varargin{:});
-    grid on;
+    xlim(roi);
     xlabel('Frequency [Hz]');
     ylabel('Phase [deg]');
     set(gca,'XScale','log');
