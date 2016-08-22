@@ -78,15 +78,15 @@ function [f, mag_db, phase] = bode_tuy(t, u, y, roi)
     % Calculate phase in degrees and unwrap until the phase starts within
     % -90..+90 degrees.
     phase = (180/pi) * unwrap(angle(H(1:NFFT/2+1)));
-    [~, idx] = find(f >= roi(1), 1); % Find first frequency index that is within the ROI
-    if (phase(idx) > 90)
-        while (phase(idx) > 90)
-            phase = phase - 180;    
-        end
-    elseif (phase(idx) < -90)
-        while (phase(idx) < -90)
-            phase = phase + 180;
-        end
-    end
+    %[~, idx] = find(f >= roi(1), 1); % Find first frequency index that is within the ROI
+    %if (phase(idx) > 90)
+    %    while (phase(idx) > 90)
+    %        phase = phase - 180;
+    %    end
+    %elseif (phase(idx) < -90)
+    %    while (phase(idx) < -90)
+    %        phase = phase + 180;
+    %    end
+    %end
     
 end
