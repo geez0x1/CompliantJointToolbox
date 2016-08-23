@@ -76,7 +76,7 @@ params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
 % Cogging
 params.('cog_a1')   = 15e-3 * n;            %% Cosine amplitude [Nm]
 params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
-params.('cog_f')    = 13 * n;               %% Spatial frequency [periods/revolution]
+params.('cog_f')    = 6 * n;                %% Spatial frequency [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]
