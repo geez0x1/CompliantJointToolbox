@@ -38,7 +38,7 @@ n = 100;
 % parts
 I_m_ds              = 5.480e-5*n^2;         %% Motor rotor inertia [kg m^2] (datasheet)
 I_g_ds              = 2.63e-5*n^2;          %% Gear inertia [kg m^2] (datasheet)
-I_b_ds              = 0.0867;               %% Torsion bar inertia [kg m^2]
+I_b_ds              = 0.0867;               %% Torsion bar inertia [kg m^2] (datasheet)
 I_tot_ds            = I_m_ds + I_g_ds + I_b_ds; %% Total inertia [kg m^2]
 r_I_m               = I_m_ds / I_tot_ds;    %% Motor rotor inertia contribution ratio []
 r_I_g               = I_g_ds / I_tot_ds;    %% Gearbox inertia contribution ratio []
@@ -50,7 +50,7 @@ params.('I_g')      = r_I_g * 1.1001;       %% Gear inertia [kg m^2]
 params.('I_b')      = r_I_b * 1.1001;    	%% Torsion bar inertia [kg m^2]
 % Stiffnesses
 params.('k_g')      = 75e3;                 %% Gearbox stiffness [Nm/rad]
-params.('k_b')      = 13678;                %% Torsion bar stiffness [Nm/rad]
+params.('k_b')      = 12823;                %% Torsion bar stiffness [Nm/rad]
 % Linear viscous friction
 params.('d_m')      = 14.786 * (1/10);    	%% Motor Damping [Nms/rad]
 params.('d_g')      = 14.786 * (8/10);      %% Gearbox damping [Nms/rad]

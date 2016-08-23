@@ -2,7 +2,8 @@
 %
 % Notes::
 %  All inertiae/damping is reflected to link side using n^2
-%  Parameters are based on values obtained from datasheets (ds)
+%  Parameters are based on values obtained from datasheets (ds), and some
+%  partially obtained from experimental identification
 %
 % Author::
 %  Joern Malzahn
@@ -34,31 +35,31 @@
 n = 100;
 
 % Inertiae
-params.('I_m')      = 2.63E-005 * n^2;      %% Motor rotor inertia [kg m^2]
-params.('I_g')      = 5.48E-005 * n^2;      %% Gear inertia [kg m^2]
-params.('I_b')      = 0.1;                  %% Torsion bar inertia [kg m^2]
+params.('I_m')      = 5.480e-5 * n^2;       %% Motor rotor inertia [kg m^2] (datasheet)
+params.('I_g')      = 2.63e-5 * n^2;        %% Gear inertia [kg m^2] (datasheet)
+params.('I_b')      = 0.0867;               %% Torsion bar inertia [kg m^2] (datasheet)
 % Stiffnesses
 params.('k_g')      = 31e3;                 %% Gearbox stiffness [Nm/rad]
-params.('k_b')      = 10000;                %% Torsion bar stiffness [Nm/rad]
+params.('k_b')      = 10000;                %% Torsion bar stiffness [Nm/rad] (datasheet)
 % Linear viscous friction
-params.('d_m')      = 4.178e-05 * n^2;      %% Motor Damping [Nms/rad]
-params.('d_g')      = 2e-4 * n^2;           %% Gearbox damping [Nms/rad]
-params.('d_b')      = 1e-5;                 %% Torsion bar damping [Nms/rad]
+params.('d_m')      = 14.786 * (1/10);    	%% Motor Damping [Nms/rad]
+params.('d_g')      = 14.786 * (8/10);      %% Gearbox damping [Nms/rad]
+params.('d_b')      = 14.786 * (1/10);      %% Torsion bar damping [Nms/rad]
 % Asymmetric viscous friction
-params.('d_m_n')    = 4.178e-05 * n^2;      %% Motor Damping - negative direction [Nms/rad]
-params.('d_g_n')    = 2e-4 * n^2;           %% Gearbox Damping - negative direction [Nms/rad]
-params.('d_b_n')    = 1e-5;                 %% Torsion bar damping - negative direction [Nms/rad]
+params.('d_m_n')    = 16.162 * (1/10);      %% Motor Damping - negative direction [Nms/rad]
+params.('d_g_n')    = 16.162 * (8/10);      %% Gearbox Damping - negative direction [Nms/rad]
+params.('d_b_n')    = 16.162 * (1/10);      %% Torsion bar damping - negative direction [Nms/rad]
 % Linear internal viscous friction
-params.('d_mg')     = 0.5;                  %% Gearbox internal damping [Nms/rad]
-params.('d_gb')     = 0.5;                  %% Torsion bar internal damping [Nms/rad]
+params.('d_mg')     = 296.0;                %% Gearbox internal damping [Nms/rad] (not identified)
+params.('d_gb')     = 35.0;                 %% Torsion bar internal damping [Nms/rad] (not identified)
 % Coulomb friction
-params.('d_cm')     = 1e-5 * n^2;           %% Motor Coulomb damping [Nm]
-params.('d_cg')     = 1e-5 * n^2;           %% Gearbox Coulomb damping [Nm]
-params.('d_cb')     = 0.02;                 %% Torsion bar Coulomb damping [Nm]
+params.('d_cm')     = 1.8579 * (1/10);      %% Motor Coulomb damping [Nm]
+params.('d_cg')     = 1.8579 * (8/10);   	%% Gearbox Coulomb damping [Nm]
+params.('d_cb')     = 1.8579 * (1/10);   	%% Torsion bar Coulomb damping [Nm]
 % Asymmetric Coulomb friction
-params.('d_cm_n')   = 5e-6 * n^2;           %% Motor Coulomb damping - negative direction [Nm]
-params.('d_cg_n')   = 5e-6 * n^2;           %% Gearbox Coulomb damping - negative direction [Nm]
-params.('d_cb_n')   = 0;                    %% Torsion bar Coulomb damping - negative direction [Nm]
+params.('d_cm_n')   = 2.4238 * (1/10);      %% Motor Coulomb damping - negative direction [Nm]
+params.('d_cg_n')   = 2.4238 * (8/10);      %% Gearbox Coulomb damping - negative direction [Nm]
+params.('d_cb_n')   = 2.4238 * (1/10);      %% Torsion bar Coulomb damping - negative direction [Nm]
 % Stiction
 params.('d_s')      = 8.9;                  %% Break away torque [Nm]
 params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
