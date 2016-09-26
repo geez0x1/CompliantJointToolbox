@@ -117,8 +117,8 @@ classdef genericJoint < handle
             %
             %
             % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %  Wesley Roozing, wesley.roozing@iit.it
+            %  Joern Malzahn
+            %  Wesley Roozing
             %
             % See also jointBuilder.
             
@@ -198,8 +198,8 @@ classdef genericJoint < handle
             %
             %
             % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %  Wesley Roozing, wesley.roozing@iit.it
+            %  Joern Malzahn
+            %  Wesley Roozing
             %
             % See also genericJoint, jointBuilder.
             
@@ -234,8 +234,8 @@ classdef genericJoint < handle
             %
             %
             % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %  Wesley Roozing, wesley.roozing@iit.it
+            %  Joern Malzahn
+            %  Wesley Roozing
             %
             % See also getStateSpaceD, genericJoint, jointBuilder.
             [A, B, C, ~, ~, ~]  = obj.getDynamicsMatrices();
@@ -364,8 +364,8 @@ classdef genericJoint < handle
             %
             %
             % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %  Wesley Roozing, wesley.roozing@iit.it
+            %  Joern Malzahn
+            %  Wesley Roozing
             %
             % See also getStateSpaceD, getTFd, genericJoint, jointBuilder.
             
@@ -392,327 +392,7 @@ classdef genericJoint < handle
         end
         
         
-        function out = t_c(obj)
-            % T_C Continuous stall torque [Nm]
-            %
-            %   t_c = gj.t_c
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   t_c: Value for the continuous operation stall torque obtained
-            %   as the product of the maximum permissible continuous current
-            %   i_c, the torque constant k_t as well as the transmission ratio n.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also t_p, p_rce, genericJoint, jointBuilder.
-            
-            out = obj.k_t * obj.i_c * obj.n;
-        end
-        
-        function out = t_p(obj)
-            % T_P Peak stall torque [Nm]
-            %
-            %   t_p = gj.t_p
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   t_p: Value for the peak stall torque obtained as the product of
-            %   the maximum permissible peak current i_p, the torque constant 
-            %   k_t and the transmission ratio n.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also t_c, p_rce, genericJoint, jointBuilder.
-            
-            out = obj.k_t * obj.i_p * obj.n;
-        end
-        
-        function out = k_w(obj)
-            % K_W Speed constant [s^(-1)/V]
-            %
-            %   k_w = gj.k_w
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   k_w: Value for the speed constant which equals the inverse
-            %   of the torque constant k_t.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also t_c, p_rce, genericJoint, jointBuilder.
-            
-            out = 1 / obj.k_t;
-        end
 
-        function out = dq_0(obj)
-            % DQ_0 No load speed [rad/s]
-            %
-            %   dq_0 = gj.dq_0
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   dq_0: No load speed in rad/s;
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also t_c, p_rce, genericJoint, jointBuilder.
-            
-            out = obj.k_w * obj.v_0 / obj.n;
-        end
-       
-        function out = dq_over_dm(obj)
-            % DQ_OVER_DM Motor slope [rad s^(-1) / Nm]
-            %
-            %   slope = gj.dq_over_dm
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   slope: Slope defining the drop in motor speed per load torque
-            %          increment.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also t_c, p_rce, genericJoint, jointBuilder.
-            
-            out =  obj.dq_0 / obj.t_stall;
-        end
-        
-        function out = dq_r(obj)
-            % DQ_r rated speed [rad/s]
-            %
-            %   dq_r = gj.dq_r
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   dq_r: Rated speed at which the motor turns, when the 
-            %         maximum continuous current is applied at full supply 
-            %         voltage rad/s.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also t_c, p_rce, genericJoint, jointBuilder.
-            
-            out = obj.dq_0 - obj.dq_over_dm * obj.t_c;
-        end
-        
-        
-        function out = p_rce(obj)
-            % P_RCE Rated continous power (electrical) [W]
-            %
-            %   p_rce = gj.p_rce
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   p_rce: Value for the rated continuous power obtained as the
-            %   product of operating voltage and maximum permissible continuous
-            %   current.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also i_c, i_p, genericJoint, jointBuilder.
-            
-            out = obj.v_0 * obj.i_c;
-        end
-            
-        function out = p_rcm(obj)
-            % P_RCM Rated continous power (mechanical) [W]
-            %
-            %   p_rcm = gj.p_rcm
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   p_rcm: Value for the rated continuous power obtained as the
-            %   product of continuous speed and continuous torque.
-            %   
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also i_c, i_p, genericJoint, jointBuilder.
-            
-            out = obj.dq_r * obj.t_c;
-        end
-        
-        function out = p_peakm(obj)
-            % P_PEAKM Peak continous power (mechanical) [W]
-            %
-            %   p_peakm = gj.p_peakm
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   p_peakm: Value for the peak mechanicalpower obtained as the
-            %   product of peak speed and peak torque.
-            %   
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also i_c, i_p, genericJoint, jointBuilder.
-            
-            out = obj.dq_p * obj.t_p;
-        end
-        
-        function out = t_stall(obj)
-            % T_STALL Stall torque [Nm]
-            %
-            %   t_stall = gj.t_stall
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   t_stall: Load torque in Nm at which the motor stops, if the 
-            %            full  operating voltage is applied.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also t_c, p_rce, genericJoint, jointBuilder.
-            
-            out = obj.v_0 / obj.r * obj.k_t * obj.n;
-        end
-        
-                
-        function h = draw_speed_torque_curve(obj)
-            % DRAW_SPEED_TORQUE_CURVE Displays speed-torque-curve in a
-            % figure.
-            %
-            %   p_rce = gj.p_rce
-            %
-            % Inputs:
-            %
-            % Outputs:
-            %   p_rce: Value for the rated continuous power obtained as the
-            %   product of operating voltage and maximum permissible continuous
-            %   current.
-            %
-            % Notes::
-            %
-            %
-            % Examples::
-            %
-            %
-            % Author::
-            %  Joern Malzahn, jorn.malzahn@iit.it
-            %
-            % See also i_c, i_p, genericJoint, jointBuilder.
-            
-            nVals = 100;
-            xmax = 1.5 * obj.t_c;
-            ymax = 1.02 * obj.dq_c;
-            h = figure;
-            hold on
-                       
-            % torque speed line
-            slope = obj.dq_over_dm;
-            mVals = (0:1/100:1) * obj.t_stall;
-            linCurve =  obj.dq_0 - slope * mVals;
-            plot(mVals, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
-            
-            % Nominal operating point
-            plot(obj.t_c, obj.dq_r, 'bo', 'DisplayName', 'Nominal Operating Point')
-            
-            % Friction
-            %speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
-            speedVals = (0:1/nVals:1) * obj.dq_c;
-            Mc = obj.d_cm + obj.d_cg + obj.d_cb; % Static part
-            Mv = (obj.d_m + obj.d_g + obj.d_b) * speedVals;
-            Mf = Mc + Mv;
-            plot(Mf, speedVals, 'r:', 'DisplayName', 'Friction Torque')
-            
-            % Plot limits
-            speedVals = obj.p_rcm ./ mVals;
-            plot(mVals,speedVals, 'r.', 'DisplayName', 'Rated Mechanical Power')
-            speedVals = obj.p_peakm ./ mVals;
-            plot(mVals,speedVals, 'b.', 'DisplayName', 'Peak Mechanical Power')
-            plot([0,xmax], obj.dq_c * [1,1], 'k--', 'DisplayName', 'Maximum Continous Speed')
-            plot(obj.t_c*[1,1], [0,ymax], 'k:', 'DisplayName', 'Maximum Continous Torque')
-            
-            % Annotations and Figure Style
-            xlim([0,xmax]);
-            ylim([0,ymax]);
-            xlabel('torque [Nm]')
-            ylabel('speed [rad/s]')
-            box on
-            
-            legend show;
-        end
         
     end
     
@@ -742,8 +422,8 @@ classdef genericJoint < handle
         %
         %
         % Author::
-        %  Joern Malzahn, jorn.malzahn@iit.it
-        %  Wesley Roozing, wesley.roozing@iit.it
+        %  Joern Malzahn
+        %  Wesley Roozing
         %
         % See also getNonlinearDynamics, getStateSpace, getTFd, genericJoint.
         [A, B, C, I, D, K] = getDynamicsMatrices(obj)
@@ -768,8 +448,8 @@ classdef genericJoint < handle
         %
         %
         % Author::
-        %  Joern Malzahn, jorn.malzahn@iit.it
-        %  Wesley Roozing, wesley.roozing@iit.it
+        %  Joern Malzahn
+        %  Wesley Roozing
         %
         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
         tau = getNonlinearDynamics(obj, x, dx)
