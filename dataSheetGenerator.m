@@ -3,13 +3,13 @@ classdef dataSheetGenerator
     %   Detailed explanation goes here
     
     properties (SetAccess = private)
-        jointObj
+        paramStruct
     end
     
     methods
-        function this = dataSheetGenerator(jointObj)
+        function this = dataSheetGenerator(paramStruct)
             
-            this.jointObj = jointObj;
+            this.paramStruct = paramStruct;
             
         end
         
@@ -37,8 +37,8 @@ classdef dataSheetGenerator
             %
             % See also t_p, p_rce, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.k_t * jObj.i_c * jObj.n;
+            pStruct = this.paramStruct; % Shorthand
+            out = pStruct.k_t * pStruct.i_c * pStruct.n;
         end
         
         function out = t_p(this)
@@ -65,8 +65,8 @@ classdef dataSheetGenerator
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.k_t * jObj.i_p * jObj.n;
+            pStruct = this.paramStruct; % Shorthand
+            out = pStruct.k_t * pStruct.i_p * pStruct.n;
         end
         
         function out = k_w(this)
@@ -92,7 +92,7 @@ classdef dataSheetGenerator
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            out = 1 / this.jointObj.k_t;
+            out = 1 / this.paramStruct.k_t;
         end
 
         function out = dq_0(this)
@@ -117,11 +117,11 @@ classdef dataSheetGenerator
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.k_w * jObj.v_0 / jObj.n;
+            pStruct = this.paramStruct; % Shorthand
+            out = this.k_w * pStruct.v_0 / pStruct.n;
         end
        
-        function out = dq_over_dm(obj)
+        function out = dq_over_dm(this)
             % DQ_OVER_DM Motor slope [rad s^(-1) / Nm]
             %
             %   slope = gj.dq_over_dm
@@ -144,8 +144,8 @@ classdef dataSheetGenerator
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out =  jObj.dq_0 / jObj.t_stall;
+            pStruct = this.paramStruct; % Shorthand
+            out =  this.dq_0 / this.t_stall;
         end
         
         function out = dq_r(this)
@@ -172,8 +172,8 @@ classdef dataSheetGenerator
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.dq_0 - jObj.dq_over_dm * jObj.t_c;
+            pStruct = this.paramStruct; % Shorthand
+            out = this.dq_0 - this.dq_over_dm * this.t_c;
         end
         
         
@@ -201,8 +201,8 @@ classdef dataSheetGenerator
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.v_0 * jObj.i_c;
+            pStruct = this.paramStruct; % Shorthand
+            out = pStruct.v_0 * pStruct.i_c;
         end
             
         function out = p_rcm(this)
@@ -229,8 +229,8 @@ classdef dataSheetGenerator
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.dq_r * jObj.t_c;
+            pStruct = this.paramStruct; % Shorthand
+            out = this.dq_r * this.t_c;
         end
         
         function out = p_peakm(this)
@@ -257,8 +257,8 @@ classdef dataSheetGenerator
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.dq_p * jObj.t_p;
+            pStruct = this.paramStruct; % Shorthand
+            out = pStruct.dq_p * this.t_p;
         end
         
         function out = t_stall(this)
@@ -284,8 +284,8 @@ classdef dataSheetGenerator
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
-            out = jObj.v_0 / jObj.r * jObj.k_t * jObj.n;
+            pStruct = this.paramStruct; % Shorthand
+            out = pStruct.v_0 / pStruct.r * pStruct.k_t * pStruct.n;
         end
         
                 
@@ -314,11 +314,11 @@ classdef dataSheetGenerator
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
             
-            jObj = this.jointObj; % Shorthand
+            pStruct = this.paramStruct; % Shorthand
             
             nVals = 100;
             xmax = 1.5 * this.t_c;
-            ymax = 1.02 * jObj.dq_c;
+            ymax = 1.02 * pStruct.dq_c;
             h = figure;
             hold on
                        
@@ -333,9 +333,9 @@ classdef dataSheetGenerator
             
             % Friction
             %speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
-            speedVals = (0:1/nVals:1) * jObj.dq_c;
-            Mc = jObj.d_cm + jObj.d_cg + jObj.d_cb; % Static part
-            Mv = (jObj.d_m + jObj.d_g + jObj.d_b) * speedVals;
+            speedVals = (0:1/nVals:1) * pStruct.dq_c;
+            Mc = pStruct.d_cm + pStruct.d_cg + pStruct.d_cb; % Static part
+            Mv = (pStruct.d_m + pStruct.d_g + pStruct.d_b) * speedVals;
             Mf = Mc + Mv;
             plot(Mf, speedVals, 'r:', 'DisplayName', 'Friction Torque')
             
@@ -344,8 +344,8 @@ classdef dataSheetGenerator
             plot(mVals,speedVals, 'r.', 'DisplayName', 'Rated Mechanical Power')
             speedVals = this.p_peakm ./ mVals;
             plot(mVals,speedVals, 'b.', 'DisplayName', 'Peak Mechanical Power')
-            plot([0,xmax], jObj.dq_c * [1,1], 'k--', 'DisplayName', 'Maximum Continous Speed')
-            plot(jObj.t_c*[1,1], [0,ymax], 'k:', 'DisplayName', 'Maximum Continous Torque')
+            plot([0,xmax], pStruct.dq_c * [1,1], 'k--', 'DisplayName', 'Maximum Continous Speed')
+            plot(this.t_c*[1,1], [0,ymax], 'k:', 'DisplayName', 'Maximum Continous Torque')
             
             % Annotations and Figure Style
             xlim([0,xmax]);
