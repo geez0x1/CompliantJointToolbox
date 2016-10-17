@@ -4,6 +4,8 @@ classdef dataSheetGenerator
     
     properties (SetAccess = private)
         paramStruct
+        templateDir
+        outputDir
     end
     
     methods
@@ -11,10 +13,16 @@ classdef dataSheetGenerator
             
             this.paramStruct = paramStruct;
             
+            tmpStr = which('dataSheetGenerator');
+            dsgRoot = fileparts(tmpStr);
+            this.templateDir = [dsgRoot, filesep, 'templates' ];
+            
+            this.outputDir = ['.', filesep];
+            
         end
         
         function out = t_c(this)
-            % T_C Continuous stall torque [Nm]
+            % T_C Continuous torque [Nm]
             %
             %   t_c = gj.t_c
             %
@@ -356,6 +364,121 @@ classdef dataSheetGenerator
             
             legend show;
         end
+                
+
+        
+        function createDataSheet(this)
+            texFName = 'cjtdsheet.tex';
+            clsFName = 'cjtdsheet.cls';
+            cfgFName = 'cjtdsheet.cfg';
+            figFName = 'dummy';
+            
+            copyfile([this.templateDir, filesep, texFName],texFName);
+            copyfile([this.templateDir, filesep, clsFName],clsFName);
+            
+            this.createDefFile(cfgFName);
+            
+            this.makeDataSheetPlots(figFName);
+            
+            this.compileTexFile(texFName)
+            
+            [~, fName] = fileparts(texFName);
+            
+            if ~exist(this.outputDir,'dir')
+                mkdir(this.outputDir)
+            end
+            copyfile([fName,'.pdf'],[this.outputDir,filesep,'DATASHEET.pdf']);
+
+            delete([fName,'.*'])
+            delete([figFName,'.*'])
+            
+        end
+        
+        function makeDataSheetPlots(this,fName)
+            h = this.draw_speed_torque_curve;
+                        
+            set(h,'Units','centimeters');
+            pos = get(h,'Position');
+            pos(3) = 16;
+            pos(4) = 8;
+             
+            set(gca,'ActivePositionProperty','Position')
+            
+
+            set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
+            
+            set(gca,'Position',[0.05 0.05 0.95 0.95]);
+            
+            print(h,fName,'-dpdf','-r600')
+            
+        end
+        
+        function createDefFile(this,cfgFName)
+
+            pStruct = this.paramStruct; % Shorthand
+            
+            fid = fopen(cfgFName,'w+');
+            
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','% Mechanical Properties');
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'\\def \\gearratio{$%d:1$}\n', pStruct.n);
+            fprintf(fid,'\\def \\stiffness{$%d$}\n', pStruct.k_b);
+            fprintf(fid,'\\def \\mass{$%f$}\n',0);
+            fprintf(fid,'\\def \\diameter{$%f$}\n',0);
+            fprintf(fid,'\\def \\actlength{$%f$}\n',0);
+            fprintf(fid,'\\def \\tmech{$%f$}\n',0);
+            fprintf(fid,'\\def \\inertiarotor{$%f$}\n',pStruct.I_m);
+            fprintf(fid,'\\def \\inertiagear{$%f$}\n',pStruct.I_g);
+            fprintf(fid,'\\def \\inertiaspring{$%f$}\n',pStruct.I_b);
+            fprintf(fid,'\\def \\viscousdamping{$%f$}\n',pStruct.d_m+pStruct.d_g+pStruct.d_b);
+            fprintf(fid,'\\def \\coulombdamping{$%f$}\n',pStruct.d_cm+pStruct.d_cg+pStruct.d_cb);
+            fprintf(fid,'\\def \\stribeckdamping{$%f$}\n',pStruct.d_s);
+            fprintf(fid,'\\def \\stribeckspeed{$%f$}\n',pStruct.v_s);
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','% Electrical Properties');
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'\\def \\armaturresistance{%f}\n',pStruct.r);
+            fprintf(fid,'\\def \\armatureinductance{%f}\n',pStruct.x);
+            fprintf(fid,'\\def \\torqueconstant{%f}\n',pStruct.k_t);
+            fprintf(fid,'\\def \\speedconstant{%f}\n',pStruct.k_t);
+            fprintf(fid,'\\def \\speedtorquegradient{%f}\n',this.dq_over_dm);
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','% Rated Operation');
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'\\def \\ratedvoltage{%f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\noloadspeed{%f}\n',this.dq_0);
+            fprintf(fid,'\\def \\noloadcurrent{%f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\ratedtorque{%f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\ratedcurrent{%f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\stalltorque{%f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\startingcurrent{%f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\maxefficiency{%f}\n',pStruct.v_0);
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','% Specifications');
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'\\def \\armaturetemp{%f}\n',-1);
+            fprintf(fid,'\\def \\maxspeed{%f}\n',pStruct.dq_c);
+            fprintf(fid,'\\def \\maxcurrent{%f}\n',pStruct.i_p);
+            fprintf(fid,'\\def \\maxtorque{%f}\n',this.t_c);
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','% Power Rating');
+            fprintf(fid,'%s','%\n');
+            fprintf(fid,'\\def \\contpower{%f}\n',this.p_rcm);
+            fprintf(fid,'\\def \\peakpower{%f}\n', this.p_peakm);
+            fprintf(fid,'\\def \\contcurrent{%f}\n',pStruct.i_c);
+            fprintf(fid,'\\def \\conttorque{%f}\n',this.t_c);
+            
+            fclose(fid);
+        end
+        
+        function flag = compileTexFile(this,texFName)
+            % Tested with MiKTeX/2.9
+            cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', texFName];
+            flag = system(cmd);
+                        
+        end
+        
     end
     
 end
