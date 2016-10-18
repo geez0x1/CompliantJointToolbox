@@ -337,7 +337,7 @@ classdef dataSheetGenerator
             plot(mVals, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
             
             % Nominal operating point
-            plot(this.t_c, this.dq_r, 'bo', 'DisplayName', 'Nominal Operating Point')
+            plot(this.t_c, this.dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
             
             % Friction
             %speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
@@ -345,15 +345,15 @@ classdef dataSheetGenerator
             Mc = pStruct.d_cm + pStruct.d_cg + pStruct.d_cb; % Static part
             Mv = (pStruct.d_m + pStruct.d_g + pStruct.d_b) * speedVals;
             Mf = Mc + Mv;
-            plot(Mf, speedVals, 'r:', 'DisplayName', 'Friction Torque')
+            plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
             
             % Plot limits
             speedVals = this.p_rcm ./ mVals;
-            plot(mVals,speedVals, 'r.', 'DisplayName', 'Rated Mechanical Power')
+            plot(mVals,speedVals, 'b.', 'DisplayName', 'Rated Mechanical Power')
             speedVals = this.p_peakm ./ mVals;
-            plot(mVals,speedVals, 'b.', 'DisplayName', 'Peak Mechanical Power')
-            plot([0,xmax], pStruct.dq_c * [1,1], 'k--', 'DisplayName', 'Maximum Continous Speed')
-            plot(this.t_c*[1,1], [0,ymax], 'k:', 'DisplayName', 'Maximum Continous Torque')
+            plot(mVals,speedVals, 'r--', 'DisplayName', 'Peak Mechanical Power')
+            plot([0,xmax], pStruct.dq_c * [1,1], 'r--', 'DisplayName', 'Maximum Continous Speed')
+            plot(this.t_c*[1,1], [0,ymax], 'r--', 'DisplayName', 'Maximum Continous Torque')
             
             % Annotations and Figure Style
             xlim([0,xmax]);
@@ -362,7 +362,7 @@ classdef dataSheetGenerator
             ylabel('speed [rad/s]')
             box on
             
-            legend show;
+            %legend show;
         end
                 
 
@@ -397,19 +397,16 @@ classdef dataSheetGenerator
         function makeDataSheetPlots(this,fName)
             h = this.draw_speed_torque_curve;
                         
-            set(h,'Units','centimeters');
-            pos = get(h,'Position');
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
             pos(3) = 16;
-            pos(4) = 8;
+            pos(4) = 9;
              
-            set(gca,'ActivePositionProperty','Position')
+            set(gcf,'Position',pos)
+            set(h,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])
             
-
-            set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
-            
-            set(gca,'Position',[0.05 0.05 0.95 0.95]);
-            
-            print(h,fName,'-dpdf','-r600')
+             print(gcf,fName,'-dpdf','-r600')
             
         end
         
@@ -419,55 +416,54 @@ classdef dataSheetGenerator
             
             fid = fopen(cfgFName,'w+');
             
-            fprintf(fid,'%s','%\n');
             fprintf(fid,'%s\n','% Mechanical Properties');
-            fprintf(fid,'%s','%\n');
-            fprintf(fid,'\\def \\gearratio{$%d:1$}\n', pStruct.n);
-            fprintf(fid,'\\def \\stiffness{$%d$}\n', pStruct.k_b);
-            fprintf(fid,'\\def \\mass{$%f$}\n',0);
-            fprintf(fid,'\\def \\diameter{$%f$}\n',0);
-            fprintf(fid,'\\def \\actlength{$%f$}\n',0);
-            fprintf(fid,'\\def \\tmech{$%f$}\n',0);
-            fprintf(fid,'\\def \\inertiarotor{$%f$}\n',pStruct.I_m);
-            fprintf(fid,'\\def \\inertiagear{$%f$}\n',pStruct.I_g);
-            fprintf(fid,'\\def \\inertiaspring{$%f$}\n',pStruct.I_b);
-            fprintf(fid,'\\def \\viscousdamping{$%f$}\n',pStruct.d_m+pStruct.d_g+pStruct.d_b);
-            fprintf(fid,'\\def \\coulombdamping{$%f$}\n',pStruct.d_cm+pStruct.d_cg+pStruct.d_cb);
-            fprintf(fid,'\\def \\stribeckdamping{$%f$}\n',pStruct.d_s);
-            fprintf(fid,'\\def \\stribeckspeed{$%f$}\n',pStruct.v_s);
-            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','%');
+            fprintf(fid,'\\def \\gearratio{%d:1}\n', pStruct.n);
+            fprintf(fid,'\\def \\stiffness{%5d}\n', pStruct.k_b);
+            fprintf(fid,'\\def \\mass{%6.4f}\n',0);
+            fprintf(fid,'\\def \\diameter{%6.4f}\n',0);
+            fprintf(fid,'\\def \\actlength{%6.4f}\n',0);
+            fprintf(fid,'\\def \\tmech{%4.2f}\n',0);
+            fprintf(fid,'\\def \\inertiarotor{%6.4f}\n',pStruct.I_m);
+            fprintf(fid,'\\def \\inertiagear{%6.4f}\n',pStruct.I_g);
+            fprintf(fid,'\\def \\inertiaspring{%6.4f}\n',pStruct.I_b);
+            fprintf(fid,'\\def \\viscousdamping{%6.4f}\n',pStruct.d_m+pStruct.d_g+pStruct.d_b);
+            fprintf(fid,'\\def \\coulombdamping{%6.4f}\n',pStruct.d_cm+pStruct.d_cg+pStruct.d_cb);
+            fprintf(fid,'\\def \\stribeckdamping{%6.4f}\n',pStruct.d_s);
+            fprintf(fid,'\\def \\stribeckspeed{%6.4f}\n',pStruct.v_s);
+            fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Electrical Properties');
-            fprintf(fid,'%s','%\n');
-            fprintf(fid,'\\def \\armaturresistance{%f}\n',pStruct.r);
-            fprintf(fid,'\\def \\armatureinductance{%f}\n',pStruct.x);
-            fprintf(fid,'\\def \\torqueconstant{%f}\n',pStruct.k_t);
-            fprintf(fid,'\\def \\speedconstant{%f}\n',pStruct.k_t);
-            fprintf(fid,'\\def \\speedtorquegradient{%f}\n',this.dq_over_dm);
-            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','%');
+            fprintf(fid,'\\def \\armaturresistance{%6.4f}\n',pStruct.r);
+            fprintf(fid,'\\def \\armatureinductance{%6.4f}\n',pStruct.x);
+            fprintf(fid,'\\def \\torqueconstant{%6.4f}\n',pStruct.k_t);
+            fprintf(fid,'\\def \\speedconstant{%6.4f}\n',pStruct.k_t);
+            fprintf(fid,'\\def \\speedtorquegradient{%6.4f}\n',this.dq_over_dm);
+            fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Rated Operation');
-            fprintf(fid,'%s','%\n');
-            fprintf(fid,'\\def \\ratedvoltage{%f}\n',pStruct.v_0);
-            fprintf(fid,'\\def \\noloadspeed{%f}\n',this.dq_0);
-            fprintf(fid,'\\def \\noloadcurrent{%f}\n',pStruct.v_0);
-            fprintf(fid,'\\def \\ratedtorque{%f}\n',pStruct.v_0);
-            fprintf(fid,'\\def \\ratedcurrent{%f}\n',pStruct.v_0);
-            fprintf(fid,'\\def \\stalltorque{%f}\n',pStruct.v_0);
-            fprintf(fid,'\\def \\startingcurrent{%f}\n',pStruct.v_0);
-            fprintf(fid,'\\def \\maxefficiency{%f}\n',pStruct.v_0);
-            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','%');
+            fprintf(fid,'\\def \\ratedvoltage{%4.2f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\noloadspeed{%4.2f}\n',this.dq_0);
+            fprintf(fid,'\\def \\noloadcurrent{%4.2f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\ratedtorque{%4.2f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\ratedcurrent{%4.2f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\stalltorque{%4.2f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\startingcurrent{%4.2f}\n',pStruct.v_0);
+            fprintf(fid,'\\def \\maxefficiency{%4.2f}\n',pStruct.v_0);
+            fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Specifications');
-            fprintf(fid,'%s','%\n');
-            fprintf(fid,'\\def \\armaturetemp{%f}\n',-1);
-            fprintf(fid,'\\def \\maxspeed{%f}\n',pStruct.dq_c);
-            fprintf(fid,'\\def \\maxcurrent{%f}\n',pStruct.i_p);
-            fprintf(fid,'\\def \\maxtorque{%f}\n',this.t_c);
-            fprintf(fid,'%s','%\n');
+            fprintf(fid,'%s\n','%');
+            fprintf(fid,'\\def \\armaturetemp{%6.4f}\n',-1);
+            fprintf(fid,'\\def \\maxspeed{%4.2f}\n',pStruct.dq_c);
+            fprintf(fid,'\\def \\maxcurrent{%4.2f}\n',pStruct.i_p);
+            fprintf(fid,'\\def \\maxtorque{%4.2f}\n',this.t_c);
+            fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Power Rating');
-            fprintf(fid,'%s','%\n');
-            fprintf(fid,'\\def \\contpower{%f}\n',this.p_rcm);
-            fprintf(fid,'\\def \\peakpower{%f}\n', this.p_peakm);
-            fprintf(fid,'\\def \\contcurrent{%f}\n',pStruct.i_c);
-            fprintf(fid,'\\def \\conttorque{%f}\n',this.t_c);
+            fprintf(fid,'%s\n','%');
+            fprintf(fid,'\\def \\contpower{%4.2f}\n',this.p_rcm);
+            fprintf(fid,'\\def \\peakpower{%4.2f}\n', this.p_peakm);
+            fprintf(fid,'\\def \\contcurrent{%4.2f}\n',pStruct.i_c);
+            fprintf(fid,'\\def \\conttorque{%4.2f}\n',this.t_c);
             
             fclose(fid);
         end
