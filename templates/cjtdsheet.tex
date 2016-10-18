@@ -1,0 +1,101 @@
+%\documentclass[letterpaper, 9 pt, conference]{article}  % Comment this line out if you need a4paper
+\documentclass[a4paper,10pt]{cjtdsheet}      % Use this line for a4 paper
+
+\begin{document}
+\renewcommand{\arraystretch}{1.2}
+\actuatorname{Walk-Man Big Motor (B11)}
+
+
+\begin{multicols}{2}
+\begin{tabularx}{0.95\columnwidth}[c]{p{3cm}lXr}
+   \rowcolor{cjtblue}
+   \textcolor{white}{\textbf{Mechanical \newline Properties}} 
+   & \textcolor{white}{\textbf{Symbol}} 
+   & \textcolor{white}{\textbf{Unit}} 
+   & \textcolor{white}{\textbf{Value}} 
+  \tabularnewline
+   %
+		Gear Ratio 				 & $n$                &                       & \gearratio           \tabularnewline \rowcolor{lightgray}
+		Spring Stiffness         & $k_b$              & Nm/rad                & \stiffness           \tabularnewline 
+		Mass                     & $m$                & kg                    & \mass  	             \tabularnewline \rowcolor{lightgray}
+		Diameter    			 & $D$                & mm                    & \diameter            \tabularnewline 
+		Length                   & $l$                & mm                    & \actlength           \tabularnewline \rowcolor{lightgray}
+		Mechanical Time Constant & $T_{mech}$         & s                     & \tmech               \tabularnewline
+		Rotor Inertia  			 & $I_m$              & $\text{kg}\text{m}^2$ & \inertiarotor        \tabularnewline \rowcolor{lightgray}
+		Gear Inertia 			 & $I_g$              & $\text{kg}\text{m}^2$ & \inertiagear         \tabularnewline 
+		Spring Inertia 			 & $I_s$              & $\text{kg}\text{m}^2$ & \inertiaspring       \tabularnewline \rowcolor{lightgray}
+		Viscous Friction  		 & $d_v$              &  Nm s/rad             & \viscousdamping	     \tabularnewline
+		Coulomb Friction  		 & $d_c$              &  Nm                   & \coulombdamping	     \tabularnewline \rowcolor{lightgray}
+		Stribeck Friction  		 & $d_s$      		  &  Nm                   & \stribeckdamping     \tabularnewline
+		Stribeck Speed   		 & $\dot{\theta}_{s}$ &  rad/s                & \stribeckspeed	     \tabularnewline
+%
+%
+%
+	\rowcolor{cjtblue}
+	\textcolor{white}{\textbf{Electrical \newline Properties}}   
+		& \textcolor{white}{\textbf{Symbol}} 
+		& \textcolor{white}{\textbf{Unit}} 
+		& \textcolor{white}{\textbf{Value}}
+	\tabularnewline
+		Armature Resistance      & $r_A$    		  & $\Omega$              & \armaturresistance   \tabularnewline 	\rowcolor{lightgray}
+		Armature Inductance      & $x_A$      	      &  mH 	              & \armatureinductance  \tabularnewline
+		Torque Constant   	 	 & $k_\tau$ 		  &  Nm/A                 & \torqueconstant 	 \tabularnewline	\rowcolor{lightgray}
+		Torque Speed Gradient    & $m_{\tau\theta}$   &   rad/s / Nm          & \speedtorquegradient \tabularnewline
+\end{tabularx}
+
+\begin{tabularx}{0.95\columnwidth}[c]{p{3.5cm}|lXr}
+%
+%
+%
+	\rowcolor{cjtblue}
+    \textcolor{white}{\textbf{Rated \newline Operation}} 
+    	& \textcolor{white}{\textbf{Symbol}} 
+    	& \textcolor{white}{\textbf{Unit}}
+    	& \textcolor{white}{\textbf{Value}}
+    \tabularnewline
+	Rated Voltage     		  	 & $V_R$ 				& V 				  & \ratedvoltage   	\tabularnewline 	\rowcolor{lightgray}
+	No Load Speed     		     & $\dot{\theta}_{NL}$  & rad/s 			  & \noloadspeed 		\tabularnewline
+    No Load Current   			 & $\dot{i}_{NL}$       & A     			  & \noloadcurrent 		\tabularnewline  	\rowcolor{lightgray}
+    Rated Torque      			 & $\tau_{R}$      	 	& Nm     			  & \ratedtorque		\tabularnewline
+    Rated Current    			 & ${i}_{R}$      		& A     			  & \ratedcurrent		\tabularnewline   	\rowcolor{lightgray}
+    Stall Torque    		     & $\tau_{Stall}$       & Nm     			  & \stalltorque		\tabularnewline
+    Starting Current  			 & $\dot{i}_{Start}$    & A      			  & \startingcurrent	\tabularnewline   	\rowcolor{lightgray}
+    Max. Efficiency   			 & $\eta_{max}$         & \%  	    		  & \maxefficiency		\tabularnewline 
+%
+%
+%
+	\rowcolor{cjtblue}
+    \textcolor{white}{\textbf{Specifications}} 
+    	& \textcolor{white}{\textbf{Symbol}} 
+    	& \textcolor{white}{\textbf{Unit}} 
+    	& \textcolor{white}{\textbf{Value}} 
+    \tabularnewline
+	Max. Armature Temperature 	 & $k_\tau$ 			&  C 				  & \armaturetemp   	\tabularnewline		\rowcolor{lightgray}
+	Max. Speed     				 & $k_\tau$ 			& rad/s 			  & \maxspeed 		    \tabularnewline
+	Max. Continuous Current      & $i_c$ 				& A 				  & \maxcurrent 		\tabularnewline		\rowcolor{lightgray}
+    Max. Continuous Torque   	 & $\tau_c$      		& Nm  				  & \maxtorque 			\tabularnewline
+%
+%
+%
+	\rowcolor{cjtblue}
+    \textcolor{white}{\textbf{Power Rating}}   
+    	& \textcolor{white}{\textbf{Symbol}} 
+    	& \textcolor{white}{\textbf{Unit}} 
+    	& \textcolor{white}{\textbf{Value}} 
+    \tabularnewline
+	Mech. Continuous Power       & $P_c$ 				& W 				  & \contpower  	 	 \tabularnewline	\rowcolor{lightgray}
+	Mech. Peak Power 			 & $P_{p}$ 				& W 				  & \peakpower  		 \tabularnewline
+	Max. Continuous Current      & $i_{c}$ 				& A 				  & \contcurrent         \tabularnewline	\rowcolor{lightgray}
+    Max. Continuous Torque       & $\tau_{c}$           & Nm  				  & \conttorque 		 \tabularnewline
+\end{tabularx}
+
+\end{multicols}
+
+\begin{figure}[!h]
+\centering
+	\includegraphics{dummy.pdf}
+	\caption{Speed-Torque Curve of the actuator.}
+\end{figure}
+
+
+\end{document}
