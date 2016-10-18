@@ -119,7 +119,8 @@ for iPar = 1:nPar
    eval(allParams{iPar});
    
    dsg = dataSheetGenerator(params);
-   dsg.draw_speed_torque_curve;
+   
+   dsg.createDataSheet;
    
 end
 
