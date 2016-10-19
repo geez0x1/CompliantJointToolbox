@@ -6,6 +6,10 @@ classdef dataSheetGenerator
         paramStruct
         templateDir
         outputDir
+        
+        a_CU = 0.0039;  % Resistance coefficient of copper [1/K]
+        c_CU = 380;     % Specific thermal capacitance of copper [J/kg/K]
+        c_FE = 460;     % Specific thermal capacitance of iron [J/kg/K]
     end
     
     methods
@@ -18,6 +22,58 @@ classdef dataSheetGenerator
             this.templateDir = [dsgRoot, filesep, 'templates' ];
             
             this.outputDir = ['.', filesep];
+            
+        end
+        
+        function out = i_c(this)
+            % I_C Continuous Current [A]
+            %
+            %   i_c = gj.i_c
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   i_c: Value for the maximum permissible continuous current.
+            %   The value is mainly determined by the Joule losses inside
+            %   the motor windings at steady state current.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_rce, genericJoint, jointBuilder.
+            
+            % Shorthands
+            aCU   = this.a_CU;                      % Resistance coefficient for copper
+            r_TA  = this.paramStruct.r;             % Winding resistance at normal ambient temperature
+            T_A   = this.paramStruct.Tmp_ANom;      % Normal ambient temperature
+            T_W   = this.paramStruct.Tmp_WMax;      % Maximum allowed winding temperature
+            r_th1 = this.paramStruct.r_th1;         % Thermal resistance Winding-Housing
+            r_th2 = this.paramStruct.r_th2;         % Thermal resistance Housing-Air
+            
+            dT = T_W-T_A;                           % Allowed temperature rise
+            
+            % Compute maximum continuous current
+            %
+            % The temperature rise is mainly due to Joule losses PJ in the 
+            % windings. In steady state we obtain:
+            % dT = (r_th1 + r_th2)*PJ,
+            % With PJ = R(T_W)*I^2
+            %
+            % The winding resistance is temperature dependent:
+            % R(T_W) = r_TA * (1 + aCU * dT)
+            %
+            % Solving for I^2 yields:
+            iSquare = dT / (r_th1 + r_th2) / r_TA / (1 + aCU*dT);
+            
+            % The maximum continuous current thus computes to:
+            out = sqrt(iSquare);
             
         end
         
@@ -45,8 +101,13 @@ classdef dataSheetGenerator
             %
             % See also t_p, p_rce, genericJoint, jointBuilder.
             
-            pStruct = this.paramStruct; % Shorthand
-            out = pStruct.k_t * pStruct.i_c * pStruct.n;
+            % Shorthands
+            k_t = this.paramStruct.k_t;     % Torque constant
+            i_c = this.i_c;                 % Maximum continuous current
+            n   = this.paramStruct.n;       % Transmission ratio
+            
+            % Compute maximum continuous motor torque
+            out = k_t * i_c * n;
         end
         
         function out = t_p(this)
@@ -322,8 +383,17 @@ classdef dataSheetGenerator
             %
             % See also i_c, i_p, genericJoint, jointBuilder.
             
+            % Shorthands
             pStruct = this.paramStruct; % Shorthand
             
+            d_cm = this.paramStruct.d_cm;
+            d_cg = this.paramStruct.d_cg;
+            d_cb = this.paramStruct.d_cb;
+            d_m  = this.paramStruct.d_m;
+            d_g  = this.paramStruct.d_g;
+            d_b  = this.paramStruct.d_b;
+            
+            % Plotting options
             nVals = 100;
             xmax = 1.5 * this.t_c;
             ymax = 1.02 * pStruct.dq_c;
@@ -340,11 +410,13 @@ classdef dataSheetGenerator
             plot(this.t_c, this.dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
             
             % Friction
-            %speedVals = obj.v_0 * obj.k_w - obj.dq_over_dm*mVals;
             speedVals = (0:1/nVals:1) * pStruct.dq_c;
-            Mc = pStruct.d_cm + pStruct.d_cg + pStruct.d_cb; % Static part
-            Mv = (pStruct.d_m + pStruct.d_g + pStruct.d_b) * speedVals;
+            Mc = d_cm + d_cg + d_cb;            % Static friction
+            Mv = (d_m + d_g + d_b) * speedVals; % Velocity dependent friction
             Mf = Mc + Mv;
+
+            fill([Mf, 0, 0], [speedVals speedVals(end) 0],0.8* [1 1 1],'LineStyle','none')
+            alpha(0.25)
             plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
             
             % Plot limits
@@ -356,7 +428,7 @@ classdef dataSheetGenerator
             plot(this.t_c*[1,1], [0,ymax], 'r--', 'DisplayName', 'Maximum Continous Torque')
             
             % Annotations and Figure Style
-            xlim([0,xmax]);
+            xlim([-1,xmax]);
             ylim([0,ymax]);
             xlabel('torque [Nm]')
             ylabel('speed [rad/s]')
@@ -453,16 +525,22 @@ classdef dataSheetGenerator
             fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Specifications');
             fprintf(fid,'%s\n','%');
-            fprintf(fid,'\\def \\armaturetemp{%6.4f}\n',-1);
             fprintf(fid,'\\def \\maxspeed{%4.2f}\n',pStruct.dq_c);
             fprintf(fid,'\\def \\maxcurrent{%4.2f}\n',pStruct.i_p);
             fprintf(fid,'\\def \\maxtorque{%4.2f}\n',this.t_c);
+            fprintf(fid,'\\def \\restherm1{%4.2f}\n',pStruct.r_th1);
+            fprintf(fid,'\\def \\restherm2{%4.2f}\n',pStruct.r_th2);
+            fprintf(fid,'\\def \\Tthw{%4.2f}\n',pStruct.T_thw);
+            fprintf(fid,'\\def \\Tthm{%4.2f}\n',pStruct.T_thm);
+            fprintf(fid,'\\def \\TmpWindMax{%4.2f}\n',pStruct.Tmp_WMax);
+            fprintf(fid,'\\def \\TmpAmbMax{%4.2f}\n',pStruct.Tmp_AMax);
+            fprintf(fid,'\\def \\TmpAmbMin{%4.2f}\n',pStruct.Tmp_AMin);
             fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Power Rating');
             fprintf(fid,'%s\n','%');
             fprintf(fid,'\\def \\contpower{%4.2f}\n',this.p_rcm);
             fprintf(fid,'\\def \\peakpower{%4.2f}\n', this.p_peakm);
-            fprintf(fid,'\\def \\contcurrent{%4.2f}\n',pStruct.i_c);
+            fprintf(fid,'\\def \\contcurrent{%4.2f}\n',this.i_c);
             fprintf(fid,'\\def \\conttorque{%4.2f}\n',this.t_c);
             
             fclose(fid);
