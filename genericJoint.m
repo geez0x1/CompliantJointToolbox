@@ -45,6 +45,7 @@ classdef genericJoint < handle
     properties (SetAccess = public)
         % Mechanical Properties
         % Inertiae
+        m       % Actuator mass
         I_m     % Motor rotor inertia [kg m^2] (link side)
         I_g     % Motor-side gear inertia [kg m^2] (link side)
         I_b     % Torsion bar inertia [kg m^2] (link side)
@@ -77,7 +78,7 @@ classdef genericJoint < handle
         % Misc
         n       % Gear ratio []
         k_t     % Torque constant [Nm/A]
-        r       % Armature resistance [Ohm]
+        r       % Armature resistance at normal ambient temperature [Ohm]
         x       % Armature inductance [H]
         Ts      % Sampling time [s]
         % Operating/max conditions
@@ -86,7 +87,16 @@ classdef genericJoint < handle
         i_p     % Peak current [A]
         dq_c    % Max. continuous speed (output)[rad/s]
         dq_p    % Max. peak speed (output) [rad/s]
-            
+        % Thermal parameters
+        r_th1   % Thermal Resistance Windings to Housing [K/W]
+        r_th2   % Thermal Resistance Housing to Air [K/W]
+        T_thw   % Thermal Time Constant of the Windings [s]
+        T_thm   % Thermal Time Constant of the Motor [s]
+        Tmp_WMax % Maximum Armature Temperature [°C]
+        Tmp_AMax % Maximum Ambient Temperature [°C]
+        Tmp_AMin % Minimum Ambient Temperature [°C]
+        Tmp_ANom % Normal Ambient Temperature [°C]
+        
         % Desciptive Properties
         name                % Joint name
         paramName           % Parameter name
@@ -128,47 +138,57 @@ classdef genericJoint < handle
             
             % Mechanical Properties
             % Inertiae
-            this.I_m    = params.I_m;       % Motor rotor inertia [kg m^2] (link side)
-            this.I_g    = params.I_g;       % Motor-side gear inertia [kg m^2] (link side)
-            this.I_b    = params.I_b;       % Torsion bar inertia [kg m^2] (link side)
+            this.m      = params.m;          % Actuator mass [kg]
+            this.I_m    = params.I_m;        % Motor rotor inertia [kg m^2] (link side)
+            this.I_g    = params.I_g;        % Motor-side gear inertia [kg m^2] (link side)
+            this.I_b    = params.I_b;        % Torsion bar inertia [kg m^2] (link side)
             % Stiffnesses
-            this.k_g    = params.k_g;       % Gearbox stiffness [Nm/rad]
-            this.k_b    = params.k_b;       % Torsion bar stiffness [Nm/rad]
+            this.k_g    = params.k_g;        % Gearbox stiffness [Nm/rad]
+            this.k_b    = params.k_b;        % Torsion bar stiffness [Nm/rad]
             % Linear viscous friction
-            this.d_m    = params.d_m;       % Motor Damping [Nms/rad]
-            this.d_g    = params.d_g;       % Gearbox damping [Nms/rad]
-            this.d_b    = params.d_b;       % Torsion bar damping [Nms/rad]
+            this.d_m    = params.d_m;        % Motor Damping [Nms/rad]
+            this.d_g    = params.d_g;        % Gearbox damping [Nms/rad]
+            this.d_b    = params.d_b;        % Torsion bar damping [Nms/rad]
             % Asymmetric viscous friction
-            this.d_m_n  = params.d_m_n;     % Motor Damping - negative direction [Nms/rad]
-            this.d_g_n  = params.d_g_n;     % Gearbox Damping - negative direction [Nms/rad]
-            this.d_b_n  = params.d_b_n;     % Torsion bar damping - negative direction [Nms/rad]
+            this.d_m_n  = params.d_m_n;      % Motor Damping - negative direction [Nms/rad]
+            this.d_g_n  = params.d_g_n;      % Gearbox Damping - negative direction [Nms/rad]
+            this.d_b_n  = params.d_b_n;      % Torsion bar damping - negative direction [Nms/rad]
             % Linear internal viscous friction
-            this.d_mg   = params.d_mg;      % Gearbox internal damping [Nms/rad]
-            this.d_gb   = params.d_gb;      % Torsion bar internal damping [Nms/rad]
+            this.d_mg   = params.d_mg;       % Gearbox internal damping [Nms/rad]
+            this.d_gb   = params.d_gb;       % Torsion bar internal damping [Nms/rad]
             % Coulomb friction
-            this.d_cm   = params.d_cm;      % Motor Coulomb damping [Nm]
-            this.d_cg   = params.d_cg;      % Gearbox Coulomb damping [Nm]
-            this.d_cb   = params.d_cb;      % Torsion bar Coulomb damping [Nm]
+            this.d_cm   = params.d_cm;       % Motor Coulomb damping [Nm]
+            this.d_cg   = params.d_cg;       % Gearbox Coulomb damping [Nm]
+            this.d_cb   = params.d_cb;       % Torsion bar Coulomb damping [Nm]
             % Asymmetric Coulomb friction
-            this.d_cm_n = params.d_cm_n;    % Motor Coulomb damping - negative direction [Nm]
-            this.d_cg_n = params.d_cg_n;    % Gearbox Coulomb damping - negative direction [Nm]
-            this.d_cb_n = params.d_cb_n;    % Torsion bar Coulomb damping - negative direction [Nm]
+            this.d_cm_n = params.d_cm_n;     % Motor Coulomb damping - negative direction [Nm]
+            this.d_cg_n = params.d_cg_n;     % Gearbox Coulomb damping - negative direction [Nm]
+            this.d_cb_n = params.d_cb_n;     % Torsion bar Coulomb damping - negative direction [Nm]
             % Cogging
-            this.cog_a1 = params.cog_a1;    % Cosine amplitude [Nm]
-            this.cog_a2 = params.cog_a2;    % Sine amplitude [Nm]
-            this.cog_f  = params.cog_f;     % Spatial frequency [periods/revolution]
+            this.cog_a1 = params.cog_a1;     % Cosine amplitude [Nm]
+            this.cog_a2 = params.cog_a2;     % Sine amplitude [Nm]
+            this.cog_f  = params.cog_f;      % Spatial frequency [periods/revolution]
             % Misc
-            this.n      = params.n;         % Gear ratio []
-            this.k_t    = params.k_t;       % Torque constant [Nm/A]
-            this.r      = params.r;         % Armature resistance [Ohm]
-            this.x      = params.x;         % Armature inductance [H]
-            this.Ts     = params.Ts;        % Sampling time [s]
+            this.n      = params.n;          % Gear ratio []
+            this.k_t    = params.k_t;        % Torque constant [Nm/A]
+            this.r      = params.r;          % Armature resistance [Ohm]
+            this.x      = params.x;          % Armature inductance [H]
+            this.Ts     = params.Ts;         % Sampling time [s]
             % Operating/max conditions
-            this.v_0    = params.v_0;       % Operating voltage [V]
-            this.i_c    = params.i_c;       % Max. continuous current [A]
-            this.i_p    = params.i_p;       % Peak stall current [A]
-            this.dq_c   = params.dq_c;      % Max. continuous speed (output)[rad/s]
-            this.dq_p   = params.dq_p;      % Max. peak speed (output) [rad/s]
+            this.v_0    = params.v_0;        % Operating voltage [V]
+            this.i_c    = params.i_c;        % Max. continuous current [A]
+            this.i_p    = params.i_p;        % Peak stall current [A]
+            this.dq_c   = params.dq_c;       % Max. continuous speed (output)[rad/s]
+            this.dq_p   = params.dq_p;       % Max. peak speed (output) [rad/s]
+            % Thermal parameters
+            this.r_th1 = params.r_th1;       % Thermal Resistance Windings to Housing [K/W]
+            this.r_th2 = params.r_th2;       % Thermal Resistance Housing to Air [K/W]
+            this.T_thw = params.T_thw;       % Thermal Time Constant of the Windings [s]
+            this.T_thm = params.T_thm;       % Thermal Time Constant of the Motor [s]
+            this.Tmp_MMax = params.Tmp_MMax; % Maximum Armature Temperature [°C]
+            this.Tmp_AMax = params.Tmp_AMax; % Maximum Ambient Temperature [°C]
+            this.Tmp_AMin = params.Tmp_AMin; % Minimum Ambient Temperature [°C]
+            this.Tmp_ANom = params.Tmp_ANom; % Normal Ambient Temperature [°C]
             
             % Desciptive Properties
             this.name               = params.name;                  % Joint descriptive name
