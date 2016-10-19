@@ -42,6 +42,12 @@ classdef genericJoint < handle
         debug   % debug flag
     end
     
+    properties (SetAccess = private)
+        a_CU    = 0.0039;  % Resistance coefficient of copper [1/K]
+        c_CU    = 380;     % Specific thermal capacitance of copper [J/kg/K]
+        c_FE    = 460;     % Specific thermal capacitance of iron [J/kg/K]
+    end
+    
     properties (SetAccess = public)
         %
         % Mechanical Properties
@@ -92,7 +98,6 @@ classdef genericJoint < handle
         % Operating/max conditions
         %
         v_0      = 24;      % Operating [V]                                        (default: 24)
-        i_c      = 40;      % Max. continuous current [A]                          (default: 40)
         i_p      = 40;      % Peak current [A]                                     (default: 40)
         dq_c     = 5.86;    % Max. continuous speed (output)[rad/s]                (default: 5.86)
         dq_p     = 5.86;    % Max. peak speed (output) [rad/s]                     (default: 5.86)
@@ -105,13 +110,13 @@ classdef genericJoint < handle
         T_thm    = 1240;    % Thermal Time Constant of the Motor [s]               (default: 1240)
         Tmp_WMax = 120;     % Maximum Armature Temperature [°C]                    (default: 120)
         Tmp_ANom = 25;      % Normal Ambient Temperature [°C]                      (default: 25)
-       
+        
         % Desciptive Properties
         name                % Joint name
         paramName           % Parameter name
         modelName           % Model name
         nonlinearModelName  % Nonlinear model name
-
+        
         % Misc
         Ts      = 1e-3;   % Sampling time [s]
     end
@@ -150,9 +155,9 @@ classdef genericJoint < handle
             % Copy parameters into the class properties
             for iFields = 1:nFields
                 % check if parameter is actually a property
-                if isprop(this,parFields{iFields}) 
+                if isprop(this,parFields{iFields})
                     this.(parFields{iFields}) = params.(parFields{iFields});
-                else 
+                else
                     warning(['NOT A FIELD: ',parFields{iFields}, ' is not a field of genericJoint class.'])
                 end
             end
@@ -194,6 +199,360 @@ classdef genericJoint < handle
             end
             
         end
+        
+        %__________________________________________________________________
+        %                     Secondary Properties
+        %__________________________________________________________________
+        %
+        % We call those properties that are computed from the actual
+        % physical acutator properties "Secondary Properties.
+        
+        %__________________________________________________________________
+        function out = i_c(this)
+            % I_C Continuous Current [A]
+            %
+            %   i_c = gj.i_c
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   i_c: Value for the maximum permissible continuous current.
+            %   The value is mainly determined by the Joule losses inside
+            %   the motor windings at steady state current.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_rce, genericJoint, jointBuilder.
+            
+            % Shorthands
+            aCU   = this.a_CU;          % Resistance coefficient for copper
+            r_TA  = this.r;             % Winding resistance at normal ambient temperature
+            T_A   = this.Tmp_ANom;      % Normal ambient temperature
+            T_W   = this.Tmp_WMax;      % Maximum allowed winding temperature
+            rth1  = this.r_th1;         % Thermal resistance Winding-Housing
+            rth2  = this.r_th2;         % Thermal resistance Housing-Air
+            
+            dT = T_W-T_A;               % Allowed temperature rise
+            
+            % Compute maximum continuous current
+            %
+            % The temperature rise is mainly due to Joule losses PJ in the
+            % windings. In steady state we obtain:
+            % dT = (r_th1 + r_th2)*PJ,
+            % With PJ = R(T_W)*I^2
+            %
+            % The winding resistance is temperature dependent:
+            % R(T_W) = r_TA * (1 + aCU * dT)
+            %
+            % Solving for I^2 yields:
+            iSquare = dT / (rth1 + rth2) / r_TA / (1 + aCU*dT);
+            
+            % The maximum continuous current thus computes to:
+            out = sqrt(iSquare);
+            
+        end
+        
+        %__________________________________________________________________
+        
+        function out = t_c(this)
+            % T_C Continuous torque [Nm]
+            %
+            %   t_c = gj.t_c
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   t_c: Value for the continuous operation stall torque obtained
+            %   as the product of the maximum permissible continuous current
+            %   i_c, the torque constant k_t as well as the transmission ratio n.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also i_c, genericJoint, jointBuilder.
+            
+            
+            % Compute maximum continuous motor torque
+            out = this.k_t * this.i_c * this.n;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = t_p(this)
+            % T_P Peak stall torque [Nm]
+            %
+            %   t_p = gj.t_p
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   t_p: Value for the peak stall torque obtained as the product of
+            %   the maximum permissible peak current i_p, the torque constant
+            %   k_t and the transmission ratio n.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_rce, genericJoint, jointBuilder.
+            
+            out = this.k_t * this.i_p * this.n;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = k_w(this)
+            % K_W Speed constant [s^(-1)/V]
+            %
+            %   k_w = gj.k_w
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   k_w: Value for the speed constant which equals the inverse
+            %   of the torque constant k_t.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, genericJoint, jointBuilder.
+            
+            out = 1 / this.k_t;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = dq_0(this)
+            % DQ_0 No load speed [rad/s]
+            %
+            %   dq_0 = gj.dq_0
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   dq_0: No load speed in rad/s;
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_rce, genericJoint, jointBuilder.
+            
+            out = this.k_w * this.v_0 / this.n;
+        end
+        
+        function out = dq_r(this)
+            % DQ_r Rated speed [rad/s]
+            %
+            %   dq_r = gj.dq_r
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   dq_r: Rated speed at which the motor turns, when the 
+            %         maximum continuous current is applied at full supply 
+            %         voltage rad/s.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_ce, genericJoint, jointBuilder.
+            
+            out = this.dq_0 - this.dq_over_dm * this.t_c;
+        end
+        
+        
+        %__________________________________________________________________
+        
+        function out = i_start(this)
+            % I_START Starting current[A]
+            %
+            %   t_start = gj.i_start
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   i_start: Current when nominal voltage is applied to the
+            %   motor at rest. It is the current equivalent to the stall
+            %   torque.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, t_stall, genericJoint, jointBuilder.
+            
+            out = this.v_0 / this.r;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = t_stall(this)
+            % T_STALL Stall torque [Nm]
+            %
+            %   t_stall = gj.t_stall
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   t_stall: Load torque in Nm at which the motor stops, if the
+            %            full nominal voltage is applied.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also i_start, t_c, genericJoint, jointBuilder.
+            
+            out = this.i_start * this.k_t * this.n;
+        end
+        
+        
+        %__________________________________________________________________
+        
+        function out = dq_over_dm(this)
+            % DQ_OVER_DM Motor slope [rad s^(-1) / Nm]
+            %
+            %   slope = gj.dq_over_dm
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   slope: Slope defining the drop in motor speed per load torque
+            %          increment.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_rce, genericJoint, jointBuilder.
+            
+            out =  this.dq_0 / this.t_stall;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = p_cm(this)
+            % P_CM Continous power (mechanical) [W]
+            %
+            %   p_cm = gj.p_cm
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   p_cm: Value for the rated mechanical continuous power 
+            %   obtained as the product of rated speed and rated torque.
+            %
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also dq_r, i_c, t_c, genericJoint, jointBuilder.
+            
+            out = this.dq_r * this.t_c;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = p_ce(this)
+            % P_RCE Continous electrical power (electrical) [W]
+            %
+            %   p_ce = gj.p_ce
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   p_ce: Value for the rated continuous power obtained as the
+            %   product of operating voltage and maximum permissible continuous
+            %   current.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also i_c, t_c, genericJoint, jointBuilder.
+            
+            out = this.v_0 * this.i_c;
+        end
+        
+        %__________________________________________________________________
+        %                     Dynamic System Models
+        %__________________________________________________________________
+        %
+        % The physical and secondary parameters are used to obtain danymic
+        % system models for monitoring and control of the actuator.
         
         %__________________________________________________________________
         
@@ -356,12 +715,12 @@ classdef genericJoint < handle
             
             % Blacklist (non-variable property names)
             blacklist = {   'verbose';
-                            'debug';
-                            'name';
-                            'paramName';
-                            'modelName';
-                            'nonlinearModelName';
-                        };
+                'debug';
+                'name';
+                'paramName';
+                'modelName';
+                'nonlinearModelName';
+                };
             
             % Get symbolic properties
             symProps    = setdiff(props, blacklist);
@@ -374,7 +733,7 @@ classdef genericJoint < handle
         end
         
         
-
+        
         
     end
     
