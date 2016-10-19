@@ -52,10 +52,13 @@ classdef genericJoint < handle
         %
         % Mechanical Properties
         %
+        % Dimensions
+        diam     = 100;    % Actuator diameter [mm]                               (default: 100)
+        len      = 150;    % Actuator length [mm]                                 (default: 150)
         % Inertiae
-        m        = 2;      % Actuator mass [kg]                                    (default: 2)
-        I_m      = 0.5480; % Link referred motor rotor inertia [kg m^2]            (default: 0.5480)
-        I_g      = 0.2630; % Link referred gear inertia [kg m^2]                   (default: 0.2630)
+        m        = 2;      % Actuator mass [kg]                                   (default: 2)
+        I_m      = 0.5480; % Link referred motor rotor inertia [kg m^2]           (default: 0.5480)
+        I_g      = 0.2630; % Link referred gear inertia [kg m^2]                  (default: 0.2630)
         I_b      = 0.0867  % Link referred torsion bar inertia [kg m^2]       	  (default: 0.0867)
         % Stiffnesses
         k_g      = 31e3;   % Gearbox stiffness [Nm/rad]                            (default: 31e3)
@@ -347,18 +350,20 @@ classdef genericJoint < handle
             
             out = 1 / this.k_t;
         end
-        
+
         %__________________________________________________________________
         
-        function out = dq_0(this)
-            % DQ_0 No load speed [rad/s]
+        function out = T_mech(this)
+            % T_MECH Mechanical Time Constant [s]
             %
-            %   dq_0 = gj.dq_0
+            %   T_mech = gj.T_mech
             %
             % Inputs:
             %
             % Outputs:
-            %   dq_0: No load speed in rad/s;
+            %   T_mech: Mechanical time constant, that describes the time
+            %   to arrive at 63 % of the steady state velocity when
+            %   accelerating with constant armature voltage.
             %
             % Notes::
             %
@@ -372,8 +377,155 @@ classdef genericJoint < handle
             %
             % See also t_c, p_rce, genericJoint, jointBuilder.
             
+            out = (this.I_m + this.I_g + this.I_b)*this.r / this.n^2 / this.k_t^2;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = T_el(this)
+            % T_EL Electrical Time Constant [s]
+            %
+            %   T_el = gj.T_el
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   T_el: Electrical time constant, that describes the time
+            %   to arrive at 63 % of the steady state current when
+            %   applying a constant armature voltage.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_rce, genericJoint, jointBuilder.
+            
+            out = this.x / this.r;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = dq_0(this)
+            % DQ_0 Zero-Torque Speed [rad/s]
+            %
+            %   dq_0 = gj.dq_0
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   dq_0: Zero-Torque speed in rad/s;
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_ce, genericJoint, jointBuilder.
+            
             out = this.k_w * this.v_0 / this.n;
         end
+        
+        function out = dq_NL(this)
+            % DQ_NL No-Load Speed [rad/s]
+            %
+            %   dq_NL = gj.dq_NL
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   dq_NL: Zero-Load speed in rad/s;
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_ce, genericJoint, jointBuilder.
+            
+            sumCoulomb = this.d_cm + this.d_cg + this.d_cb;
+            sumViscous = this.d_m + this.d_g + this.d_b;
+            
+            out = ( this.dq_0 - this.dq_over_dm * sumCoulomb ) / (1 + this.dq_over_dm * sumViscous);
+        end
+        
+        %__________________________________________________________________
+        
+        function out = t_NL(this)
+            % t_NL No load torque [Nm]
+            %
+            %   t_NL = gj.t_NL
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   iq_0: No load torque in Nm;
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_ce, genericJoint, jointBuilder.
+             
+            sumCoulomb = this.d_cm + this.d_cg + this.d_cb;
+            sumViscous = this.d_m + this.d_g + this.d_b;
+            
+            
+            out = sumCoulomb + sumViscous * this.dq_NL;
+        end
+        
+        
+        %__________________________________________________________________
+        
+        function out = i_NL(this)
+            % i_NL No load current [A]
+            %
+            %   i_NL = gj.i_NL
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   i_NL: No load current in A;
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also t_c, p_ce, genericJoint, jointBuilder.
+             
+            out = this.t_NL / this.n / this.k_t;
+        end
+        
+        
+        
+        %__________________________________________________________________
         
         function out = dq_r(this)
             % DQ_r Rated speed [rad/s]
@@ -520,8 +672,48 @@ classdef genericJoint < handle
         
         %__________________________________________________________________
         
+        function out = p_pm(this)
+            % P_PM Peak power (mechanical) [W]
+            %
+            %   p_pm = gj.p_pm
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   p_pm: Value for the mechanical peak power obtained as the 
+            %   maximum surface are under the speed-torque curve. 
+            %
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also dq_r, i_c, t_c, genericJoint, jointBuilder.
+            
+            % The maximum mechanical power occurs at half the stall torque.
+            % Half the stall torque might however correspond to a winding
+            % current beyond the peak current limit. Hence we have to
+            % determine the minimum of the two:
+            t_val = min(this.t_p, this.t_stall/2);
+            
+            % The maximum achievable speed at the torque defined by t_val
+            % can be obtained from the speed-torque curve:
+            v_tau = this.dq_0 - this.dq_over_dm * t_val;
+            
+            % The peak torque is the product of torque and speed.
+            out = t_val * v_tau;
+        end
+        
+        %__________________________________________________________________
+        
         function out = p_ce(this)
-            % P_RCE Continous electrical power (electrical) [W]
+            % P_CE Continous electrical power (electrical) [W]
             %
             %   p_ce = gj.p_ce
             %
@@ -545,6 +737,35 @@ classdef genericJoint < handle
             % See also i_c, t_c, genericJoint, jointBuilder.
             
             out = this.v_0 * this.i_c;
+        end
+        
+        %__________________________________________________________________
+        
+        function out = p_pe(this)
+            % P_PE Peak electrical power (electrical) [W]
+            %
+            %   p_pe = gj.p_pe
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   p_pe: Peak value for the electircal power obtained as the
+            %   product of operating voltage and peak current. The 
+            %   calculation thus assumes the motor at rest.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also i_c, t_c, genericJoint, jointBuilder.
+            
+            out = this.v_0 * this.i_p;
         end
         
         %__________________________________________________________________
