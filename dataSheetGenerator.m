@@ -90,9 +90,11 @@ classdef dataSheetGenerator
             dq_r = this.jointModel.dq_r;
             dq_c = this.jointModel.dq_c;
             p_cm = this.jointModel.p_cm;
+            t_NL = this.jointModel.t_NL;
+            dq_NL = this.jointModel.dq_NL;
             
             % Plotting options
-            nVals = 100;
+            nVals = 200;
             xmax = 1.5 * t_c;
             ymax = 1.02 * dq_c;
             h = figure;
@@ -107,13 +109,22 @@ classdef dataSheetGenerator
             % Nominal operating point
             plot(t_c, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
             
+            % No-Load operating point
+            plot(t_NL, dq_NL, 'ko', 'DisplayName', 'No-Load Operating Point')
+            
+           
             % Friction
             speedVals = (0:1/nVals:1) * dq_c;
             Mc = d_cm + d_cg + d_cb;            % Static friction
             Mv = (d_m + d_g + d_b) * speedVals; % Velocity dependent friction
             Mf = Mc + Mv;
 
-            fill([Mf, 0, 0], [speedVals speedVals(end) 0],0.8* [1 1 1],'LineStyle','none')
+            % Continuous operating range
+            tOp =  [0, t_c,  t_c, t_NL ].';
+            dqOp = [0,   0, dq_r, dq_NL].';
+            fill(tOp,dqOp,0.8* [0 1 0],'LineStyle','none')
+            
+            fill([Mf, 0, 0], [speedVals speedVals(end) 0],0.8* [1 0 0],'LineStyle','none')
             alpha(0.25)
             plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
             
@@ -126,7 +137,7 @@ classdef dataSheetGenerator
             plot(t_c*[1,1], [0,ymax], 'r--', 'DisplayName', 'Maximum Continous Torque')
             
             % Annotations and Figure Style
-            xlim([-1,xmax]);
+            xlim([0,xmax]);
             ylim([0,ymax]);
             xlabel('torque [Nm]')
             ylabel('speed [rad/s]')
@@ -170,14 +181,14 @@ classdef dataSheetGenerator
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
-            pos(3) = 16;
-            pos(4) = 9;
+            pos(3) = 18;
+            pos(4) = 8;
              
             set(gcf,'Position',pos)
             set(h,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])
             
              print(gcf,fName,'-dpdf','-r600')
-            
+             
         end
         
         function createDefFile(this,cfgFName)
@@ -188,57 +199,73 @@ classdef dataSheetGenerator
             
             fprintf(fid,'%s\n','% Mechanical Properties');
             fprintf(fid,'%s\n','%');
-            fprintf(fid,'\\def \\gearratio{%d:1}\n', jM.n);
-            fprintf(fid,'\\def \\stiffness{%5d}\n', jM.k_b);
-            fprintf(fid,'\\def \\mass{%6.4f}\n',0);
-            fprintf(fid,'\\def \\diameter{%6.4f}\n',0);
-            fprintf(fid,'\\def \\actlength{%6.4f}\n',0);
-            fprintf(fid,'\\def \\tmech{%4.2f}\n',0);
-            fprintf(fid,'\\def \\inertiarotor{%6.4f}\n',jM.I_m);
-            fprintf(fid,'\\def \\inertiagear{%6.4f}\n',jM.I_g);
-            fprintf(fid,'\\def \\inertiaspring{%6.4f}\n',jM.I_b);
-            fprintf(fid,'\\def \\viscousdamping{%6.4f}\n',jM.d_m+jM.d_g+jM.d_b);
-            fprintf(fid,'\\def \\coulombdamping{%6.4f}\n',jM.d_cm+jM.d_cg+jM.d_cb);
-            fprintf(fid,'\\def \\stribeckdamping{%6.4f}\n',jM.d_s);
-            fprintf(fid,'\\def \\stribeckspeed{%6.4f}\n',jM.v_s);
+            %Dimensions
+            fprintf(fid,'\\def \\diameter{%4.1f}\n'             , jM.diam                   );
+            fprintf(fid,'\\def \\actlength{%4.1f}\n'            , jM.len                    );
+            % Inertae
+            fprintf(fid,'\\def \\mass{%6.4f}\n'                 , jM.m                      );
+            fprintf(fid,'\\def \\inertiarotor{%6.4f}\n'         , jM.I_m                    );
+            fprintf(fid,'\\def \\inertiagear{%6.4f}\n'          , jM.I_g                    );
+            fprintf(fid,'\\def \\inertiaspring{%6.4f}\n'        , jM.I_b                    );
+            fprintf(fid,'\\def \\Tmech{%6.4f}\n'                , jM.T_mech                 );
+            % Stiffnesses
+            fprintf(fid,'\\def \\springstiffness{%5d}\n'        , jM.k_b                    );
+            fprintf(fid,'\\def \\gearstiffness{%5d}\n'          , jM.k_g                    );
+            % Friction
+            fprintf(fid,'\\def \\viscousdamping{%6.4f}\n'       , jM.d_m+jM.d_g+jM.d_b      );
+            fprintf(fid,'\\def \\coulombdamping{%6.4f}\n'       , jM.d_cm+jM.d_cg+jM.d_cb   );
+            fprintf(fid,'\\def \\stribeckdamping{%6.4f}\n'      , jM.d_s                    );
+            fprintf(fid,'\\def \\stribeckspeed{%6.4f}\n'        , jM.v_s                    );
+            % Electrical
             fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Electrical Properties');
             fprintf(fid,'%s\n','%');
-            fprintf(fid,'\\def \\armaturresistance{%6.4f}\n',jM.r);
-            fprintf(fid,'\\def \\armatureinductance{%6.4f}\n',jM.x);
-            fprintf(fid,'\\def \\torqueconstant{%6.4f}\n',jM.k_t);
-            fprintf(fid,'\\def \\speedconstant{%6.4f}\n',jM.k_t);
-            fprintf(fid,'\\def \\speedtorquegradient{%6.4f}\n',jM.dq_over_dm);
+            fprintf(fid,'\\def \\torqueconstant{%6.4f}\n'       , jM.k_t                    );
+            fprintf(fid,'\\def \\speedconstant{%6.4f}\n'        , jM.k_w                    );
+            fprintf(fid,'\\def \\armaturresistance{%6.4f}\n'    , jM.r                      );
+            fprintf(fid,'\\def \\armatureinductance{%6.4f}\n'   , jM.x                      );
+            fprintf(fid,'\\def \\Tel{%6.4f}\n'                  , jM.T_el                   );
+            % Thermal
+            fprintf(fid,'%s\n','%');
+            fprintf(fid,'%s\n','% Thermal Properties');
+            fprintf(fid,'%s\n','%');
+            fprintf(fid,'\\def \\resthermWH{%4.2f}\n'           , jM.r_th1                  );
+            fprintf(fid,'\\def \\resthermHA{%4.2f}\n'           , jM.r_th2                  );
+            fprintf(fid,'\\def \\Tthw{%4.2f}\n'                 , jM.T_thw                  );
+            fprintf(fid,'\\def \\Tthm{%4.2f}\n'                 , jM.T_thm                  );
+            fprintf(fid,'\\def \\TmpWindMax{%4.2f}\n'           , jM.Tmp_WMax               );
+            fprintf(fid,'\\def \\TmpANom{%4.2f}\n'              , jM.Tmp_ANom               );
+
+
             fprintf(fid,'%s\n','%');
             fprintf(fid,'%s\n','% Rated Operation');
             fprintf(fid,'%s\n','%');
-            fprintf(fid,'\\def \\ratedvoltage{%4.2f}\n',jM.v_0);
-            fprintf(fid,'\\def \\noloadspeed{%4.2f}\n',jM.dq_0);
-            fprintf(fid,'\\def \\noloadcurrent{%4.2f}\n',jM.v_0);
-            fprintf(fid,'\\def \\ratedtorque{%4.2f}\n',jM.v_0);
-            fprintf(fid,'\\def \\ratedcurrent{%4.2f}\n',jM.v_0);
-            fprintf(fid,'\\def \\stalltorque{%4.2f}\n',jM.v_0);
-            fprintf(fid,'\\def \\startingcurrent{%4.2f}\n',jM.v_0);
-            fprintf(fid,'\\def \\maxefficiency{%4.2f}\n',jM.v_0);
+            fprintf(fid,'\\def \\ratedvoltage{%4.2f}\n'         , jM.v_0                    );
+            fprintf(fid,'\\def \\ratedcurrent{%4.2f}\n'         , jM.i_c                    );
+            fprintf(fid,'\\def \\ratedtorque{%4.2f}\n'          , jM.t_c                    );
+            fprintf(fid,'\\def \\ratedspeed{%4.2f}\n'           , jM.dq_r                   );
+            fprintf(fid,'\\def \\ratedpowere{%4.2f}\n'          , jM.p_ce                   );
+            fprintf(fid,'\\def \\ratedpowerm{%4.2f}\n'          , jM.p_cm                   );
+            fprintf(fid,'\\def \\noloadcurrent{%4.2f}\n'        , jM.i_NL                   );
+            fprintf(fid,'\\def \\noloadtorque{%4.2f}\n'         , jM.t_NL                   );
+            fprintf(fid,'\\def \\noloadspeed{%4.2f}\n'          , jM.dq_0                   );
+            fprintf(fid,'\\def \\stalltorque{%4.2f}\n'          , jM.t_stall                );
+            fprintf(fid,'\\def \\startingcurrent{%4.2f}\n'      , jM.i_start                );
+            fprintf(fid,'\\def \\speedtorquegradient{%6.4f}\n'  , jM.dq_over_dm             );            
+
             fprintf(fid,'%s\n','%');
-            fprintf(fid,'%s\n','% Specifications');
+            fprintf(fid,'%s\n','% Peak Operation');
             fprintf(fid,'%s\n','%');
-            fprintf(fid,'\\def \\maxspeed{%4.2f}\n',jM.dq_c);
-            fprintf(fid,'\\def \\maxcurrent{%4.2f}\n',jM.i_p);
-            fprintf(fid,'\\def \\maxtorque{%4.2f}\n',jM.t_c);
-            fprintf(fid,'\\def \\restherm1{%4.2f}\n',jM.r_th1);
-            fprintf(fid,'\\def \\restherm2{%4.2f}\n',jM.r_th2);
-            fprintf(fid,'\\def \\Tthw{%4.2f}\n',jM.T_thw);
-            fprintf(fid,'\\def \\Tthm{%4.2f}\n',jM.T_thm);
-            fprintf(fid,'\\def \\TmpWindMax{%4.2f}\n',jM.Tmp_WMax);
-            fprintf(fid,'%s\n','%');
-            fprintf(fid,'%s\n','% Power Rating');
-            fprintf(fid,'%s\n','%');
-            fprintf(fid,'\\def \\contpower{%4.2f}\n',jM.p_cm);
-%            fprintf(fid,'\\def \\peakpower{%4.2f}\n', this.p_peakm);
-            fprintf(fid,'\\def \\contcurrent{%4.2f}\n',jM.i_c);
-            fprintf(fid,'\\def \\conttorque{%4.2f}\n',jM.t_c);
-            
+            fprintf(fid,'\\def \\maxcurrent{%4.2f}\n'           , jM.i_p                    );
+            fprintf(fid,'\\def \\maxtorque{%4.2f}\n'            , jM.t_p                    );
+%           fprintf(fid,'\\def \\maxspeed{%4.2f}\n'             , jM.dq_p                   );
+            fprintf(fid,'\\def \\maxspeed{%4.2f}\n'             , -1                        );
+            fprintf(fid,'\\def \\maxpowere{%4.2f}\n'            , jM.p_pe                   );
+            fprintf(fid,'\\def \\maxpowerm{%4.2f}\n'            , jM.p_pm                   );
+            fprintf(fid,'\\def \\contcurrent{%4.2f}\n'          , jM.i_c                    );
+            fprintf(fid,'\\def \\conttorque{%4.2f}\n'           , jM.t_c                    );
+            fprintf(fid,'\\def \\gearratio{%d:1}\n'             , jM.n                      );
+            %            fprintf(fid,'\\def \\maxefficiency{%4.2f}\n',jM.v_0);
             fclose(fid);
         end
         
