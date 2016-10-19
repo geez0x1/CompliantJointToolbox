@@ -118,10 +118,14 @@ end
 %
 % A test function is also called a "Qualification". There exist different
 % conceptual types of qualifications.
-function testSpeedTorqueCurve(testCase)
+function testBuildJoint(testCase)
 % Test specific code
 
-    testCase.('TestData').testJoint.draw_speed_torque_curve;
+    display('Name of the built joint under testing:')
+    display(testCase.('TestData').testJoint.name);
+    
+    display('Name of the parameter set :')
+    display(testCase.('TestData').testJoint.paramName);
 
 end
 
