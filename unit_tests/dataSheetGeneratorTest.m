@@ -78,7 +78,7 @@ function setupOnce(testCase)  % do not change function name
 close all;
 clc;
 
-testCase.('TestData').allParams = {'WMBig10k_ds'};
+testCase.('TestData').allParams = {'dummyMotor'};
 
 
 end
