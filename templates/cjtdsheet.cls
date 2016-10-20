@@ -95,3 +95,6 @@
 \noindent\rule{\textwidth}{4pt}
 }
 
+\renewcommand\emph[1]{
+    \textcolor{cjtblue}{\textbf{#1}}
+}
