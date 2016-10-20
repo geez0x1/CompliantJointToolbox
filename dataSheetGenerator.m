@@ -86,55 +86,62 @@ classdef dataSheetGenerator
             slope = this.jointModel.dq_over_dm;
             dq_0 = this.jointModel.dq_0;
             t_stall = this.jointModel.t_stall;
-            t_c = this.jointModel.t_c;
+            t_r = this.jointModel.t_r;
+            t_p = this.jointModel.t_p;
             dq_r = this.jointModel.dq_r;
-            dq_c = this.jointModel.dq_c;
+            dq_p = this.jointModel.dq_p;
             p_cm = this.jointModel.p_cm;
+            p_pm = this.jointModel.p_pm;
             t_NL = this.jointModel.t_NL;
             dq_NL = this.jointModel.dq_NL;
             
             % Plotting options
-            nVals = 200;
-            xmax = 1.5 * t_c;
-            ymax = 1.02 * dq_c;
+            nVals = 500;
+            xmax = 1.2 * t_p;
+            ymax = 1.02 * dq_p;
             h = figure;
             hold on
                        
             % torque speed line
-            
-            mVals = (0:1/100:1) * t_stall;
+            mVals = (0:1/nVals:1) * t_stall;
             linCurve = dq_0 - slope * mVals;
             plot(mVals, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
             
-            % Nominal operating point
-            plot(t_c, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
+            % Rated operating point
+            plot(t_r, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
             
             % No-Load operating point
             plot(t_NL, dq_NL, 'ko', 'DisplayName', 'No-Load Operating Point')
             
            
             % Friction
-            speedVals = (0:1/nVals:1) * dq_c;
+            speedVals = (0:1/nVals:1) * dq_p;
             Mc = d_cm + d_cg + d_cb;            % Static friction
             Mv = (d_m + d_g + d_b) * speedVals; % Velocity dependent friction
             Mf = Mc + Mv;
 
             % Continuous operating range
-            tOp =  [0, t_c,  t_c, t_NL ].';
-            dqOp = [0,   0, dq_r, dq_NL].';
-            fill(tOp,dqOp,0.8* [0 1 0],'LineStyle','none')
+            tOp =  [0, t_r,  t_r, 0 ].';
+            dqOp = [0,   0, dq_r, dq_0].';
+            fill(tOp,dqOp,0.9* [0.2 0.2 1],'LineStyle','none')
             
             fill([Mf, 0, 0], [speedVals speedVals(end) 0],0.8* [1 0 0],'LineStyle','none')
             alpha(0.25)
             plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
             
+            % Peak Operation
+            plot([t_p, t_p],[0, ymax],'r--', 'DisplayName', 'Peak Torque')
+            speedVals = p_pm ./ mVals;
+            plot(mVals,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
+            plot([0,xmax], dq_p * [1,1], 'r--', 'DisplayName', 'Peak Speed')
+            
             % Plot limits
             speedVals = p_cm ./ mVals;
-            plot(mVals,speedVals, 'b.', 'DisplayName', 'Rated Mechanical Power')
+            plot(mVals,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
 %             speedVals = this.p_peakm ./ mVals;
 %             plot(mVals,speedVals, 'r--', 'DisplayName', 'Peak Mechanical Power')
-            plot([0,xmax], dq_c * [1,1], 'r--', 'DisplayName', 'Maximum Continous Speed')
-            plot(t_c*[1,1], [0,ymax], 'r--', 'DisplayName', 'Maximum Continous Torque')
+            plot([0,xmax], dq_r * [1,1], 'b--', 'DisplayName', 'Maximum Continous Speed')
+            plot(t_r*[1,1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
             
             % Annotations and Figure Style
             xlim([0,xmax]);
@@ -319,7 +326,7 @@ classdef dataSheetGenerator
             fprintf(fid,'\\def \\valRatedcurrent{%4.2f}\n'         , jM.i_c                    );
             fprintf(fid,'\\def \\symRatedcurrent{%s}\n'         , 'i_R'                    );
             %
-            fprintf(fid,'\\def \\valRatedtorque{%4.2f}\n'          , jM.t_c                    );
+            fprintf(fid,'\\def \\valRatedtorque{%4.2f}\n'          , jM.t_r                    );
             fprintf(fid,'\\def \\symRatedtorque{%s}\n'          , '\tau_R'                    );
             %
             fprintf(fid,'\\def \\valRatedspeed{%4.2f}\n'           , jM.dq_r                   );
