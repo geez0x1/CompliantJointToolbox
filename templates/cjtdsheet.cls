@@ -44,27 +44,21 @@
 \RequirePackage{courier} 			% Courier as type writer font
 
 \RequirePackage{fancyhdr}
-\fancypagestyle{firstpage}{%
+\fancypagestyle{cjtpage}{%
 \fancyhf{} % clear all six fields
 \renewcommand{\headrulewidth}{4pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot[L]{Created with the Compliant Joint Toolbox}
 \fancyfoot[R]{\today}
 }
-\fancypagestyle{followingpage}{%
-\fancyhf{} % clear all six fields
-%\fancyhead[RE,LO]{\show@committee, \show@date}
-%\fancyhead[LE,RO]{page \thepage}
-\renewcommand{\headrulewidth}{0.7pt}
-\renewcommand{\footrulewidth}{0pt}
-}
-\pagestyle{followingpage}
-\AtBeginDocument{\thispagestyle{firstpage}}
+\pagestyle{cjtpage}
+
 
 
 \RequirePackage{graphicx} % for pdf, bitmapped graphics files
 \RequirePackage{amsmath} % assumes amsmath package installed
 \RequirePackage{amssymb}  % assumes amsmath package installed
+
 
 \RequirePackage{tabularx}
 \RequirePackage{booktabs}
@@ -77,7 +71,19 @@
 \definecolor{lightgray}{rgb}{0.95,0.95,0.95}
 \definecolor{white}{rgb}{1.0,1.0,1.0}
 \definecolor{cjtblue}{rgb}{ 0.0314, 0.2157, 0.3882}
+\definecolor{cjtlightblue}{rgb}{ 0.4314, 0.6157, 0.7882}
 \definecolor{cjtred}{rgb}{ 0.7529, 0, 0}
+
+
+\RequirePackage[justification=raggedright,
+                singlelinecheck=false, 
+                font={bf,color=cjtred},
+                labelfont+={it},
+                position=top,
+                skip=0.5\baselineskip
+                ]{caption}
+\RequirePackage{subcaption}
+
 
 \newcommand{\actuatorname}[1]
 {
