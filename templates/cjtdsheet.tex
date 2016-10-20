@@ -1,10 +1,11 @@
 %\documentclass[letterpaper, 9 pt, conference]{article}  % Comment this line out if you need a4paper
 \documentclass[a4paper,10pt]{cjtdsheet}      % Use this line for a4 paper
 
+\usepackage{lipsum}
+
 \begin{document}
 \renewcommand{\arraystretch}{1.2}
 \actuatorname{Walk-Man Big Motor (B11)}
-
 
 \begin{multicols}{2}
 \begin{tabularx}{0.95\columnwidth}[c]{p{3cm}lXr}
@@ -15,16 +16,16 @@
    & \textcolor{white}{\textbf{Value}} 
   \tabularnewline
    %
-        Gear Ratio                          & $n$         &  -                    & \gearratio           \tabularnewline \rowcolor{lightgray}
-        Mass                                & $m$         & kg                    & \mass                \tabularnewline 
-        Rotor Inertia                       & $I_m$       & $\text{kg}\text{m}^2$ & \inertiarotor        \tabularnewline \rowcolor{lightgray}
-        Gear Inertia                        & $I_g$       & $\text{kg}\text{m}^2$ & \inertiagear         \tabularnewline 
-        Spring Inertia                      & $I_s$       & $\text{kg}\text{m}^2$ & \inertiaspring       \tabularnewline \rowcolor{lightgray}
-        Diameter                            & $D$         & mm                    & \diameter            \tabularnewline 
-        Length                              & $l$         & mm                    & \actlength           \tabularnewline \rowcolor{lightgray}
-        Mechanical Time \newline Constant   & $T_{mech}$  & s                     & \Tmech               \tabularnewline 
-        Viscous Friction                    & $d_v$       &  Nm s/rad             & \viscousdamping      \tabularnewline \rowcolor{lightgray}
-        Coulomb Friction                    & $d_c$       &  Nm                   & \coulombdamping      \tabularnewline 
+        Transmission Ratio                  & $\symGearratio$      &  -                    & \valGearratio           \tabularnewline \rowcolor{lightgray}
+        Mass                                & $\symMass $          & kg                    & \valMass                \tabularnewline 
+        Rotor Inertia                       & $\symInertiarotor$   & $\text{kg}\text{m}^2$ & \valInertiarotor        \tabularnewline \rowcolor{lightgray}
+        Gear Inertia                        & $\symInertiagear$    & $\text{kg}\text{m}^2$ & \valInertiagear         \tabularnewline 
+        Spring Inertia                      & $\symInertiaspring$  & $\text{kg}\text{m}^2$ & \valInertiaspring       \tabularnewline \rowcolor{lightgray}
+        Diameter                            & $\symDiameter$       & mm                    & \valDiameter            \tabularnewline 
+        Length                              & $\symActlength$      & mm                    & \valActlength           \tabularnewline \rowcolor{lightgray}
+        Mechanical Time \newline Constant   & $\symTmech$          & s                     & \valTmech               \tabularnewline 
+        Viscous Friction                    & $\symViscousdamping$ & Nm s/rad              & \valViscousdamping      \tabularnewline \rowcolor{lightgray}
+        Coulomb Friction                    & $\symCoulombdamping$ & Nm                    & \valCoulombdamping      \tabularnewline 
 %
 %
 %
@@ -34,11 +35,11 @@
         & \textcolor{white}{\textbf{Unit}} 
         & \textcolor{white}{\textbf{Value}}
     \tabularnewline
-        Winding \newline Resistance         & $r_A$              & $\Omega$              & \armaturresistance   \tabularnewline    \rowcolor{lightgray}
-        Winding \newline Inductance         & $x_A$              &  mH                   & \armatureinductance  \tabularnewline
-        Electrical \newline Time Constant   & $T_{el}$           &  s                    & \Tel                 \tabularnewline    \rowcolor{lightgray}
-        Torque Constant                     & $k_\tau$           &  Nm/A                 & \torqueconstant      \tabularnewline    
-        Speed Constant                      & $k_\omega$         &  Vs/rad               & \speedconstant       \tabularnewline    \rowcolor{lightgray}
+        Winding \newline Resistance        & $\symArmaturresistance$  & $\Omega$          & \valArmaturresistance   \tabularnewline    \rowcolor{lightgray}
+        Winding \newline Inductance        & $\symArmatureinductance$ &  mH               & \valArmatureinductance  \tabularnewline
+        Electrical \newline Time Constant  & $\symTel$                &  s                & \valTel                 \tabularnewline    \rowcolor{lightgray}
+        Torque Constant                    & $\symTorqueconstant$     &  Nm/A             & \valTorqueconstant      \tabularnewline    
+        Speed Constant                     & $\symSpeedconstant$      &  Vs/rad           & \valSpeedconstant       \tabularnewline    \rowcolor{lightgray}
 %
     \rowcolor{cjtblue}
     \textcolor{white}{\textbf{Thermal}} 
@@ -46,9 +47,9 @@
         & \textcolor{white}{\textbf{Unit}} 
         & \textcolor{white}{\textbf{Value}} 
     \tabularnewline
-    Max. Temperature                    & $\nu_{max,w}$     &  C          & \TmpWindMax         \tabularnewline     
-    Winding \newline Time Constant      & $T_{thw}$         &  s          & \Tthw               \tabularnewline     \rowcolor{lightgray}
-    Motor \newline Time Constant        & $T_{thm}$         &  s          & \Tthm               \tabularnewline     
+    Max. Temperature                    & $\symTmpWindMax$     &  C          & \valTmpWindMax         \tabularnewline     
+    Winding \newline Time Constant      & $\symTthw$           &  s          & \valTthw               \tabularnewline     \rowcolor{lightgray}
+    Motor \newline Time Constant        & $\symTthm$           &  s          & \valTthm               \tabularnewline     
 \end{tabularx}
 
 %%%
@@ -58,26 +59,26 @@
 %
 %
 %
-    Therm. Resistance \newline Winding-Housing & $r_{th1}$         &  K/W        & \resthermWH          \tabularnewline     \rowcolor{lightgray}
-    Therm. Resistance \newline Housing-Air     & $r_{th2}$         &  K/W        & \resthermHA          \tabularnewline     
+    Therm. Resistance \newline Winding-Housing & $\symResthermWH$         &  K/W        & \valResthermWH          \tabularnewline     \rowcolor{lightgray}
+    Therm. Resistance \newline Housing-Air     & $\symResthermHA$         &  K/W        & \valResthermHA          \tabularnewline     
     \rowcolor{cjtblue}
     \textcolor{white}{\textbf{Rated Operation}} 
         & \textcolor{white}{\textbf{Symbol}} 
         & \textcolor{white}{\textbf{Unit}}
         & \textcolor{white}{\textbf{Value}}
     \tabularnewline
-    Rated Voltage                   & $V_R$                & V                & \ratedvoltage        \tabularnewline     
-    Rated Current                   & $i_{R}$              & A                & \ratedcurrent        \tabularnewline    \rowcolor{lightgray}
-    Rated Torque                    & $\tau_{R}$           & Nm               & \ratedtorque         \tabularnewline    
-    Rated Speed                     & $\dot{\theta}_{R}$   & rad/s            & \ratedspeed          \tabularnewline    \rowcolor{lightgray}
-    Rated El. Power                 & $P_{R,E}$            & W                & \ratedpowere         \tabularnewline    
-    Rated Mech. Power               & $P_{R,M}$            & W                & \ratedpowerm         \tabularnewline    \rowcolor{lightgray}
-    No Load Current                 & $i_{NL}$             & A                & \noloadcurrent       \tabularnewline    
-    No Load Torque                  & $\tau_{NL}$          & Nm               & \noloadtorque        \tabularnewline    \rowcolor{lightgray}
-    No Load Speed                   & $\dot{\theta}_{NL}$  & rad/s            & \noloadspeed         \tabularnewline    
-    Stall Torque                    & $\tau_{Stall}$       & Nm               & \stalltorque         \tabularnewline    \rowcolor{lightgray}
-    Starting Current                & $i_{Start}$          & A                & \startingcurrent     \tabularnewline    
-    Torque Speed \newline Gradient  & $m_{\tau\theta}$     & rad/Nms          & \speedtorquegradient \tabularnewline    \rowcolor{lightgray}
+    Rated Voltage                   & $\symRatedvoltage$         & V                & \valRatedvoltage        \tabularnewline     
+    Rated Current                   & $\symRatedcurrent$         & A                & \valRatedcurrent        \tabularnewline    \rowcolor{lightgray}
+    Rated Torque                    & $\symRatedtorque $         & Nm               & \valRatedtorque         \tabularnewline    
+    Rated Speed                     & $\symRatedspeed  $         & rad/s            & \valRatedspeed          \tabularnewline    \rowcolor{lightgray}
+    Rated El. Power                 & $\symRatedpowere $         & W                & \valRatedpowere         \tabularnewline    
+    Rated Mech. Power               & $\symRatedpowerm $         & W                & \valRatedpowerm         \tabularnewline    \rowcolor{lightgray}
+    No Load Current                 & $\symNoloadcurrent$        & A                & \valNoloadcurrent       \tabularnewline    
+    No Load Torque                  & $\symNoloadtorque $        & Nm               & \valNoloadtorque        \tabularnewline    \rowcolor{lightgray}
+    No Load Speed                   & $\symNoloadspeed  $        & rad/s            & \valNoloadspeed         \tabularnewline    
+    Stall Torque                    & $\symStalltorque  $        & Nm               & \valStalltorque         \tabularnewline    \rowcolor{lightgray}
+    Starting Current                & $\symStartingcurrent$      & A                & \valStartingcurrent     \tabularnewline    
+    Torque Speed \newline Gradient  & $\symSpeedtorquegradient$  & rad/Nms          & \valSpeedtorquegradient \tabularnewline    \rowcolor{lightgray}
 %
 %
 %
@@ -87,22 +88,56 @@
         & \textcolor{white}{\textbf{Unit}} 
         & \textcolor{white}{\textbf{Value}} 
     \tabularnewline
-    Peak Current                    & $i_{p}$             & A                 & \maxcurrent     \tabularnewline     
-    Peak Torque                     & $\tau_{p}$          & Nm                & \maxtorque      \tabularnewline     \rowcolor{lightgray}
-    Peak Speed                      & $\dot{\theta}_{p}$  & rad/s             & \maxspeed       \tabularnewline     
-    Peak El. Power                  & $P_{p,E}$           & W                 & \maxpowere      \tabularnewline     \rowcolor{lightgray}
-    Peak Mech. Power                & $P_{p,M}$           & W                 & \maxpowerm      \tabularnewline 
+    Peak Current                    & $\symMaxcurrent$ & A                 & \valMaxcurrent     \tabularnewline     
+    Peak Torque                     & $\symMaxtorque$  & Nm                & \valMaxtorque      \tabularnewline     \rowcolor{lightgray}
+    Peak Speed                      & $\symMaxspeed $  & rad/s             & \valMaxspeed       \tabularnewline     
+    Peak El. Power                  & $\symMaxpowere$  & W                 & \valMaxpowere      \tabularnewline     \rowcolor{lightgray}
+    Peak Mech. Power                & $\symMaxpowerm$  & W                 & \valMaxpowerm      \tabularnewline 
 %
-%   Max. Efficiency                 & $\eta_{max}$         & \%                   & \maxefficiency      \tabularnewline     \rowcolor{lightgray} 
+%   Max. Efficiency                 & $\eta_{max}$         & \%                   & \valMaxefficiency      \tabularnewline     \rowcolor{lightgray} 
     \end{tabularx}
 
 \end{multicols}
 
-\begin{figure}[!h]
-\centering
-    \includegraphics{dummy.pdf}
-    \caption{Speed-Torque Curve of the actuator.}
-\end{figure}
+%\begin{figure}[!H]
+%\caption{Speed-Torque Curve of the actuator.}
+%\centering
+    %\includegraphics{dummy.pdf}
+%\end{figure}
 
+\begin{center}
+    \captionof{figure}{Speed-Torque Curve of the actuator.}
+    \includegraphics{dummy.pdf}
+\end{center}
+
+\newpage
+
+\section*{\textcolor{cjtred}{Parameter Definitions}}
+
+\begin{multicols}{2}
+
+\cjtemph{Transmission Ratio:} The actuator typically comprises a transmission mechanism such as a gear box, that amplifies the torque output trading off the deliverable speed. The value is the ratio of the transmission input speed to the obtained output speed. Conversely, it describes the ratio of the output torque over the input torque.
+
+\cjtemph{Mass:} The actuator comprises of three main parts: the motor, the transmission mechanism and the torque sensor. The value is the summed mass of all three components.
+
+\cjtemph{Rotor Inertia:} The rotary inertia of the motor shaft.
+
+\cjtemph{Transmission Inertia:} The rotary inertia of the transmission mechanism.
+
+\cjtemph{Spring Inertia:} The rotary inertia of the deflective element used for torque sensing.
+
+\cjtemph{Diameter:} The maximum diameter of the actuator considering all components: the motor, transmission mechanism and torque sensor.
+
+\cjtemph{Length:} The overall length of the actuator including the motor, transmission mechanism and torque sensor.
+
+\cjtemph{Mechanical Time Constant:} Describes the acceleration of the actuator when a constant voltage is applied, under the condition that the required starting current can be provided. The value is the time for the actuator output to arrive at 63 \% of the steady state velocity for the applied voltage ignoring friction and additional load effects. The mechanical time constant is computed to:
+\begin{equation}
+\end{equation}
+
+\cjtemph{Viscous Friction:} The transmission ratio...
+
+\cjtemph{Coulomb Friction:} The transmission ratio...
+
+\end{multicols}{2}
 
 \end{document}
