@@ -22,35 +22,6 @@ classdef dataSheetGenerator
             
         end
        
-        
-      
-%         function out = p_peakm(this)
-%             % P_PEAKM Peak continous power (mechanical) [W]
-%             %
-%             %   p_peakm = gj.p_peakm
-%             %
-%             % Inputs:
-%             %
-%             % Outputs:
-%             %   p_peakm: Value for the peak mechanicalpower obtained as the
-%             %   product of peak speed and peak torque.
-%             %   
-%             %
-%             % Notes::
-%             %
-%             %
-%             % Examples::
-%             %
-%             %
-%             % Author::
-%             %  Joern Malzahn
-%             %  Wesley Roozing
-%             %
-%             % See also i_c, i_p, genericJoint, jointBuilder.
-%             
-%             pStruct = this.jointModel; % Shorthand
-%             out = pStruct.dq_p * this.t_p;
-%         end
             
                 
         function h = draw_speed_torque_curve(this)
@@ -280,11 +251,11 @@ classdef dataSheetGenerator
             fprintf(fid,'\\def \\valTorqueconstant{%6.4f}\n'       , jM.k_t                    );
             fprintf(fid,'\\def \\symTorqueconstant{%s}\n'       , 'k_\tau'                    );
             %
-            fprintf(fid,'\\def \\valSpeedconstant{%6.4f}\n'        , jM.k_w                    );
-            fprintf(fid,'\\def \\symSpeedconstant{%s}\n'        , 'k_\omega'                    );
+            fprintf(fid,'\\def \\valGeneratorconstant{%6.4f}\n'        , jM.k_w                    );
+            fprintf(fid,'\\def \\symGeneratorconstant{%s}\n'        , 'k_\omega'                    );
             %
-            fprintf(fid,'\\def \\valArmaturresistance{%6.4f}\n'    , jM.r                      );
-            fprintf(fid,'\\def \\symArmaturresistance{%s}\n'    , 'r_A'                      );
+            fprintf(fid,'\\def \\valArmatureresistance{%6.4f}\n'    , jM.r                      );
+            fprintf(fid,'\\def \\symArmatureresistance{%s}\n'    , 'r_A'                      );
             %
             fprintf(fid,'\\def \\valArmatureinductance{%6.4f}\n'   , jM.x                      );
             fprintf(fid,'\\def \\symArmatureinductance{%s}\n'   , 'x_A'                      );
