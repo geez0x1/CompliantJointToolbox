@@ -35,7 +35,7 @@
         & \textcolor{white}{\textbf{Unit}} 
         & \textcolor{white}{\textbf{Value}}
     \tabularnewline
-        Winding \newline Resistance        & $\symArmatureresistance$  & $\Omega$          & \valArmaturresistance   \tabularnewline    \rowcolor{lightgray}
+        Winding \newline Resistance        & $\symArmatureresistance$  & $\Omega$          & \valArmatureresistance   \tabularnewline    \rowcolor{lightgray}
         Winding \newline Inductance        & $\symArmatureinductance$ &  mH               & \valArmatureinductance   \tabularnewline
         Electrical \newline Time Constant  & $\symTel$                &  s                & \valTel                  \tabularnewline    \rowcolor{lightgray}
         Torque Constant                    & $\symTorqueconstant$     &  Nm/A             & \valTorqueconstant       \tabularnewline    
@@ -99,11 +99,11 @@
 
 \end{multicols}
 
-\begin{center}
-    \captionof{figure}{Torque-Speed Diagram of the actuator.}
-    \includegraphics{dummy.pdf}
+\begin{figure}[b!]
+	\caption{Torque-Speed Diagram of the actuator.}
+    \includegraphics{torqueSpeedCurve.pdf}
 	\label{fig:TorqueSpeedCurve}
-\end{center}
+\end{figure}
 
 \newpage
 
@@ -239,13 +239,13 @@ The peak operation parameters define the maximum intermittend operating conditio
 
 \emph{Peak Current:} The maximum permissible current that does not lead to a demagnetization of the permanent magnet. If the winding current exceeds this value irreversible weakening of the motor occurs.
 
-\emph{Peak Torque:} Torque corresponding to the peak current $\symPeakcurrent$.
+\emph{Peak Torque:} Torque corresponding to the peak current $\symMaxcurrent$.
 
 \emph{Peak Speed:} Maximum permissible intermittend speed for the actuator. This value is determined mostly by the mechanical supports, bearings and transmission mechanism. Exceeding this speed leads to irreversible damage of the mechanics.
 
-\emph{Peak Electrical Power:} Computed as a product of rated voltage $\symRatedvoltage$ and peak current $\symPeakcurrent$.
+\emph{Peak Electrical Power:} Computed as a product of rated voltage $\symRatedvoltage$ and peak current $\symMaxcurrent$.
 
-\emph{Peak Mechanical Power:} Computed as the product of the peak torque $\symPeaktorque$ and peak speed $\symPeakspeed$.
+\emph{Peak Mechanical Power:} Computed as the product of the peak torque $\symMaxtorque$ and peak speed $\symMaxspeed$.
 
 \end{multicols}{2}
 

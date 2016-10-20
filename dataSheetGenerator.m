@@ -7,6 +7,12 @@ classdef dataSheetGenerator
         templateDir
         outputDir
         
+        texFName = 'cjtdsheet.tex';
+        clsFName = 'cjtdsheet.cls';
+        cfgFName = 'cjtdsheet.cfg';
+        torqueSpeedFName = 'torqueSpeedCurve.pdf';
+        
+        outFName = 'DATASHEET.pdf';
     end
     
     methods
@@ -127,33 +133,29 @@ classdef dataSheetGenerator
 
         
         function createDataSheet(this)
-            texFName = 'cjtdsheet.tex';
-            clsFName = 'cjtdsheet.cls';
-            cfgFName = 'cjtdsheet.cfg';
-            figFName = 'dummy';
             
-            copyfile([this.templateDir, filesep, texFName],texFName);
-            copyfile([this.templateDir, filesep, clsFName],clsFName);
+            copyfile([this.templateDir, filesep, this.texFName],this.texFName);
+            copyfile([this.templateDir, filesep, this.clsFName],this.clsFName);
             
-            this.createDefFile(cfgFName);
+            this.createDefFile;
             
-            this.makeDataSheetPlots(figFName);
+            this.makeDataSheetPlots;
             
-            this.compileTexFile(texFName)
+            this.compileTexFile
             
-            [~, fName] = fileparts(texFName);
+            [~, fName] = fileparts(this.texFName);
             
             if ~exist(this.outputDir,'dir')
                 mkdir(this.outputDir)
             end
-            copyfile([fName,'.pdf'],[this.outputDir,filesep,'DATASHEET.pdf']);
+            copyfile([fName,'.pdf'],[this.outputDir,filesep, this.outFName]);
 
             delete([fName,'.*'])
-            delete([figFName,'.*'])
+            delete([this.torqueSpeedFName,'.*'])
             
         end
         
-        function makeDataSheetPlots(this,fName)
+        function makeDataSheetPlots(this)
             h = this.draw_speed_torque_curve;
                         
             set(gcf,'Units','centimeters');
@@ -166,12 +168,12 @@ classdef dataSheetGenerator
             set(h,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
             set(gca,'LooseInset',get(gca,'TightInset'))
             
-            printpdf(gcf,fName,'-r600')
+            printpdf(gcf,this.torqueSpeedFName,'-r600')
 
              
         end
         
-        function createDefFile(this,cfgFName)
+        function createDefFile(this)
 
             % The purpose of this function is to define a list of macros 
             % that can be called inside the Tex document to fill in the 
@@ -192,7 +194,7 @@ classdef dataSheetGenerator
             
             jM = this.jointModel; % Shorthand
             
-            fid = fopen(cfgFName,'w+');
+            fid = fopen(this.cfgFName,'w+');
             
 
             fprintf(fid,'%s\n','% Mechanical Properties');
@@ -354,9 +356,9 @@ classdef dataSheetGenerator
             fclose(fid);
         end
         
-        function flag = compileTexFile(this,texFName)
+        function flag = compileTexFile(this)
             % Tested with MiKTeX/2.9
-            cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', texFName];
+            cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
             flag = system(cmd);
                         
         end
