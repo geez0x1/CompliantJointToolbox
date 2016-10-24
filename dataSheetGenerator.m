@@ -443,11 +443,39 @@ classdef dataSheetGenerator
             if ~exist(this.outputDir,'dir')
                 mkdir(this.outputDir)
             end
-            copyfile([fName,'.pdf'],[this.outputDir,filesep, this.jointModel.name, '_', this.outFName]);
+            copyfile([fName,'.pdf'],[this.outputDir,filesep, this.assembleOutFileName ]);
 
             % Clean up.
             delete([fName,'.*'])
             delete([this.torqueSpeedFName,'.*'])
+            
+        end
+        
+        function fName = assembleOutFileName(this)
+            % ASSEMBLEOUTFILENAME Function to assembel the datasheet file
+            % name.
+            %
+            %   fName dsg.assembleOutFileName
+            %
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %   fName: Name for the datasheet file.
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also createDataSheet, genericJoint, jointBuilder.   
+            
+            fName = [this.jointModel.name, '_', this.outFName];
             
         end
         
@@ -492,6 +520,7 @@ classdef dataSheetGenerator
             
             printpdf(gcf,this.torqueSpeedFName,['-r',num2str(this.plotResolution)])
 
+            close(h);
              
         end
         
@@ -747,6 +776,7 @@ classdef dataSheetGenerator
             [flag, cmdout] = system(cmd);
                         
         end
+        
         
     end
     
