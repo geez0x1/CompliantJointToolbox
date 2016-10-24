@@ -90,7 +90,7 @@ classdef genericJoint < handle
         cog_a2	 = 0;      % Sine amplitude [Nm]                                   (default: 0)
         cog_f	 = 0;      % Spatial frequency [periods/revolution]                (default: 0)
         % Gear
-        n        = 100;    % Gear ratio [.]                                        (default: 100)
+        n        = 100;    % Transmission ratio [.]                                (default: 100)
         %
         % Electrical Properties
         %
