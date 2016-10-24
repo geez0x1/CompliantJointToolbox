@@ -5,7 +5,7 @@
 
 \begin{document}
 \renewcommand{\arraystretch}{1.2}
-\actuatorname{Walk-Man Big Motor (B11)}
+\actuatorname{\valJointName}
 
 \begin{multicols}{2}
 \begin{tabularx}{0.95\columnwidth}[c]{p{3cm}lXr}
@@ -227,7 +227,7 @@ The rated parameters together with the No-Load parameters frame the conditions a
 
 \emph{Stall Torque:} The load torque at which the motor stops moving, if the rated voltage $\symRatedvoltage$ is applied to the windings.
 
-\emph{Starting Current:} The winding current corresponding to the stall torque $symStalltorque$. When applying the rated voltage $\symRatedvoltage$ to the actuator at rest, the initial current corresponds to starting current, if the power supply can provide it.
+\emph{Starting Current:} The winding current corresponding to the stall torque $\symStalltorque$. When applying the rated voltage $\symRatedvoltage$ to the actuator at rest, the initial current corresponds to starting current, if the power supply can provide it.
 
 \emph{Torque-Speed Gradient:} Slope of the torque-speed curve.
 
@@ -247,6 +247,6 @@ The peak operation parameters define the maximum intermittend operating conditio
 
 \emph{Peak Mechanical Power:} Computed as the product of the peak torque $\symMaxtorque$ and peak speed $\symMaxspeed$.
 
-\end{multicols}{2}
+\end{multicols}
 
 \end{document}
