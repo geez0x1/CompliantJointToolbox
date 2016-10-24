@@ -78,14 +78,25 @@ function setupOnce(testCase)  % do not change function name
 close all;
 clc;
 
-testCase.('TestData').allParams = {'dummyMotor'};
+jb = jointBuilder;
+jb.overwrite = 1;
 
+motorName = 'dummyMotor';
+dynName = 'full';
+jb.buildJoint(motorName, dynName);
+addpath(jb.buildDir)
+
+testCase.('TestData').aJoint = eval([motorName,'_',dynName]);
+testCase.('TestData').aJoint.name = 'Dummy Motor';
+
+testCase.('TestData').jb = jb;
 
 end
 
 function teardownOnce(testCase)  % do not change function name
 % change back to original path, for example
 
+testCase.('TestData').jb.purge;
 
 end
 
@@ -112,19 +123,24 @@ function testTorqueSpeedCurve(testCase)
 % Test specific code
 
 % shorthands
-allParams = testCase.('TestData').allParams;
-nPar = numel(allParams);
+% allParams = testCase.('TestData').allParams;
+% nPar = numel(allParams);
+% 
+% for iPar = 1:nPar
+%    eval(allParams{iPar});
+%    
+%    dsg = dataSheetGenerator(params);
+%    
+%    dsg.createDataSheet;
+%    
+% end
 
-for iPar = 1:nPar
-   eval(allParams{iPar});
-   
-   dsg = dataSheetGenerator(params);
-   
-   dsg.createDataSheet;
-   
-end
+dsg = dataSheetGenerator(testCase.('TestData').aJoint);
 
+dsg.createDataSheet;
 
 verifyTrue(testCase,true) % If we arrive here, everything is fine.
+
+delete( dsg.assembleOutFileName );
     
 end
