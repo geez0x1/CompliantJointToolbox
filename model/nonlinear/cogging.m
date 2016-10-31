@@ -1,6 +1,6 @@
 %COGGING Calculate magnetic cogging torque
 %
-% [tau] = viscous_pos_dep(jointObj, x)
+% [tau] = cogging(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -14,7 +14,7 @@
 %     x = [q_g, q_g_dot]'                               rigid
 %
 % Outputs::
-%   tau: cogging torque
+%   tau: cogging torque vector of appropriate size
 %
 % Notes::
 %
