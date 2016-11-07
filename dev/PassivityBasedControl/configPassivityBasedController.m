@@ -1,4 +1,4 @@
-jointModel = WMBig10k_rigid_gearbox;%_coulomb;
+jointModel = B12_rigid_gearbox;%_coulomb;
 
 jointModel.I_b = 1;
 
@@ -47,3 +47,4 @@ alpha = 1300;
 
 Ccl = [KB;-KB; 0; 0;].';
 clsys = ss(A-B(:,1)*K,B(:,1),Ccl,0)
+olsys = ss(A,B(:,1),C,0)

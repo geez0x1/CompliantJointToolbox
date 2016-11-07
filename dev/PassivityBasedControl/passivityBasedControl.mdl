@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.782"
+    ComputedModelVersion    "1.787"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -30,7 +30,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1489.0, -154.0, 1086.0, 728.0]
+      Location		      [1358.0, -320.0, 1936.0, 1096.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -54,9 +54,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1036.0, 551.0]
+	Extents			[1886.0, 922.0]
 	ZoomFactor		[1.0]
-	Offset			[781.10256504196627, 353.14665903025252]
+	Offset			[107.06923170863274, 25.415706649299693]
       }
     }
   }
@@ -66,9 +66,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "joern"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Oct 26 22:32:24 2016"
-  RTWModifiedTimeStamp	  399421757
-  ModelVersionFormat	  "1.%<AutoIncrement:782>"
+  LastModifiedDate	  "Sat Oct 29 19:57:51 2016"
+  RTWModifiedTimeStamp	  399671870
+  ModelVersionFormat	  "1.%<AutoIncrement:787>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -992,7 +992,7 @@ Model {
   }
   System {
     Name		    "passivityBasedControl"
-    Location		    [1489, -154, 2575, 574]
+    Location		    [1358, -320, 3294, 776]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1006,7 +1006,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "999"
+    SIDHighWatermark	    "1009"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector"
@@ -1385,11 +1385,11 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "JointModel"
-      SID		      "765"
+      Name		      "JointModel1"
+      SID		      "1008"
       Ports		      [2, 1]
-      Position		      [1125, 256, 1290, 354]
-      ZOrder		      221
+      Position		      [1210, 256, 1375, 354]
+      ZOrder		      309
       LibraryVersion	      "1.70"
       SourceBlock	      "SEA_library_models/Joint models/JointModel"
       SourceType	      ""
@@ -1601,38 +1601,7 @@ Model {
       Position		      [1725, 354, 1755, 386]
       ZOrder		      189
       Floating		      off
-      Location		      [1, 48, 1367, 727]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      List {
-	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
-	AxesColor		"[0 0 0]"
-	AxesTickColor		"[1 1 1]"
-	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-	LineStyles		"-|-|-|-|-|-"
-	LineWidths		"[0.8 0.8 0.8 0.8 0.8 0.8]"
-	MarkerStyles		"none|none|none|none|none|none"
-      }
-      ShowLegends	      off
-      TimeRange		      "60"
-      YMin		      "-4"
-      YMax		      "4"
-      LimitDataPoints	      off
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Torque1"
-      SID		      "998"
-      Ports		      [1]
-      Position		      [1260, 94, 1290, 126]
-      ZOrder		      307
-      Floating		      off
-      Location		      [7, 54, 1373, 733]
+      Location		      [2335, -256, 3279, 759]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1651,8 +1620,39 @@ Model {
       }
       ShowLegends	      off
       TimeRange		      "60"
-      YMin		      "-12"
-      YMax		      "12"
+      YMin		      "-2.25"
+      YMax		      "2.25"
+      LimitDataPoints	      off
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Torque1"
+      SID		      "998"
+      Ports		      [1]
+      Position		      [1260, 94, 1290, 126]
+      ZOrder		      307
+      Floating		      off
+      Location		      [10, 57, 1358, 718]
+      Open		      on
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      List {
+	ListType		ScopeGraphics
+	FigureColor		"[0.5 0.5 0.5]"
+	AxesColor		"[0 0 0]"
+	AxesTickColor		"[1 1 1]"
+	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+	LineStyles		"-|-|-|-|-|-"
+	LineWidths		"[0.8 0.8 0.8 0.8 0.8 0.8]"
+	MarkerStyles		"none|none|none|none|none|none"
+      }
+      ShowLegends	      off
+      TimeRange		      "60"
+      YMin		      "-3.25e+35"
+      YMax		      "2.5e+34"
       SaveName		      "ScopeData2"
       LimitDataPoints	      off
     }
@@ -1668,10 +1668,14 @@ Model {
       SaturateOnIntegerOverflow	off
     }
     Line {
-      ZOrder		      550
-      SrcBlock		      "JointModel"
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      982
+      SrcBlock		      "JointModel1"
       SrcPort		      1
-      Points		      [249, 0]
+      Points		      [164, 0]
       Branch {
 	ZOrder			868
 	Points			[0, 320]
@@ -1940,10 +1944,10 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      905
+      ZOrder		      981
       SrcBlock		      "tau2i"
       SrcPort		      1
-      DstBlock		      "JointModel"
+      DstBlock		      "JointModel1"
       DstPort		      1
     }
     Line {
@@ -2013,7 +2017,7 @@ Stateflow {
   }
   chart {
     id			    2
-    name		    "JointModel/nonLinDynamicsFcn"
+    name		    "JointModel1/nonLinDynamicsFcn"
     windowPosition	    [352.761 488.141 161 328]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1280 1024 1.000677131425054]
@@ -2022,6 +2026,7 @@ Stateflow {
     firstJunction	    6
     viewObj		    2
     machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
     subviewS {
     }
     ssIdHighWaterMark	    5
@@ -2050,17 +2055,17 @@ Stateflow {
       isEML		      1
       script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.verbose = 0.000000;\nparams.debug = 0.00000"
       "0;\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;\nparams.c_FE = 460.000000;\nparams.isSym = 0.000000;\npar"
-      "ams.diam = 100.000000;\nparams.len = 150.000000;\nparams.m = 2.000000;\nparams.I_m = 1.388142;\nparams.I_g = 0.9"
-      "25387;\nparams.I_b = 1.000000;\nparams.k_g = 75000.000000;\nparams.k_b = 13678.000000;\nparams.d_m = 3.590000;\n"
-      "params.d_g = 3.590000;\nparams.d_b = 3.590000;\nparams.d_m_n = 3.400000;\nparams.d_g_n = 3.400000;\nparams.d_b_n"
-      " = 3.400000;\nparams.d_mg = 296.000000;\nparams.d_gb = 35.000000;\nparams.d_cm = 11.347000;\nparams.d_cg = 11.34"
-      "7000;\nparams.d_cb = 0.000000;\nparams.d_cm_n = 11.667000;\nparams.d_cg_n = 11.667000;\nparams.d_cb_n = 0.000000"
-      ";\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.cog_a1 = 0.000000;\nparams.cog_a2 = 0.000000;\nparams."
-      "cog_f = 0.000000;\nparams.n = 100.000000;\nparams.k_t = 0.045300;\nparams.r = 0.099000;\nparams.x = 0.000168;\np"
-      "arams.v_0 = 24.000000;\nparams.i_p = 40.000000;\nparams.dq_p = 5.860000;\nparams.r_th1 = 0.290000;\nparams.r_th2"
-      " = 3.450000;\nparams.T_thw = 3.960000;\nparams.T_thm = 1240.000000;\nparams.Tmp_WMax = 120.000000;\nparams.Tmp_A"
-      "Nom = 25.000000;\nparams.name = 'WMBig10k_rigid_gearbox';\nparams.paramName = 'WMBig10k';\nparams.modelName = 'r"
-      "igid_gearbox';\nparams.nonlinearModelName = '';\nparams.Ts = 0.001000;\ntau =zeros(size(x));\n	end\n\n"
+      "ams.diam = 100.000000;\nparams.len = 150.000000;\nparams.m = 2.000000;\nparams.I_m = 0.550000;\nparams.I_g = 0.2"
+      "63000;\nparams.I_b = 1.000000;\nparams.k_g = 30000.000000;\nparams.k_b = 1623.000000;\nparams.d_m = 0.000000;\np"
+      "arams.d_g = 2.515400;\nparams.d_b = 0.000000;\nparams.d_m_n = 0.000000;\nparams.d_g_n = 2.694000;\nparams.d_b_n "
+      "= 0.000000;\nparams.d_mg = 0.000000;\nparams.d_gb = 0.000000;\nparams.d_cm = 0.000000;\nparams.d_cg = 0.816300;\n"
+      "params.d_cb = 0.000000;\nparams.d_cm_n = 0.000000;\nparams.d_cg_n = 0.889200;\nparams.d_cb_n = 0.000000;\nparams"
+      ".d_s = 1.800000;\nparams.v_s = 0.010000;\nparams.cog_a1 = 1.500000;\nparams.cog_a2 = 0.000000;\nparams.cog_f = 1"
+      "300.000000;\nparams.n = 100.000000;\nparams.k_t = 0.044500;\nparams.r = 0.088500;\nparams.x = 0.000140;\nparams."
+      "v_0 = 24.000000;\nparams.i_p = 40.000000;\nparams.dq_p = 5.860000;\nparams.r_th1 = 0.290000;\nparams.r_th2 = 3.4"
+      "50000;\nparams.T_thw = 3.960000;\nparams.T_thm = 1240.000000;\nparams.Tmp_WMax = 120.000000;\nparams.Tmp_ANom = "
+      "25.000000;\nparams.name = 'B12_rigid_gearbox';\nparams.paramName = 'B12';\nparams.modelName = 'rigid_gearbox';\n"
+      "params.nonlinearModelName = '';\nparams.Ts = 0.000500;\ntau =zeros(size(x));\n	end\n\n"
       editorLayout	      "100 M4x1[205 227 1080 733]"
     }
   }
@@ -2138,7 +2143,7 @@ Stateflow {
   }
   instance {
     id			    8
-    name		    "JointModel/nonLinDynamicsFcn"
+    name		    "JointModel1/nonLinDynamicsFcn"
     machine		    1
     chart		    2
   }
