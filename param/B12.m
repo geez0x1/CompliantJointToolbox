@@ -47,8 +47,8 @@ params.('d_m_n')    = 0;                         %% Motor Damping - negative dir
 params.('d_g_n')    = 2.6940;                    %% Gearbox Damping - negative direction [Nms/rad]
 params.('d_b_n')    = 0;                         %% Torsion bar damping - negative direction [Nms/rad]
 % Linear internal viscous friction
-params.('d_mg')     = 0;                         %% Gearbox internal damping [Nms/rad] (not identified)
-params.('d_gb')     = 0;                         %% Torsion bar internal damping [Nms/rad] (not identified)
+params.('d_mg')     = 252.5627;                         %% Gearbox internal damping [Nms/rad] (not identified)
+params.('d_gb')     = 10.3300;                         %% Torsion bar internal damping [Nms/rad] (not identified)
 % Coulomb friction
 params.('d_cm')     = 0;                         %% Motor Coulomb damping [Nm]
 params.('d_cg')     = 0.8163;                    %% Gearbox Coulomb damping [Nm]
