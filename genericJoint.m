@@ -42,6 +42,17 @@ classdef genericJoint < handle
         debug   % debug flag
     end
     
+    properties (GetAccess = private)
+           % Blacklist (non-variable property names)
+            blacklist = {   'verbose';
+                'debug';
+                'name';
+                'paramName';
+                'modelName';
+                'nonlinearModelName';
+                };
+    end
+    
     properties (SetAccess = private)
         a_CU    = 0.0039;  % Resistance coefficient of copper [1/K]
         c_CU    = 380;     % Specific thermal capacitance of copper [J/kg/K]
@@ -110,8 +121,9 @@ classdef genericJoint < handle
         r_th2    = 3.45;    % Thermal Resistance Housing to Air [K/W]              (default: 3.45)
         T_thw    = 3.96;    % Thermal Time Constant of the Windings [s]            (default: 3.96)
         T_thm    = 1240;    % Thermal Time Constant of the Motor [s]               (default: 1240)
-        Tmp_WMax = 120;     % Maximum Armature Temperature [ï¿½C]                    (default: 120)
-        Tmp_ANom = 25;      % Normal Ambient Temperature [ï¿½C]                      (default: 25)
+        Tmp_WMax = 120;     % Maximum Armature Temperature [°C]                    (default: 120)
+        Tmp_ANom = 25;      % Normal Ambient Temperature [°C]                      (default: 25)
+        Tmp_WMax = 120;     Normal Ambient Temperature [?C]                      (default: 25)
         
         % Desciptive Properties
         name                % Joint name
@@ -378,7 +390,7 @@ classdef genericJoint < handle
             %
             % See also t_r, p_rce, genericJoint, jointBuilder.
             
-            out = (this.I_m + this.I_g + this.I_l)*this.r / this.n^2 / this.k_t^2;
+            out = (this.I_m + this.I_g + this.I_l) * this.r / this.n^2 / this.k_t^2;
         end
         
         %__________________________________________________________________
@@ -411,7 +423,6 @@ classdef genericJoint < handle
         end
         
         %__________________________________________________________________
-        
         function out = dq_0(this)
             % DQ_0 Zero-Torque Speed [rad/s]
             %
@@ -437,6 +448,7 @@ classdef genericJoint < handle
             out = this.k_w * this.v_0 / this.n;
         end
         
+        %__________________________________________________________________
         function out = dq_NL(this)
             % DQ_NL No-Load Speed [rad/s]
             %
@@ -466,7 +478,6 @@ classdef genericJoint < handle
         end
         
         %__________________________________________________________________
-        
         function out = t_NL(this)
             % t_NL No load torque [Nm]
             %
@@ -498,7 +509,6 @@ classdef genericJoint < handle
         
         
         %__________________________________________________________________
-        
         function out = i_NL(this)
             % i_NL No load current [A]
             %
@@ -527,7 +537,6 @@ classdef genericJoint < handle
         
         
         %__________________________________________________________________
-        
         function out = dq_r(this)
             % DQ_r Rated speed [rad/s]
             %
@@ -852,7 +861,7 @@ classdef genericJoint < handle
         end
         
         %__________________________________________________________________
-        function sys = getTF(obj)
+        function sys = getTF(this)
             % GETTF Get continuous time transfer function representation of the
             % linear dynamics.
             %
@@ -875,8 +884,20 @@ classdef genericJoint < handle
             %  Wesley Roozing, wesley.roozing@iit.it
             %
             % See also getStateSpace, getTFd, genericJoint, jointBuilder.
-            sys     = obj.getStateSpace();
-            sys     = tf(sys);
+            
+            if ~this.isSym
+                sys     = this.getStateSpace();
+                sys     = tf(sys);
+            else
+                syms s
+                [A B C D ] = this.getDynamicsMatrices;
+                E = sym(eye(size(A,1)));
+                sys = simplify( C*inv(s*E-A)*B );
+                
+            end
+            
+            
+            
         end
         
         %__________________________________________________________________
@@ -909,15 +930,39 @@ classdef genericJoint < handle
             sysd    = tf(sys);
         end
         
+        %__________________________________________________________________
+        function flag = isSym(this)
+        
+            % Get all properties
+            props = properties(this);            
+            
+            % Get symbolic properties
+            symProps    = setdiff(props, this.blacklist);
+            nProps      = numel(symProps);
+            
+            flag = 0;
+            
+            for iProps = 1:nProps
+                
+                if isa(this.(symProps{iProps}),'sym')
+                    flag = 1;   % Set the flag.
+                    break;      % We found at least one symbolic property, we can break the loop hera.
+                end
+            end           
+        
+        end
         
         %__________________________________________________________________
         function makeSym(obj)
             % MAKESYM Return a symbolic copy of the joint model.
             %
-            %   gj_sym = gj.makeSym
+            %   gj.makeSym({doSparse})
             %
             % Inputs:
-            %
+            %   doSparse:  If false, all parameters are turned into generic 
+            %              symbolic  ariables. If true (default), 
+            %              parameters that are exactly zero remain zero in 
+            %              the symbolic version of the model.
             % Outputs:
             %   gj_sym: Converts of the original object into a symbolic model
             %   with all properties being symbolic variables.
@@ -934,31 +979,109 @@ classdef genericJoint < handle
             %
             % See also getStateSpaceD, getTFd, genericJoint, jointBuilder.
             
+            doSparse = 1;
+            if nargin == 2
+                doSparse = varargin{1};
+            end
+            
             % Get all properties
             props = properties(obj);
             
-            % Blacklist (non-variable property names)
-            blacklist = {   'verbose';
-                'debug';
-                'name';
-                'paramName';
-                'modelName';
-                'nonlinearModelName';
-                };
             
             % Get symbolic properties
-            symProps    = setdiff(props, blacklist);
+            symProps    = setdiff(props, this.blacklist);
             nProps      = numel(symProps);
             
             % Set each symbolic property to symbolic
             for iProps = 1:nProps
-                obj.(symProps{iProps}) = sym(symProps{iProps},'real');
+                
+                if doSparse && this.(symProps{iProps}) == 0
+                    this.(symProps{iProps}) = 0;
+                else
+                    this.(symProps{iProps}) = sym(symProps{iProps},'real');
+                end
             end
+
         end
         
         
         
+        %__________________________________________________________________
+        function makeNum(this)
+            % MAKESYM Converts all properties into numeric variables by
+            % reloading the original parameters from the parameter file.
+            %
+            %   gj.makeNum
+            %
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also makeSym, resetParams, genericJoint, jointBuilder.
+            
+            if ~this.isSym
+                warning(['This model is not symbolic. Use resetParams if you wish to reset any changes to the model parameters.'])
+            else
+                this.resetParams;
+            end
+
+        end
         
+        %__________________________________________________________________
+        function resetParams(this, varargin)
+            % RESETPARAMS Reload the original parameters from the parameter file.
+            %
+            %   gj.resetParams([params])
+            %
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also getStateSpaceD, getTFd, genericJoint, jointBuilder.
+            
+            
+            % load parameters from file
+            run(this.paramName);
+            
+            % Gather information about the input parameter set
+            parFields = fields(params);
+            nFields = size(parFields,1);
+            
+            % Copy parameters into the class properties
+            for iFields = 1:nFields
+                % check if parameter is actually a property
+                if isprop(this,parFields{iFields})
+                    this.(parFields{iFields}) = params.(parFields{iFields});
+                else
+                    warning(['NOT A FIELD: ',parFields{iFields}, ' is not a field of genericJoint class.'])
+                end
+            end
+            
+        end
     end
     
     %__________________________________________________________________
