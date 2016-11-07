@@ -123,7 +123,6 @@ classdef genericJoint < handle
         T_thm    = 1240;    % Thermal Time Constant of the Motor [s]               (default: 1240)
         Tmp_WMax = 120;     % Maximum Armature Temperature [°C]                    (default: 120)
         Tmp_ANom = 25;      % Normal Ambient Temperature [°C]                      (default: 25)
-        Tmp_WMax = 120;     Normal Ambient Temperature [?C]                      (default: 25)
         
         % Desciptive Properties
         name                % Joint name
@@ -895,9 +894,6 @@ classdef genericJoint < handle
                 sys = simplify( C*inv(s*E-A)*B );
                 
             end
-            
-            
-            
         end
         
         %__________________________________________________________________
@@ -953,7 +949,7 @@ classdef genericJoint < handle
         end
         
         %__________________________________________________________________
-        function makeSym(obj)
+        function makeSym(this,varargin)
             % MAKESYM Return a symbolic copy of the joint model.
             %
             %   gj.makeSym({doSparse})
@@ -985,7 +981,7 @@ classdef genericJoint < handle
             end
             
             % Get all properties
-            props = properties(obj);
+            props = properties(this);
             
             
             % Get symbolic properties
@@ -1004,12 +1000,10 @@ classdef genericJoint < handle
 
         end
         
-        
-        
         %__________________________________________________________________
         function makeNum(this)
             % MAKESYM Converts all properties into numeric variables by
-            % reloading the original parameters from the parameter file.
+            % reloading the default parameters from the class file.
             %
             %   gj.makeNum
             %
@@ -1020,7 +1014,8 @@ classdef genericJoint < handle
             %
             %
             % Notes::
-            %
+            %   This method is effectively a wrapper to 'resetParams'. It
+            %   exists as a complement to the method 'makeSym'.
             %
             % Examples::
             %
@@ -1031,17 +1026,13 @@ classdef genericJoint < handle
             %
             % See also makeSym, resetParams, genericJoint, jointBuilder.
             
-            if ~this.isSym
-                warning(['This model is not symbolic. Use resetParams if you wish to reset any changes to the model parameters.'])
-            else
-                this.resetParams;
-            end
-
+            this.resetParams;
+            
         end
         
         %__________________________________________________________________
         function resetParams(this, varargin)
-            % RESETPARAMS Reload the original parameters from the parameter file.
+            % RESETPARAMS Reload the original parameters from the class file.
             %
             %   gj.resetParams([params])
             %
@@ -1064,8 +1055,8 @@ classdef genericJoint < handle
             % See also getStateSpaceD, getTFd, genericJoint, jointBuilder.
             
             
-            % load parameters from file
-            run(this.paramName);
+            % load default parameters from class file
+            params = eval(this.name);
             
             % Gather information about the input parameter set
             parFields = fields(params);
@@ -1080,8 +1071,8 @@ classdef genericJoint < handle
                     warning(['NOT A FIELD: ',parFields{iFields}, ' is not a field of genericJoint class.'])
                 end
             end
-            
         end
+        
     end
     
     %__________________________________________________________________
@@ -1143,5 +1134,5 @@ classdef genericJoint < handle
         tau = getNonlinearDynamics(obj, x, dx)
         
     end
-    
+  
 end
