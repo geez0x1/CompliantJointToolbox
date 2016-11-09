@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Nov 09 15:01:52 2016"
-  RTWModifiedTimeStamp	  400604510
-  ModelVersionFormat	  "1.%<AutoIncrement:81>"
+  LastModifiedDate	  "Wed Nov 09 16:59:05 2016"
+  RTWModifiedTimeStamp	  400611529
+  ModelVersionFormat	  "1.%<AutoIncrement:85>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1003,7 +1003,7 @@ Library {
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      10
+	      Dimension		      11
 	      Object {
 		$ObjectID		19
 		Type			"edit"
@@ -1045,9 +1045,18 @@ Library {
 		Name			"quantize"
 		Prompt			"Quantize measurements"
 		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
 		$ObjectID		25
+		Type			"edit"
+		Name			"quantize_bits"
+		Prompt			"Quantization bits"
+		Value			"19"
+		Enabled			"off"
+	      }
+	      Object {
+		$ObjectID		26
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -1055,7 +1064,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		26
+		$ObjectID		27
 		Type			"checkbox"
 		Name			"output_noise_enabled"
 		Prompt			"Enable measurement noise"
@@ -1063,7 +1072,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'output_noise_enabled', 'var_y');"
 	      }
 	      Object {
-		$ObjectID		27
+		$ObjectID		28
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
@@ -1071,7 +1080,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		28
+		$ObjectID		29
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -1083,7 +1092,7 @@ Library {
 	  }
 	  System {
 	    Name		    "JointModel"
-	    Location		    [-1, -1, 1921, 1081]
+	    Location		    [-1632, 27, 64, 1089]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1095,7 +1104,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "125"
 	    SIDHighWatermark	    "718"
 	    Block {
 	      BlockType		      Inport
@@ -1298,7 +1307,7 @@ Library {
 	      Variant		      off
 	      System {
 		Name			"Quantize"
-		Location		[-1, -1, 1921, 1081]
+		Location		[-1632, 27, 64, 1089]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -1339,7 +1348,7 @@ Library {
 		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [-1, -1, 1921, 1081]
+		    Location		    [-1632, 27, 64, 1089]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -1375,7 +1384,7 @@ Library {
 		    SID			    "3:684"
 		    Position		    [95, 20, 125, 50]
 		    ZOrder		    213
-		    QuantizationInterval    "1/(2^19)"
+		    QuantizationInterval    "1/(2^quantize_bits)"
 		    }
 		    Block {
 		    BlockType		    Outport
@@ -1483,7 +1492,7 @@ Library {
 	      Variant		      off
 	      System {
 		Name			"Quantize1"
-		Location		[-1, -1, 1921, 1081]
+		Location		[-1632, 27, 64, 1089]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -1524,7 +1533,7 @@ Library {
 		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [-1, -1, 1921, 1081]
+		    Location		    [-1632, 27, 64, 1089]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -1560,7 +1569,7 @@ Library {
 		    SID			    "3:705"
 		    Position		    [95, 20, 125, 50]
 		    ZOrder		    213
-		    QuantizationInterval    "1/(2^19)"
+		    QuantizationInterval    "1/(2^quantize_bits)"
 		    }
 		    Block {
 		    BlockType		    Outport
@@ -1668,7 +1677,7 @@ Library {
 	      Variant		      off
 	      System {
 		Name			"Quantize2"
-		Location		[-1, -1, 1921, 1081]
+		Location		[-1632, 27, 64, 1089]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -1709,7 +1718,7 @@ Library {
 		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [-1, -1, 1921, 1081]
+		    Location		    [-1632, 27, 64, 1089]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -1745,7 +1754,7 @@ Library {
 		    SID			    "3:715"
 		    Position		    [95, 20, 125, 50]
 		    ZOrder		    213
-		    QuantizationInterval    "1/(2^19)"
+		    QuantizationInterval    "1/(2^quantize_bits)"
 		    }
 		    Block {
 		    BlockType		    Outport
@@ -3076,8 +3085,6 @@ Stateflow {
     viewObj		    2
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -3104,11 +3111,11 @@ Stateflow {
       isEML		      1
       script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.verbose = 0.000000;\nparams.debug = 0.00000"
       "0;\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;\nparams.c_FE = 460.000000;\nparams.diam = 100.000000;\npa"
-      "rams.len = 150.000000;\nparams.m = 2.000000;\nparams.I_m = 0.671555;\nparams.I_g = 0.322297;\nparams.I_b = 0.106"
-      "248;\nparams.k_g = 75000.000000;\nparams.k_b = 2000.000000;\nparams.d_m = 1.478600;\nparams.d_g = 11.828800;\npa"
-      "rams.d_b = 1.478600;\nparams.d_m_n = 1.616200;\nparams.d_g_n = 12.929600;\nparams.d_b_n = 1.616200;\nparams.d_mg"
-      " = 296.000000;\nparams.d_gb = 35.000000;\nparams.d_cm = 0.185790;\nparams.d_cg = 1.486320;\nparams.d_cb = 0.1857"
-      "90;\nparams.d_cm_n = 0.242380;\nparams.d_cg_n = 1.939040;\nparams.d_cb_n = 0.242380;\nparams.d_s = 8.900000;\npa"
+      "rams.len = 150.000000;\nparams.m = 2.000000;\nparams.I_m = 0.671555;\nparams.I_g = 0.322297;\nparams.I_l = 0.086"
+      "700;\nparams.k_g = 75000.000000;\nparams.k_b = 2000.000000;\nparams.d_m = 1.478600;\nparams.d_g = 11.828800;\npa"
+      "rams.d_l = 0.000000;\nparams.d_m_n = 1.616200;\nparams.d_g_n = 12.929600;\nparams.d_l_n = 0.000000;\nparams.d_mg"
+      " = 296.000000;\nparams.d_gl = 35.000000;\nparams.d_cm = 0.185790;\nparams.d_cg = 1.486320;\nparams.d_cl = 0.0000"
+      "00;\nparams.d_cm_n = 0.242380;\nparams.d_cg_n = 1.939040;\nparams.d_cl_n = 0.000000;\nparams.d_s = 8.900000;\npa"
       "rams.v_s = 0.010000;\nparams.cog_a1 = 1.500000;\nparams.cog_a2 = 0.000000;\nparams.cog_f = 600.000000;\nparams.n"
       " = 100.000000;\nparams.k_t = 0.045300;\nparams.r = 0.088500;\nparams.x = 0.000140;\nparams.v_0 = 24.000000;\npar"
       "ams.i_p = 40.000000;\nparams.dq_p = 5.860000;\nparams.r_th1 = 0.290000;\nparams.r_th2 = 3.450000;\nparams.T_thw "
