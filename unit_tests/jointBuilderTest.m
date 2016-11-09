@@ -159,48 +159,6 @@ nPar = numel(allParams);
     verifyTrue(testCase,true) % If we arrive here, everything is fine.
 end
 
-
-function testPositionDependentModels(testCase)
-% Test to build models with position dependent disturbances.
-
-% shorthands
-jb = testCase.('TestData').JB;
-allParams = testCase.('TestData').allParams;
-nPar = numel(allParams);
-
-% tests
-    for iPar = 1:nPar
-        
-        jb.buildJoint(allParams{iPar}, 'continuous_full', 'viscous_pos_dep');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed', 'viscous_pos_dep');
-        jb.buildJoint(allParams{iPar}, 'continuous_rigid_gearbox', 'viscous_pos_dep');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed_rigid_gearbox', 'viscous_pos_dep');
-        
-    end
-    verifyTrue(testCase,true) % If we arrive here, everything is fine.
-end
-
-
-function testPositionDependentModels(testCase)
-% Test to build models with position dependent disturbances.
-
-% shorthands
-jb = testCase.('TestData').JB;
-allParams = testCase.('TestData').allParams;
-nPar = numel(allParams);
-
-% tests
-    for iPar = 1:nPar
-        
-        jb.buildJoint(allParams{iPar}, 'continuous_full', 'viscous_pos_dep');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed', 'viscous_pos_dep');
-        jb.buildJoint(allParams{iPar}, 'continuous_rigid_gearbox', 'viscous_pos_dep');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed_rigid_gearbox', 'viscous_pos_dep');
-        
-    end
-    verifyTrue(testCase,true) % If we arrive here, everything is fine.
-end
-
 function testMultipleNonlinearTerms(testCase)
 % Test to build models with combinations of nonlinear terms
 
