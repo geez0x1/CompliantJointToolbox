@@ -48,10 +48,10 @@
 function [A, B, C, I, D, K] = full_dyn(obj)
     
     % The computations below assume a state vector definition according to:
-    % x = [q_m, q_g, q_b, q_m_dot, q_g_dot, q_b_dot]', where 
+    % x = [q_m, q_g, q_l, q_m_dot, q_g_dot, q_l_dot]', where 
     % q_m is the motor angle,
     % q_g is the gearbox output angle
-    % q_b is the flange angle (output of the torsion bar)
+    % q_l is the flange angle (output of the torsion bar)
     %
     % The '_dot' denotes the temporal derivative.
 

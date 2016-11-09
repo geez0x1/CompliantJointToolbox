@@ -47,8 +47,8 @@
 function [A, B, C, I, D, K] = rigid(obj)
     
     % The computations below assume a state vector definition according to:
-    % x = [q_b, q_b_dot]', where 
-    % q_b is the flange angle (output of the torsion bar)
+    % x = [q_l, q_l_dot]', where 
+    % q_l is the flange angle (output of the torsion bar)
     %
     % The '_dot' denotes the temporal derivative.
     
