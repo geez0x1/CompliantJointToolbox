@@ -55,14 +55,14 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
     % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
-    I = diag([obj.I_m + obj.I_g, obj.I_b]);
+    I = diag([obj.I_m + obj.I_g, obj.I_l]);
 
     % Damping matrix
     d_m     = 0 * obj.d_m;
-    d_b     = 0 * obj.d_b;
-    d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
-    D = [   d_m + d_g + d_gb,       -d_gb; ...
-            -d_gb,                  d_b + d_gb      ];
+    d_l     = 0 * obj.d_l;
+    d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
+    D = [   d_m + d_g + d_gl,       -d_gl; ...
+            -d_gl,                  d_l + d_gl      ];
 
     % Stiffness matrix
     k_b = obj.k_b; % shorthands %#ok<*PROP>

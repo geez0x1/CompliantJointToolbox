@@ -56,17 +56,17 @@ function [A, B, C, I, D, K] = full_dyn(obj)
     % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
-    I = diag([obj.I_m, obj.I_g, obj.I_b]);
+    I = diag([obj.I_m, obj.I_g, obj.I_l]);
 
     % Damping matrix
     d_m     = obj.d_m;
     d_g     = obj.d_g;
-    d_b     = obj.d_b;
+    d_l     = obj.d_l;
     d_mg    = obj.d_mg;
-    d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
+    d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
     D = [   d_m + d_mg,     -d_mg,                  0; ...
-            -d_mg,          d_g + d_mg + d_gb,      -d_gb; ...
-            0,              -d_gb,                  d_b + d_gb  ];
+            -d_mg,          d_g + d_mg + d_gl,      -d_gl; ...
+            0,              -d_gl,                  d_l + d_gl  ];
 
     % Stiffness matrix
     k_g = obj.k_g;

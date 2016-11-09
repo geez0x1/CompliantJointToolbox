@@ -55,7 +55,7 @@ function [A, B, C, I, D, K] = rigid_no_friction(obj)
     % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
-    I = obj.I_m + obj.I_g + obj.I_b;
+    I = obj.I_m + obj.I_g + obj.I_l;
 
     % Damping matrix
     D = 0;

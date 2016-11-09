@@ -53,13 +53,13 @@ function [A, B, C, I, D, K] = rigid(obj)
     % The '_dot' denotes the temporal derivative.
     
     % Inertia matrix
-    I = obj.I_m + obj.I_g + obj.I_b;
+    I = obj.I_m + obj.I_g + obj.I_l;
 
     % Damping matrix
     d_m = obj.d_m;
     d_g = obj.d_g;
-    d_b = obj.d_b; % shorthands %#ok<*PROP>
-    D = d_m + d_g + d_b;
+    d_l = obj.d_l; % shorthands %#ok<*PROP>
+    D = d_m + d_g + d_l;
 
     % There is no stiffness (rigid joint)
     K = 0;

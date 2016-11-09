@@ -62,9 +62,9 @@ function [A, B, C, I, D, K] = output_fixed_no_friction(obj)
     d_m     = 0 * obj.d_m;
     d_g     = 0 * obj.d_g;
     d_mg    = obj.d_mg;
-    d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
+    d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
     D = [   d_m + d_mg,     -d_mg; ...
-            -d_mg,          d_g + d_mg + d_gb   ];
+            -d_mg,          d_g + d_mg + d_gl   ];
 
     % Stiffness matrix
     k_g = obj.k_g;

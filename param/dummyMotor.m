@@ -39,21 +39,21 @@ n = 160;
 params.('m')        = 2;                    %% Total mass [kg]
 params.('I_m')      = 5.480e-5 * n^2;       %% Motor rotor inertia [kg m^2] (datasheet)
 params.('I_g')      = 2.63e-5 * n^2;        %% Gear inertia [kg m^2] (datasheet)
-params.('I_b')      = 0.0867;               %% Torsion bar inertia [kg m^2] (datasheet)
+params.('I_l')      = 0.0867;               %% Torsion bar inertia [kg m^2] (datasheet)
 % Stiffnesses
 params.('k_g')      = 31e3;                 %% Gearbox stiffness [Nm/rad]
 params.('k_b')      = 10000;                %% Torsion bar stiffness [Nm/rad] (datasheet)
 % Linear viscous friction
 params.('d_m')      = 14.786 * (1/10)/n;    	%% Motor Damping [Nms/rad]
 params.('d_g')      = 14.786 * (8/10)/n;      %% Gearbox damping [Nms/rad]
-params.('d_b')      = 14.786 * (1/10)/n;      %% Torsion bar damping [Nms/rad]
+params.('d_l')      = 14.786 * (1/10)/n;      %% Torsion bar damping [Nms/rad]
 % Asymmetric viscous friction
 params.('d_m_n')    = 16.162 * (1/10)/n;      %% Motor Damping - negative direction [Nms/rad]
 params.('d_g_n')    = 16.162 * (8/10)/n;      %% Gearbox Damping - negative direction [Nms/rad]
-params.('d_b_n')    = 16.162 * (1/10)/n;      %% Torsion bar damping - negative direction [Nms/rad]
+params.('d_l_n')    = 16.162 * (1/10)/n;      %% Torsion bar damping - negative direction [Nms/rad]
 % Linear internal viscous friction
 params.('d_mg')     = 296.0;                %% Gearbox internal damping [Nms/rad] (not identified)
-params.('d_gb')     = 35.0;                 %% Torsion bar internal damping [Nms/rad] (not identified)
+params.('d_gl')     = 35.0;                 %% Torsion bar internal damping [Nms/rad] (not identified)
 % Coulomb friction
 params.('d_cm')     = 1.8579 * (1/10);      %% Motor Coulomb damping [Nm]
 params.('d_cg')     = 1.8579 * (8/10);   	%% Gearbox Coulomb damping [Nm]
@@ -84,6 +84,6 @@ params.('r_th1')      = 0.29;               %% Thermal Resistance Windings to Ho
 params.('r_th2')      = 3.45;               %% Thermal Resistance Housing to Air [K/W]
 params.('T_thw')      = 3.96;               %% Thermal Time Constant of the Windings [s]
 params.('T_thm')      = 1240;               %% Thermal Time Constant of the Motor [s]
-params.('Tmp_WMax')   = 115;                %% Maximum Armature Temperature [°C]
-params.('Tmp_ANom')   = 25;                %% Normal Ambient Temperature [°C]
+params.('Tmp_WMax')   = 115;                %% Maximum Armature Temperature [ï¿½C]
+params.('Tmp_ANom')   = 25;                %% Normal Ambient Temperature [ï¿½C]
 
