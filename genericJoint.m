@@ -77,11 +77,11 @@ classdef genericJoint < handle
         % Coulomb friction
         d_cm     = 0.1858; % Motor Coulomb damping [Nm]                            (default: 0.1858)
         d_cg     = 0;      % Gearbox Coulomb damping [Nm]                          (default: 0)
-        d_cb     = 0;      % Torsion bar Coulomb damping [Nm]                      (default: 0)
+        d_cl     = 0;      % Load Coulomb damping [Nm]                             (default: 0)
         % Asymmetric Coulomb friction
         d_cm_n   = 0.1858  % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858)
         d_cg_n   = 0;      % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
-        d_cb_n   = 0;      % Torsion bar Coulomb damping - negative direction [Nm] (default: 0)
+        d_cl_n   = 0;      % Load Coulomb damping - negative direction [Nm]        (default: 0)
         % Stiction
         d_s      = 0;      % Break away torque [Nm]                                (default: 0)
         v_s      = 0;      % Stribeck velocity range [rad/s]                       (default: 0)
@@ -459,7 +459,7 @@ classdef genericJoint < handle
             %
             % See also t_r, p_ce, genericJoint, jointBuilder.
             
-            sumCoulomb = this.d_cm + this.d_cg + this.d_cb;
+            sumCoulomb = this.d_cm + this.d_cg + this.d_cl;
             sumViscous = this.d_m + this.d_g + this.d_l;
             
             out = ( this.dq_0 - this.dq_over_dm * sumCoulomb ) / (1 + this.dq_over_dm * sumViscous);
@@ -489,7 +489,7 @@ classdef genericJoint < handle
             %
             % See also t_r, p_ce, genericJoint, jointBuilder.
              
-            sumCoulomb = this.d_cm + this.d_cg + this.d_cb;
+            sumCoulomb = this.d_cm + this.d_cg + this.d_cl;
             sumViscous = this.d_m + this.d_g + this.d_l;
             
             

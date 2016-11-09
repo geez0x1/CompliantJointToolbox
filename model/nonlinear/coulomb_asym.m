@@ -57,12 +57,12 @@ function [ tau ] = coulomb_asym(obj, x)
     
     % Build coefficient vector
     if (strcmp(obj.modelName, 'full_dyn'))
-        c       = [0, 0, 0, obj.d_cm,   obj.d_cg,   obj.d_cb]';
-        c_neg   = [0, 0, 0, obj.d_cm_n, obj.d_cg_n, obj.d_cb_n]';
+        c       = [0, 0, 0, obj.d_cm,   obj.d_cg,   obj.d_cl]';
+        c_neg   = [0, 0, 0, obj.d_cm_n, obj.d_cg_n, obj.d_cl_n]';
         
     elseif (strcmp(obj.modelName, 'rigid_gearbox'))
-        c       = [0, 0, obj.d_cm + obj.d_cg,       obj.d_cb]';
-        c_neg   = [0, 0, obj.d_cm_n + obj.d_cg_n,   obj.d_cb_n]';
+        c       = [0, 0, obj.d_cm + obj.d_cg,       obj.d_cl]';
+        c_neg   = [0, 0, obj.d_cm_n + obj.d_cg_n,   obj.d_cl_n]';
         
     elseif (strcmp(obj.modelName, 'output_fixed'))
         c       = [0, 0, obj.d_cm,      obj.d_cg]';
@@ -73,8 +73,8 @@ function [ tau ] = coulomb_asym(obj, x)
         c_neg   = [0, obj.d_cm_n + obj.d_cg_n]';
         
     elseif (strcmp(obj.modelName, 'rigid'))
-        c       = obj.d_cm + obj.d_cg + obj.d_cb;
-        c_neg   = obj.d_cm_n + obj.d_cg_n + obj.d_cb_n;
+        c       = obj.d_cm + obj.d_cg + obj.d_cl;
+        c_neg   = obj.d_cm_n + obj.d_cg_n + obj.d_cl_n;
         
     end
     

@@ -323,7 +323,7 @@ classdef dataSheetGenerator
             % Shorthands 
             d_cm = this.jointModel.d_cm;
             d_cg = this.jointModel.d_cg;
-            d_cb = this.jointModel.d_cb;
+            d_cl = this.jointModel.d_cl;
             d_m  = this.jointModel.d_m;
             d_g  = this.jointModel.d_g;
             d_l  = this.jointModel.d_l;
@@ -359,7 +359,7 @@ classdef dataSheetGenerator
            
             % Friction
             speedVals = (0:1/this.nPlotVals:1) * dq_p;
-            Mc = d_cm + d_cg + d_cb;            % Static friction
+            Mc = d_cm + d_cg + d_cl;            % Static friction
             Mv = (d_m + d_g + d_l) * speedVals; % Velocity dependent friction
             Mf = Mc + Mv;
 
@@ -610,7 +610,7 @@ classdef dataSheetGenerator
             fprintf(fid,'\\def \\valViscousdamping{%6.4f}\n'         , jM.d_m+jM.d_g+jM.d_l             );
             fprintf(fid,'\\def \\symViscousdamping{%s}\n'            , 'd_v'                            );
             %
-            fprintf(fid,'\\def \\valCoulombdamping{%6.4f}\n'         , jM.d_cm+jM.d_cg+jM.d_cb          );
+            fprintf(fid,'\\def \\valCoulombdamping{%6.4f}\n'         , jM.d_cm+jM.d_cg+jM.d_cl          );
             fprintf(fid,'\\def \\symCoulombdamping{%s}\n'            , 'd_c'                            );
             %
             fprintf(fid,'\\def \\valStribeckdamping{%6.4f}\n'        , jM.d_s                           );
