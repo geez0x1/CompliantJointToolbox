@@ -102,11 +102,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70000001"
-     inkscape:cx="515.85963"
-     inkscape:cy="853.403"
+     inkscape:zoom="2.8"
+     inkscape:cx="203.74712"
+     inkscape:cy="93.848922"
      inkscape:document-units="px"
-     inkscape:current-layer="g4351"
+     inkscape:current-layer="g4309-5"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
@@ -129,7 +129,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -586,7 +586,7 @@
                height="99.500023"
                x="23.233509"
                y="730.07648" /></flowRegion><flowPara
-             id="flowPara3670"></flowPara></flowRoot>        <flowRoot
+             id="flowPara3670" /></flowRoot>        <flowRoot
            xml:space="preserve"
            id="flowRoot3672"
            style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -854,17 +854,12 @@
              x="355.34433"
              sodipodi:role="line">coulomb_asym</tspan><tspan
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
-             id="tspan5629"
+             id="tspan5631"
              y="229.85545"
              x="355.34433"
              sodipodi:role="line">viscous_asym</tspan><tspan
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
-             id="tspan5631"
              y="239.23045"
-             x="355.34433"
-             sodipodi:role="line">viscous_pos_dep</tspan><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono'"
-             y="248.60545"
              x="355.34433"
              sodipodi:role="line"
              id="tspan4633">cogging</tspan></text>
@@ -885,18 +880,13 @@
              y="219.99472"
              x="438.0976"
              sodipodi:role="line">Asymmetric (direction-dependent) Coulomb friction</tspan><tspan
-             id="tspan6267"
+             id="tspan6269"
              style="font-size:7.5px"
              y="229.36972"
              x="438.0976"
              sodipodi:role="line">Asymmetric viscous friction</tspan><tspan
-             id="tspan6269"
              style="font-size:7.5px"
              y="238.74472"
-             x="438.0976"
-             sodipodi:role="line">Position-dependent viscous friction</tspan><tspan
-             style="font-size:7.5px"
-             y="248.11972"
              x="438.0976"
              sodipodi:role="line"
              id="tspan4635">Magnetic cogging torque</tspan></text>
