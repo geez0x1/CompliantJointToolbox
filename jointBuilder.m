@@ -81,6 +81,8 @@ classdef jointBuilder
             eval(paramName);
             
             % Check whether the linear model exists
+            % This relies on the model function name being equal to
+            % the filename (which we require)
             if (~exist(modelName, 'file'))
                 error(['jointBuilder.buildJoint error: Linear model ''' modelName ''' do not exist!']);
             end
@@ -101,7 +103,7 @@ classdef jointBuilder
                     for i=1:length(nonlinearModelName)
                         % Check whether it exists
                         % This relies on the model function name being equal to
-                        % the filename (which they should be)
+                        % the filename (which we require)
                         if (~exist(nonlinearModelName{i}, 'file'))
                             error(['jointBuilder.buildJoint error: Nonlinear model ''' nonlinearModelName{i} ''' does not exist!']);
                         end
@@ -118,7 +120,7 @@ classdef jointBuilder
                     
                     % Check whether it exists
                     % This relies on the model function name being equal to
-                    % the filename (which they should be)
+                    % the filename (which we require)
                     if (~exist(nonlinearModelName, 'file'))
                         error(['jointBuilder.buildJoint error: Nonlinear model ''' nonlinearModelName ''' does not exist!']);
                     end
