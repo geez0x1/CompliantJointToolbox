@@ -85,7 +85,5 @@ params.('x')        = 0.000140;             %% Armature inductance [H]
 params.('Ts')       = 1e-3;                 %% Sampling time [s]
 % Operating/max conditions
 params.('v_0')      = 24;                   %% Operating voltage [V]
-params.('i_c')      = 40;                   %% Max. continuous current [A]
 params.('i_p')      = 40;                   %% Peak current [A]
-params.('dq_c')     = 5.86;                 %% Max. continuous speed (output) [rad/s]
 params.('dq_p')     = 5.86;                 %% Max. peak speed (output) [rad/s]
