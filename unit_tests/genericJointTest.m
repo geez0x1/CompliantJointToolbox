@@ -100,9 +100,10 @@ function teardownOnce(testCase)  % do not change function name
 end
 
 % % ----------------- FRESH FIXTURE -----------------------
-% function setup(testCase)  % do not change function name
-% % open a figure, for example
-% end
+function setup(testCase)  % do not change function name
+   % Instantiate a fresh joint object
+   testCase.('TestData').testJoint = eval(testCase.('TestData').className);
+end
 %
 % function teardown(testCase)  % do not change function name
 % % close figure, for example
@@ -118,7 +119,7 @@ end
 %
 % A test function is also called a "Qualification". There exist different
 % conceptual types of qualifications.
-function testBuildJoint(testCase)
+function testBuiltJoint(testCase)
 % Test specific code
 
     display('Name of the built joint under testing:')
@@ -127,6 +128,34 @@ function testBuildJoint(testCase)
     display('Name of the parameter set :')
     display(testCase.('TestData').testJoint.paramName);
 
+end
+
+function testConversionSymNum(testCase)
+% Test specific code
+
+   
+    % This test requires the symbolic math toolbox. Only run it, if it is there.
+    v = ver;
+    has_Symbolic_Toolbox = any(strcmp('Symbolic Math Toolbox', {v.Name}));
+    assumeTrue(testCase, has_Symbolic_Toolbox  );
+    
+    % Conversion to symboic
+    display('Converting joint parameter to symbolic')
+    testCase.('TestData').testJoint.makeSym;
+    
+    isSym = testCase.('TestData').testJoint.isSym;
+    
+    % Conversion back to numeric
+    display('Converting joint parameter to symbolic')
+    testCase.('TestData').testJoint.makeNum;
+    
+    isNum = 1 - testCase.('TestData').testJoint.isSym;
+    
+    % Verify test
+    verifyEqual(testCase, isSym, 1 );
+    verifyEqual(testCase, isNum, 1 );
+    
+    
 end
 
 % function testFunctionalityTwo(testCase)
