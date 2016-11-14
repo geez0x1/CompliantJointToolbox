@@ -42,13 +42,21 @@ classdef genericJoint < handle
         debug   % debug flag
     end
     
+    properties (GetAccess = private)
+           % Blacklist (non-variable property names)
+            blacklist = {   'verbose';
+                'debug';
+                'name';
+                'paramName';
+                'modelName';
+                'nonlinearModelName';
+                };
+    end
+    
     properties (SetAccess = private)
         a_CU    = 0.0039;  % Resistance coefficient of copper [1/K]
         c_CU    = 380;     % Specific thermal capacitance of copper [J/kg/K]
         c_FE    = 460;     % Specific thermal capacitance of iron [J/kg/K]
-        
-        isSym   = 0;   % Flag that indicates whether the
-        % model is symboli (1) or numeric (0).
     end
     
     properties (SetAccess = public)
@@ -414,7 +422,6 @@ classdef genericJoint < handle
         end
         
         %__________________________________________________________________
-        
         function out = dq_0(this)
             % DQ_0 Zero-Torque Speed [rad/s]
             %
@@ -440,6 +447,7 @@ classdef genericJoint < handle
             out = this.k_w * this.v_0 / this.n;
         end
         
+        %__________________________________________________________________
         function out = dq_NL(this)
             % DQ_NL No-Load Speed [rad/s]
             %
@@ -469,7 +477,6 @@ classdef genericJoint < handle
         end
         
         %__________________________________________________________________
-        
         function out = t_NL(this)
             % t_NL No load torque [Nm]
             %
@@ -501,7 +508,6 @@ classdef genericJoint < handle
         
         
         %__________________________________________________________________
-        
         function out = i_NL(this)
             % i_NL No load current [A]
             %
@@ -530,7 +536,6 @@ classdef genericJoint < handle
         
         
         %__________________________________________________________________
-        
         function out = dq_r(this)
             % DQ_r Rated speed [rad/s]
             %
@@ -923,16 +928,40 @@ classdef genericJoint < handle
             sysd    = tf(sys);
         end
         
+        %__________________________________________________________________
+        function flag = isSym(this)
+        
+            % Get all properties
+            props = properties(this);            
+            
+            % Get symbolic properties
+            symProps    = setdiff(props, this.blacklist);
+            nProps      = numel(symProps);
+            
+            flag = 0;
+            
+            for iProps = 1:nProps
+                
+                if isa(this.(symProps{iProps}),'sym')
+                    flag = 1;   % Set the flag.
+                    break;      % We found at least one symbolic property, we can break the loop hera.
+                end
+            end           
+        
+        end
         
         %__________________________________________________________________
         function makeSym(this,varargin)
             % MAKESYM Converts all properties into symbolic variables.
             %
-            %   gj.makeSym
+            %   gj.makeSym({doSparse})
             %
             %
             % Inputs:
-            %
+            %   doSparse:  If false, all parameters are turned into generic 
+            %              symbolic  ariables. If true (default), 
+            %              parameters that are exactly zero remain zero in 
+            %              the symbolic version of the model.
             % Outputs:
             %
             %
@@ -948,7 +977,7 @@ classdef genericJoint < handle
             %
             % See also makeNum, resetParams, genericJoint, jointBuilder.
             
-            doSparse = 0;
+            doSparse = 1;
             if nargin == 2
                 doSparse = varargin{1};
             end
@@ -956,33 +985,21 @@ classdef genericJoint < handle
             % Get all properties
             props = properties(this);
             
-            % Blacklist (non-variable property names)
-            blacklist = {   'verbose';
-                'debug';
-                'name';
-                'paramName';
-                'modelName';
-                'nonlinearModelName';
-                'isSym';
-                };
             
             % Get symbolic properties
-            symProps    = setdiff(props, blacklist);
+            symProps    = setdiff(props, this.blacklist);
             nProps      = numel(symProps);
             
             % Set each symbolic property to symbolic
             for iProps = 1:nProps
                 
                 if doSparse && this.(symProps{iProps}) == 0
-                    this.(symProps{iProps}) = 0;%sym(0,'real');
+                    this.(symProps{iProps}) = 0;
                 else
                     this.(symProps{iProps}) = sym(symProps{iProps},'real');
                 end
             end
-            
-            % Swap flag.
-            this.isSym = true;
-            
+
         end
         
         
@@ -1017,10 +1034,7 @@ classdef genericJoint < handle
             else
                 this.resetParams;
             end
-            
-            % Swap flag.
-            this.isSym = 0;
-            
+
         end
         
         %__________________________________________________________________
@@ -1064,9 +1078,6 @@ classdef genericJoint < handle
                     warning(['NOT A FIELD: ',parFields{iFields}, ' is not a field of genericJoint class.'])
                 end
             end
-            
-            % Swap flag.
-            this.isSym = 0;
             
         end
     end
