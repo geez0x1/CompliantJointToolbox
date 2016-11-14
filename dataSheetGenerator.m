@@ -447,7 +447,7 @@ classdef dataSheetGenerator
 
             % Clean up.
             delete([fName,'.*'])
-            delete([this.torqueSpeedFName,'.*'])
+            delete([this.torqueSpeedFName])
             
         end
         
