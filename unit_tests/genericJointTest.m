@@ -79,11 +79,14 @@ function setupOnce(testCase)  % do not change function name
     % instantiate a joint builder
     testCase.('TestData').JB = jointBuilder;
     testCase.('TestData').JB.overwrite = 1; % Overwrite existing model files.
-    testCase.('TestData').className = 'WMBig2300_ds_continuous_full';%     Instantiate a joint model
+    
+    parName = 'WMBig2300_ds';
+    dynName = 'full_dyn';
+    testCase.('TestData').className = ['WMBig2300_ds','_','full_dyn'];%     Instantiate a joint model
 
     % build a joint class for the test
-    testCase.('TestData').JB.buildJoint('WMBig2300_ds',...
-        'continuous_full');
+    testCase.('TestData').JB.buildJoint(parName,...
+        dynName);
     addpath(testCase.('TestData').JB.buildDir) % Add the built directory of the
     % joint builder to the search path.
     testCase.('TestData').testJoint = eval(testCase.('TestData').className);
@@ -157,6 +160,107 @@ function testConversionSymNum(testCase)
     
     
 end
+
+function testSymbolicStateSpace(testCase)
+% Test specific code
+   
+    % This test requires the symbolic math toolbox. Only run it, if it is there.
+    v = ver;
+    has_Symbolic_Toolbox = any(strcmp('Symbolic Math Toolbox', {v.Name}));
+    assumeTrue(testCase, has_Symbolic_Toolbox  );
+    
+    % Conversion to symboic
+    display('Converting joint parameter to symbolic')
+    testCase.('TestData').testJoint.makeSym;
+    
+    % Compute symbolic linear dynamics matrices
+    [A, B, C, I, D, K] = testCase.('TestData').testJoint.getDynamicsMatrices;
+    
+   
+    syms I_b I_g I_m d_b d_g d_gb d_m d_mg k_b k_g k_t n
+    Anom = ...
+    [        0,                0,        0,                 1,                        0,                 0;
+             0,                0,        0,                 0,                        1,                 0;
+             0,                0,        0,                 0,                        0,                 1;
+      -k_g/I_m,          k_g/I_m,        0, -(d_m + d_mg)/I_m,                 d_mg/I_m,                 0;
+       k_g/I_g, -(k_b + k_g)/I_g,  k_b/I_g,          d_mg/I_g, -(d_g + d_gb + d_mg)/I_g,          d_gb/I_g;
+             0,          k_b/I_b, -k_b/I_b,                 0,                 d_gb/I_b, -(d_b + d_gb)/I_b];
+         
+    Bnom = ...
+       [           0,     0;
+                   0,     0;
+                   0,     0;
+         (k_t*n)/I_m,     0;
+                   0,     0;
+                   0, 1/I_b];
+               
+    Cnom = ...
+    [ 1,   0,    0, 0, 0, 0;
+      0,   1,    0, 0, 0, 0;
+      0,   0,    1, 0, 0, 0;
+      0,   0,    0, 1, 0, 0;
+      0,   0,    0, 0, 1, 0;
+      0,   0,    0, 0, 0, 1;
+      0, k_b, -k_b, 0, 0, 0];
+  
+    Inom = ...
+        [ I_m,   0,   0;
+            0, I_g,   0;
+            0,   0, I_b];
+
+    Dnom = ...
+        [ d_m + d_mg,             -d_mg,          0;
+               -d_mg, d_g + d_gb + d_mg,      -d_gb;
+                   0,             -d_gb, d_b + d_gb];
+
+
+    Knom = ...
+    [  k_g,      -k_g,    0;
+      -k_g, k_b + k_g, -k_b;
+         0,      -k_b,  k_b];
+ 
+    verifyEqual(testCase,A,Anom);
+    verifyEqual(testCase,B,Bnom);
+    verifyEqual(testCase,C,Cnom);
+    verifyEqual(testCase,I,Inom);
+    verifyEqual(testCase,D,Dnom);
+    verifyEqual(testCase,K,Knom);
+
+end
+
+
+function testSymbolicTransferFunction(testCase)
+% Test specific code
+   
+    % This test requires the symbolic math toolbox. Only run it, if it is there.
+    v = ver;
+    has_Symbolic_Toolbox = any(strcmp('Symbolic Math Toolbox', {v.Name}));
+    assumeTrue(testCase, has_Symbolic_Toolbox  );
+    
+    % Conversion to symboic
+    display('Converting joint parameter to symbolic')
+    testCase.('TestData').testJoint.makeSym;
+    
+    % Compute symbolic linear transfer function
+    TFSym = testCase.('TestData').testJoint.getTF;
+    
+    % The transfer function should only include these variables
+    syms I_b I_g I_m d_b d_g d_gb d_m d_mg k_b k_g k_t n s
+    
+    % The transfer function should have this form
+    TFNom = ...
+        [ (k_t*n*(k_b*k_g + d_b*k_b*s + d_b*k_g*s + d_g*k_b*s + d_gb*k_g*s + d_mg*k_b*s + I_b*I_g*s^4 + I_b*d_g*s^3 + I_g*d_b*s^3 + I_b*d_gb*s^3 + I_g*d_gb*s^3 + I_b*d_mg*s^3 + I_b*k_b*s^2 + I_b*k_g*s^2 + I_g*k_b*s^2 + d_b*d_g*s^2 + d_b*d_gb*s^2 + d_g*d_gb*s^2 + d_b*d_mg*s^2 + d_gb*d_mg*s^2))/(d_b*k_b*k_g*s + d_g*k_b*k_g*s + d_m*k_b*k_g*s + I_b*I_g*I_m*s^6 + I_b*I_g*d_m*s^5 + I_b*I_m*d_g*s^5 + I_g*I_m*d_b*s^5 + I_b*I_m*d_gb*s^5 + I_b*I_g*d_mg*s^5 + I_g*I_m*d_gb*s^5 + I_b*I_m*d_mg*s^5 + I_b*I_g*k_g*s^4 + I_b*I_m*k_b*s^4 + I_b*I_m*k_g*s^4 + I_g*I_m*k_b*s^4 + I_b*d_g*d_m*s^4 + I_g*d_b*d_m*s^4 + I_m*d_b*d_g*s^4 + I_b*d_gb*d_m*s^4 + I_m*d_b*d_gb*s^4 + I_b*d_g*d_mg*s^4 + I_g*d_b*d_mg*s^4 + I_b*d_gb*d_mg*s^4 + I_g*d_gb*d_m*s^4 + I_m*d_g*d_gb*s^4 + I_g*d_gb*d_mg*s^4 + I_b*d_m*d_mg*s^4 + I_m*d_b*d_mg*s^4 + I_m*d_gb*d_mg*s^4 + I_b*d_g*k_g*s^3 + I_g*d_b*k_g*s^3 + I_b*d_gb*k_g*s^3 + I_b*d_m*k_b*s^3 + I_m*d_b*k_b*s^3 + I_b*d_mg*k_b*s^3 + I_g*d_gb*k_g*s^3 + I_b*d_m*k_g*s^3 + I_g*d_m*k_b*s^3 + I_m*d_b*k_g*s^3 + I_m*d_g*k_b*s^3 + I_g*d_mg*k_b*s^3 + I_m*d_gb*k_g*s^3 + I_m*d_mg*k_b*s^3 + I_b*k_b*k_g*s^2 + I_g*k_b*k_g*s^2 + I_m*k_b*k_g*s^2 + d_b*d_g*d_m*s^3 + d_b*d_gb*d_m*s^3 + d_b*d_g*d_mg*s^3 + d_b*d_gb*d_mg*s^3 + d_g*d_gb*d_m*s^3 + d_g*d_gb*d_mg*s^3 + d_b*d_m*d_mg*s^3 + d_gb*d_m*d_mg*s^3 + d_b*d_g*k_g*s^2 + d_b*d_gb*k_g*s^2 + d_b*d_m*k_b*s^2 + d_b*d_mg*k_b*s^2 + d_g*d_gb*k_g*s^2 + d_b*d_m*k_g*s^2 + d_g*d_m*k_b*s^2 + d_g*d_mg*k_b*s^2 + d_gb*d_m*k_g*s^2 + d_m*d_mg*k_b*s^2),                                                                                                                                                                                                                                                     ((k_b + d_gb*s)*(k_g + d_mg*s))/(d_b*k_b*k_g*s + d_g*k_b*k_g*s + d_m*k_b*k_g*s + I_b*I_g*I_m*s^6 + I_b*I_g*d_m*s^5 + I_b*I_m*d_g*s^5 + I_g*I_m*d_b*s^5 + I_b*I_m*d_gb*s^5 + I_b*I_g*d_mg*s^5 + I_g*I_m*d_gb*s^5 + I_b*I_m*d_mg*s^5 + I_b*I_g*k_g*s^4 + I_b*I_m*k_b*s^4 + I_b*I_m*k_g*s^4 + I_g*I_m*k_b*s^4 + I_b*d_g*d_m*s^4 + I_g*d_b*d_m*s^4 + I_m*d_b*d_g*s^4 + I_b*d_gb*d_m*s^4 + I_m*d_b*d_gb*s^4 + I_b*d_g*d_mg*s^4 + I_g*d_b*d_mg*s^4 + I_b*d_gb*d_mg*s^4 + I_g*d_gb*d_m*s^4 + I_m*d_g*d_gb*s^4 + I_g*d_gb*d_mg*s^4 + I_b*d_m*d_mg*s^4 + I_m*d_b*d_mg*s^4 + I_m*d_gb*d_mg*s^4 + I_b*d_g*k_g*s^3 + I_g*d_b*k_g*s^3 + I_b*d_gb*k_g*s^3 + I_b*d_m*k_b*s^3 + I_m*d_b*k_b*s^3 + I_b*d_mg*k_b*s^3 + I_g*d_gb*k_g*s^3 + I_b*d_m*k_g*s^3 + I_g*d_m*k_b*s^3 + I_m*d_b*k_g*s^3 + I_m*d_g*k_b*s^3 + I_g*d_mg*k_b*s^3 + I_m*d_gb*k_g*s^3 + I_m*d_mg*k_b*s^3 + I_b*k_b*k_g*s^2 + I_g*k_b*k_g*s^2 + I_m*k_b*k_g*s^2 + d_b*d_g*d_m*s^3 + d_b*d_gb*d_m*s^3 + d_b*d_g*d_mg*s^3 + d_b*d_gb*d_mg*s^3 + d_g*d_gb*d_m*s^3 + d_g*d_gb*d_mg*s^3 + d_b*d_m*d_mg*s^3 + d_gb*d_m*d_mg*s^3 + d_b*d_g*k_g*s^2 + d_b*d_gb*k_g*s^2 + d_b*d_m*k_b*s^2 + d_b*d_mg*k_b*s^2 + d_g*d_gb*k_g*s^2 + d_b*d_m*k_g*s^2 + d_g*d_m*k_b*s^2 + d_g*d_mg*k_b*s^2 + d_gb*d_m*k_g*s^2 + d_m*d_mg*k_b*s^2);
+                                                                                                                                                                                                                                             (k_t*n*(k_g + d_mg*s)*(k_b + d_b*s + d_gb*s + I_b*s^2))/(d_b*k_b*k_g*s + d_g*k_b*k_g*s + d_m*k_b*k_g*s + I_b*I_g*I_m*s^6 + I_b*I_g*d_m*s^5 + I_b*I_m*d_g*s^5 + I_g*I_m*d_b*s^5 + I_b*I_m*d_gb*s^5 + I_b*I_g*d_mg*s^5 + I_g*I_m*d_gb*s^5 + I_b*I_m*d_mg*s^5 + I_b*I_g*k_g*s^4 + I_b*I_m*k_b*s^4 + I_b*I_m*k_g*s^4 + I_g*I_m*k_b*s^4 + I_b*d_g*d_m*s^4 + I_g*d_b*d_m*s^4 + I_m*d_b*d_g*s^4 + I_b*d_gb*d_m*s^4 + I_m*d_b*d_gb*s^4 + I_b*d_g*d_mg*s^4 + I_g*d_b*d_mg*s^4 + I_b*d_gb*d_mg*s^4 + I_g*d_gb*d_m*s^4 + I_m*d_g*d_gb*s^4 + I_g*d_gb*d_mg*s^4 + I_b*d_m*d_mg*s^4 + I_m*d_b*d_mg*s^4 + I_m*d_gb*d_mg*s^4 + I_b*d_g*k_g*s^3 + I_g*d_b*k_g*s^3 + I_b*d_gb*k_g*s^3 + I_b*d_m*k_b*s^3 + I_m*d_b*k_b*s^3 + I_b*d_mg*k_b*s^3 + I_g*d_gb*k_g*s^3 + I_b*d_m*k_g*s^3 + I_g*d_m*k_b*s^3 + I_m*d_b*k_g*s^3 + I_m*d_g*k_b*s^3 + I_g*d_mg*k_b*s^3 + I_m*d_gb*k_g*s^3 + I_m*d_mg*k_b*s^3 + I_b*k_b*k_g*s^2 + I_g*k_b*k_g*s^2 + I_m*k_b*k_g*s^2 + d_b*d_g*d_m*s^3 + d_b*d_gb*d_m*s^3 + d_b*d_g*d_mg*s^3 + d_b*d_gb*d_mg*s^3 + d_g*d_gb*d_m*s^3 + d_g*d_gb*d_mg*s^3 + d_b*d_m*d_mg*s^3 + d_gb*d_m*d_mg*s^3 + d_b*d_g*k_g*s^2 + d_b*d_gb*k_g*s^2 + d_b*d_m*k_b*s^2 + d_b*d_mg*k_b*s^2 + d_g*d_gb*k_g*s^2 + d_b*d_m*k_g*s^2 + d_g*d_m*k_b*s^2 + d_g*d_mg*k_b*s^2 + d_gb*d_m*k_g*s^2 + d_m*d_mg*k_b*s^2),                                                                                                                                                                                                                                   ((k_b + d_gb*s)*(k_g + d_m*s + d_mg*s + I_m*s^2))/(d_b*k_b*k_g*s + d_g*k_b*k_g*s + d_m*k_b*k_g*s + I_b*I_g*I_m*s^6 + I_b*I_g*d_m*s^5 + I_b*I_m*d_g*s^5 + I_g*I_m*d_b*s^5 + I_b*I_m*d_gb*s^5 + I_b*I_g*d_mg*s^5 + I_g*I_m*d_gb*s^5 + I_b*I_m*d_mg*s^5 + I_b*I_g*k_g*s^4 + I_b*I_m*k_b*s^4 + I_b*I_m*k_g*s^4 + I_g*I_m*k_b*s^4 + I_b*d_g*d_m*s^4 + I_g*d_b*d_m*s^4 + I_m*d_b*d_g*s^4 + I_b*d_gb*d_m*s^4 + I_m*d_b*d_gb*s^4 + I_b*d_g*d_mg*s^4 + I_g*d_b*d_mg*s^4 + I_b*d_gb*d_mg*s^4 + I_g*d_gb*d_m*s^4 + I_m*d_g*d_gb*s^4 + I_g*d_gb*d_mg*s^4 + I_b*d_m*d_mg*s^4 + I_m*d_b*d_mg*s^4 + I_m*d_gb*d_mg*s^4 + I_b*d_g*k_g*s^3 + I_g*d_b*k_g*s^3 + I_b*d_gb*k_g*s^3 + I_b*d_m*k_b*s^3 + I_m*d_b*k_b*s^3 + I_b*d_mg*k_b*s^3 + I_g*d_gb*k_g*s^3 + I_b*d_m*k_g*s^3 + I_g*d_m*k_b*s^3 + I_m*d_b*k_g*s^3 + I_m*d_g*k_b*s^3 + I_g*d_mg*k_b*s^3 + I_m*d_gb*k_g*s^3 + I_m*d_mg*k_b*s^3 + I_b*k_b*k_g*s^2 + I_g*k_b*k_g*s^2 + I_m*k_b*k_g*s^2 + d_b*d_g*d_m*s^3 + d_b*d_gb*d_m*s^3 + d_b*d_g*d_mg*s^3 + d_b*d_gb*d_mg*s^3 + d_g*d_gb*d_m*s^3 + d_g*d_gb*d_mg*s^3 + d_b*d_m*d_mg*s^3 + d_gb*d_m*d_mg*s^3 + d_b*d_g*k_g*s^2 + d_b*d_gb*k_g*s^2 + d_b*d_m*k_b*s^2 + d_b*d_mg*k_b*s^2 + d_g*d_gb*k_g*s^2 + d_b*d_m*k_g*s^2 + d_g*d_m*k_b*s^2 + d_g*d_mg*k_b*s^2 + d_gb*d_m*k_g*s^2 + d_m*d_mg*k_b*s^2);
+                                                                                                                                                                                                                                                               (k_t*n*(k_b + d_gb*s)*(k_g + d_mg*s))/(d_b*k_b*k_g*s + d_g*k_b*k_g*s + d_m*k_b*k_g*s + I_b*I_g*I_m*s^6 + I_b*I_g*d_m*s^5 + I_b*I_m*d_g*s^5 + I_g*I_m*d_b*s^5 + I_b*I_m*d_gb*s^5 + I_b*I_g*d_mg*s^5 + I_g*I_m*d_gb*s^5 + I_b*I_m*d_mg*s^5 + I_b*I_g*k_g*s^4 + I_b*I_m*k_b*s^4 + I_b*I_m*k_g*s^4 + I_g*I_m*k_b*s^4 + I_b*d_g*d_m*s^4 + I_g*d_b*d_m*s^4 + I_m*d_b*d_g*s^4 + I_b*d_gb*d_m*s^4 + I_m*d_b*d_gb*s^4 + I_b*d_g*d_mg*s^4 + I_g*d_b*d_mg*s^4 + I_b*d_gb*d_mg*s^4 + I_g*d_gb*d_m*s^4 + I_m*d_g*d_gb*s^4 + I_g*d_gb*d_mg*s^4 + I_b*d_m*d_mg*s^4 + I_m*d_b*d_mg*s^4 + I_m*d_gb*d_mg*s^4 + I_b*d_g*k_g*s^3 + I_g*d_b*k_g*s^3 + I_b*d_gb*k_g*s^3 + I_b*d_m*k_b*s^3 + I_m*d_b*k_b*s^3 + I_b*d_mg*k_b*s^3 + I_g*d_gb*k_g*s^3 + I_b*d_m*k_g*s^3 + I_g*d_m*k_b*s^3 + I_m*d_b*k_g*s^3 + I_m*d_g*k_b*s^3 + I_g*d_mg*k_b*s^3 + I_m*d_gb*k_g*s^3 + I_m*d_mg*k_b*s^3 + I_b*k_b*k_g*s^2 + I_g*k_b*k_g*s^2 + I_m*k_b*k_g*s^2 + d_b*d_g*d_m*s^3 + d_b*d_gb*d_m*s^3 + d_b*d_g*d_mg*s^3 + d_b*d_gb*d_mg*s^3 + d_g*d_gb*d_m*s^3 + d_g*d_gb*d_mg*s^3 + d_b*d_m*d_mg*s^3 + d_gb*d_m*d_mg*s^3 + d_b*d_g*k_g*s^2 + d_b*d_gb*k_g*s^2 + d_b*d_m*k_b*s^2 + d_b*d_mg*k_b*s^2 + d_g*d_gb*k_g*s^2 + d_b*d_m*k_g*s^2 + d_g*d_m*k_b*s^2 + d_g*d_mg*k_b*s^2 + d_gb*d_m*k_g*s^2 + d_m*d_mg*k_b*s^2), (k_b*k_g + d_g*k_g*s + d_gb*k_g*s + d_m*k_b*s + d_mg*k_b*s + d_m*k_g*s + I_g*I_m*s^4 + I_g*d_m*s^3 + I_m*d_g*s^3 + I_m*d_gb*s^3 + I_g*d_mg*s^3 + I_m*d_mg*s^3 + I_g*k_g*s^2 + I_m*k_b*s^2 + I_m*k_g*s^2 + d_g*d_m*s^2 + d_gb*d_m*s^2 + d_g*d_mg*s^2 + d_gb*d_mg*s^2 + d_m*d_mg*s^2)/(d_b*k_b*k_g*s + d_g*k_b*k_g*s + d_m*k_b*k_g*s + I_b*I_g*I_m*s^6 + I_b*I_g*d_m*s^5 + I_b*I_m*d_g*s^5 + I_g*I_m*d_b*s^5 + I_b*I_m*d_gb*s^5 + I_b*I_g*d_mg*s^5 + I_g*I_m*d_gb*s^5 + I_b*I_m*d_mg*s^5 + I_b*I_g*k_g*s^4 + I_b*I_m*k_b*s^4 + I_b*I_m*k_g*s^4 + I_g*I_m*k_b*s^4 + I_b*d_g*d_m*s^4 + I_g*d_b*d_m*s^4 + I_m*d_b*d_g*s^4 + I_b*d_gb*d_m*s^4 + I_m*d_b*d_gb*s^4 + I_b*d_g*d_mg*s^4 + I_g*d_b*d_mg*s^4 + I_b*d_gb*d_mg*s^4 + I_g*d_gb*d_m*s^4 + I_m*d_g*d_gb*s^4 + I_g*d_gb*d_mg*s^4 + I_b*d_m*d_mg*s^4 + I_m*d_b*d_mg*s^4 + I_m*d_gb*d_mg*s^4 + I_b*d_g*k_g*s^3 + I_g*d_b*k_g*s^3 + I_b*d_gb*k_g*s^3 + I_b*d_m*k_b*s^3 + I_m*d_b*k_b*s^3 + I_b*d_mg*k_b*s^3 + I_g*d_gb*k_g*s^3 + I_b*d_m*k_g*s^3 + I_g*d_m*k_b*s^3 + I_m*d_b*k_g*s^3 + I_m*d_g*k_b*s^3 + I_g*d_mg*k_b*s^3 + I_m*d_gb*k_g*s^3 + I_m*d_mg*k_b*s^3 + I_b*k_b*k_g*s^2 + I_g*k_b*k_g*s^2 + I_m*k_b*k_g*s^2 + d_b*d_g*d_m*s^3 + d_b*d_gb*d_m*s^3 + d_b*d_g*d_mg*s^3 + d_b*d_gb*d_mg*s^3 + d_g*d_gb*d_m*s^3 + d_g*d_gb*d_mg*s^3 + d_b*d_m*d_mg*s^3 + d_gb*d_m*d_mg*s^3 + d_b*d_g*k_g*s^2 + d_b*d_gb*k_g*s^2 + d_b*d_m*k_b*s^2 + d_b*d_mg*k_b*s^2 + d_g*d_gb*k_g*s^2 + d_b*d_m*k_g*s^2 + d_g*d_m*k_b*s^2 + d_g*d_mg*k_b*s^2 + d_gb*d_m*k_g*s^2 + d_m*d_mg*k_b*s^2);
+                                         (k_t*n*(k_b*k_g + d_b*k_b*s + d_b*k_g*s + d_g*k_b*s + d_gb*k_g*s + d_mg*k_b*s + I_b*I_g*s^4 + I_b*d_g*s^3 + I_g*d_b*s^3 + I_b*d_gb*s^3 + I_g*d_gb*s^3 + I_b*d_mg*s^3 + I_b*k_b*s^2 + I_b*k_g*s^2 + I_g*k_b*s^2 + d_b*d_g*s^2 + d_b*d_gb*s^2 + d_g*d_gb*s^2 + d_b*d_mg*s^2 + d_gb*d_mg*s^2))/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s),                                                                                                                                                                                                                                                                                     ((k_b + d_gb*s)*(k_g + d_mg*s))/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s);
+                                                                                                                                                                                                                                                                             (k_t*n*(k_g + d_mg*s)*(k_b + d_b*s + d_gb*s + I_b*s^2))/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s),                                                                                                                                                                                                                                                                   ((k_b + d_gb*s)*(k_g + d_m*s + d_mg*s + I_m*s^2))/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s);
+                                                                                                                                                                                                                                                                                               (k_t*n*(k_b + d_gb*s)*(k_g + d_mg*s))/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s),                                 (k_b*k_g + d_g*k_g*s + d_gb*k_g*s + d_m*k_b*s + d_mg*k_b*s + d_m*k_g*s + I_g*I_m*s^4 + I_g*d_m*s^3 + I_m*d_g*s^3 + I_m*d_gb*s^3 + I_g*d_mg*s^3 + I_m*d_mg*s^3 + I_g*k_g*s^2 + I_m*k_b*s^2 + I_m*k_g*s^2 + d_g*d_m*s^2 + d_gb*d_m*s^2 + d_g*d_mg*s^2 + d_gb*d_mg*s^2 + d_m*d_mg*s^2)/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s);
+                                                                                                                                                                                                                                                                                            (k_b*k_t*n*(k_g + d_mg*s)*(d_b + I_b*s))/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s),                                                                                                                                                    -(k_b*(d_g*k_g + d_m*k_g + I_g*k_g*s + I_m*k_g*s + d_g*d_m*s + d_g*d_mg*s + d_m*d_mg*s + I_g*I_m*s^3 + I_g*d_m*s^2 + I_m*d_g*s^2 + I_g*d_mg*s^2 + I_m*d_mg*s^2))/(d_b*k_b*k_g + d_g*k_b*k_g + d_m*k_b*k_g + d_b*d_g*k_g*s + d_b*d_gb*k_g*s + d_b*d_m*k_b*s + d_b*d_mg*k_b*s + d_g*d_gb*k_g*s + d_b*d_m*k_g*s + d_g*d_m*k_b*s + d_g*d_mg*k_b*s + d_gb*d_m*k_g*s + d_m*d_mg*k_b*s + I_b*I_g*I_m*s^5 + I_b*I_g*d_m*s^4 + I_b*I_m*d_g*s^4 + I_g*I_m*d_b*s^4 + I_b*I_m*d_gb*s^4 + I_b*I_g*d_mg*s^4 + I_g*I_m*d_gb*s^4 + I_b*I_m*d_mg*s^4 + I_b*I_g*k_g*s^3 + I_b*I_m*k_b*s^3 + I_b*I_m*k_g*s^3 + I_g*I_m*k_b*s^3 + I_b*d_g*d_m*s^3 + I_g*d_b*d_m*s^3 + I_m*d_b*d_g*s^3 + I_b*d_gb*d_m*s^3 + I_m*d_b*d_gb*s^3 + I_b*d_g*d_mg*s^3 + I_g*d_b*d_mg*s^3 + I_b*d_gb*d_mg*s^3 + I_g*d_gb*d_m*s^3 + I_m*d_g*d_gb*s^3 + I_g*d_gb*d_mg*s^3 + I_b*d_m*d_mg*s^3 + I_m*d_b*d_mg*s^3 + I_m*d_gb*d_mg*s^3 + I_b*d_g*k_g*s^2 + I_g*d_b*k_g*s^2 + I_b*d_gb*k_g*s^2 + I_b*d_m*k_b*s^2 + I_m*d_b*k_b*s^2 + I_b*d_mg*k_b*s^2 + I_g*d_gb*k_g*s^2 + I_b*d_m*k_g*s^2 + I_g*d_m*k_b*s^2 + I_m*d_b*k_g*s^2 + I_m*d_g*k_b*s^2 + I_g*d_mg*k_b*s^2 + I_m*d_gb*k_g*s^2 + I_m*d_mg*k_b*s^2 + d_b*d_g*d_m*s^2 + d_b*d_gb*d_m*s^2 + d_b*d_g*d_mg*s^2 + d_b*d_gb*d_mg*s^2 + d_g*d_gb*d_m*s^2 + d_g*d_gb*d_mg*s^2 + d_b*d_m*d_mg*s^2 + d_gb*d_m*d_mg*s^2 + I_b*k_b*k_g*s + I_g*k_b*k_g*s + I_m*k_b*k_g*s)];
+
+    verifyEqual(testCase,TFNom,TFSym);
+
+end
+
 
 % function testFunctionalityTwo(testCase)
 % % Test specific code
