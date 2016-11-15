@@ -69,6 +69,7 @@ function [A, B, C, I, D, K] = rigid(obj)
             -I\K,               -I\D            ];
 
     % Input
+    % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
     B   = [ 0,              0; ...

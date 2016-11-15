@@ -1,4 +1,5 @@
-%OUTPUT_FIXED_RIGID_GEARBOX_TJ Get linear dynamics matrices - output link fixed, gearbox rigid, torque-jerk states
+%OUTPUT_FIXED_RIGID_GEARBOX_TJ Get linear dynamics matrices - output link
+% fixed, gearbox rigid, torque-jerk states
 %
 % [A, B, C, I, D, K] = jointObj.output_fixed_rigid_gearbox_TJ
 %
