@@ -80,9 +80,9 @@ function [A, B, C, I, D, K] = output_fixed(obj)
     % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0,              0, ...
-            0,              0, ...
-            k_t*n/I(1,1),   0, ...
+    B   = [ 0,              0;
+            0,              0;
+            k_t*n/I(1,1),   0;
             0,              0       ];
     
     % Output
