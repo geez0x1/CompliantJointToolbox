@@ -78,7 +78,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     I_g     = jointObj.I_g;     % Gear inertia [kg m^2]
     d_m     = jointObj.d_m;     % Motor Damping [Nms/rad]
     d_g     = jointObj.d_g;     % Gearbox damping [Nms/rad]
-    d_gb    = jointObj.d_gb;    % Torsion bar damping [Nms/rad]
+    d_gl    = jointObj.d_gl;    % Torsion bar internal damping [Nms/rad]
     
     % Optimal (specified damping ratio of poles) gains
     zeta = 1.0; % Critical damping
@@ -87,7 +87,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
                         (k_b * k_t * Kp * n + k_b) / ...
                         (I_m + I_g) ...
                     ) * zeta ...
-                    - (d_m + d_g + d_gb) ...
+                    - (d_m + d_g + d_gl) ...
                 ) / (k_b * k_t * Kp * n);
     
     % Set derivative gain Kd to Kd_opt if set to -1

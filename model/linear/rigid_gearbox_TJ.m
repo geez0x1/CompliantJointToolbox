@@ -50,7 +50,7 @@
 
 function [A, B, C, I, D, K] = rigid_gearbox_TJ(obj)
     
-    % x = [tau_l, q_b, tau_l_dot, q_b_dot]'
+    % x = [tau_l, q_l, tau_l_dot, q_l_dot]'
 
     % Get position-velocity states
     [A, B, C, I, D, K] = rigid_gearbox(obj);

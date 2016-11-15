@@ -48,25 +48,25 @@
 function [A, B, C, I, D, K] = full_dyn(obj)
     
     % The computations below assume a state vector definition according to:
-    % x = [q_m, q_g, q_b, q_m_dot, q_g_dot, q_b_dot]', where 
+    % x = [q_m, q_g, q_l, q_m_dot, q_g_dot, q_l_dot]', where 
     % q_m is the motor angle,
     % q_g is the gearbox output angle
-    % q_b is the flange angle (output of the torsion bar)
+    % q_l is the flange angle (output of the torsion bar)
     %
     % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
-    I = diag([obj.I_m, obj.I_g, obj.I_b]);
+    I = diag([obj.I_m, obj.I_g, obj.I_l]);
 
     % Damping matrix
     d_m     = obj.d_m;
     d_g     = obj.d_g;
-    d_b     = obj.d_b;
+    d_l     = obj.d_l;
     d_mg    = obj.d_mg;
-    d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
+    d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
     D = [   d_m + d_mg,     -d_mg,                  0; ...
-            -d_mg,          d_g + d_mg + d_gb,      -d_gb; ...
-            0,              -d_gb,                  d_b + d_gb  ];
+            -d_mg,          d_g + d_mg + d_gl,      -d_gl; ...
+            0,              -d_gl,                  d_l + d_gl  ];
 
     % Stiffness matrix
     k_g = obj.k_g;

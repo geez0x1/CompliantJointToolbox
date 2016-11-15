@@ -40,39 +40,39 @@ n = 100;
  % TO BE UPDATED!
 I_m_ds              = 5.480e-5*n^2;         %% Motor rotor inertia [kg m^2] (datasheet)
 I_g_ds              = 2.63e-5*n^2;          %% Gear inertia [kg m^2] (datasheet)
-I_b_ds              = 0.0867;               %% Torsion bar inertia [kg m^2]
-I_tot_ds            = I_m_ds + I_g_ds + I_b_ds; %% Total inertia [kg m^2]
+I_l_ds              = 0.0867;               %% Load inertia [kg m^2]
+I_tot_ds            = I_m_ds + I_g_ds + I_l_ds; %% Total inertia [kg m^2]
 r_I_m               = I_m_ds / I_tot_ds;    %% Motor rotor inertia contribution ratio []
 r_I_g               = I_g_ds / I_tot_ds;    %% Gearbox inertia contribution ratio []
-r_I_b               = I_b_ds / I_tot_ds;    %% Torsion bar inertia contribution ratio []
+r_I_l               = I_l_ds / I_tot_ds;    %% Load inertia contribution ratio []
  % TO BE UPDATED!
 
 % Inertiae
 params.('I_m')      = 3.04E-005 * n^2;              %% Motor rotor inertia [kg m^2] % TO BE UPDATED!
 params.('I_g')      = 1.33 * 6.6944E-005 * n^2;     %% Gear inertia [kg m^2] % TO BE UPDATED!
-params.('I_b')      = 8.6719E-006 * n^2;            %% Torsion bar inertia [kg m^2] % TO BE UPDATED!
+params.('I_l')      = 8.6719E-006 * n^2;            %% Load inertia [kg m^2] % TO BE UPDATED!
 % Stiffnesses
 params.('k_g')      = 31e3;                 %% Gearbox stiffness [Nm/rad] % TO BE UPDATED!
 params.('k_b')      = 31e3;                 %% Torsion bar stiffness [Nm/rad] % TO BE UPDATED! The strain based torque sensor is super stiff.
 % Linear viscous friction
 params.('d_m')      = 0.0064;               %% Motor Damping [Nms/rad] % TO BE UPDATED!
 params.('d_g')      = 6.0;                  %% Gearbox damping [Nms/rad] % TO BE UPDATED!
-params.('d_b')      = 7.0;                  %% Torsion bar damping [Nms/rad] % TO BE UPDATED!
+params.('d_l')      = 7.0;                  %% Load damping [Nms/rad] % TO BE UPDATED!
 % Asymmetric viscous friction
 params.('d_m_n')    = 0.0064;               %% Motor Damping - negative direction [Nms/rad] % TO BE UPDATED!
 params.('d_g_n')    = 5.0;                  %% Gearbox Damping - negative direction [Nms/rad] % TO BE UPDATED!
-params.('d_b_n')    = 5.0;                  %% Torsion bar damping - negative direction [Nms/rad] % TO BE UPDATED!
+params.('d_l_n')    = 5.0;                  %% Load damping - negative direction [Nms/rad] % TO BE UPDATED!
 % Linear internal viscous friction
 params.('d_mg')     = 144.0;                %% Gearbox internal damping [Nms/rad] % TO BE UPDATED!
-params.('d_gb')     = 2.0;                  %% Torsion bar internal damping [Nms/rad] % TO BE UPDATED!
+params.('d_gl')     = 2.0;                  %% Torsion bar internal damping [Nms/rad] % TO BE UPDATED!
 % Coulomb friction
 params.('d_cm')     = 3.2;                  %% Motor Coulomb damping [Nm] % TO BE UPDATED!
 params.('d_cg')     = 3.5;                  %% Gearbox Coulomb damping [Nm] % TO BE UPDATED!
-params.('d_cb')     = 0.0;                  %% Torsion bar Coulomb damping [Nm] % TO BE UPDATED!
+params.('d_cl')     = 0.0;                  %% Load Coulomb damping [Nm] % TO BE UPDATED!
 % Asymmetric Coulomb friction
 params.('d_cm_n')   = 0.0;                  %% Motor Coulomb damping - negative direction [Nm] % TO BE UPDATED!
 params.('d_cg_n')   = 0.0;                  %% Gearbox Coulomb damping - negative direction [Nm] % TO BE UPDATED!
-params.('d_cb_n')   = 0.0;                  %% Torsion bar Coulomb damping - negative direction [Nm] % TO BE UPDATED!
+params.('d_cl_n')   = 0.0;                  %% Load Coulomb damping - negative direction [Nm] % TO BE UPDATED!
 % Stiction
 params.('d_s')      = 8.9;                  %% Break away torque [Nm]
 params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]

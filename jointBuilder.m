@@ -71,9 +71,21 @@ classdef jointBuilder
             % buildJoint(paramName, modelName, nonlinearModelName)
             % Builds a joint model file in the build/ directory based on
             % the supplied parameter and model names
+            
+            % Check whether the params exist
+            if (~exist(paramName, 'file'))
+                error(['jointBuilder.buildJoint error: Parameters ''' paramName ''' do not exist!']);
+            end
 
             % Evaluate parameters
             eval(paramName);
+            
+            % Check whether the linear model exists
+            % This relies on the model function name being equal to
+            % the filename (which we require)
+            if (~exist(modelName, 'file'))
+                error(['jointBuilder.buildJoint error: Linear model ''' modelName ''' do not exist!']);
+            end
             
             % Process nonlinear model names to create the class name as
             % well as the nonlinear model property fo the class
@@ -87,6 +99,16 @@ classdef jointBuilder
                 % If the argument is a cell, we're dealing with multiple
                 % nonlinear dynamics components
                 if (iscell(nonlinearModelName) && length(nonlinearModelName) > 1)
+                    % Check if all nonlinear models exist
+                    for i=1:length(nonlinearModelName)
+                        % Check whether it exists
+                        % This relies on the model function name being equal to
+                        % the filename (which we require)
+                        if (~exist(nonlinearModelName{i}, 'file'))
+                            error(['jointBuilder.buildJoint error: Nonlinear model ''' nonlinearModelName{i} ''' does not exist!']);
+                        end
+                    end
+                    
                     % Multiple components
                     nonlinearModelNameStr = strjoin(nonlinearModelName, '_');
                     nonlinearModelNameCellStr = strcat('{''', strtrim(strjoin(nonlinearModelName, ''', ''')), '''}');
@@ -94,6 +116,13 @@ classdef jointBuilder
                     % In case one nonlinear model was given, but as a cell
                     if (iscell(nonlinearModelName))
                         nonlinearModelName = nonlinearModelName{:};
+                    end
+                    
+                    % Check whether it exists
+                    % This relies on the model function name being equal to
+                    % the filename (which we require)
+                    if (~exist(nonlinearModelName, 'file'))
+                        error(['jointBuilder.buildJoint error: Nonlinear model ''' nonlinearModelName ''' does not exist!']);
                     end
                     
                     % Single component

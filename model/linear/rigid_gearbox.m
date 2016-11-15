@@ -49,22 +49,22 @@
 function [A, B, C, I, D, K] = rigid_gearbox(obj)
     
     % The computations below assume a state vector definition according to:
-    % x = [q_g, q_b, q_g_dot, q_b_dot]', where 
+    % x = [q_g, q_l, q_g_dot, q_l_dot]', where 
     % q_g is the gearbox output angle
-    % q_b is the flange angle (output of the torsion bar)
+    % q_l is the flange angle (output of the torsion bar)
     %
     % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
-    I = diag([obj.I_m + obj.I_g, obj.I_b]);
+    I = diag([obj.I_m + obj.I_g, obj.I_l]);
 
     % Damping matrix
     d_m     = obj.d_m;
     d_g     = obj.d_g;
-    d_b     = obj.d_b;
-    d_gb    = obj.d_gb; % shorthands %#ok<*PROP>
-    D = [   d_m + d_g + d_gb,       -d_gb; ...
-            -d_gb,                  d_b + d_gb      ];
+    d_l     = obj.d_l;
+    d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
+    D = [   d_m + d_g + d_gl,       -d_gl; ...
+            -d_gl,                  d_l + d_gl      ];
 
     % Stiffness matrix
     k_b = obj.k_b; % shorthands %#ok<*PROP>

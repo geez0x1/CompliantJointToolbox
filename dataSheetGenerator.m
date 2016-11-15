@@ -246,8 +246,8 @@ classdef dataSheetGenerator
             k_t      = this.jointModel.k_t;        % Torque constant [Nm/A]
             aCU      = this.jointModel.a_CU;       % Resistance coefficient of copper [1/K]
             T_thw    = this.jointModel.T_thw;      % Thermal Time Constant of the Windings [s] 
-            Tmp_WMax = this.jointModel.Tmp_WMax;   % Maximum Armature Temperature [°C]  
-            Tmp_ANom = this.jointModel.Tmp_ANom;  % Normal Ambient Temperature [°C]
+            Tmp_WMax = this.jointModel.Tmp_WMax;   % Maximum Armature Temperature [ï¿½C]  
+            Tmp_ANom = this.jointModel.Tmp_ANom;  % Normal Ambient Temperature [ï¿½C]
             t_p      = this.jointModel.t_p;
             t_r = this.jointModel.t_r;
             
@@ -323,10 +323,10 @@ classdef dataSheetGenerator
             % Shorthands 
             d_cm = this.jointModel.d_cm;
             d_cg = this.jointModel.d_cg;
-            d_cb = this.jointModel.d_cb;
+            d_cl = this.jointModel.d_cl;
             d_m  = this.jointModel.d_m;
             d_g  = this.jointModel.d_g;
-            d_b  = this.jointModel.d_b;
+            d_l  = this.jointModel.d_l;
             slope = this.jointModel.dq_over_dm;
             dq_0 = this.jointModel.dq_0;
             t_stall = this.jointModel.t_stall;
@@ -359,8 +359,8 @@ classdef dataSheetGenerator
            
             % Friction
             speedVals = (0:1/this.nPlotVals:1) * dq_p;
-            Mc = d_cm + d_cg + d_cb;            % Static friction
-            Mv = (d_m + d_g + d_b) * speedVals; % Velocity dependent friction
+            Mc = d_cm + d_cg + d_cl;            % Static friction
+            Mv = (d_m + d_g + d_l) * speedVals; % Velocity dependent friction
             Mf = Mc + Mv;
 
             % Continuous operating range
@@ -447,7 +447,7 @@ classdef dataSheetGenerator
 
             % Clean up.
             delete([fName,'.*'])
-            delete([this.torqueSpeedFName,'.*'])
+            delete([this.torqueSpeedFName])
             
         end
         
@@ -592,7 +592,7 @@ classdef dataSheetGenerator
             fprintf(fid,'\\def \\valInertiagear{%6.4f}\n'            , jM.I_g                           );
             fprintf(fid,'\\def \\symInertiagear{%s}\n'               , 'I_g'                            );
             %
-            fprintf(fid,'\\def \\valInertiaspring{%6.4f}\n'          , jM.I_b                           );
+            fprintf(fid,'\\def \\valInertiaspring{%6.4f}\n'          , jM.I_l                           );
             fprintf(fid,'\\def \\symInertiaspring{%s}\n'             , 'I_m'                            );
             % 
             fprintf(fid,'\\def \\valTmech{%6.4f}\n'                  , jM.T_mech                        );
@@ -607,10 +607,10 @@ classdef dataSheetGenerator
             %
             % Friction
             %
-            fprintf(fid,'\\def \\valViscousdamping{%6.4f}\n'         , jM.d_m+jM.d_g+jM.d_b             );
+            fprintf(fid,'\\def \\valViscousdamping{%6.4f}\n'         , jM.d_m+jM.d_g+jM.d_l             );
             fprintf(fid,'\\def \\symViscousdamping{%s}\n'            , 'd_v'                            );
             %
-            fprintf(fid,'\\def \\valCoulombdamping{%6.4f}\n'         , jM.d_cm+jM.d_cg+jM.d_cb          );
+            fprintf(fid,'\\def \\valCoulombdamping{%6.4f}\n'         , jM.d_cm+jM.d_cg+jM.d_cl          );
             fprintf(fid,'\\def \\symCoulombdamping{%s}\n'            , 'd_c'                            );
             %
             fprintf(fid,'\\def \\valStribeckdamping{%6.4f}\n'        , jM.d_s                           );

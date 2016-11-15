@@ -8,8 +8,8 @@
 %
 % Inputs::
 %   x: state vector depending on the model type as
-%     x = [q_m; q_g; q_b; q_m_dot; q_g_dot, q_b_dot'];  full_dyn
-%     x = [q_g, q_b, q_g_dot, q_b_dot]'                 rigid_gearbox
+%     x = [q_m; q_g; q_l; q_m_dot; q_g_dot, q_l_dot'];  full_dyn
+%     x = [q_g, q_l, q_g_dot, q_l_dot]'                 rigid_gearbox
 %     x = [q_m, q_g, q_m_dot, q_g_dot]'                 output_fixed
 %     x = [q_g, q_g_dot]'                               output_fixed_rigid_gearbox
 %     x = [q_g, q_g_dot]'                               rigid
@@ -58,10 +58,10 @@ function [ tau ] = viscous_asym(obj, x)
     % Get some shorthands
     d_m     = obj.d_m;
     d_g     = obj.d_g;
-    d_b     = obj.d_b;
+    d_l     = obj.d_l;
     d_m_n   = obj.d_m_n;
     d_g_n   = obj.d_g_n;
-    d_b_n   = obj.d_b_n;
+    d_l_n   = obj.d_l_n;
     
     % Build coefficient vector
     % Because the positive part is built into the linear dynamics, we
@@ -69,7 +69,7 @@ function [ tau ] = viscous_asym(obj, x)
     % desired damping values. For the same reason, the positive part is zero.
     if (strcmp(obj.modelName, 'full_dyn'))
         c       = [0, 0, 0, 0,              0,              0               ]';
-        c_neg   = [0, 0, 0, -d_m + d_m_n,   -d_g + d_g_n,   -d_b + d_b_n    ]';
+        c_neg   = [0, 0, 0, -d_m + d_m_n,   -d_g + d_g_n,   -d_l + d_l_n    ]';
         
     elseif (strcmp(obj.modelName, 'rigid_gearbox'))
         c       = [0, 0, 0,                             0               ]';
@@ -85,7 +85,7 @@ function [ tau ] = viscous_asym(obj, x)
         
     elseif (strcmp(obj.modelName, 'rigid'))
         c       = 0;
-        c_neg   = -d_m - d_g - d_b + d_m_n + d_g_n + d_b_n;
+        c_neg   = -d_m - d_g - d_l + d_m_n + d_g_n + d_l_n;
         
     end
     

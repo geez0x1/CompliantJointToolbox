@@ -91,7 +91,7 @@ Ci  = [Cc, zeros(size(Cc,1), r)];
 
 sysi = ss(Ai,Bi,Ci,0);
 
-[K_lqr, S, e] = lqr(sysi, Q, R);
+[K_lqr, S, e] = lqr(sysi, Q, R); %#ok<ASGLU>
 
 % Cie = [                  C, zeros(r, r);
 %        zeros(r, size(C,2)), eye(r)      ];

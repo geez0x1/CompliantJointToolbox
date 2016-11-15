@@ -49,13 +49,13 @@
 function [A, B, C, I, D, K] = rigid_no_friction(obj)
     
     % The computations below assume a state vector definition according to:
-    % x = [q_b, q_b_dot]', where 
-    % q_b is the flange angle (output of the torsion bar)
+    % x = [q_l, q_l_dot]', where 
+    % q_l is the flange angle (output of the torsion bar)
     %
     % The '_dot' denotes the temporal derivative.
 
     % Inertia matrix
-    I = obj.I_m + obj.I_g + obj.I_b;
+    I = obj.I_m + obj.I_g + obj.I_l;
 
     % Damping matrix
     D = 0;

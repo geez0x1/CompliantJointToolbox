@@ -70,29 +70,29 @@ classdef genericJoint < handle
         m        = 2;      % Actuator mass [kg]                                   (default: 2)
         I_m      = 0.5480; % Link referred motor rotor inertia [kg m^2]           (default: 0.5480)
         I_g      = 0.2630; % Link referred gear inertia [kg m^2]                  (default: 0.2630)
-        I_b      = 0.0867  % Link referred torsion bar inertia [kg m^2]       	  (default: 0.0867)
+        I_l      = 0.0867  % Link referred load inertia [kg m^2]       	          (default: 0.0867)
         % Stiffnesses
         k_g      = 31e3;   % Gearbox stiffness [Nm/rad]                            (default: 31e3)
         k_b      = 10e3;   % Torsion bar stiffness [Nm/rad]                        (default: 10e3)
         % Linear viscous friction
         d_m      = 14.786; % Motor damping [Nms/rad]                               (default: 14.786)
         d_g      = 0;      % Gearbox damping [Nms/rad]                             (default: 0)
-        d_b      = 0;      % Torsion bar damping [Nms/rad]                         (default: 0)
+        d_l      = 0;      % Load damping [Nms/rad]                                (default: 0)
         % Asymmetric viscous friction
         d_m_n    = 14.786; % Motor Damping - negative direction [Nms/rad]          (default: 14.786)
         d_g_n    = 0;      % Gearbox Damping - negative direction [Nms/rad]        (default: 0)
-        d_b_n    = 0;      % Torsion bar damping - negative direction [Nms/rad]    (default: 0)
+        d_l_n    = 0;      % Load damping - negative direction [Nms/rad]           (default: 0)
         % Linear internal viscous friction
         d_mg     = 300;    % Gearbox internal damping [Nms/rad]                    (default: 300)
-        d_gb     = 35;     % Torsion bar internal damping [Nms/rad]                (default: 35)
+        d_gl     = 35;     % Torsion bar internal damping [Nms/rad]                (default: 35)
         % Coulomb friction
         d_cm     = 0.1858; % Motor Coulomb damping [Nm]                            (default: 0.1858)
         d_cg     = 0;      % Gearbox Coulomb damping [Nm]                          (default: 0)
-        d_cb     = 0;      % Torsion bar Coulomb damping [Nm]                      (default: 0)
+        d_cl     = 0;      % Load Coulomb damping [Nm]                             (default: 0)
         % Asymmetric Coulomb friction
         d_cm_n   = 0.1858  % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858)
         d_cg_n   = 0;      % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
-        d_cb_n   = 0;      % Torsion bar Coulomb damping - negative direction [Nm] (default: 0)
+        d_cl_n   = 0;      % Load Coulomb damping - negative direction [Nm]        (default: 0)
         % Stiction
         d_s      = 0;      % Break away torque [Nm]                                (default: 0)
         v_s      = 0;      % Stribeck velocity range [rad/s]                       (default: 0)
@@ -362,7 +362,7 @@ classdef genericJoint < handle
             
             out = 1 / this.k_t;
         end
-        
+
         %__________________________________________________________________
         
         function out = T_mech(this)
@@ -389,7 +389,7 @@ classdef genericJoint < handle
             %
             % See also t_r, p_rce, genericJoint, jointBuilder.
             
-            out = (this.I_m + this.I_g + this.I_b)*this.r / this.n^2 / this.k_t^2;
+            out = (this.I_m + this.I_g + this.I_l) * this.r / this.n^2 / this.k_t^2;
         end
         
         %__________________________________________________________________
@@ -470,8 +470,8 @@ classdef genericJoint < handle
             %
             % See also t_r, p_ce, genericJoint, jointBuilder.
             
-            sumCoulomb = this.d_cm + this.d_cg + this.d_cb;
-            sumViscous = this.d_m + this.d_g + this.d_b;
+            sumCoulomb = this.d_cm + this.d_cg + this.d_cl;
+            sumViscous = this.d_m + this.d_g + this.d_l;
             
             out = ( this.dq_0 - this.dq_over_dm * sumCoulomb ) / (1 + this.dq_over_dm * sumViscous);
         end
@@ -498,9 +498,9 @@ classdef genericJoint < handle
             %  Wesley Roozing
             %
             % See also t_r, p_ce, genericJoint, jointBuilder.
-            
-            sumCoulomb = this.d_cm + this.d_cg + this.d_cb;
-            sumViscous = this.d_m + this.d_g + this.d_b;
+             
+            sumCoulomb = this.d_cm + this.d_cg + this.d_cl;
+            sumViscous = this.d_m + this.d_g + this.d_l;
             
             
             out = sumCoulomb + sumViscous * this.dq_NL;
@@ -529,7 +529,7 @@ classdef genericJoint < handle
             %  Wesley Roozing
             %
             % See also t_r, p_ce, genericJoint, jointBuilder.
-            
+             
             out = this.t_NL / this.n / this.k_t;
         end
         
@@ -544,8 +544,9 @@ classdef genericJoint < handle
             % Inputs:
             %
             % Outputs:
-            %   dq_r: Speed at which the motor turns, when the  maximum 
-            % continuous current is applied at full supply voltage rad/s.
+            %   dq_r: Rated speed at which the motor turns, when the 
+            %         maximum continuous current is applied at full supply 
+            %         voltage rad/s.
             %
             % Notes::
             %
@@ -605,7 +606,7 @@ classdef genericJoint < handle
             %   t_stall: Load torque in Nm at which the motor stops, if the
             %            full nominal voltage is applied, provided that the
             %            required current is delivered by the power source.
-            %
+            %            
             %
             % Notes::
             %
@@ -661,7 +662,7 @@ classdef genericJoint < handle
             % Inputs:
             %
             % Outputs:
-            %   p_cm: Value for the rated mechanical continuous power
+            %   p_cm: Value for the rated mechanical continuous power 
             %   obtained as the product of rated speed and rated torque.
             %
             %
@@ -690,8 +691,8 @@ classdef genericJoint < handle
             % Inputs:
             %
             % Outputs:
-            %   p_pm: Value for the mechanical peak power obtained as the
-            %   maximum surface are under the speed-torque curve.
+            %   p_pm: Value for the mechanical peak power obtained as the 
+            %   maximum surface are under the speed-torque curve. 
             %
             %
             % Notes::
@@ -760,7 +761,7 @@ classdef genericJoint < handle
             %
             % Outputs:
             %   p_pe: Peak value for the electircal power obtained as the
-            %   product of operating voltage and peak current. The
+            %   product of operating voltage and peak current. The 
             %   calculation thus assumes the motor at rest.
             %
             % Notes::
@@ -893,9 +894,6 @@ classdef genericJoint < handle
                 sys = simplify( C*inv(s*E-A)*B );
                 
             end
-            
-            
-            
         end
         
         %__________________________________________________________________
@@ -952,10 +950,9 @@ classdef genericJoint < handle
         
         %__________________________________________________________________
         function makeSym(this,varargin)
-            % MAKESYM Converts all properties into symbolic variables.
+            % MAKESYM Return a symbolic copy of the joint model.
             %
             %   gj.makeSym({doSparse})
-            %
             %
             % Inputs:
             %   doSparse:  If false, all parameters are turned into generic 
@@ -963,7 +960,8 @@ classdef genericJoint < handle
             %              parameters that are exactly zero remain zero in 
             %              the symbolic version of the model.
             % Outputs:
-            %
+            %   gj_sym: Converts of the original object into a symbolic model
+            %   with all properties being symbolic variables.
             %
             % Notes::
             %
@@ -975,7 +973,7 @@ classdef genericJoint < handle
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also makeNum, resetParams, genericJoint, jointBuilder.
+            % See also getStateSpaceD, getTFd, genericJoint, jointBuilder.
             
             doSparse = 1;
             if nargin == 2
@@ -1001,8 +999,6 @@ classdef genericJoint < handle
             end
 
         end
-        
-        
         
         %__________________________________________________________________
         function makeNum(this)
@@ -1075,10 +1071,9 @@ classdef genericJoint < handle
                     warning(['NOT A FIELD: ',parFields{iFields}, ' is not a field of genericJoint class.'])
                 end
             end
-            
         end
+        
     end
-    
     
     %__________________________________________________________________
     % Abstract methods - to be implemented by subclasses.
@@ -1139,5 +1134,5 @@ classdef genericJoint < handle
         tau = getNonlinearDynamics(obj, x, dx)
         
     end
-    
+  
 end

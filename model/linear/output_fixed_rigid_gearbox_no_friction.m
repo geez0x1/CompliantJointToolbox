@@ -59,7 +59,7 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox_no_friction(obj)
     I = obj.I_m + obj.I_g;
 
     % Damping matrix
-    D = 0 * (obj.d_m + obj.d_g + obj.d_gb);
+    D = 0 * (obj.d_m + obj.d_g + obj.d_gl);
 
     % Stiffness matrix
     k_b = obj.k_b;

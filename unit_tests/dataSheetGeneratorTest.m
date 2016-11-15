@@ -82,7 +82,7 @@ jb = jointBuilder;
 jb.overwrite = 1;
 
 motorName = 'dummyMotor';
-dynName = 'full';
+dynName = 'full_dyn';
 jb.buildJoint(motorName, dynName);
 addpath(jb.buildDir)
 
@@ -138,8 +138,6 @@ function testTorqueSpeedCurve(testCase)
 dsg = dataSheetGenerator(testCase.('TestData').aJoint);
 
 dsg.createDataSheet;
-
-verifyTrue(testCase,true) % If we arrive here, everything is fine.
 
 delete( dsg.assembleOutFileName );
     

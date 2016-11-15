@@ -71,12 +71,6 @@ for iPar = 1:nPar
     jb.buildJoint(allParams{iPar}, 'rigid_gearbox', 'coulomb_asym');
     jb.buildJoint(allParams{iPar}, 'output_fixed_rigid_gearbox', 'coulomb_asym');
     
-    % Position-dependent viscous friction
-    jb.buildJoint(allParams{iPar}, 'full_dyn', 'viscous_pos_dep');
-    jb.buildJoint(allParams{iPar}, 'output_fixed', 'viscous_pos_dep');
-    jb.buildJoint(allParams{iPar}, 'rigid_gearbox', 'viscous_pos_dep');
-    jb.buildJoint(allParams{iPar}, 'output_fixed_rigid_gearbox', 'viscous_pos_dep');
-    
     % Multiple nonlinear terms
     jb.buildJoint(allParams{iPar}, 'full_dyn', {'coulomb', 'viscous_asym'});
     jb.buildJoint(allParams{iPar}, 'output_fixed', {'coulomb_asym', 'viscous_asym'});
