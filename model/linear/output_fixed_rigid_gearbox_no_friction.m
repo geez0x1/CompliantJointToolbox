@@ -1,5 +1,5 @@
-% OUTPUT_FIXED_RIGID_GEARBOX_NO_FRICTION  Get linear dynamics matrices - output 
-% link fixed, gearbox rigid, no friction
+% OUTPUT_FIXED_RIGID_GEARBOX_NO_FRICTION Get linear dynamics matrices -
+% output link fixed, gearbox rigid, no friction
 %
 % [A, B, C, I, D, K] = jointObj.output_fixed_rigid_gearbox_no_friction
 %
@@ -70,10 +70,11 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox_no_friction(obj)
             -I\K,               -I\D            ];
         
     % Input
+    % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0, k_t*n/I(1,1); ...
-            0, 0                ]';
+    B   = [ 0,              0, ...
+            k_t*n/I(1,1),   0       ];
     
     % Output
     C = [   1,      0; ... % motor position

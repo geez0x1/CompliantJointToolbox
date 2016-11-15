@@ -68,10 +68,11 @@ function [A, B, C, I, D, K] = rigid_no_friction(obj)
             -I\K,               -I\D            ];
 
     % Input
+    % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0, k_t*n/I(1,1); ...
-            0, 1/I(1,1)         ]';
+    B   = [ 0,              0; ...
+            k_t*n/I(1,1),	1/I(1,1)         ];
     
     % Output
     C = [   1,  0; ...  % motor position

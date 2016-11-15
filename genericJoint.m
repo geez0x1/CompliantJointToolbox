@@ -37,26 +37,20 @@
 
 classdef genericJoint < handle
     
-    properties
-        verbose % verbose flag
-        debug   % debug flag
-    end
-    
     properties (GetAccess = private)
-           % Blacklist (non-variable property names)
-            blacklist = {   'verbose';
-                'debug';
-                'name';
-                'paramName';
-                'modelName';
-                'nonlinearModelName';
-                };
+        % Blacklist (non-variable property names)
+        blacklist = {
+            'name';
+            'paramName';
+            'modelName';
+            'nonlinearModelName';
+        };
     end
     
     properties (SetAccess = private)
         a_CU    = 0.0039;  % Resistance coefficient of copper [1/K]
         c_CU    = 380;     % Specific thermal capacitance of copper [J/kg/K]
-        c_FE    = 460;     % Specific thermal capacitance of iron [J/kg/K]
+        c_FE	= 460;     % Specific thermal capacitance of iron [J/kg/K]
     end
     
     properties (SetAccess = public)
@@ -64,65 +58,65 @@ classdef genericJoint < handle
         % Mechanical Properties
         %
         % Dimensions
-        diam     = 100;    % Actuator diameter [mm]                               (default: 100)
-        len      = 150;    % Actuator length [mm]                                 (default: 150)
+        diam 	= 100;      % Actuator diameter [mm]                                (default: 100)
+        len  	= 150;      % Actuator length [mm]                                  (default: 150)
         % Inertiae
-        m        = 2;      % Actuator mass [kg]                                   (default: 2)
-        I_m      = 0.5480; % Link referred motor rotor inertia [kg m^2]           (default: 0.5480)
-        I_g      = 0.2630; % Link referred gear inertia [kg m^2]                  (default: 0.2630)
-        I_l      = 0.0867  % Link referred load inertia [kg m^2]       	          (default: 0.0867)
+        m       = 2;        % Actuator mass [kg]                                    (default: 2)
+        I_m  	= 0.5480;   % Link referred motor rotor inertia [kg m^2]            (default: 0.5480)
+        I_g     = 0.2630;   % Link referred gear inertia [kg m^2]                   (default: 0.2630)
+        I_l     = 0.0867    % Link referred load inertia [kg m^2]       	    	(default: 0.0867)
         % Stiffnesses
-        k_g      = 31e3;   % Gearbox stiffness [Nm/rad]                            (default: 31e3)
-        k_b      = 10e3;   % Torsion bar stiffness [Nm/rad]                        (default: 10e3)
+        k_g     = 31e3;     % Gearbox stiffness [Nm/rad]                            (default: 31e3)
+        k_b     = 10e3;     % Torsion bar stiffness [Nm/rad]                        (default: 10e3)
         % Linear viscous friction
-        d_m      = 14.786; % Motor damping [Nms/rad]                               (default: 14.786)
-        d_g      = 0;      % Gearbox damping [Nms/rad]                             (default: 0)
-        d_l      = 0;      % Load damping [Nms/rad]                                (default: 0)
+        d_m     = 14.786;   % Motor damping [Nms/rad]                               (default: 14.786)
+        d_g     = 0;        % Gearbox damping [Nms/rad]                             (default: 0)
+        d_l     = 0;        % Load damping [Nms/rad]                                (default: 0)
         % Asymmetric viscous friction
-        d_m_n    = 14.786; % Motor Damping - negative direction [Nms/rad]          (default: 14.786)
-        d_g_n    = 0;      % Gearbox Damping - negative direction [Nms/rad]        (default: 0)
-        d_l_n    = 0;      % Load damping - negative direction [Nms/rad]           (default: 0)
+        d_m_n   = 14.786;   % Motor Damping - negative direction [Nms/rad]          (default: 14.786)
+        d_g_n   = 0;        % Gearbox Damping - negative direction [Nms/rad]        (default: 0)
+        d_l_n   = 0;        % Load damping - negative direction [Nms/rad]           (default: 0)
         % Linear internal viscous friction
-        d_mg     = 300;    % Gearbox internal damping [Nms/rad]                    (default: 300)
-        d_gl     = 35;     % Torsion bar internal damping [Nms/rad]                (default: 35)
+        d_mg    = 300;      % Gearbox internal damping [Nms/rad]                    (default: 300)
+        d_gl    = 35;       % Torsion bar internal damping [Nms/rad]                (default: 35)
         % Coulomb friction
-        d_cm     = 0.1858; % Motor Coulomb damping [Nm]                            (default: 0.1858)
-        d_cg     = 0;      % Gearbox Coulomb damping [Nm]                          (default: 0)
-        d_cl     = 0;      % Load Coulomb damping [Nm]                             (default: 0)
+        d_cm    = 0.1858;   % Motor Coulomb damping [Nm]                            (default: 0.1858)
+        d_cg    = 0;        % Gearbox Coulomb damping [Nm]                          (default: 0)
+        d_cl    = 0;        % Load Coulomb damping [Nm]                             (default: 0)
         % Asymmetric Coulomb friction
-        d_cm_n   = 0.1858  % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858)
-        d_cg_n   = 0;      % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
-        d_cl_n   = 0;      % Load Coulomb damping - negative direction [Nm]        (default: 0)
+        d_cm_n  = 0.1858    % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858)
+        d_cg_n  = 0;        % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
+        d_cl_n  = 0;        % Load Coulomb damping - negative direction [Nm]        (default: 0)
         % Stiction
-        d_s      = 0;      % Break away torque [Nm]                                (default: 0)
-        v_s      = 0;      % Stribeck velocity range [rad/s]                       (default: 0)
+        d_s     = 0;        % Break away torque [Nm]                                (default: 0)
+        v_s     = 0;        % Stribeck velocity range [rad/s]                       (default: 0)
         % Cogging
-        cog_a1	 = 0;      % Cosine amplitude [Nm]                                 (default: 0)
-        cog_a2	 = 0;      % Sine amplitude [Nm]                                   (default: 0)
-        cog_f	 = 0;      % Spatial frequency [periods/revolution]                (default: 0)
+        cog_a1	= 0;        % Cosine amplitude [Nm]                                 (default: 0)
+        cog_a2	= 0;        % Sine amplitude [Nm]                                   (default: 0)
+        cog_f	= 0;        % Spatial frequency [periods/revolution]                (default: 0)
         % Gear
-        n        = 100;    % Transmission ratio [.]                                (default: 100)
+        n       = 100;      % Transmission ratio [.]                                (default: 100)
         %
         % Electrical Properties
         %
-        k_t      = 0.0453;  % Torque constant [Nm/A]                               (default: 0.0453)
-        r        = 0.0885;  % Armature resistance at normal temperature [Ohm]      (default: 0.0885)
-        x        = 1.4e-4;  % Armature inductance [H]                              (default: 1.4e-4)
+        k_t  	= 0.0453;   % Torque constant [Nm/A]                                (default: 0.0453)
+        r       = 0.0885;   % Armature resistance at normal temperature [Ohm]       (default: 0.0885)
+        x       = 1.4e-4;   % Armature inductance [H]                               (default: 1.4e-4)
         %
         % Operating/max conditions
         %
-        v_0      = 24;      % Operating [V]                                        (default: 24)
-        i_p      = 80;      % Peak current (demagnetization point) [A]             (default: 80)
-        dq_p     = 5.86;    % Max. peak speed (output) [rad/s]                     (default: 5.86)
+        v_0     = 24;       % Operating [V]                                         (default: 24)
+        i_p     = 80;       % Peak current (demagnetization point) [A]              (default: 80)
+        dq_p    = 5.86;     % Max. peak speed (output) [rad/s]                      (default: 5.86)
         %
         % Thermal parameters
         %
-        r_th1    = 0.29;    % Thermal Resistance Windings to Housing [K/W]         (default: 0.29)
-        r_th2    = 3.45;    % Thermal Resistance Housing to Air [K/W]              (default: 3.45)
-        T_thw    = 3.96;    % Thermal Time Constant of the Windings [s]            (default: 3.96)
-        T_thm    = 1240;    % Thermal Time Constant of the Motor [s]               (default: 1240)
-        Tmp_WMax = 120;     % Maximum Armature Temperature [°C]                    (default: 120)
-        Tmp_ANom = 25;      % Normal Ambient Temperature [°C]                      (default: 25)
+        r_th1   = 0.29;     % Thermal Resistance Windings to Housing [K/W]          (default: 0.29)
+        r_th2   = 3.45;     % Thermal Resistance Housing to Air [K/W]               (default: 3.45)
+        T_thw   = 3.96;     % Thermal Time Constant of the Windings [s]             (default: 3.96)
+        T_thm   = 1240;     % Thermal Time Constant of the Motor [s]                (default: 1240)
+        Tmp_WMax = 120;  	% Maximum Armature Temperature [ï¿½C]                     (default: 120)
+        Tmp_ANom = 25;      % Normal Ambient Temperature [ï¿½C]                       (default: 25)
         
         % Desciptive Properties
         name                % Joint name
@@ -131,7 +125,7 @@ classdef genericJoint < handle
         nonlinearModelName  % Nonlinear model name
         
         % Misc
-        Ts      = 1e-3;   % Sampling time [s]
+        Ts      = 1e-3;     % Sampling time [s]
     end
     
     methods

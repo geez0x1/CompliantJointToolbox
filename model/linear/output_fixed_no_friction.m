@@ -1,5 +1,5 @@
-%OUTPUT_FIXED_NO_FRICTION  Get linear dynamics matrices - output link fixed, no
-% friction
+%OUTPUT_FIXED_NO_FRICTION Get linear dynamics matrices - output link
+% fixed, no friction
 %
 % [A, B, C, I, D, K] = jointObj.output_fixed_no_friction
 %
@@ -77,10 +77,13 @@ function [A, B, C, I, D, K] = output_fixed_no_friction(obj)
             -I\K,               -I\D            ];
         
     % Input
+    % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0, 0, k_t*n/I(1,1), 0; ...
-            0, 0, 0,            0       ]';
+    B   = [ 0,              0, ...
+            0,              0, ...
+            k_t*n/I(1,1),   0, ...
+            0,              0       ];
     
     % Output
     C = [   1, 0,   0, 0; ...   % motor position
