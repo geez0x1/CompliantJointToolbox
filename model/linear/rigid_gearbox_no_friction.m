@@ -83,12 +83,12 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
             0,              1/I(2,2)    ];
     
     % Output
-    C = [   1,      0,      0, 0;       % motor position
-            1,      0,      0, 0;       % gear position
-            0,      1,      0, 0;    	% link position
-            0,      0,      1, 0;       % motor velocity
-            0,      0,      1, 0;       % gear velocity
-            0,      0,      0, 1;       % link velocity
-            k_b,    -k_b,   0, 0 ];     % Torsion bar torque
+    C = [   1,      0,      0, 0;           % motor position
+            1,      0,      0, 0;           % gear position
+            0,      1,      0, 0;           % link position
+            0,      0,      1, 0;           % motor velocity
+            0,      0,      1, 0;           % gear velocity
+            0,      0,      0, 1;           % link velocity
+            k_b,    -k_b,   d_gl, -d_gl	];	% Torsion bar torque
             
 end

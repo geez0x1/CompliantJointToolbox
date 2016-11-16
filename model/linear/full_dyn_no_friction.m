@@ -91,7 +91,7 @@ function [A, B, C, I, D, K] = full_dyn_no_friction(obj)
             0,              1/I(3,3)	];
     
     % Output
-    C = [   eye(size(A,2));             % All states
-            0, k_b, -k_b, 0, 0, 0   ];  % Torsion bar torque
+    C = [   eye(size(A,2));                     % All states
+            0, k_b, -k_b, 0, d_gl, -d_gl	];	% Torsion bar torque
 
 end

@@ -92,7 +92,7 @@ function [A, B, C, I, D, K] = output_fixed(obj)
             0, 0,   1, 0;       % motor velocity
             0, 0,   0, 1;       % gear velocity
             0, 0,   0, 0;       % link velocity
-            0, k_b, 0, 0    ];	% Torsion bar torque
+            0, k_b, 0, d_gl	];	% Torsion bar torque
     
 end
 

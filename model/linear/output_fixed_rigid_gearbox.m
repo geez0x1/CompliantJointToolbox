@@ -77,13 +77,13 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj)
             k_t*n/I(1,1),   0       ];
     
     % Output
-    C = [   1,      0;      % motor position
-            1,      0;      % gear position
-            0,      0;      % link position
-            0,      1;      % motor velocity
-            0,      1;      % gear velocity
-            0,      0;      % link velocity
-            k_b,    0   ];	% Torsion bar torque
+    C = [   1,      0;          % motor position
+            1,      0;          % gear position
+            0,      0;          % link position
+            0,      1;          % motor velocity
+            0,      1;          % gear velocity
+            0,      0;          % link velocity
+            k_b,    d_gl	];	% Torsion bar torque
 
 end
 
