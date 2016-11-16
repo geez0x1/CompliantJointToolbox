@@ -64,23 +64,23 @@ function [A, B, C, I, D, K] = rigid_no_friction(obj)
     K = 0;
 
     % State-space matrices
-    A = [   zeros(size(I)),     eye(size(I)); ...
+    A = [   zeros(size(I)),     eye(size(I));
             -I\K,               -I\D            ];
 
     % Input
     % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0,              0; ...
+    B   = [ 0,              0;
             k_t*n/I(1,1),	1/I(1,1)         ];
     
     % Output
-    C = [   1,  0; ...  % motor position
-            1,  0; ...  % gear position
-            1,  0; ...  % link position
-            0,  1; ...  % motor velocity
-            0,  1; ...  % gear velocity
-            0,  1; ...  % link velocity
+    C = [   1,  0;      % motor position
+            1,  0;      % gear position
+            1,  0;      % link position
+            0,  1;      % motor velocity
+            0,  1;      % gear velocity
+            0,  1;      % link velocity
             0,  0   ];  % Torsion bar torque
             
 end
