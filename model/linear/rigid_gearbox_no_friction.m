@@ -61,34 +61,34 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
     d_m     = 0 * obj.d_m;
     d_l     = 0 * obj.d_l;
     d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
-    D = [   d_m + d_g + d_gl,       -d_gl; ...
+    D = [   d_m + d_g + d_gl,       -d_gl;
             -d_gl,                  d_l + d_gl      ];
 
     % Stiffness matrix
     k_b = obj.k_b; % shorthands %#ok<*PROP>
-    K = [   k_b,        -k_b; ...
+    K = [   k_b,        -k_b;
             -k_b,       k_b         ];
 
     % State-space matrices
-    A = [   zeros(size(I)),     eye(size(I)); ...
+    A = [   zeros(size(I)),     eye(size(I));
             -I\K,               -I\D            ];
 
     % Input
     % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0,              0, ...
-            0,              0, ...
-            k_t*n/I(1,1),   0, ...
+    B   = [ 0,              0;
+            0,              0;
+            k_t*n/I(1,1),   0;
             0,              1/I(2,2)    ];
     
     % Output
-    C = [   1,      0,      0, 0; ...   % motor position
-            1,      0,      0, 0; ...   % gear position
-            0,      1,      0, 0; ...   % link position
-            0,      0,      1, 0; ...   % motor velocity
-            0,      0,      1, 0; ...   % gear velocity
-            0,      0,      0, 1; ...   % link velocity
+    C = [   1,      0,      0, 0;       % motor position
+            1,      0,      0, 0;       % gear position
+            0,      1,      0, 0;    	% link position
+            0,      0,      1, 0;       % motor velocity
+            0,      0,      1, 0;       % gear velocity
+            0,      0,      0, 1;       % link velocity
             k_b,    -k_b,   0, 0 ];     % Torsion bar torque
             
 end

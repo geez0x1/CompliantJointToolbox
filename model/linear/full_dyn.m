@@ -64,34 +64,34 @@ function [A, B, C, I, D, K] = full_dyn(obj)
     d_l     = obj.d_l;
     d_mg    = obj.d_mg;
     d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
-    D = [   d_m + d_mg,     -d_mg,                  0; ...
-            -d_mg,          d_g + d_mg + d_gl,      -d_gl; ...
+    D = [   d_m + d_mg,     -d_mg,                  0;
+            -d_mg,          d_g + d_mg + d_gl,      -d_gl;
             0,              -d_gl,                  d_l + d_gl  ];
 
     % Stiffness matrix
     k_g = obj.k_g;
     k_b = obj.k_b; % shorthands %#ok<*PROP>
-    K = [   k_g,            -k_g,           0; ...
-            -k_g,           k_g + k_b,      -k_b; ...
+    K = [   k_g,            -k_g,           0;
+            -k_g,           k_g + k_b,      -k_b;
             0,              -k_b,           k_b         ];
 
     % State-space matrices
-    A = [   zeros(size(I)),     eye(size(I)); ...
+    A = [   zeros(size(I)),     eye(size(I));
             -I\K,               -I\D            ];
 
     % Input
     % u = [tau_m, tau_e]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0,              0, ...
-            0,              0, ...
-            0,              0, ...
-            k_t*n/I(1,1),   0, ...
-            0,              0, ...
+    B   = [ 0,              0;
+            0,              0;
+            0,              0;
+            k_t*n/I(1,1),   0;
+            0,              0;
             0,              1/I(3,3)	];
     
     % Output
-    C = [   eye(size(A,2)); ...         % All states
+    C = [   eye(size(A,2));             % All states
             0, k_b, -k_b, 0, 0, 0   ];  % Torsion bar torque
 
 end
