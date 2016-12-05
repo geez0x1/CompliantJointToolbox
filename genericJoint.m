@@ -94,6 +94,11 @@ classdef genericJoint < handle
         cog_a1	= 0;        % Cosine amplitude [Nm]                                 (default: 0)
         cog_a2	= 0;        % Sine amplitude [Nm]                                   (default: 0)
         cog_f	= 0;        % Spatial frequency [periods/revolution]                (default: 0)
+        % Torque ripple sources
+        rip_types = {};     % Torque ripple types                                   (default: {})
+        rip_a1	= [];   	% Cosine amplitudes [Nm]                                (default: [])
+        rip_a2	= [];     	% Sine amplitudes [Nm]                                  (default: [])
+        rip_f	= [];      	% Spatial frequencies [periods/revolution]              (default: [])
         % Gear
         n       = 100;      % Transmission ratio [.]                                (default: 100)
         %

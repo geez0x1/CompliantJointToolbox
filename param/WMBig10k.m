@@ -77,7 +77,7 @@ params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
 params.('cog_a1')   = 15e-3 * n;            %% Cosine amplitude [Nm]
 params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
 params.('cog_f')    = 6 * n;                %% Spatial frequency [periods/revolution]
-% Torque ripples
+% Torque ripple sources
 params.('rip_types')= {'cogging', 'harmonic_drive'}; %% Torque ripple types
 params.('rip_a1')   = [15e3*n, 0.5];        %% Cosine amplitudes [Nm]
 params.('rip_a2')   = [0, 0];               %% Sine amplitudes [Nm]
