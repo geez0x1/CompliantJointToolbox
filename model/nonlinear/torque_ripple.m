@@ -1,4 +1,4 @@
-%COGGING Calculate torque ripple torques
+%TORQUE_RIPPLE Calculate torque ripple torques
 %
 % [tau] = torque_ripple(jointObj, x)
 %
