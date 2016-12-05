@@ -17,6 +17,9 @@
 %   tau: torque vector of appropriate size
 %
 % Notes::
+%   Supported torque ripple types (indexes are values of rip_types):
+%     1:  Position-dependent (e.g. magnetic cogging - 'detent' or 'no-current' torque)
+%     2:  Position- and torque-dependent (e.g. Harmonic Drive torque ripple)
 %
 % Examples::
 %
@@ -62,12 +65,12 @@ function [ tau ] = torque_ripple(jointObj, x)
     n_types     = length(types);
     taus        = zeros([n_types 1]);
     for i=1:n_types
-        if (strcmp(types(i), 'cogging'))
+        if (types(i) == 1)          % Position-dependent
             taus(i) = a1(i) * cos(omegas(i) * x(1)) + a2(i) * sin(omegas(i) * x(1));
-        elseif (strcmp(types(i), 'harmonic_drive'))
+        elseif (types(i) == 2)      % Position- and torque-dependent
             taus(i) = 0;
         else
-            error(['ERR: Invalid torque ripple type specified: ' types(i)]);
+            error(['ERR: Invalid torque ripple type specified: types(' num2str(i) ') = ' types(i)]);
         end
     end
     
