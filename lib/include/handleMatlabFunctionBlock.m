@@ -110,7 +110,25 @@ for i=1:N
     val = s.(fields{i});
     if (isnumeric(val))
         % Numeric values
-        fprintf(fid, 'params.%s = %f;\n', fields{i}, s.(fields{i}));
+        if (length(val) > 1)
+            % Arrays (1-D)
+            fprintf(fid, 'params.%s = [', fields{i});
+            for j=1:length(val)
+                fprintf(fid, '%f', val(j));
+                if (j < length(val))
+                    if (size(val,1) > size(val,2))
+                        fprintf(fid, '; ');
+                    else
+                        fprintf(fid, ', ');
+                    end
+                end
+            end
+            fprintf(fid, '];\n');
+        else
+            % Simple floating point value
+            fprintf(fid, 'params.%s = %f;\n', fields{i}, val);
+        end
+        
     elseif (iscell(val))
         % String cells
         fprintf(fid, '%%params.%s = {', fields{i});
@@ -121,9 +139,11 @@ for i=1:N
             end
         end
         fprintf(fid, '}; %% Cell arrays are not supported for code generation.\n');
+        
     else
         % Strings
-        fprintf(fid, 'params.%s = ''%s'';\n', fields{i}, s.(fields{i}));
+        fprintf(fid, 'params.%s = ''%s'';\n', fields{i}, val);
+        
     end
 end
 
