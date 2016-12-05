@@ -21,6 +21,12 @@
 %     1:  Position-dependent (e.g. magnetic cogging - 'detent' or 'no-current' torque)
 %     2:  Position- and torque-dependent (e.g. Harmonic Drive torque ripple)
 %
+%   The position- and torque-dependent torque ripple only scales with
+%   torque when this is known from the state, i.e. when either the gearbox
+%   or torsion bar is flexible. In the case of rigid_gearbox models, the
+%   torsion bar torque is used as an approximation of the torque
+%   transmitted through the gearbox.
+%
 % Examples::
 %
 % Author::
@@ -55,7 +61,7 @@ function [ tau ] = torque_ripple(jointObj, x)
     types   = jointObj.rip_types;   % Torque ripple types
     a1      = jointObj.rip_a1;      % Cosine amplitudes [Nm]
     a2      = jointObj.rip_a2;      % Sine amplitudes [Nm]
-    f       = jointObj.cog_f;       % Spatial frequencies [periods/revolution]
+    f       = jointObj.rip_f;       % Spatial frequencies [periods/revolution]
     omegas	= 2 * pi * f;           % Spatial frequencies [rad/revolution]
     
     % Preallocate coefficient vector
@@ -67,8 +73,22 @@ function [ tau ] = torque_ripple(jointObj, x)
     for i=1:n_types
         if (types(i) == 1)          % Position-dependent
             taus(i) = a1(i) * cos(omegas(i) * x(1)) + a2(i) * sin(omegas(i) * x(1));
+            
         elseif (types(i) == 2)      % Position- and torque-dependent
-            taus(i) = 0;
+            % Get the torque transmitted through the gearbox (or an
+            % approximation in case of rigid_gearbox models)
+            if (strcmp(jointObj.modelName, 'full_dyn') || strcmp(jointObj.modelName, 'output_fixed'))
+                torque = jointObj.k_g * (x(1) - x(2));  % Torque from gearbox deflection
+            elseif (strcmp(jointObj.modelName, 'rigid_gearbox'))
+                torque = jointObj.k_b * (x(1) - x(2));  % Torque from torsion bar deflection
+            elseif (strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox'))
+                torque = jointObj.k_b * (x(1) - 0);     % Torque from torsion bar deflection
+            else
+                torque = 1.0;
+            end
+            taus(i) = a1(i) * cos(omegas(i) * x(1)) + a2(i) * sin(omegas(i) * x(1));
+            taus(i) = torque * taus(i);
+            
         else
             error(['ERR: Invalid torque ripple type specified: ' types(i)]);
         end
