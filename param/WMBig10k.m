@@ -79,7 +79,7 @@ params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
 params.('cog_f')    = 6 * n;                %% Spatial frequency [periods/revolution]
 % Torque ripple sources
 params.('rip_types')= [1, 2];               %% Torque ripple types (see torque_ripple())
-params.('rip_a1')   = [15e3*n, 0.5];        %% Cosine amplitudes [Nm]
+params.('rip_a1')   = [15e-3*n, 1.5];       %% Cosine amplitudes [Nm]
 params.('rip_a2')   = [0, 0];               %% Sine amplitudes [Nm]
 params.('rip_f')    = [6*n, 2*n];           %% Spatial frequencies [periods/revolution]
 % Misc

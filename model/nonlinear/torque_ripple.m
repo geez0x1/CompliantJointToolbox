@@ -70,7 +70,7 @@ function [ tau ] = torque_ripple(jointObj, x)
         elseif (types(i) == 2)      % Position- and torque-dependent
             taus(i) = 0;
         else
-            error(['ERR: Invalid torque ripple type specified: types(' num2str(i) ') = ' types(i)]);
+            error(['ERR: Invalid torque ripple type specified: ' types(i)]);
         end
     end
     
