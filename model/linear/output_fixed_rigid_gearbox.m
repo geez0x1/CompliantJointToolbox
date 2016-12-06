@@ -77,6 +77,7 @@ function [A, B, C, I, D, K] = output_fixed_rigid_gearbox(obj)
             k_t*n/I(1,1),   0       ];
     
     % Output
+    d_gl = obj.d_gl;
     C = [   1,      0;          % motor position
             1,      0;          % gear position
             0,      0;          % link position
