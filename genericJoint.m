@@ -90,10 +90,11 @@ classdef genericJoint < handle
         % Stiction
         d_s     = 0;        % Break away torque [Nm]                                (default: 0)
         v_s     = 0;        % Stribeck velocity range [rad/s]                       (default: 0)
-        % Cogging
-        cog_a1	= 0;        % Cosine amplitude [Nm]                                 (default: 0)
-        cog_a2	= 0;        % Sine amplitude [Nm]                                   (default: 0)
-        cog_f	= 0;        % Spatial frequency [periods/revolution]                (default: 0)
+        % Torque ripple sources
+        rip_types = [];     % Torque ripple types (see torque_ripple())         	(default: [])
+        rip_a1	= [];   	% Cosine amplitudes ([Nm] and/or [])                    (default: [])
+        rip_a2	= [];     	% Sine amplitudes ([Nm] and/or [])                      (default: [])
+        rip_f	= [];      	% Spatial frequencies [periods/revolution]              (default: [])
         % Gear
         n       = 100;      % Transmission ratio [.]                                (default: 100)
         %

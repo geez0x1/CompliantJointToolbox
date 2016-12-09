@@ -76,10 +76,11 @@ params.('d_cl_n')   = 0.0;                  %% Load Coulomb damping - negative d
 % Stiction
 params.('d_s')      = 8.9;                  %% Break away torque [Nm]
 params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
-% Cogging
-params.('cog_a1')   = 15e-3 * n;            %% Cosine amplitude [Nm]
-params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
-params.('cog_f')    = 6 * n;                %% Spatial frequency [periods/revolution]
+% Torque ripple sources
+params.('rip_types')= [1, 2];               %% Torque ripple types (see torque_ripple())
+params.('rip_a1')   = [15e-3*n, 0.2];       %% Cosine amplitudes ([Nm] and/or [], see torque_ripple()) (second param to be updated!)
+params.('rip_a2')   = [0, 0];               %% Sine amplitudes [Nm] ([Nm] and/or [], see torque_ripple())
+params.('rip_f')    = [6*n, 2*n];           %% Spatial frequencies [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]
