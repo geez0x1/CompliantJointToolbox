@@ -44,6 +44,7 @@ classdef genericJoint < handle
             'paramName';
             'modelName';
             'nonlinearModelName';
+            'rip_types';
         };
     end
     
@@ -977,7 +978,6 @@ classdef genericJoint < handle
             % Get all properties
             props = properties(this);
             
-            
             % Get symbolic properties
             symProps    = setdiff(props, this.blacklist);
             nProps      = numel(symProps);
@@ -985,10 +985,19 @@ classdef genericJoint < handle
             % Set each symbolic property to symbolic
             for iProps = 1:nProps
                 
-                if doSparse && this.(symProps{iProps}) == 0
-                    this.(symProps{iProps}) = 0;
+                if doSparse && all(this.(symProps{iProps}) == 0)
+                    % this.(symProps{iProps}) = 0;
                 else
-                    this.(symProps{iProps}) = sym(symProps{iProps},'real');
+                    nEl = numel(this.(symProps{iProps}));
+                    if nEl == 1
+                        this.(symProps{iProps}) = sym(symProps{iProps},'real');
+                    else
+                        this.(symProps{iProps}) = sym(this.(symProps{iProps}));
+                        for iEl = 1:nEl
+                            this.(symProps{iProps})(iEl) = ...
+                                sym([symProps{iProps},'_',num2str(iEl)],'real');
+                        end
+                    end
                 end
             end
 
