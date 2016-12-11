@@ -1,9 +1,10 @@
 Library {
   Name			  "SEA_library_models"
-  Version		  8.6
+  Version		  8.3
   MdlSubVersion		  0
   SavedCharacterEncoding  "UTF-8"
   LibraryType		  "BlockLibrary"
+  SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -18,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-1632.0, 27.0, 1696.0, 1062.0]
+      Location		      [1358.0, -320.0, 1936.0, 1096.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -42,9 +43,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4"
-	Extents			[1465.0, 887.0]
-	ZoomFactor		[3.0]
-	Offset			[-32.399999999999835, 166.36190476190464]
+	Extents			[1693.0, 930.0]
+	ZoomFactor		[2.0]
+	Offset			[-112.83214285714354, 90.615476190475874]
       }
     }
   }
@@ -52,11 +53,11 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "wesley"
+  LastModifiedBy	  "joern"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Nov 09 16:59:05 2016"
-  RTWModifiedTimeStamp	  400611529
-  ModelVersionFormat	  "1.%<AutoIncrement:85>"
+  LastModifiedDate	  "Sun Dec 11 16:12:29 2016"
+  RTWModifiedTimeStamp	  403373548
+  ModelVersionFormat	  "1.%<AutoIncrement:87>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -74,8 +75,6 @@ Library {
   SortedOrder		  off
   ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
-  ShowVisualizeInsertedRTB on
-  ShowMarkup		  on
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
@@ -92,6 +91,22 @@ Library {
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
+  RecordCoverage	  off
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  CovEnableCumulative	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  CovSFcnEnable		  off
+  CovBoundaryAbsTol	  0.000010
+  CovBoundaryRelTol	  0.010000
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -120,13 +135,13 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      6
-      Version		      "1.15.1"
+      Version		      "1.14.2"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  7
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -153,8 +168,6 @@ Library {
 	  ZeroCrossControl	  "UseLocalSettings"
 	  ZeroCrossAlgorithm	  "Nonadaptive"
 	  AlgebraicLoopSolver	  "TrustRegion"
-	  SolverInfoToggleStatus  off
-	  IsAutoAppliedInSIP	  off
 	  SolverResetMethod	  "Fast"
 	  PositivePriorityOrder	  off
 	  AutoInsertRateTranBlk	  off
@@ -163,7 +176,7 @@ Library {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  8
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -182,8 +195,6 @@ Library {
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
 	  VisualizeSimOutput	  on
-	  StreamToWorkspace	  off
-	  StreamVariableName	  "streamout"
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -195,11 +206,10 @@ Library {
 	  OutputTimes		  "[]"
 	  ReturnWorkspaceOutputsName "out"
 	  Refine		  "1"
-	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  9
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -216,8 +226,8 @@ Library {
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
-	  DefaultParameterBehavior "Tunable"
-	  UseDivisionForNetSlopeComputation "off"
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
 	  UseFloatMulNetSlope	  off
 	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
@@ -234,13 +244,15 @@ Library {
 	  EnableMemcpy		  on
 	  MemcpyThreshold	  64
 	  PassReuseOutputArgsAs	  "Structure reference"
-	  PassReuseOutputArgsThreshold 12
 	  ExpressionDepthLimit	  128
+	  FoldNonRolledExpr	  on
 	  LocalBlockOutputs	  on
 	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
 	  ActiveStateOutputEnumStorageType "Native Integer"
+	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
 	  InitFltsAndDblsToZero	  off
@@ -251,12 +263,13 @@ Library {
 	  LifeSpan		  "inf"
 	  MaxStackSize		  "Inherit from target"
 	  BufferReusableBoundary  on
-	  SimCompilerOptimization "off"
+	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
+	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  10
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -283,6 +296,7 @@ Library {
 	  IgnoredZcDiagnostic	  "warning"
 	  SolverPrmCheckMsg	  "warning"
 	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
 	  MultiTaskDSMMsg	  "warning"
 	  MultiTaskCondExecSysMsg "none"
 	  MultiTaskRateTransMsg	  "error"
@@ -315,11 +329,12 @@ Library {
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
 	  AssertControl		  "UseLocalSettings"
-	  AllowSymbolicDim	  off
+	  EnableOverflowDetection off
 	  ModelReferenceIOMsg	  "none"
 	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
 	  ModelReferenceVersionMismatchMessage "none"
 	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
 	  UnknownTsInhSupMsg	  "warning"
 	  ModelReferenceDataLoggingMessage "warning"
 	  ModelReferenceSymbolNameMessage "warning"
@@ -331,7 +346,7 @@ Library {
 	  StrictBusMsg		  "None"
 	  BusNameAdapt		  "WarnAndRepair"
 	  NonBusSignalsTreatedAsBus "none"
-	  SymbolicDimMinMaxWarning "warning"
+	  LoggingUnavailableSignals "error"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
@@ -341,12 +356,10 @@ Library {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	  SFUndirectedBroadcastEventsDiag "warning"
 	  SFTransitionActionBeforeConditionDiag	"warning"
-	  SFOutputUsedAsStateInMooreChartDiag "error"
-	  IntegerSaturationMsg	  "warning"
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  11
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -378,6 +391,7 @@ Library {
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
 	  TargetPreprocMaxBitsSint 32
 	  TargetPreprocMaxBitsUint 32
 	  TargetHWDeviceType	  "Specified"
@@ -386,9 +400,8 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  12
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
-	  EnableRefExpFcnMdlSchedulingChecks on
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
 	  ParallelModelReferenceErrorOnInvalidPool on
@@ -402,9 +415,13 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  13
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
+	  SimBlas		  on
 	  SimCtrlC		  on
+	  SimExtrinsic		  on
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
@@ -414,7 +431,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  14
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    15
@@ -441,6 +458,7 @@ Library {
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
 	  PostCodeGenCommand	  ""
 	  Description		  ""
@@ -452,8 +470,20 @@ Library {
 	  TLCDebug		  off
 	  TLCCoverage		  off
 	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  ""
+	  ConfigurationScript	  ""
+	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
 	  BuildConfiguration	  "Faster Builds"
 	  IncludeHyperlinkInReport off
@@ -467,25 +497,28 @@ Library {
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
 	  GenerateTraceInfo	  off
 	  GenerateTraceReport	  off
 	  GenerateTraceReportSl	  off
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
 	  GenerateWebview	  off
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
-	  GenerateMissedCodeReplacementReport off
-	  RTWCompilerOptimization "off"
+	  RTWCompilerOptimization "Off"
 	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  DataInitializer	  ""
 	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      15
-	      Version		      "1.15.1"
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		23
@@ -556,7 +589,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      16
-	      Version		      "1.15.1"
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		14
@@ -587,7 +620,6 @@ Library {
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
-	      InferredTypesCompatibility off
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
 	      ModelReferenceCompliant on
@@ -613,16 +645,14 @@ Library {
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
-	      CastingMode	      "Nominal"
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
 	      GRTInterface	      off
 	      GenerateAllocFcn	      off
-	      UseToolchainInfoCompliant	on
-	      GenerateSharedConstants on
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -643,7 +673,7 @@ Library {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  17
-	  Version		  "1.15.1"
+	  Version		  "1.14.2"
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
 	  RecordCoverage	  off
@@ -730,6 +760,7 @@ Library {
   BlockParameterDefaults {
     Block {
       BlockType		      BusCreator
+      Inputs		      "4"
       DisplayOption	      "none"
       OutDataTypeStr	      "Inherit: auto"
       NonVirtualBus	      off
@@ -759,7 +790,6 @@ Library {
       PropagateVarSize	      "Only when enabling"
       ShowOutputPort	      off
       ZeroCross		      on
-      DisallowConstTsAndPrmTs off
       PortDimensions	      "1"
       SampleTime	      "-1"
       OutMin		      "[]"
@@ -781,9 +811,6 @@ Library {
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      Ground
     }
     Block {
       BlockType		      Inport
@@ -811,9 +838,6 @@ Library {
       LimitOutput	      off
       UpperSaturationLimit    "inf"
       LowerSaturationLimit    "-inf"
-      WrapState		      off
-      WrappedStateUpperValue  "pi"
-      WrappedStateLowerValue  "-pi"
       ShowSaturationPort      off
       ShowStatePort	      off
       AbsoluteTolerance	      "auto"
@@ -857,12 +881,25 @@ Library {
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
+      SFunctionDeploymentMode off
     }
     Block {
       BlockType		      Scope
-      DefaultConfigurationName "Simulink.scopes.TimeScopeBlockCfg"
-      NumInputPorts	      "1"
-      Floating		      off
+      ModelBased	      off
+      TickLabels	      "OneTimeTick"
+      ZoomMode		      "on"
+      Grid		      "on"
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      DataFormat	      "Array"
+      LimitDataPoints	      on
+      MaxDataPoints	      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "-1"
     }
     Block {
       BlockType		      SubSystem
@@ -891,9 +928,9 @@ Library {
       Opaque		      off
       MaskHideContents	      off
       SFBlockType	      "NONE"
+      Variant		      off
       GeneratePreprocessorConditionals off
       ContentPreviewEnabled   off
-      IsWebBlock	      off
     }
     Block {
       BlockType		      Sum
@@ -941,7 +978,7 @@ Library {
   }
   System {
     Name		    "SEA_library_models"
-    Location		    [-8, -8, 1374, 736]
+    Location		    [1358, -320, 3294, 776]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -953,7 +990,7 @@ Library {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "400"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "67"
     Block {
@@ -964,10 +1001,9 @@ Library {
       Position		      [75, 29, 225, 76]
       ZOrder		      191
       RequestExecContextInheritance off
-      Variant		      off
       System {
 	Name			"Joint models"
-	Location		[-1632, 27, 64, 1089]
+	Location		[1358, -320, 3294, 776]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -979,7 +1015,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"300"
+	ZoomFactor		"200"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointModel"
@@ -991,15 +1027,14 @@ Library {
 	  ModelCloseFcn		  "sfsave"
 	  DestroyFcn		  "sfsave"
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    18
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Get"
-	    " other properties\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\n\n% Handle MATLAB fu"
-	    "nction block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If noise is disabled, overwrite the given variances\n"
-	    "if (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0;\nend"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
+	    "Get other properties\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\n\n% Handle MATLAB"
+	    " function block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If noise is disabled, overwrite the given varianc"
+	    "es\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0;\nend"
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -1092,7 +1127,7 @@ Library {
 	  }
 	  System {
 	    Name		    "JointModel"
-	    Location		    [-1632, 27, 64, 1089]
+	    Location		    [1358, -320, 3294, 776]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1104,13 +1139,13 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
-	    SIDHighWatermark	    "718"
+	    ZoomFactor		    "80"
+	    SIDHighWatermark	    "719"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorCurrent [A]"
 	      SID		      "3:13"
-	      Position		      [-30, 438, 0, 452]
+	      Position		      [20, 438, 50, 452]
 	      ZOrder		      158
 	      IconDisplay	      "Port number"
 	    }
@@ -1118,7 +1153,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "tau_e [Nm]"
 	      SID		      "3:399"
-	      Position		      [-30, 533, 0, 547]
+	      Position		      [20, 533, 50, 547]
 	      ZOrder		      211
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -1127,7 +1162,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "A"
 	      SID		      "3:14"
-	      Position		      [610, 555, 715, 625]
+	      Position		      [660, 555, 765, 625]
 	      ZOrder		      4
 	      BlockMirror	      on
 	      Gain		      "A"
@@ -1140,7 +1175,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "B"
 	      SID		      "3:15"
-	      Position		      [340, 420, 445, 490]
+	      Position		      [390, 420, 495, 490]
 	      ZOrder		      3
 	      Gain		      "B"
 	      Multiplication	      "Matrix(K*u)"
@@ -1153,26 +1188,30 @@ Library {
 	      Name		      "Bus\nCreator"
 	      SID		      "3:16"
 	      Ports		      [15, 1]
-	      Position		      [1865, 52, 1870, 858]
+	      Position		      [1915, 52, 1920, 858]
 	      ZOrder		      14
 	      ShowName		      off
 	      Inputs		      "15"
 	      DisplayOption	      "bar"
-	      InheritFromInputs	      on
 	    }
 	    Block {
-	      BlockType		      Ground
-	      Name		      "Ground"
-	      SID		      "3:17"
-	      Position		      [765, 380, 785, 400]
-	      ZOrder		      162
+	      BlockType		      Gain
+	      Name		      "D"
+	      SID		      "3:719"
+	      Position		      [635, 170, 740, 240]
+	      ZOrder		      234
+	      Gain		      "D"
+	      Multiplication	      "Matrix(K*u)"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
 	      BlockType		      Integrator
 	      Name		      "Integrator"
 	      SID		      "3:18"
 	      Ports		      [1, 1]
-	      Position		      [650, 440, 680, 470]
+	      Position		      [700, 440, 730, 470]
 	      ZOrder		      1
 	      Port {
 		PortNumber		1
@@ -1186,9 +1225,9 @@ Library {
 	      Name		      "LTI System1"
 	      SID		      "3:19"
 	      Ports		      [1, 1]
-	      Position		      [1465, 382, 1595, 418]
+	      Position		      [1515, 382, 1645, 418]
 	      ZOrder		      157
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1200,9 +1239,9 @@ Library {
 	      Name		      "LTI System2"
 	      SID		      "3:20"
 	      Ports		      [1, 1]
-	      Position		      [1465, 162, 1595, 198]
+	      Position		      [1515, 162, 1645, 198]
 	      ZOrder		      145
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1214,9 +1253,9 @@ Library {
 	      Name		      "LTI System3"
 	      SID		      "3:21"
 	      Ports		      [1, 1]
-	      Position		      [1465, 822, 1595, 858]
+	      Position		      [1515, 822, 1645, 858]
 	      ZOrder		      154
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1228,9 +1267,9 @@ Library {
 	      Name		      "LTI System4"
 	      SID		      "3:22"
 	      Ports		      [1, 1]
-	      Position		      [1465, 602, 1595, 638]
+	      Position		      [1515, 602, 1645, 638]
 	      ZOrder		      200
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1242,7 +1281,7 @@ Library {
 	      Name		      "Mux"
 	      SID		      "3:400"
 	      Ports		      [2, 1]
-	      Position		      [290, 436, 295, 474]
+	      Position		      [340, 436, 345, 474]
 	      ZOrder		      212
 	      ShowName		      off
 	      Inputs		      "2"
@@ -1253,9 +1292,9 @@ Library {
 	      Name		      "Noise1"
 	      SID		      "3:23"
 	      Ports		      [0, 1]
-	      Position		      [1140, 20, 1170, 50]
+	      Position		      [1190, 20, 1220, 50]
 	      ZOrder		      167
-	      LibraryVersion	      "1.358"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -1269,9 +1308,9 @@ Library {
 	      Name		      "Noise2"
 	      SID		      "3:24"
 	      Ports		      [0, 1]
-	      Position		      [1140, 240, 1170, 270]
+	      Position		      [1190, 240, 1220, 270]
 	      ZOrder		      170
-	      LibraryVersion	      "1.358"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -1285,9 +1324,9 @@ Library {
 	      Name		      "Noise5"
 	      SID		      "3:27"
 	      Ports		      [0, 1]
-	      Position		      [1140, 460, 1170, 490]
+	      Position		      [1190, 460, 1220, 490]
 	      ZOrder		      199
-	      LibraryVersion	      "1.358"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -1301,10 +1340,9 @@ Library {
 	      Name		      "Quantize"
 	      SID		      "3:681"
 	      Ports		      [1, 1]
-	      Position		      [1080, 52, 1110, 88]
+	      Position		      [1130, 52, 1160, 88]
 	      ZOrder		      227
 	      RequestExecContextInheritance off
-	      Variant		      off
 	      System {
 		Name			"Quantize"
 		Location		[-1632, 27, 64, 1089]
@@ -1345,7 +1383,6 @@ Library {
 		  Position		  [140, 30, 195, 60]
 		  ZOrder		  -4
 		  RequestExecContextInheritance	off
-		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
 		    Location		    [-1632, 27, 64, 1089]
@@ -1486,10 +1523,9 @@ Library {
 	      Name		      "Quantize1"
 	      SID		      "3:699"
 	      Ports		      [1, 1]
-	      Position		      [1080, 272, 1110, 308]
+	      Position		      [1130, 272, 1160, 308]
 	      ZOrder		      232
 	      RequestExecContextInheritance off
-	      Variant		      off
 	      System {
 		Name			"Quantize1"
 		Location		[-1632, 27, 64, 1089]
@@ -1530,7 +1566,6 @@ Library {
 		  Position		  [140, 30, 195, 60]
 		  ZOrder		  -4
 		  RequestExecContextInheritance	off
-		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
 		    Location		    [-1632, 27, 64, 1089]
@@ -1671,10 +1706,9 @@ Library {
 	      Name		      "Quantize2"
 	      SID		      "3:709"
 	      Ports		      [1, 1]
-	      Position		      [1080, 492, 1110, 528]
+	      Position		      [1130, 492, 1160, 528]
 	      ZOrder		      233
 	      RequestExecContextInheritance off
-	      Variant		      off
 	      System {
 		Name			"Quantize2"
 		Location		[-1632, 27, 64, 1089]
@@ -1715,7 +1749,6 @@ Library {
 		  Position		  [140, 30, 195, 60]
 		  ZOrder		  -4
 		  RequestExecContextInheritance	off
-		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
 		    Location		    [-1632, 27, 64, 1089]
@@ -1856,7 +1889,7 @@ Library {
 	      Name		      "Sum"
 	      SID		      "3:29"
 	      Ports		      [3, 1]
-	      Position		      [510, 445, 530, 465]
+	      Position		      [560, 445, 580, 465]
 	      ZOrder		      2
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1876,7 +1909,7 @@ Library {
 	      Name		      "Sum1"
 	      SID		      "3:30"
 	      Ports		      [2, 1]
-	      Position		      [1290, 720, 1310, 740]
+	      Position		      [1340, 720, 1360, 740]
 	      ZOrder		      152
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1890,7 +1923,7 @@ Library {
 	      Name		      "Sum2"
 	      SID		      "3:32"
 	      Ports		      [2, 1]
-	      Position		      [800, 445, 820, 465]
+	      Position		      [850, 445, 870, 465]
 	      ZOrder		      160
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1904,7 +1937,7 @@ Library {
 	      Name		      "Sum3"
 	      SID		      "3:33"
 	      Ports		      [2, 1]
-	      Position		      [100, 435, 120, 455]
+	      Position		      [150, 435, 170, 455]
 	      ZOrder		      166
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1918,7 +1951,7 @@ Library {
 	      Name		      "Sum4"
 	      SID		      "3:34"
 	      Ports		      [2, 1]
-	      Position		      [1180, 60, 1200, 80]
+	      Position		      [1230, 60, 1250, 80]
 	      ZOrder		      168
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1932,7 +1965,7 @@ Library {
 	      Name		      "Sum5"
 	      SID		      "3:35"
 	      Ports		      [2, 1]
-	      Position		      [1180, 280, 1200, 300]
+	      Position		      [1230, 280, 1250, 300]
 	      ZOrder		      169
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1946,7 +1979,7 @@ Library {
 	      Name		      "Sum8"
 	      SID		      "3:38"
 	      Ports		      [2, 1]
-	      Position		      [1245, 775, 1265, 795]
+	      Position		      [1295, 775, 1315, 795]
 	      ZOrder		      177
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1960,7 +1993,7 @@ Library {
 	      Name		      "Sum9"
 	      SID		      "3:39"
 	      Ports		      [2, 1]
-	      Position		      [1180, 500, 1200, 520]
+	      Position		      [1230, 500, 1250, 520]
 	      ZOrder		      198
 	      ShowName		      off
 	      IconShape		      "round"
@@ -1973,7 +2006,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "TorsionBarStiffness"
 	      SID		      "3:40"
-	      Position		      [1325, 717, 1420, 743]
+	      Position		      [1375, 717, 1470, 743]
 	      ZOrder		      153
 	      Gain		      "k_b"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1984,7 +2017,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "TorsionBarStiffness1"
 	      SID		      "3:41"
-	      Position		      [1330, 772, 1420, 798]
+	      Position		      [1380, 772, 1470, 798]
 	      ZOrder		      178
 	      Gain		      "k_b"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1996,9 +2029,9 @@ Library {
 	      Name		      "currentNoise"
 	      SID		      "3:42"
 	      Ports		      [0, 1]
-	      Position		      [55, 380, 85, 410]
+	      Position		      [105, 380, 135, 410]
 	      ZOrder		      172
-	      LibraryVersion	      "1.358"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -2012,7 +2045,7 @@ Library {
 	      Name		      "input_delay"
 	      SID		      "3:43"
 	      Ports		      [1, 1]
-	      Position		      [190, 430, 220, 460]
+	      Position		      [240, 430, 270, 460]
 	      ZOrder		      184
 	      DelayTime		      "input_delay * jointObj.Ts"
 	      TransDelayFeedthrough   on
@@ -2022,7 +2055,7 @@ Library {
 	      Name		      "nonLinDynamicsFcn"
 	      SID		      "3:693"
 	      Ports		      [1, 1]
-	      Position		      [630, 312, 700, 358]
+	      Position		      [680, 312, 750, 358]
 	      ZOrder		      231
 	      BlockMirror	      on
 	      LibraryVersion	      "1.32"
@@ -2031,7 +2064,6 @@ Library {
 	      TreatAsAtomicUnit	      on
 	      RequestExecContextInheritance off
 	      SFBlockType	      "MATLAB Function"
-	      Variant		      off
 	      System {
 		Name			"nonLinDynamicsFcn"
 		Location		[223, 338, 826, 833]
@@ -2075,7 +2107,6 @@ Library {
 		  ZOrder		  10
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
-		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
@@ -2137,24 +2168,26 @@ Library {
 	      Name		      "nonLinearDynamicsScope"
 	      SID		      "3:45"
 	      Ports		      [1]
-	      Position		      [455, 319, 485, 351]
+	      Position		      [505, 319, 535, 351]
 	      ZOrder		      165
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      ScopeSpecificationString "C++SS(StrPVP('Location','[64, 429, 964, 1027]'),StrPVP('Open','off'),StrPVP('ZoomMode"
-	      "','xonly'),MxPVP('AxesTitles',24,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',28,'struct(''Fig"
-	      "ureColor'',''[0.5 0.5 0.5]'',''AxesColor'',''[0 0 0]'',''AxesTickColor'',''[1 1 1]'',''LineColors'',''[1 1 0;1 "
-	      "0 1;0 1 1;1 0 0;0 1 0;0 0 1]'',''LineStyles'',''-|-|-|-|-|-'',''LineWidths'',''[0.5 0.5 0.5 0.5 0.5 0.5]'',''Ma"
-	      "rkerStyles'',''none|none|none|none|none|none'')'),StrPVP('ShowLegends','off'),StrPVP('TimeRange','10'),StrPVP('"
-	      "YMin','-1.2e-05'),StrPVP('YMax','1.2e-05'),StrPVP('DataFormat','StructureWithTime'),StrPVP('LimitDataPoints','o"
-	      "ff'),StrPVP('BlockParamSampleTime','0'),StrPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
+	      Floating		      off
+	      Location		      [188, 365, 512, 604]
+	      Open		      off
+	      NumInputPorts	      "1"
+	      List {
+		ListType		AxesTitles
+		axes1			"%<SignalLabel>"
+	      }
+	      ShowLegends	      off
 	    }
 	    Block {
 	      BlockType		      TransportDelay
 	      Name		      "output_delay"
 	      SID		      "3:46"
 	      Ports		      [1, 1]
-	      Position		      [1685, 55, 1715, 85]
+	      Position		      [1735, 55, 1765, 85]
 	      ZOrder		      185
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2170,7 +2203,7 @@ Library {
 	      Name		      "output_delay1"
 	      SID		      "3:47"
 	      Ports		      [1, 1]
-	      Position		      [1685, 110, 1715, 140]
+	      Position		      [1735, 110, 1765, 140]
 	      ZOrder		      186
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2186,7 +2219,7 @@ Library {
 	      Name		      "output_delay10"
 	      SID		      "3:48"
 	      Ports		      [1, 1]
-	      Position		      [1685, 715, 1715, 745]
+	      Position		      [1735, 715, 1765, 745]
 	      ZOrder		      195
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2202,7 +2235,7 @@ Library {
 	      Name		      "output_delay11"
 	      SID		      "3:49"
 	      Ports		      [1, 1]
-	      Position		      [1685, 770, 1715, 800]
+	      Position		      [1735, 770, 1765, 800]
 	      ZOrder		      196
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2218,7 +2251,7 @@ Library {
 	      Name		      "output_delay12"
 	      SID		      "3:50"
 	      Ports		      [1, 1]
-	      Position		      [1685, 825, 1715, 855]
+	      Position		      [1735, 825, 1765, 855]
 	      ZOrder		      197
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2234,7 +2267,7 @@ Library {
 	      Name		      "output_delay13"
 	      SID		      "3:51"
 	      Ports		      [1, 1]
-	      Position		      [1685, 495, 1715, 525]
+	      Position		      [1735, 495, 1765, 525]
 	      ZOrder		      201
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2250,7 +2283,7 @@ Library {
 	      Name		      "output_delay14"
 	      SID		      "3:52"
 	      Ports		      [1, 1]
-	      Position		      [1685, 605, 1715, 635]
+	      Position		      [1735, 605, 1765, 635]
 	      ZOrder		      202
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2266,7 +2299,7 @@ Library {
 	      Name		      "output_delay2"
 	      SID		      "3:53"
 	      Ports		      [1, 1]
-	      Position		      [1685, 165, 1715, 195]
+	      Position		      [1735, 165, 1765, 195]
 	      ZOrder		      187
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2282,7 +2315,7 @@ Library {
 	      Name		      "output_delay3"
 	      SID		      "3:54"
 	      Ports		      [1, 1]
-	      Position		      [1685, 220, 1715, 250]
+	      Position		      [1735, 220, 1765, 250]
 	      ZOrder		      188
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2298,7 +2331,7 @@ Library {
 	      Name		      "output_delay4"
 	      SID		      "3:55"
 	      Ports		      [1, 1]
-	      Position		      [1685, 275, 1715, 305]
+	      Position		      [1735, 275, 1765, 305]
 	      ZOrder		      189
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2314,7 +2347,7 @@ Library {
 	      Name		      "output_delay5"
 	      SID		      "3:56"
 	      Ports		      [1, 1]
-	      Position		      [1685, 330, 1715, 360]
+	      Position		      [1735, 330, 1765, 360]
 	      ZOrder		      190
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2330,7 +2363,7 @@ Library {
 	      Name		      "output_delay6"
 	      SID		      "3:57"
 	      Ports		      [1, 1]
-	      Position		      [1685, 385, 1715, 415]
+	      Position		      [1735, 385, 1765, 415]
 	      ZOrder		      191
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2346,7 +2379,7 @@ Library {
 	      Name		      "output_delay7"
 	      SID		      "3:58"
 	      Ports		      [1, 1]
-	      Position		      [1685, 440, 1715, 470]
+	      Position		      [1735, 440, 1765, 470]
 	      ZOrder		      192
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2362,7 +2395,7 @@ Library {
 	      Name		      "output_delay8"
 	      SID		      "3:59"
 	      Ports		      [1, 1]
-	      Position		      [1685, 550, 1715, 580]
+	      Position		      [1735, 550, 1765, 580]
 	      ZOrder		      193
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2378,7 +2411,7 @@ Library {
 	      Name		      "output_delay9"
 	      SID		      "3:60"
 	      Ports		      [1, 1]
-	      Position		      [1685, 660, 1715, 690]
+	      Position		      [1735, 660, 1765, 690]
 	      ZOrder		      194
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -2393,7 +2426,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "selectGearAngle"
 	      SID		      "3:61"
-	      Position		      [875, 277, 1035, 303]
+	      Position		      [925, 277, 1085, 303]
 	      ZOrder		      6
 	      Gain		      "C(2,:)"
 	      Multiplication	      "Matrix(K*u)"
@@ -2405,7 +2438,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "selectGearVelocity"
 	      SID		      "3:62"
-	      Position		      [875, 442, 1035, 468]
+	      Position		      [925, 442, 1085, 468]
 	      ZOrder		      151
 	      Gain		      "C(5,:)"
 	      Multiplication	      "Matrix(K*u)"
@@ -2417,7 +2450,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "selectLinkAngle"
 	      SID		      "3:63"
-	      Position		      [875, 57, 1035, 83]
+	      Position		      [925, 57, 1085, 83]
 	      ZOrder		      148
 	      Gain		      "C(3,:)"
 	      Multiplication	      "Matrix(K*u)"
@@ -2429,7 +2462,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "selectLinkVelocity"
 	      SID		      "3:64"
-	      Position		      [875, 222, 1035, 248]
+	      Position		      [925, 222, 1085, 248]
 	      ZOrder		      149
 	      Gain		      "C(6,:)"
 	      Multiplication	      "Matrix(K*u)"
@@ -2441,7 +2474,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "selectMotorAngle"
 	      SID		      "3:65"
-	      Position		      [875, 497, 1035, 523]
+	      Position		      [925, 497, 1085, 523]
 	      ZOrder		      155
 	      Gain		      "C(1,:)"
 	      Multiplication	      "Matrix(K*u)"
@@ -2453,7 +2486,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "selectMotorVelocity"
 	      SID		      "3:66"
-	      Position		      [875, 662, 1035, 688]
+	      Position		      [925, 662, 1085, 688]
 	      ZOrder		      10
 	      Gain		      "C(4,:)"
 	      Multiplication	      "Matrix(K*u)"
@@ -2465,7 +2498,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "jointBus"
 	      SID		      "3:67"
-	      Position		      [1950, 448, 1980, 462]
+	      Position		      [2000, 448, 2030, 462]
 	      ZOrder		      159
 	      IconDisplay	      "Port number"
 	    }
@@ -2729,14 +2762,6 @@ Library {
 	      }
 	    }
 	    Line {
-	      ZOrder		      44
-	      SrcBlock		      "Ground"
-	      SrcPort		      1
-	      Points		      [20, 0]
-	      DstBlock		      "Sum2"
-	      DstPort		      1
-	    }
-	    Line {
 	      ZOrder		      45
 	      SrcBlock		      "B"
 	      SrcPort		      1
@@ -2922,8 +2947,18 @@ Library {
 	      ZOrder		      67
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
-	      DstBlock		      "B"
-	      DstPort		      1
+	      Points		      [14, 0]
+	      Branch {
+		ZOrder			91
+		Points			[0, -250]
+		DstBlock		"D"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			90
+		DstBlock		"B"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      ZOrder		      68
@@ -3053,6 +3088,14 @@ Library {
 	      DstBlock		      "Sum9"
 	      DstPort		      2
 	    }
+	    Line {
+	      ZOrder		      92
+	      SrcBlock		      "D"
+	      SrcPort		      1
+	      Points		      [115, 0]
+	      DstBlock		      "Sum2"
+	      DstPort		      1
+	    }
 	  }
 	}
       }
@@ -3061,7 +3104,7 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow 80000006
+#   Stateflow Version 8.1 (R2014a) dated Feb  8 2014, 02:29:12
 #
 #
 Stateflow {
@@ -3071,7 +3114,7 @@ Stateflow {
     created		    "06-Feb-2016 20:55:41"
     isLibrary		    1
     firstTarget		    9
-    sfVersion		    80000006
+    sfVersion		    76014001.002
   }
   chart {
     id			    2

@@ -45,6 +45,6 @@
 %%
 %% For more information on the toolbox and contact to the authors visit
 %% <https://github.com/geez0x1/CompliantJointToolbox>
-function [A, B, C, I, D, K] = getDynamicsMatrices(obj)
-    [A, B, C, I, D, K] = %s(obj);
+function [A, B, C, D, I, R, K] = getDynamicsMatrices(obj)
+    [A, B, C, D, I, R, K] = %s(obj);
 end

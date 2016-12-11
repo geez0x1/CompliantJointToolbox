@@ -806,8 +806,7 @@ classdef genericJoint < handle
             %  Wesley Roozing
             %
             % See also getStateSpaceD, genericJoint, jointBuilder.
-            [A, B, C, ~, ~, ~]  = obj.getDynamicsMatrices();
-            D                   = 0;
+            [A, B, C, D]  = obj.getDynamicsMatrices();
             sys                 = ss(A, B, C, D);
         end
         
@@ -884,9 +883,9 @@ classdef genericJoint < handle
                 sys     = tf(sys);
             else
                 syms s
-                [A B C D ] = this.getDynamicsMatrices;
+                [A, B, C, D] = this.getDynamicsMatrices;
                 E = sym(eye(size(A,1)));
-                sys = simplify( C*inv(s*E-A)*B );
+                sys = simplify( C*inv(s*E-A)*B + D);
                 
             end
         end
