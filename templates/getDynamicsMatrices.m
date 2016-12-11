@@ -1,6 +1,6 @@
 %%GETDYNAMICSMATRICES Template for obtaining state space matrices for the linear dynamics.
 %%
-%% [A, B, C, I, D, K] = jointObj.getDynamicsMatrices
+%% [A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices
 %%
 %% jointObj is the instance of the joint class object for which this
 %% function has been called.
@@ -11,8 +11,9 @@
 %%   A: System matrix
 %%   B: Input matrix
 %%   C: Output matrix
+%%   D: Direct Feedthrough matrix
 %%   I: Inertia matrix
-%%   D: Damping matrix
+%%   R: Damping matrix
 %%   K: Stiffness matrix
 %%
 %% Notes::
@@ -45,6 +46,6 @@
 %%
 %% For more information on the toolbox and contact to the authors visit
 %% <https://github.com/geez0x1/CompliantJointToolbox>
-function [A, B, C, I, D, K] = getDynamicsMatrices(obj)
-    [A, B, C, I, D, K] = %s(obj);
+function [A, B, C, D, I, R, K] = getDynamicsMatrices(obj)
+    [A, B, C, D, I, R, K] = %s(obj);
 end

@@ -1,7 +1,7 @@
 % RIGID_GEARBOX_NO_FRICTION Get linear dynamics matrices - rigid gearbox without
 % friction
 %
-% [A, B, C, I, D, K] = jointObj.rigid_gearbox_no_friction
+% [A, B, C, D, I, R, K] = jointObj.rigid_gearbox_no_friction
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -10,8 +10,9 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
-%   D:   Damping matrix
+%   R:   Damping matrix
 %   K:   Stiffness matrix
 %
 % Notes::
@@ -45,7 +46,7 @@
 %
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
-function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
+function [A, B, C, D, I, R, K] = rigid_gearbox_no_friction(obj)
     
     % The computations below assume a state vector definition according to:
     % x = [q_g, q_l, q_g_dot, q_l_dot]', where 
@@ -61,7 +62,7 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
     d_m     = 0 * obj.d_m;
     d_l     = 0 * obj.d_l;
     d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
-    D = [   d_m + d_g + d_gl,       -d_gl;
+    R = [   d_m + d_g + d_gl,       -d_gl;
             -d_gl,                  d_l + d_gl      ];
 
     % Stiffness matrix
@@ -71,7 +72,7 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I));
-            -I\K,               -I\D            ];
+            -I\K,               -I\R            ];
 
     % Input
     % u = [tau_m, tau_e]
@@ -90,5 +91,9 @@ function [A, B, C, I, D, K] = rigid_gearbox_no_friction(obj)
             0,      0,      1, 0;           % gear velocity
             0,      0,      0, 1;           % link velocity
             k_b,    -k_b,   d_gl, -d_gl	];	% Torsion bar torque
-            
+     
+    % Direct Feedthrough
+    nIn = size(B,2);
+    nOut = size(C,1);
+    D = zeros(nOut,nIn);
 end

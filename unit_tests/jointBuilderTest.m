@@ -124,11 +124,11 @@ nPar = numel(allParams);
 
 % tests
     for iPar = 1:nPar
-        jb.buildJoint(allParams{iPar},'continuous_full_no_friction');
-        jb.buildJoint(allParams{iPar},'continuous_output_fixed_no_friction');
-        jb.buildJoint(allParams{iPar},'continuous_rigid_gearbox_no_friction');
-        jb.buildJoint(allParams{iPar},'continuous_output_fixed_rigid_gearbox_no_friction');
-        jb.buildJoint(allParams{iPar},'continuous_rigid_no_friction');
+        jb.buildJoint(allParams{iPar},'full_dyn_no_friction');
+        jb.buildJoint(allParams{iPar},'output_fixed_no_friction');
+        jb.buildJoint(allParams{iPar},'rigid_gearbox_no_friction');
+        jb.buildJoint(allParams{iPar},'output_fixed_rigid_gearbox_no_friction');
+        jb.buildJoint(allParams{iPar},'rigid_no_friction');
     end
 
     verifyTrue(testCase,true) % If we arrive here, everything is fine.
@@ -145,16 +145,16 @@ nPar = numel(allParams);
 
 % tests
     for iPar = 1:nPar
-        jb.buildJoint(allParams{iPar}, 'continuous_full', 'coulomb');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed', 'coulomb');
-        jb.buildJoint(allParams{iPar}, 'continuous_rigid_gearbox', 'coulomb');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed_rigid_gearbox', 'coulomb');
+        jb.buildJoint(allParams{iPar}, 'full_dyn', 'coulomb');
+        jb.buildJoint(allParams{iPar}, 'output_fixed', 'coulomb');
+        jb.buildJoint(allParams{iPar}, 'rigid_gearbox', 'coulomb');
+        jb.buildJoint(allParams{iPar}, 'output_fixed_rigid_gearbox', 'coulomb');
 
         % Coulomb friction - asymmetric
-        jb.buildJoint(allParams{iPar}, 'continuous_full', 'coulomb_asym');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed', 'coulomb_asym');
-        jb.buildJoint(allParams{iPar}, 'continuous_rigid_gearbox', 'coulomb_asym');
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed_rigid_gearbox', 'coulomb_asym');
+        jb.buildJoint(allParams{iPar}, 'full_dyn', 'coulomb_asym');
+        jb.buildJoint(allParams{iPar}, 'output_fixed', 'coulomb_asym');
+        jb.buildJoint(allParams{iPar}, 'rigid_gearbox', 'coulomb_asym');
+        jb.buildJoint(allParams{iPar}, 'output_fixed_rigid_gearbox', 'coulomb_asym');
     end
     verifyTrue(testCase,true) % If we arrive here, everything is fine.
 end
@@ -170,10 +170,10 @@ nPar = numel(allParams);
 % tests
     for iPar = 1:nPar
     
-        jb.buildJoint(allParams{iPar}, 'continuous_full', {'coulomb', 'viscous_asym'});
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed', {'coulomb_asym', 'viscous_asym'});
-        jb.buildJoint(allParams{iPar}, 'continuous_rigid_gearbox', {'coulomb', 'viscous_asym'});
-        jb.buildJoint(allParams{iPar}, 'continuous_output_fixed_rigid_gearbox', {'coulomb_asym', 'viscous_asym'});
+        jb.buildJoint(allParams{iPar}, 'full_dyn', {'coulomb', 'viscous_asym'});
+        jb.buildJoint(allParams{iPar}, 'output_fixed', {'coulomb_asym', 'viscous_asym'});
+        jb.buildJoint(allParams{iPar}, 'rigid_gearbox', {'coulomb', 'viscous_asym'});
+        jb.buildJoint(allParams{iPar}, 'output_fixed_rigid_gearbox', {'coulomb_asym', 'viscous_asym'});
         
     end
     verifyTrue(testCase,true) % If we arrive here, everything is fine.

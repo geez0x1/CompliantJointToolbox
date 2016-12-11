@@ -51,7 +51,7 @@ if (~exist('jointObj', 'var') || ~exist('Q_td', 'var') || ~exist('PQ_td', 'var')
 end
 
 % Get linear dynamics matrices
-[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();
+[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();
 
 % Discretize using Tustin transform
 Q_td_tust   = c2d(Q_td, jointObj.Ts, 'tustin');

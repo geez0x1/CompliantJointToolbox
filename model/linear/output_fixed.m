@@ -1,6 +1,6 @@
 %OUTPUT_FIXED Get linear dynamics matrices - output link fixed
 %
-% [A, B, C, I, D, K] = jointObj.output_fixed
+% [A, B, C, D, I, R, K] = jointObj.output_fixed
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -9,6 +9,7 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
 %   D:   Damping matrix
 %   K:   Stiffness matrix
@@ -46,7 +47,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [A, B, C, I, D, K] = output_fixed(obj)
+function [A, B, C, D, I, R, K] = output_fixed(obj)
     
     % The computations below assume a state vector definition according to:
     % x = [q_m, q_g, q_m_dot, q_g_dot,]', where 
@@ -63,7 +64,7 @@ function [A, B, C, I, D, K] = output_fixed(obj)
     d_g     = obj.d_g;
     d_mg    = obj.d_mg;
     d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
-    D = [   d_m + d_mg,     -d_mg;
+    R = [   d_m + d_mg,     -d_mg;
             -d_mg,          d_g + d_mg + d_gl   ];
 
     % Stiffness matrix
@@ -74,7 +75,7 @@ function [A, B, C, I, D, K] = output_fixed(obj)
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I));
-            -I\K,               -I\D                ];
+            -I\K,               -I\R                ];
         
     % Input
     % u = [tau_m, tau_e]
@@ -93,6 +94,11 @@ function [A, B, C, I, D, K] = output_fixed(obj)
             0, 0,   0, 1;       % gear velocity
             0, 0,   0, 0;       % link velocity
             0, k_b, 0, d_gl	];	% Torsion bar torque
+        
+    % Direct Feedthrough
+    nIn = size(B,2);
+    nOut = size(C,1);
+    D = zeros(nOut,nIn);
     
 end
 

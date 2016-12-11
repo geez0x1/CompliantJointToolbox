@@ -1,6 +1,6 @@
 %FULL_DYN Get linear dynamics matrices - default
 %
-% [A, B, C, I, D, K] = jointObj.full_dyn
+% [A, B, C, D, I, R, K] = jointObj.full_dyn
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -9,6 +9,7 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
 %   D:   Damping matrix
 %   K:   Stiffness matrix
@@ -45,7 +46,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [A, B, C, I, D, K] = full_dyn(obj)
+function [A, B, C, D, I, R, K] = full_dyn(obj)
     
     % The computations below assume a state vector definition according to:
     % x = [q_m, q_g, q_l, q_m_dot, q_g_dot, q_l_dot]', where 
@@ -64,7 +65,7 @@ function [A, B, C, I, D, K] = full_dyn(obj)
     d_l     = obj.d_l;
     d_mg    = obj.d_mg;
     d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
-    D = [   d_m + d_mg,     -d_mg,                  0;
+    R = [   d_m + d_mg,     -d_mg,                  0;
             -d_mg,          d_g + d_mg + d_gl,      -d_gl;
             0,              -d_gl,                  d_l + d_gl  ];
 
@@ -77,7 +78,7 @@ function [A, B, C, I, D, K] = full_dyn(obj)
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I));
-            -I\K,               -I\D            ];
+            -I\K,               -I\R            ];
 
     % Input
     % u = [tau_m, tau_e]
@@ -93,5 +94,10 @@ function [A, B, C, I, D, K] = full_dyn(obj)
     % Output
     C = [   eye(size(A,2));                     % All states
             0, k_b, -k_b, 0, d_gl, -d_gl	];	% Torsion bar torque
+        
+    % Direct Feedthrough
+    nIn = size(B,2);
+    nOut = size(C,1);
+    D = zeros(nOut,nIn);
 
 end

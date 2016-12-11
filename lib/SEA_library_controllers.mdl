@@ -1,9 +1,10 @@
 Library {
   Name			  "SEA_library_controllers"
-  Version		  8.6
+  Version		  8.3
   MdlSubVersion		  0
   SavedCharacterEncoding  "UTF-8"
   LibraryType		  "BlockLibrary"
+  SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -18,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2879.0, 26.0, 962.0, 1055.0]
+      Location		      [1597.0, -250.0, 962.0, 1055.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -35,16 +36,55 @@ Library {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
-	Extents			[731.0, 880.0]
-	ZoomFactor		[1.0]
-	Offset			[44.833333333332462, -330.41904761904749]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		5
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "3"
+	  Extents		  [719.0, 886.0]
+	  ZoomFactor		  [0.8]
+	  Offset		  [-89.4561825286446, -339.68726074574442]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
+	  Extents		  [719.0, 886.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [0.0, 0.0]
+	}
+	Object {
+	  $ObjectID		  7
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "272"
+	  Extents		  [719.0, 886.0]
+	  ZoomFactor		  [1.5]
+	  Offset		  [410.53643996287019, -97.168573678733225]
+	}
+	Object {
+	  $ObjectID		  8
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "28"
+	  Extents		  [719.0, 886.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [273.75952380952231, -45.438095238094604]
+	}
+	Object {
+	  $ObjectID		  9
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "77"
+	  Extents		  [719.0, 886.0]
+	  ZoomFactor		  [0.8]
+	  Offset		  [551.69047619047478, 7.7547619047616081]
+	}
+	PropName		"EditorsInfo"
       }
     }
   }
@@ -52,11 +92,11 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "wesley"
+  LastModifiedBy	  "joern"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Nov 09 13:29:20 2016"
-  RTWModifiedTimeStamp	  400598959
-  ModelVersionFormat	  "1.%<AutoIncrement:203>"
+  LastModifiedDate	  "Sun Dec 11 16:38:24 2016"
+  RTWModifiedTimeStamp	  403375084
+  ModelVersionFormat	  "1.%<AutoIncrement:208>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -74,8 +114,6 @@ Library {
   SortedOrder		  off
   ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
-  ShowVisualizeInsertedRTB on
-  ShowMarkup		  on
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
@@ -92,6 +130,22 @@ Library {
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
+  RecordCoverage	  off
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  CovEnableCumulative	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  CovSFcnEnable		  off
+  CovBoundaryAbsTol	  0.000010
+  CovBoundaryRelTol	  0.010000
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -119,14 +173,14 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      6
-      Version		      "1.15.1"
+      $ObjectID		      10
+      Version		      "1.14.2"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  7
-	  Version		  "1.15.1"
+	  $ObjectID		  11
+	  Version		  "1.14.2"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -153,8 +207,6 @@ Library {
 	  ZeroCrossControl	  "UseLocalSettings"
 	  ZeroCrossAlgorithm	  "Nonadaptive"
 	  AlgebraicLoopSolver	  "TrustRegion"
-	  SolverInfoToggleStatus  off
-	  IsAutoAppliedInSIP	  off
 	  SolverResetMethod	  "Fast"
 	  PositivePriorityOrder	  off
 	  AutoInsertRateTranBlk	  off
@@ -162,8 +214,8 @@ Library {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  8
-	  Version		  "1.15.1"
+	  $ObjectID		  12
+	  Version		  "1.14.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -182,8 +234,6 @@ Library {
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
 	  VisualizeSimOutput	  on
-	  StreamToWorkspace	  off
-	  StreamVariableName	  "streamout"
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -195,11 +245,10 @@ Library {
 	  OutputTimes		  "[]"
 	  ReturnWorkspaceOutputsName "out"
 	  Refine		  "1"
-	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  9
-	  Version		  "1.15.1"
+	  $ObjectID		  13
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -216,8 +265,8 @@ Library {
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
-	  DefaultParameterBehavior "Tunable"
-	  UseDivisionForNetSlopeComputation "off"
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
 	  UseFloatMulNetSlope	  off
 	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
@@ -234,13 +283,15 @@ Library {
 	  EnableMemcpy		  on
 	  MemcpyThreshold	  64
 	  PassReuseOutputArgsAs	  "Structure reference"
-	  PassReuseOutputArgsThreshold 12
 	  ExpressionDepthLimit	  128
+	  FoldNonRolledExpr	  on
 	  LocalBlockOutputs	  on
 	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
 	  ActiveStateOutputEnumStorageType "Native Integer"
+	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
 	  InitFltsAndDblsToZero	  off
@@ -251,12 +302,13 @@ Library {
 	  LifeSpan		  "inf"
 	  MaxStackSize		  "Inherit from target"
 	  BufferReusableBoundary  on
-	  SimCompilerOptimization "off"
+	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
+	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  10
-	  Version		  "1.15.1"
+	  $ObjectID		  14
+	  Version		  "1.14.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -283,6 +335,7 @@ Library {
 	  IgnoredZcDiagnostic	  "warning"
 	  SolverPrmCheckMsg	  "warning"
 	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
 	  MultiTaskDSMMsg	  "error"
 	  MultiTaskCondExecSysMsg "error"
 	  MultiTaskRateTransMsg	  "error"
@@ -315,11 +368,12 @@ Library {
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
 	  AssertControl		  "UseLocalSettings"
-	  AllowSymbolicDim	  off
+	  EnableOverflowDetection off
 	  ModelReferenceIOMsg	  "none"
 	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
 	  ModelReferenceVersionMismatchMessage "none"
 	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
 	  UnknownTsInhSupMsg	  "warning"
 	  ModelReferenceDataLoggingMessage "warning"
 	  ModelReferenceSymbolNameMessage "warning"
@@ -331,7 +385,7 @@ Library {
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
 	  NonBusSignalsTreatedAsBus "none"
-	  SymbolicDimMinMaxWarning "warning"
+	  LoggingUnavailableSignals "error"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
@@ -341,12 +395,10 @@ Library {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	  SFUndirectedBroadcastEventsDiag "warning"
 	  SFTransitionActionBeforeConditionDiag	"warning"
-	  SFOutputUsedAsStateInMooreChartDiag "error"
-	  IntegerSaturationMsg	  "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  11
-	  Version		  "1.15.1"
+	  $ObjectID		  15
+	  Version		  "1.14.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -378,6 +430,7 @@ Library {
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
 	  TargetPreprocMaxBitsSint 32
 	  TargetPreprocMaxBitsUint 32
 	  TargetHWDeviceType	  "Specified"
@@ -385,10 +438,9 @@ Library {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  12
-	  Version		  "1.15.1"
+	  $ObjectID		  16
+	  Version		  "1.14.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
-	  EnableRefExpFcnMdlSchedulingChecks on
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
 	  ParallelModelReferenceErrorOnInvalidPool on
@@ -401,10 +453,14 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  13
-	  Version		  "1.15.1"
+	  $ObjectID		  17
+	  Version		  "1.14.2"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
+	  SimBlas		  on
 	  SimCtrlC		  on
+	  SimExtrinsic		  on
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
@@ -413,8 +469,8 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  14
-	  Version		  "1.15.1"
+	  $ObjectID		  18
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    15
@@ -441,6 +497,7 @@ Library {
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
 	  PostCodeGenCommand	  ""
 	  Description		  ""
@@ -452,8 +509,20 @@ Library {
 	  TLCDebug		  off
 	  TLCCoverage		  off
 	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  ""
+	  ConfigurationScript	  ""
+	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
 	  BuildConfiguration	  "Faster Builds"
 	  IncludeHyperlinkInReport off
@@ -467,25 +536,28 @@ Library {
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
 	  GenerateTraceInfo	  off
 	  GenerateTraceReport	  off
 	  GenerateTraceReportSl	  off
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
 	  GenerateWebview	  off
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
-	  GenerateMissedCodeReplacementReport off
-	  RTWCompilerOptimization "off"
+	  RTWCompilerOptimization "Off"
 	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  DataInitializer	  ""
 	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      15
-	      Version		      "1.15.1"
+	      $ObjectID		      19
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		23
@@ -555,8 +627,8 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      16
-	      Version		      "1.15.1"
+	      $ObjectID		      20
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		14
@@ -587,7 +659,6 @@ Library {
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
-	      InferredTypesCompatibility off
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
 	      ModelReferenceCompliant on
@@ -613,16 +684,14 @@ Library {
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
-	      CastingMode	      "Nominal"
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
 	      GRTInterface	      off
 	      GenerateAllocFcn	      off
-	      UseToolchainInfoCompliant	on
-	      GenerateSharedConstants on
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -642,8 +711,8 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  17
-	  Version		  "1.15.1"
+	  $ObjectID		  21
+	  Version		  "1.14.2"
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
 	  RecordCoverage	  off
@@ -867,6 +936,9 @@ Library {
       IndexMode		      "One-based"
       InputPortWidth	      "-1"
       SampleTime	      "-1"
+      IndexOptions	      "Index vector (dialog)"
+      Indices		      "1"
+      OutputSizes	      "1"
     }
     Block {
       BlockType		      SubSystem
@@ -895,9 +967,9 @@ Library {
       Opaque		      off
       MaskHideContents	      off
       SFBlockType	      "NONE"
+      Variant		      off
       GeneratePreprocessorConditionals off
       ContentPreviewEnabled   off
-      IsWebBlock	      off
     }
     Block {
       BlockType		      Sum
@@ -925,8 +997,8 @@ Library {
   }
   System {
     Name		    "SEA_library_controllers"
-    Location		    [0, 25, 840, 1050]
-    Open		    off
+    Location		    [1597, -250, 2559, 805]
+    Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -949,10 +1021,9 @@ Library {
       ZOrder		      188
       LibraryVersion	      "1.3"
       RequestExecContextInheritance off
-      Variant		      off
       System {
 	Name			"Controllers"
-	Location		[2879, 26, 3841, 1081]
+	Location		[1597, -250, 2559, 805]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -964,7 +1035,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"80"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Generic Controller"
@@ -973,15 +1044,14 @@ Library {
 	  Position		  [60, 23, 190, 112]
 	  ZOrder		  206
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    18
+	    $ObjectID		    22
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();"
 	    Object {
 	      $PropName		      "Parameters"
-	      $ObjectID		      19
+	      $ObjectID		      23
 	      $ClassName	      "Simulink.MaskParameter"
 	      Type		      "edit"
 	      Name		      "jointObj"
@@ -991,7 +1061,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Generic Controller"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [1597, -250, 2559, 805]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1078,56 +1148,55 @@ Library {
 	  ForegroundColor	  "yellow"
 	  LibraryVersion	  "1.177"
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    20
+	    $ObjectID		    24
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Par"
-	    "ameters\nN_outputs       = size(C,1);\n\n% Get LQR gain and Kalman observer\n[K_lqr, N]  	= getLQR(jointObj, outp"
-	    "utIdx, Q, R);\n[kest, L, Cc]	= getKalman(jointObj, outputIdx, var_u, var_y);\n\n% Indexes of output states\nkest_"
-	    "stateIdx   = kest.OutputGroup.StateEstimate;\n\n% Discretize using Tustin transform\nkest_tust       = c2d(kest, "
-	    "jointObj.Ts, 'tustin');"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getDynamicsMatrices();\n\n% Parameter"
+	    "s\nN_outputs       = size(C,1);\n\n% Get LQR gain and Kalman observer\n[K_lqr, N]  	= getLQR(jointObj, outputIdx,"
+	    " Q, R);\n[kest, L, Cc]	= getKalman(jointObj, outputIdx, var_u, var_y);\n\n% Indexes of output states\nkest_stateI"
+	    "dx   = kest.OutputGroup.StateEstimate;\n\n% Discretize using Tustin transform\nkest_tust       = c2d(kest, jointO"
+	    "bj.Ts, 'tustin');"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
 	      Object {
-		$ObjectID		21
+		$ObjectID		25
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object (fixed output model)"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		22
+		$ObjectID		26
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured output"
 		Value			"3"
 	      }
 	      Object {
-		$ObjectID		23
+		$ObjectID		27
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
 		Value			"diag([0 0 1000 0 0 0])"
 	      }
 	      Object {
-		$ObjectID		24
+		$ObjectID		28
 		Type			"edit"
 		Name			"R"
 		Prompt			"Input weighing matrix R"
 		Value			"5e-6"
 	      }
 	      Object {
-		$ObjectID		25
+		$ObjectID		29
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
 		Value			"0.12^2"
 	      }
 	      Object {
-		$ObjectID		26
+		$ObjectID		30
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -1138,7 +1207,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + Kalman (LQG)"
-	    Location		    [1919, 26, 2881, 1081]
+	    Location		    [1597, -250, 2559, 805]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1150,7 +1219,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "60"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -1292,9 +1361,7 @@ Library {
 	      Position		      [770, 451, 810, 489]
 	      ZOrder		      241
 	      InputPortWidth	      "size(kest.c,1)"
-	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "kest_stateIdx"
-	      OutputSizes	      "1"
 	      Port {
 		PortNumber		1
 		Name			"x^"
@@ -1310,9 +1377,7 @@ Library {
 	      Position		      [385, 448, 415, 512]
 	      ZOrder		      286
 	      InputPortWidth	      "N_outputs"
-	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "outputIdx"
-	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Sum
@@ -1556,48 +1621,47 @@ Library {
 	  ZOrder		  502
 	  LibraryVersion	  "*1.195"
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    27
+	    $ObjectID		    31
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Par"
-	    "ameters\nN_outputs = size(C,1);\n\n% Get LQR gain and state observer\n[K_lqr, N]          = getLQR(jointObj, outp"
-	    "utIdx, Q, R);\n[sys_hat, L, Cc]	= getObserver(jointObj, outputIdx, place_gain, Q, R);\n\n% Discretize using Tusti"
-	    "n transform\nsys_hat_tust = c2d(sys_hat, jointObj.Ts, 'tustin');"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getDynamicsMatrices();\n\n% Parameter"
+	    "s\nN_outputs = size(C,1);\n\n% Get LQR gain and state observer\n[K_lqr, N]          = getLQR(jointObj, outputIdx,"
+	    " Q, R);\n[sys_hat, L, Cc]	= getObserver(jointObj, outputIdx, place_gain, Q, R);\n\n% Discretize using Tustin tran"
+	    "sform\nsys_hat_tust = c2d(sys_hat, jointObj.Ts, 'tustin');"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
 	      Object {
-		$ObjectID		28
+		$ObjectID		32
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		29
+		$ObjectID		33
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured output"
 		Value			"3"
 	      }
 	      Object {
-		$ObjectID		30
+		$ObjectID		34
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
 		Value			"diag([0 0 1000 0 0 0])"
 	      }
 	      Object {
-		$ObjectID		31
+		$ObjectID		35
 		Type			"edit"
 		Name			"R"
 		Prompt			"Input weighing matrix R"
 		Value			"5e-6"
 	      }
 	      Object {
-		$ObjectID		32
+		$ObjectID		36
 		Type			"edit"
 		Name			"place_gain"
 		Prompt			"Pole placement gain"
@@ -1608,8 +1672,8 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + state observer"
-	    Location		    [1919, 26, 2881, 1081]
-	    Open		    off
+	    Location		    [1597, -250, 2559, 805]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1620,7 +1684,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -1788,9 +1852,7 @@ Library {
 	      Position		      [255, 463, 285, 527]
 	      ZOrder		      282
 	      InputPortWidth	      "N_outputs"
-	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "outputIdx"
-	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Sum
@@ -2066,41 +2128,40 @@ Library {
 	  ZOrder		  300
 	  LibraryVersion	  "1.89"
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    33
+	    $ObjectID		    37
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Get"
-	    " LQR gain and premultiplication matrix N\n[K_lqr, N]          = getLQR(jointObj, outputIdx, Q, R);\n\n% Get selec"
-	    "tor to obtain full state from outputs y\n% This makes use of the fact that the first 6 outputs are the states\nou"
-	    "tputToStates      = C(1:6,:)';"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getDynamicsMatrices();\n\n% Get LQR g"
+	    "ain and premultiplication matrix N\n[K_lqr, N]          = getLQR(jointObj, outputIdx, Q, R);\n\n% Get selector to"
+	    " obtain full state from outputs y\n% This makes use of the fact that the first 6 outputs are the states\noutputTo"
+	    "States      = C(1:6,:)';"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      4
 	      Object {
-		$ObjectID		34
+		$ObjectID		38
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		35
+		$ObjectID		39
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured output"
 		Value			"3"
 	      }
 	      Object {
-		$ObjectID		36
+		$ObjectID		40
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
 		Value			"diag([0 0 1000 0 0 0])"
 	      }
 	      Object {
-		$ObjectID		37
+		$ObjectID		41
 		Type			"edit"
 		Name			"R"
 		Prompt			"Input weighing matrix R"
@@ -2111,7 +2172,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR Full Measured State"
-	    Location		    [1919, 26, 2881, 1081]
+	    Location		    [1597, -250, 2559, 805]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2402,38 +2463,37 @@ Library {
 	  ForegroundColor	  "yellow"
 	  LibraryVersion	  "*1.146"
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    38
+	    $ObjectID		    42
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      8
 	      Object {
-		$ObjectID		39
+		$ObjectID		43
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		40
+		$ObjectID		44
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
 		Value			"0.35"
 	      }
 	      Object {
-		$ObjectID		41
+		$ObjectID		45
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		42
+		$ObjectID		46
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
@@ -2442,28 +2502,28 @@ Library {
 		"ntObj.n)"
 	      }
 	      Object {
-		$ObjectID		43
+		$ObjectID		47
 		Type			"edit"
 		Name			"N"
 		Prompt			"Filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
-		$ObjectID		44
+		$ObjectID		48
 		Type			"edit"
 		Name			"f_c"
 		Prompt			"DOB cut-off frequency [Hz]"
 		Value			"100"
 	      }
 	      Object {
-		$ObjectID		45
+		$ObjectID		49
 		Type			"edit"
 		Name			"measIdx"
 		Prompt			"Measurement index"
 		Value			"[2]"
 	      }
 	      Object {
-		$ObjectID		46
+		$ObjectID		50
 		Type			"checkbox"
 		Name			"doPlot"
 		Prompt			"Do plot"
@@ -2474,8 +2534,8 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF with inner-loop DOB"
-	    Location		    [-9, 19, 951, 1059]
-	    Open		    off
+	    Location		    [1597, -250, 2559, 805]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2539,7 +2599,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1015, 612, 1160, 648]
 	      ZOrder		      328
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -2588,7 +2648,7 @@ Library {
 	      ZOrder		      320
 	      ForegroundColor	      "red"
 	      BackgroundColor	      "yellow"
-	      LibraryVersion	      "1.66"
+	      LibraryVersion	      "1.87"
 	      SourceBlock	      "SEA_library_observers/Observers/Linear transfer function DOB"
 	      SourceType	      ""
 	      ContentPreviewEnabled   off
@@ -2864,10 +2924,9 @@ Library {
 	  ForegroundColor	  "yellow"
 	  LibraryVersion	  "*1.194"
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    47
+	    $ObjectID		    51
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Calculate the approximated closed-loop transfer function Pc and\n% filters Q_* etc.\n% This"
 	    " is the standalone code, that does not require measurement data\n% from a simulink model to design the model.\n% "
@@ -2890,28 +2949,28 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      12
 	      Object {
-		$ObjectID		48
+		$ObjectID		52
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"W2k_output_fixed_coulomb"
 	      }
 	      Object {
-		$ObjectID		49
+		$ObjectID		53
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
 		Value			"0.35"
 	      }
 	      Object {
-		$ObjectID		50
+		$ObjectID		54
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		51
+		$ObjectID		55
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
@@ -2920,14 +2979,14 @@ Library {
 		"ntObj.n)"
 	      }
 	      Object {
-		$ObjectID		52
+		$ObjectID		56
 		Type			"edit"
 		Name			"N"
 		Prompt			"Derivative filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
-		$ObjectID		53
+		$ObjectID		57
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -2942,7 +3001,7 @@ Library {
 		Value			"Feed-forward"
 	      }
 	      Object {
-		$ObjectID		54
+		$ObjectID		58
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -2961,7 +3020,7 @@ Library {
 		"\n    toggleMaskFields(gcbh, 'loadData', {'f_c_FF', 'f_c_DOB'}, 'off');\nend"
 	      }
 	      Object {
-		$ObjectID		55
+		$ObjectID		59
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -2976,7 +3035,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		56
+		$ObjectID		60
 		Type			"checkbox"
 		Name			"loadData"
 		Prompt			"Load model/filters from file (see getLinearDOB_fromData)"
@@ -2987,7 +3046,7 @@ Library {
 		"off');\nend"
 	      }
 	      Object {
-		$ObjectID		57
+		$ObjectID		61
 		Type			"edit"
 		Name			"modelFname"
 		Prompt			"Model/filters file (.mat)"
@@ -2996,7 +3055,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		58
+		$ObjectID		62
 		Type			"edit"
 		Name			"f_c_FF"
 		Prompt			"Premultiplication (model inversion) cutoff frequency [Hz]"
@@ -3004,7 +3063,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		59
+		$ObjectID		63
 		Type			"edit"
 		Name			"f_c_DOB"
 		Prompt			"DOB cutoff frequency [Hz]"
@@ -3017,39 +3076,39 @@ Library {
 	      Type		      "Simulink.dialog.Control"
 	      Dimension		      3
 	      Object {
-		$ObjectID		60
+		$ObjectID		64
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		61
+		$ObjectID		65
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Controller"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  5
 		  Object {
-		    $ObjectID		    62
+		    $ObjectID		    66
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kp"
 		  }
 		  Object {
-		    $ObjectID		    63
+		    $ObjectID		    67
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Ki"
 		  }
 		  Object {
-		    $ObjectID		    64
+		    $ObjectID		    68
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kd"
 		  }
 		  Object {
-		    $ObjectID		    65
+		    $ObjectID		    69
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "N"
 		  }
 		  Object {
-		    $ObjectID		    66
+		    $ObjectID		    70
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "ff_comp_switch"
 		  }
@@ -3058,46 +3117,46 @@ Library {
 		Name			"Container2"
 	      }
 	      Object {
-		$ObjectID		67
+		$ObjectID		71
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"DOB and premultiplication"
 		Array {
 		  Type			  "Simulink.dialog.Control"
 		  Dimension		  5
 		  Object {
-		    $ObjectID		    68
+		    $ObjectID		    72
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    PromptLocation	    "top"
 		    Name		    "DOB_enable_switch"
 		  }
 		  Object {
-		    $ObjectID		    69
+		    $ObjectID		    73
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "premult_enable_switch"
 		  }
 		  Object {
-		    $ObjectID		    70
+		    $ObjectID		    74
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "loadData"
 		  }
 		  Object {
-		    $ObjectID		    71
+		    $ObjectID		    75
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "modelFname"
 		  }
 		  Object {
-		    $ObjectID		    72
+		    $ObjectID		    76
 		    $ClassName		    "Simulink.dialog.Group"
 		    Prompt		    "Analytical DOB"
 		    Array {
 		    Type		    "Simulink.dialog.parameter.Edit"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    73
+		    $ObjectID		    77
 		    Name		    "f_c_FF"
 		    }
 		    Object {
-		    $ObjectID		    74
+		    $ObjectID		    78
 		    Name		    "f_c_DOB"
 		    }
 		    PropName		    "DialogControls"
@@ -3113,7 +3172,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp with outer-loop\nDOB and optional prefilter"
-	    Location		    [0, 27, 1920, 1107]
+	    Location		    [1597, -250, 2559, 805]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -3217,7 +3276,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1130, 387, 1275, 423]
 	      ZOrder		      334
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3287,7 +3346,7 @@ Library {
 	      ZOrder		      335
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3301,7 +3360,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [615, 547, 710, 583]
 	      ZOrder		      336
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3315,7 +3374,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [505, 332, 600, 368]
 	      ZOrder		      337
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3799,38 +3858,37 @@ Library {
 	  ForegroundColor	  "red"
 	  LibraryVersion	  "*1.146"
 	  RequestExecContextInheritance	off
-	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    75
+	    $ObjectID		    79
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
 	      Object {
-		$ObjectID		76
+		$ObjectID		80
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		77
+		$ObjectID		81
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
 		Value			"0.35"
 	      }
 	      Object {
-		$ObjectID		78
+		$ObjectID		82
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		79
+		$ObjectID		83
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
@@ -3839,14 +3897,14 @@ Library {
 		"ntObj.n)"
 	      }
 	      Object {
-		$ObjectID		80
+		$ObjectID		84
 		Type			"edit"
 		Name			"N"
 		Prompt			"Filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
-		$ObjectID		81
+		$ObjectID		85
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -3865,8 +3923,8 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp."
-	    Location		    [1919, 26, 2881, 1081]
-	    Open		    off
+	    Location		    [1597, -250, 2559, 805]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3877,7 +3935,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "60"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -3944,7 +4002,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [765, 372, 910, 408]
 	      ZOrder		      334
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.108"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off

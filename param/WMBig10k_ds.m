@@ -42,7 +42,7 @@ params.('I_l')      = 0.0867;               %% Load inertia [kg m^2] (datasheet)
 params.('k_g')      = 31e3;                 %% Gearbox stiffness [Nm/rad]
 params.('k_b')      = 10000;                %% Torsion bar stiffness [Nm/rad] (datasheet)
 % Linear viscous friction
-params.('d_m')      = 14.786 * (1/10);    	%% Motor Damping [Nms/rad]
+params.('d_m')      = 14.786 * (1/10);      %% Motor Damping [Nms/rad]
 params.('d_g')      = 14.786 * (8/10);      %% Gearbox damping [Nms/rad]
 params.('d_l')      = 14.786 * (1/10);      %% Load damping [Nms/rad]
 % Asymmetric viscous friction
@@ -54,7 +54,7 @@ params.('d_mg')     = 296.0;                %% Gearbox internal damping [Nms/rad
 params.('d_gl')     = 35.0;                 %% Torsion bar internal damping [Nms/rad] (not identified)
 % Coulomb friction
 params.('d_cm')     = 1.8579 * (1/10);      %% Motor Coulomb damping [Nm]
-params.('d_cg')     = 1.8579 * (8/10);   	%% Gearbox Coulomb damping [Nm]
+params.('d_cg')     = 1.8579 * (8/10);      %% Gearbox Coulomb damping [Nm]
 params.('d_cl')     = 1.8579 * (1/10);      %% Load Coulomb damping [Nm]
 % Asymmetric Coulomb friction
 params.('d_cm_n')   = 2.4238 * (1/10);      %% Motor Coulomb damping - negative direction [Nm]
@@ -63,10 +63,11 @@ params.('d_cl_n')   = 2.4238 * (1/10);      %% Load Coulomb damping - negative d
 % Stiction
 params.('d_s')      = 8.9;                  %% Break away torque [Nm]
 params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
-% Cogging
-params.('cog_a1')   = 15e-3 * n;            %% Cosine amplitude [Nm]
-params.('cog_a2')   = 0 * n;                %% Sine amplitude [Nm]
-params.('cog_f')    = 6 * n;                %% Spatial frequency [periods/revolution]
+% Torque ripple sources
+params.('rip_types')= [1, 2];               %% Torque ripple types (see torque_ripple())
+params.('rip_a1')   = [15e-3*n, 0.2];       %% Cosine amplitudes ([Nm] and/or [], see torque_ripple()) (second param to be updated!)
+params.('rip_a2')   = [0, 0];               %% Sine amplitudes [Nm] ([Nm] and/or [], see torque_ripple())
+params.('rip_f')    = [6*n, 2*n];           %% Spatial frequencies [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]

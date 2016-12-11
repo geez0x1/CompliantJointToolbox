@@ -1,6 +1,6 @@
 %RIGID Get linear dynamics matrices - fully rigid joint
 %
-% [A, B, C, I, D, K] = jointObj.rigid
+% [A, B, C, D, I, R, K] = jointObj.rigid
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -9,8 +9,9 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
-%   D:   Damping matrix
+%   R:   Damping matrix
 %   K:   Stiffness matrix
 %
 % Notes::
@@ -44,7 +45,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [A, B, C, I, D, K] = rigid(obj)
+function [A, B, C, D, I, R, K] = rigid(obj)
     
     % The computations below assume a state vector definition according to:
     % x = [q_l, q_l_dot]', where 
@@ -59,14 +60,14 @@ function [A, B, C, I, D, K] = rigid(obj)
     d_m = obj.d_m;
     d_g = obj.d_g;
     d_l = obj.d_l; % shorthands %#ok<*PROP>
-    D = d_m + d_g + d_l;
+    R = d_m + d_g + d_l;
 
     % There is no stiffness (rigid joint)
     K = 0;
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I));
-            -I\K,               -I\D            ];
+            -I\K,               -I\R            ];
 
     % Input
     % u = [tau_m, tau_e]
@@ -83,5 +84,9 @@ function [A, B, C, I, D, K] = rigid(obj)
             0,  1;      % gear velocity
             0,  1;      % link velocity
             0,  0   ];  % Torsion bar torque
-            
+
+    % Direct Feedthrough
+    nIn = size(B,2);
+    nOut = size(C,1);
+    D = zeros(nOut,nIn);
 end

@@ -44,6 +44,7 @@ classdef genericJoint < handle
             'paramName';
             'modelName';
             'nonlinearModelName';
+            'rip_types';
         };
     end
     
@@ -90,10 +91,11 @@ classdef genericJoint < handle
         % Stiction
         d_s     = 0;        % Break away torque [Nm]                                (default: 0)
         v_s     = 0;        % Stribeck velocity range [rad/s]                       (default: 0)
-        % Cogging
-        cog_a1	= 0;        % Cosine amplitude [Nm]                                 (default: 0)
-        cog_a2	= 0;        % Sine amplitude [Nm]                                   (default: 0)
-        cog_f	= 0;        % Spatial frequency [periods/revolution]                (default: 0)
+        % Torque ripple sources
+        rip_types = [];     % Torque ripple types (see torque_ripple())         	(default: [])
+        rip_a1	= [];   	% Cosine amplitudes ([Nm] and/or [])                    (default: [])
+        rip_a2	= [];     	% Sine amplitudes ([Nm] and/or [])                      (default: [])
+        rip_f	= [];      	% Spatial frequencies [periods/revolution]              (default: [])
         % Gear
         n       = 100;      % Transmission ratio [.]                                (default: 100)
         %
@@ -805,8 +807,7 @@ classdef genericJoint < handle
             %  Wesley Roozing
             %
             % See also getStateSpaceD, genericJoint, jointBuilder.
-            [A, B, C, ~, ~, ~]  = obj.getDynamicsMatrices();
-            D                   = 0;
+            [A, B, C, D]  = obj.getDynamicsMatrices();
             sys                 = ss(A, B, C, D);
         end
         
@@ -883,9 +884,9 @@ classdef genericJoint < handle
                 sys     = tf(sys);
             else
                 syms s
-                [A B C D ] = this.getDynamicsMatrices;
+                [A, B, C, D] = this.getDynamicsMatrices;
                 E = sym(eye(size(A,1)));
-                sys = simplify( C*inv(s*E-A)*B );
+                sys = simplify( C*inv(s*E-A)*B + D);
                 
             end
         end
@@ -977,7 +978,6 @@ classdef genericJoint < handle
             % Get all properties
             props = properties(this);
             
-            
             % Get symbolic properties
             symProps    = setdiff(props, this.blacklist);
             nProps      = numel(symProps);
@@ -985,10 +985,19 @@ classdef genericJoint < handle
             % Set each symbolic property to symbolic
             for iProps = 1:nProps
                 
-                if doSparse && this.(symProps{iProps}) == 0
-                    this.(symProps{iProps}) = 0;
+                if doSparse && all(this.(symProps{iProps}) == 0)
+                    % this.(symProps{iProps}) = 0;
                 else
-                    this.(symProps{iProps}) = sym(symProps{iProps},'real');
+                    nEl = numel(this.(symProps{iProps}));
+                    if nEl == 1
+                        this.(symProps{iProps}) = sym(symProps{iProps},'real');
+                    else
+                        this.(symProps{iProps}) = sym(this.(symProps{iProps}));
+                        for iEl = 1:nEl
+                            this.(symProps{iProps})(iEl) = ...
+                                sym([symProps{iProps},'_',num2str(iEl)],'real');
+                        end
+                    end
                 end
             end
 
@@ -1073,9 +1082,9 @@ classdef genericJoint < handle
     % Abstract methods - to be implemented by subclasses.
     methods(Abstract)
         %__________________________________________________________________
-        % GETDYNAMICSMATRICES Get Dynamics Matrices for the Dynamics
+        % GETDYNAMICSMATRICES Get Dynamics Matrices for the Mechanical Dynamics
         %
-        %   [A, B, C, I, D, K] = gj.getDynamicsMatrices
+        %   [A, B, C, D, I, R, K] = gj.getDynamicsMatrices
         %
         % Inputs:
         %
@@ -1083,8 +1092,9 @@ classdef genericJoint < handle
         %   A: continuous time system matrix
         %   B: continuous time input matrix
         %   C: continuous time output matrix
+        %   D: continuous time direct feedthrough matrix
         %   I: inertia matrix
-        %   D: damping matrix
+        %   R: damping matrix
         %   K: stiffness matrix
         %
         % Notes::
@@ -1099,10 +1109,11 @@ classdef genericJoint < handle
         %  Wesley Roozing
         %
         % See also getNonlinearDynamics, getStateSpace, getTFd, genericJoint.
-        [A, B, C, I, D, K] = getDynamicsMatrices(obj)
+        [A, B, C, D, I, R, K] = getDynamicsMatrices(obj)
         
         %__________________________________________________________________
-        % GETDYNAMICSMATRICES Compute nonlinear dynamics
+        % GETNONLINEARDYNAMICS Compute nonlinear dynamics for the
+        % mechanical Subsystem
         %
         %   tau = gj.getNonlinearDynamics(x,dx)
         %
@@ -1126,6 +1137,33 @@ classdef genericJoint < handle
         %
         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
         tau = getNonlinearDynamics(obj, x, dx)
+        
+%         %__________________________________________________________________
+%         % GETELECTRICALDYNAMICSMATRICES Get Linear Dynamics Matrices for the Electrical Dynamics
+%         %
+%         %   [A, B, C, D] = gj.getElectricalDynamicsMatrices(x,dx)
+%         %
+%         % Inputs:
+%         %
+%         % Outputs:
+%         %   A: continuous time system matrix
+%         %   B: continuous time input matrix
+%         %   C: continuous time output matrix
+%         %   D: continuous time direct feedthrough matrix
+%         %
+%         % Notes::
+%         %   This is an abstract method. It has to be implemented by
+%         %   subclasses.
+%         %
+%         % Examples::
+%         %
+%         %
+%         % Author::
+%         %  Joern Malzahn
+%         %  Wesley Roozing
+%         %
+%         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
+%         [A, B, C, D] = getElectricalDynamicsMatrices(obj)
         
     end
   
