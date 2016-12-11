@@ -1074,9 +1074,9 @@ classdef genericJoint < handle
     % Abstract methods - to be implemented by subclasses.
     methods(Abstract)
         %__________________________________________________________________
-        % GETDYNAMICSMATRICES Get Dynamics Matrices for the Dynamics
+        % GETDYNAMICSMATRICES Get Dynamics Matrices for the Mechanical Dynamics
         %
-        %   [A, B, C, I, D, K] = gj.getDynamicsMatrices
+        %   [A, B, C, D, I, R, K] = gj.getDynamicsMatrices
         %
         % Inputs:
         %
@@ -1084,8 +1084,9 @@ classdef genericJoint < handle
         %   A: continuous time system matrix
         %   B: continuous time input matrix
         %   C: continuous time output matrix
+        %   D: continuous time direct feedthrough matrix
         %   I: inertia matrix
-        %   D: damping matrix
+        %   R: damping matrix
         %   K: stiffness matrix
         %
         % Notes::
@@ -1100,10 +1101,11 @@ classdef genericJoint < handle
         %  Wesley Roozing
         %
         % See also getNonlinearDynamics, getStateSpace, getTFd, genericJoint.
-        [A, B, C, I, D, K] = getDynamicsMatrices(obj)
+        [A, B, C, D, I, R, K] = getDynamicsMatrices(obj)
         
         %__________________________________________________________________
-        % GETDYNAMICSMATRICES Compute nonlinear dynamics
+        % GETNONLINEARDYNAMICS Compute nonlinear dynamics for the
+        % mechanical Subsystem
         %
         %   tau = gj.getNonlinearDynamics(x,dx)
         %
@@ -1127,6 +1129,33 @@ classdef genericJoint < handle
         %
         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
         tau = getNonlinearDynamics(obj, x, dx)
+        
+%         %__________________________________________________________________
+%         % GETELECTRICALDYNAMICSMATRICES Get Linear Dynamics Matrices for the Electrical Dynamics
+%         %
+%         %   [A, B, C, D] = gj.getElectricalDynamicsMatrices(x,dx)
+%         %
+%         % Inputs:
+%         %
+%         % Outputs:
+%         %   A: continuous time system matrix
+%         %   B: continuous time input matrix
+%         %   C: continuous time output matrix
+%         %   D: continuous time direct feedthrough matrix
+%         %
+%         % Notes::
+%         %   This is an abstract method. It has to be implemented by
+%         %   subclasses.
+%         %
+%         % Examples::
+%         %
+%         %
+%         % Author::
+%         %  Joern Malzahn
+%         %  Wesley Roozing
+%         %
+%         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
+%         [A, B, C, D] = getElectricalDynamicsMatrices(obj)
         
     end
   

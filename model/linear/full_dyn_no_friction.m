@@ -1,6 +1,6 @@
 %FULL_DYN_NO_FRICTION Get linear dynamics matrices - default without friction
 %
-% [A, B, C, I, D, K] = jointObj.full_dyn_no_friction
+% [A, B, C, D, I, R, K] = jointObj.full_dyn_no_friction
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -9,8 +9,9 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
-%   D:   Damping matrix
+%   R:   Damping matrix
 %   K:   Stiffness matrix
 %
 % Notes::
@@ -45,7 +46,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [A, B, C, I, D, K] = full_dyn_no_friction(obj)
+function [A, B, C, D, I, R, K] = full_dyn_no_friction(obj)
     
     % The computations below assume a state vector definition according to:
     % x = [q_m, q_g, q_l, q_m_dot, q_g_dot, q_l_dot]', where 
@@ -64,7 +65,7 @@ function [A, B, C, I, D, K] = full_dyn_no_friction(obj)
     d_l     = 0 * obj.d_l;
     d_mg    = obj.d_mg;
     d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
-    D = [   d_m + d_mg,     -d_mg,                  0;
+    R = [   d_m + d_mg,     -d_mg,                  0;
             -d_mg,          d_g + d_mg + d_gl,      -d_gl;
             0,              -d_gl,                  d_l + d_gl  ];
 
@@ -94,4 +95,6 @@ function [A, B, C, I, D, K] = full_dyn_no_friction(obj)
     C = [   eye(size(A,2));                     % All states
             0, k_b, -k_b, 0, d_gl, -d_gl	];	% Torsion bar torque
 
+    % Direct Feedthrough
+    D = [0, 0];
 end

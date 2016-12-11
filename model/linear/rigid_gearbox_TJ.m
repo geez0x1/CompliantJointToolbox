@@ -1,6 +1,6 @@
 % RIGID_GEARBOX_TJ Get linear dynamics matrices  - rigid gearbox with torque-jerk states
 %
-% [A, B, C, I, D, K] = jointObj.rigid_gearbox_TJ
+% [A, B, C, D, I, R, K] = jointObj.rigid_gearbox_TJ
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -9,8 +9,9 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
-%   D:   Damping matrix
+%   R:   Damping matrix
 %   K:   Stiffness matrix
 %
 % Notes::
@@ -48,12 +49,12 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [A, B, C, I, D, K] = rigid_gearbox_TJ(obj)
+function [A, B, C, D, I, R, K] = rigid_gearbox_TJ(obj)
     
     % x = [tau_l, q_l, tau_l_dot, q_l_dot]'
 
     % Get position-velocity states
-    [A, B, C, I, D, K] = rigid_gearbox(obj);
+    [A, B, C, D, I, R, K] = rigid_gearbox(obj);
 
     % Define an invertible transformation matrix Tx that transforms the
     % state x into a new state vector x_bar, s.t. x = Tx * x_bar and
@@ -65,7 +66,7 @@ function [A, B, C, I, D, K] = rigid_gearbox_TJ(obj)
             zeros(size(T)),     T               ];
     Tx = inv(Tx);
 
-    % Apply similarity transform
+    % Apply similarity transform, direct feedthrough is not affected.
     A = Tx \ A * Tx;
     B = Tx \ B;
     C = C * Tx; %#ok<MINV>

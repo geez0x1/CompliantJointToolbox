@@ -1,6 +1,6 @@
 %OUTPUT_FIXED_TJ Get linear dynamics matrices - default, torque-jerk states
 %
-% [A, B, C, I, D, K] = jointObj.output_fixed_TJ
+% [A, B, C, D, I, R, K] = jointObj.output_fixed_TJ
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -9,8 +9,9 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
-%   D:   Damping matrix
+%   R:   Damping matrix
 %   K:   Stiffness matrix
 %
 % Notes::
@@ -48,12 +49,12 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [A, B, C, I, D, K] = output_fixed_TJ(obj)
+function [A, B, C, D, I, R, K] = output_fixed_TJ(obj)
     
     % x = [tau_g, tau_l, tau_g_dot, tau_l_dot]'
 
     % Get position-velocity states
-    [A, B, C, I, D, K] = output_fixed(obj);
+    [A, B, C, D, I, R, K] = output_fixed(obj);
 
     % Define an invertible transformation matrix Tx that transforms the
     % state x into a new state vector x_bar, s.t. x = Tx * x_bar and
@@ -66,7 +67,7 @@ function [A, B, C, I, D, K] = output_fixed_TJ(obj)
             zeros(size(T)),     T                   ];
     Tx = inv(Tx);
 
-    % Apply similarity transform
+    % Apply similarity transform, direct feedthrough is not affected
     A = Tx \ A * Tx;
     B = Tx \ B;
     C = C * Tx; %#ok<MINV>

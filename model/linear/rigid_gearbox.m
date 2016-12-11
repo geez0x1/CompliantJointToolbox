@@ -1,6 +1,6 @@
 %RIGID_GEARBOX Get linear dynamics matrices - rigid gearbox
 %
-% [A, B, C, I, D, K] = jointObj.rigid_gearbox
+% [A, B, C, D, I, R, K] = jointObj.rigid_gearbox
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -9,8 +9,9 @@
 %   A:   System matrix
 %   B:   Input matrix
 %   C:   Output matrix
+%   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
-%   D:   Damping matrix
+%   R:   Damping matrix
 %   K:   Stiffness matrix
 %
 % Notes::
@@ -46,7 +47,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [A, B, C, I, D, K] = rigid_gearbox(obj)
+function [A, B, C, D, I, R, K] = rigid_gearbox(obj)
     
     % The computations below assume a state vector definition according to:
     % x = [q_g, q_l, q_g_dot, q_l_dot]', where 
@@ -63,7 +64,7 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
     d_g     = obj.d_g;
     d_l     = obj.d_l;
     d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
-    D = [   d_m + d_g + d_gl,       -d_gl;
+    R = [   d_m + d_g + d_gl,       -d_gl;
             -d_gl,                  d_l + d_gl      ];
 
     % Stiffness matrix
@@ -73,7 +74,7 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I));
-            -I\K,               -I\D            ];
+            -I\K,               -I\R            ];
 
     % Input
     % u = [tau_m, tau_e]
@@ -92,5 +93,8 @@ function [A, B, C, I, D, K] = rigid_gearbox(obj)
             0,      0,      1, 0;           % gear velocity
             0,      0,      0, 1;           % link velocity
             k_b,    -k_b,	d_gl, -d_gl	];	% Torsion bar torque
+        
+    % Direct Feedthrough
+    D = [0, 0];
             
 end
