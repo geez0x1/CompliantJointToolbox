@@ -85,5 +85,7 @@ function [A, B, C, D, I, R, K] = rigid_no_friction(obj)
             0,  0   ];  % Torsion bar torque
             
     % Direct Feedthrough
-    D = [0, 0];
+    nIn = size(B,2);
+    nOut = size(C,1);
+    D = zeros(nOut,nIn);
 end

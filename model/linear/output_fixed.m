@@ -96,7 +96,9 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
             0, k_b, 0, d_gl	];	% Torsion bar torque
         
     % Direct Feedthrough
-    D = [0, 0];
+    nIn = size(B,2);
+    nOut = size(C,1);
+    D = zeros(nOut,nIn);
     
 end
 
