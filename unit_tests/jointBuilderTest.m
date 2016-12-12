@@ -179,5 +179,97 @@ nPar = numel(allParams);
     verifyTrue(testCase,true) % If we arrive here, everything is fine.
 end
 
+function testInputParameters(testCase)
+    % Test to build models with correct and incorrect input arguments.
+
+    % shorthands
+    jb = testCase.('TestData').JB;
+    allParams = testCase.('TestData').allParams;
+
+
+    nTest = 6;              % We do a number nTest of tests here.
+    flags = zeros(1,nTest);  % This vector
+
+    % TESTS
+    % this should work
+    jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn');
+    flags(1) = 1;
+
+    % this should work
+    jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn_zero_inductance');
+    flags(2) = 1;
+
+    % this should work
+    jb.buildJoint(allParams{1}, 'full_dyn', [],[],'elTEST');
+    flags(3) = 1;
+
+    try
+        % this should NOT work, electrical dynamics specified as nonlinear model
+        jb.buildJoint(allParams{1}, 'full_dyn', 'electric_dyn_zero_inductance');
+    catch
+        flags(4) = 1;
+    end
+
+    try
+        % this should NOT work, wrong electrical dynamics model string
+        jb.buildJoint(allParams{1}, 'full_dyn', [], 'dyn_electric');
+    catch
+        flags(5) = 1;
+    end
+
+    try
+        % this should NOT work, electrical dynamics model specified as linear mechanical model
+        jb.buildJoint(allParams{1}, 'dyn_electric' );
+    catch
+        flags(6) = 1;
+    end
+
+    verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
+end
+    
+function testElectricalSubsystem(testCase)
+    
+    % shorthands
+    jb = testCase.('TestData').JB;
+    allParams = testCase.('TestData').allParams;
+
+    nTest = 8;              % We do a number nTest of tests here.
+    flags = zeros(1,nTest);  % This vector should have just ones at the end of this test.
+    
+    %% 1ST MODEL
+    % Build a joint
+    jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn','elTestJoint');
+    % Update path
+    rehash
+    % Instantiate joint
+    jObj = elTestJoint;
+    
+    % Get electrical dynamics model
+    [A B C D] = jObj.getElectricalDynamicsMatrices;
+
+    % Check model against preevaluated values
+    flags(1) = A == -6.321428571428571e+02;
+    flags(2) = all( B ==    1.0e+03 * [  7.142857142857143   -0.000045300000000 ] );
+    flags(3) = C ==    1;
+    flags(4) = all( D ==   [0, 0] );
+    
+    % 2ND MODEL
+    % Build a joint
+    jb.buildJoint(allParams{1}, 'full_dyn', [],[],'elTestJointStatic');
+    % Update path
+    rehash
+    % Instantiate joint
+    jObj = elTestJointStatic;
+    
+    % Get electrical dynamics model
+    [A B C D] = jObj.getElectricalDynamicsMatrices;
+
+    % Check model against preevaluated values
+    flags(5) = A == 0;
+    flags(6) = all( B ==  0 );
+    flags(7) = C == 0;
+    flags(8) = all( D == [11.299435028248588  -0.511864406779661]);
     
     
+    verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
+end
