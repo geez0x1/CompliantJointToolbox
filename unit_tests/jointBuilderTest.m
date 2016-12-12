@@ -179,5 +179,51 @@ nPar = numel(allParams);
     verifyTrue(testCase,true) % If we arrive here, everything is fine.
 end
 
-    
+function testInputParameters(testCase)
+    % Test to build models with combinations of nonlinear terms
+
+    % shorthands
+    jb = testCase.('TestData').JB;
+    allParams = testCase.('TestData').allParams;
+
+
+    nTest = 6;              % We do a number nTest of tests here.
+    flags = zeros(1,nTest);  % This vector
+
+    % TESTS
+    % this should work
+    jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn');
+    flags(1) = 1;
+
+    % this should work
+    jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn_zero_inductance');
+    flags(2) = 1;
+
+    % this should work
+    jb.buildJoint(allParams{1}, 'full_dyn', [],[],'elTEST');
+    flags(3) = 1;
+
+    try
+        % this should NOT work, electrical dynamics specified as nonlinear model
+        jb.buildJoint(allParams{1}, 'full_dyn', 'electric_dyn_zero_inductance');
+    catch
+        flags(4) = 1;
+    end
+
+    try
+        % this should NOT work, wrong electrical dynamics model string
+        jb.buildJoint(allParams{1}, 'full_dyn', [], 'dyn_electric');
+    catch
+        flags(5) = 1;
+    end
+
+    try
+        % this should NOT work, electrical dynamics model specified as linear mechanical model
+        jb.buildJoint(allParams{1}, 'dyn_electric' );
+    catch
+        flags(6) = 1;
+    end
+
+    verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
+end
     
