@@ -48,6 +48,9 @@ classdef jointBuilder
     properties
         buildDir = ['.',filesep,'build'];
         overwrite = 0;
+        basePath;
+        nonlinModelPath;
+        linModelPath;
     end
     
     methods
@@ -55,6 +58,14 @@ classdef jointBuilder
         % Constructor
         function this = jointBuilder()
             
+            % Gather information about the paths
+            % 1) location of the joint builder
+            pathstr = fileparts(which('jointBuilder.m'));
+            this.basePath = pathstr;
+            % 2) location of the nonlinear models
+            this.nonlinModelPath = [pathstr, filesep, 'model', filesep, 'nonlinear'];
+            % 3) location of the linear models
+            this.linModelPath = [pathstr, filesep, 'model', filesep, 'linear'];
         end
         
         %__________________________________________________________________
@@ -67,7 +78,8 @@ classdef jointBuilder
         
         %__________________________________________________________________
         % Build a joint object file
-        function className = buildJoint(this, paramName, modelName, nonlinearModelName, className)
+        function className = buildJoint(this, paramName, modelName, nonlinearModelName, electricalDynamicsName, className)
+        
             % buildJoint(paramName, modelName, nonlinearModelName)
             % Builds a joint model file in the build/ directory based on
             % the supplied parameter and model names
@@ -83,7 +95,7 @@ classdef jointBuilder
             % Check whether the linear model exists
             % This relies on the model function name being equal to
             % the filename (which we require)
-            if (~exist(modelName, 'file'))
+            if (~exist([this.linModelPath, filesep, modelName], 'file'))
                 error(['jointBuilder.buildJoint error: Linear model ''' modelName ''' do not exist!']);
             end
             
@@ -121,7 +133,7 @@ classdef jointBuilder
                     % Check whether it exists
                     % This relies on the model function name being equal to
                     % the filename (which we require)
-                    if (~exist(nonlinearModelName, 'file'))
+                    if (~exist([this.nonlinModelPath, filesep, nonlinearModelName], 'file'))
                         error(['jointBuilder.buildJoint error: Nonlinear model ''' nonlinearModelName ''' does not exist!']);
                     end
                     
@@ -135,11 +147,29 @@ classdef jointBuilder
                 end
             end
             
+
+            % Check whether the a linear model for electrical dynamics is
+            % specified. If not use the zero inductance model.
+            if (~exist('electricalDynamicsName', 'var')) || isempty(electricalDynamicsName)
+                electricalDynamicsName = 'electric_dyn_zero_inductance';
+            end
+            % Check whether the linear model for electrical dynamics exists
+            % This relies on the model function name being equal to
+            % the filename (which we require)
+            if (~exist(electricalDynamicsName, 'file'))
+                error(['jointBuilder.buildJoint error: Electrical subsystem model ''' electricalDynamicsName ''' do not exist!']);
+            end
+            
             % If no used-defined name is given, create the class name
             if (~exist('className', 'var'))
-                className = [paramName '_' modelName];
+                className = [paramName, '_', modelName];
                 if ~isempty(nonlinearModelName)
-                    className = [className '_' nonlinearModelNameStr];
+                    className = [className, '_', nonlinearModelNameStr];
+                end
+                % if the electrical dynamics are not set to the default
+                % zero inductance model, indicate that in the name:
+                if ~strcmp(electricalDynamicsName,'electric_dyn_zero_inductance')
+                    className = [className, '_', electricalDynamicsName];
                 end
             end
             className(isspace(className)) = []; % Remove any spaces
@@ -225,6 +255,11 @@ classdef jointBuilder
                 fStr = 'zeros(size(x)); % No nonlinear dynamics!';
             end
             fprintf(fid, [getNonlinDynStr '\n\n'], char(fStr));
+            
+            % getElectricalDynamicsMatrices
+            getDynStr = fileread('getElectricalDynamicsMatrices.m');
+            getDynStr = regexprep(getDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
+            fprintf(fid, [getDynStr '\n\n'], electricalDynamicsName);
             
             % End methods
             fprintf(fid,'\tend\n\n');

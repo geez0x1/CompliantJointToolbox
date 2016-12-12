@@ -1138,32 +1138,32 @@ classdef genericJoint < handle
         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
         tau = getNonlinearDynamics(obj, x, dx)
         
-%         %__________________________________________________________________
-%         % GETELECTRICALDYNAMICSMATRICES Get Linear Dynamics Matrices for the Electrical Dynamics
-%         %
-%         %   [A, B, C, D] = gj.getElectricalDynamicsMatrices(x,dx)
-%         %
-%         % Inputs:
-%         %
-%         % Outputs:
-%         %   A: continuous time system matrix
-%         %   B: continuous time input matrix
-%         %   C: continuous time output matrix
-%         %   D: continuous time direct feedthrough matrix
-%         %
-%         % Notes::
-%         %   This is an abstract method. It has to be implemented by
-%         %   subclasses.
-%         %
-%         % Examples::
-%         %
-%         %
-%         % Author::
-%         %  Joern Malzahn
-%         %  Wesley Roozing
-%         %
-%         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
-%         [A, B, C, D] = getElectricalDynamicsMatrices(obj)
+        %__________________________________________________________________
+        % GETELECTRICALDYNAMICSMATRICES Get Linear Dynamics Matrices for the Electrical Dynamics
+        %
+        %   [A, B, C, D] = gj.getElectricalDynamicsMatrices(x,dx)
+        %
+        % Inputs:
+        %
+        % Outputs:
+        %   A: continuous time system matrix
+        %   B: continuous time input matrix
+        %   C: continuous time output matrix
+        %   D: continuous time direct feedthrough matrix
+        %
+        % Notes::
+        %   This is an abstract method. It has to be implemented by
+        %   subclasses.
+        %
+        % Examples::
+        %
+        %
+        % Author::
+        %  Joern Malzahn
+        %  Wesley Roozing
+        %
+        % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
+        [A, B, C, D] = getElectricalDynamicsMatrices(obj)
         
     end
   
