@@ -19,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1358.0, -312.0, 1936.0, 1092.0]
+      Location		      [-970.0, -75.0, 746.0, 736.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -42,10 +42,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
-	Extents			[1693.0, 926.0]
-	ZoomFactor		[1.0]
-	Offset			[-94.971428571430238, 20.592857142856474]
+	LoadSaveID		"4"
+	Extents			[503.0, 570.0]
+	ZoomFactor		[1.5]
+	Offset			[77.080952380952112, 112.64523809523854]
       }
     }
   }
@@ -55,9 +55,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "joern"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 11 19:34:18 2016"
-  RTWModifiedTimeStamp	  403385608
-  ModelVersionFormat	  "1.%<AutoIncrement:92>"
+  LastModifiedDate	  "Mon Dec 12 14:52:25 2016"
+  RTWModifiedTimeStamp	  403455092
+  ModelVersionFormat	  "1.%<AutoIncrement:104>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -766,6 +766,11 @@ Library {
       NonVirtualBus	      off
     }
     Block {
+      BlockType		      BusSelector
+      OutputSignals	      "signal1,signal2,signal3"
+      OutputAsBus	      off
+    }
+    Block {
       BlockType		      Constant
       Value		      "1"
       VectorParams1D	      on
@@ -884,6 +889,21 @@ Library {
       SFunctionDeploymentMode off
     }
     Block {
+      BlockType		      Saturate
+      UpperLimitSource	      "Dialog"
+      UpperLimit	      "0.5"
+      LowerLimitSource	      "Dialog"
+      LowerLimit	      "-0.5"
+      LinearizeAsGain	      on
+      ZeroCross		      on
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+    }
+    Block {
       BlockType		      Scope
       ModelBased	      off
       TickLabels	      "OneTimeTick"
@@ -988,7 +1008,7 @@ Library {
   }
   System {
     Name		    "SEA_library_models"
-    Location		    [1358, -320, 3294, 776]
+    Location		    [-1614, -152, 322, 910]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1000,9 +1020,9 @@ Library {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "400"
+    ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "67"
+    SIDHighWatermark	    "91"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -1013,8 +1033,8 @@ Library {
       RequestExecContextInheritance off
       System {
 	Name			"Joint models"
-	Location		[1358, -312, 3294, 780]
-	Open			off
+	Location		[-970, -75, -224, 661]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1025,7 +1045,544 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"200"
+	ZoomFactor		"150"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "JointElectricalSubsystem"
+	  SID			  "68"
+	  Ports			  [2, 1]
+	  Position		  [110, 191, 295, 229]
+	  ZOrder		  453
+	  LibraryVersion	  "*1.103"
+	  RequestExecContextInheritance	off
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    18
+	    $ClassName		    "Simulink.Mask"
+	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
+	    " Get other properties\nTs      = jointObj.Ts;\n\n% If noise is disabled, overwrite the given variances\nif (input"
+	    "_noise_enabled == 0)\n    var_u = 0;\nend\n"
+	    Array {
+	      Type		      "Simulink.MaskParameter"
+	      Dimension		      6
+	      Object {
+		$ObjectID		19
+		Type			"edit"
+		Name			"jointObj"
+		Prompt			"Joint Object"
+		Value			"jObj"
+	      }
+	      Object {
+		$ObjectID		20
+		Type			"edit"
+		Name			"input_delay"
+		Prompt			"Input Delay (num samples)"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		21
+		Type			"checkbox"
+		Name			"quantize"
+		Prompt			"Quantize input"
+		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
+	      }
+	      Object {
+		$ObjectID		22
+		Type			"edit"
+		Name			"quantize_bits"
+		Prompt			"Quantization bits"
+		Value			"32"
+		Enabled			"off"
+	      }
+	      Object {
+		$ObjectID		23
+		Type			"checkbox"
+		Name			"input_noise_enabled"
+		Prompt			"Enable input noise"
+		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
+	      }
+	      Object {
+		$ObjectID		24
+		Type			"edit"
+		Name			"var_u"
+		Prompt			"Input Noise Variance"
+		Value			"0.12"
+		Enabled			"off"
+	      }
+	      PropName		      "Parameters"
+	    }
+	    Array {
+	      Type		      "Simulink.dialog.Group"
+	      Dimension		      2
+	      Object {
+		$ObjectID		25
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  26
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		27
+		Prompt			"Parameters"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  6
+		  Object {
+		    $ObjectID		    28
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "jointObj"
+		  }
+		  Object {
+		    $ObjectID		    29
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "input_delay"
+		  }
+		  Object {
+		    $ObjectID		    30
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "quantize"
+		  }
+		  Object {
+		    $ObjectID		    31
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "quantize_bits"
+		  }
+		  Object {
+		    $ObjectID		    32
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "input_noise_enabled"
+		  }
+		  Object {
+		    $ObjectID		    33
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "var_u"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterGroupVar"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	  }
+	  System {
+	    Name		    "JointElectricalSubsystem"
+	    Location		    [-1534, -130, -168, 571]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "voltage [V]"
+	      SID		      "71"
+	      Position		      [10, 283, 40, 297]
+	      ZOrder		      240
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "jointBus]"
+	      SID		      "72"
+	      Position		      [10, 378, 40, 392]
+	      ZOrder		      246
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "A"
+	      SID		      "73"
+	      Position		      [655, 400, 760, 470]
+	      ZOrder		      239
+	      BlockMirror	      on
+	      Gain		      "A"
+	      Multiplication	      "Matrix(K*u)"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "B"
+	      SID		      "74"
+	      Position		      [385, 265, 490, 335]
+	      ZOrder		      238
+	      Gain		      "B"
+	      Multiplication	      "Matrix(K*u)"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      SID		      "87"
+	      Ports		      [1, 1]
+	      Position		      [115, 366, 120, 404]
+	      ZOrder		      252
+	      ShowName		      off
+	      OutputSignals	      "MotorVelNoNoise"
+	      Port {
+		PortNumber		1
+		Name			"<MotorVelNoNoise>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "C"
+	      SID		      "75"
+	      Position		      [900, 265, 1005, 335]
+	      ZOrder		      250
+	      NamePlacement	      "alternate"
+	      Gain		      "C"
+	      Multiplication	      "Matrix(K*u)"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "D"
+	      SID		      "76"
+	      Position		      [655, 180, 760, 250]
+	      ZOrder		      249
+	      NamePlacement	      "alternate"
+	      Gain		      "D"
+	      Multiplication	      "Matrix(K*u)"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Integrator
+	      Name		      "Integrator"
+	      SID		      "77"
+	      Ports		      [1, 1]
+	      Position		      [695, 285, 725, 315]
+	      ZOrder		      236
+	      Port {
+		PortNumber		1
+		Name			"states"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "78"
+	      Ports		      [2, 1]
+	      Position		      [335, 281, 340, 319]
+	      ZOrder		      247
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quantize"
+	      SID		      "91"
+	      Ports		      [1, 1]
+	      Position		      [65, 272, 95, 308]
+	      ZOrder		      257
+	      LibraryVersion	      "1.103"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Quantize1"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Saturate
+	      Name		      "Saturation"
+	      SID		      "88"
+	      Ports		      [1, 1]
+	      Position		      [225, 275, 255, 305]
+	      ZOrder		      255
+	      InputPortMap	      "u0"
+	      UpperLimit	      "jointObj.v_0"
+	      LowerLimit	      "-jointObj.v_0"
+	    }
+	    Block {
+	      BlockType		      Scope
+	      Name		      "Scope"
+	      SID		      "90"
+	      Ports		      [1]
+	      Position		      [435, 369, 465, 401]
+	      ZOrder		      256
+	      Floating		      off
+	      Location		      [188, 365, 512, 604]
+	      Open		      off
+	      NumInputPorts	      "1"
+	      List {
+		ListType		AxesTitles
+		axes1			"%<SignalLabel>"
+	      }
+	      List {
+		ListType		ScopeGraphics
+		FigureColor		"[0.5 0.5 0.5]"
+		AxesColor		"[0 0 0]"
+		AxesTickColor		"[1 1 1]"
+		LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+		LineStyles		"-|-|-|-|-|-"
+		LineWidths		"[0.8 0.8 0.8 0.8 0.8 0.8]"
+		MarkerStyles		"none|none|none|none|none|none"
+	      }
+	      ShowLegends	      off
+	      YMin		      "1.8"
+	      YMax		      "2.35"
+	      LimitDataPoints	      off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "79"
+	      Ports		      [2, 1]
+	      Position		      [555, 290, 575, 310]
+	      ZOrder		      237
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"states_derivative"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum2"
+	      SID		      "80"
+	      Ports		      [2, 1]
+	      Position		      [1040, 290, 1060, 310]
+	      ZOrder		      241
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "++|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum3"
+	      SID		      "81"
+	      Ports		      [2, 1]
+	      Position		      [180, 280, 200, 300]
+	      ZOrder		      243
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "++|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "currentNoise"
+	      SID		      "82"
+	      Ports		      [0, 1]
+	      Position		      [135, 215, 165, 245]
+	      ZOrder		      244
+	      LibraryVersion	      "1.287"
+	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+	      SourceType	      "Band-Limited White Noise."
+	      ContentPreviewEnabled   off
+	      Cov		      "var_u * Ts"
+	      Ts		      "Ts"
+	      seed		      "[2435345645]"
+	      VectorParams1D	      on
+	    }
+	    Block {
+	      BlockType		      TransportDelay
+	      Name		      "input_delay"
+	      SID		      "83"
+	      Ports		      [1, 1]
+	      Position		      [125, 275, 155, 305]
+	      ZOrder		      258
+	      DelayTime		      "input_delay * jointObj.Ts"
+	      TransDelayFeedthrough   on
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "motor current [A]"
+	      SID		      "86"
+	      Position		      [1105, 293, 1135, 307]
+	      ZOrder		      251
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "input_delay"
+	      SrcPort		      1
+	      DstBlock		      "Sum3"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "Quantize"
+	      SrcPort		      1
+	      DstBlock		      "input_delay"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<MotorVelNoNoise>"
+	      ZOrder		      3
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      Points		      [172, 0]
+	      Branch {
+		ZOrder			4
+		Points			[0, -75]
+		DstBlock		"Mux"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			5
+		DstBlock		"Scope"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "Sum3"
+	      SrcPort		      1
+	      DstBlock		      "Saturation"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "currentNoise"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      DstBlock		      "Sum3"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "states_derivative"
+	      ZOrder		      8
+	      Labels		      [1, 1]
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "Integrator"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "states"
+	      ZOrder		      9
+	      Labels		      [0, 0; -1, 1]
+	      SrcBlock		      "Integrator"
+	      SrcPort		      1
+	      Points		      [80, 0]
+	      Branch {
+		ZOrder			10
+		DstBlock		"C"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			11
+		Points			[0, 135]
+		DstBlock		"A"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "A"
+	      SrcPort		      1
+	      Points		      [-85, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      Points		      [14, 0]
+	      Branch {
+		ZOrder			14
+		Points			[0, -85]
+		DstBlock		"D"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			15
+		DstBlock		"B"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "D"
+	      SrcPort		      1
+	      Points		      [285, 0]
+	      DstBlock		      "Sum2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "C"
+	      SrcPort		      1
+	      DstBlock		      "Sum2"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "B"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "Sum2"
+	      SrcPort		      1
+	      DstBlock		      "motor current [A]"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      20
+	      SrcBlock		      "jointBus]"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "voltage [V]"
+	      SrcPort		      1
+	      DstBlock		      "Quantize"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "Saturation"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	  }
+	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointModel"
@@ -1039,7 +1596,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    18
+	    $ObjectID		    34
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
 	    "Get other properties\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\n\n% Handle MATLAB"
@@ -1050,42 +1607,42 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      11
 	      Object {
-		$ObjectID		19
+		$ObjectID		35
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"joint1"
 	      }
 	      Object {
-		$ObjectID		20
+		$ObjectID		36
 		Type			"edit"
 		Name			"fc_vel"
 		Prompt			"Velocity filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		21
+		$ObjectID		37
 		Type			"edit"
 		Name			"fc_torque"
 		Prompt			"Torque filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		22
+		$ObjectID		38
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Input delay (num samples)"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		23
+		$ObjectID		39
 		Type			"edit"
 		Name			"output_delay"
 		Prompt			"Output delay (num samples)"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		24
+		$ObjectID		40
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize measurements"
@@ -1093,7 +1650,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		25
+		$ObjectID		41
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
@@ -1101,7 +1658,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		26
+		$ObjectID		42
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -1109,7 +1666,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		27
+		$ObjectID		43
 		Type			"checkbox"
 		Name			"output_noise_enabled"
 		Prompt			"Enable measurement noise"
@@ -1117,7 +1674,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'output_noise_enabled', 'var_y');"
 	      }
 	      Object {
-		$ObjectID		28
+		$ObjectID		44
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
@@ -1125,7 +1682,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		29
+		$ObjectID		45
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -1137,8 +1694,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointModel"
-	    Location		    [1358, -312, 3294, 780]
-	    Open		    on
+	    Location		    [683, 0, 1366, 728]
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1149,7 +1706,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "80"
 	    SIDHighWatermark	    "727"
 	    Block {
 	      BlockType		      Inport
