@@ -236,6 +236,7 @@ function testElectricalSubsystem(testCase)
     nTest = 8;              % We do a number nTest of tests here.
     flags = zeros(1,nTest);  % This vector should have just ones at the end of this test.
     
+    %% 1ST MODEL
     % Build a joint
     jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn','elTestJoint');
     % Update path
@@ -252,7 +253,7 @@ function testElectricalSubsystem(testCase)
     flags(3) = C ==    1;
     flags(4) = all( D ==   [0, 0] );
     
-    
+    % 2ND MODEL
     % Build a joint
     jb.buildJoint(allParams{1}, 'full_dyn', [],[],'elTestJointStatic');
     % Update path
