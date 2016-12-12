@@ -180,7 +180,7 @@ nPar = numel(allParams);
 end
 
 function testInputParameters(testCase)
-    % Test to build models with combinations of nonlinear terms
+    % Test to build models with correct and incorrect input arguments.
 
     % shorthands
     jb = testCase.('TestData').JB;
@@ -227,3 +227,30 @@ function testInputParameters(testCase)
     verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
 end
     
+function testElectricalSubsystem(testCase)
+    
+    % shorthands
+    jb = testCase.('TestData').JB;
+    allParams = testCase.('TestData').allParams;
+
+    nTest = 4;              % We do a number nTest of tests here.
+    flags = zeros(1,nTest);  % This vector should have just ones at the end of this test.
+    
+    % Build a joint
+    jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn','elTestJoint');
+    % Update path
+    rehash
+    % Instantiate joint
+    jObj = elTestJoint;
+    
+    % Get electrical dynamics model
+    [A B C D] = jObj.getElectricalDynamicsMatrices;
+
+    % Check model against preevaluated values
+    flags(1) = A == -6.321428571428571e+02;
+    flags(2) = all( B ==    1.0e+03 * [  7.142857142857143   -0.004530000000000 ] );
+    flags(3) = C ==    1;
+    flags(4) = all( D ==   [0, 0] );
+    
+    verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
+end
