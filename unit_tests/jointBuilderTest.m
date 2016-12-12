@@ -249,7 +249,7 @@ function testElectricalSubsystem(testCase)
 
     % Check model against preevaluated values
     flags(1) = A == -6.321428571428571e+02;
-    flags(2) = all( B ==    1.0e+03 * [  7.142857142857143   -0.004530000000000 ] );
+    flags(2) = all( B ==    1.0e+03 * [  7.142857142857143   -0.000045300000000 ] );
     flags(3) = C ==    1;
     flags(4) = all( D ==   [0, 0] );
     
@@ -268,7 +268,7 @@ function testElectricalSubsystem(testCase)
     flags(5) = A == 0;
     flags(6) = all( B ==  0 );
     flags(7) = C == 0;
-    flags(8) = all( D == [11.299435028248588 -51.186440677966104]);
+    flags(8) = all( D == [11.299435028248588  -0.511864406779661]);
     
     
     verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.

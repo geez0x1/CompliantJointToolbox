@@ -55,7 +55,7 @@ function [A, B, C, D] = electric_dyn(obj)
 
     R = obj.r;
     L = obj.x;
-    k_t = obj.k_t * obj.n; % The geared torque constant.
+    k_t = obj.k_t; % Torque constant.
 
     % State-space matrix
     A = -R/L;

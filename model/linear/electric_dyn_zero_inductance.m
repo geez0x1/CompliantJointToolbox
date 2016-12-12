@@ -50,13 +50,13 @@ function [A, B, C, D] = electric_dyn_zero_inductance(obj)
     % the back emf and input voltage.
     
     R = obj.r;
-    k_t = obj.k_t * obj.n; % The geared torque constant.
+    k_t = obj.k_t; % Torque constant.
 
     % State-space matrix
     A = 0;
     
     % u = [v, dot{q_m}] input voltage v and motor velocity dot{q_m}
-    B = 0;
+    B = [0 0];
     
     % Output
     C = 0;
