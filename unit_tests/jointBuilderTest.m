@@ -233,7 +233,7 @@ function testElectricalSubsystem(testCase)
     jb = testCase.('TestData').JB;
     allParams = testCase.('TestData').allParams;
 
-    nTest = 4;              % We do a number nTest of tests here.
+    nTest = 8;              % We do a number nTest of tests here.
     flags = zeros(1,nTest);  % This vector should have just ones at the end of this test.
     
     % Build a joint
@@ -251,6 +251,24 @@ function testElectricalSubsystem(testCase)
     flags(2) = all( B ==    1.0e+03 * [  7.142857142857143   -0.004530000000000 ] );
     flags(3) = C ==    1;
     flags(4) = all( D ==   [0, 0] );
+    
+    
+    % Build a joint
+    jb.buildJoint(allParams{1}, 'full_dyn', [],[],'elTestJointStatic');
+    % Update path
+    rehash
+    % Instantiate joint
+    jObj = elTestJointStatic;
+    
+    % Get electrical dynamics model
+    [A B C D] = jObj.getElectricalDynamicsMatrices;
+
+    % Check model against preevaluated values
+    flags(5) = A == 0;
+    flags(6) = all( B ==  0 );
+    flags(7) = C == 0;
+    flags(8) = all( D == [11.299435028248588 -51.186440677966104]);
+    
     
     verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
 end
