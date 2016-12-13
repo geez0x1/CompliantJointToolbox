@@ -1,30 +1,9 @@
 function cjtExamples
 
+
 close all;
 
-optStruct = struct;
-optStruct.cjtPath = fileparts(which('cjtExamples'));
-optStruct.examplePath = [optStruct.cjtPath, filesep, 'examples'];
-
-
-%% Gater information about what examples are available
-[matlabExamples, simulinkExamples] = scanForExamples(optStruct);
-
-nMatlabExamples = numel(matlabExamples);
-
-matlabExampleStrings = cell(nMatlabExamples,1);
-for iEx = 1:nMatlabExamples
-    matlabExampleStrings{iEx,1} = matlabExamples(iEx).displayName;
-end
-   
-nSimulinkExamples = numel(simulinkExamples);
-simulinkExampleStrings = cell(nSimulinkExamples,1);
-for iEx = 1:nSimulinkExamples
-    simulinkExampleStrings{iEx,1} = simulinkExamples(iEx).displayName;
-end
-
 figname = 'Compliant Joint Toolbox Examples';
-
 
 fig_props = { ...
     'name'                   figname ...
@@ -32,16 +11,42 @@ fig_props = { ...
     'resize'                 'off' ...
     'numbertitle'            'off' ...
     'menubar'                'none' ...
-    'windowstyle'            'modal' ...
+    'windowstyle'            'normal' ...
     'visible'                'on' ...
     'units'                  'normalized' ...
     'createfcn'              ''    ...
     'closerequestfcn'        'delete(gcbf)' ...
-            };
-        
-           
-mainFig = figure(fig_props{:});
+    };
 
+% 'CreateFcn'              @localCreate_callback
+
+% Create figure to use as GUI in your main function or a local function
+mainFig = figure(fig_props{:});
+% create structure of handles
+fig_handles = guihandles(mainFig);
+
+cjtPath = fileparts(which('cjtExamples'));
+examplePath = [cjtPath, filesep, 'examples'];
+
+
+%% Gater information about what examples are available
+matlabExamples = scanForExamples([examplePath, filesep, 'matlab']);
+simulinkExamples = scanForExamples([examplePath, filesep, 'simulink']);
+
+nMatlabExamples = numel(matlabExamples);
+matlabExampleStrings = cell(nMatlabExamples,1);
+for iEx = 1:nMatlabExamples
+    matlabExampleStrings{iEx,1} = matlabExamples(iEx).displayName;
+end
+
+nSimulinkExamples = numel(simulinkExamples);
+simulinkExampleStrings = cell(nSimulinkExamples,1);
+for iEx = 1:nSimulinkExamples
+    simulinkExampleStrings{iEx,1} = simulinkExamples(iEx).displayName;
+end
+
+
+%% Some parameters to position and align uicontrols
 listHeight = 0.3;
 listWidth = 0.4;
 listX = 0.05;
@@ -49,98 +54,172 @@ listY = 0.6;
 btnY = 0.03;
 btnWidth = 0.25;
 
-%% Matlab Examples  
-matlabTitle = uicontrol('Style','text',...
-                    'units','normalized',...
-                    'String','Matlab Examples',...
-                    'FontWeight', 'bold',...
-                    'FontSize', 12,...
-                    'HorizontalAlignment', 'left',...
-                    'Tag','matlabTitle_txt',...
-                    'Position', [listX 0.91 listWidth 0.05],...
-                    'Callback', {@localListbox_callback});
-                       
-matlabListbox = uicontrol('Style','listbox',...
-                    'units','normalized',...
-                    'String',matlabExampleStrings,...
-                    'BackgroundColor','w',...
-                    'Tag','matlabListbox',...
-                    'Position',[listX listY listWidth listHeight ],...
-                    'Callback', {@localListbox_callback});
-    
-%% Simulink Examples
-simulinkTitle = uicontrol('Style','text',...
-                    'units','normalized',...
-                    'String','Simulink Examples',...
-                    'FontWeight', 'bold',...
-                    'FontSize', 12,...
-                    'HorizontalAlignment', 'left',...
-                    'Tag','simulinkTitle_txt',...
-                    'Position', [0.5+listX 0.91 listWidth 0.05],...
-                    'Callback', {@localListbox_callback});
-                       
-                       
-simulinkListbox = uicontrol('Style','listbox',...
-                    'units','normalized',...
-                    'String',simulinkExampleStrings,...
-                    'BackgroundColor','w',...
-                    'Tag','simulinkListbox',...
-                    'Position',[0.5+listX listY listWidth listHeight ],...
-                    'Callback', {@localListbox_callback});
+%% Uicontrols for Matlab Examples
+fig_handles.matlabTitle = uicontrol('Style','text',...
+    'units','normalized',...
+    'String','Matlab Examples',...
+    'FontWeight', 'bold',...
+    'FontSize', 12,...
+    'HorizontalAlignment', 'left',...
+    'Tag','matlabTitle_txt',...
+    'Position', [listX 0.91 listWidth 0.05],...
+    'Callback', {@localListbox_callback});
+
+fig_handles.matlabListbox = uicontrol('Style','listbox',...
+    'units','normalized',...
+    'String',matlabExampleStrings,...
+    'BackgroundColor','w',...
+    'Tag','matlabListbox',...
+    'Position',[listX listY listWidth listHeight ],...
+    'Callback', {@localListbox_callback});
+
+%% Uicontrols Simulink Examples
+fig_handles.simulinkTitle = uicontrol('Style','text',...
+    'units','normalized',...
+    'String','Simulink Examples',...
+    'FontWeight', 'bold',...
+    'FontSize', 12,...
+    'HorizontalAlignment', 'left',...
+    'Tag','simulinkTitle_txt',...
+    'Position', [0.5+listX 0.91 listWidth 0.05],...
+    'Callback', {@localListbox_callback});
+
+
+fig_handles.simulinkListbox = uicontrol('Style','listbox',...
+    'units','normalized',...
+    'String',simulinkExampleStrings,...
+    'BackgroundColor','w',...
+    'Tag','simulinkListbox',...
+    'Position',[0.5+listX listY listWidth listHeight ],...
+    'Callback', {@localListbox_callback});
 
 %% Common uicontrols
 % Run an example
-run_btn = uicontrol('Style','pushbutton',...
-                    'units','normalized',...
-                    'String','Run Example',...
-                    'Tag','run_btn',...
-                    'Position',[listX btnY btnWidth 0.05]);%,...
-                   %'Callback',{@doOK,listbox});
+fig_handles.run_btn = uicontrol('Style','pushbutton',...
+    'units','normalized',...
+    'String','Run Example',...
+    'Tag','run_btn',...
+    'Position',[listX btnY btnWidth 0.05],...
+    'Callback',{@localRun_callback});
 
 % Open the example m-file
-open_btn = uicontrol('Style','pushbutton',...
-                    'units','normalized',...
-                    'String','Open Example',...
-                    'Tag','open_btn',...
-                    'Position',[listX+btnWidth+0.05 btnY btnWidth 0.05]);%,...
-                   %'Callback',{@doOK,listbox});
-                
-% Open the example m-file
-close_btn = uicontrol('Style','pushbutton',...
-                    'units','normalized',...
-                    'String','Close Dialog',...
-                    'Tag','close_btn',...
-                    'Position',[listX+2*(btnWidth+0.05) btnY btnWidth 0.05]);%,...
-                   %'Callback',{@doOK,listbox});
-        
-% % A panel that descripes the contents of the example.
-% desc_panel = uipanel('Title','Example contents',...
-%                     'FontWeight', 'bold',...
-%                     'units','normalized',...
-%                     'Tag','description_panel',...
-%                     'Position',[listX 0.1 0.9 0.3]);%,...
-%                    %'Callback',{@doOK,listbox});
+fig_handles.open_btn = uicontrol('Style','pushbutton',...
+    'units','normalized',...
+    'String','Open Example',...
+    'Tag','open_btn',...
+    'Position',[listX+btnWidth+0.05 btnY btnWidth 0.05],...
+    'Callback',{@localOpen_callback});
 
+% Open the example m-file
+fig_handles.close_btn = uicontrol('Style','pushbutton',...
+    'units','normalized',...
+    'String','Close Dialog',...
+    'Tag','close_btn',...
+    'Position',[listX+2*(btnWidth+0.05) btnY btnWidth 0.05],...
+    'Callback',{@localClose_callback});
 
 descriptionString = '';
-descriptionListbox = uicontrol('Style','listbox',...
-                    'units','normalized',...
-                    'String',descriptionString,...
-                    'BackgroundColor','w',...
-                    'Tag','matlabListbox',...
-                    'Position',[listX 0.1 0.9 0.43 ],...
-                    'Callback', {@localListbox_callback});
+fig_handles.descriptionListbox = uicontrol('Style','listbox',...
+    'units','normalized',...
+    'String',descriptionString,...
+    'Tag','matlabListbox',...
+    'Position',[listX 0.1 0.9 0.43 ],...
+    'Callback', {@localDescription_callback});
 
-descriptionTitle = uicontrol('Style','text',...
-                    'units','normalized',...
-                    'String','Example Description',...
-                    'FontWeight', 'bold',...
-                    'FontSize', 12,...
-                    'HorizontalAlignment', 'left',...
-                    'Tag','description_txt',...
-                    'Position', [listX 0.54 listWidth 0.05],...
-                    'Callback', {@localListbox_callback});
+fig_handles.descriptionTitle = uicontrol('Style','text',...
+    'units','normalized',...
+    'String','Example Description',...
+    'FontWeight', 'bold',...
+    'FontSize', 12,...
+    'HorizontalAlignment', 'left',...
+    'Tag','description_txt',...
+    'Position', [listX 0.54 listWidth 0.05]);%,...
+
+% Extend the handles struct by some information that might be useful in
+% callbacks.
+fig_handles.cjtPath = cjtPath;
+fig_handles.examplePath = examplePath;
+fig_handles.matlabExamples = matlabExamples;
+fig_handles.simulinkExamples = simulinkExamples;
+fig_handles.mainFig = mainFig;
+
+% Save the structure
+guidata(mainFig,fig_handles);
+
 end
+
+function localDescription_callback(hObject, eventdata, handles)
+% hObject    handle to listbox1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hints: contents = cellstr(get(hObject,'String')) returns contents
+% contents{get(hObject,'Value')} returns selected item from listbox1
+
+% Get the structure using guidata in the local function
+fig_handles = guidata(gcbo);
+
+% Find out which example has been selected.
+listboxTag = get(fig_handles.activeListbox,'Tag');
+index_selected = get(fig_handles.activeListbox,'Value');
+
+% Get m filename
+switch listboxTag
+    case 'matlabListbox'
+        mFileName = fig_handles.matlabExamples(index_selected).fileName;
+    case 'simulinkListbox'
+        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+end
+
+% Extract example description
+descriptionText = extractExampleDescription(mFileName);
+
+set(fig_handles.descriptionListbox,'string', descriptionText);
+
+end
+
+
+function localClose_callback(hObject, eventdata, handles)
+% hObject    handle to listbox1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hints: contents = cellstr(get(hObject,'String')) returns contents
+% contents{get(hObject,'Value')} returns selected item from listbox1
+
+% Get the structure using guidata in the local function
+fig_handles = guidata(gcbo);
+
+close(fig_handles.mainFig);
+
+
+end
+
+function localOpen_callback(hObject, eventdata, handles)
+% hObject    handle to listbox1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hints: contents = cellstr(get(hObject,'String')) returns contents
+% contents{get(hObject,'Value')} returns selected item from listbox1
+
+% Get the structure using guidata in the local function
+fig_handles = guidata(gcbo);
+
+% Find out which example has been selected.
+listboxTag = get(fig_handles.activeListbox,'Tag');
+index_selected = get(fig_handles.activeListbox,'Value');
+
+% Get m filename
+switch listboxTag
+    case 'matlabListbox'
+        mFileName = fig_handles.matlabExamples(index_selected).fileName;
+    case 'simulinkListbox'
+        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+end
+
+% Open in editor
+open(mFileName);
+
+end
+
 
 function localListbox_callback(hObject, eventdata, handles)
 % hObject    handle to listbox1 (see GCBO)
@@ -148,147 +227,89 @@ function localListbox_callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 % Hints: contents = cellstr(get(hObject,'String')) returns contents
 % contents{get(hObject,'Value')} returns selected item from listbox1
-    items = get(hObject,'String');
-    index_selected = get(hObject,'Value');
-    if ~isempty(index_selected)
-        item_selected = items{index_selected};
-        fprintf('%s\n',item_selected);
-    end
+
+
+% Get the structure using guidata in the local function
+fig_handles = guidata(gcbo);
+
+% Update the active listbox property.
+fig_handles.activeListbox = hObject;
+
+% If a double-click has occurred, directly run the example.
+if strcmp(get(fig_handles.mainFig,'SelectionType'),'open')
+    disp('Double Click detected!')
+    localRun_callback(hObject, [], [])
 end
 
-% ok_btn = uicontrol('Style','pushbutton',...
-%                    'String',okstring,...
-%                    'Tag','ok_btn',...
-%                    'Callback',{@doOK,listbox});
-% 
-% cancel_btn = uicontrol('Style','pushbutton',...
-%                        'String',cancelstring,...
-%                        'Tag','cancel_btn',...
-%                        'Callback',{@doCancel,listbox});
+guidata(hObject,fig_handles);
 
-% listbox = uicontrol('Style','listbox',...
-%                     'Position',[ffs+fus ffs+uh+4*fus+(smode==2)*(fus+uh) listsize],...
-%                     'String',liststring,...
-%                     'BackgroundColor','w',...
-%                     'Max',smode,...
-%                     'Tag','listbox',...
-%                     'Value',initialvalue, ...
-%                     'Callback', {@doListboxClick});
-% 
-% ok_btn = uicontrol('Style','pushbutton',...
-%                    'String',okstring,...
-%                    'Position',[ffs+fus ffs+fus btn_wid uh],...
-%                    'Tag','ok_btn',...
-%                    'Callback',{@doOK,listbox});
-% 
-% cancel_btn = uicontrol('Style','pushbutton',...
-%                        'String',cancelstring,...
-%                        'Position',[ffs+2*fus+btn_wid ffs+fus btn_wid uh],...
-%                        'Tag','cancel_btn',...
-%                        'Callback',{@doCancel,listbox});
+% Update example description field.
+localDescription_callback(hObject, [], []);
 
-%     gui_Singleton = 1;
-%     gui_State = struct(...
-%         'gui_Name',       'Compliant Joint Toolbox Examples', ...
-%         'gui_Singleton',  1, ...
-%         'gui_OpeningFcn', @local_gui_OpeningFcn, ...
-%         'gui_OutputFcn',  @local_gui_OutputFcn, ...
-%         'gui_LayoutFcn',  [], ...
-%         'gui_Callback',   []);
-%     h = gui_mainfcn(gui_State);
+end
 
 
 
+function [examples] = scanForExamples(examplePath)
 
-% 
-% % --- Executes just before rtbdemo_gui is made visible.
-% function local_gui_OpeningFcn(hObject, eventdata, handles, varargin)
-%     % This function has no output args, see OutputFcn.
-%     % hObject    handle to figure
-%     % eventdata  reserved - to be defined in a future version of MATLAB
-%     % handles    structure with handles and user data (see GUIDATA)
-%     % varargin   command line arguments to rtbdemo_gui (see VARARGIN)
-%     
-%     % Choose default command line output for rtbdemo_gui
-%     handles.output = hObject;
-%     
-%     % Update handles structure
-%     guidata(hObject, handles);
-%     
-%     local_initialize_gui(hObject, handles, false);
-% end
-% 
-% % --- Outputs from this function are returned to the command line.
-% function varargout = local_gui_OutputFcn(hObject, eventdata, handles)
-%     % varargout  cell array for returning output args (see VARARGOUT);
-%     % hObject    handle to figure
-%     % eventdata  reserved - to be defined in a future version of MATLAB
-%     % handles    structure with handles and user data (see GUIDATA)
-%     
-%     % Get default command line output from handles structure
-%     varargout{1} = handles.output;
-% end
-% 
-% function local_initialize_gui(fig_handle, handles, isreset)
-%     % Update handles structure
-%     guidata(handles.figure1, handles);
-% end
-
-function [matlabExamples, simulinkExamples] = scanForExamples(optStruct)
-    
-matlabExamples = struct([]);
-simulinkExamples = struct([]);
+examples = struct([]);
 
 % First scan the matlab examples
-mPath = [optStruct.examplePath, filesep ,'matlab'];
-dirContents = dir([mPath,filesep,'*.m']);
+dirContents = dir([examplePath,filesep,'*.m']);
 
 nFiles = numel(dirContents);
 
 for iFile = 1:nFiles
-
-    fName = [mPath, filesep, dirContents(iFile).name];
+    
+    fName = [examplePath, filesep, dirContents(iFile).name];
     
     dispName = extractExampleDisplayName(fName);
     
     if ~isempty(dispName)
         localExample.fileName = fName;
         localExample.displayName = dispName;
-        matlabExamples = [matlabExamples, localExample];
+        examples = [examples, localExample];
     end
     
 end
 
-% Then scan the simulink examples
-sPath = [optStruct.examplePath, filesep ,'simulink'];
-dirContents = dir([sPath,filesep,'*.m']);
-
-nFiles = numel(dirContents);
-
-for iFile = 1:nFiles
-
-    fName = [sPath, filesep, dirContents(iFile).name];
-    
-    dispName = extractExampleDisplayName(fName);
-    
-    if ~isempty(dispName)
-        localExample.fileName = fName;
-        localExample.displayName = dispName;
-        simulinkExamples = [simulinkExamples, localExample];
-    end
-    
-end
 
 end
 
 function dispName = extractExampleDisplayName(fName)
+
+dispName = [];
+
+fileContents = fileread(fName);
+
+[startIndex,endIndex] = regexp(fileContents,'% #! [^\f\n\r\t\v]*[\f\n\r\t\v]');
+
+dispName = fileContents(startIndex+5:endIndex);
+
+end
+
+function description = extractExampleDescription(fName)
+
+description = {};
+
+fid = fopen(fName);
+
+stopFlag = 0;
+cnt = 1;
+
+while(~stopFlag)
+    tline = fgetl(fid);
     
-    dispName = [];
+    if ~isempty(tline) && tline(1) == '%'
+        description{cnt,1} = tline(3:end);
+    else
+        stopFlag = 1;
+    end
     
-    fileContents = fileread(fName);
+    cnt = cnt +1;
     
-    [startIndex,endIndex] = regexp(fileContents,'% #! [^\f\n\r\t\v]*[\f\n\r\t\v]');
-    
-    dispName = fileContents(startIndex+5:endIndex);
+end
+
+fclose(fid);
 
 end
