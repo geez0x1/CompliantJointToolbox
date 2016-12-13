@@ -1,8 +1,39 @@
 function cjtExamples
+% CJTEXAMPLES Compliant Joint Toolbox Examples GUI
+%
+% This file implements a graphical user interface that allows to explore
+% the Matlab and Simulink examples provided with the Compliant Joint 
+% Toolbox.
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also genericJoint.
 
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
 
 close all;
 
+%% Basic setup of the GUI
 figname = 'Compliant Joint Toolbox Examples';
 
 fig_props = { ...
@@ -18,32 +49,19 @@ fig_props = { ...
     'closerequestfcn'        'delete(gcbf)' ...
     };
 
-% 'CreateFcn'              @localCreate_callback
-
-% Create figure to use as GUI in your main function or a local function
+% Create main figure to use as GUI
 mainFig = figure(fig_props{:});
-% create structure of handles
+
+% Create structure of handles
 fig_handles = guihandles(mainFig);
 
+%% Gater information about what examples are available
 cjtPath = fileparts(which('cjtExamples'));
 examplePath = [cjtPath, filesep, 'examples'];
-
-
-%% Gater information about what examples are available
 matlabExamples = scanForExamples([examplePath, filesep, 'matlab']);
 simulinkExamples = scanForExamples([examplePath, filesep, 'simulink']);
 
-nMatlabExamples = numel(matlabExamples);
-matlabExampleStrings = cell(nMatlabExamples,1);
-for iEx = 1:nMatlabExamples
-    matlabExampleStrings{iEx,1} = matlabExamples(iEx).displayName;
-end
 
-nSimulinkExamples = numel(simulinkExamples);
-simulinkExampleStrings = cell(nSimulinkExamples,1);
-for iEx = 1:nSimulinkExamples
-    simulinkExampleStrings{iEx,1} = simulinkExamples(iEx).displayName;
-end
 
 
 %% Some parameters to position and align uicontrols
@@ -65,6 +83,13 @@ fig_handles.matlabTitle = uicontrol('Style','text',...
     'Position', [listX 0.91 listWidth 0.05],...
     'Callback', {@localListbox_callback});
 
+% Matlab examples to list
+nMatlabExamples = numel(matlabExamples);
+matlabExampleStrings = cell(nMatlabExamples,1);
+for iEx = 1:nMatlabExamples
+    matlabExampleStrings{iEx,1} = matlabExamples(iEx).displayName;
+end
+
 fig_handles.matlabListbox = uicontrol('Style','listbox',...
     'units','normalized',...
     'String',matlabExampleStrings,...
@@ -84,6 +109,12 @@ fig_handles.simulinkTitle = uicontrol('Style','text',...
     'Position', [0.5+listX 0.91 listWidth 0.05],...
     'Callback', {@localListbox_callback});
 
+% Simulink examples to list
+nSimulinkExamples = numel(simulinkExamples);
+simulinkExampleStrings = cell(nSimulinkExamples,1);
+for iEx = 1:nSimulinkExamples
+    simulinkExampleStrings{iEx,1} = simulinkExamples(iEx).displayName;
+end
 
 fig_handles.simulinkListbox = uicontrol('Style','listbox',...
     'units','normalized',...
@@ -118,6 +149,7 @@ fig_handles.close_btn = uicontrol('Style','pushbutton',...
     'Position',[listX+2*(btnWidth+0.05) btnY btnWidth 0.05],...
     'Callback',{@localClose_callback});
 
+% Display the example description
 descriptionString = '';
 fig_handles.descriptionListbox = uicontrol('Style','listbox',...
     'units','normalized',...
@@ -251,21 +283,23 @@ end
 
 
 function [examples] = scanForExamples(examplePath)
+% Scans for example m-files in a given directory.
+%
 
 examples = struct([]);
 
-% First scan the matlab examples
+% Look for m-files in the directory
 dirContents = dir([examplePath,filesep,'*.m']);
-
 nFiles = numel(dirContents);
 
+% Look into all files, look if they are valid example files and record 
+% information about them.
 for iFile = 1:nFiles
     
-    fName = [examplePath, filesep, dirContents(iFile).name];
-    
+    fName = [examplePath, filesep, dirContents(iFile).name];    
     dispName = extractExampleDisplayName(fName);
     
-    if ~isempty(dispName)
+    if ~isempty(dispName) % If the m-file is actually a valid example file.
         localExample.fileName = fName;
         localExample.displayName = dispName;
         examples = [examples, localExample];
@@ -277,6 +311,11 @@ end
 end
 
 function dispName = extractExampleDisplayName(fName)
+% Extracts the display name of an example. The display name is indicated
+% by a key string: '% #! '. This function searches for this string inside
+% the m-file returns the descriptive text in the remainder of the
+% corresponding text line.
+%
 
 dispName = [];
 
@@ -289,6 +328,9 @@ dispName = fileContents(startIndex+5:endIndex);
 end
 
 function description = extractExampleDescription(fName)
+% The function collects the first commented lines in the example script.
+% They should contain a meaningful description about what the example
+% shows. This information is returned as a cell string.
 
 description = {};
 
