@@ -71,7 +71,7 @@ classdef dataSheetGenerator
         outFName = 'datasheet.pdf';                    % Name stub for the generated datasheet file. The final name will 
                                                        % be composed of the "jointModel.name_outFName".
         plotResolution = 600;                          % Print resolution for the figures contained in the datasheet.
-        nPlotVals = 500;                               % Number of samples used to produce the graphs in the datasheet figures.
+        nPlotVals = 10000;                               % Number of samples used to produce the graphs in the datasheet figures.
         
     end
     
@@ -298,6 +298,59 @@ classdef dataSheetGenerator
             
         end
         
+        function h = draw_torque_frequency_curve(this)
+            
+            h = figure;
+            hold on
+            
+            t_stall = this.jointModel.t_stall;
+            k = this.jointModel.k_b;
+            slope = this.jointModel.dq_over_dm;
+            dq_0 = this.jointModel.dq_0;
+            t_p = this.jointModel.t_p;
+            t_r = this.jointModel.t_r;
+            t_NL = this.jointModel.t_NL;
+            dq_NL = this.jointModel.dq_NL;
+            
+            I = this.jointModel.I_m + this.jointModel.I_g;
+            
+            torque = (0:1/this.nPlotVals:1) * t_stall;
+            peakSpeeds = this.computeMaxPeakSpeed(torque);
+            contSpeeds = this.computeMaxContSpeed(torque);
+            
+            contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * contSpeeds.^2 );
+            contF = contW / 2 / pi;
+            
+            peakW = ( peakSpeeds * sqrt(I*k) ) ./ ( torque.^2 + I^2 * peakSpeeds.^2 );
+            peakF = peakW / 2 / pi;
+            
+            
+            xmax = 1.2 * t_p;   
+            
+            plot(torque,contF,'b--');
+            plot(torque,peakF,'r--');
+            
+            contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( 0.25*torque.^2 + I^2 * contSpeeds.^2 );
+            contF = contW / 2 / pi;
+            
+            peakW = ( peakSpeeds * sqrt(I*k) ) ./ ( 0.25*torque.^2 + I^2 * peakSpeeds.^2 );
+            peakF = peakW / 2 / pi;
+            
+            plot(torque,contF,'b');
+            plot(torque,peakF,'r');
+            
+            f0 = sqrt(k/I)/2/pi;
+            plot(torque, f0, 'k--' )
+            
+%             ymax = k*dq_NL /t_NL;
+%             
+            xlim([0,xmax]);
+%             ylim([0,ymax]);
+            xlabel('torque [Nm]')
+            ylabel('frequency [Hz]')
+            
+        end
+        
         function h = draw_torque_speed_curve(this)
             % draw_torque_speed_curve Displays speed-torque-curve in a
             % figure.
@@ -378,13 +431,20 @@ classdef dataSheetGenerator
             plot(mVals,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
             plot([0,xmax], dq_p * [1,1], 'r--', 'DisplayName', 'Peak Speed')
             
-            % Plot limits
+            % Continuous operation 
             speedVals = p_cm ./ mVals;
             plot(mVals,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
 %             speedVals = this.p_peakm ./ mVals;
 %             plot(mVals,speedVals, 'r--', 'DisplayName', 'Peak Mechanical Power')
             plot([0,xmax], dq_r * [1,1], 'b--', 'DisplayName', 'Maximum Continous Speed')
             plot(t_r*[1,1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
+            
+            
+            maxSpeeds = this.computeMaxPeakSpeed(mVals);
+            contSpeeds = this.computeMaxContSpeed(mVals);
+            
+            plot(mVals, maxSpeeds,'g')
+            plot(mVals, contSpeeds,'m')
             
             % Annotations and Figure Style
             xlim([0,xmax]);
@@ -396,6 +456,66 @@ classdef dataSheetGenerator
             %legend show;
         end
                 
+        
+        function contSpeed = computeMaxContSpeed(this, torque)
+            
+            % shorthands
+            t_r = this.jointModel.t_r;
+            p_cm = this.jointModel.p_cm;
+            
+            % start off from the peak speed
+            contSpeed = this.computeMaxPeakSpeed(torque);
+            
+            % rated torque
+            peakSpeed(torque > t_r) = 0;
+            
+            % continuous power
+            powerSpeed = p_cm ./ torque;
+            
+            contSpeed = min(contSpeed,powerSpeed);
+            
+        end
+        
+        function peakSpeed = computeMaxPeakSpeed(this, torque)
+
+            
+            % shorthands
+            slope = this.jointModel.dq_over_dm;
+            dq_0 = this.jointModel.dq_0;
+            
+            dq_p = this.jointModel.dq_p;
+            d_cm = this.jointModel.d_cm;
+            d_cg = this.jointModel.d_cg;
+            d_cl = this.jointModel.d_cl;
+            d_m  = this.jointModel.d_m;
+            d_g  = this.jointModel.d_g;
+            d_l  = this.jointModel.d_l;
+            
+            p_pm = this.jointModel.p_pm;
+            t_p = this.jointModel.t_p;
+
+
+            
+            % first, look along the torque speed curve defined by the
+            % electrical subsystem
+            elSpeed = dq_0 - slope * torque;
+
+            
+            % Friction
+            kC = d_cm + d_cg + d_cl;            % Static friction
+            kV = (d_m + d_g + d_l); % Velocity dependent friction
+
+            fricSpeed = (torque - kC)/kV;
+            fricSpeed(torque < kC) = 0;
+
+            peakSpeed = min(elSpeed, fricSpeed);
+            
+            % Power curve
+            powerSpeed = p_pm ./ torque;
+            
+            peakSpeed = min(peakSpeed, powerSpeed);
+            
+        end
 
         
         function createDataSheet(this)
