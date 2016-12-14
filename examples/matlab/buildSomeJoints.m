@@ -26,6 +26,9 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
+% The text in the following line defines the display name for this Example
+% #! Build Some Joints
+
 % clear all;
 close all;
 
