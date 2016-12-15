@@ -1,21 +1,26 @@
 % BODE_TUYPLOT Compute and plot magnitude and phase in frequency domain from equidistantly 
 % sampled I/O signals.
 %
-%   [f, mag_db, phase] = bode_tuyplot(t, u, y [, roi, lineseries properties])
+%   [freq, mag_db, phase] = bode_tuyplot(t, u, y [, resample, filter, bodeOpt, lineseries properties])
 %
 % Inputs::
 %   t: time vector
 %   u: input data vector
 %   y: output data vector
-%   roi: Frequency range of interest in [[Hz],[Hz]] (default [0.1,100])
+%   resample: whether to resample data (for smaller filesize on export) (default: 0)
+%   filter: whether to use zero-phase digital filtering for smoothing (default: 0)
+%   bodeOpt: a bodeoptions struct (not all features are supported!)
 %
 % Outputs::
-%   f: frequency vector
+%   omega: frequency vector [rad/s]
 %   mag_db: output magnitude vector in [db]
 %   phase: output phase in [deg]
 %
 % Notes::
-%   varargin holds additional plotting arguments passed to the plot command
+%   varargin holds additional plotting arguments passed to the plot
+%   command.
+%   The output values correspond to the plot: i.e. resampled and/or
+%   filtered, and in frequency units as set in bodeOpt.
 %
 % Examples::
 %
@@ -46,29 +51,120 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [f, mag_db, phase] = bode_tuyplot(t, u, y, roi, varargin)
+function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt, varargin)
 
     % Default arguments
-    if (~exist('roi', 'var'))
-        roi = [0.1, 100];	% Region of interest [[Hz], [Hz]]
+    if (~exist('resample', 'var'))
+        resample = 0;
+    end
+    if (~exist('filter', 'var'))
+        filter = 0;
+    end
+    if (~exist('bodeOpt', 'var'))
+        bodeOpt = bodeoptions;
     end
     
     % Get FFT
-    [f, mag_db, phase] = bode_tuy(t, u, y, roi);
+    [omega, mag_db, phase] = bode_tuy(t, u, y);
+    mag_db = mag_db(:); phase = phase(:); omega = omega(:);
+    f = omega ./ (2*pi);
     
-    % Magnitude
-    subplot(2,1,1); hold on; grid on;
-    plot(f, mag_db,varargin{:});
-    xlim(roi);
-    ylabel('Magnitude [dB]');
-    set(gca,'XScale','log');
-
-    % Phase
-    subplot(2,1,2); hold on; grid on;
-    plot(f, phase,varargin{:});
-    xlim(roi);
-    xlabel('Frequency [Hz]');
-    ylabel('Phase [deg]');
-    set(gca,'XScale','log');
+    % Set frequency units
+    if (strcmpi(bodeOpt.FreqUnits, 'Hz'))
+        freq = f;
+    else
+        freq = omega;
+    end
+    
+    % Resample data using logarithmic frequency space
+    % Assume f starts at 0 (which it should always do from bode())
+    if (resample)
+        a = log(freq(2)) / log(10);
+        b = log(max(freq)) / log(10);
+        n = round(max(freq) - min(freq));
+        freq_RS   	= [0 logspace(a,b,n)];
+        mag_db_RS  	= interp1(freq, mag_db, freq_RS);
+        phase_RS 	= interp1(freq, phase, freq_RS);
+        freq        = freq_RS;
+        mag_db      = [mag_db_RS(1:end-1) mag_db(end)];
+        phase       = [phase_RS(1:end-1) phase(end)];
+    end
+    
+    % Filter magnitude and phase
+    if (filter)
+        windowSize	= 100;
+        mag_db      = filtfilt(ones(1,windowSize) / windowSize, 1, mag_db);
+        phase       = filtfilt(ones(1,windowSize) / windowSize, 1, phase);
+    end
+    
+    % Depending on whether we show mag, phase, or both, do stuff
+    if (strcmpi(bodeOpt.MagVisible, 'on') && strcmpi(bodeOpt.PhaseVisible, 'on'))
+        % Magnitude
+        subplot(2,1,1);
+        semilogx(freq, mag_db, varargin{:});
+        hold on;
+        xlim(bodeOpt.XLim{1});
+        ylabel('Magnitude [dB]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
+        if (strcmp(bodeOpt.Grid, 'on'))
+            grid on;
+        end
+        if (~strcmp(bodeOpt.Title.String, ''))
+            title(bodeOpt.Title.String, 'FontSize', bodeOpt.Title.FontSize, 'Interpreter', bodeOpt.Title.Interpreter);
+        end
+        
+        % Phase
+        subplot(2,1,2);
+        semilogx(freq, phase, varargin{:});
+        hold on;
+        xlim(bodeOpt.XLim{1});
+        ylabel('Phase [deg]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
+        if (strcmp(bodeOpt.FreqUnits, 'Hz'))
+            xlabel('Frequency [Hz]', 'FontSize', bodeOpt.XLabel.FontSize, 'Interpreter', bodeOpt.XLabel.Interpreter);
+        else
+            xlabel('Frequency [rad/s]', 'FontSize', bodeOpt.XLabel.FontSize, 'Interpreter', bodeOpt.XLabel.Interpreter);
+        end
+        if (strcmp(bodeOpt.Grid, 'on'))
+            grid on;
+        end
+        
+    elseif (strcmpi(bodeOpt.MagVisible, 'on'))
+        % Magnitude only
+        semilogx(freq, mag_db, varargin{:});
+        hold on;
+        xlim(bodeOpt.XLim{1});
+        ylabel('Magnitude [dB]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
+        if (strcmp(bodeOpt.FreqUnits, 'Hz'))
+            xlabel('Frequency [Hz]', 'FontSize', bodeOpt.XLabel.FontSize, 'Interpreter', bodeOpt.XLabel.Interpreter);
+        else
+            xlabel('Frequency [rad/s]', 'FontSize', bodeOpt.XLabel.FontSize, 'Interpreter', bodeOpt.XLabel.Interpreter);
+        end
+        if (strcmp(bodeOpt.Grid, 'on'))
+            grid on;
+        end
+        if (~strcmp(bodeOpt.Title.String, ''))
+            title(bodeOpt.Title.String, 'FontSize', bodeOpt.Title.FontSize, 'Interpreter', bodeOpt.Title.Interpreter);
+        end
+        
+    elseif (strcmpi(bodeOpt.PhaseVisible, 'on'))
+        % Phase only
+        semilogx(freq, phase, varargin{:});
+        hold on;
+        xlim(bodeOpt.XLim{1});
+        ylabel('Phase [deg]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
+        if (strcmp(bodeOpt.FreqUnits, 'Hz'))
+            xlabel('Frequency [Hz]', 'FontSize', bodeOpt.XLabel.FontSize, 'Interpreter', bodeOpt.XLabel.Interpreter);
+        else
+            xlabel('Frequency [rad/s]', 'FontSize', bodeOpt.XLabel.FontSize, 'Interpreter', bodeOpt.XLabel.Interpreter);
+        end
+        if (strcmp(bodeOpt.Grid, 'on'))
+            grid on;
+        end
+        if (~strcmp(bodeOpt.Title.String, ''))
+            title(bodeOpt.Title.String, 'FontSize', bodeOpt.Title.FontSize, 'Interpreter', bodeOpt.Title.Interpreter);
+        end
+        
+    else
+        error('Nothing to plot');
+    end
     
 end
