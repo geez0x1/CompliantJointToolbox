@@ -65,9 +65,9 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     end
     
     % Get FFT
-    [omega, mag_db, phase] = bode_tuy(t, u, y);
-    mag_db = mag_db(:); phase = phase(:); omega = omega(:);
-    f = omega ./ (2*pi);
+    [f, mag_db, phase] = bode_tuy(t, u, y);
+    mag_db = mag_db(:); phase = phase(:); f = f(:);
+    omega = f .* (2*pi);
     
     % Set frequency units
     if (strcmpi(bodeOpt.FreqUnits, 'Hz'))
@@ -77,7 +77,7 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     end
     
     % Resample data using logarithmic frequency space
-    % Assume f starts at 0 (which it should always do from bode())
+    % Assume f starts at 0 (which it should always do)
     if (resample)
         a = log(freq(2)) / log(10);
         b = log(max(freq)) / log(10);
@@ -92,7 +92,7 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     
     % Filter magnitude and phase
     if (filter)
-        windowSize	= 100;
+        windowSize	= 60;
         mag_db      = filtfilt(ones(1,windowSize) / windowSize, 1, mag_db);
         phase       = filtfilt(ones(1,windowSize) / windowSize, 1, phase);
     end
