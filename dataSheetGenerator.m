@@ -321,7 +321,7 @@ classdef dataSheetGenerator
             contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * contSpeeds.^2 );
             contF = contW / 2 / pi;
             
-            peakW = ( peakSpeeds * sqrt(I*k) ) ./ ( torque.^2 + I^2 * peakSpeeds.^2 );
+            peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * peakSpeeds.^2 );
             peakF = peakW / 2 / pi;
             
             
@@ -333,7 +333,7 @@ classdef dataSheetGenerator
             contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( 0.25*torque.^2 + I^2 * contSpeeds.^2 );
             contF = contW / 2 / pi;
             
-            peakW = ( peakSpeeds * sqrt(I*k) ) ./ ( 0.25*torque.^2 + I^2 * peakSpeeds.^2 );
+            peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( 0.25*torque.^2 + I^2 * peakSpeeds.^2 );
             peakF = peakW / 2 / pi;
             
             plot(torque,contF,'b');
@@ -465,7 +465,7 @@ classdef dataSheetGenerator
             
             % start off from the peak speed
             contSpeed = this.computeMaxPeakSpeed(torque);
-            
+
             % rated torque
             peakSpeed(torque > t_r) = 0;
             
@@ -473,6 +473,7 @@ classdef dataSheetGenerator
             powerSpeed = p_cm ./ torque;
             
             contSpeed = min(contSpeed,powerSpeed);
+            
             
         end
         
@@ -514,6 +515,7 @@ classdef dataSheetGenerator
             powerSpeed = p_pm ./ torque;
             
             peakSpeed = min(peakSpeed, powerSpeed);
+
             
         end
 
