@@ -8,7 +8,7 @@
 %   u: input data vector
 %   y: output data vector
 %   resample: whether to resample data (for smaller filesize on export) (default: 0)
-%   filter: whether to use zero-phase digital filtering for smoothing (default: 0)
+%   filter: whether to use zero-phase digital filtering for smoothing - implies resample=1 (default: 0)
 %   bodeOpt: a bodeoptions struct (not all features are supported!)
 %
 % Outputs::
@@ -19,8 +19,8 @@
 % Notes::
 %   varargin holds additional plotting arguments passed to the plot
 %   command.
-%   The output values correspond to the plot: i.e. resampled and/or
-%   filtered, and in frequency units as set in bodeOpt.
+%   The output values correspond to the plot: i.e. resampled or
+%   resampled+filtered, and in frequency units as set in bodeOpt.
 %
 % Examples::
 %
@@ -63,6 +63,13 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     if (~exist('bodeOpt', 'var'))
         bodeOpt = bodeoptions;
     end
+
+    % If filtering is enabled, force resampling to be on as well
+    % Otherwise the filtering window expressed in frequency is frequency
+    % dependent.
+    if (filter)
+        resample = 1;
+    end
     
     % Get FFT
     [f, mag_db, phase] = bode_tuy(t, u, y);
@@ -92,7 +99,7 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     if (resample)
         a = log(freq(1)) / log(10);
         b = log(freq(end-1)) / log(10);
-        n = 100 * (b-a);
+        n = 1000 * (b-a); % typically ~10x less data (for 2kHz sample time)
         freq_RS   	= logspace(a,b,n);
         mag_db_RS  	= interp1(freq, mag_db, freq_RS, 'pchip');
         phase_RS 	= interp1(freq, phase, freq_RS, 'pchip');
@@ -103,7 +110,7 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
 
     % Filter magnitude and phase
     if (filter)
-        windowSize	= 20; % See n and generation of freq_RS
+        windowSize	= round(0.008 * n); % see n and generation of freq_RS
         mag_db      = filtfilt(ones(1,windowSize) / windowSize, 1, mag_db);
         phase       = filtfilt(ones(1,windowSize) / windowSize, 1, phase);
     end
