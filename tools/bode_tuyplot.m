@@ -75,24 +75,35 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     else
         freq = omega;
     end
+
+    % Treat the x-limits as the region of interest; that is, we remove the
+    % other data (the frequency range of which is usually not sampled
+    % anyway) so we can be faster and not influence the zero-phase
+    % filtering below.
+    idxs    = 1:length(freq);
+    sIdx    = floor(interp1(freq, idxs, bodeOpt.XLim{1}(1)));
+    eIdx    = ceil(interp1(freq, idxs, bodeOpt.XLim{1}(2)));
+    freq    = freq(sIdx:eIdx);
+    mag_db  = mag_db(sIdx:eIdx);
+    phase   = phase(sIdx:eIdx);
     
-    % Resample data using logarithmic frequency space
-    % Assume f starts at 0 (which it should always do)
+    % Resample data using logarithmic frequency space.
+    % freq no longer starts at 0 due to the ROI above.
     if (resample)
-        a = log(freq(2)) / log(10);
-        b = log(max(freq)) / log(10);
-        n = round(max(freq) - min(freq));
-        freq_RS   	= [0 logspace(a,b,n)];
-        mag_db_RS  	= interp1(freq, mag_db, freq_RS);
-        phase_RS 	= interp1(freq, phase, freq_RS);
+        a = log(freq(1)) / log(10);
+        b = log(freq(end-1)) / log(10);
+        n = 100 * (b-a);
+        freq_RS   	= logspace(a,b,n);
+        mag_db_RS  	= interp1(freq, mag_db, freq_RS, 'pchip');
+        phase_RS 	= interp1(freq, phase, freq_RS, 'pchip');
         freq        = freq_RS;
         mag_db      = [mag_db_RS(1:end-1) mag_db(end)];
         phase       = [phase_RS(1:end-1) phase(end)];
     end
-    
+
     % Filter magnitude and phase
     if (filter)
-        windowSize	= 60;
+        windowSize	= 20; % See n and generation of freq_RS
         mag_db      = filtfilt(ones(1,windowSize) / windowSize, 1, mag_db);
         phase       = filtfilt(ones(1,windowSize) / windowSize, 1, phase);
     end
