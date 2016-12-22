@@ -313,33 +313,50 @@ classdef dataSheetGenerator
             dq_NL = this.jointModel.dq_NL;
             
             I = this.jointModel.I_m + this.jointModel.I_g;
+            w0 = sqrt(k/I);
+            f0 = w0/2/pi;
+
+            xmax = 1.2 * t_p;   
             
             torque = (0:1/this.nPlotVals:1) * t_stall;
             peakSpeeds = this.computeMaxPeakSpeed(torque);
             contSpeeds = this.computeMaxContSpeed(torque);
             
-            contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * contSpeeds.^2 );
+%             contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * contSpeeds.^2 );
+            contW = w0 * sqrt( ( contSpeeds * k * I ) ./ ( torque + contSpeeds * k * I ) );
             contF = contW / 2 / pi;
-            
-            peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * peakSpeeds.^2 );
+%             
+%             peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * peakSpeeds.^2 );
+            peakW = w0 * sqrt( ( peakSpeeds * k * I ) ./ ( torque + peakSpeeds * k * I ) );
             peakF = peakW / 2 / pi;
             
-            
-            xmax = 1.2 * t_p;   
-            
+
             plot(torque,contF,'b--');
             plot(torque,peakF,'r--');
+
             
-            contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( 0.25*torque.^2 + I^2 * contSpeeds.^2 );
+%%% -3dB torque
+            contW = w0 * sqrt( ( contSpeeds * k * I ) ./ ( 0.5* torque + contSpeeds * k * I ) );
             contF = contW / 2 / pi;
-            
-            peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( 0.25*torque.^2 + I^2 * peakSpeeds.^2 );
+
+            peakW = w0 * sqrt( ( peakSpeeds * k * I ) ./ ( 0.5* torque + peakSpeeds * k * I ) );
             peakF = peakW / 2 / pi;
-            
+
             plot(torque,contF,'b');
             plot(torque,peakF,'r');
             
-            f0 = sqrt(k/I)/2/pi;
+%%% output toruqe instead of input torque, yields the frequency behavior of
+%%% the sensor!
+%             contW = k*contSpeeds./torque;
+%             contF = contW / 2 / pi;
+% 
+%             peakW = k*peakSpeeds./torque;
+%             peakF = peakW / 2 / pi;
+% 
+%             plot(torque,contF,'bx');
+%             plot(torque,peakF,'rx');
+%             
+%%%
             plot(torque, f0, 'k--' )
             
 %             ymax = k*dq_NL /t_NL;
