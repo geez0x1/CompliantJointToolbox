@@ -253,6 +253,35 @@ open(mFileName);
 end
 
 
+function localRun_callback(hObject, eventdata, handles)
+% hObject    handle to listbox1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hints: contents = cellstr(get(hObject,'String')) returns contents
+% contents{get(hObject,'Value')} returns selected item from listbox1
+
+% Get the structure using guidata in the local function
+fig_handles = guidata(gcbo);
+
+% Find out which example has been selected.
+listboxTag = get(fig_handles.activeListbox,'Tag');
+index_selected = get(fig_handles.activeListbox,'Value');
+
+% Get m filename
+switch listboxTag
+    case 'matlabListbox'
+        mFileName = fig_handles.matlabExamples(index_selected).fileName;
+    case 'simulinkListbox'
+        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+end
+
+% Open in editor
+run(mFileName);
+
+end
+
+
+
 function localListbox_callback(hObject, eventdata, handles)
 % hObject    handle to listbox1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
