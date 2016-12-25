@@ -34,15 +34,17 @@
 
 % The text in the following line defines the display name for this Example
 % #! Bode Plot Example
-clc;
+
+oldFig = gcf; % remember active figure
+clc;          % clear console
+commandwindow % give focus to command window
 
 disp('The Compliant Joint Toolbox ships with tools to compute and display')
 disp('Bode plots from either simulated or experimental time domain data.')
 disp('This example provides a quick introduction on the provided')
 disp('functionalities on how to use them.')
 
-pause
-disp('')
+waitKey;
 
 %% Create input/output data
 % Plant model
@@ -54,8 +56,9 @@ w0   = 2*pi*11;                      % resonance frequency [rad/s]
 zeta = 0.5;                          % damping ratio
 sys  = tf([w0^2], [1 2*zeta w0^2] ); % continuous time transfer function
 
-echo off; disp(' ')
-pause
+echo off;
+waitKey
+
 
 % Data generation
 disp('As test signal, an input chirp with a duration of t1 = 100 s is used. The chirp starts at f0 = 0.01 Hz and');
@@ -74,13 +77,16 @@ u = chirp(t,f0,t(end),f1); % the chirp signal
 % plant simulation
 y = lsim(sys, u, t);       % the system response
 
-echo off; disp(' ')
+echo off; 
+waitKey;
 
 %% Visualize input/output data and bode diagram
-% Plot input/output data
 disp('First, the data is visualized to check if it is what we wanted.')
+waitKey;
+
 echo on;
-figure(1)
+
+fig1 = figure();
 clf;
 hold on
 plot(t(:),y(:),'k')
@@ -88,32 +94,36 @@ plot(t(:), u(:), 'r')
 legend({'output', 'input'})
 xlabel('Time [s]')
 ylabel('Amplitude [.]')
+
 echo off;
-echo off; disp(' ')
+waitKey;
 
 % Bode diagram
-disp('Configure the Bode diagram to appear in figure 2 with the x axis limits')
+disp('Configure the Bode diagram to appear in a second figure with the x axis limits')
 disp('set according to the range of our chirp signal and frequency units given in Hz.')
 echo on;
-figure(2)
-clf;
-hold on;
 bodeOpt           = bodeoptions;     % configure the bode diagram appearance
 bodeOpt.XLim      = [f0 f1];         % set the plot limits to minimum and maximum frequency, default would be [1, 10]
 bodeOpt.FreqUnits = 'Hz';            % change frequency units, default frequency unit is rad/s
-echo off; disp(' ')
+echo off;
+
+waitKey;
 
 disp('Now we display the actual Bode diagram for this data:');
-pause()
+waitKey
 
 echo on;
+fig2 = figure();
+clf;
+hold on;
 bode_tuyplot(t, ... time vector
              u, ... plant input
              y, ... plant output
              [],... resample, we don't do that here
              [],... filtering, we dont't do that here
              bodeOpt ); % configure plot appearance
-echo off; disp(' ')
+echo off;
+waitKey;
          
          
 %% Bode diagram for imperfect data
@@ -121,14 +131,14 @@ disp('The data samples can be subject to jitter. That means that the sampling')
 disp('intervals are not perfectly 0.5 ms. ')
 
 disp('We simulate some jitter with 30% standard deviation in the sampling intervals')
-pause()
+waitKey;
 
 echo on;
 tj = abs(t + dt*0.3*randn(size(t)));  % jittered time instants
 echo off;
 
 disp('The jitter deteriorates the bode diagram quality visibly.')
-pause()
+waitKey
 
 echo on;
 bode_tuyplot(tj, ...     time vector
@@ -138,10 +148,14 @@ bode_tuyplot(tj, ...     time vector
              [],...      filtering, we dont't do that here
              bodeOpt,... configure plot appearance
              'k');  ...  color this data
+figure(fig2)
 echo off;
+waitKey;
 
 disp('However, the the bode_tuyplot method can interpolate and resample the')
 disp('data to improve this situation. ')
+waitKey;
+
 echo on;
 bode_tuyplot(tj, ...     time vector
              u, ...      plant input
@@ -150,13 +164,16 @@ bode_tuyplot(tj, ...     time vector
              [],...      filtering, we dont't do that here
              bodeOpt,... configure plot appearance
              'g');  ...  color this data
+figure(fig2)
 echo off;
+waitKey;
 
 disp('The data samples are often subject to noise. The bode_tuyplot features a filtering functionality, to improve the bode diagram appearance.')
 disp('Lets add 5 % zero mean Gaussian noise to the signal:')
 echo on;
 yn = y .* (1 + 0.05*randn(size(y)) );  % noisy signal
 echo off;
+waitKey;
 
 disp('This noise has a clear effect on the bode diagram.')
 echo on;
@@ -167,7 +184,9 @@ bode_tuyplot(t, ...     time vector
              [],...      filtering, we dont't do that here, we wish to see the impact of noise on the bode diagram.
              bodeOpt,... configure plot appearance
              'r');  ...  color this data
+figure(fig2)
 echo off;
+waitKey;
 
 disp('The built-in filtering function can smoothen the diagram to provide a better idea of how a diagram based on noise free data wouldlook like.')
 echo on;
@@ -178,4 +197,14 @@ bode_tuyplot(t, ...     time vector
              1,...      now do filtering to improve the diagram
              bodeOpt,... configure plot appearance
              'b');  ...  color this data
+figure(fig2)
 echo off;
+
+waitKey;
+disp('This finishes the Compliant Joint Toolbox Bode Plot Example.')
+waitKey;
+
+clc;
+close(fig1)    % close newly created figures
+close(fig2)
+figure(oldFig) % bring back original figure
