@@ -451,15 +451,12 @@ classdef dataSheetGenerator
             % Continuous operation 
             speedVals = p_cm ./ mVals;
             plot(mVals,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
-%             speedVals = this.p_peakm ./ mVals;
-%             plot(mVals,speedVals, 'r--', 'DisplayName', 'Peak Mechanical Power')
             plot([0,xmax], dq_r * [1,1], 'b--', 'DisplayName', 'Maximum Continous Speed')
             plot(t_r*[1,1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
             
-            
 %             maxSpeeds = this.computeMaxPeakSpeed(mVals);
 %             contSpeeds = this.computeMaxContSpeed(mVals);
-%             
+            
 %             plot(mVals, maxSpeeds,'g')
 %             plot(mVals, contSpeeds,'m')
             
@@ -470,101 +467,97 @@ classdef dataSheetGenerator
             ylabel('speed [rad/s]')
             box on
             
-%             legend show; 
-
             % Create customized legend
-%             pos = get(gca,'position');
-%             pos(3)= 0.8 * pos(3);
+            % --------------------------
+            % The standard legend functionality provided by Matlab is
+            % inconvenient for multiple reasons. So we have to create some
+            % custom solution. 
+            % The custom sulution uses an invisible dummy axes object.
+            %
+            % First, we place the main axes in normalized coordinates:
             pos = [0.11, 0.13 0.70, 0.85];
             set(gca,'position',pos)
             
-            newAx = axes;
-            axSpace = 0.02;
+            % Next, we place the dummy axes object:
+            axSpace = 0.02;  % the space between the two axes
+            dummyAx = axes;  
             newPos = [pos(1)+pos(3)+axSpace,pos(2),0.18-axSpace,pos(4)];
-            set(newAx, 'position',newPos,'visible','off')
-            
+            set(dummyAx, 'position',newPos,'visible','off')
 
-
-%             % Create textbox
-%             annotation(gcf,'textbox',...
-%                 newPos,...
-%                 'FitBoxToText','off');
+            % The legend entries are implemented with annotation objects.
+            % Each entry is a pair of a line annotation and a textbox
+            % annotation.
             
-            % Create line
-            annotation(gcf,'line',[0.83 0.88],...
+            % Torque Speed Gradient
+            annotation(gcf,'line',[0.83 0.88],... % Create line
                 [0.93 0.93]);
-            % Create textbox
-            annotation(gcf,'textbox',...
+            annotation(gcf,'textbox',...          % Create textbox
                 [0.88 0.91 0.07 0.06],...
                 'String',{'Torque Speed Gradient'},...
                 'FitBoxToText','off',...
                 'LineStyle','none');
-          
             
+            % Rated speed and torque limits
             posDec = 0.19;
-            % Create line
-            annotation(gcf,'line',[0.82 0.88],...
+            annotation(gcf,'line',[0.82 0.88],... % Create line
                 [0.93 0.93]-posDec,...
                 'LineStyle','--',...
                 'Color',[0 0 1]);
-            % Create textbox
-            annotation(gcf,'textbox',...
+            annotation(gcf,'textbox',...          % Create textbox
                 [0.88 0.91-posDec 0.07 0.06],...
                 'String',{'Rated Limits'},...
                 'FitBoxToText','off',...
                 'LineStyle','none');
-            
+
+            % Peak speed and torque limits
             posDec = posDec + 0.14;
-            % Create line
-            annotation(gcf,'line',[0.82 0.88],...
+            annotation(gcf,'line',[0.82 0.88],...   % Create line
                 [0.93 0.93]-posDec,...
                 'LineStyle','--',...
                 'Color',[1 0 0]);
-            % Create textbox
-            annotation(gcf,'textbox',...
+            annotation(gcf,'textbox',...            % Create textbox
                 [0.88 0.91-posDec 0.07 0.06],...
                 'String',{'Peak Limits'},...
                 'FitBoxToText','off',...
                 'LineStyle','none');
             
+            % Rated power limits
             posDec = posDec + 0.14;
-            % Create line
-            annotation(gcf,'line',[0.83 0.88],...
+            annotation(gcf,'line',[0.83 0.88],...  % Create line
                 [0.93 0.93]-posDec,...
                 'LineStyle','-',...
                 'Color',[0 0 1]);
-            % Create textbox
-            annotation(gcf,'textbox',...
+            annotation(gcf,'textbox',...           % Create textbox
                 [0.88 0.91-posDec 0.07 0.06],...
                 'String',{'Rated Power'},...
                 'FitBoxToText','off',...
                 'LineStyle','none');
             
+            % Peak power limits
             posDec = posDec + 0.14;
-            % Create line
-            annotation(gcf,'line',[0.83 0.88],...
+            annotation(gcf,'line',[0.83 0.88],... % Create line
                 [0.93 0.93]-posDec,...
                 'LineStyle','-',...
                 'Color',[1 0 0]);
-            % Create textbox
-            annotation(gcf,'textbox',...
+            annotation(gcf,'textbox',...          % Create textbox
                 [0.88 0.91-posDec 0.07 0.06],...
                 'String',{'Peak Power'},...
                 'FitBoxToText','off',...
                 'LineStyle','none');
 
+            % Friction
             posDec = posDec + 0.14;
-            % Create line
-            annotation(gcf,'line',[0.83 0.88],...
+            annotation(gcf,'line',[0.83 0.88],... % Create line
                 [0.93 0.93]-posDec,...
                 'LineStyle',':',...
                 'Color',[0 0 0]);
-            % Create textbox
-            annotation(gcf,'textbox',...
+            annotation(gcf,'textbox',...          % Create textbox
                 [0.88 0.91-posDec 0.07 0.06],...
                 'String',{'Friction'},...
                 'FitBoxToText','off',...
                 'LineStyle','none');
+            
+            % End of the customized legend
         end
                 
         
