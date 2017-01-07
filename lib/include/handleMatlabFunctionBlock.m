@@ -108,7 +108,7 @@ fields = fieldnames(s)';    % Get fieldnames
 N = numel(fields);          % Loop through all fields and print
 for i=1:N
     val = s.(fields{i});
-    if (isnumeric(val))
+    if (isnumeric(val) && ~isempty(val))
         % Numeric values
         if (length(val) > 1)
             % Arrays (1-D)
