@@ -110,7 +110,7 @@ for i=1:N
     val = s.(fields{i});
     if (isnumeric(val))
         % Numeric values
-        if (length(val) > 1)
+        if (length(val) > 1 || isempty(val))
             % Arrays (1-D)
             fprintf(fid, 'params.%s = [', fields{i});
             for j=1:length(val)
