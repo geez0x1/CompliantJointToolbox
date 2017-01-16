@@ -66,10 +66,10 @@ params.('d_cl_n')   = 2.4238 * (1/10);      %% Load Coulomb damping - negative d
 params.('d_s')      = 8.9;                  %% Break away torque [Nm]
 params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
 % Torque ripple sources
-params.('rip_types')= [1, 2];               %% Torque ripple types (see torque_ripple())
-params.('rip_a1')   = [15e-3*n, 0.1];       %% Cosine amplitudes ([Nm] and/or [], see torque_ripple()) (second param to be updated!)
-params.('rip_a2')   = [0, 0];               %% Sine amplitudes [Nm] ([Nm] and/or [], see torque_ripple())
-params.('rip_f')    = [6*n, 2*n];           %% Spatial frequencies [periods/revolution]
+params.('rip_types')= [];                   %% Torque ripple types (see torque_ripple())
+params.('rip_a1')   = [];                   %% Cosine amplitudes ([Nm] and/or [], see torque_ripple()) (second param to be updated!)
+params.('rip_a2')   = [];                   %% Sine amplitudes [Nm] ([Nm] and/or [], see torque_ripple())
+params.('rip_f')    = [];                   %% Spatial frequencies [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]
@@ -79,12 +79,12 @@ params.('Ts')       = 1e-3;                 %% Sampling time [s]
 % Operating/max conditions
 params.('v_0')      = 24;                   %% Operating voltage [V]
 params.('i_p')      = 80;                   %% Peak current [A]
-params.('dq_p')     = 14;                 %% Max. peak speed (output) [rad/s]
+params.('dq_p')     = 14;                   %% Max. peak speed (output) [rad/s]
 % Thermal parameters
 params.('r_th1')      = 0.29;               %% Thermal Resistance Windings to Housing [K/W]
 params.('r_th2')      = 3.45;               %% Thermal Resistance Housing to Air [K/W]
 params.('T_thw')      = 3.96;               %% Thermal Time Constant of the Windings [s]
 params.('T_thm')      = 1240;               %% Thermal Time Constant of the Motor [s]
 params.('Tmp_WMax')   = 115;                %% Maximum Armature Temperature [�C]
-params.('Tmp_ANom')   = 25;                %% Normal Ambient Temperature [�C]
+params.('Tmp_ANom')   = 25;                 %% Normal Ambient Temperature [�C]
 
