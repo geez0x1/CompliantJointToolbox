@@ -298,6 +298,217 @@ classdef dataSheetGenerator
             
         end
         
+        function h = draw_torque_from_torque(this)
+            
+            t_stall = this.jointModel.t_stall;
+            k = this.jointModel.k_b;
+            k_v = this.jointModel.d_m + this.jointModel.d_g + this.jointModel.d_l;
+            slope = this.jointModel.dq_over_dm;
+            dq_0 = this.jointModel.dq_0;
+            t_p = this.jointModel.t_p;
+            t_r = this.jointModel.t_r;
+            t_NL = this.jointModel.t_NL;
+            dq_NL = this.jointModel.dq_NL;
+            
+            I = this.jointModel.I_m + this.jointModel.I_g;
+            w0 = sqrt(k/I);
+            f0 = w0/2/pi;
+
+            xmax = 1.2 * t_p;   
+            
+            tau_i = (0:1/this.nPlotVals:1) * 1.2* min(t_p,t_stall); % this is the electrically generated torque
+            f = (0.1:0.1:100);
+            
+            peakSpeeds = this.computeMaxPeakSpeed(tau_i);
+            contSpeeds = this.computeMaxContSpeed(tau_i);
+                   
+            
+            %% 
+            h1 = figure();
+            hold on
+            colormap hsv
+            
+            w = f * 2 * pi;
+            w0 = sqrt(k/I);
+            f0 = w0/2/pi;
+            tau_i_sub = ( 0:10:(1.2* min(t_p,t_stall)) );
+            [gTaui,gF] = meshgrid(tau_i_sub,f);
+           
+           sTauL = 1/I * ( gF ./ (f0^2 - gF.^2)  ) .* gTaui;
+           
+           surf(gTaui,gF,sTauL,gradient(sTauL),'CDataMapping','direct');
+            
+            xlim([0,xmax]);
+            ylim([0,max(f)]);
+            zlim([-xmax,xmax]);
+            xlabel('\tau_i [Nm]')
+            ylabel('Frequency [Hz]')
+            zlabel('\tau_L [Nm]')
+            title('\tau_L (\tau_i)')
+            
+            %% 
+            h2 = figure();
+            hold on
+            colormap hsv
+            
+            w = f * 2 * pi;
+            w0 = sqrt(k/I);
+            f0 = w0/2/pi;
+            tau_l_sub = ( 0:1:(1.2* min(t_p,t_stall)) );
+            [gTauL, gF] = meshgrid(tau_l_sub, f);
+           
+           sTauI = I * ( (f0^2 - gF.^2) ./ gF  ) .* gTauL;
+           
+           
+           surf(gTauL,gF,sTauI);
+            
+            
+            xlim([0,xmax]);
+            ylim([0,max(f)]);
+            zlim([-xmax,xmax]);
+            xlabel('\tau_L [Nm]')
+            ylabel('Frequency [Hz]')
+            zlabel('\tau_I [Nm]')
+            title('\tau_i (\tau_L)')
+
+            
+            
+            %%
+            
+            h3 = figure();
+            hold on
+            colormap hsv
+            
+            w = f * 2 * pi;
+            w0 = sqrt(k/I);
+            f0 = w0/2/pi;
+
+
+           wd = w./w0;
+           
+%            D = 1/sqrt(2);%0 *k_v / I / 2 / w0;
+           D = k_v / I / 2 / w0;
+           
+%            N = (1 - wd.^2).^2 + (2 * D * wd).^2;
+           N = (wd.^2 - 1).^2 + (2 * D * wd).^2;
+            
+           TauLOverTauI =  1  * 1 ./ sqrt(N);
+           
+%            plot(wd,10*log10(TauLOverTauI ));
+           plot(wd,(TauLOverTauI ));
+%            set(gca,'xscale','log')
+%            plot(f,TauLOverTauI );
+            
+            
+            xlim([0,max(f)]);
+%             ylim(30*[-1,1]);
+            
+            ylabel('\tau_L / \tau_i, scaling')
+            xlabel('Frequency [Hz]')
+           
+            h4 = figure()
+            step = 20;
+            
+            w = 2*pi*(1:100);
+            x = tau_i(1:step:end);
+            [X, Y] = meshgrid(x,w/w0);
+            N = (Y.^2 - 1).^2 + (2 * D * Y).^2;
+
+            Z = 1 ./ sqrt(N) .* X;
+            
+            Y_ = Y *w0 /2/pi;
+%             surfc(X,Z,Y_)
+            contour(X,Z,Y_,[0:10,15:5:50],'ShowText','on')
+%             contour(X,Z,Y_,'ShowText','on')
+            hold on;
+            plot(x,x,'r--')
+            plot(x,0.5*x,'r:')
+            xlabel('\tau_i [Nm]')
+            zlabel('\omega [Hz]')
+            ylabel('\tau_l [Nm]')
+            set(gca,'YDir','reverse')
+            
+             xlim([0,xmax])
+             ylim([0,xmax])
+            
+            
+% %%           
+%  h4 = figure;
+%  hold on;
+%  
+%  curWn = 0.01;
+%  N = (curWn.^2 - 1).^2 + (2 * D * curWn).^2;
+%  
+%  tauL_scale = 1/sqrt(N)*tau_i;
+%  tauL_scale(tau_i>t_p) = 0;
+%  
+%  tauL_cont = sqrt(k*I)/curWn * contSpeeds;
+%  tauL_peak = sqrt(k*I)/curWn * peakSpeeds;
+%  
+%  plot(tau_i,tauL_cont,'b')
+%  plot(tau_i,tauL_peak,'r')
+%  plot(tau_i,tauL_scale,'k')
+%  xlabel('\tau_i [Nm]')
+%  ylabel('\tau_L [Nm]')
+%  ylim([0 1]*1.2*t_p)
+%  title('\tau_L (\tau_i), feasible')
+%  
+% %  outTorque = ti * w0 + sqrt(4*I^2* )
+% 
+% % 
+% % /  #2 \
+% % |     |
+% % | -#2 |
+% % |     |
+% % |  #1 |
+% % |     |
+% % \ -#1 /
+% % 
+% % where
+% 
+% step = 20;
+% [ti,dqm] = meshgrid(tau_i(1:step:end),contSpeeds(1:step:end));
+% 
+% % dqm = contSpeeds;
+% % ti = tau_i;
+% tmp1 = 2 .* dqm.^2 .* k^2;
+% tmp2 = 2 .* tmp1 .* D.^2; %4 * dqm.^2 * k^2 * z.^2;
+% 
+% 
+% % 
+% %              /   2   2                                                             2  2     2   2             \
+% %              | ti  w0  - sqrt((ti w0 - 2 dqm k z) (ti w0 + 2 dqm k z) (- #3 + 4 dqm  k  + ti  w0 )) + #4 - #3 |
+% %    #1 == sqrt| ---------------------------------------------------------------------------------------------- |
+% %              \                                               #4                                               /
+% % 
+% 
+% tmp3 = ti.^2 .* w0.^2  + sqrt((ti .* w0 - 2 .* dqm .* k .* D) .* (ti .* w0 + 2.* dqm.* k.* D) .* (- tmp2 + 4 .* dqm.^2 .* k.^2  + ti.^2 .* w0.^2 )) + tmp1 - tmp2 ;
+% tmp4 = ti.^2 * w0^2  - sqrt((ti .* w0 - 2 .* dqm .* k .* D) .* (ti .* w0 + 2.* dqm.* k.* D) .* (- tmp2 + 4 .* dqm.^2 * k.^2  + ti.^2 .* w0.^2 )) + tmp1 - tmp2 ;
+% 
+% res1 = sqrt(tmp3 ./ tmp1);
+% res2 = sqrt(tmp4 ./ tmp1);
+% 
+% figure()
+% surf(ti,dqm,res1/2/pi)
+% xlabel('\tau_i')
+% ylabel('\dot{q}')
+% zlabel('f [Hz]')
+% 
+% %              /   2   2                                                             2  2     2   2             \
+% %              | ti  w0  + sqrt((ti w0 - 2 dqm k z) (ti w0 + 2 dqm k z) (- #3 + 4 dqm  k  + ti  w0 )) + #4 - #3 |
+% %    #2 == sqrt| ---------------------------------------------------------------------------------------------- |
+% %              \                                               #4                                               /
+% % 
+% %               2  2  2
+% %    #3 == 4 dqm  k  z
+% % 
+% %               2  2
+% %    #4 == 2 dqm  k
+% 
+
+
+        end
+        
         function h = draw_torque_frequency_curve(this)
             
             h = figure;
@@ -322,28 +533,33 @@ classdef dataSheetGenerator
             peakSpeeds = this.computeMaxPeakSpeed(torque);
             contSpeeds = this.computeMaxContSpeed(torque);
             
-%             contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * contSpeeds.^2 );
-            contW = w0 * sqrt( ( contSpeeds * k * I ) ./ ( torque + contSpeeds * k * I ) );
-            contF = contW / 2 / pi;
-%             
-%             peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * peakSpeeds.^2 );
-            peakW = w0 * sqrt( ( peakSpeeds * k * I ) ./ ( torque + peakSpeeds * k * I ) );
-            peakF = peakW / 2 / pi;
+% %             contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * contSpeeds.^2 );
+%             contW = w0 * sqrt( ( contSpeeds * k * I ) ./ ( torque + contSpeeds * k * I ) );
+%             contF = contW / 2 / pi;
+% %             
+% %             peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * peakSpeeds.^2 );
+%             peakW = w0 * sqrt( ( peakSpeeds * k * I ) ./ ( torque + peakSpeeds * k * I ) );
+%             peakF = peakW / 2 / pi;
             
+
+            contW = k*contSpeeds ./ (0.5*torque);
+            contF = contW / 2 / pi;
+
+            peakW = k*peakSpeeds ./ (0.5* torque);
+            peakF = peakW / 2 / pi;
 
             plot(torque,contF,'b--');
             plot(torque,peakF,'r--');
-
-            
-%%% -3dB torque
-            contW = w0 * sqrt( ( contSpeeds * k * I ) ./ ( 0.5* torque + contSpeeds * k * I ) );
-            contF = contW / 2 / pi;
-
-            peakW = w0 * sqrt( ( peakSpeeds * k * I ) ./ ( 0.5* torque + peakSpeeds * k * I ) );
-            peakF = peakW / 2 / pi;
-
-            plot(torque,contF,'b');
-            plot(torque,peakF,'r');
+ 
+% %%% -3dB torque
+%             contW = w0 * sqrt( ( contSpeeds * k * I ) ./ ( 0.5* torque + contSpeeds * k * I ) );
+%             contF = contW / 2 / pi;
+% 
+%             peakW = w0 * sqrt( ( peakSpeeds * k * I ) ./ ( 0.5* torque + peakSpeeds * k * I ) );
+%             peakF = peakW / 2 / pi;
+% 
+%             plot(torque,contF,'b');
+%             plot(torque,peakF,'r');
             
 %%% output toruqe instead of input torque, yields the frequency behavior of
 %%% the sensor!
@@ -367,8 +583,91 @@ classdef dataSheetGenerator
             ylabel('frequency [Hz]')
             
         end
+            
+        function h = draw_torque_frequency_curve_load(this)
+            
+            h = figure;
+            hold on
+            
+            d_cm = this.jointModel.d_cm;
+            d_cg = this.jointModel.d_cg;
+            d_cl = this.jointModel.d_cl;
+            d_m  = this.jointModel.d_m;
+            d_g  = this.jointModel.d_g;
+            d_l  = this.jointModel.d_l;
+            t_stall = this.jointModel.t_stall;
+            k = this.jointModel.k_b;
+            slope = this.jointModel.dq_over_dm;
+            dq_0 = this.jointModel.dq_0;
+            t_p = this.jointModel.t_p;
+            t_r = this.jointModel.t_r;
+            t_NL = this.jointModel.t_NL;
+            dq_NL = this.jointModel.dq_NL;
+            
+            
+             
+            I = this.jointModel.I_m + this.jointModel.I_g;
+            w0 = sqrt(k/I);
+            f0 = w0/2/pi;
+            
+            
+            Mc = d_cm + d_cg + d_cl;            % Static friction
+            dv = (d_m + d_g + d_l);             % Velocity dependent friction
+            
+            D = dv / I / 2 / w0;
+            
+            xmax = 1.2 * t_p;   
+            
+            torque = (0:1/this.nPlotVals:1) * t_stall;
+            peakSpeeds = this.computeMaxPeakSpeed(torque);
+            contSpeeds = this.computeMaxContSpeed(torque);
+            
+            fCorrC = Mc + dv*contSpeeds;
+            fCorrP = Mc + dv*peakSpeeds;
+            
+            
+% %             contW = ( contSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * contSpeeds.^2 );
+%             contW = w0 * sqrt( ( contSpeeds * k * I ) ./ ( torque + contSpeeds * k * I ) );
+%             contF = contW / 2 / pi;
+% %             
+% %             peakW = ( peakSpeeds * sqrt(I*k) ) ./ sqrt( torque.^2 + I^2 * peakSpeeds.^2 );
+%             peakW = w0 * sqrt( ( peakSpeeds * k * I ) ./ ( torque + peakSpeeds * k * I ) );
+%             peakF = peakW / 2 / pi;
+
+            contW = k*contSpeeds ./ (0.5*(torque));
+            contF = contW / 2 / pi;
+
+            peakW = k*peakSpeeds ./ (0.5* (torque));
+            peakF = peakW / 2 / pi;
+
+
+            
+            plot((torque-fCorrC), contF,'b--');
+            plot((torque-fCorrP), peakF,'r--');
+
+
+            plot(torque, f0, 'k--' )
+            
+
+            xlim([0,xmax]);
+            xlabel('torque [Nm]')
+            ylabel('frequency [Hz]')
+
+            h = figure;
+            hold on
+            
+            wn = (1:max(peakW))/w0;
+            
+            Z = (1 - wn.^2).^2 + 4 *D^2 * wn.^2;
+            
+            magGain = 1./sqrt(Z);
+            
+            plot(wn*w0/2/pi,magGain)
+            title('magGain')
+            
+        end
         
-        function h = draw_torque_speed_curve(this)
+        function h = draw_torque_speed_curve(this, legendFontSize)
             % draw_torque_speed_curve Displays speed-torque-curve in a
             % figure.
             %
@@ -389,6 +688,10 @@ classdef dataSheetGenerator
             %  Wesley Roozing
             %
             % See also createDataSheet, genericJoint, jointBuilder.
+            
+            if ~exist('legendFontSize','var')
+                legendFontSize = get(0, 'DefaultTextFontSize');
+            end
             
             % Shorthands 
             d_cm = this.jointModel.d_cm;
@@ -467,97 +770,324 @@ classdef dataSheetGenerator
             ylabel('speed [rad/s]')
             box on
             
-            % Create customized legend
-            % --------------------------
-            % The standard legend functionality provided by Matlab is
-            % inconvenient for multiple reasons. So we have to create some
-            % custom solution. 
-            % The custom sulution uses an invisible dummy axes object.
+            
+            if legendFontSize ~= 0;
+                % Create customized legend
+                % --------------------------
+                % The standard legend functionality provided by Matlab is
+                % inconvenient for multiple reasons. So we have to create some
+                % custom solution. 
+                % The custom sulution uses an invisible dummy axes object.
+                %
+                % First, we place the main axes in normalized coordinates:
+                pos = [0.11, 0.13 0.70, 0.85];
+                set(gca,'position',pos)
+
+                % Next, we place the dummy axes object:
+                axSpace = 0.02;  % the space between the two axes
+                dummyAx = axes;  
+                newPos = [pos(1)+pos(3)+axSpace,pos(2),0.18-axSpace,pos(4)];
+                set(dummyAx, 'position',newPos,'visible','off')
+
+                % The legend entries are implemented with annotation objects.
+                % Each entry is a pair of a line annotation and a textbox
+                % annotation.
+                
+                fsize = 7;
+                    
+                % Torque Speed Gradient
+                annotation(gcf,'line',[0.83 0.88],... % Create line
+                    [0.93 0.93]);
+                annotation(gcf,'textbox',...          % Create textbox
+                    [0.88 0.91 0.07 0.06],...
+                    'String',{'Torque Speed Gradient'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Rated speed and torque limits
+                posDec = 0.19;
+                annotation(gcf,'line',[0.82 0.88],... % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','--',...
+                    'Color',[0 0 1]);
+                annotation(gcf,'textbox',...          % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Rated Limits'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Peak speed and torque limits
+                posDec = posDec + 0.14;
+                annotation(gcf,'line',[0.82 0.88],...   % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','--',...
+                    'Color',[1 0 0]);
+                annotation(gcf,'textbox',...            % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Peak Limits'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Rated power limits
+                posDec = posDec + 0.14;
+                annotation(gcf,'line',[0.83 0.88],...  % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','-',...
+                    'Color',[0 0 1]);
+                annotation(gcf,'textbox',...           % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Rated Power'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Peak power limits
+                posDec = posDec + 0.14;
+                annotation(gcf,'line',[0.83 0.88],... % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','-',...
+                    'Color',[1 0 0]);
+                annotation(gcf,'textbox',...          % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Peak Power'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Friction
+                posDec = posDec + 0.14;
+                annotation(gcf,'line',[0.83 0.88],... % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle',':',...
+                    'Color',[0 0 0]);
+                annotation(gcf,'textbox',...          % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Friction'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+                % End of the customized legend
+            end
+        end
+        
+        
+        function h = draw_torque_speed_curve_load(this, legendFontSize)
+            % draw_torque_speed_curve Displays speed-torque-curve in a
+            % figure.
             %
-            % First, we place the main axes in normalized coordinates:
-            pos = [0.11, 0.13 0.70, 0.85];
-            set(gca,'position',pos)
+            %   fHandle = dsg.draw_torque_speed_curve
+            %
+            % Inputs:
+            %
+            % Outputs:
+            %
+            % Notes::
+            %
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also createDataSheet, genericJoint, jointBuilder.
             
-            % Next, we place the dummy axes object:
-            axSpace = 0.02;  % the space between the two axes
-            dummyAx = axes;  
-            newPos = [pos(1)+pos(3)+axSpace,pos(2),0.18-axSpace,pos(4)];
-            set(dummyAx, 'position',newPos,'visible','off')
-
-            % The legend entries are implemented with annotation objects.
-            % Each entry is a pair of a line annotation and a textbox
-            % annotation.
+            if ~exist('legendFontSize','var')
+                legendFontSize = get(0, 'DefaultTextFontSize');
+            end
             
-            % Torque Speed Gradient
-            annotation(gcf,'line',[0.83 0.88],... % Create line
-                [0.93 0.93]);
-            annotation(gcf,'textbox',...          % Create textbox
-                [0.88 0.91 0.07 0.06],...
-                'String',{'Torque Speed Gradient'},...
-                'FitBoxToText','off',...
-                'LineStyle','none');
+            % Shorthands 
+            d_cm = this.jointModel.d_cm;
+            d_cg = this.jointModel.d_cg;
+            d_cl = this.jointModel.d_cl;
+            d_m  = this.jointModel.d_m;
+            d_g  = this.jointModel.d_g;
+            d_l  = this.jointModel.d_l;
+            slope = this.jointModel.dq_over_dm;
+            dq_0 = this.jointModel.dq_0;
+            t_stall = this.jointModel.t_stall;
+            t_r = this.jointModel.t_r;
+            t_p = this.jointModel.t_p;
+            dq_r = this.jointModel.dq_r;
+            dq_p = this.jointModel.dq_p;
+            p_cm = this.jointModel.p_cm;
+            p_pm = this.jointModel.p_pm;
+            t_NL = this.jointModel.t_NL;
+            dq_NL = this.jointModel.dq_NL;
             
-            % Rated speed and torque limits
-            posDec = 0.19;
-            annotation(gcf,'line',[0.82 0.88],... % Create line
-                [0.93 0.93]-posDec,...
-                'LineStyle','--',...
-                'Color',[0 0 1]);
-            annotation(gcf,'textbox',...          % Create textbox
-                [0.88 0.91-posDec 0.07 0.06],...
-                'String',{'Rated Limits'},...
-                'FitBoxToText','off',...
-                'LineStyle','none');
-
-            % Peak speed and torque limits
-            posDec = posDec + 0.14;
-            annotation(gcf,'line',[0.82 0.88],...   % Create line
-                [0.93 0.93]-posDec,...
-                'LineStyle','--',...
-                'Color',[1 0 0]);
-            annotation(gcf,'textbox',...            % Create textbox
-                [0.88 0.91-posDec 0.07 0.06],...
-                'String',{'Peak Limits'},...
-                'FitBoxToText','off',...
-                'LineStyle','none');
-            
-            % Rated power limits
-            posDec = posDec + 0.14;
-            annotation(gcf,'line',[0.83 0.88],...  % Create line
-                [0.93 0.93]-posDec,...
-                'LineStyle','-',...
-                'Color',[0 0 1]);
-            annotation(gcf,'textbox',...           % Create textbox
-                [0.88 0.91-posDec 0.07 0.06],...
-                'String',{'Rated Power'},...
-                'FitBoxToText','off',...
-                'LineStyle','none');
-            
-            % Peak power limits
-            posDec = posDec + 0.14;
-            annotation(gcf,'line',[0.83 0.88],... % Create line
-                [0.93 0.93]-posDec,...
-                'LineStyle','-',...
-                'Color',[1 0 0]);
-            annotation(gcf,'textbox',...          % Create textbox
-                [0.88 0.91-posDec 0.07 0.06],...
-                'String',{'Peak Power'},...
-                'FitBoxToText','off',...
-                'LineStyle','none');
+            % Plotting options
+            xmax = 1.2 * t_p;
+            ymax = 1.02 * dq_p;
+            h = figure;
+            hold on
 
             % Friction
-            posDec = posDec + 0.14;
-            annotation(gcf,'line',[0.83 0.88],... % Create line
-                [0.93 0.93]-posDec,...
-                'LineStyle',':',...
-                'Color',[0 0 0]);
-            annotation(gcf,'textbox',...          % Create textbox
-                [0.88 0.91-posDec 0.07 0.06],...
-                'String',{'Friction'},...
-                'FitBoxToText','off',...
-                'LineStyle','none');
+            speedVals = (0:1/this.nPlotVals:1) * dq_p;
+            Mc = d_cm + d_cg + d_cl;            % Static friction
+            dv = (d_m + d_g + d_l);
+            Mv = dv * speedVals; % Velocity dependent friction
+            Mf = Mc + Mv;
             
-            % End of the customized legend
+            % torque speed line
+            mVals = (0:1/this.nPlotVals:1) * t_stall;
+            linCurve = dq_0 - slope * mVals;
+            fCorr = Mc + dv * linCurve;
+            plot(mVals-fCorr, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
+            
+            % Rated operating point
+            fCorr = Mc + dv * dq_r;
+            plot(t_r - fCorr, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
+            
+            % No-Load operating point
+            fCorr = Mc + dv * dq_NL;
+            plot(t_NL-fCorr, dq_NL, 'ko', 'DisplayName', 'No-Load Operating Point')
+            
+           
+            % Continuous operating range
+            fCorr_1 = Mc + dv * dq_r;
+            fCorr_2 = Mc + dv * dq_0;
+            tOp =  [0, t_r,  t_r-fCorr_1,    0-fCorr_2].';
+            dqOp = [0,   0, dq_r, dq_0].';
+            fill(tOp,dqOp,0.9* [0.2 0.2 1],'LineStyle','none')
+            
+%             fill([Mf, 0, 0], [speedVals speedVals(end) 0],0.8* [1 0 0],'LineStyle','none')
+            alpha(0.25)
+%             plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
+            
+            % Peak Operation
+            fCorr = Mc + dv * ymax;
+            plot([t_p, t_p-fCorr],[0, ymax],'r--', 'DisplayName', 'Peak Torque')
+            speedVals = p_pm ./ mVals;
+            fCorr = Mc + dv * speedVals;
+            plot(mVals-fCorr,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
+            plot([0,xmax], dq_p * [1,1], 'r--', 'DisplayName', 'Peak Speed')
+            
+            % Continuous operation 
+            speedVals = p_cm ./ mVals;
+            fCorr = Mc + dv * speedVals;
+            plot(mVals-fCorr,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
+            plot([0,xmax], dq_r * [1,1], 'b--', 'DisplayName', 'Maximum Continous Speed')
+            fCorr = Mc + dv * ymax;
+            plot(t_r*[1,1] - fCorr*[0, 1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
+            
+%             maxSpeeds = this.computeMaxPeakSpeed(mVals);
+%             contSpeeds = this.computeMaxContSpeed(mVals);
+            
+%             plot(mVals, maxSpeeds,'g')
+%             plot(mVals, contSpeeds,'m')
+            
+            % Annotations and Figure Style
+            xlim([0,xmax]);
+            ylim([0,ymax]);
+            xlabel('torque [Nm]')
+            ylabel('speed [rad/s]')
+            box on
+            
+            
+            if legendFontSize ~= 0;
+                % Create customized legend
+                % --------------------------
+                % The standard legend functionality provided by Matlab is
+                % inconvenient for multiple reasons. So we have to create some
+                % custom solution. 
+                % The custom sulution uses an invisible dummy axes object.
+                %
+                % First, we place the main axes in normalized coordinates:
+                pos = [0.11, 0.13 0.70, 0.85];
+                set(gca,'position',pos)
+
+                % Next, we place the dummy axes object:
+                axSpace = 0.02;  % the space between the two axes
+                dummyAx = axes;  
+                newPos = [pos(1)+pos(3)+axSpace,pos(2),0.18-axSpace,pos(4)];
+                set(dummyAx, 'position',newPos,'visible','off')
+
+                % The legend entries are implemented with annotation objects.
+                % Each entry is a pair of a line annotation and a textbox
+                % annotation.
+                
+                fsize = 7;
+                    
+                % Torque Speed Gradient
+                annotation(gcf,'line',[0.83 0.88],... % Create line
+                    [0.93 0.93]);
+                annotation(gcf,'textbox',...          % Create textbox
+                    [0.88 0.91 0.07 0.06],...
+                    'String',{'Torque Speed Gradient'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Rated speed and torque limits
+                posDec = 0.19;
+                annotation(gcf,'line',[0.82 0.88],... % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','--',...
+                    'Color',[0 0 1]);
+                annotation(gcf,'textbox',...          % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Rated Limits'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Peak speed and torque limits
+                posDec = posDec + 0.14;
+                annotation(gcf,'line',[0.82 0.88],...   % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','--',...
+                    'Color',[1 0 0]);
+                annotation(gcf,'textbox',...            % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Peak Limits'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Rated power limits
+                posDec = posDec + 0.14;
+                annotation(gcf,'line',[0.83 0.88],...  % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','-',...
+                    'Color',[0 0 1]);
+                annotation(gcf,'textbox',...           % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Rated Power'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+                % Peak power limits
+                posDec = posDec + 0.14;
+                annotation(gcf,'line',[0.83 0.88],... % Create line
+                    [0.93 0.93]-posDec,...
+                    'LineStyle','-',...
+                    'Color',[1 0 0]);
+                annotation(gcf,'textbox',...          % Create textbox
+                    [0.88 0.91-posDec 0.07 0.06],...
+                    'String',{'Peak Power'},...
+                    'FontSize', legendFontSize, ...
+                    'FitBoxToText','off',...
+                    'LineStyle','none');
+
+%                 % Friction
+%                 posDec = posDec + 0.14;
+%                 annotation(gcf,'line',[0.83 0.88],... % Create line
+%                     [0.93 0.93]-posDec,...
+%                     'LineStyle',':',...
+%                     'Color',[0 0 0]);
+%                 annotation(gcf,'textbox',...          % Create textbox
+%                     [0.88 0.91-posDec 0.07 0.06],...
+%                     'String',{'Friction'},...
+%                     'FontSize', legendFontSize, ...
+%                     'FitBoxToText','off',...
+%                     'LineStyle','none');
+                % End of the customized legend
+            end
         end
                 
         
@@ -571,7 +1101,7 @@ classdef dataSheetGenerator
             contSpeed = this.computeMaxPeakSpeed(torque);
 
             % rated torque
-            peakSpeed(torque > t_r) = 0;
+            contSpeed(torque > t_r) = 0;
             
             % continuous power
             powerSpeed = p_cm ./ torque;
@@ -619,6 +1149,8 @@ classdef dataSheetGenerator
             powerSpeed = p_pm ./ torque;
             
             peakSpeed = min(peakSpeed, powerSpeed);
+            
+            peakSpeed(torque > t_p) = 0;
 
             
         end
