@@ -1,14 +1,61 @@
-function [ h, mag_db, phase, freq ] = bodePlot2( P, bodeOpt, opt, varargin )
-%bodePlot2 A wrapper around bode() and plot() that uses bode() for
-%obtaining magnitude and phase info, and plot() for plotting. Because
-%MATLAB and its stupid Bode() function suck.
+% BODE2 Computes and plots magnitude and phase in frequency domain for a
+% given transfer function. A wrapper around bode() and plot() that uses
+% bode() for obtaining magnitude and phase info, and plot() for plotting. 
+%
+%   [ h, mag_db, phase, freq ] = bode2(P [, bodeOpt, opt, lineseries properties])
+%
+% Inputs::
+%   P: transfer function to plot
+%   bodeOpt: a bodeoptions struct (not all features are supported!)
+%   opt: additional options (see bode2options)
+%
+% Outputs::
+%   h: figure handle
+%   mag_db: output magnitude vector in [dB]
+%   phase: output phase in [deg]
+%   freq: frequency vector in chosen units
+%
+% Notes::
+%   varargin holds additional plotting arguments passed to the plot
+%   command.
+%
+% Examples::
+%
+%
+% Author::
+%  Joern Malzahn
+%  Wesley Roozing
+%
+% See also bode_tuy, bode.
+
+% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
+%
+% This file is part of the Compliant Joint Toolbox (CJT).
+%
+% CJT is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% CJT is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+% License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with CJT. If not, see <http://www.gnu.org/licenses/>.
+%
+% For more information on the toolbox and contact to the authors visit
+% <https://github.com/geez0x1/CompliantJointToolbox>
+
+function [ h, mag_db, phase, freq ] = bode2( P, bodeOpt, opt, varargin )
 
     % Default arguments
     if (~exist('bodeOpt', 'var'))
         bodeOpt = bodeoptions;
     end
     if (~exist('opt', 'var'))
-        opt = bodePlot2options;
+        opt = bode2options;
     end
 
     % Obtain frequency, magnitude and phase data
