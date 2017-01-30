@@ -73,6 +73,7 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
     % Otherwise the filtering window expressed in frequency is frequency
     % dependent.
     if (filter)
+        warning('[bode_tuyplot] Warning: Filtering enabled, forcing resampling.');
         resample = 1;
     end
     
