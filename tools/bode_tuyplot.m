@@ -12,7 +12,7 @@
 %   bodeOpt: a bodeoptions struct (not all features are supported!)
 %
 % Outputs::
-%   omega: frequency vector [rad/s]
+%   freq: frequency vector in chosen units
 %   mag_db: output magnitude vector in [dB]
 %   phase: output phase in [deg]
 %
