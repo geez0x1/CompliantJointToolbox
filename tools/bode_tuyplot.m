@@ -1,7 +1,7 @@
 % BODE_TUYPLOT Compute and plot magnitude and phase in frequency domain from equidistantly 
 % sampled I/O signals.
 %
-%   [freq, mag_db, phase] = bode_tuyplot(t, u, y [, resample, filter, bodeOpt, lineseries properties])
+%   [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y [, resample, filter, bodeOpt, opt, lineseries properties])
 %
 % Inputs::
 %   t: time vector
@@ -10,11 +10,13 @@
 %   resample: whether to resample data (for smaller filesize on export) (default: 0)
 %   filter: whether to use zero-phase digital filtering for smoothing - implies resample=1 (default: 0)
 %   bodeOpt: a bodeoptions struct (not all features are supported!)
+%   opt: additional options (see bode2options)
 %
 % Outputs::
-%   freq: frequency vector in chosen units
+%   h: figure handle
 %   mag_db: output magnitude vector in [dB]
 %   phase: output phase in [deg]
+%   freq: frequency vector in chosen units
 %
 % Notes::
 %   varargin holds additional plotting arguments passed to the plot
@@ -51,7 +53,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt, varargin)
+function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, opt, bodeOpt, varargin)
 
     % Default arguments
     if (~exist('resample', 'var'))
@@ -62,6 +64,9 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     end
     if (~exist('bodeOpt', 'var'))
         bodeOpt = bodeoptions;
+    end
+    if (~exist('opt', 'var'))
+        opt = bode2options;
     end
 
     % If filtering is enabled, force resampling to be on as well
@@ -115,6 +120,11 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
         phase       = filtfilt(ones(1,windowSize) / windowSize, 1, phase);
     end
     
+    % Get figure handle and resize
+    h = gcf;
+    pos = get(h, 'Position');
+    set(h, 'Position', [pos(1) pos(2) opt.fig_w opt.fig_h]);
+    
     % Depending on whether we show mag, phase, or both, do stuff
     if (strcmpi(bodeOpt.MagVisible, 'on') && strcmpi(bodeOpt.PhaseVisible, 'on'))
         % Magnitude
@@ -126,10 +136,10 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
         if (strcmp(bodeOpt.Grid, 'on'))
             grid on;
         end
-        if (~strcmp(bodeOpt.Title.String, ''))
+        if (opt.showTitle)
             title(bodeOpt.Title.String, 'FontSize', bodeOpt.Title.FontSize, 'Interpreter', bodeOpt.Title.Interpreter);
         end
-        
+
         % Phase
         subplot(2,1,2);
         semilogx(freq, phase, varargin{:});
@@ -159,7 +169,7 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
         if (strcmp(bodeOpt.Grid, 'on'))
             grid on;
         end
-        if (~strcmp(bodeOpt.Title.String, ''))
+        if (opt.showTitle)
             title(bodeOpt.Title.String, 'FontSize', bodeOpt.Title.FontSize, 'Interpreter', bodeOpt.Title.Interpreter);
         end
         
@@ -177,7 +187,7 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
         if (strcmp(bodeOpt.Grid, 'on'))
             grid on;
         end
-        if (~strcmp(bodeOpt.Title.String, ''))
+        if (opt.showTitle)
             title(bodeOpt.Title.String, 'FontSize', bodeOpt.Title.FontSize, 'Interpreter', bodeOpt.Title.Interpreter);
         end
         
