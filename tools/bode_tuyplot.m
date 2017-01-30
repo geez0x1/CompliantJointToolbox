@@ -53,7 +53,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, opt, bodeOpt, varargin)
+function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bodeOpt, opt, varargin)
 
     % Default arguments
     if (~exist('resample', 'var'))
