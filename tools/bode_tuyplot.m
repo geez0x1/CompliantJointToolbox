@@ -184,5 +184,6 @@ function [freq, mag_db, phase] = bode_tuyplot(t, u, y, resample, filter, bodeOpt
     else
         error('Nothing to plot');
     end
-    
+
 end
+

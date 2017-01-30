@@ -72,7 +72,7 @@ function [ h, mag_db, phase, freq ] = bode2( P, bodeOpt, opt, varargin )
     f       = omega ./ (2*pi);
     
     % Set frequency units
-    if (strcmp(bodeOpt.FreqUnits, 'Hz'))
+    if (strcmpi(bodeOpt.FreqUnits, 'Hz'))
         freq = f;
     else
         freq = omega;
