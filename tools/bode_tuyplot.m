@@ -13,7 +13,7 @@
 %
 % Outputs::
 %   omega: frequency vector [rad/s]
-%   mag_db: output magnitude vector in [db]
+%   mag_db: output magnitude vector in [dB]
 %   phase: output phase in [deg]
 %
 % Notes::
