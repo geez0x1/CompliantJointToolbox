@@ -7,7 +7,8 @@
 %   opt: additional options (see bode2options)
 %   paperMode: flag that determines which title to use
 %   title_paperMode: paper mode title to use
-%   title_normal: normal title to use
+%   title_normal: normal title to use (optional, otherwise equal to
+%                 title_paperMode)
 %
 % Outputs::
 %
@@ -52,6 +53,9 @@ function [ ] = bode2title( bodeOpt, opt, paperMode, title_paperMode, title_norma
     end
     if (~exist('opt', 'var'))
         opt	= bode2options;
+    end
+    if (~exist('title_normal', 'var'))
+        title_normal = title_paperMode;
     end
     
     % Check if we need to do stuff
