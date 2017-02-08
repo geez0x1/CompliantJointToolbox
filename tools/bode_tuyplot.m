@@ -13,7 +13,7 @@
 %   opt: additional options (see bode2options)
 %
 % Outputs::
-%   h: plot handle
+%   h: plot handle(s)
 %   mag_db: output magnitude vector in [dB]
 %   phase: output phase in [deg]
 %   freq: frequency vector in chosen units
