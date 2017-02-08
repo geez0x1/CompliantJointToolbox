@@ -1,8 +1,9 @@
-% BODE2LEGEND Place legend in bode2 Bode plots
+% BODE2LEGENDHANDLES Place legend in bode2 Bode plots with giving plot handles
 %
-%   [ h ] = bode2legend( data, bodeOpt, opt )
+%   [ h ] = bode2legendhandles( handles, data, bodeOpt, opt )
 %
 % Inputs::
+%   handles: plot handles []
 %   data: legend strings [cell]
 %   bodeOpt: a bodeoptions struct (not all features are supported!)
 %   opt: additional options (see bode2options)
@@ -42,7 +43,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ h ] = bode2legend( data, bodeOpt, opt )
+function [ h ] = bode2legendhandles( handles, data, bodeOpt, opt )
 
     % Default arguments
     if (~exist('bodeOpt', 'var'))
@@ -58,7 +59,7 @@ function [ h ] = bode2legend( data, bodeOpt, opt )
     end
     
     % Place legend and set properties
-    h = legend(data, 'Location', opt.legendPos);
+    h = legend(handles, data, 'Location', opt.legendPos);
     set(h, 'Interpreter', opt.interpreter);
     set(h, 'FontSize', opt.fontSize);
 
