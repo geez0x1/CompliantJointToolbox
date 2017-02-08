@@ -13,7 +13,7 @@
 %   opt: additional options (see bode2options)
 %
 % Outputs::
-%   h: figure handle
+%   h: plot handle
 %   mag_db: output magnitude vector in [dB]
 %   phase: output phase in [deg]
 %   freq: frequency vector in chosen units
@@ -122,15 +122,15 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
     end
     
     % Get figure handle and resize
-    h = gcf;
-    pos = get(h, 'Position');
-    set(h, 'Position', [pos(1) pos(2) opt.fig_w opt.fig_h]);
+    hFig = gcf;
+    pos = get(hFig, 'Position');
+    set(hFig, 'Position', [pos(1) pos(2) opt.fig_w opt.fig_h]);
     
     % Depending on whether we show mag, phase, or both, do stuff
     if (strcmpi(bodeOpt.MagVisible, 'on') && strcmpi(bodeOpt.PhaseVisible, 'on'))
         % Magnitude
         subplot(2,1,1);
-        semilogx(freq, mag_db, varargin{:});
+        hMag = semilogx(freq, mag_db, varargin{:});
         hold on;
         xlim(bodeOpt.XLim{1});
         ylabel('Magnitude [dB]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
@@ -143,7 +143,7 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
 
         % Phase
         subplot(2,1,2);
-        semilogx(freq, phase, varargin{:});
+        hPhase = semilogx(freq, phase, varargin{:});
         hold on;
         xlim(bodeOpt.XLim{1});
         ylabel('Phase [deg]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
@@ -156,9 +156,12 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
             grid on;
         end
         
+        % Set handles
+        h = [hMag, hPhase];
+        
     elseif (strcmpi(bodeOpt.MagVisible, 'on'))
         % Magnitude only
-        semilogx(freq, mag_db, varargin{:});
+        h = semilogx(freq, mag_db, varargin{:});
         hold on;
         xlim(bodeOpt.XLim{1});
         ylabel('Magnitude [dB]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
@@ -176,7 +179,7 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
         
     elseif (strcmpi(bodeOpt.PhaseVisible, 'on'))
         % Phase only
-        semilogx(freq, phase, varargin{:});
+        h = semilogx(freq, phase, varargin{:});
         hold on;
         xlim(bodeOpt.XLim{1});
         ylabel('Phase [deg]', 'FontSize', bodeOpt.YLabel.FontSize, 'Interpreter', bodeOpt.YLabel.Interpreter);
