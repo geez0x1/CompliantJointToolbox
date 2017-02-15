@@ -422,7 +422,7 @@ classdef dataSheetGenerator
 %             contour(X,Z,Y_,'ShowText','on')
             hold on;
             plot(x,x,'r--')
-            plot(x,0.5*x,'r:')
+            plot(x,0.707*x,'r:')
             xlabel('\tau_i [Nm]')
             zlabel('\omega [Hz]')
             ylabel('\tau_l [Nm]')
@@ -542,10 +542,10 @@ classdef dataSheetGenerator
 %             peakF = peakW / 2 / pi;
             
 
-            contW = k*contSpeeds ./ (0.5*torque);
+            contW = k*contSpeeds ./ (0.707*torque);
             contF = contW / 2 / pi;
 
-            peakW = k*peakSpeeds ./ (0.5* torque);
+            peakW = k*peakSpeeds ./ (0.707* torque);
             peakF = peakW / 2 / pi;
 
             plot(torque,contF,'b--');
@@ -667,14 +667,20 @@ classdef dataSheetGenerator
             
         end
         
-        function h = draw_torque_speed_curve(this, legendFontSize)
+        function h = draw_torque_speed_curve(this, subtractFriction, legendFontSize)
             % draw_torque_speed_curve Displays speed-torque-curve in a
             % figure.
             %
-            %   fHandle = dsg.draw_torque_speed_curve
+            %   fHandle = dsg.draw_torque_speed_curve(subtractFriction, legendFontSize)
             %
             % Inputs:
-            %
+            %   subtractFriction: flag that controls if the torque axis
+            %                     is the torque after friction subtraction
+            %                     (true, default) or the torque including
+            %                     fricion (false)
+            %   legendFontSize:  Optional specifier for the friction font
+            %                    size in pt. If unspecified, default font
+            %                    size is used.
             % Outputs:
             %
             % Notes::
@@ -691,6 +697,10 @@ classdef dataSheetGenerator
             
             if ~exist('legendFontSize','var')
                 legendFontSize = get(0, 'DefaultTextFontSize');
+            end
+            
+            if ~exist('subtractFriction','var')
+                subtractFriction = 1;
             end
             
             % Shorthands 
@@ -717,67 +727,112 @@ classdef dataSheetGenerator
             ymax = 1.02 * dq_p;
             h = figure;
             hold on
-                       
-            % torque speed line
+                    
+            % Compute Friction
+            speedVals = (0:1/this.nPlotVals:1) * dq_p;
+            Mc = d_cm + d_cg + d_cl;  % Static friction
+            dv = (d_m + d_g + d_l);   % Velocity dependent friction
+            Mv = dv * speedVals; 
+            Mf = Mc + Mv;             % Total friction
+            
+            % Torque-Speed Gradient
             mVals = (0:1/this.nPlotVals:1) * t_stall;
             linCurve = dq_0 - slope * mVals;
-            plot(mVals, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
             
+            % Speed at peak torque
+            dq_tp = dq_0 - slope * t_p;
+            
+            if subtractFriction
+                fCorr =  Mc + dv * linCurve;
+                fCorr_r = Mc + dv * dq_r;
+                fCorr_NL = Mc + dv * dq_NL;
+                fCorr_tp = Mc + dv * dq_tp;
+            else
+                fCorr    = 0;
+                fCorr_r  = 0;
+                fCorr_NL = 0;
+                fCorr_tp = 0;
+            end
+            plot(mVals - fCorr, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
+                        
+            % OPERATING POINTS
             % Rated operating point
-            plot(t_r, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
+            plot(t_r - fCorr_r, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
             
             % No-Load operating point
-            plot(t_NL, dq_NL, 'ko', 'DisplayName', 'No-Load Operating Point')
+            plot(t_NL - fCorr_NL, dq_NL, 'ko', 'DisplayName', 'No-Load Operating Point')
             
-           
-            % Friction
-            speedVals = (0:1/this.nPlotVals:1) * dq_p;
-            Mc = d_cm + d_cg + d_cl;            % Static friction
-            Mv = (d_m + d_g + d_l) * speedVals; % Velocity dependent friction
-            Mf = Mc + Mv;
-
+            % Peak operating point
+            plot(t_p - fCorr_tp, dq_tp, 'ko', 'DisplayName', 'Peak Operating Point')
+            
+            % COLOR FRICTION AND CONTINUOUS OPERATION REGIONS
             % Continuous operating range
-            tOp =  [0, t_r,  t_r,    0].';
+            if subtractFriction
+                fCorr_1 = Mc + dv * dq_r;
+                fCorr_2 = Mc + dv * dq_0;
+            else
+                fCorr_1 = 0;
+                fCorr_2 = 0;
+            end
+            tOp =  [0, t_r,  t_r-fCorr_1,    0-fCorr_2].';
             dqOp = [0,   0, dq_r, dq_0].';
             fill(tOp,dqOp,0.9* [0.2 0.2 1],'LineStyle','none')
             
-            fill([Mf, 0, 0], [speedVals speedVals(end) 0],0.8* [1 0 0],'LineStyle','none')
-            alpha(0.25)
-            plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
+            % Friction
+            if ~subtractFriction
+                fill([Mf, 0, 0], ...
+                    [speedVals speedVals(end) 0],...
+                    0.8* [1 0 0],...
+                    'LineStyle','none')
+                plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
+            end
+            alpha(0.25)     % add some transparency
             
+            % OPERATING BOUNDARIES
             % Peak Operation
-            plot([t_p, t_p],[0, ymax],'r--', 'DisplayName', 'Peak Torque')
             speedVals = p_pm ./ mVals;
-            plot(mVals,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
-            plot([0,xmax], dq_p * [1,1], 'r--', 'DisplayName', 'Peak Speed')
+            if subtractFriction
+                fCorr_1 = Mc + dv * ymax;
+                fCorr_2 = Mc + dv * speedVals;
+            else
+                fCorr_1 = 0;
+                fCorr_2 = 0;
+            end
+            plot([t_p, t_p-fCorr_1],[0, ymax],'r--', 'DisplayName', 'Peak Torque')
+            plot(mVals-fCorr_2,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
             
             % Continuous operation 
             speedVals = p_cm ./ mVals;
-            plot(mVals,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
-            plot([0,xmax], dq_r * [1,1], 'b--', 'DisplayName', 'Maximum Continous Speed')
-            plot(t_r*[1,1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
+            if subtractFriction
+                fCorr_1 = Mc + dv * ymax;
+                fCorr_2 = Mc + dv * speedVals;
+            else
+                fCorr_1 = 0;
+                fCorr_2 = 0;
+            end
+            plot(t_r*[1,1] - fCorr_1*[0, 1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
+            plot(mVals-fCorr_2,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
             
-%             maxSpeeds = this.computeMaxPeakSpeed(mVals);
-%             contSpeeds = this.computeMaxContSpeed(mVals);
             
-%             plot(mVals, maxSpeeds,'g')
-%             plot(mVals, contSpeeds,'m')
             
-            % Annotations and Figure Style
+            % ANNOTATIONS AND FIGURE STYLE
             xlim([0,xmax]);
             ylim([0,ymax]);
-            xlabel('torque [Nm]')
-            ylabel('speed [rad/s]')
+            if subtractFriction
+                xlabel('$\tau_i^*$ [Nm]','interpreter','latex')
+            else
+                xlabel('$\tau_i$ [Nm]','interpreter','latex')
+            end
+            ylabel('$|\dot{q}_m|$ [rad/s]','interpreter','latex')
             box on
             
-            
-            if legendFontSize ~= 0;
-                % Create customized legend
-                % --------------------------
+            % CREATE COSTUMIZED LEGEND
+            if legendFontSize ~= 0
                 % The standard legend functionality provided by Matlab is
-                % inconvenient for multiple reasons. So we have to create some
-                % custom solution. 
-                % The custom sulution uses an invisible dummy axes object.
+                % inconvenient for multiple reasons. It covers parts of the 
+                % plot and positioning/resizing is painful...
+                % So we have to create some custom solution. The custom 
+                % solution uses an invisible dummy axes object.
                 %
                 % First, we place the main axes in normalized coordinates:
                 pos = [0.11, 0.13 0.70, 0.85];
@@ -792,7 +847,6 @@ classdef dataSheetGenerator
                 % The legend entries are implemented with annotation objects.
                 % Each entry is a pair of a line annotation and a textbox
                 % annotation.
-                
                 fsize = 7;
                     
                 % Torque Speed Gradient
@@ -813,7 +867,7 @@ classdef dataSheetGenerator
                     'Color',[0 0 1]);
                 annotation(gcf,'textbox',...          % Create textbox
                     [0.88 0.91-posDec 0.07 0.06],...
-                    'String',{'Rated Limits'},...
+                    'String',{'Rated Torque'},...
                     'FontSize', legendFontSize, ...
                     'FitBoxToText','off',...
                     'LineStyle','none');
@@ -826,7 +880,7 @@ classdef dataSheetGenerator
                     'Color',[1 0 0]);
                 annotation(gcf,'textbox',...            % Create textbox
                     [0.88 0.91-posDec 0.07 0.06],...
-                    'String',{'Peak Limits'},...
+                    'String',{'Peak Torque'},...
                     'FontSize', legendFontSize, ...
                     'FitBoxToText','off',...
                     'LineStyle','none');
@@ -858,17 +912,19 @@ classdef dataSheetGenerator
                     'LineStyle','none');
 
                 % Friction
-                posDec = posDec + 0.14;
-                annotation(gcf,'line',[0.83 0.88],... % Create line
-                    [0.93 0.93]-posDec,...
-                    'LineStyle',':',...
-                    'Color',[0 0 0]);
-                annotation(gcf,'textbox',...          % Create textbox
-                    [0.88 0.91-posDec 0.07 0.06],...
-                    'String',{'Friction'},...
-                    'FontSize', legendFontSize, ...
-                    'FitBoxToText','off',...
-                    'LineStyle','none');
+                if ~subtractFriction
+                    posDec = posDec + 0.14;
+                    annotation(gcf,'line',[0.83 0.88],... % Create line
+                        [0.93 0.93]-posDec,...
+                        'LineStyle',':',...
+                        'Color',[0 0 0]);
+                    annotation(gcf,'textbox',...          % Create textbox
+                        [0.88 0.91-posDec 0.07 0.06],...
+                        'String',{'Friction'},...
+                        'FontSize', legendFontSize, ...
+                        'FitBoxToText','off',...
+                        'LineStyle','none');
+                end
                 % End of the customized legend
             end
         end
@@ -942,6 +998,11 @@ classdef dataSheetGenerator
             fCorr = Mc + dv * dq_r;
             plot(t_r - fCorr, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
             
+            % Peak operating point
+            dq_tp = dq_0 - slope * t_p;
+            fCorr = Mc + dv * dq_tp;
+            plot(t_p - fCorr, dq_tp, 'ko', 'DisplayName', 'Peak Operating Point')
+            
             % No-Load operating point
             fCorr = Mc + dv * dq_NL;
             plot(t_NL-fCorr, dq_NL, 'ko', 'DisplayName', 'No-Load Operating Point')
@@ -963,14 +1024,14 @@ classdef dataSheetGenerator
             plot([t_p, t_p-fCorr],[0, ymax],'r--', 'DisplayName', 'Peak Torque')
             speedVals = p_pm ./ mVals;
             fCorr = Mc + dv * speedVals;
-            plot(mVals-fCorr,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
-            plot([0,xmax], dq_p * [1,1], 'r--', 'DisplayName', 'Peak Speed')
+           plot(mVals-fCorr,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
+%            plot([0,xmax], dq_p * [1,1], 'r--', 'DisplayName', 'Peak Speed')
             
             % Continuous operation 
             speedVals = p_cm ./ mVals;
             fCorr = Mc + dv * speedVals;
-            plot(mVals-fCorr,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
-            plot([0,xmax], dq_r * [1,1], 'b--', 'DisplayName', 'Maximum Continous Speed')
+           plot(mVals-fCorr,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
+%            plot([0,xmax], dq_r * [1,1], 'b--', 'DisplayName', 'Maximum Continous Speed')
             fCorr = Mc + dv * ymax;
             plot(t_r*[1,1] - fCorr*[0, 1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
             
@@ -983,12 +1044,14 @@ classdef dataSheetGenerator
             % Annotations and Figure Style
             xlim([0,xmax]);
             ylim([0,ymax]);
-            xlabel('torque [Nm]')
-            ylabel('speed [rad/s]')
+            xlabel('$\tau_i^*$ [Nm]','interpreter','latex')
+            ylabel('$|\dot{q}_m|$ [rad/s]','interpreter','latex')
+            
+
             box on
             
             
-            if legendFontSize ~= 0;
+            if legendFontSize ~= 0
                 % Create customized legend
                 % --------------------------
                 % The standard legend functionality provided by Matlab is
@@ -1030,7 +1093,7 @@ classdef dataSheetGenerator
                     'Color',[0 0 1]);
                 annotation(gcf,'textbox',...          % Create textbox
                     [0.88 0.91-posDec 0.07 0.06],...
-                    'String',{'Rated Limits'},...
+                    'String',{'Rated Torque'},...
                     'FontSize', legendFontSize, ...
                     'FitBoxToText','off',...
                     'LineStyle','none');
@@ -1043,7 +1106,7 @@ classdef dataSheetGenerator
                     'Color',[1 0 0]);
                 annotation(gcf,'textbox',...            % Create textbox
                     [0.88 0.91-posDec 0.07 0.06],...
-                    'String',{'Peak Limits'},...
+                    'String',{'Peak Torque'},...
                     'FontSize', legendFontSize, ...
                     'FitBoxToText','off',...
                     'LineStyle','none');
@@ -1074,18 +1137,6 @@ classdef dataSheetGenerator
                     'FitBoxToText','off',...
                     'LineStyle','none');
 
-%                 % Friction
-%                 posDec = posDec + 0.14;
-%                 annotation(gcf,'line',[0.83 0.88],... % Create line
-%                     [0.93 0.93]-posDec,...
-%                     'LineStyle',':',...
-%                     'Color',[0 0 0]);
-%                 annotation(gcf,'textbox',...          % Create textbox
-%                     [0.88 0.91-posDec 0.07 0.06],...
-%                     'String',{'Friction'},...
-%                     'FontSize', legendFontSize, ...
-%                     'FitBoxToText','off',...
-%                     'LineStyle','none');
                 % End of the customized legend
             end
         end
