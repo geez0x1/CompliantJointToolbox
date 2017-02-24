@@ -509,66 +509,7 @@ classdef dataSheetGenerator
 
         end
         
-        function h = draw_torque_frequency_curve(this)
-            
-            h = figure;
-            hold on
-            
-            t_stall = this.jointModel.t_stall;
-            k = this.jointModel.k_b;
-            slope = this.jointModel.dq_over_dm;
-            dq_0 = this.jointModel.dq_0;
-            t_p = this.jointModel.t_p;
-            t_r = this.jointModel.t_r;
-            t_NL = this.jointModel.t_NL;
-            dq_NL = this.jointModel.dq_NL;
-            
-            I = this.jointModel.I_m + this.jointModel.I_g;
-            w0 = sqrt(k/I);
-            f0 = w0/2/pi;
-
-            xmax = 1.2 * t_p;   
-            
-            torque = (0:1/this.nPlotVals:1) * t_stall;
-            peakSpeeds = this.computeMaxPeakSpeed(torque);
-            contSpeeds = this.computeMaxContSpeed(torque);
-            
-           
-        % -3dB torque
-            contW = k*contSpeeds ./ (0.707*torque);
-            contF = contW / 2 / pi;
-
-            peakW = k*peakSpeeds ./ (0.707* torque);
-            peakF = peakW / 2 / pi;
-
-            plot(torque,contF,'b--');
-            plot(torque,peakF,'r--');
- 
-            
-%%% output toruqe instead of input torque, yields the frequency behavior of
-%%% the sensor!
-%             contW = k*contSpeeds./torque;
-%             contF = contW / 2 / pi;
-% 
-%             peakW = k*peakSpeeds./torque;
-%             peakF = peakW / 2 / pi;
-% 
-%             plot(torque,contF,'bx');
-%             plot(torque,peakF,'rx');
-%             
-%%%
-            plot(torque, f0, 'k--' )
-            
-%             ymax = k*dq_NL /t_NL;
-%             
-            xlim([0,xmax]);
-%             ylim([0,ymax]);
-            xlabel('torque [Nm]')
-            ylabel('frequency [Hz]')
-            
-        end
-            
-        function h = draw_torque_frequency_curve_load(this, subtractFriction)
+        function h = draw_torque_frequency_curve(this, subtractFriction)
             
             if ~exist('subtractFriction','var')
                 subtractFriction = 1;
@@ -591,6 +532,9 @@ classdef dataSheetGenerator
 %             t_r = this.jointModel.t_r;
             t_p = this.jointModel.t_p;
             t_r = this.jointModel.t_r;
+            i_p = this.jointModel.i_p;
+            k_t = this.jointModel.k_t;
+            N = this.jointModel.n;
 %             t_NL = this.jointModel.t_NL;
 %             dq_NL = this.jointModel.dq_NL;
             
@@ -602,7 +546,7 @@ classdef dataSheetGenerator
             Mc = d_cm + d_cg + d_cl;            % Static friction
             dv = (d_m + d_g + d_l);             % Velocity dependent friction
             D = dv / I / 2 / w0;                % Damping Ratio
-            magDrop =  0.707; % -3dB
+            magDrop =  1;%0.707; % -3dB
             
             % LIMITATION DUE TO TORQUE SPEED CURVE
             % This is the bandwidth limit due to the motor electrodynamics
@@ -639,10 +583,16 @@ classdef dataSheetGenerator
             ylabel('frequency [Hz]')
 
             % MAGNITUDE GAIN
-            wn = (1:max(peakW))/w0;
-            D = 1/sqrt(2); % Consider for now critical damping -> no resonance
+%             wn = (1:max(peakW))/w0;
+            wn = (0:1/this.nPlotVals:1) * max(peakW) / w0;
+            %D = 1/sqrt(2); % Consider for now critical damping -> no resonance
             Z = (1 - wn.^2).^2 + 4 *D^2 * wn.^2;
-            magGain = 1./sqrt(Z)/magDrop;
+            
+            idealCurrent = torque.' .* sqrt(Z) / k_t / N;
+            feasibleCurrent = min(idealCurrent,i_p);
+            
+            realTorque = k_t * N * feasibleCurrent./sqrt(Z);
+            magGain = 1./sqrt(Z);
             
             dq_t_r = wn.*w0.*magGain.*t_r./k;
             dq_t_p = wn.*w0.*magGain.*t_p./k;
