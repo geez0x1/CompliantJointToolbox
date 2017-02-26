@@ -51,7 +51,8 @@ function [A, B, C, D] = electric_dyn_zero_inductance(obj)
     
     R = obj.r;
     k_t = obj.k_t; % Torque constant.
-
+    N = obj.n;
+    
     % State-space matrix
     A = 0;
     
@@ -62,6 +63,6 @@ function [A, B, C, D] = electric_dyn_zero_inductance(obj)
     C = 0;
     
     % Direct Feedthrough of input voltage and back emf
-    D = [1/R, -k_t/R]; 
+    D = [1/R, -k_t*N/R];
 
 end
