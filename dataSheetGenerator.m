@@ -71,8 +71,8 @@ classdef dataSheetGenerator
         outFName = 'datasheet.pdf';                    % Name stub for the generated datasheet file. The final name will 
                                                        % be composed of the "jointModel.name_outFName".
         plotResolution = 600;                          % Print resolution for the figures contained in the datasheet.
-        nPlotVals = 10000;                               % Number of samples used to produce the graphs in the datasheet figures.
-        
+        nPlotVals = 10000;                             % Number of samples used to produce the graphs in the datasheet figures.
+        plotNormalized = 0;                            % Plot graphs in normalized quantities (default: false)
     end
     
     methods
@@ -430,83 +430,6 @@ classdef dataSheetGenerator
             
              xlim([0,xmax])
              ylim([0,xmax])
-            
-            
-% %%           
-%  h4 = figure;
-%  hold on;
-%  
-%  curWn = 0.01;
-%  N = (curWn.^2 - 1).^2 + (2 * D * curWn).^2;
-%  
-%  tauL_scale = 1/sqrt(N)*tau_i;
-%  tauL_scale(tau_i>t_p) = 0;
-%  
-%  tauL_cont = sqrt(k*I)/curWn * contSpeeds;
-%  tauL_peak = sqrt(k*I)/curWn * peakSpeeds;
-%  
-%  plot(tau_i,tauL_cont,'b')
-%  plot(tau_i,tauL_peak,'r')
-%  plot(tau_i,tauL_scale,'k')
-%  xlabel('\tau_i [Nm]')
-%  ylabel('\tau_L [Nm]')
-%  ylim([0 1]*1.2*t_p)
-%  title('\tau_L (\tau_i), feasible')
-%  
-% %  outTorque = ti * w0 + sqrt(4*I^2* )
-% 
-% % 
-% % /  #2 \
-% % |     |
-% % | -#2 |
-% % |     |
-% % |  #1 |
-% % |     |
-% % \ -#1 /
-% % 
-% % where
-% 
-% step = 20;
-% [ti,dqm] = meshgrid(tau_i(1:step:end),contSpeeds(1:step:end));
-% 
-% % dqm = contSpeeds;
-% % ti = tau_i;
-% tmp1 = 2 .* dqm.^2 .* k^2;
-% tmp2 = 2 .* tmp1 .* D.^2; %4 * dqm.^2 * k^2 * z.^2;
-% 
-% 
-% % 
-% %              /   2   2                                                             2  2     2   2             \
-% %              | ti  w0  - sqrt((ti w0 - 2 dqm k z) (ti w0 + 2 dqm k z) (- #3 + 4 dqm  k  + ti  w0 )) + #4 - #3 |
-% %    #1 == sqrt| ---------------------------------------------------------------------------------------------- |
-% %              \                                               #4                                               /
-% % 
-% 
-% tmp3 = ti.^2 .* w0.^2  + sqrt((ti .* w0 - 2 .* dqm .* k .* D) .* (ti .* w0 + 2.* dqm.* k.* D) .* (- tmp2 + 4 .* dqm.^2 .* k.^2  + ti.^2 .* w0.^2 )) + tmp1 - tmp2 ;
-% tmp4 = ti.^2 * w0^2  - sqrt((ti .* w0 - 2 .* dqm .* k .* D) .* (ti .* w0 + 2.* dqm.* k.* D) .* (- tmp2 + 4 .* dqm.^2 * k.^2  + ti.^2 .* w0.^2 )) + tmp1 - tmp2 ;
-% 
-% res1 = sqrt(tmp3 ./ tmp1);
-% res2 = sqrt(tmp4 ./ tmp1);
-% 
-% figure()
-% surf(ti,dqm,res1/2/pi)
-% xlabel('\tau_i')
-% ylabel('\dot{q}')
-% zlabel('f [Hz]')
-% 
-% %              /   2   2                                                             2  2     2   2             \
-% %              | ti  w0  + sqrt((ti w0 - 2 dqm k z) (ti w0 + 2 dqm k z) (- #3 + 4 dqm  k  + ti  w0 )) + #4 - #3 |
-% %    #2 == sqrt| ---------------------------------------------------------------------------------------------- |
-% %              \                                               #4                                               /
-% % 
-% %               2  2  2
-% %    #3 == 4 dqm  k  z
-% % 
-% %               2  2
-% %    #4 == 2 dqm  k
-% 
-
-
         end
         
         function h = draw_torque_frequency_curve(this, subtractFriction)
@@ -515,7 +438,7 @@ classdef dataSheetGenerator
                 subtractFriction = 1;
             end
             
-            h = figure;
+            h = gcf;
             hold on
             
             % SHORTHANDS
@@ -525,18 +448,15 @@ classdef dataSheetGenerator
             d_m  = this.jointModel.d_m;
             d_g  = this.jointModel.d_g;
             d_l  = this.jointModel.d_l;
-%             t_stall = this.jointModel.t_stall;
+            d_gl = this.jointModel.d_gl;
             k = this.jointModel.k_b;
-%             slope = this.jointModel.dq_over_dm;
-%             dq_0 = this.jointModel.dq_0;
-%             t_r = this.jointModel.t_r;
             t_p = this.jointModel.t_p;
             t_r = this.jointModel.t_r;
-            i_p = this.jointModel.i_p;
             k_t = this.jointModel.k_t;
             N = this.jointModel.n;
-%             t_NL = this.jointModel.t_NL;
-%             dq_NL = this.jointModel.dq_NL;
+            slope = this.jointModel.dq_over_dm;
+            dq_0 = this.jointModel.dq_0;
+            dq_r = this.jointModel.dq_r;
             
             
             % Compute characteristic parameters
@@ -545,17 +465,68 @@ classdef dataSheetGenerator
             f0 = w0/2/pi;                       % Resonance Frequency in Hz
             Mc = d_cm + d_cg + d_cl;            % Static friction
             dv = (d_m + d_g + d_l);             % Velocity dependent friction
-            D = dv / I / 2 / w0;                % Damping Ratio
-            magDrop =  1;%0.707; % -3dB
+%             D = dv / I / 2 / w0;              % Damping Ratio
+            magDrop = db2mag(-3);%1/sqrt(2); % -3dB         % Allowed magnitude drop for tracking
+            
+            % NORMALIZATION
+            if this.plotNormalized
+                wNorm = 1/w0;
+                fNorm = 2*pi*wNorm;
+                tNorm = 1/t_p;
+                xlabelStr = '\tau / \tau_p';
+                ylabelStr = ' f_c / f_0 ';
+            else
+                fNorm = 1;
+                tNorm = 1;
+                xlabelStr = '\tau [Nm]';
+                ylabelStr = ' f_c [Hz]';
+            end
+            
+
+            
+            fMax = 100;  % TODO: Remove this hardcoded value!
+            ymax =  fMax;
+            xmax = 1.1 * t_p;   
+            torque = (1/this.nPlotVals:1/this.nPlotVals:1) * xmax;
+            wn = (1/this.nPlotVals:1/this.nPlotVals:1) * max(2*pi*ymax) / w0;
+
+
+            
+            % MAGNITUDE GAIN
+            allTF = this.jointModel.getTF;
+            torqueTF = allTF(7,1)/ k_t / N;  % Torque transfer function, convert current input to torque
+            
+            % compute magnitude at given frequencies
+            magGain = bode(torqueTF,wn*w0); 
+            magGain = magGain(:);
+            
+            if subtractFriction
+                dq_t_r = wn.*w0.*magGain.*t_r./k;
+                dq_t_p = wn.*w0.*magGain.*t_p./k;
+                fCorrC = Mc + dv.*dq_t_r;
+                fCorrP = Mc + dv.*dq_t_p;
+            else
+                fCorrC = 0;
+                fCorrP = 0;
+            end
+
+%             % Plot magnitudes
+%             plot((magGain*t_r - fCorrC)*tNorm,            wn*w0/2/pi * fNorm,'b:') % 0 dB
+%             plot((magGain*t_r - fCorrC)*tNorm / magDrop,  wn*w0/2/pi * fNorm,'b') % -3 dB
+%             plot((magGain*t_p - fCorrP)*tNorm,            wn*w0/2/pi * fNorm,'r:') % 0 dB
+%             plot((magGain*t_p - fCorrP)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'r') % -3 dB            
+
             
             % LIMITATION DUE TO TORQUE SPEED CURVE
             % This is the bandwidth limit due to the motor electrodynamics
-            xmax = 1.2 * t_p;   
-            torque = (0:1/this.nPlotVals:1) * t_p * 1.2;
-            
             contSpeeds = this.computeMaxContSpeed(torque);
             peakSpeeds = this.computeMaxPeakSpeed(torque);
-
+% 
+            v_0 = this.jointModel.v_0;
+            r = this.jointModel.r;
+%             tpeakSpeeds = (torque -  v_0/r*k_t) / ( dv - k_t^2/r);
+            tpeakSpeeds = v_0/N/k_t - r/N^2/k_t^2 * torque;
+            
             if subtractFriction
                 fCorrC = Mc + dv*contSpeeds;
                 fCorrP = Mc + dv*peakSpeeds;
@@ -563,84 +534,109 @@ classdef dataSheetGenerator
                 fCorrC = 0;
                 fCorrP = 0;
             end
+            fCorrPF = Mc + dv*peakSpeeds;
+            torqueF = torque - fCorrPF;
+            peakSpeedsF = interp1(torqueF(torqueF>0.02),peakSpeeds(torqueF>0.02),torque);
             
             % compute bandwidth
-            contW = k*contSpeeds ./ (magDrop * torque);
-            contF = contW / 2 / pi;
+            %  contW = k*contSpeeds ./ torque;
+%             contW = abs(k * dq_r./ sqrt(  torque.^2  -  d_gl^2*dq_r.^2 ));
+%             contF = contW / 2 / pi;
 
-            peakW = k*peakSpeeds ./ (magDrop * torque);
+            %  peakW = k*peakSpeeds ./ torque;
+%             peakW = (k * tpeakSpeeds ./ sqrt(  torque.^2  -  d_gl^2*tpeakSpeeds.^2 ));
+%             peakW = (k * peakSpeedsF ./ (  torque  -  d_gl*peakSpeedsF ));
+            peakW = (k * tpeakSpeeds ./ (  torque  -  d_gl*tpeakSpeeds ));
             peakF = peakW / 2 / pi;
-
-            % plot limits
-            plot((torque-fCorrC), contF,'b--');
-            plot((torque-fCorrP), peakF,'r--');
-
-            % resonance frequency
-            plot(torque, f0*ones(size(torque)), 'k--' )
-
-            xlim([0,xmax]);
-            xlabel('torque [Nm]')
-            ylabel('frequency [Hz]')
-
-            % MAGNITUDE GAIN
-%             wn = (1:max(peakW))/w0;
-            wn = (0:1/this.nPlotVals:1) * max(peakW) / w0;
-            %D = 1/sqrt(2); % Consider for now critical damping -> no resonance
-            Z = (1 - wn.^2).^2 + 4 *D^2 * wn.^2;
             
-            idealCurrent = torque.' .* sqrt(Z) / k_t / N;
-            feasibleCurrent = min(idealCurrent,i_p);
+            elSpeeds = dq_0 - slope * torque;
+%             elW = (k * elSpeeds ./ sqrt(  torque.^2  -  d_gl^2*elSpeeds.^2 ));
+            elW = (k * elSpeeds ./ (  torque  -  d_gl*elSpeeds ));
+            elF = elW / 2 / pi;
             
-            realTorque = k_t * N * feasibleCurrent./sqrt(Z);
-            magGain = 1./sqrt(Z);
+            %
+%             peakW0 = (k * dq_0 ./ sqrt(  torque.^2  - d_gl^2*dq_0.^2 )); 
+            peakW0 = (k * dq_0 ./ (  torque  - d_gl*dq_0 )); 
+            peakF0 = peakW0 / 2 / pi;
             
-            dq_t_r = wn.*w0.*magGain.*t_r./k;
-            dq_t_p = wn.*w0.*magGain.*t_p./k;
             
-            if subtractFriction
-                fCorrC = Mc + dv.*dq_t_r;
-                fCorrP = Mc + dv.*dq_t_p;
-            else
-                fCorrC = 0;
-                fCorrP = 0;
-            end
+            springTF = tf([d_gl, k], [1 0]);
+            springMag = bode(springTF,wn*w0);
+            springMag = springMag(:);
             
-
-%             if subtractFriction
-%                 contSpeeds = this.computeMaxContSpeed(magGain*t_r);
-%                 peakSpeeds = this.computeMaxPeakSpeed(magGain*t_p);
-%                 fCorrC = Mc + dv*contSpeeds;
-%                 fCorrP = Mc + dv*peakSpeeds;
-%             else
-%                 fCorrC = 0;
-%                 fCorrP = 0;
-%             end
             
-            plot(magGain*t_r/magDrop - fCorrC, wn*w0/2/pi,'b')
-            plot(magGain*t_p/magDrop - fCorrP, wn*w0/2/pi,'r')
-
-            % THERMAL LIMITATION
-            r_th1 = this.jointModel.r_th1;
-            r     = this.jointModel.r;
-            a_cu  =  0.0039;
-            k_t   = this.jointModel.k_t;
-            n     = this.jointModel.n;
-            T_max = this.jointModel.Tmp_WMax;
-            t_w   = this.jointModel.T_thw;
-            
-            i_m2  = 0.5 * (torque / k_t / n).^2; % effective value -> multiply with 0.5
-            
-            deltaTw =  ( r_th1 * r * i_m2 ) ./ (1 - a_cu * r_th1 * r *i_m2  );
-            
-            idx = find(deltaTw < T_max);
+%             plot(springMag / magDrop , wn*w0/2/pi,'g--')
+%             
+%             newSpringMag = interp1(springMag(2:end), wn(2:end)*w0/2/pi,torque);
+%             fSpringMag = newSpringMag.*peakSpeeds;
+%             plot(newSpringMag / magDrop, fSpringMag,'g+')
                         
-            t_max = t_w * log( T_max ./ deltaTw(idx) );
+            % plot limits
+%             plot((torque-fCorrC)*tNorm / magDrop, contF*fNorm,'b--');
+%              plot((torque-fCorrP)*tNorm / magDrop, peakF*fNorm,'r--');
+%             plot((torque-fCorrP)*tNorm / magDrop, peakF0*fNorm,'k');
+           
+
+
+             %% TOTAL FREQUENCY LIMIT
+%              plot((dq_0*springMag - fCorrP)*tNorm / magDrop , wn*w0/2/pi,'b','LineWidth',2)
+%              plot((magGain*t_p - fCorrP)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'r') % -3 dB  
+             
+             fSpring = interp1(dq_0*springMag , wn*w0/2/pi, torque);
+             fAmp    = interp1(magGain*t_p    , wn*w0/2/pi, torque);
+             
+             fTotal = min(fAmp,fSpring);
+             
+             %% PLOTTING
             
-            w_therm = 1./t_max;
+            % Plot total frequency limit
+            plot(torque(torque<=t_p)*tNorm/magDrop,fTotal(torque<=t_p)*fNorm,'Color',0.8 * [1 1 1],'LineWidth',5)
+            
+            % Plot torque transfer function magnitude
+%             plot((magGain*t_r - fCorrC)*tNorm,            wn*w0/2/pi * fNorm,'b:') % 0 dB
+%             plot((magGain*t_r - fCorrC)*tNorm / magDrop,  wn*w0/2/pi * fNorm,'b') % -3 dB
+            plot((magGain*t_p - fCorrP)*tNorm,            wn*w0/2/pi * fNorm,'r:') % 0 dB
+            plot((magGain*t_p - fCorrP)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'r') % -3 dB  
+            
+            % Plot voltage saturation limit
+             plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'b')
+             
+             % plot resonance frequency            
+             plot(torque*tNorm, f0*ones(size(torque))*fNorm, 'k--' )
+             
+%              plot((torque-fCorrP)*tNorm / magDrop, peakF*fNorm,'r--');
+             
+
+%             % THERMAL LIMITATION
+%             r_th1 = this.jointModel.r_th1;
+%             r     = this.jointModel.r;
+%             a_cu  =  0.0039;
+%             k_t   = this.jointModel.k_t;
+%             n     = this.jointModel.n;
+%             T_max = this.jointModel.Tmp_WMax;
+%             t_w   = this.jointModel.T_thw;
+%             
+%             i_m2  = 0.5 * (torque / k_t / n).^2; % effective value -> multiply with 0.5
+%             
+%             deltaTw =  ( r_th1 * r * i_m2 ) ./ (1 - a_cu * r_th1 * r *i_m2  );
+%             
+%             idx = find(deltaTw < T_max);
+%                         
+%             t_max = t_w * log( T_max ./ deltaTw(idx) );
+%             
+%             w_therm = 1./t_max;
             
 %             dq_therm = wn.*w0.*magGain.*t_p./k;
 %             fCorr = Mc + dv.*dq_t_p;
 %             plot(torque(idx) , w_therm,'r')
+
+            %% Plot appearance and labels
+            xlim([0,xmax]*tNorm);
+            ylim([0,ymax]*fNorm);
+            xlabel(xlabelStr)
+            ylabel(ylabelStr)
+            box on;
+            
         end
         
         function h = draw_torque_speed_curve(this, subtractFriction, legendFontSize)
@@ -701,7 +697,8 @@ classdef dataSheetGenerator
             % Plotting options
             xmax = 1.2 * t_p;
             ymax = 1.02 * dq_p;
-            h = figure;
+            
+            h = gcf;
             hold on
                     
             % Compute Friction
@@ -729,17 +726,30 @@ classdef dataSheetGenerator
                 fCorr_NL = 0;
                 fCorr_tp = 0;
             end
-            plot(mVals - fCorr, linCurve, 'k', 'DisplayName', 'Torque-Speed Line')
+            
+            if this.plotNormalized
+                tNorm = 1/t_p;
+                dqNorm = 1/dq_NL;
+                xlabelStr = '$\tau / \tau_p$ [.]';
+                ylabelStr = '$\dot{q} / \dot{q}_{NL}$ [.]';
+            else
+                tNorm = 1;
+                dqNorm = 1;
+                xlabelStr = '$\tau$ [Nm]';
+                ylabelStr = '$\dot{q}$ [rad/s]';
+            end
+            
+            plot( (mVals - fCorr )*tNorm, linCurve*dqNorm, 'k', 'DisplayName', 'Torque-Speed Line')
                         
             % OPERATING POINTS
             % Rated operating point
-            plot(t_r - fCorr_r, dq_r, 'ko', 'DisplayName', 'Nominal Operating Point')
+            plot((t_r - fCorr_r)*tNorm, dq_r*dqNorm, 'ko', 'DisplayName', 'Nominal Operating Point')
             
             % No-Load operating point
-            plot(t_NL - fCorr_NL, dq_NL, 'ko', 'DisplayName', 'No-Load Operating Point')
+            plot((t_NL - fCorr_NL)*tNorm, dq_NL*dqNorm, 'ko', 'DisplayName', 'No-Load Operating Point')
             
             % Peak operating point
-            plot(t_p - fCorr_tp, dq_tp, 'ko', 'DisplayName', 'Peak Operating Point')
+            plot((t_p - fCorr_tp)*tNorm, dq_tp*dqNorm, 'ko', 'DisplayName', 'Peak Operating Point')
             
             % COLOR FRICTION AND CONTINUOUS OPERATION REGIONS
             % Continuous operating range
@@ -752,15 +762,15 @@ classdef dataSheetGenerator
             end
             tOp =  [0, t_r,  t_r-fCorr_1,    0-fCorr_2].';
             dqOp = [0,   0, dq_r, dq_0].';
-            fill(tOp,dqOp,0.9* [0.2 0.2 1],'LineStyle','none')
+            fill(tOp*tNorm, dqOp*dqNorm, 0.9* [0.2 0.2 1],'LineStyle','none')
             
             % Friction
             if ~subtractFriction
-                fill([Mf, 0, 0], ...
-                    [speedVals speedVals(end) 0],...
+                fill([Mf, 0, 0]*tNorm, ...
+                    [speedVals speedVals(end) 0]*dqNorm,...
                     0.8* [1 0 0],...
                     'LineStyle','none')
-                plot(Mf, speedVals, 'k:', 'DisplayName', 'Friction Torque')
+                plot(Mf*tNorm, speedVals*dqNorm, 'k:', 'DisplayName', 'Friction Torque')
             end
             alpha(0.25)     % add some transparency
             
@@ -774,8 +784,8 @@ classdef dataSheetGenerator
                 fCorr_1 = 0;
                 fCorr_2 = 0;
             end
-            plot([t_p, t_p-fCorr_1],[0, ymax],'r--', 'DisplayName', 'Peak Torque')
-            plot(mVals-fCorr_2,speedVals, 'r-', 'DisplayName', 'Peak Mechanical Power')
+            plot([t_p, t_p-fCorr_1]*tNorm,[0, ymax]*dqNorm,'r--', 'DisplayName', 'Peak Torque')
+            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'r-', 'DisplayName', 'Peak Mechanical Power')
             
             % Continuous operation 
             speedVals = p_cm ./ mVals;
@@ -786,20 +796,22 @@ classdef dataSheetGenerator
                 fCorr_1 = 0;
                 fCorr_2 = 0;
             end
-            plot(t_r*[1,1] - fCorr_1*[0, 1], [0,ymax], 'b--', 'DisplayName', 'Maximum Continous Torque')
-            plot(mVals-fCorr_2,speedVals, 'b-', 'DisplayName', 'Rated Mechanical Power')
+            plot((t_r*[1,1] - fCorr_1*[0, 1])*tNorm, [0,ymax]*dqNorm, 'b--', 'DisplayName', 'Maximum Continous Torque')
+            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'b-', 'DisplayName', 'Rated Mechanical Power')
             
             
             
-            % ANNOTATIONS AND FIGURE STYLE
-            xlim([0,xmax]);
-            ylim([0,ymax]);
-            if subtractFriction
-                xlabel('$\tau_i^*$ [Nm]','interpreter','latex')
-            else
-                xlabel('$\tau_i$ [Nm]','interpreter','latex')
-            end
-            ylabel('$|\dot{q}_m|$ [rad/s]','interpreter','latex')
+%             % ANNOTATIONS AND FIGURE STYLE
+            xlim([0,xmax]*tNorm);
+            ylim([0,ymax]*dqNorm);
+%             if subtractFriction
+%                 xlabel('$\tau_i^*$ [Nm]','interpreter','latex')
+%             else
+%                 xlabel('$\tau_i$ [Nm]','interpreter','latex')
+%             end
+%             ylabel('$|\dot{q}_m|$ [rad/s]','interpreter','latex')
+            xlabel(xlabelStr,'interpreter','latex')
+            ylabel(ylabelStr,'interpreter','latex')
             box on
             
             % CREATE COSTUMIZED LEGEND
@@ -908,6 +920,7 @@ classdef dataSheetGenerator
                 
         function contSpeed = computeMaxContSpeed(this, torque)
             
+            
             % shorthands
             t_r = this.jointModel.t_r;
             p_cm = this.jointModel.p_cm;
@@ -927,7 +940,6 @@ classdef dataSheetGenerator
         end
         
         function peakSpeed = computeMaxPeakSpeed(this, torque)
-
             
             % shorthands
             slope = this.jointModel.dq_over_dm;
@@ -954,12 +966,12 @@ classdef dataSheetGenerator
             % Friction
             kC = d_cm + d_cg + d_cl;            % Static friction
             kV = (d_m + d_g + d_l); % Velocity dependent friction
-
+            
             fricSpeed = (torque - kC)/kV;
             fricSpeed(torque < kC) = 0;
-
-            peakSpeed = min(elSpeed, fricSpeed);
             
+            peakSpeed = min(elSpeed, fricSpeed);
+
             % Power curve
             powerSpeed = p_pm ./ torque;
             
