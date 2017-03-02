@@ -52,7 +52,7 @@
 
 function [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx , doPlot)
     % Default parameters
-    if ~exist('doPlot','var')
+    if (~exist('doPlot','var') || isequal(doPlot,[]))
         doPlot = 0;
     end
 

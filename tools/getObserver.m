@@ -54,10 +54,10 @@
 
 function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     %% Parameters
-    if ~exist('Q', 'var')
+    if (~exist('Q', 'var') || isequal(Q,[]))
         Q = diag([0 1000 0 0]);
     end
-    if ~exist('R', 'var')
+    if (~exist('R', 'var') || isequal(R,[]))
         R = 1e-6;
     end
     if (length(outputIdx) > 1)

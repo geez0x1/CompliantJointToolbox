@@ -56,13 +56,13 @@
 
 function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
     %% Default arguments
-    if (~exist('pid_form', 'var'))
+    if (~exist('pid_form', 'var') || isequal(pid_form,[]))
         pid_form = 'ideal';     % Ideal PID form (series) by default
     end
-    if (~exist('outputIdx', 'var'))
+    if (~exist('outputIdx', 'var') || isequal(outputIdx,[]))
         outputIdx = 7;          % Controlled/observed plant output (default: 7, torque)
     end
-    if (~exist('ff_comp_switch', 'var'))
+    if (~exist('ff_comp_switch', 'var') || isequal(ff_comp_switch,[]))
         ff_comp_switch = 1;     % Feed-forward/compensation
                                 % (1=Compensation (default), 2=Feed-forward)
     end
