@@ -15,7 +15,7 @@ Wesley Roozing
 2. In the root of the toolbox, you will find the following directories:
 
     - `examples`: A set of MATLAB and Simulink examples demonstrating various functionalities;
-    - `lib`: Simulink blocks that come with the library - controllers, models and observers;
+    - `lib`: Core MATLAB classes and Simulink blocks that come with the library - controllers, models and observers;
     - `model`: Mathematical description of the various models and their components;
     - `param`: Parameter files for several example actuators;
     - `templates`: Templates used by the joint builder to build actuator classes;
