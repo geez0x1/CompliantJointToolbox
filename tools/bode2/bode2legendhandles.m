@@ -46,10 +46,10 @@
 function [ h ] = bode2legendhandles( handles, data, bodeOpt, opt )
 
     % Default arguments
-    if (~exist('bodeOpt', 'var'))
+    if (~exist('bodeOpt', 'var') || isequal(bodeOpt,[]))
         bodeOpt = bodeoptions;
     end
-    if (~exist('opt', 'var'))
+    if (~exist('opt', 'var') || isequal(opt,[]))
         opt	= bode2options;
     end
     

@@ -51,10 +51,10 @@
 function [ h, mag_db, phase, freq ] = bode2( P, bodeOpt, opt, varargin )
 
     % Default arguments
-    if (~exist('bodeOpt', 'var'))
+    if (~exist('bodeOpt', 'var') || isequal(bodeOpt,[]))
         bodeOpt = bodeoptions;
     end
-    if (~exist('opt', 'var'))
+    if (~exist('opt', 'var') || isequal(opt,[]))
         opt = bode2options;
     end
 

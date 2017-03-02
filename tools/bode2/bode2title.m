@@ -48,13 +48,13 @@
 function [ ] = bode2title( bodeOpt, opt, paperMode, title_paperMode, title_normal )
     
     % Default arguments
-    if (~exist('bodeOpt', 'var'))
+    if (~exist('bodeOpt', 'var') || isequal(bodeOpt,[]))
         bodeOpt = bodeoptions;
     end
-    if (~exist('opt', 'var'))
+    if (~exist('opt', 'var') || isequal(opt,[]))
         opt	= bode2options;
     end
-    if (~exist('title_normal', 'var'))
+    if (~exist('title_normal', 'var') || isequal(title_normal,[]))
         title_normal = title_paperMode;
     end
     
