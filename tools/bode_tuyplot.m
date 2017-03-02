@@ -56,16 +56,16 @@
 function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bodeOpt, opt, varargin)
 
     % Default arguments
-    if (~exist('resample', 'var'))
+    if (~exist('resample', 'var') || isequal(resample,[]))
         resample = 0;
     end
-    if (~exist('filter', 'var'))
+    if (~exist('filter', 'var') || isequal(filter,[]))
         filter = 0;
     end
-    if (~exist('bodeOpt', 'var'))
+    if (~exist('bodeOpt', 'var') || isequal(bodeOpt,[]))
         bodeOpt = bodeoptions;
     end
-    if (~exist('opt', 'var'))
+    if (~exist('opt', 'var') || isequal(opt,[]))
         opt = bode2options;
     end
 

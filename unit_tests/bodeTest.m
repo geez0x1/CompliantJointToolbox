@@ -146,12 +146,13 @@ ylabel('Amplitude [.]')
 % BODEPLOT
 figure(2)
 clf;
-bodeOpt           = bodeoptions;
-bodeOpt.XLim      = [f0 f1];         % set the plot limits to minimum and maximum frequency, default would be [1, 10]
-bodeOpt.FreqUnits = 'Hz';            % change frequency units, default frequency unit is rad/s
+bodeOpt             = bodeoptions;
+opt                 = bode2options;
+bodeOpt.XLim        = [f0 f1];          % set the plot limits to minimum and maximum frequency, default would be [1, 10]
+bodeOpt.FreqUnits   = 'Hz';             % change frequency units, default frequency unit is rad/s
 
 % actual bodeplot
-bode_tuyplot(t, u, y, [], [], bodeOpt );
+bode_tuyplot(t, u, y, 0, 0, bodeOpt, opt);
 
 verifyTrue(testCase,true) % If we arrive here, everything is fine.
     
@@ -185,15 +186,16 @@ tj = abs(t + dt*0.3*randn(size(t)));  % jittered time instants
 figure(2)
 clf;
 hold on
-bodeOpt           = bodeoptions;
-bodeOpt.XLim      = [f0 f1];         % set the plot limits to minimum and maximum frequency, default would be [1, 10]
-bodeOpt.FreqUnits = 'Hz';            % change frequency units, default frequency unit is rad/s
+bodeOpt             = bodeoptions;
+opt                 = bode2options;
+bodeOpt.XLim        = [f0 f1];      	% set the plot limits to minimum and maximum frequency, default would be [1, 10]
+bodeOpt.FreqUnits   = 'Hz';             % change frequency units, default frequency unit is rad/s
 
 % actual bodeplot
-bode_tuyplot(t, u, y, [], [], bodeOpt,'r' );  % result with the perfect signal
-bode_tuyplot(tj, u, y, [], [], bodeOpt,'k' ); % result with the jittered signal
-bode_tuyplot(tj, u, y, 1, 0, bodeOpt,'g' );   % result with the resampled jittered signal
-bode_tuyplot(tj, u, y, 1, 1, bodeOpt,'b' );   % reesult when the resampled jittered signal is filtered
+bode_tuyplot(t, u, y, [], [], bodeOpt, opt, 'r');  % result with the perfect signal
+bode_tuyplot(tj, u, y, [], [], bodeOpt, opt, 'k'); % result with the jittered signal
+bode_tuyplot(tj, u, y, 1, 0, bodeOpt, opt, 'g');   % result with the resampled jittered signal
+bode_tuyplot(tj, u, y, 1, 1, bodeOpt, opt, 'b');   % reesult when the resampled jittered signal is filtered
 
 legend({'ideal','jittered','resampled', 'filtered'},'location','SouthWest')
 
