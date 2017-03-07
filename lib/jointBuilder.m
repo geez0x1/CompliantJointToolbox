@@ -61,11 +61,11 @@ classdef jointBuilder
             % Gather information about the paths
             % 1) location of the joint builder
             pathstr = fileparts(which('jointBuilder.m'));
-            this.basePath = pathstr;
+            this.basePath = pathstr(1:end-4);
             % 2) location of the nonlinear models
-            this.nonlinModelPath = [pathstr, filesep, 'model', filesep, 'nonlinear'];
+            this.nonlinModelPath = [this.basePath, filesep, 'model', filesep, 'nonlinear'];
             % 3) location of the linear models
-            this.linModelPath = [pathstr, filesep, 'model', filesep, 'linear'];
+            this.linModelPath = [this.basePath, filesep, 'model', filesep, 'linear'];
         end
         
         %__________________________________________________________________
@@ -95,7 +95,7 @@ classdef jointBuilder
             % Check whether the linear model exists
             % This relies on the model function name being equal to
             % the filename (which we require)
-            if (~exist([this.linModelPath, filesep, modelName], 'file'))
+            if (~exist([this.linModelPath, filesep, modelName,'.m'], 'file'))
                 error(['jointBuilder.buildJoint error: Linear model ''' modelName ''' do not exist!']);
             end
             
