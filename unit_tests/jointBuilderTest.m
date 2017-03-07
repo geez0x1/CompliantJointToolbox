@@ -239,7 +239,9 @@ function testElectricalSubsystem(testCase)
     %% 1ST MODEL
     % Build a joint
     jb.buildJoint(allParams{1}, 'full_dyn', [],'electric_dyn','elTestJoint');
+        
     % Update path
+    addpath(jb.buildDir);
     rehash
     % Instantiate joint
     jObj = elTestJoint;
@@ -268,7 +270,7 @@ function testElectricalSubsystem(testCase)
     flags(5) = A == 0;
     flags(6) = all( B ==  0 );
     flags(7) = C == 0;
-    flags(8) = all( D == [11.299435028248588  -0.511864406779661]);
+    flags(8) = all( D == [11.299435028248588  -51.186440677966104]);
     
     
     verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
