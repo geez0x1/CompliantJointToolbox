@@ -106,7 +106,7 @@ classdef dataSheetGenerator
             
             tmpStr = which('dataSheetGenerator');
             dsgRoot = fileparts(tmpStr);
-            this.templateDir = [dsgRoot, filesep, 'templates' ];
+            this.templateDir = [dsgRoot(1:end-4), filesep, 'templates' ];
             
             this.outputDir = ['.', filesep];
             
