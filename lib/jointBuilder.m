@@ -61,11 +61,16 @@ classdef jointBuilder
             % Gather information about the paths
             % 1) location of the joint builder
             pathstr = fileparts(which('jointBuilder.m'));
-            this.basePath = pathstr;
-            % 2) location of the nonlinear models
-            this.nonlinModelPath = [pathstr, filesep, 'model', filesep, 'nonlinear'];
-            % 3) location of the linear models
-            this.linModelPath = [pathstr, filesep, 'model', filesep, 'linear'];
+            this.basePath = cd(cd([pathstr, filesep, '..', filesep]));
+            
+            % 2) location of the build directory
+            this.buildDir = [this.basePath, filesep, 'build'];
+            
+            % 3) location of the nonlinear models
+            this.nonlinModelPath = [this.basePath, filesep, 'model', filesep, 'nonlinear'];
+            
+            % 4) location of the linear models
+            this.linModelPath = [this.basePath, filesep, 'model', filesep, 'linear'];
         end
         
         %__________________________________________________________________
@@ -187,6 +192,7 @@ classdef jointBuilder
             % Create build directory if necessary
             if ~exist(this.buildDir,'dir')
                 mkdir(this.buildDir);
+                addpath(this.buildDir);
             end
             
             % Create class filename
