@@ -70,20 +70,20 @@
 
 function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB)
     %% Default parameters
-    if (~exist('pid_form', 'var'))
+    if (~exist('pid_form', 'var') || isequal(pid_form,[]))
         pid_form = 'ideal';     % Ideal PID form (series) by default
     end
-    if (~exist('outputIdx', 'var'))
+    if (~exist('outputIdx', 'var') || isequal(outputIdx,[]))
         outputIdx = 7;          % Controlled/observed plant output (default: 7, torque)
     end
-    if (~exist('ff_comp_switch', 'var'))
+    if (~exist('ff_comp_switch', 'var') || isequal(ff_comp_switch,[]))
         ff_comp_switch = 1;     % Feed-forward/compensation
                                 % (1=Compensation (default), 2=Feed-forward)
     end
-    if (~exist('f_c_FF', 'var'))
+    if (~exist('f_c_FF', 'var') || isequal(f_c_FF,[]))
         f_c_FF  = 40;           % Feed-forward cutoff frequency [Hz]
     end
-    if (~exist('f_c_DOB', 'var'))
+    if (~exist('f_c_DOB', 'var') || isequal(f_c_DOB,[]))
         f_c_DOB = 60;           % DOB cutoff frequency [Hz]
     end
 

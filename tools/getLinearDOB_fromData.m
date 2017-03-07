@@ -63,19 +63,19 @@
 
 function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB, roi)
     %% Default parameters
-    if (~exist('id_Np', 'var'))
+    if (~exist('id_Np', 'var') || isequal(id_Np,[]))
         id_Np   = 4;        % Model number of poles []
     end
-    if (~exist('id_Nz', 'var'))
+    if (~exist('id_Nz', 'var') || isequal(id_Nz,[]))
         id_Nz   = 1;        % Model number of zeros []
     end
-    if (~exist('f_c_FF', 'var'))
+    if (~exist('f_c_FF', 'var') || isequal(f_c_FF,[]))
         f_c_FF  = 40;       % Feed-forward cutoff frequency [Hz]
     end
-    if (~exist('f_c_DOB', 'var'))
+    if (~exist('f_c_DOB', 'var') || isequal(f_c_DOB,[]))
         f_c_DOB = 60;       % DOB cutoff frequency [Hz]
     end
-    if (~exist('roi', 'var'))
+    if (~exist('roi', 'var') || isequal(roi,[]))
         roi = [0.1, 100];	% Region of interest [[Hz], [Hz]]
     end
     

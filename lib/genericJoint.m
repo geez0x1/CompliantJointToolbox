@@ -65,7 +65,7 @@ classdef genericJoint < handle
         m       = 2;        % Actuator mass [kg]                                    (default: 2)
         I_m  	= 0.5480;   % Link referred motor rotor inertia [kg m^2]            (default: 0.5480)
         I_g     = 0.2630;   % Link referred gear inertia [kg m^2]                   (default: 0.2630)
-        I_l     = 0.0867    % Link referred load inertia [kg m^2]       	    	(default: 0.0867)
+        I_l     = 0.0867    % Link referred load inertia [kg m^2]                   (default: 0.0867)
         % Stiffnesses
         k_g     = 31e3;     % Gearbox stiffness [Nm/rad]                            (default: 31e3)
         k_b     = 10e3;     % Torsion bar stiffness [Nm/rad]                        (default: 10e3)
@@ -92,10 +92,10 @@ classdef genericJoint < handle
         d_s     = 0;        % Break away torque [Nm]                                (default: 0)
         v_s     = 0;        % Stribeck velocity range [rad/s]                       (default: 0)
         % Torque ripple sources
-        rip_types = 1;     % Torque ripple types (see torque_ripple())         	(default: 1)
-        rip_a1	= 0;   	% Cosine amplitudes ([Nm] and/or [])                    (default: 0)
-        rip_a2	= 0;     	% Sine amplitudes ([Nm] and/or [])                      (default: 0)
-        rip_f	= 0;      	% Spatial frequencies [periods/revolution]              (default: 0)
+        rip_types = [];     % Torque ripple types (see torque_ripple())             (default: [])
+        rip_a1	= [];       % Cosine amplitudes ([Nm] and/or [])                    (default: [])
+        rip_a2	= [];       % Sine amplitudes ([Nm] and/or [])                      (default: [])
+        rip_f	= [];       % Spatial frequencies [periods/revolution]              (default: [])
         % Gear
         n       = 100;      % Transmission ratio [.]                                (default: 100)
         %
@@ -117,7 +117,7 @@ classdef genericJoint < handle
         r_th2   = 3.45;     % Thermal Resistance Housing to Air [K/W]               (default: 3.45)
         T_thw   = 3.96;     % Thermal Time Constant of the Windings [s]             (default: 3.96)
         T_thm   = 1240;     % Thermal Time Constant of the Motor [s]                (default: 1240)
-        Tmp_WMax = 120;  	% Maximum Armature Temperature [�C]                     (default: 120)
+        Tmp_WMax = 120;     % Maximum Armature Temperature [�C]                     (default: 120)
         Tmp_ANom = 25;      % Normal Ambient Temperature [�C]                       (default: 25)
         
         % Desciptive Properties

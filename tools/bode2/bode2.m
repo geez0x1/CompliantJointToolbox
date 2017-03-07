@@ -1,14 +1,11 @@
-% BODE_TUYPLOT Compute and plot magnitude and phase in frequency domain from equidistantly 
-% sampled I/O signals.
+% BODE2 Computes and plots magnitude and phase in frequency domain for a
+% given transfer function. A wrapper around bode() and plot() that uses
+% bode() for obtaining magnitude and phase info, and plot() for plotting. 
 %
-%   [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y [, resample, filter, bodeOpt, opt, lineseries properties])
+%   [ h, mag_db, phase, freq ] = bode2(P [, bodeOpt, opt, lineseries properties])
 %
 % Inputs::
-%   t: time vector
-%   u: input data vector
-%   y: output data vector
-%   resample: whether to resample data (for smaller filesize on export) (default: 0)
-%   filter: whether to use zero-phase digital filtering for smoothing - implies resample=1 (default: 0)
+%   P: transfer function to plot
 %   bodeOpt: a bodeoptions struct (not all features are supported!)
 %   opt: additional options (see bode2options)
 %
@@ -21,8 +18,6 @@
 % Notes::
 %   varargin holds additional plotting arguments passed to the plot
 %   command.
-%   The output values correspond to the plot: i.e. resampled or
-%   resampled+filtered, and in frequency units as set in bodeOpt.
 %
 % Examples::
 %
@@ -31,7 +26,7 @@
 %  Joern Malzahn
 %  Wesley Roozing
 %
-% See also bode_tuy.
+% See also bode_tuy, bode.
 
 % Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
@@ -53,15 +48,9 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bodeOpt, opt, varargin)
+function [ h, mag_db, phase, freq ] = bode2( P, bodeOpt, opt, varargin )
 
     % Default arguments
-    if (~exist('resample', 'var') || isequal(resample,[]))
-        resample = 0;
-    end
-    if (~exist('filter', 'var') || isequal(filter,[]))
-        filter = 0;
-    end
     if (~exist('bodeOpt', 'var') || isequal(bodeOpt,[]))
         bodeOpt = bodeoptions;
     end
@@ -69,56 +58,24 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
         opt = bode2options;
     end
 
-    % If filtering is enabled, force resampling to be on as well
-    % Otherwise the filtering window expressed in frequency is frequency
-    % dependent.
-    if (filter && ~resample)
-        warning('[bode_tuyplot] Warning: Filtering enabled, forcing resampling.');
-        resample = 1;
+    % Obtain frequency, magnitude and phase data
+    % First check whether XLim should be considered Hz or rad/s, based on
+    % FreqUnits (bode() expects rad/s)
+    if (strcmpi(bodeOpt.FreqUnits, 'Hz'))
+        freq_range = {2*pi * bodeOpt.XLim{:}(1), 2*pi * bodeOpt.XLim{:}(2)};
+    else
+        freq_range = {bodeOpt.XLim{:}(1), 2*pi * bodeOpt.XLim{:}(2)};
     end
-    
-    % Get FFT
-    [f, mag_db, phase] = bode_tuy(t, u, y);
-    mag_db = mag_db(:); phase = phase(:); f = f(:);
-    omega = f .* (2*pi);
+    [mag, phase, omega]	= bode(P, freq_range);
+    mag = mag(:); phase = phase(:); omega = omega(:);
+    mag_db	= mag2db(mag);
+    f       = omega ./ (2*pi);
     
     % Set frequency units
     if (strcmpi(bodeOpt.FreqUnits, 'Hz'))
         freq = f;
     else
         freq = omega;
-    end
-
-    % Treat the x-limits as the region of interest; that is, we remove the
-    % other data (the frequency range of which is usually not sampled
-    % anyway) so we can be faster and not influence the zero-phase
-    % filtering below.
-    idxs    = 1:length(freq);
-    sIdx    = floor(interp1(freq, idxs, bodeOpt.XLim{1}(1)));
-    eIdx    = ceil(interp1(freq, idxs, bodeOpt.XLim{1}(2)));
-    freq    = freq(sIdx:eIdx);
-    mag_db  = mag_db(sIdx:eIdx);
-    phase   = phase(sIdx:eIdx);
-    
-    % Resample data using logarithmic frequency space.
-    % freq no longer starts at 0 due to the ROI above.
-    if (resample)
-        a = log(freq(1)) / log(10);
-        b = log(freq(end-1)) / log(10);
-        n = 1000 * (b-a); % typically ~10x less data (for 2kHz sample time)
-        freq_RS   	= logspace(a,b,n);
-        mag_db_RS  	= interp1(freq, mag_db, freq_RS, 'pchip');
-        phase_RS 	= interp1(freq, phase, freq_RS, 'pchip');
-        freq        = freq_RS;
-        mag_db      = [mag_db_RS(1:end-1) mag_db(end)];
-        phase       = [phase_RS(1:end-1) phase(end)];
-    end
-
-    % Filter magnitude and phase
-    if (filter)
-        windowSize	= round(0.008 * n); % see n and generation of freq_RS
-        mag_db      = filtfilt(ones(1,windowSize) / windowSize, 1, mag_db);
-        phase       = filtfilt(ones(1,windowSize) / windowSize, 1, phase);
     end
     
     % Get figure handle and resize
