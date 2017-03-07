@@ -67,7 +67,7 @@ function [ tau ] = coulomb(obj, x)
         c = [0, obj.d_cm + obj.d_cg]';
         
     elseif (strcmp(obj.modelName, 'rigid'))
-        c = obj.d_cm + obj.d_cg + obj.d_cl;
+        c = [0, obj.d_cm + obj.d_cg + obj.d_cl].';
         
     end
 

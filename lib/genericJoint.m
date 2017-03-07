@@ -440,7 +440,7 @@ classdef genericJoint < handle
             %
             % See also t_r, p_ce, genericJoint, jointBuilder.
             
-            out = this.k_w * this.v_0 / this.n;
+            out = this.v_0 / this.k_t /this.n;
         end
         
         %__________________________________________________________________

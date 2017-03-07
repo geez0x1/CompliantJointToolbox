@@ -53,7 +53,10 @@ bounds(end,3:4)=-inf;
 for i=1:nChild
     set(a(i),'Unit','centimeters');
     pos=get(a(i),'Position');
-    inset=get(a(i),'TightInset');
+    inset = [0 0 0 0] ;
+    if isfield(a(i),'TightInset')
+        inset=get(a(i),'TightInset');
+    end
     bounds(i,:)=[pos(1)-inset(1) pos(2)-inset(2) ...
         pos(1)+pos(3)+inset(3) pos(2)+pos(4)+inset(4)];
 end
@@ -81,4 +84,4 @@ set(figHandle,'PaperPosition',[-mypos(1) -mypos(2) ...
     mypos(3)+mypos(1) mypos(4)+mypos(2)]);
 
 % Print stuff and pass optional parameters of the print command
-print('-dpdf',outfilename,varargin{:});
+print('-bestfit','-dpdf',outfilename,varargin{:});

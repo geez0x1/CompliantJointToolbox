@@ -100,7 +100,7 @@ classdef jointBuilder
             % Check whether the linear model exists
             % This relies on the model function name being equal to
             % the filename (which we require)
-            if (~exist([this.linModelPath, filesep, modelName], 'file'))
+            if (~exist([this.linModelPath, filesep, modelName,'.m'], 'file'))
                 error(['jointBuilder.buildJoint error: Linear model ''' modelName ''' do not exist!']);
             end
             
