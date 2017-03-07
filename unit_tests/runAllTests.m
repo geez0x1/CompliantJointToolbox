@@ -1,3 +1,4 @@
+clc;
 %% Run Tests
 results_JointBuilder        = runtests('jointBuilderTest');
 results_GenericJoint        = runtests('genericJointTest');
@@ -6,7 +7,9 @@ results_bodeTest            = runtests('bodeTest');
 
 
 %% Display Results
-clc;
+display('#####################################')
+display('TEST SUMMARY')
+display('#####################################')
 
 results_JointBuilder
 results_GenericJoint
