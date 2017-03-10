@@ -15,6 +15,44 @@
 %
 % Examples::
 %
+%     %% Instantiate a jointBuilder
+%     jb = jointBuilder;
+% 
+%     %% Build joint model classes
+%     % A linear model of a WALKMAN leg 
+%     % actuator with 10 kNm/rad torsion 
+%     % bar stiffness 
+%     jb.buildJoint('WMBig10k',... parameters
+%         [],... full linear dynamics
+%         [],... no nonlinear dynamics
+%         [],... static electric subsystem
+%         'my_linear_joint'); % class name
+% 
+%     % The actuator with rigid gearbox and
+%     % asymmetric coulomb and viscous friction 
+%     jb.buildJoint('WMBig10k',...parameters
+%         'rigid_gearbox',...  linear dynamics
+%         {'coulomb_asym',...  nonlinear 
+%          'viscous_asym'},... dynamics
+%         [],...     static electric subsystem
+%         'my_nonlinear_joint'); % class name
+% 
+%     % The same actuator with locked output 
+%     %and a full linear electric dynamics
+%     jb.buildJoint('WMBig10k', ... parameters
+%         'rigid_gearbox', ... linear dynamics
+%         {'coulomb_asym',...  nonlinear
+%         'viscous_asym'}, ... dynamics
+%         'electric_dyn',... electro-dynamics
+%         'my_locked_joint');  % class name
+% 
+%     %% Instantiate joint models
+%     % add build directory to search path
+%     addpath(jb.buildDir) 
+%     % declare joint objects
+%     jointA = my_linear_joint;
+%     jointB = my_nonlinear_joint;
+%     jointC = my_locked_joint;
 %
 % Author::
 %  Joern Malzahn
