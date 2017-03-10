@@ -97,7 +97,11 @@ classdef jointBuilder
             % Evaluate parameters
             eval(paramName);
             
-            % Check whether the linear model exists
+            % If model name is empty, use "full_dyn" by default
+            if isempty(modelName)
+                modelName = 'full_dyn'; 
+            end
+            % Otherwise, check whether the linear model exists
             % This relies on the model function name being equal to
             % the filename (which we require)
             if (~exist([this.linModelPath, filesep, modelName,'.m'], 'file'))
