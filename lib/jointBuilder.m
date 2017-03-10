@@ -40,7 +40,7 @@
 %     % The same actuator with locked output 
 %     %and a full linear electric dynamics
 %     jb.buildJoint('WMBig10k', ... parameters
-%         'rigid_gearbox', ... linear dynamics
+%         'output_fixed_rigid_gearbox', ... linear dynamics
 %         {'coulomb_asym',...  nonlinear
 %         'viscous_asym'}, ... dynamics
 %         'electric_dyn',... electro-dynamics

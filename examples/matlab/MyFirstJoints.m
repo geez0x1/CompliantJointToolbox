@@ -29,31 +29,52 @@
 % The text in the following line defines the display name for this Example
 % #! My First Joints
 
-% Create jointBuilder
+%% Instantiate a jointBuilder
 jb = jointBuilder;
-%jb.purge();
 
-% Info
+%% Build joint model classes
 disp('-------------------------------------------------');
 disp('My First Joints: Building a few example joints.');
 disp('-------------------------------------------------');
-disp('1. My_simple_joint:');
-disp('   A simple output-fixed joint with only linear dynamics.');
-disp('   Command: jb.buildJoint(''WMBig10k'', ''output_fixed'', '''', ''My_simple_joint'');');
+disp('1. my_linear_joint:');
+disp('   A linear model of a WALKMAN leg actuator with 10 kNm/rad torque sensor stiffness.');
+disp('   Command: jb.buildJoint(''WMBig10k'', [], [], [],''my_linear_joint'');');
+jb.buildJoint('WMBig10k',... parameters
+    [],... full linear dynamics
+    [],... no nonlinear dynamics
+    [],... static electric subsystem
+    'my_linear_joint'); % class name
 disp('-------------------------------------------------');
 disp('2. My_joint_with_Coulomb_friction:');
-disp('   The same joint with Coulomb friction as nonlinear dynamics term.');
-disp('   Command: jb.buildJoint(''WMBig10k'', ''output_fixed'', ''coulomb'', ''My_joint_with_Coulomb_friction'');');
+disp('   The same actuator model with rigid gearbox and asymmetric Coulomb and viscous friction as nonlinear dynamics term.');
+disp('   Command: jb.buildJoint(''WMBig10k'', ''rigid_gearbox'', {''coulomb_asym'', ''viscous_asym''}, [] ''my_nonlinear_joint'');');
+jb.buildJoint('WMBig10k',...parameters
+    'rigid_gearbox',...  linear dynamics
+    {'coulomb_asym',...  nonlinear 
+     'viscous_asym'},... dynamics
+    [],...     static electric subsystem
+    'my_nonlinear_joint'); % class name
 disp('-------------------------------------------------');
 disp('3. My_complex_joint:');
-disp('   A joint model with multiple nonlinear dynamics terms: asymmetric Coulomb and asymmetric viscous friction.');
-disp('   Command: jb.buildJoint(''WMBig10k'', ''output_fixed'', {''coulomb_asym'', ''viscous_asym''}, ''My_complex_joint'');');
+disp('   Next, the nonlinear rigid gearbox model uses a locked output and electric dynamics including winding inductance.');
+disp('   Command: jb.buildJoint(''WMBig10k'', ''output_fixed_rigid_gearbox'', {''coulomb_asym'', ''viscous_asym''}, ''my_locked_joint'');');
 disp('-------------------------------------------------');
+% In addition, output is locked output 
+%and a full linear electric dynamics
+jb.buildJoint('WMBig10k', ... parameters
+    'output_fixed_rigid_gearbox', ... linear dynamics
+    {'coulomb_asym',...  nonlinear
+    'viscous_asym'}, ... dynamics
+    'electric_dyn',... electro-dynamics
+    'my_locked_joint');  % class name
 
-% Build a few example joints
-jb.buildJoint('WMBig10k', 'output_fixed', '', 'My_simple_joint');
-jb.buildJoint('WMBig10k', 'output_fixed', 'coulomb', 'My_joint_with_Coulomb_friction');
-jb.buildJoint('WMBig10k', 'output_fixed', {'coulomb_asym', 'viscous_asym'}, 'My_complex_joint');
+%% Instantiate joint models
+% add build directory to search path
+addpath(jb.buildDir) 
+% declare joint objects
+jointA = my_linear_joint;
+jointB = my_nonlinear_joint;
+jointC = my_locked_joint;
 
 % Finish up
 disp('Completed.');
