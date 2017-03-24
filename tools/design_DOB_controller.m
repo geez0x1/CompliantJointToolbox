@@ -1,5 +1,5 @@
 % DESIGN_DOB_CONTROLLER Designs all parameters of a DOB based torque control
-% scheme.
+% scheme, with the DOB as an inner loop (open-loop DOB).
 %
 % [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB])
 %
@@ -12,7 +12,8 @@
 % the experimental version.
 % This function returns the approximated closed-loop transfer function
 % Pc, DOB filter Q_td, feed-forward filter Q_ff, DOB plant inversion +
-% filter PQ_td, and feed-forward plant in version + filter PQ_ff.
+% filter PQ_td, and feed-forward plant inversion + filter PQ_ff. If plant
+% inversion is not intended to be used PQ_ff can simply be discarded.
 %
 % Inputs::
 %   jointObj: Joint object
@@ -102,7 +103,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
     %% Build closed-loop system
 
     % Get controlled closed loop dynamics
-    [~, ~, Pc, ~] =  get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch);
+    [~, ~, Pc, ~, ~] =  get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch);
 
 
     %% Design low-pass Butterworth filters
