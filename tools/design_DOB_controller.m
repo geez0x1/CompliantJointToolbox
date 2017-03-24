@@ -1,5 +1,5 @@
 % DESIGN_DOB_CONTROLLER Designs all parameters of a DOB based torque control
-% scheme, with the DOB as an inner loop (open-loop DOB).
+% scheme, with the DOB as an OUTER loop (closed-loop DOB).
 %
 % [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB])
 %
@@ -115,6 +115,8 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
     % Q_ff
     [a, b] = butter(order(Pc), omega_c_FF, 's');
     Q_ff = tf(a,b);
+    
+    % Design DOB TFs by inverting the controlled plant dynamics
 
     % Pc^-1 * Q_td
     PQ_td = inv(Pc) * Q_td;
