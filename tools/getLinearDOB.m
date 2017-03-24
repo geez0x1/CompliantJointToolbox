@@ -50,7 +50,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx , doPlot)
+function [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx, doPlot)
     % Default parameters
     if (~exist('doPlot','var') || isequal(doPlot,[]))
         doPlot = 0;
