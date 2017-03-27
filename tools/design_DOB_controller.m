@@ -103,7 +103,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
     %% Build closed-loop system
 
     % Get controlled closed loop dynamics
-    [~, ~, Pc, ~, ~] =  get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch);
+    [~, ~, Pc, ~] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch);
 
 
     %% Design low-pass Butterworth filters
