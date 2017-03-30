@@ -1,4 +1,6 @@
 clc;
+setCJTPaths;
+
 %% Run Tests
 results_JointBuilder        = runtests('jointBuilderTest');
 results_GenericJoint        = runtests('genericJointTest');
