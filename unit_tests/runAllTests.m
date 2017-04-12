@@ -13,7 +13,9 @@ display('#####################################')
 display('TEST SUMMARY')
 display('#####################################')
 
-results_JointBuilder
-results_GenericJoint
-results_DataSheetGenerator
-results_bodeTest
+summaryTable = ...
+    [ results_JointBuilder.table;
+      results_GenericJoint.table;
+      results_DataSheetGenerator.table;
+      results_bodeTest.table;
+    ]
