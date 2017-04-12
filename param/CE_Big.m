@@ -31,58 +31,44 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-% Transmission ratio
-n = 100;
-
-% Compute inertia distribution ratios
-% This is required to reasonably distribute identified values to individual
-% parts
- % TO BE UPDATED!
-I_m_ds              = 5.480e-5*n^2;         %% Motor rotor inertia [kg m^2] (datasheet)
-I_g_ds              = 2.63e-5*n^2;          %% Gear inertia [kg m^2] (datasheet)
-I_l_ds              = 0.0867;               %% Load inertia [kg m^2]
-I_tot_ds            = I_m_ds + I_g_ds + I_l_ds; %% Total inertia [kg m^2]
-r_I_m               = I_m_ds / I_tot_ds;    %% Motor rotor inertia contribution ratio []
-r_I_g               = I_g_ds / I_tot_ds;    %% Gearbox inertia contribution ratio []
-r_I_l               = I_l_ds / I_tot_ds;    %% Load inertia contribution ratio []
- % TO BE UPDATED!
 
 % Inertiae
-params.('I_m')      = 3.04E-005 * n^2;              %% Motor rotor inertia [kg m^2] % TO BE UPDATED!
-params.('I_g')      = 1.33 * 6.6944E-005 * n^2;     %% Gear inertia [kg m^2] % TO BE UPDATED!
-params.('I_l')      = 8.6719E-006 * n^2;            %% Load inertia [kg m^2] % TO BE UPDATED!
+params.('m')        = 2;                    %% Total mass [kg]
+params.('Im_m')     = 5.480E-5;             %% Motor rotor inertia [kg m^2] % TO BE UPDATED!
+params.('Im_g')     = 2.63E-5;              %% Gear inertia [kg m^2] % TO BE UPDATED!
+params.('I_l')      = 0.0867E-4;            %% Load inertia [kg m^2] % TO BE UPDATED!
 % Stiffnesses
-params.('k_g')      = 31e3;                 %% Gearbox stiffness [Nm/rad] % TO BE UPDATED!
-params.('k_b')      = 31e3;                 %% Torsion bar stiffness [Nm/rad] % TO BE UPDATED! The strain based torque sensor is super stiff.
+params.('k_g')      = 31E3;                 %% Gearbox stiffness [Nm/rad] % TO BE UPDATED!
+params.('k_b')      = 31E3;                 %% Torsion bar stiffness [Nm/rad] % TO BE UPDATED! The strain based torque sensor is super stiff.
 % Linear viscous friction
-params.('d_m')      = 0.0064;               %% Motor Damping [Nms/rad] % TO BE UPDATED!
-params.('d_g')      = 6.0;                  %% Gearbox damping [Nms/rad] % TO BE UPDATED!
+params.('dm_m')     = 0.0064E-4;            %% Motor Damping [Nms/rad] % TO BE UPDATED!
+params.('dm_g')     = 6.0E-4;               %% Gearbox damping [Nms/rad] % TO BE UPDATED!
 params.('d_l')      = 7.0;                  %% Load damping [Nms/rad] % TO BE UPDATED!
 % Asymmetric viscous friction
-params.('d_m_n')    = 0.0064;               %% Motor Damping - negative direction [Nms/rad] % TO BE UPDATED!
-params.('d_g_n')    = 5.0;                  %% Gearbox Damping - negative direction [Nms/rad] % TO BE UPDATED!
+params.('dm_m_n')   = 0.0064E-4;            %% Motor Damping - negative direction [Nms/rad] % TO BE UPDATED!
+params.('dm_g_n')   = 5.0E-4;               %% Gearbox Damping - negative direction [Nms/rad] % TO BE UPDATED!
 params.('d_l_n')    = 5.0;                  %% Load damping - negative direction [Nms/rad] % TO BE UPDATED!
 % Linear internal viscous friction
-params.('d_mg')     = 144.0;                %% Gearbox internal damping [Nms/rad] % TO BE UPDATED!
+params.('dm_mg')    = 144.0E-4;             %% Gearbox internal damping [Nms/rad] % TO BE UPDATED!
 params.('d_gl')     = 2.0;                  %% Torsion bar internal damping [Nms/rad] % TO BE UPDATED!
 % Coulomb friction
-params.('d_cm')     = 3.2;                  %% Motor Coulomb damping [Nm] % TO BE UPDATED!
-params.('d_cg')     = 3.5;                  %% Gearbox Coulomb damping [Nm] % TO BE UPDATED!
+params.('dm_cm')    = 3.2E-4;               %% Motor Coulomb damping [Nm] % TO BE UPDATED!
+params.('dm_cg')    = 3.5E-4;               %% Gearbox Coulomb damping [Nm] % TO BE UPDATED!
 params.('d_cl')     = 0.0;                  %% Load Coulomb damping [Nm] % TO BE UPDATED!
 % Asymmetric Coulomb friction
-params.('d_cm_n')   = 0.0;                  %% Motor Coulomb damping - negative direction [Nm] % TO BE UPDATED!
-params.('d_cg_n')   = 0.0;                  %% Gearbox Coulomb damping - negative direction [Nm] % TO BE UPDATED!
+params.('dm_cm_n')  = 0.0;                  %% Motor Coulomb damping - negative direction [Nm] % TO BE UPDATED!
+params.('dm_cg_n')  = 0.0;                  %% Gearbox Coulomb damping - negative direction [Nm] % TO BE UPDATED!
 params.('d_cl_n')   = 0.0;                  %% Load Coulomb damping - negative direction [Nm] % TO BE UPDATED!
 % Stiction
-params.('d_s')      = 8.9;                  %% Break away torque [Nm]
-params.('v_s')      = 0.01;                 %% Stribeck velocity range [rad/s]
+params.('dm_s')      = 8.9E-4;              %% Break away torque [Nm]
+params.('vm_s')      = 1;                   %% Stribeck velocity range [rad/s]
 % Torque ripple sources
 params.('rip_types')= [1, 2];               %% Torque ripple types (see torque_ripple())
-params.('rip_a1')   = [15e-3*n, 0.1];       %% Cosine amplitudes ([Nm] and/or [], see torque_ripple()) (second param to be updated!)
-params.('rip_a2')   = [0, 0];               %% Sine amplitudes [Nm] ([Nm] and/or [], see torque_ripple())
-params.('rip_f')    = [6*n, 2*n];           %% Spatial frequencies [periods/revolution]
+params.('ripm_a1')  = [15e-3, 0.001];       %% Cosine amplitudes ([Nm] and/or [], see torque_ripple()) (second param to be updated!)
+params.('ripm_a2')  = [0, 0];               %% Sine amplitudes [Nm] ([Nm] and/or [], see torque_ripple())
+params.('ripm_f')   = [6, 2];               %% Spatial frequencies [periods/revolution]
 % Misc
-params.('n')        = n;                    %% Gear ratio []
+params.('n')        = 100;                  %% Transmission ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]
 params.('r')        = 0.0885;               %% Armature resistance [Ohm]
 params.('x')        = 0.000140;             %% Armature inductance [H]
