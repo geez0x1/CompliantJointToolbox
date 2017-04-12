@@ -93,9 +93,9 @@ classdef genericJoint < handle
         vm_s     = 0;           % Stribeck velocity range [rad/s]                       (default: 0)
         % Torque ripple sources
         rip_types = [];         % Torque ripple types (see torque_ripple())             (default: [])
-        rip_a1	= [];           % Cosine amplitudes ([Nm] and/or [])                    (default: [])
-        rip_a2	= [];           % Sine amplitudes ([Nm] and/or [])                      (default: [])
-        rip_f	= [];           % Spatial frequencies [periods/revolution]              (default: [])
+        ripm_a1	= [];           % Cosine amplitudes ([Nm] and/or [])                    (default: [])
+        ripm_a2	= [];           % Sine amplitudes ([Nm] and/or [])                      (default: [])
+        ripm_f	= [];           % Spatial frequencies [periods/revolution]              (default: [])
         % Gear
         n       = 100;          % Transmission ratio [.]                                (default: 100)
         %
@@ -340,6 +340,21 @@ classdef genericJoint < handle
         % Stribeck velocity range [rad/s]
         function out = v_s(this)
             out = this.vm_s * this.n;
+        end
+        
+        %% Torque ripple
+        % Cosine amplitudes ([Nm] and/or [])
+        function out = rip_a1(this)
+            out = this.ripm_a1 * this.n;
+        end
+        % Sine amplitudes ([Nm] and/or [])
+        function out = rip_a2(this)
+            out = this.ripm_a2 * this.n;
+        end
+        
+        % Spatial frequencies [periods/revolution]
+        function out = rip_f(this)
+            out = this.ripm_f * this.n;
         end
         
         %__________________________________________________________________
