@@ -59,51 +59,51 @@ classdef genericJoint < handle
         % Mechanical Properties
         %
         % Dimensions
-        diam 	= 100;      % Actuator diameter [mm]                                (default: 100)
-        len  	= 150;      % Actuator length [mm]                                  (default: 150)
+        diam 	= 100;          % Actuator diameter [mm]                                (default: 100)
+        len  	= 150;          % Actuator length [mm]                                  (default: 150)
         % Inertiae
-        m       = 2;        % Actuator mass [kg]                                    (default: 2)
-        Im_m  	= 0.5480E-4;   % Motor referred motor rotor inertia [kg m^2]            (default: 0.5480E-4)
-        Im_g     = 0.2630E-4;   % Motor referred gear inertia [kg m^2]                   (default: 0.2630E-4)
-        I_l     = 0.0867;    % Motor referred load inertia [kg m^2]                   (default: 0.0867)
+        m       = 2;            % Actuator mass [kg]                                    (default: 2)
+        Im_m  	= 0.5480E-4;    % Motor referred motor rotor inertia [kg m^2]           (default: 0.5480E-4)
+        Im_g     = 0.2630E-4;   % Motor referred gear inertia [kg m^2]                  (default: 0.2630E-4)
+        I_l     = 0.0867;       % Motor referred load inertia [kg m^2]                  (default: 0.0867)
         % Stiffnesses
-        k_g     = 31e3;     % Gearbox stiffness [Nm/rad]                            (default: 31e3)
-        k_b     = 10e3;     % Torsion bar stiffness [Nm/rad]                        (default: 10e3)
+        k_g     = 31e3;         % Gearbox stiffness [Nm/rad]                            (default: 31e3)
+        k_b     = 10e3;         % Torsion bar stiffness [Nm/rad]                        (default: 10e3)
         % Linear viscous friction
-        dm_m     = 14.786E-4;   % Motor damping [Nms/rad]                               (default: 14.786)
-        dm_g     = 0;        % Gearbox damping [Nms/rad]                             (default: 0)
-        d_l     = 0;        % Load damping [Nms/rad]                                (default: 0)
+        dm_m     = 14.786E-4;   % Motor damping [Nms/rad]                               (default: 14.786E-4)
+        dm_g     = 0;           % Gearbox damping [Nms/rad]                             (default: 0)
+        d_l     = 0;            % Load damping [Nms/rad]                                (default: 0)
         % Asymmetric viscous friction
-        dm_m_n   = 14.786E-4;   % Motor Damping - negative direction [Nms/rad]          (default: 14.786)
-        dm_g_n   = 0;        % Gearbox Damping - negative direction [Nms/rad]        (default: 0)
-        d_l_n   = 0;        % Load damping - negative direction [Nms/rad]           (default: 0)
+        dm_m_n   = 14.786E-4;   % Motor Damping - negative direction [Nms/rad]          (default: 14.786E-4)
+        dm_g_n   = 0;           % Gearbox Damping - negative direction [Nms/rad]        (default: 0)
+        d_l_n   = 0;            % Load damping - negative direction [Nms/rad]           (default: 0)
         % Linear internal viscous friction
         dm_mg    = 300E-4;      % Gearbox internal damping [Nms/rad]                    (default: 300)
-        d_gl    = 35;        % Torsion bar internal damping [Nms/rad]                (default: 35)
+        d_gl    = 35;           % Torsion bar internal damping [Nms/rad]                (default: 35)
         % Coulomb friction
-        dm_cm    = 0.1858E-4;   % Motor Coulomb damping [Nm]                            (default: 0.1858)
-        dm_cg    = 0;        % Gearbox Coulomb damping [Nm]                          (default: 0)
-        d_cl    = 0;        % Load Coulomb damping [Nm]                             (default: 0)
+        dm_cm    = 0.1858E-4;   % Motor Coulomb damping [Nm]                            (default: 0.1858E-4)
+        dm_cg    = 0;           % Gearbox Coulomb damping [Nm]                          (default: 0)
+        d_cl    = 0;            % Load Coulomb damping [Nm]                             (default: 0)
         % Asymmetric Coulomb friction
-        dm_cm_n  = 0.1858E-4    % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858)
-        dm_cg_n  = 0;        % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
-        d_cl_n  = 0;        % Load Coulomb damping - negative direction [Nm]        (default: 0)
+        dm_cm_n  = 0.1858E-4    % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858E-4)
+        dm_cg_n  = 0;           % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
+        d_cl_n  = 0;            % Load Coulomb damping - negative direction [Nm]        (default: 0)
         % Stiction
-        dm_s     = 0;        % Break away torque [Nm]                                (default: 0)
-        vm_s     = 0;        % Stribeck velocity range [rad/s]                       (default: 0)
+        dm_s     = 0;           % Break away torque [Nm]                                (default: 0)
+        vm_s     = 0;           % Stribeck velocity range [rad/s]                       (default: 0)
         % Torque ripple sources
-        rip_types = [];     % Torque ripple types (see torque_ripple())             (default: [])
-        rip_a1	= [];       % Cosine amplitudes ([Nm] and/or [])                    (default: [])
-        rip_a2	= [];       % Sine amplitudes ([Nm] and/or [])                      (default: [])
-        rip_f	= [];       % Spatial frequencies [periods/revolution]              (default: [])
+        rip_types = [];         % Torque ripple types (see torque_ripple())             (default: [])
+        rip_a1	= [];           % Cosine amplitudes ([Nm] and/or [])                    (default: [])
+        rip_a2	= [];           % Sine amplitudes ([Nm] and/or [])                      (default: [])
+        rip_f	= [];           % Spatial frequencies [periods/revolution]              (default: [])
         % Gear
-        n       = 100;      % Transmission ratio [.]                                (default: 100)
+        n       = 100;          % Transmission ratio [.]                                (default: 100)
         %
         % Electrical Properties
         %
         k_t  	= 0.0453;   % Torque constant [Nm/A]                                (default: 0.0453)
         r       = 0.0885;   % Armature resistance at normal temperature [Ohm]       (default: 0.0885)
-        x       = 1.4E-4;   % Armature inductance [H]                               (default: 1.4e-4)
+        x       = 1.4E-4;   % Armature inductance [H]                               (default: 1.4E-4)
         %
         % Operating/max conditions
         %
