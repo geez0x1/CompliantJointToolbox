@@ -32,9 +32,9 @@
 
 params.('n')        = 100;                       %% Transmission ratio []
 % Inertiae
-params.('I_m')      = 0.55e-4 * params.('n')^2;  %% Motor rotor inertia [kg m^2]
-params.('I_g')      = 0.263e-4 * params.('n')^2; %% Gear inertia [kg m^2]
-params.('I_l')      = 1.137e-4;                  %% Torsion bar inertia [kg m^2]
+params.('I_m')      = 0.55e-4;                   %% Motor rotor inertia [kg m^2]
+params.('I_g')      = 0.263e-4;                  %% Gear inertia [kg m^2]
+params.('I_l')      = 1.137e-8;                  %% Torsion bar inertia [kg m^2]
 % Stiffnesses
 params.('k_g')      = 30e3;                      %% Gearbox stiffness [Nm/rad]
 params.('k_b')      = 2700;                      %% Torsion bar stiffness [Nm/rad]

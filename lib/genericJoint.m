@@ -63,34 +63,34 @@ classdef genericJoint < handle
         len  	= 150;      % Actuator length [mm]                                  (default: 150)
         % Inertiae
         m       = 2;        % Actuator mass [kg]                                    (default: 2)
-        I_m  	= 0.5480;   % Link referred motor rotor inertia [kg m^2]            (default: 0.5480)
-        I_g     = 0.2630;   % Link referred gear inertia [kg m^2]                   (default: 0.2630)
-        I_l     = 0.0867    % Link referred load inertia [kg m^2]                   (default: 0.0867)
+        Im_m  	= 0.5480E-4;   % Motor referred motor rotor inertia [kg m^2]            (default: 0.5480E-4)
+        Im_g     = 0.2630E-4;   % Motor referred gear inertia [kg m^2]                   (default: 0.2630E-4)
+        I_l     = 0.0867;    % Motor referred load inertia [kg m^2]                   (default: 0.0867)
         % Stiffnesses
         k_g     = 31e3;     % Gearbox stiffness [Nm/rad]                            (default: 31e3)
         k_b     = 10e3;     % Torsion bar stiffness [Nm/rad]                        (default: 10e3)
         % Linear viscous friction
-        d_m     = 14.786;   % Motor damping [Nms/rad]                               (default: 14.786)
-        d_g     = 0;        % Gearbox damping [Nms/rad]                             (default: 0)
+        dm_m     = 14.786E-4;   % Motor damping [Nms/rad]                               (default: 14.786)
+        dm_g     = 0;        % Gearbox damping [Nms/rad]                             (default: 0)
         d_l     = 0;        % Load damping [Nms/rad]                                (default: 0)
         % Asymmetric viscous friction
-        d_m_n   = 14.786;   % Motor Damping - negative direction [Nms/rad]          (default: 14.786)
-        d_g_n   = 0;        % Gearbox Damping - negative direction [Nms/rad]        (default: 0)
+        dm_m_n   = 14.786E-4;   % Motor Damping - negative direction [Nms/rad]          (default: 14.786)
+        dm_g_n   = 0;        % Gearbox Damping - negative direction [Nms/rad]        (default: 0)
         d_l_n   = 0;        % Load damping - negative direction [Nms/rad]           (default: 0)
         % Linear internal viscous friction
-        d_mg    = 300;      % Gearbox internal damping [Nms/rad]                    (default: 300)
-        d_gl    = 35;       % Torsion bar internal damping [Nms/rad]                (default: 35)
+        dm_mg    = 300E-4;      % Gearbox internal damping [Nms/rad]                    (default: 300)
+        d_gl    = 35;        % Torsion bar internal damping [Nms/rad]                (default: 35)
         % Coulomb friction
-        d_cm    = 0.1858;   % Motor Coulomb damping [Nm]                            (default: 0.1858)
-        d_cg    = 0;        % Gearbox Coulomb damping [Nm]                          (default: 0)
+        dm_cm    = 0.1858E-4;   % Motor Coulomb damping [Nm]                            (default: 0.1858)
+        dm_cg    = 0;        % Gearbox Coulomb damping [Nm]                          (default: 0)
         d_cl    = 0;        % Load Coulomb damping [Nm]                             (default: 0)
         % Asymmetric Coulomb friction
-        d_cm_n  = 0.1858    % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858)
-        d_cg_n  = 0;        % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
+        dm_cm_n  = 0.1858E-4    % Motor Coulomb damping - negative direction [Nm]       (default: 0.1858)
+        dm_cg_n  = 0;        % Gearbox Coulomb damping - negative direction [Nm]     (default: 0)
         d_cl_n  = 0;        % Load Coulomb damping - negative direction [Nm]        (default: 0)
         % Stiction
-        d_s     = 0;        % Break away torque [Nm]                                (default: 0)
-        v_s     = 0;        % Stribeck velocity range [rad/s]                       (default: 0)
+        dm_s     = 0;        % Break away torque [Nm]                                (default: 0)
+        vm_s     = 0;        % Stribeck velocity range [rad/s]                       (default: 0)
         % Torque ripple sources
         rip_types = [];     % Torque ripple types (see torque_ripple())             (default: [])
         rip_a1	= [];       % Cosine amplitudes ([Nm] and/or [])                    (default: [])
@@ -103,7 +103,7 @@ classdef genericJoint < handle
         %
         k_t  	= 0.0453;   % Torque constant [Nm/A]                                (default: 0.0453)
         r       = 0.0885;   % Armature resistance at normal temperature [Ohm]       (default: 0.0885)
-        x       = 1.4e-4;   % Armature inductance [H]                               (default: 1.4e-4)
+        x       = 1.4E-4;   % Armature inductance [H]                               (default: 1.4e-4)
         %
         % Operating/max conditions
         %
@@ -117,8 +117,8 @@ classdef genericJoint < handle
         r_th2   = 3.45;     % Thermal Resistance Housing to Air [K/W]               (default: 3.45)
         T_thw   = 3.96;     % Thermal Time Constant of the Windings [s]             (default: 3.96)
         T_thm   = 1240;     % Thermal Time Constant of the Motor [s]                (default: 1240)
-        Tmp_WMax = 120;     % Maximum Armature Temperature [ï¿½C]                     (default: 120)
-        Tmp_ANom = 25;      % Normal Ambient Temperature [ï¿½C]                       (default: 25)
+        Tmp_WMax = 120;     % Maximum Armature Temperature [°C]                     (default: 120)
+        Tmp_ANom = 25;      % Normal Ambient Temperature [°C]                       (default: 25)
         
         % Desciptive Properties
         name                % Joint name
@@ -203,10 +203,143 @@ classdef genericJoint < handle
             p       = properties(this);
             
             % Put all properties
-            for iP = 1:numel(p);
+            for iP = 1:numel(p)
                 params.(p{iP}) = this.(p{iP});
             end
             
+        end
+  
+        %__________________________________________________________________
+        %           Properties Transformed to the Load Side
+        %__________________________________________________________________
+        %
+        % The friction and inertia parameters in the paramter files are 
+        % expressed with respect to the gearbox input side (motor side).
+        % The following methods provide the equivalent values for these 
+        % quantities when they are considered at the gearbox output side 
+        % (load side) due to the gearbox.
+        
+         %__________________________________________________________________
+         % Motor inertia [kgm/s^2]
+        function out = I_m(this)
+            out = this.Im_m * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Gearbox inertia [kgm/s^2]
+        function out = I_g(this)
+            out = this.Im_g * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Load inertia [kgm/s^2]
+        function out = Im_l(this)
+            out = this.I_l / this.n^2;
+        end
+        
+        %% Linear viscous friction
+        %__________________________________________________________________
+        % Motor Damping [Nms/rad]
+        function out = d_m(this)
+            out = this.dm_m * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Gearbox damping [Nms/rad]
+        function out = d_g(this)
+            out = this.dm_g * this.n^2;
+        end
+        %  params.('dm_g')      = 12.1997;
+        %__________________________________________________________________
+        % Torsion bar damping [Nms/rad]
+        function out = dm_l(this)
+            out = this.d_l / this.n^2;
+        end
+        
+        
+        %% Asymmetric viscous friction
+        %__________________________________________________________________
+        % Motor Damping - negative direction [Nms/rad]
+        function out = d_m_n(this)
+            out = this.dm_m_n * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Gearbox Damping - negative direction [Nms/rad]
+        function out = d_g_n(this)
+            out = this.dm_g_n * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Torsion bar damping - negative direction [Nms/rad]
+        function out = dm_l_n(this)
+            out = this.d_l_n / this.n^2;
+        end
+        
+        
+        % Linear internal viscous friction
+        %__________________________________________________________________
+        %% Gearbox internal damping [Nms/rad] (not identified)
+        function out = d_mg(this)
+            out = this.dm_mg * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Torsion bar internal damping [Nms/rad] (not identified)
+        function out = dm_gl(this)
+            out = this.d_gl / this.n^2;
+        end
+        
+        %% Coulomb friction
+        
+        %__________________________________________________________________
+        % Motor Coulomb damping [Nm]
+        function out = d_cm(this)
+            out = this.dm_cm * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Gearbox Coulomb damping [Nm]
+        function out = d_cg(this)
+            out = this.dm_cg * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Torsion bar Coulomb damping [Nm]
+        function out = dm_cl(this)
+            out = this.d_cl / this.n^2;
+        end
+        
+        %% Asymmetric Coulomb friction
+        
+        %__________________________________________________________________
+        % Motor Coulomb damping - negative direction [Nm]
+        function out = d_cm_n(this)
+            out = this.dm_cm_n * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Gearbox Coulomb damping - negative direction [Nm]
+        function out = d_cg_n(this)
+            out = this.dm_cg_n * this.n^2;
+        end
+        
+        %__________________________________________________________________
+        % Torsion bar Coulomb damping - negative direction [Nm]
+        function out = dm_cl_n(this)
+            out = this.d_cl_n / this.n^2;
+        end
+        
+        %% Stiction
+        %__________________________________________________________________
+        % Break away torque [Nm]
+        function out = d_s(this)
+            out = this.dm_s * this.n^2;
+        end
+        %__________________________________________________________________
+        % Stribeck velocity range [rad/s]
+        function out = v_s(this)
+            out = this.vm_s * this.n;
         end
         
         %__________________________________________________________________

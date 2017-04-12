@@ -33,21 +33,12 @@
 % Transmission ratio
 n = 100;
 
-% Compute inertia distribution ratios
-% This is required to reasonably distribute identified values to individual
-% parts
-I_m_ds              = 5.480e-5*n^2;         %% Motor rotor inertia [kg m^2] (datasheet)
-I_g_ds              = 2.63e-5*n^2;          %% Gear inertia [kg m^2] (datasheet)
-I_l_ds              = 0.0867;               %% Load inertia [kg m^2] (datasheet)
-I_tot_ds            = I_m_ds + I_g_ds + I_l_ds; %% Total inertia [kg m^2]
-r_I_m               = I_m_ds / I_tot_ds;    %% Motor rotor inertia contribution ratio []
-r_I_g               = I_g_ds / I_tot_ds;    %% Gearbox inertia contribution ratio []
-r_I_l               = I_l_ds / I_tot_ds;    %% Load inertia contribution ratio []
 
 % Inertiae
-params.('I_m')      = r_I_m * 1.1001;       %% Motor rotor inertia [kg m^2]
-params.('I_g')      = r_I_g * 1.1001;       %% Gear inertia [kg m^2]
-params.('I_l')      = r_I_l * 1.1001;       %% Load inertia [kg m^2]
+params.('m')        = 2;                    %% Total mass [kg]
+params.('J_m')      = 5.480e-5;             %% Motor rotor inertia [kg m^2]
+params.('J_g')      = 2.63e-5;              %% Gear inertia [kg m^2]
+params.('J_l')      = 0.0867e-4;            %% Load inertia [kg m^2]
 % Stiffnesses
 params.('k_g')      = 75e3;                 %% Gearbox stiffness [Nm/rad]
 params.('k_b')      = 12823;                %% Torsion bar stiffness [Nm/rad]

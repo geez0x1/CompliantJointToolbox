@@ -34,23 +34,10 @@
 % Transmission ratio
 n = 100;
 
-% Compute inertia distribution ratios
-% This is required to reasonably distribute identified values to individual
-% parts
- % TO BE UPDATED!
-I_m_ds              = 5.480e-5*n^2;         %% Motor rotor inertia [kg m^2] (datasheet)
-I_g_ds              = 2.63e-5*n^2;          %% Gear inertia [kg m^2] (datasheet)
-I_l_ds              = 0.0867;               %% Load inertia [kg m^2]
-I_tot_ds            = I_m_ds + I_g_ds + I_l_ds; %% Total inertia [kg m^2]
-r_I_m               = I_m_ds / I_tot_ds;    %% Motor rotor inertia contribution ratio []
-r_I_g               = I_g_ds / I_tot_ds;    %% Gearbox inertia contribution ratio []
-r_I_l               = I_l_ds / I_tot_ds;    %% Load inertia contribution ratio []
- % TO BE UPDATED!
-
 % Inertiae
-params.('I_m')      = 3.04E-005 * n^2;              %% Motor rotor inertia [kg m^2] % TO BE UPDATED!
-params.('I_g')      = 1.33 * 6.6944E-005 * n^2;     %% Gear inertia [kg m^2] % TO BE UPDATED!
-params.('I_l')      = 8.6719E-006 * n^2;            %% Load inertia [kg m^2] % TO BE UPDATED!
+params.('J_m')      = 5.480e-5;             %% Motor rotor inertia [kg m^2] % TO BE UPDATED!
+params.('J_g')      = 2.63e-5;              %% Gear inertia [kg m^2] % TO BE UPDATED!
+params.('J_l')      = 0.0867e-4;            %% Load inertia [kg m^2] % TO BE UPDATED!
 % Stiffnesses
 params.('k_g')      = 31e3;                 %% Gearbox stiffness [Nm/rad] % TO BE UPDATED!
 params.('k_b')      = 31e3;                 %% Torsion bar stiffness [Nm/rad] % TO BE UPDATED! The strain based torque sensor is super stiff.
