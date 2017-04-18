@@ -1,15 +1,19 @@
 Library {
   Name			  "SEA_library_models"
-  Version		  8.3
-  MdlSubVersion		  0
+  Version		  8.8
   SavedCharacterEncoding  "UTF-8"
+  LogicAnalyzerGraphicalSettings ""
+  LogicAnalyzerPlugin	  "on"
+  LogicAnalyzerSignalOrdering ""
+  DiagnosticSuppressor	  "on"
+  SuppressorTable	  "22 serialization::archive 11 0 3 0 0 0 8 0"
   LibraryType		  "BlockLibrary"
-  SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
+  LastSavedArchitecture	  "win64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -19,7 +23,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-970.0, -75.0, 746.0, 736.0]
+      Location		      [-1631.0, 138.0, 1696.0, 1062.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -36,17 +40,52 @@ Library {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"4"
-	Extents			[503.0, 570.0]
-	ZoomFactor		[1.5]
-	Offset			[77.080952380952112, 112.64523809523854]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "68"
+	  Extents		  [1453.0, 889.0]
+	  ZoomFactor		  [1.5]
+	  Offset		  [-212.5172619047629, 236.61666666666719]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "3"
+	  Extents		  [1453.0, 889.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [1445.2880952380897, -67.3023809523807]
+	}
+	PropName		"EditorsInfo"
       }
+      Object {
+	$PropName		"DockComponentsInfo"
+	$ObjectID		7
+	$ClassName		"Simulink.DockComponentInfo"
+	Type			"GLUE2:PropertyInspector"
+	ID			"Property Inspector"
+	Visible			[0]
+	CreateCallback		""
+	UserData		""
+	Floating		[0]
+	DockPosition		"Right"
+	Width			[640]
+	Height			[480]
+      }
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADsfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOQAAA7EAAABfAP///wAAAAEAAAAAAAAAAPwCA"
+      "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
+      "QBjAHQAbwByAAAAAAD/////AAAAJwD///8AAAXPAAADsQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wEAAAB5/////wAAAAAAAAAA/////wEAAADa/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAEo/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
   Created		  "Thu Nov 05 10:47:58 2015"
@@ -55,9 +94,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "joern"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Dec 12 14:52:25 2016"
-  RTWModifiedTimeStamp	  403455092
-  ModelVersionFormat	  "1.%<AutoIncrement:104>"
+  LastModifiedDate	  "Tue Apr 18 15:03:15 2017"
+  RTWModifiedTimeStamp	  414428594
+  ModelVersionFormat	  "1.%<AutoIncrement:130>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -65,6 +104,10 @@ Library {
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
+  ShowEditTimeErrors	  on
+  ShowEditTimeWarnings	  on
+  ShowEditTimeAdvisorChecks off
+  ShowPortUnits		  off
   ShowDesignRanges	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
@@ -73,14 +116,18 @@ Library {
   ShowSignalResolutionIcons on
   ShowViewerIcons	  on
   SortedOrder		  off
+  VariantCondition	  off
   ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
+  ShowVisualizeInsertedRTB on
+  ShowMarkup		  on
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
+  FunctionConnectors	  off
   BrowserLookUnderMasks	  off
   SimulationMode	  "normal"
   PauseTimes		  "5"
@@ -91,22 +138,6 @@ Library {
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
-  RecordCoverage	  off
-  CovSaveName		  "covdata"
-  CovMetricSettings	  "dw"
-  CovNameIncrementing	  off
-  CovHtmlReporting	  on
-  CovForceBlockReductionOff on
-  CovEnableCumulative	  on
-  covSaveCumulativeToWorkspaceVar on
-  CovSaveSingleToWorkspaceVar on
-  CovCumulativeReport	  off
-  CovReportOnPause	  on
-  CovModelRefEnable	  "Off"
-  CovExternalEMLEnable	  off
-  CovSFcnEnable		  off
-  CovBoundaryAbsTol	  0.000010
-  CovBoundaryRelTol	  0.010000
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -134,14 +165,18 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      6
-      Version		      "1.14.2"
+      $ObjectID		      8
+      Version		      "1.16.5"
+      DisabledProps	      []
+      Description	      ""
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  7
-	  Version		  "1.14.2"
+	  $ObjectID		  9
+	  Version		  "1.16.5"
+	  DisabledProps		  []
+	  Description		  ""
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -158,7 +193,7 @@ Library {
 	  MinStep		  "auto"
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
-	  SolverMode		  "Auto"
+	  EnableMultiTasking	  on
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
@@ -168,15 +203,20 @@ Library {
 	  ZeroCrossControl	  "UseLocalSettings"
 	  ZeroCrossAlgorithm	  "Nonadaptive"
 	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverInfoToggleStatus  off
+	  IsAutoAppliedInSIP	  off
 	  SolverResetMethod	  "Fast"
 	  PositivePriorityOrder	  off
 	  AutoInsertRateTranBlk	  off
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
+	  SampleTimeProperty	  []
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  8
-	  Version		  "1.14.2"
+	  $ObjectID		  10
+	  Version		  "1.16.5"
+	  DisabledProps		  []
+	  Description		  ""
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -195,6 +235,8 @@ Library {
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
 	  VisualizeSimOutput	  on
+	  StreamToWorkspace	  off
+	  StreamVariableName	  "streamout"
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -206,10 +248,13 @@ Library {
 	  OutputTimes		  "[]"
 	  ReturnWorkspaceOutputsName "out"
 	  Refine		  "1"
+	  LoggingToFile		  off
+	  LoggingFileName	  "out.mat"
+	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  9
-	  Version		  "1.14.2"
+	  $ObjectID		  11
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -223,11 +268,12 @@ Library {
 	    Cell		    "UseSpecifiedMinMax"
 	    PropName		    "DisabledProps"
 	  }
+	  Description		  ""
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
-	  InlineParams		  off
-	  UseIntDivNetSlope	  off
+	  DefaultParameterBehavior "Tunable"
+	  UseDivisionForNetSlopeComputation "off"
 	  UseFloatMulNetSlope	  off
 	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
@@ -238,38 +284,42 @@ Library {
 	  CachingGlobalReferences off
 	  GlobalBufferReuse	  on
 	  StrengthReduction	  off
+	  AdvancedOptControl	  ""
 	  ExpressionFolding	  on
 	  BooleansAsBitfields	  off
 	  BitfieldContainerType	  "uint_T"
 	  EnableMemcpy		  on
 	  MemcpyThreshold	  64
 	  PassReuseOutputArgsAs	  "Structure reference"
+	  PassReuseOutputArgsThreshold 12
 	  ExpressionDepthLimit	  128
-	  FoldNonRolledExpr	  on
 	  LocalBlockOutputs	  on
 	  RollThreshold		  5
-	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
 	  ActiveStateOutputEnumStorageType "Native Integer"
-	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
 	  InitFltsAndDblsToZero	  off
 	  NoFixptDivByZeroProtection off
 	  EfficientFloat2IntCast  off
 	  EfficientMapNaN2IntZero on
-	  OptimizeModelRefInitCode off
 	  LifeSpan		  "inf"
 	  MaxStackSize		  "Inherit from target"
 	  BufferReusableBoundary  on
-	  SimCompilerOptimization "Off"
+	  SimCompilerOptimization "off"
 	  AccelVerboseBuild	  off
-	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  10
-	  Version		  "1.14.2"
+	  $ObjectID		  12
+	  Version		  "1.16.5"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "UseOnlyExistingSharedCode"
+	    PropName		    "DisabledProps"
+	  }
+	  Description		  ""
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -296,7 +346,6 @@ Library {
 	  IgnoredZcDiagnostic	  "warning"
 	  SolverPrmCheckMsg	  "warning"
 	  InheritedTsInSrcMsg	  "warning"
-	  DiscreteInheritContinuousMsg "warning"
 	  MultiTaskDSMMsg	  "warning"
 	  MultiTaskCondExecSysMsg "none"
 	  MultiTaskRateTransMsg	  "error"
@@ -318,23 +367,24 @@ Library {
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
 	  InvalidFcnCallConnMsg	  "error"
-	  FcnCallInpInsideContextMsg "EnableAllAsError"
+	  FcnCallInpInsideContextMsg "error"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
+	  UseOnlyExistingSharedCode "error"
 	  SFcnCompatibilityMsg	  "none"
 	  FrameProcessingCompatibilityMsg "error"
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
 	  AssertControl		  "UseLocalSettings"
-	  EnableOverflowDetection off
+	  AllowSymbolicDim	  on
+	  RowMajorDimensionSupport off
 	  ModelReferenceIOMsg	  "none"
 	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
 	  ModelReferenceVersionMismatchMessage "none"
 	  ModelReferenceIOMismatchMessage "none"
-	  ModelReferenceCSMismatchMessage "none"
 	  UnknownTsInhSupMsg	  "warning"
 	  ModelReferenceDataLoggingMessage "warning"
 	  ModelReferenceSymbolNameMessage "warning"
@@ -346,20 +396,33 @@ Library {
 	  StrictBusMsg		  "None"
 	  BusNameAdapt		  "WarnAndRepair"
 	  NonBusSignalsTreatedAsBus "none"
-	  LoggingUnavailableSignals "error"
+	  SymbolicDimMinMaxWarning "warning"
+	  LossOfSymbolicDimsSimulationWarning "warning"
+	  LossOfSymbolicDimsCodeGenerationWarning "error"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
 	  SFInvalidInputDataAccessInChartInitDiag "warning"
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
-	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUnreachableExecutionPathDiag "warning"
 	  SFUndirectedBroadcastEventsDiag "warning"
 	  SFTransitionActionBeforeConditionDiag	"warning"
+	  SFOutputUsedAsStateInMooreChartDiag "error"
+	  SFTemporalDelaySmallerThanSampleTimeDiag "warning"
+	  SFSelfTransitionDiag	  "warning"
+	  SFExecutionAtInitializationDiag "none"
+	  SFMachineParentedDataDiag "warning"
+	  IntegerSaturationMsg	  "warning"
+	  AllowedUnitSystems	  "all"
+	  UnitsInconsistencyMsg	  "warning"
+	  AllowAutomaticUnitConversions	on
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  11
-	  Version		  "1.14.2"
+	  $ObjectID		  13
+	  Version		  "1.16.5"
+	  DisabledProps		  []
+	  Description		  ""
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -368,6 +431,8 @@ Library {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
+	  ProdBitPerSizeT	  32
+	  ProdBitPerPtrDiffT	  32
 	  ProdLargestAtomicInteger "Char"
 	  ProdLargestAtomicFloat  "None"
 	  ProdIntDivRoundTo	  "Undefined"
@@ -384,6 +449,8 @@ Library {
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
+	  TargetBitPerSizeT	  32
+	  TargetBitPerPtrDiffT	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
@@ -391,50 +458,67 @@ Library {
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
-	  TargetTypeEmulationWarnSuppressLevel 0
 	  TargetPreprocMaxBitsSint 32
 	  TargetPreprocMaxBitsUint 32
 	  TargetHWDeviceType	  "Specified"
 	  TargetUnknown		  off
 	  ProdEqTarget		  on
+	  UseEmbeddedCoderFeatures on
+	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  12
-	  Version		  "1.14.2"
+	  $ObjectID		  14
+	  Version		  "1.16.5"
+	  DisabledProps		  []
+	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  EnableRefExpFcnMdlSchedulingChecks on
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
 	  ParallelModelReferenceErrorOnInvalidPool on
 	  ParallelModelReferenceMATLABWorkerInit "None"
 	  ModelReferenceNumInstancesAllowed "Multi"
 	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelDependencies	  ""
 	  ModelReferencePassRootInputsByReference on
 	  ModelReferenceMinAlgLoopOccurrences off
 	  PropagateSignalLabelsOutOfModel off
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  13
-	  Version		  "1.14.2"
-	  SFSimEnableDebug	  on
-	  SFSimOverflowDetection  on
+	  $ObjectID		  15
+	  Version		  "1.16.5"
+	  DisabledProps		  []
+	  Description		  ""
+	  SimCustomSourceCode	  ""
+	  SimCustomHeaderCode	  ""
+	  SimCustomInitializer	  ""
+	  SimCustomTerminator	  ""
+	  SimReservedNameArray	  []
+	  SimUserSources	  ""
+	  SimUserIncludeDirs	  ""
+	  SimUserLibraries	  ""
+	  SimUserDefines	  ""
+	  SimCustomCompilerFlags  ""
+	  SimCustomLinkerFlags	  ""
 	  SFSimEcho		  on
-	  SimBlas		  on
 	  SimCtrlC		  on
-	  SimExtrinsic		  on
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
 	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
+	  ModelFunctionsGlobalVisibility "on"
+	  CompileTimeRecursionLimit 50
+	  EnableRuntimeRecursion  on
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  14
-	  Version		  "1.14.2"
+	  $ObjectID		  16
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
-	    Dimension		    15
+	    Dimension		    16
 	    Cell		    "IncludeHyperlinkInReport"
 	    Cell		    "GenerateTraceInfo"
 	    Cell		    "GenerateTraceReport"
@@ -450,9 +534,11 @@ Library {
 	    Cell		    "CodeExecutionProfiling"
 	    Cell		    "CodeProfilingSaveOptions"
 	    Cell		    "CodeProfilingInstrumentation"
+	    Cell		    "GenerateMissedCodeReplacementReport"
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
+	  HardwareBoard		  "None"
 	  TLCOptions		  ""
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
@@ -466,15 +552,11 @@ Library {
 	  SaveLog		  off
 	  RTWVerbose		  on
 	  RetainRTWFile		  off
+	  RTWBuildHooks		  []
 	  ProfileTLC		  off
 	  TLCDebug		  off
 	  TLCCoverage		  off
 	  TLCAssert		  off
-	  ProcessScriptMode	  "Default"
-	  ConfigurationMode	  "Optimized"
-	  ProcessScript		  ""
-	  ConfigurationScript	  ""
-	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
 	  CustomSourceCode	  ""
@@ -482,10 +564,13 @@ Library {
 	  CustomInclude		  ""
 	  CustomSource		  ""
 	  CustomLibrary		  ""
+	  CustomDefine		  ""
+	  CustomLAPACKCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
 	  BuildConfiguration	  "Faster Builds"
+	  CustomToolchainOptions  []
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
 	  PortableWordSizes	  off
@@ -497,31 +582,29 @@ Library {
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
-	  IncludeERTFirstTime	  off
 	  GenerateTraceInfo	  off
 	  GenerateTraceReport	  off
 	  GenerateTraceReportSl	  off
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
-	  GenerateCodeInfo	  off
 	  GenerateWebview	  off
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
-	  RTWCompilerOptimization "Off"
+	  GenerateMissedCodeReplacementReport off
+	  RTWCompilerOptimization "off"
+	  ObjectivePriorities	  []
 	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
-	  CustomRebuildMode	  "OnUpdate"
-	  DataInitializer	  ""
 	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      15
-	      Version		      "1.14.2"
+	      $ObjectID		      17
+	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
-		Dimension		23
+		Dimension		25
 		Cell			"IgnoreCustomStorageClasses"
 		Cell			"IgnoreTestpoints"
 		Cell			"InsertBlockDesc"
@@ -545,8 +628,12 @@ Library {
 		Cell			"CustomSymbolStrMacro"
 		Cell			"CustomSymbolStrUtil"
 		Cell			"ReqsInCode"
+		Cell			"CustomSymbolStrModelFcn"
+		Cell			"CustomUserTokenString"
 		PropName		"DisabledProps"
 	      }
+	      Description	      ""
+	      Comment		      ""
 	      ForceParamTrailComments off
 	      GenerateComments	      on
 	      CommentStyle	      "Auto"
@@ -568,31 +655,39 @@ Library {
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
 	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrModelFcn "$R$N"
 	      CustomSymbolStrFcnArg   "rt$I$N$M"
 	      CustomSymbolStrBlkIO    "rtb_$N$M"
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
 	      CustomSymbolStrUtil     "$N$C"
+	      CustomUserTokenString   ""
+	      CustomCommentsFcn	      ""
 	      DefineNamingRule	      "None"
+	      DefineNamingFcn	      ""
 	      ParamNamingRule	      "None"
+	      ParamNamingFcn	      ""
 	      SignalNamingRule	      "None"
+	      SignalNamingFcn	      ""
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
+	      InternalIdentifierFile  ""
 	      InternalIdentifier      "Shortened"
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
+	      ReservedNameArray	      []
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      16
-	      Version		      "1.14.2"
+	      $ObjectID		      18
+	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
-		Dimension		14
+		Dimension		17
 		Cell			"GeneratePreprocessorConditionals"
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"SupportNonInlinedSFcns"
@@ -607,8 +702,12 @@ Library {
 		Cell			"SupportComplex"
 		Cell			"SupportAbsoluteTime"
 		Cell			"SupportContinuousTime"
+		Cell			"ExistingSharedCode"
+		Cell			"RemoveDisableFunc"
+		Cell			"RemoveResetFunc"
 		PropName		"DisabledProps"
 	      }
+	      Description	      ""
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ""
 	      TargetPreCompLibLocation ""
@@ -620,6 +719,8 @@ Library {
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
+	      InferredTypesCompatibility off
+	      ExistingSharedCode      ""
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
 	      ModelReferenceCompliant on
@@ -644,15 +745,21 @@ Library {
 	      PurelyIntegerCode	      off
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
+	      RemoveDisableFunc	      off
+	      RemoveResetFunc	      off
 	      SupportVariableSizeSignals off
-	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
+	      CastingMode	      "Nominal"
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
+	      MDXCompliant	      off
 	      GRTInterface	      off
 	      GenerateAllocFcn	      off
+	      UseToolchainInfoCompliant	on
+	      GenerateSharedConstants on
+	      CoderGroups	      []
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -660,6 +767,7 @@ Library {
 	      ExtModeStaticAllocSize  1000000
 	      ExtModeTransport	      0
 	      ExtModeMexFile	      "ext_comm"
+	      ExtModeMexArgs	      ""
 	      ExtModeIntrfLevel	      "Level1"
 	      RTWCAPISignals	      off
 	      RTWCAPIParams	      off
@@ -672,14 +780,21 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  17
-	  Version		  "1.14.2"
+	  $ObjectID		  19
+	  Version		  "1.16.5"
+	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
+	  CovEnable		  off
+	  CovScope		  "EntireSystem"
+	  CovIncludeTopModel	  on
 	  RecordCoverage	  off
 	  CovPath		  "/"
 	  CovSaveName		  "covdata"
+	  CovCompData		  ""
 	  CovMetricSettings	  "dw"
+	  CovFilter		  ""
+	  CovHTMLOptions	  ""
 	  CovNameIncrementing	  off
 	  CovHtmlReporting	  on
 	  CovForceBlockReductionOff on
@@ -688,8 +803,13 @@ Library {
 	  CovSaveSingleToWorkspaceVar on
 	  CovCumulativeVarName	  "covCumulativeData"
 	  CovCumulativeReport	  off
+	  CovSaveOutputData	  on
+	  CovOutputDir		  "slcov_output/$ModelName$"
+	  CovDataFileName	  "$ModelName$_cvdata"
+	  CovShowResultsExplorer  on
 	  CovReportOnPause	  on
-	  CovModelRefEnable	  "Off"
+	  CovModelRefEnable	  "off"
+	  CovModelRefExcluded	  ""
 	  CovExternalEMLEnable	  off
 	  CovSFcnEnable		  off
 	  CovBoundaryAbsTol	  1e-05
@@ -701,6 +821,7 @@ Library {
 	PropName		"Components"
       }
       Name		      "Configuration"
+      ExtraOptions	      ""
       CurrentDlgPage	      "Solver"
       ConfigPrmDlgPosition     [ 300, 589, 1380, 1229 ] 
     }
@@ -741,7 +862,7 @@ Library {
   MaskDefaults {
     SelfModifiable	    "off"
     IconFrame		    "on"
-    IconOpaque		    "on"
+    IconOpaque		    "opaque"
     RunInitForIconRedraw    "off"
     IconRotate		    "none"
     PortRotate		    "default"
@@ -760,7 +881,6 @@ Library {
   BlockParameterDefaults {
     Block {
       BlockType		      BusCreator
-      Inputs		      "4"
       DisplayOption	      "none"
       OutDataTypeStr	      "Inherit: auto"
       NonVirtualBus	      off
@@ -795,6 +915,7 @@ Library {
       PropagateVarSize	      "Only when enabling"
       ShowOutputPort	      off
       ZeroCross		      on
+      DisallowConstTsAndPrmTs off
       PortDimensions	      "1"
       SampleTime	      "-1"
       OutMin		      "[]"
@@ -826,6 +947,7 @@ Library {
       OutDataTypeStr	      "Inherit: auto"
       LockScale		      off
       BusOutputAsStruct	      off
+      Unit		      "inherit"
       PortDimensions	      "-1"
       VarSizeSig	      "Inherit"
       SampleTime	      "-1"
@@ -843,12 +965,24 @@ Library {
       LimitOutput	      off
       UpperSaturationLimit    "inf"
       LowerSaturationLimit    "-inf"
+      WrapState		      off
+      WrappedStateUpperValue  "pi"
+      WrappedStateLowerValue  "-pi"
       ShowSaturationPort      off
       ShowStatePort	      off
       AbsoluteTolerance	      "auto"
       IgnoreLimit	      off
       ZeroCross		      on
       ContinuousStateAttributes	"''"
+    }
+    Block {
+      BlockType		      Memory
+      X0		      "0"
+      InheritSampleTime	      off
+      LinearizeMemory	      off
+      LinearizeAsDelay	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
     }
     Block {
       BlockType		      Mux
@@ -866,11 +1000,13 @@ Library {
       OutDataTypeStr	      "Inherit: auto"
       LockScale		      off
       BusOutputAsStruct	      off
+      Unit		      "inherit"
       PortDimensions	      "-1"
       VarSizeSig	      "Inherit"
       SampleTime	      "-1"
       SignalType	      "auto"
       SamplingMode	      "auto"
+      EnsureOutportIsVirtual  off
       SourceOfInitialOutputValue "Dialog"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
@@ -886,7 +1022,6 @@ Library {
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
-      SFunctionDeploymentMode off
     }
     Block {
       BlockType		      Saturate
@@ -905,21 +1040,8 @@ Library {
     }
     Block {
       BlockType		      Scope
-      ModelBased	      off
-      TickLabels	      "OneTimeTick"
-      ZoomMode		      "on"
-      Grid		      "on"
-      TimeRange		      "auto"
-      YMin		      "-5"
-      YMax		      "5"
-      SaveToWorkspace	      off
-      SaveName		      "ScopeData"
-      DataFormat	      "Array"
-      LimitDataPoints	      on
-      MaxDataPoints	      "5000"
-      Decimation	      "1"
-      SampleInput	      off
-      SampleTime	      "-1"
+      DefaultConfigurationName "Simulink.scopes.TimeScopeBlockCfg"
+      Floating		      off
     }
     Block {
       BlockType		      Selector
@@ -927,9 +1049,6 @@ Library {
       IndexMode		      "One-based"
       InputPortWidth	      "-1"
       SampleTime	      "-1"
-      IndexOptions	      "Index vector (dialog)"
-      Indices		      "1"
-      OutputSizes	      "1"
     }
     Block {
       BlockType		      SubSystem
@@ -939,7 +1058,6 @@ Library {
       TreatAsAtomicUnit	      off
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
-      CheckFcnCallInpInsideContextMsg off
       SystemSampleTime	      "-1"
       RTWSystemCode	      "Auto"
       RTWFcnNameOpts	      "Auto"
@@ -958,9 +1076,11 @@ Library {
       Opaque		      off
       MaskHideContents	      off
       SFBlockType	      "NONE"
-      Variant		      off
       GeneratePreprocessorConditionals off
+      PropagateVariantConditions off
+      TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
+      IsWebBlock	      off
     }
     Block {
       BlockType		      Sum
@@ -1008,7 +1128,7 @@ Library {
   }
   System {
     Name		    "SEA_library_models"
-    Location		    [-1614, -152, 322, 910]
+    Location		    [-1682, -250, 14, 812]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1020,9 +1140,9 @@ Library {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "300"
+    ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "91"
+    SIDHighWatermark	    "114"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -1031,10 +1151,11 @@ Library {
       Position		      [75, 29, 225, 76]
       ZOrder		      191
       RequestExecContextInheritance off
+      Variant		      off
       System {
 	Name			"Joint models"
-	Location		[-970, -75, -224, 661]
-	Open			on
+	Location		[-1682, -250, 14, 812]
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1045,7 +1166,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"250"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
@@ -1055,32 +1176,42 @@ Library {
 	  ZOrder		  453
 	  LibraryVersion	  "*1.103"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    18
+	    $ObjectID		    20
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
 	    " Get other properties\nTs      = jointObj.Ts;\n\n% If noise is disabled, overwrite the given variances\nif (input"
 	    "_noise_enabled == 0)\n    var_u = 0;\nend\n"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      6
+	      Dimension		      7
 	      Object {
-		$ObjectID		19
+		$ObjectID		21
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jObj"
 	      }
 	      Object {
-		$ObjectID		20
+		$ObjectID		22
+		Type			"checkbox"
+		Name			"input_delay_enabled"
+		Prompt			"Enable input delay"
+		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'input_delay_enabled', 'input_delay');"
+	      }
+	      Object {
+		$ObjectID		23
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Input Delay (num samples)"
-		Value			"0"
+		Value			"1"
+		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		21
+		$ObjectID		24
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize input"
@@ -1088,7 +1219,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		22
+		$ObjectID		25
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
@@ -1096,7 +1227,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		23
+		$ObjectID		26
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -1104,7 +1235,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		24
+		$ObjectID		27
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input Noise Variance"
@@ -1117,11 +1248,11 @@ Library {
 	      Type		      "Simulink.dialog.Group"
 	      Dimension		      2
 	      Object {
-		$ObjectID		25
+		$ObjectID		28
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  26
+		  $ObjectID		  29
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -1129,38 +1260,43 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		27
+		$ObjectID		30
 		Prompt			"Parameters"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
-		  Dimension		  6
+		  Dimension		  7
 		  Object {
-		    $ObjectID		    28
+		    $ObjectID		    31
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "jointObj"
 		  }
 		  Object {
-		    $ObjectID		    29
+		    $ObjectID		    32
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "input_delay_enabled"
+		  }
+		  Object {
+		    $ObjectID		    33
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "input_delay"
 		  }
 		  Object {
-		    $ObjectID		    30
+		    $ObjectID		    34
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "quantize"
 		  }
 		  Object {
-		    $ObjectID		    31
+		    $ObjectID		    35
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "quantize_bits"
 		  }
 		  Object {
-		    $ObjectID		    32
+		    $ObjectID		    36
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "input_noise_enabled"
 		  }
 		  Object {
-		    $ObjectID		    33
+		    $ObjectID		    37
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "var_u"
 		  }
@@ -1173,8 +1309,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointElectricalSubsystem"
-	    Location		    [-1534, -130, -168, 571]
-	    Open		    off
+	    Location		    [-1631, 138, 65, 1200]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1185,12 +1321,12 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "voltage [V]"
 	      SID		      "71"
-	      Position		      [10, 283, 40, 297]
+	      Position		      [-110, 283, -80, 297]
 	      ZOrder		      240
 	      IconDisplay	      "Port number"
 	    }
@@ -1198,7 +1334,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "jointBus]"
 	      SID		      "72"
-	      Position		      [10, 378, 40, 392]
+	      Position		      [-110, 378, -80, 392]
 	      ZOrder		      246
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -1271,6 +1407,192 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Input_Delay"
+	      SID		      "101"
+	      Ports		      [1, 1]
+	      Position		      [40, 272, 70, 308]
+	      ZOrder		      259
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"Input_Delay"
+		Location		[-1682, -250, 14, 812]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"200"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "102"
+		  Position		  [20, 83, 50, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "103"
+		  Position		  [100, 82, 200, 98]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "input_delay_enabled"
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "109"
+		  Position		  [235, 22, 290, 158]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  Threshold		  "0.5"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "delay"
+		  SID			  "104"
+		  Ports			  [1, 1, 1]
+		  Position		  [140, 30, 195, 60]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "delay"
+		    Location		    [-1682, -250, 14, 812]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "175"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "105"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "106"
+		    Ports		    []
+		    Position		    [102, 80, 122, 100]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    TransportDelay
+		    Name		    "input_delay"
+		    SID			    "83"
+		    Ports		    [1, 1]
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    259
+		    DelayTime		    "input_delay * jointObj.Ts"
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "108"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    3
+		    SrcBlock		    "input_delay"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    4
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "input_delay"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "110"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "delay"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    4
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		  Branch {
+		    ZOrder		    5
+		    Points		    [0, -75]
+		    DstBlock		    "delay"
+		    DstPort		    enable
+		  }
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [36, 0]
+		  Branch {
+		    ZOrder		    10
+		    Points		    [0, 45]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -45]
+		    DstBlock		    "delay"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Block {
 	      BlockType		      Integrator
 	      Name		      "Integrator"
 	      SID		      "77"
@@ -1285,6 +1607,13 @@ Library {
 	      }
 	    }
 	    Block {
+	      BlockType		      Memory
+	      Name		      "Memory"
+	      SID		      "114"
+	      Position		      [225, 370, 255, 400]
+	      ZOrder		      261
+	    }
+	    Block {
 	      BlockType		      Mux
 	      Name		      "Mux"
 	      SID		      "78"
@@ -1296,16 +1625,189 @@ Library {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
-	      BlockType		      Reference
+	      BlockType		      SubSystem
 	      Name		      "Quantize"
 	      SID		      "91"
 	      Ports		      [1, 1]
-	      Position		      [65, 272, 95, 308]
+	      Position		      [-55, 272, -25, 308]
 	      ZOrder		      257
-	      LibraryVersion	      "1.103"
-	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Quantize1"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"Quantize"
+		Location		[-1688, -290, 8, 776]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"250"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "92"
+		  Position		  [20, 83, 50, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "93"
+		  Position		  [130, 80, 200, 100]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "quantize"
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Quantizer"
+		  SID			  "94"
+		  Ports			  [1, 1, 1]
+		  Position		  [140, 30, 195, 60]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "Quantizer"
+		    Location		    [-1688, -290, 8, 776]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "250"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "95"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "96"
+		    Ports		    []
+		    Position		    [102, 80, 122, 100]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    Quantizer
+		    Name		    "Quantizer"
+		    SID			    "97"
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    213
+		    QuantizationInterval    "1/(2^quantize_bits)"
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "98"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "Quantizer"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "Quantizer"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "99"
+		  Position		  [235, 22, 290, 158]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  Threshold		  "0.5"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "100"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [36, 0]
+		  Branch {
+		    ZOrder		    2
+		    Points		    [0, -45]
+		    DstBlock		    "Quantizer"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    3
+		    Points		    [0, 45]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		}
+		Line {
+		  ZOrder		  4
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    5
+		    Points		    [0, -75]
+		    DstBlock		    "Quantizer"
+		    DstPort		    enable
+		  }
+		  Branch {
+		    ZOrder		    6
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  7
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  8
+		  SrcBlock		  "Quantizer"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+	      }
 	    }
 	    Block {
 	      BlockType		      Saturate
@@ -1325,28 +1827,13 @@ Library {
 	      Ports		      [1]
 	      Position		      [435, 369, 465, 401]
 	      ZOrder		      256
-	      Floating		      off
-	      Location		      [188, 365, 512, 604]
-	      Open		      off
+	      ScopeSpecificationString "C++SS(StrPVP('Location','[188, 365, 512, 604]'),StrPVP('Open','off'),MxPVP('AxesTitle"
+	      "s',24,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',28,'struct(''FigureColor'',''[0.5 0.5 0.5]'"
+	      "',''AxesColor'',''[0 0 0]'',''AxesTickColor'',''[1 1 1]'',''LineColors'',''[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1"
+	      "]'',''LineStyles'',''-|-|-|-|-|-'',''LineWidths'',''[0.8 0.8 0.8 0.8 0.8 0.8]'',''MarkerStyles'',''none|none|no"
+	      "ne|none|none|none'')'),StrPVP('ShowLegends','off'),StrPVP('YMin','1.8'),StrPVP('YMax','2.35'),StrPVP('LimitData"
+	      "Points','off'),StrPVP('DataFormat','Array'),StrPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
 	      NumInputPorts	      "1"
-	      List {
-		ListType		AxesTitles
-		axes1			"%<SignalLabel>"
-	      }
-	      List {
-		ListType		ScopeGraphics
-		FigureColor		"[0.5 0.5 0.5]"
-		AxesColor		"[0 0 0]"
-		AxesTickColor		"[1 1 1]"
-		LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-		LineStyles		"-|-|-|-|-|-"
-		LineWidths		"[0.8 0.8 0.8 0.8 0.8 0.8]"
-		MarkerStyles		"none|none|none|none|none|none"
-	      }
-	      ShowLegends	      off
-	      YMin		      "1.8"
-	      YMax		      "2.35"
-	      LimitDataPoints	      off
 	    }
 	    Block {
 	      BlockType		      Sum
@@ -1403,7 +1890,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [135, 215, 165, 245]
 	      ZOrder		      244
-	      LibraryVersion	      "1.287"
+	      LibraryVersion	      "1.388"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -1411,16 +1898,6 @@ Library {
 	      Ts		      "Ts"
 	      seed		      "[2435345645]"
 	      VectorParams1D	      on
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "input_delay"
-	      SID		      "83"
-	      Ports		      [1, 1]
-	      Position		      [125, 275, 155, 305]
-	      ZOrder		      258
-	      DelayTime		      "input_delay * jointObj.Ts"
-	      TransDelayFeedthrough   on
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -1431,17 +1908,17 @@ Library {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "input_delay"
+	      ZOrder		      25
+	      SrcBlock		      "Input_Delay"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      2
+	      ZOrder		      24
 	      SrcBlock		      "Quantize"
 	      SrcPort		      1
-	      DstBlock		      "input_delay"
+	      DstBlock		      "Input_Delay"
 	      DstPort		      1
 	    }
 	    Line {
@@ -1450,18 +1927,8 @@ Library {
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector"
 	      SrcPort		      1
-	      Points		      [172, 0]
-	      Branch {
-		ZOrder			4
-		Points			[0, -75]
-		DstBlock		"Mux"
-		DstPort			2
-	      }
-	      Branch {
-		ZOrder			5
-		DstBlock		"Scope"
-		DstPort			1
-	      }
+	      DstBlock		      "Memory"
+	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      6
@@ -1561,13 +2028,6 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      20
-	      SrcBlock		      "jointBus]"
-	      SrcPort		      1
-	      DstBlock		      "Bus\nSelector"
-	      DstPort		      1
-	    }
-	    Line {
 	      ZOrder		      21
 	      SrcBlock		      "voltage [V]"
 	      SrcPort		      1
@@ -1580,6 +2040,30 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "Mux"
 	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "jointBus]"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      28
+	      SrcBlock		      "Memory"
+	      SrcPort		      1
+	      Points		      [37, 0]
+	      Branch {
+		ZOrder			4
+		Points			[0, -75]
+		DstBlock		"Mux"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			5
+		DstBlock		"Scope"
+		DstPort			1
+	      }
 	    }
 	  }
 	}
@@ -1594,9 +2078,10 @@ Library {
 	  ModelCloseFcn		  "sfsave"
 	  DestroyFcn		  "sfsave"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    34
+	    $ObjectID		    38
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
 	    "Get other properties\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\n\n% Handle MATLAB"
@@ -1605,60 +2090,87 @@ Library {
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      11
+	      Dimension		      14
 	      Object {
-		$ObjectID		35
+		$ObjectID		39
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"joint1"
 	      }
 	      Object {
-		$ObjectID		36
+		$ObjectID		40
 		Type			"edit"
 		Name			"fc_vel"
 		Prompt			"Velocity filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		37
+		$ObjectID		41
 		Type			"edit"
 		Name			"fc_torque"
 		Prompt			"Torque filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		38
+		$ObjectID		42
+		Type			"checkbox"
+		Name			"input_delay_enabled"
+		Prompt			"Input delayed"
+		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'input_delay_enabled', 'input_delay');"
+	      }
+	      Object {
+		$ObjectID		43
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Input delay (num samples)"
-		Value			"0"
+		Value			"1"
+		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		39
+		$ObjectID		44
+		Type			"checkbox"
+		Name			"output_delay_enabled"
+		Prompt			"Output delayed"
+		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'output_delay_enabled', 'output_delay');"
+	      }
+	      Object {
+		$ObjectID		45
 		Type			"edit"
 		Name			"output_delay"
 		Prompt			"Output delay (num samples)"
-		Value			"0"
+		Value			"1"
+		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		40
+		$ObjectID		46
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize measurements"
 		Value			"off"
-		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
+		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits_output');\ntoggleMaskFields(gcbh, 'quantize', 'quantize"
+		"_bits_input');"
 	      }
 	      Object {
-		$ObjectID		41
+		$ObjectID		47
 		Type			"edit"
-		Name			"quantize_bits"
-		Prompt			"Quantization bits"
+		Name			"quantize_bits_output"
+		Prompt			"Output quantization bits "
 		Value			"19"
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		42
+		$ObjectID		48
+		Type			"edit"
+		Name			"quantize_bits_input"
+		Prompt			"Input quantization bits"
+		Value			"12"
+		Enabled			"off"
+	      }
+	      Object {
+		$ObjectID		49
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -1666,7 +2178,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		43
+		$ObjectID		50
 		Type			"checkbox"
 		Name			"output_noise_enabled"
 		Prompt			"Enable measurement noise"
@@ -1674,7 +2186,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'output_noise_enabled', 'var_y');"
 	      }
 	      Object {
-		$ObjectID		44
+		$ObjectID		51
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
@@ -1682,7 +2194,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		45
+		$ObjectID		52
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -1694,8 +2206,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointModel"
-	    Location		    [683, 0, 1366, 728]
-	    Open		    off
+	    Location		    [-1682, -250, 14, 812]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1706,8 +2218,8 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
-	    SIDHighWatermark	    "727"
+	    ZoomFactor		    "200"
+	    SIDHighWatermark	    "783"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorCurrent [A]"
@@ -1760,6 +2272,7 @@ Library {
 	      ShowName		      off
 	      Inputs		      "15"
 	      DisplayOption	      "bar"
+	      InheritFromInputs	      on
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -1787,6 +2300,192 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Input_Delay"
+	      SID		      "3:738"
+	      Ports		      [1, 1]
+	      Position		      [260, 427, 290, 463]
+	      ZOrder		      260
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"Input_Delay"
+		Location		[-1682, -250, 14, 812]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"50"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "3:739"
+		  Position		  [20, 83, 50, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "3:740"
+		  Position		  [100, 82, 200, 98]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "input_delay_enabled"
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "3:746"
+		  Position		  [235, 22, 290, 158]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  Threshold		  "0.5"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "delay"
+		  SID			  "3:741"
+		  Ports			  [1, 1, 1]
+		  Position		  [140, 30, 195, 60]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "delay"
+		    Location		    [-1682, -250, 14, 812]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "175"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "3:742"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "3:743"
+		    Ports		    []
+		    Position		    [102, 80, 122, 100]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    TransportDelay
+		    Name		    "input_delay"
+		    SID			    "3:744"
+		    Ports		    [1, 1]
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    259
+		    DelayTime		    "input_delay * jointObj.Ts"
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "3:745"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "input_delay"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "input_delay"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "3:747"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "delay"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    4
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		  Branch {
+		    ZOrder		    5
+		    Points		    [0, -75]
+		    DstBlock		    "delay"
+		    DstPort		    enable
+		  }
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [36, 0]
+		  Branch {
+		    ZOrder		    7
+		    Points		    [0, 45]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -45]
+		    DstBlock		    "delay"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Block {
 	      BlockType		      Integrator
 	      Name		      "Integrator"
 	      SID		      "3:18"
@@ -1807,7 +2506,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 382, 1965, 418]
 	      ZOrder		      157
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1821,7 +2520,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 162, 1965, 198]
 	      ZOrder		      145
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1835,7 +2534,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 822, 1965, 858]
 	      ZOrder		      154
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1849,7 +2548,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 602, 1965, 638]
 	      ZOrder		      200
-	      LibraryVersion	      "1.108"
+	      LibraryVersion	      "1.220"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1874,7 +2573,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 20, 1540, 50]
 	      ZOrder		      167
-	      LibraryVersion	      "1.287"
+	      LibraryVersion	      "1.388"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -1890,7 +2589,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 240, 1540, 270]
 	      ZOrder		      170
-	      LibraryVersion	      "1.287"
+	      LibraryVersion	      "1.388"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -1906,7 +2605,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 460, 1540, 490]
 	      ZOrder		      199
-	      LibraryVersion	      "1.287"
+	      LibraryVersion	      "1.388"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -1917,15 +2616,460 @@ Library {
 	    }
 	    Block {
 	      BlockType		      SubSystem
-	      Name		      "Quantize"
-	      SID		      "3:681"
+	      Name		      "Output_Delay"
+	      SID		      "3:748"
 	      Ports		      [1, 1]
-	      Position		      [1450, 52, 1480, 88]
-	      ZOrder		      227
+	      Position		      [2055, 52, 2085, 88]
+	      ZOrder		      261
 	      RequestExecContextInheritance off
+	      Variant		      off
+	      Port {
+		PortNumber		1
+		Name			"LinkPos"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
 	      System {
-		Name			"Quantize"
-		Location		[1358, -312, 3294, 780]
+		Name			"Output_Delay"
+		Location		[-1682, -250, 14, 812]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"200"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "3:749"
+		  Position		  [20, 83, 50, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "3:750"
+		  Position		  [100, 82, 200, 98]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "output_delay_enabled"
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "3:756"
+		  Position		  [235, 22, 290, 158]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  Threshold		  "0.5"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "delay"
+		  SID			  "3:751"
+		  Ports			  [1, 1, 1]
+		  Position		  [140, 30, 195, 60]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "delay"
+		    Location		    [-1682, -250, 14, 812]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "175"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "3:752"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "3:753"
+		    Ports		    []
+		    Position		    [102, 80, 122, 100]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    TransportDelay
+		    Name		    "input_delay"
+		    SID			    "3:754"
+		    Ports		    [1, 1]
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    259
+		    DelayTime		    "output_delay * jointObj.Ts"
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "3:755"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "input_delay"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "input_delay"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "3:757"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [36, 0]
+		  Branch {
+		    ZOrder		    2
+		    Points		    [0, -45]
+		    DstBlock		    "delay"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    3
+		    Points		    [0, 45]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		}
+		Line {
+		  ZOrder		  4
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    5
+		    Points		    [0, -75]
+		    DstBlock		    "delay"
+		    DstPort		    enable
+		  }
+		  Branch {
+		    ZOrder		    6
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  7
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  8
+		  SrcBlock		  "delay"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay1"
+	      SID		      "3:770"
+	      Ports		      [1, 1]
+	      Position		      [2055, 107, 2085, 143]
+	      ZOrder		      268
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"LinkPosNoNoise"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay10"
+	      SID		      "3:779"
+	      Ports		      [1, 1]
+	      Position		      [2055, 602, 2085, 638]
+	      ZOrder		      277
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"MotorVelFiltered"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay11"
+	      SID		      "3:780"
+	      Ports		      [1, 1]
+	      Position		      [2055, 657, 2085, 693]
+	      ZOrder		      278
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"MotorVelNoNoise"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay12"
+	      SID		      "3:781"
+	      Ports		      [1, 1]
+	      Position		      [2055, 712, 2085, 748]
+	      ZOrder		      279
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"Torque"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay13"
+	      SID		      "3:782"
+	      Ports		      [1, 1]
+	      Position		      [2055, 767, 2085, 803]
+	      ZOrder		      280
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"TorqueNoNoise"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay14"
+	      SID		      "3:783"
+	      Ports		      [1, 1]
+	      Position		      [2055, 822, 2085, 858]
+	      ZOrder		      281
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"TorqueFiltered"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay2"
+	      SID		      "3:771"
+	      Ports		      [1, 1]
+	      Position		      [2055, 162, 2085, 198]
+	      ZOrder		      269
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"LinkVelFiltered"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay3"
+	      SID		      "3:772"
+	      Ports		      [1, 1]
+	      Position		      [2055, 217, 2085, 253]
+	      ZOrder		      270
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"LinkVelNoNoise"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay4"
+	      SID		      "3:773"
+	      Ports		      [1, 1]
+	      Position		      [2055, 272, 2085, 308]
+	      ZOrder		      271
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"GearPos"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay5"
+	      SID		      "3:774"
+	      Ports		      [1, 1]
+	      Position		      [2055, 327, 2085, 363]
+	      ZOrder		      272
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"GearPosNoNoise"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay6"
+	      SID		      "3:775"
+	      Ports		      [1, 1]
+	      Position		      [2055, 382, 2085, 418]
+	      ZOrder		      273
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"GearVelFiltered"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay7"
+	      SID		      "3:776"
+	      Ports		      [1, 1]
+	      Position		      [2055, 437, 2085, 473]
+	      ZOrder		      274
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"GearVelNoNoise"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay8"
+	      SID		      "3:777"
+	      Ports		      [1, 1]
+	      Position		      [2055, 492, 2085, 528]
+	      ZOrder		      275
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"MotorPos"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Output_Delay9"
+	      SID		      "3:778"
+	      Ports		      [1, 1]
+	      Position		      [2055, 547, 2085, 583]
+	      ZOrder		      276
+	      LibraryVersion	      "1.129"
+	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Output_Delay"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	      Port {
+		PortNumber		1
+		Name			"MotorPosNoNoise"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Quantize3"
+	      SID		      "3:728"
+	      Ports		      [1, 1]
+	      Position		      [195, 427, 225, 463]
+	      ZOrder		      243
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"Quantize3"
+		Location		[-1688, -290, 8, 776]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -1941,7 +3085,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "u"
-		  SID			  "3:682"
+		  SID			  "3:729"
 		  Position		  [20, 83, 50, 97]
 		  ZOrder		  218
 		  IconDisplay		  "Port number"
@@ -1949,7 +3093,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant1"
-		  SID			  "3:683"
+		  SID			  "3:730"
 		  Position		  [130, 80, 200, 100]
 		  ZOrder		  217
 		  ShowName		  off
@@ -1958,14 +3102,15 @@ Library {
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Quantizer"
-		  SID			  "3:695"
+		  SID			  "3:731"
 		  Ports			  [1, 1, 1]
 		  Position		  [140, 30, 195, 60]
 		  ZOrder		  -4
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [-1632, 27, 64, 1089]
+		    Location		    [-1688, -290, 8, 776]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -1981,7 +3126,7 @@ Library {
 		    Block {
 		    BlockType		    Inport
 		    Name		    "In1"
-		    SID			    "3:696"
+		    SID			    "3:732"
 		    Position		    [20, 85, 50, 100]
 		    ZOrder		    214
 		    BlockRotation	    270
@@ -1990,7 +3135,7 @@ Library {
 		    Block {
 		    BlockType		    EnablePort
 		    Name		    "Enable"
-		    SID			    "3:698"
+		    SID			    "3:733"
 		    Ports		    []
 		    Position		    [102, 80, 122, 100]
 		    ZOrder		    216
@@ -1998,15 +3143,15 @@ Library {
 		    Block {
 		    BlockType		    Quantizer
 		    Name		    "Quantizer"
-		    SID			    "3:684"
+		    SID			    "3:734"
 		    Position		    [95, 20, 125, 50]
 		    ZOrder		    213
-		    QuantizationInterval    "1/(2^quantize_bits)"
+		    QuantizationInterval    "1/(2^quantize_bits_input)"
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "Out1"
-		    SID			    "3:697"
+		    SID			    "3:735"
 		    Position		    [195, 28, 225, 42]
 		    ZOrder		    215
 		    IconDisplay		    "Port number"
@@ -2031,7 +3176,7 @@ Library {
 		Block {
 		  BlockType		  Switch
 		  Name			  "Switch"
-		  SID			  "3:685"
+		  SID			  "3:736"
 		  Position		  [235, 22, 290, 158]
 		  ZOrder		  216
 		  Criteria		  "u2 > Threshold"
@@ -2042,7 +3187,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "y"
-		  SID			  "3:686"
+		  SID			  "3:737"
 		  Position		  [310, 83, 340, 97]
 		  ZOrder		  219
 		  IconDisplay		  "Port number"
@@ -2100,15 +3245,16 @@ Library {
 	    }
 	    Block {
 	      BlockType		      SubSystem
-	      Name		      "Quantize1"
+	      Name		      "Quantize_Gear"
 	      SID		      "3:699"
 	      Ports		      [1, 1]
 	      Position		      [1450, 272, 1480, 308]
 	      ZOrder		      232
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      System {
-		Name			"Quantize1"
-		Location		[-1632, 27, 64, 1089]
+		Name			"Quantize_Gear"
+		Location		[-1688, -290, 8, 776]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -2146,9 +3292,10 @@ Library {
 		  Position		  [140, 30, 195, 60]
 		  ZOrder		  -4
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [-1632, 27, 64, 1089]
+		    Location		    [-1688, -290, 8, 776]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -2184,7 +3331,7 @@ Library {
 		    SID			    "3:705"
 		    Position		    [95, 20, 125, 50]
 		    ZOrder		    213
-		    QuantizationInterval    "1/(2^quantize_bits)"
+		    QuantizationInterval    "1/(2^quantize_bits_output)"
 		    }
 		    Block {
 		    BlockType		    Outport
@@ -2283,15 +3430,201 @@ Library {
 	    }
 	    Block {
 	      BlockType		      SubSystem
-	      Name		      "Quantize2"
+	      Name		      "Quantize_Link"
+	      SID		      "3:681"
+	      Ports		      [1, 1]
+	      Position		      [1450, 52, 1480, 88]
+	      ZOrder		      227
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"Quantize_Link"
+		Location		[-1688, -290, 8, 776]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"250"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "3:682"
+		  Position		  [20, 83, 50, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "3:683"
+		  Position		  [130, 80, 200, 100]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "quantize"
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Quantizer"
+		  SID			  "3:695"
+		  Ports			  [1, 1, 1]
+		  Position		  [140, 30, 195, 60]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "Quantizer"
+		    Location		    [-1688, -290, 8, 776]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "250"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "3:696"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "3:698"
+		    Ports		    []
+		    Position		    [102, 80, 122, 100]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    Quantizer
+		    Name		    "Quantizer"
+		    SID			    "3:684"
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    213
+		    QuantizationInterval    "1/(2^quantize_bits_output)"
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "3:697"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "Quantizer"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "Quantizer"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "3:685"
+		  Position		  [235, 22, 290, 158]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  Threshold		  "0.5"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "3:686"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "Quantizer"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    4
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		  Branch {
+		    ZOrder		    5
+		    Points		    [0, -75]
+		    DstBlock		    "Quantizer"
+		    DstPort		    enable
+		  }
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [36, 0]
+		  Branch {
+		    ZOrder		    7
+		    Points		    [0, 45]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -45]
+		    DstBlock		    "Quantizer"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Quantize_Motor"
 	      SID		      "3:709"
 	      Ports		      [1, 1]
 	      Position		      [1450, 492, 1480, 528]
 	      ZOrder		      233
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      System {
-		Name			"Quantize2"
-		Location		[-1632, 27, 64, 1089]
+		Name			"Quantize_Motor"
+		Location		[-1688, -290, 8, 776]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -2329,9 +3662,10 @@ Library {
 		  Position		  [140, 30, 195, 60]
 		  ZOrder		  -4
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [-1632, 27, 64, 1089]
+		    Location		    [-1688, -290, 8, 776]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -2367,7 +3701,7 @@ Library {
 		    SID			    "3:715"
 		    Position		    [95, 20, 125, 50]
 		    ZOrder		    213
-		    QuantizationInterval    "1/(2^quantize_bits)"
+		    QuantizationInterval    "1/(2^quantize_bits_output)"
 		    }
 		    Block {
 		    BlockType		    Outport
@@ -2611,7 +3945,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [105, 380, 135, 410]
 	      ZOrder		      172
-	      LibraryVersion	      "1.287"
+	      LibraryVersion	      "1.388"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -2619,16 +3953,6 @@ Library {
 	      Ts		      "Ts"
 	      seed		      "[2435345645]"
 	      VectorParams1D	      on
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "input_delay"
-	      SID		      "3:43"
-	      Ports		      [1, 1]
-	      Position		      [240, 430, 270, 460]
-	      ZOrder		      184
-	      DelayTime		      "input_delay * jointObj.Ts"
-	      TransDelayFeedthrough   on
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -2644,6 +3968,7 @@ Library {
 	      TreatAsAtomicUnit	      on
 	      RequestExecContextInheritance off
 	      SFBlockType	      "MATLAB Function"
+	      Variant		      off
 	      System {
 		Name			"nonLinDynamicsFcn"
 		Location		[223, 338, 826, 833]
@@ -2659,7 +3984,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"21"
+		SIDHighWatermark	"24"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -2671,23 +3996,25 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "3:693::20"
+		  SID			  "3:693::23"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  11
+		  ZOrder		  14
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "3:693::19"
+		  SID			  "3:693::22"
 		  Tag			  "Stateflow S-Function SEA_library_models 4"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  10
+		  ZOrder		  13
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
+		  SFcnIsStateOwnerBlock	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "tau"
@@ -2698,9 +4025,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "3:693::21"
+		  SID			  "3:693::24"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  12
+		  ZOrder		  15
 		}
 		Block {
 		  BlockType		  Outport
@@ -2712,7 +4039,7 @@ Library {
 		  PortDimensions	  "4"
 		}
 		Line {
-		  ZOrder		  5
+		  ZOrder		  9
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2720,7 +4047,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau"
-		  ZOrder		  6
+		  ZOrder		  10
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2728,14 +4055,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  7
+		  ZOrder		  11
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  8
+		  ZOrder		  12
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2752,255 +4079,10 @@ Library {
 	      ZOrder		      165
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      Floating		      off
-	      Location		      [188, 365, 512, 604]
-	      Open		      off
+	      ScopeSpecificationString "C++SS(StrPVP('Location','[188, 365, 512, 604]'),StrPVP('Open','off'),MxPVP('AxesTitle"
+	      "s',24,'struct(''axes1'',''%<SignalLabel>'')'),StrPVP('ShowLegends','off'),StrPVP('LimitDataPoints','on'),StrPVP"
+	      "('DataFormat','Array'),StrPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
 	      NumInputPorts	      "1"
-	      List {
-		ListType		AxesTitles
-		axes1			"%<SignalLabel>"
-	      }
-	      ShowLegends	      off
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay"
-	      SID		      "3:46"
-	      Ports		      [1, 1]
-	      Position		      [2055, 55, 2085, 85]
-	      ZOrder		      185
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"LinkPos"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay1"
-	      SID		      "3:47"
-	      Ports		      [1, 1]
-	      Position		      [2055, 110, 2085, 140]
-	      ZOrder		      186
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"LinkPosNoNoise"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay10"
-	      SID		      "3:48"
-	      Ports		      [1, 1]
-	      Position		      [2055, 715, 2085, 745]
-	      ZOrder		      195
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"Torque"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay11"
-	      SID		      "3:49"
-	      Ports		      [1, 1]
-	      Position		      [2055, 770, 2085, 800]
-	      ZOrder		      196
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"TorqueNoNoise"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay12"
-	      SID		      "3:50"
-	      Ports		      [1, 1]
-	      Position		      [2055, 825, 2085, 855]
-	      ZOrder		      197
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"TorqueFiltered"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay13"
-	      SID		      "3:51"
-	      Ports		      [1, 1]
-	      Position		      [2055, 495, 2085, 525]
-	      ZOrder		      201
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"MotorPos"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay14"
-	      SID		      "3:52"
-	      Ports		      [1, 1]
-	      Position		      [2055, 605, 2085, 635]
-	      ZOrder		      202
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"MotorVelFiltered"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay2"
-	      SID		      "3:53"
-	      Ports		      [1, 1]
-	      Position		      [2055, 165, 2085, 195]
-	      ZOrder		      187
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"LinkVelFiltered"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay3"
-	      SID		      "3:54"
-	      Ports		      [1, 1]
-	      Position		      [2055, 220, 2085, 250]
-	      ZOrder		      188
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"LinkVelNoNoise"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay4"
-	      SID		      "3:55"
-	      Ports		      [1, 1]
-	      Position		      [2055, 275, 2085, 305]
-	      ZOrder		      189
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"GearPos"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay5"
-	      SID		      "3:56"
-	      Ports		      [1, 1]
-	      Position		      [2055, 330, 2085, 360]
-	      ZOrder		      190
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"GearPosNoNoise"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay6"
-	      SID		      "3:57"
-	      Ports		      [1, 1]
-	      Position		      [2055, 385, 2085, 415]
-	      ZOrder		      191
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"GearVelFiltered"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay7"
-	      SID		      "3:58"
-	      Ports		      [1, 1]
-	      Position		      [2055, 440, 2085, 470]
-	      ZOrder		      192
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"GearVelNoNoise"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay8"
-	      SID		      "3:59"
-	      Ports		      [1, 1]
-	      Position		      [2055, 550, 2085, 580]
-	      ZOrder		      193
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"MotorPosNoNoise"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      TransportDelay
-	      Name		      "output_delay9"
-	      SID		      "3:60"
-	      Ports		      [1, 1]
-	      Position		      [2055, 660, 2085, 690]
-	      ZOrder		      194
-	      ShowName		      off
-	      DelayTime		      "output_delay * jointObj.Ts"
-	      Port {
-		PortNumber		1
-		Name			"MotorVelNoNoise"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
 	    }
 	    Block {
 	      BlockType		      Selector
@@ -3112,8 +4194,8 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "input_delay"
+	      ZOrder		      206
+	      SrcBlock		      "Input_Delay"
 	      SrcPort		      1
 	      DstBlock		      "Mux"
 	      DstPort		      1
@@ -3122,7 +4204,7 @@ Library {
 	      ZOrder		      6
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
-	      DstBlock		      "input_delay"
+	      DstBlock		      "Quantize3"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3141,14 +4223,14 @@ Library {
 		ZOrder			9
 		Points			[144, 0]
 		Branch {
-		  ZOrder		  10
-		  Points		  [0, 110]
-		  DstBlock		  "LTI System1"
+		  ZOrder		  229
+		  DstBlock		  "Output_Delay4"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  11
-		  DstBlock		  "output_delay4"
+		  ZOrder		  10
+		  Points		  [0, 110]
+		  DstBlock		  "LTI System1"
 		  DstPort		  1
 		}
 	      }
@@ -3168,14 +4250,14 @@ Library {
 		ZOrder			14
 		Points			[119, 0]
 		Branch {
-		  ZOrder		  15
-		  Points		  [0, 110]
-		  DstBlock		  "LTI System2"
+		  ZOrder		  209
+		  DstBlock		  "Output_Delay"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  16
-		  DstBlock		  "output_delay"
+		  ZOrder		  15
+		  Points		  [0, 110]
+		  DstBlock		  "LTI System2"
 		  DstPort		  1
 		}
 	      }
@@ -3210,24 +4292,24 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      133
+	      ZOrder		      242
 	      SrcBlock		      "selectMotorVelocity"
 	      SrcPort		      1
-	      DstBlock		      "output_delay9"
+	      DstBlock		      "Output_Delay11"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      22
+	      ZOrder		      232
 	      SrcBlock		      "LTI System1"
 	      SrcPort		      1
-	      DstBlock		      "output_delay6"
+	      DstBlock		      "Output_Delay6"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      130
+	      ZOrder		      234
 	      SrcBlock		      "selectGearVelocity"
 	      SrcPort		      1
-	      DstBlock		      "output_delay7"
+	      DstBlock		      "Output_Delay7"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3240,17 +4322,17 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      122
+	      ZOrder		      227
 	      SrcBlock		      "selectLinkVelocity"
 	      SrcPort		      1
-	      DstBlock		      "output_delay3"
+	      DstBlock		      "Output_Delay3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      26
+	      ZOrder		      224
 	      SrcBlock		      "LTI System2"
 	      SrcPort		      1
-	      DstBlock		      "output_delay2"
+	      DstBlock		      "Output_Delay2"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3364,117 +4446,117 @@ Library {
 	    }
 	    Line {
 	      Name		      "LinkPos"
-	      ZOrder		      47
+	      ZOrder		      208
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay"
+	      SrcBlock		      "Output_Delay"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      1
 	    }
 	    Line {
 	      Name		      "LinkPosNoNoise"
-	      ZOrder		      48
+	      ZOrder		      223
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay1"
+	      SrcBlock		      "Output_Delay1"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      2
 	    }
 	    Line {
 	      Name		      "LinkVelFiltered"
-	      ZOrder		      49
+	      ZOrder		      225
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay2"
+	      SrcBlock		      "Output_Delay2"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      3
 	    }
 	    Line {
 	      Name		      "LinkVelNoNoise"
-	      ZOrder		      50
+	      ZOrder		      226
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay3"
+	      SrcBlock		      "Output_Delay3"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      4
 	    }
 	    Line {
 	      Name		      "GearPos"
-	      ZOrder		      51
+	      ZOrder		      228
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay4"
+	      SrcBlock		      "Output_Delay4"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      5
 	    }
 	    Line {
 	      Name		      "GearPosNoNoise"
-	      ZOrder		      52
+	      ZOrder		      230
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay5"
+	      SrcBlock		      "Output_Delay5"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      6
 	    }
 	    Line {
 	      Name		      "GearVelFiltered"
-	      ZOrder		      53
+	      ZOrder		      233
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay6"
+	      SrcBlock		      "Output_Delay6"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      7
 	    }
 	    Line {
 	      Name		      "GearVelNoNoise"
-	      ZOrder		      54
+	      ZOrder		      235
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay7"
+	      SrcBlock		      "Output_Delay7"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      8
 	    }
 	    Line {
 	      Name		      "MotorPosNoNoise"
-	      ZOrder		      55
+	      ZOrder		      239
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay8"
+	      SrcBlock		      "Output_Delay9"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      10
 	    }
 	    Line {
 	      Name		      "MotorVelNoNoise"
-	      ZOrder		      56
+	      ZOrder		      243
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay9"
+	      SrcBlock		      "Output_Delay11"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      12
 	    }
 	    Line {
 	      Name		      "Torque"
-	      ZOrder		      57
+	      ZOrder		      244
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay10"
+	      SrcBlock		      "Output_Delay12"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      13
 	    }
 	    Line {
 	      Name		      "TorqueNoNoise"
-	      ZOrder		      58
+	      ZOrder		      247
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay11"
+	      SrcBlock		      "Output_Delay13"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      14
 	    }
 	    Line {
 	      Name		      "TorqueFiltered"
-	      ZOrder		      59
+	      ZOrder		      248
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay12"
+	      SrcBlock		      "Output_Delay14"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      15
@@ -3488,26 +4570,26 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      61
+	      ZOrder		      241
 	      SrcBlock		      "LTI System4"
 	      SrcPort		      1
-	      DstBlock		      "output_delay14"
+	      DstBlock		      "Output_Delay10"
 	      DstPort		      1
 	    }
 	    Line {
 	      Name		      "MotorPos"
-	      ZOrder		      62
+	      ZOrder		      237
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay13"
+	      SrcBlock		      "Output_Delay8"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      9
 	    }
 	    Line {
 	      Name		      "MotorVelFiltered"
-	      ZOrder		      63
+	      ZOrder		      240
 	      Labels		      [1, 1]
-	      SrcBlock		      "output_delay14"
+	      SrcBlock		      "Output_Delay10"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      11
@@ -3518,14 +4600,14 @@ Library {
 	      SrcPort		      1
 	      Points		      [218, 0]
 	      Branch {
-		ZOrder			65
-		Points			[0, 110]
-		DstBlock		"LTI System4"
+		ZOrder			236
+		DstBlock		"Output_Delay8"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			66
-		DstBlock		"output_delay13"
+		ZOrder			65
+		Points			[0, 110]
+		DstBlock		"LTI System4"
 		DstPort			1
 	      }
 	    }
@@ -3555,17 +4637,17 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      69
+	      ZOrder		      249
 	      SrcBlock		      "LTI System3"
 	      SrcPort		      1
-	      DstBlock		      "output_delay12"
+	      DstBlock		      "Output_Delay14"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      70
+	      ZOrder		      246
 	      SrcBlock		      "TorsionBarStiffness1"
 	      SrcPort		      1
-	      DstBlock		      "output_delay11"
+	      DstBlock		      "Output_Delay13"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3574,8 +4656,8 @@ Library {
 	      SrcPort		      1
 	      Points		      [16, 0]
 	      Branch {
-		ZOrder			72
-		DstBlock		"output_delay10"
+		ZOrder			245
+		DstBlock		"Output_Delay12"
 		DstPort			1
 	      }
 	      Branch {
@@ -3591,14 +4673,14 @@ Library {
 	      SrcPort		      1
 	      Points		      [87, 0]
 	      Branch {
-		ZOrder			75
+		ZOrder			238
 		Points			[0, 55]
-		DstBlock		"output_delay8"
+		DstBlock		"Output_Delay9"
 		DstPort			1
 	      }
 	      Branch {
 		ZOrder			76
-		DstBlock		"Quantize2"
+		DstBlock		"Quantize_Motor"
 		DstPort			1
 	      }
 	    }
@@ -3611,8 +4693,8 @@ Library {
 		ZOrder			78
 		Points			[0, 55; 184, 0]
 		Branch {
-		  ZOrder		  79
-		  DstBlock		  "output_delay5"
+		  ZOrder		  231
+		  DstBlock		  "Output_Delay5"
 		  DstPort		  1
 		}
 		Branch {
@@ -3624,7 +4706,7 @@ Library {
 	      }
 	      Branch {
 		ZOrder			81
-		DstBlock		"Quantize1"
+		DstBlock		"Quantize_Gear"
 		DstPort			1
 	      }
 	    }
@@ -3635,15 +4717,15 @@ Library {
 	      Points		      [86, 0]
 	      Branch {
 		ZOrder			83
-		DstBlock		"Quantize"
+		DstBlock		"Quantize_Link"
 		DstPort			1
 	      }
 	      Branch {
 		ZOrder			84
 		Points			[0, 55; 209, 0]
 		Branch {
-		  ZOrder		  85
-		  DstBlock		  "output_delay1"
+		  ZOrder		  222
+		  DstBlock		  "Output_Delay1"
 		  DstPort		  1
 		}
 		Branch {
@@ -3655,21 +4737,21 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      87
-	      SrcBlock		      "Quantize"
+	      SrcBlock		      "Quantize_Link"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      2
 	    }
 	    Line {
 	      ZOrder		      88
-	      SrcBlock		      "Quantize1"
+	      SrcBlock		      "Quantize_Gear"
 	      SrcPort		      1
 	      DstBlock		      "Sum5"
 	      DstPort		      2
 	    }
 	    Line {
 	      ZOrder		      89
-	      SrcBlock		      "Quantize2"
+	      SrcBlock		      "Quantize_Motor"
 	      SrcPort		      1
 	      DstBlock		      "Sum9"
 	      DstPort		      2
@@ -3689,6 +4771,13 @@ Library {
 	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
+	    Line {
+	      ZOrder		      207
+	      SrcBlock		      "Quantize3"
+	      SrcPort		      1
+	      DstBlock		      "Input_Delay"
+	      DstPort		      1
+	    }
 	  }
 	}
       }
@@ -3697,7 +4786,7 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow Version 8.1 (R2014a) dated Feb  8 2014, 02:29:12
+#   Stateflow 80000010
 #
 #
 Stateflow {
@@ -3706,30 +4795,30 @@ Stateflow {
     name		    "SEA_library_models"
     created		    "06-Feb-2016 20:55:41"
     isLibrary		    1
+    sfVersion		    80000010
     firstTarget		    9
-    sfVersion		    76014001.002
   }
   chart {
     id			    2
+    machine		    1
     name		    "Joint models/JointModel/nonLinDynamicsFcn"
     windowPosition	    [422 539.941 189 413]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 3 0 0]
-    firstTransition	    7
-    firstJunction	    6
     viewObj		    2
-    machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    4
     chartFileNumber	    4
     disableImplicitCasting  1
     eml {
       name		      "nonLinDynamics"
     }
+    firstData		    4
+    firstTransition	    7
+    firstJunction	    6
   }
   state {
     id			    3
@@ -3765,7 +4854,6 @@ Stateflow {
     id			    4
     ssIdNumber		    4
     name		    "x"
-    linkNode		    [2 0 5]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3777,14 +4865,17 @@ Stateflow {
 	primitive		SF_DOUBLE_TYPE
       }
       complexity	      SF_COMPLEX_INHERITED
+      unit {
+	name			"inherit"
+      }
     }
     dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 0 5]
   }
   data {
     id			    5
     ssIdNumber		    5
     name		    "tau"
-    linkNode		    [2 4 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -3797,17 +4888,21 @@ Stateflow {
       }
       complexity	      SF_COMPLEX_INHERITED
       frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
     }
     dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 4 0]
   }
   junction {
     id			    6
     position		    [23.5747 49.5747 7]
     chart		    2
-    linkNode		    [2 0 0]
     subviewer		    2
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
+    linkNode		    [2 0 0]
   }
   transition {
     id			    7
@@ -3823,7 +4918,6 @@ Stateflow {
     }
     midPoint		    [23.5747 24.9468]
     chart		    2
-    linkNode		    [2 0 0]
     dataLimits		    [21.175 25.975 14.625 42.575]
     subviewer		    2
     drawStyle		    SMART
@@ -3832,18 +4926,19 @@ Stateflow {
     }
     executionOrder	    1
     ssIdNumber		    2
+    linkNode		    [2 0 0]
   }
   instance {
     id			    8
-    name		    "Joint models/JointModel/nonLinDynamicsFcn"
     machine		    1
+    name		    "Joint models/JointModel/nonLinDynamicsFcn"
     chart		    2
   }
   target {
     id			    9
+    machine		    1
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
-    machine		    1
     linkNode		    [1 0 0]
   }
 }
