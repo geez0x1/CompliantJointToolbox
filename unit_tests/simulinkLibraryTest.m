@@ -82,15 +82,20 @@ function setupOnce(testCase)  % do not change function name
     
     parName = 'WMBig2300_ds';
     dynName = 'full_dyn';
-    testCase.('TestData').className = ['WMBig2300_ds','_','full_dyn'];%     Instantiate a joint model
+    testCase.('TestData').className = ['WMBig2300_ds','_','full_dyn','_','electric_dyn'];%     Instantiate a joint model
 
+%     jb.buildJoint(allParams{1}, 'full_dyn')
+    
     % build a joint class for the test
     testCase.('TestData').JB.buildJoint(parName,...
-        dynName);
+        dynName, [],'electric_dyn');
     addpath(testCase.('TestData').JB.buildDir) % Add the built directory of the
     % joint builder to the search path.
     testCase.('TestData').testJoint = eval(testCase.('TestData').className);
 
+    
+    % Name of data output file name for testing
+    testCase.('TestData').simOutName = 'simOut.txt';
 end
 
 function teardownOnce(testCase)  % do not change function name
@@ -99,6 +104,7 @@ function teardownOnce(testCase)  % do not change function name
     close all
     rmpath(testCase.('TestData').JB.buildDir); % Remove the built directory from the search path, then
     testCase.('TestData').JB.purge;            % remove all files created during the tests
+    delete(testCase.('TestData').simOutName);
 
 end
 
@@ -123,11 +129,20 @@ end
 % A test function is also called a "Qualification". There exist different
 % conceptual types of qualifications.
 function testBuiltJoint(testCase)
+
 % Test specific code
-
+simOutName = testCase.('TestData').simOutName; % Shorthand
 jObj = testCase.('TestData').testJoint;
+jObj.Ts = 5e-5;
 
-simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current')
+simOut = sim('simulinkBlockLibraryTest.mdl');
+save(simOutName,'simOut','-ascii');
+
+% The checksum of the saved results file must match with previously computed
+% checksum.
+curChkSum = Simulink.getFileChecksum(simOutName);
+verifyEqual(testCase,curChkSum,'42D961620891FEE39CE3BDA09758BDFF')
+
 
 end
 
