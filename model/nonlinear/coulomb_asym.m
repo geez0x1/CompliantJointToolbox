@@ -88,7 +88,7 @@ function [ tau ] = coulomb_asym(obj, x)
     end
     
     % Calculate Coulomb friction torques
-    tau = -cc .* atan(1000*x) / (pi/2);
+    tau = -cc .* tanh(500 * x);
 
 end
 
