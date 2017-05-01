@@ -84,4 +84,8 @@ set(figHandle,'PaperPosition',[-mypos(1) -mypos(2) ...
     mypos(3)+mypos(1) mypos(4)+mypos(2)]);
 
 % Print stuff and pass optional parameters of the print command
-print('-bestfit','-dpdf',outfilename,varargin{:});
+if verLessThan('matlab','9.1') % check for backwards compatibility
+    print('-dpdf',outfilename,varargin{:});
+else
+    print('-bestfit','-dpdf',outfilename,varargin{:});
+end
