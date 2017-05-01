@@ -57,7 +57,7 @@ jb.buildJoint('WMBig10k',...parameters
 disp('-------------------------------------------------');
 disp('3. My_complex_joint:');
 disp('   Next, the nonlinear rigid gearbox model uses a locked output and electric dynamics including winding inductance.');
-disp('   Command: jb.buildJoint(''WMBig10k'', ''output_fixed_rigid_gearbox'', {''coulomb_asym'', ''viscous_asym''}, ''my_locked_joint'');');
+disp('   Command: jb.buildJoint(''WMBig10k'', ''output_fixed_rigid_gearbox'', {''coulomb_asym'', ''viscous_asym''}, ''electric_dyn'', ''my_locked_joint'');');
 disp('-------------------------------------------------');
 % In addition, output is locked output 
 %and a full linear electric dynamics
