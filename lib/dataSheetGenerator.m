@@ -1193,8 +1193,13 @@ classdef dataSheetGenerator
             % See also createDataSheet, genericJoint, jointBuilder.    
             %
             
-            % Tested with MiKTeX/2.9
-            cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
+            % Tested with MiKTeX/2.9 under Windows 7 x64 and
+            % TexLive 2015.20160320-1 under Linux (Ubuntu 16.04)
+            if (isunix)
+                cmd = ['pdflatex -synctex=-1 -interaction=nonstopmode ', this.texFName];
+            else
+                cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
+            end
             
             % Make the system call invoking the LuaLatex compiler.
             [flag, cmdout] = system(cmd);
