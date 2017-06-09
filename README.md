@@ -31,10 +31,10 @@ Wesley Roozing
     and then calling the `buildJoint` method:
     
     ```
-        jb.buildJoint('parameters_name', 'linear_model_name', 'optional_nonlinear_model(s)', 'My_joint_name');
+        jb.buildJoint('parameters_name', 'linear_model_name', 'optional_nonlinear_model(s)', 'optional_electrical_model', 'My_joint_name');
     ```
     
-    which will construct a new joint class with name `My_joint_name`, parameters from `params/parameters_name.m`, reference a linear dynamics model `model/linear/linear_model_name.m`, and use nonlinear models specified by a string (one) or a cell of strings (multiple), from `model/nonlinear/`. The resulting file `build/My_joint_name.m` will contain your joint class definition.
+    which will construct a new joint class with name `My_joint_name`, parameters from `params/parameters_name.m`, reference a linear dynamics model `model/linear/linear_model_name.m`, use nonlinear models specified by a string (one) or a cell of strings (multiple), from `model/nonlinear/`, and use electrical dynamics model `electricalDynamicsName` from `model/electrical/`. The resulting file `build/My_joint_name.m` will contain your joint class definition.
     
     To create your first joints, try the following:
     
@@ -44,4 +44,4 @@ Wesley Roozing
     4. Get the state-space description of its linear dynamics by running `sys = joint.getStateSpace();` and its transfer functions by running `P = joint.getTF();`
     5. 
 
-4. Go to the wiki for a detailed description of the classes and to try some more advanced examples in both MATLAB and Simulink.
+4. Go to the wiki for a more detailed description of the classes and to try some more advanced examples in both MATLAB and Simulink.
