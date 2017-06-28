@@ -71,7 +71,7 @@ function [ P ] = getModel_fromData(t, u, y, id_Np, id_Nz, roi)
 
     % Resample data to obtain uniform sampling for tfest()
     Ts      = median(diff(t));      % Sampling time [s]
-    t_RS    = 0:Ts:max(t);          % Resampled time
+    t_RS    = t(1):Ts:t(end);       % Resampled time
     u       = interp1(t, u, t_RS)'; % Resampled input
     y       = interp1(t, y, t_RS)'; % Resampled output
     t       = t_RS';                % Replace time vector
@@ -120,7 +120,7 @@ function [ P ] = getModel_fromData(t, u, y, id_Np, id_Nz, roi)
 
     % Meta
     subplot(2,1,1);
-    title(['Data vs approximation: Np = ' num2str(id_Np) ', Nz = ' num2str(id_Nz)]);
+    title(['Data vs approximation: Np = ' num2str(id_Np) ', Nz = ' num2str(id_Nz) ' (fit: ' num2str(P.Report.Fit.FitPercent, 3) '%)']);
     
 
     %% Show Bode plots of results
