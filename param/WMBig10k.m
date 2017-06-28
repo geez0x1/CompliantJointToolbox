@@ -49,7 +49,7 @@ params.('I_m')      = r_I_m * 1.1001;       %% Motor rotor inertia [kg m^2]
 params.('I_g')      = r_I_g * 1.1001;       %% Gear inertia [kg m^2]
 params.('I_l')      = r_I_l * 1.1001;       %% Load inertia [kg m^2]
 % Stiffnesses
-params.('k_g')      = 75e3;                 %% Gearbox stiffness [Nm/rad]
+params.('k_g')      = 31e3;                 %% Gearbox stiffness [Nm/rad]
 params.('k_b')      = 12823;                %% Torsion bar stiffness [Nm/rad]
 % Linear viscous friction
 params.('d_m')      = 14.786 * (1/10);      %% Motor Damping [Nms/rad]
