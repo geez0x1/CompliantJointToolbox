@@ -66,7 +66,8 @@ scriptBlock = r.find('-isa','Stateflow.EMChart','path',fcnBlock);
 if isempty(scriptBlock)
     load_system('simulink');
     
-    delete_line(thisBlock,[funName '/1'], ['Sum/1']);
+    delete_line(thisBlock,['B_nonlinear/1'], ['Sum/1']);
+    delete_line(thisBlock,[funName '/1'], ['B_nonlinear/1']);
     delete_line(thisBlock,[funName '/1'], ['nonLinearDynamicsScope/1']);
     delete_line(thisBlock,'Integrator/1',[funName '/1'])
     delete_block(fcnBlock)
@@ -74,7 +75,8 @@ if isempty(scriptBlock)
     add_block('simulink/User-Defined Functions/MATLAB Function',fcnBlock,...
         'Position', [630 312 700 358],...
         'Orientation', 'left');
-    add_line(thisBlock,[funName '/1'], ['Sum/1'],'AutoRouting','On');
+    add_line(thisBlock,[funName '/1'], ['B_nonlinear/1'],'AutoRouting','On');
+    add_line(thisBlock,['B_nonlinear/1'], ['Sum/1'],'AutoRouting','On');
     add_line(thisBlock,[funName '/1'], ['nonLinearDynamicsScope/1'],'AutoRouting','On');
     add_line(thisBlock,'Integrator/1',[funName '/1'],'AutoRouting','On')
     
