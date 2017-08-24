@@ -43,8 +43,8 @@ Library {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"3"
 	Extents			[1283.0, 747.0]
-	ZoomFactor		[1.5]
-	Offset			[167.33333333333331, 153.86666666666667]
+	ZoomFactor		[2.0]
+	Offset			[260.9047619047617, 199.75238095238092]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 24 18:33:19 2017"
-  RTWModifiedTimeStamp	  425500253
-  ModelVersionFormat	  "1.%<AutoIncrement:108>"
+  LastModifiedDate	  "Thu Aug 24 18:51:48 2017"
+  RTWModifiedTimeStamp	  425501499
+  ModelVersionFormat	  "1.%<AutoIncrement:109>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -965,7 +965,7 @@ Library {
   }
   System {
     Name		    "SEA_library_models"
-    Location		    [-1614, -152, 322, 910]
+    Location		    [207, 53, 1739, 991]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -977,7 +977,7 @@ Library {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "300"
+    ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "91"
     Block {
@@ -1543,10 +1543,10 @@ Library {
 	    $ObjectID		    34
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
-	    "Get other properties\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\nn       = jointOb"
-	    "j.n;\n\n% Handle MATLAB function block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If noise is disabled, over"
-	    "write the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_noise_enabled == 0)\n	v"
-	    "ar_y = 0;\nend"
+	    "Build B matrix for nonlinear components\nB_nonlinear = [zeros([size(I,1),1]); 1./diag(I)];\n\n% Get other propert"
+	    "ies\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\nn       = jointObj.n;\n\n% Handle "
+	    "MATLAB function block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If noise is disabled, overwrite the given v"
+	    "ariances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0;\nend"
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -1651,7 +1651,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "200"
 	    SIDHighWatermark	    "894"
 	    Block {
 	      BlockType		      Inport
@@ -1704,7 +1704,7 @@ Library {
 	      BlockRotation	      270
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      Gain		      "B(:,1)/(k_t*n)"
+	      Gain		      "B_nonlinear"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
