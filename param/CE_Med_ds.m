@@ -89,7 +89,7 @@ params.('rip_a2')   = [];                   %% Sine amplitudes [Nm] ([Nm] and/or
 params.('rip_f')    = [];                   %% Spatial frequencies [periods/revolution]
 % Misc
 params.('n')        = n;                    %% Gear ratio []
-params.('k_t')      = 0.078 * n;            %% Torque constant [Nm/A]
+params.('k_t')      = 0.078;                %% Torque constant [Nm/A]
 params.('r')        = 0.318;             	%% Armature resistance [Ohm]
 params.('x')        = 0.20e-3;              %% Armature inductance [H] % TO BE UPDATED!
 params.('Ts')       = 1e-3;                 %% Sampling time [s]
