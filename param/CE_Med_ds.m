@@ -38,25 +38,28 @@ n = 160;
 % Shaft inertia:    5.5375834	[kg mm^2]
 % Motor inertia:    25.2        [kg mm^2]
 % Gearbox inertia:  11.2        [kg mm^2]
+% Motor and shaft are lumped together. Non-load inertia values are
+% scaled to 110% (following experiments), to account for other
+% (mounting) components.
 
 % Components used
 % Motor:            Kollmorgen TBMS6025-B (design voltage 24V, used at 48V)
 % Gearbox:          CPL20-2A
 
 % Friction calculations
-% Motor:            Viscous friction estimated directly from datasheet:
-%                   d_rads = 5.36e-3 * (60/(1000*2*pi))
-%                   Coulomb friction: d_cm = 0.033 * n
-% Gearbox:          Viscous friction estimated from 'no load running torque' at 3500rpm
-%                   input speed, 20 degrees Celcius, after removing compensation values
-%                   (table 29.1) and no load starting torque (table 29.2).
-%                   tau = (16-0.3-2.9)/100; omega = (3500/60)*(2*pi); d = n^2 * tau / omega;
-%                   'No load starting torque' used for Coulomb friction
-%                   values: d_cg = 2.9/100 * n
+% Motor:    Viscous friction estimated directly from datasheet:
+%           d_rads = 5.36e-3 * (60/(1000*2*pi))
+%           Coulomb friction: d_cm = 0.033 * n
+% Gearbox:  Viscous friction estimated from 'no load running torque' at 3500rpm
+%           input speed, 20 degrees Celcius, after removing compensation values
+%           (table 29.1) and no load starting torque (table 29.2).
+%           tau = (16-0.3-2.9)/100; omega = (3500/60)*(2*pi); d = n^2 * tau / omega;
+%           'No load starting torque' used for Coulomb friction
+%           values: d_cg = 2.9/100 * n
 
 % Inertiae
-params.('I_m')      = 3.0738e-05 * n^2;   	%% Motor rotor inertia [kg m^2] (motor+shaft)
-params.('I_g')      = 1.1200e-05 * n^2; 	%% Gear inertia [kg m^2]
+params.('I_m')      = 3.3812e-05 * n^2;   	%% Motor rotor inertia [kg m^2] (motor+shaft)
+params.('I_g')      = 1.2320e-05 * n^2; 	%% Gear inertia [kg m^2]
 params.('I_l')      = 1.0;                  %% Load inertia [kg m^2] % TO BE UPDATED!
 % Stiffnesses
 params.('k_g')      = 25e3;                 %% Gearbox stiffness [Nm/rad] (using K_2 from datasheet, valid for 7..25 Nm)
