@@ -19,6 +19,8 @@
 %  This function is identical to full_dyn, but with the difference that the
 %  joint output is now considered to be fixed and the gearbox is considered
 %  to be rigid. This leads to a reduced model structure by an order of two.
+%  Instead of environmental torque acting on the load, the load motion
+%  becomes a velocity input.
 %
 % Examples::
 %
