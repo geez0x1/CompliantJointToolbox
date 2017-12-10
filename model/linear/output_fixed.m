@@ -76,9 +76,9 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
             -k_g,       k_g + k_b   ];
 
     % State-space matrices
-    A = [   zeros(size(I)),     eye(size(I));
-            0, 0,               0, 0;
-            -I\K,               -I\R            ];
+    A = [   zeros(size(I)),     zeros(size(I,1),1),     eye(size(I));
+            0, 0,               0,                      0, 0;
+            -I\K,               [0; k_b/I(2,2)],       -I\R            ];
         
     % Input
     % u = [tau_m, q_l_dot]
@@ -88,16 +88,16 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
             0,              0;
             0,              1;
             k_t*n/I(1,1),   0;
-            0,              0   ];
+            0,              d_gl/I(2,2)     ];
     
     % Output
-    C = [   1, 0,   0, 0,       0;    % motor position
-            0, 1,   0, 0,       0;    % gear position
-            0, 0,   1, 0,       0;    % link position
-            0, 0,   0, 1,       0;    % motor velocity
-            0, 0,   0, 0,       1;    % gear velocity
-            0, 0,   0, 0,       0;    % link velocity
-            0, k_b, 0, d_gl, 	0  ]; % Torsion bar torque
+    C = [   1, 0,   0,      0,      0;      % motor position
+            0, 1,   0,      0,      0;      % gear position
+            0, 0,   1,      0,      0;      % link position
+            0, 0,   0,      1,      0;      % motor velocity
+            0, 0,   0,      0,      1;      % gear velocity
+            0, 0,   0,      0,      0;      % link velocity
+            0, k_b, -k_b,   d_gl,   0   ];  % Torsion bar torque
         
     % Direct Feedthrough
     nIn     = size(B,2);
