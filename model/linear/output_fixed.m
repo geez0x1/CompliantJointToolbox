@@ -77,18 +77,18 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
 
     % State-space matrices
     A = [   zeros(size(I)),     eye(size(I));
-            0,                  0;
+            0, 0,               0, 0;
             -I\K,               -I\R            ];
         
     % Input
     % u = [tau_m, q_l_dot]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0,              0,  0;
-            0,              0,  0;
-            0,              0,  1;
-            k_t*n/I(1,1),   0,  0;
-            0,              0,  0   ];
+    B   = [ 0,              0;
+            0,              0;
+            0,              1;
+            k_t*n/I(1,1),   0;
+            0,              0   ];
     
     % Output
     C = [   1, 0,   0, 0,       0;    % motor position
