@@ -63,7 +63,7 @@ function [A, B, C, D] = electric_dyn(obj)
     
     % u = [v, q_m_dot] input voltage v and motor velocity q_m_dot causing
     % back-EMF
-    B = [1/L, -k_t];
+    B = [1/L, -k_t*n/L];
     
     % Output
     % y = [i, tau_m]'
