@@ -247,13 +247,13 @@ function testElectricalSubsystem(testCase)
     jObj = elTestJoint;
     
     % Get electrical dynamics model
-    [A B C D] = jObj.getElectricalDynamicsMatrices;
+    [A, B, C, D] = jObj.getElectricalDynamicsMatrices;
 
     % Check model against preevaluated values
     flags(1) = A == -6.321428571428571e+02;
-    flags(2) = all( B ==    1.0e+03 * [  7.142857142857143   -0.000045300000000 ] );
-    flags(3) = C ==    1;
-    flags(4) = all( D ==   [0, 0] );
+    flags(2) = all( B == 1.0e+03 * [7.142857142857143   -0.000045300000000] );
+    flags(3) = all( C == [1; 4.53] );
+    flags(4) = all(all( D == zeros(2) ));
     
     % 2ND MODEL
     % Build a joint
@@ -264,13 +264,14 @@ function testElectricalSubsystem(testCase)
     jObj = elTestJointStatic;
     
     % Get electrical dynamics model
-    [A B C D] = jObj.getElectricalDynamicsMatrices;
+    [A, B, C, D] = jObj.getElectricalDynamicsMatrices;
 
     % Check model against preevaluated values
     flags(5) = A == 0;
-    flags(6) = all( B ==  0 );
-    flags(7) = C == 0;
-    flags(8) = all( D == [11.299435028248588  -51.186440677966104]);
+    flags(6) = all( B == [0, 0] );
+    flags(7) = all( C == [0; 0] );
+    flags(8) = (max(max(abs( D - [ 1.129943502824859e+01,  -5.118644067796610e+01;
+                                   5.118644067796610e+01,  -2.318745762711865e+02 ]))) < 1e-10);
     
     
     verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
