@@ -1,7 +1,7 @@
-% GETFRUEQUENCIES Perform Fast Fourier Transform on a signal.
+% GETFFT Perform Fast Fourier Transform on a signal.
 % =========================================================================
 %
-% [f, amp] = getfft(t, sig)
+% [f, amp] = getFFt(t, sig)
 %
 %  Description:
 %    Time and signal vector must have equal length. Time steps are assumed
@@ -13,7 +13,7 @@
 %
 %  Outputs::
 %    f1: vector of single-sided frequencies in Hz (0..fs/2)
-%    f2: vector of two-sided frequencies in Hz (-fs/2..fs/2);
+%    amp: single-sided amplitude spectrum
 %
 %
 %  Authors:
@@ -44,21 +44,26 @@
 %
 
 function [f, amp] = getFFt(t, signal)
+    % Check whether t and signal are equal length
+    if (length(t) ~= length(signal))
+        error('Error: t and signal are not equal length vectors');
+    end
+
     % compute sampling time, constant samping intervals are assumed
     Ts = mean(diff(t));
 
     % fft size
     l = length(signal);
-    b=2^nextpow2(l);
+    b = 2^nextpow2(l);
 
     % two-sided spectrum
-    F = fft(signal,b)/l;
+    F = fft(signal,b) / l;
 
     % create frequency vector up to Nyquist frequency
-    f = 0.5/Ts*linspace(0,1,b/2);
+    f = 0.5 / Ts * linspace(0, 1, b/2);
 
     % single-sided amplitude spectrum
-    amp = 2*abs(F(1:b/2));
+    amp = 2 * abs(F(1:b/2));
 
 end
 
