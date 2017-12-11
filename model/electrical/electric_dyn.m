@@ -53,21 +53,23 @@ function [A, B, C, D] = electric_dyn(obj)
     % The computations below assume a state vector definition according to:
     % x = [i]', where i is the motor current.
 
-    R = obj.r;
-    L = obj.x;
-    k_t = obj.k_t; % Torque constant.
+    r       = obj.r;    % Winding resistance [Ohm]
+    L       = obj.x;    % Winding inductance [H]
+    k_t     = obj.k_t;  % Torque constant [Nm/A]
+    n       = obj.n;    % Gearbox transmission ratio []
 
     % State-space matrix
-    A = -R/L;
+    A = -r/L;
     
-    % u = [v, dot{q_m}] input voltage v and motor velocity dot{q_m} causing
-    % back emf
+    % u = [v, q_m_dot] input voltage v and motor velocity q_m_dot causing
+    % back-EMF
     B = [1/L, -k_t];
     
     % Output
-    C = 1;
+    % y = [i, tau_m]'
+    C = [1; k_t*n];
     
-    % Direct Feedthrough
-    D = [0, 0];
+    % Direct feed-through
+    D = zeros(2);
 
 end
