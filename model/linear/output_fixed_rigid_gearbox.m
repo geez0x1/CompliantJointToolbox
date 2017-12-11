@@ -80,11 +80,9 @@ function [A, B, C, D, I, R, K] = output_fixed_rigid_gearbox(obj)
         
     % Input
     % u = [tau_m, q_l_dot]
-    k_t = obj.k_t;
-    n   = obj.n;
-    B   = [ 0,          0;
-            0,          1;
-            k_t*n/I,    d_gl/I  ];
+    B   = [ 0,      0;
+            0,      1;
+            1/I,    d_gl/I  ];
     
     % Output
     C = [   1,      0,      0;          % motor position

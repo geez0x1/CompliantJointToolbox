@@ -82,13 +82,11 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
         
     % Input
     % u = [tau_m, q_l_dot]
-    k_t = obj.k_t;
-    n   = obj.n;
-    B   = [ 0,              0;
-            0,              0;
-            0,              1;
-            k_t*n/I(1,1),   0;
-            0,              d_gl/I(2,2)     ];
+    B   = [ 0,          0;
+            0,          0;
+            0,          1;
+            1/I(1,1),   0;
+            0,          d_gl/I(2,2)     ];
     
     % Output
     C = [   1, 0,   0,      0,      0;      % motor position
