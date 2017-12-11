@@ -103,8 +103,8 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
     nIn     = size(B,2);
     nOut    = size(C,1);
     D       = zeros(nOut,nIn);
-    D(6,2)  = 1; % Link velocity
-    D(7,2)  = -d_gl;
+    D(6,2)  = 1;        % Link velocity
+    D(7,2)  = -d_gl;    % Torque
     
 end
 
