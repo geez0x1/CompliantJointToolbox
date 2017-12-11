@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-1.0, -1.0, 1922.0, 1082.0]
+      Location		      [-1.0, 27.0, 1922.0, 1082.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -42,7 +42,7 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4"
-	Extents			[1691.0, 907.0]
+	Extents			[1673.0, 891.0]
 	ZoomFactor		[1.5]
 	Offset			[0.0, 0.0]
       }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Dec 11 14:21:59 2017"
-  RTWModifiedTimeStamp	  434902918
-  ModelVersionFormat	  "1.%<AutoIncrement:116>"
+  LastModifiedDate	  "Mon Dec 11 14:29:52 2017"
+  RTWModifiedTimeStamp	  434903391
+  ModelVersionFormat	  "1.%<AutoIncrement:117>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -991,7 +991,7 @@ Library {
       Variant		      off
       System {
 	Name			"Joint models"
-	Location		[-1, -1, 1921, 1081]
+	Location		[-1, 27, 1921, 1109]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1029,7 +1029,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"jObj"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		20
@@ -1067,7 +1067,7 @@ Library {
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input Noise Variance"
-		Value			"0.12"
+		Value			"0.0013"
 		Enabled			"off"
 	      }
 	      PropName		      "Parameters"
