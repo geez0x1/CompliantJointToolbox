@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [207.0, 53.0, 1532.0, 938.0]
+      Location		      [-1.0, -1.0, 1922.0, 1082.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -41,10 +41,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
-	Extents			[1283.0, 747.0]
-	ZoomFactor		[0.6]
-	Offset			[-205.97142857142876, -220.01904761904757]
+	LoadSaveID		"4"
+	Extents			[1691.0, 907.0]
+	ZoomFactor		[1.5]
+	Offset			[0.0, 0.0]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Dec 11 10:34:03 2017"
-  RTWModifiedTimeStamp	  434889216
-  ModelVersionFormat	  "1.%<AutoIncrement:111>"
+  LastModifiedDate	  "Mon Dec 11 14:21:59 2017"
+  RTWModifiedTimeStamp	  434902918
+  ModelVersionFormat	  "1.%<AutoIncrement:116>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -965,7 +965,7 @@ Library {
   }
   System {
     Name		    "SEA_library_models"
-    Location		    [207, 53, 1739, 991]
+    Location		    [-1, -1, 1921, 1081]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -979,7 +979,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "91"
+    SIDHighWatermark	    "93"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -991,8 +991,8 @@ Library {
       Variant		      off
       System {
 	Name			"Joint models"
-	Location		[207, 53, 1739, 991]
-	Open			off
+	Location		[-1, -1, 1921, 1081]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1006,10 +1006,10 @@ Library {
 	ZoomFactor		"150"
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "JointElectricalSubsystem"
+	  Name			  "JointElectricalModel"
 	  SID			  "68"
-	  Ports			  [2, 1]
-	  Position		  [110, 191, 295, 229]
+	  Ports			  [2, 2]
+	  Position		  [110, 193, 295, 242]
 	  ZOrder		  453
 	  LibraryVersion	  "*1.103"
 	  RequestExecContextInheritance	off
@@ -1131,8 +1131,8 @@ Library {
 	    }
 	  }
 	  System {
-	    Name		    "JointElectricalSubsystem"
-	    Location		    [-1534, -130, -168, 571]
+	    Name		    "JointElectricalModel"
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1144,7 +1144,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "200"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "voltage [V]"
@@ -1155,7 +1155,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "jointBus]"
+	      Name		      "jointBus"
 	      SID		      "72"
 	      Position		      [10, 378, 40, 392]
 	      ZOrder		      246
@@ -1230,6 +1230,17 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux"
+	      SID		      "92"
+	      Ports		      [1, 2]
+	      Position		      [1120, 261, 1125, 339]
+	      ZOrder		      259
+	      ShowName		      off
+	      Outputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
 	      BlockType		      Integrator
 	      Name		      "Integrator"
 	      SID		      "77"
@@ -1261,7 +1272,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [65, 272, 95, 308]
 	      ZOrder		      257
-	      LibraryVersion	      "1.103"
+	      LibraryVersion	      "1.114"
 	      SourceBlock	      "SEA_library_models/Joint models/JointModel/Quantize1"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -1340,22 +1351,6 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      Reference
-	      Name		      "currentNoise"
-	      SID		      "82"
-	      Ports		      [0, 1]
-	      Position		      [135, 215, 165, 245]
-	      ZOrder		      244
-	      LibraryVersion	      "1.287"
-	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
-	      SourceType	      "Band-Limited White Noise."
-	      ContentPreviewEnabled   off
-	      Cov		      "var_u * Ts"
-	      Ts		      "Ts"
-	      seed		      "[2435345645]"
-	      VectorParams1D	      on
-	    }
-	    Block {
 	      BlockType		      TransportDelay
 	      Name		      "input_delay"
 	      SID		      "83"
@@ -1366,11 +1361,36 @@ Library {
 	      TransDelayFeedthrough   on
 	    }
 	    Block {
+	      BlockType		      Reference
+	      Name		      "voltageNoise"
+	      SID		      "82"
+	      Ports		      [0, 1]
+	      Position		      [125, 210, 155, 240]
+	      ZOrder		      244
+	      LibraryVersion	      "1.358"
+	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+	      SourceType	      "Band-Limited White Noise."
+	      ContentPreviewEnabled   off
+	      Cov		      "var_u * Ts"
+	      Ts		      "Ts"
+	      seed		      "[2435345645]"
+	      VectorParams1D	      on
+	    }
+	    Block {
 	      BlockType		      Outport
-	      Name		      "motor current [A]"
+	      Name		      "motorCurrent [A]"
 	      SID		      "86"
-	      Position		      [1105, 293, 1135, 307]
-	      ZOrder		      251
+	      Position		      [1170, 273, 1200, 287]
+	      ZOrder		      260
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "motorTorque [Nm]"
+	      SID		      "93"
+	      Position		      [1170, 313, 1200, 327]
+	      ZOrder		      261
+	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
@@ -1415,9 +1435,9 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      7
-	      SrcBlock		      "currentNoise"
+	      SrcBlock		      "voltageNoise"
 	      SrcPort		      1
-	      Points		      [20, 0]
+	      Points		      [30, 0]
 	      DstBlock		      "Sum3"
 	      DstPort		      1
 	    }
@@ -1497,15 +1517,15 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      19
+	      ZOrder		      23
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
-	      DstBlock		      "motor current [A]"
+	      DstBlock		      "Demux"
 	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      20
-	      SrcBlock		      "jointBus]"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nSelector"
 	      DstPort		      1
@@ -1524,6 +1544,20 @@ Library {
 	      DstBlock		      "Mux"
 	      DstPort		      1
 	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "Demux"
+	      SrcPort		      1
+	      DstBlock		      "motorCurrent [A]"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      25
+	      SrcBlock		      "Demux"
+	      SrcPort		      2
+	      DstBlock		      "motorTorque [Nm]"
+	      DstPort		      1
+	    }
 	  }
 	}
 	Block {
@@ -1531,7 +1565,7 @@ Library {
 	  Name			  "JointModel"
 	  SID			  "3"
 	  Ports			  [2, 1]
-	  Position		  [120, 291, 290, 344]
+	  Position		  [105, 291, 305, 344]
 	  ZOrder		  451
 	  ForegroundColor	  "yellow"
 	  LibraryVersion	  "1.109"
@@ -1638,8 +1672,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointModel"
-	    Location		    [207, 53, 1739, 991]
-	    Open		    on
+	    Location		    [-1, -1, 1921, 1081]
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1650,11 +1684,11 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "60"
+	    ZoomFactor		    "125"
 	    SIDHighWatermark	    "978"
 	    Block {
 	      BlockType		      Inport
-	      Name		      "motorCurrent [A]"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "3:13"
 	      Position		      [20, 438, 50, 452]
 	      ZOrder		      158
@@ -1662,7 +1696,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "tau_e [Nm] / q_l_dot [rad/s]"
+	      Name		      "tau_e [Nm] or q_l_dot [rad/s]"
 	      SID		      "3:399"
 	      Position		      [20, 533, 50, 547]
 	      ZOrder		      211
@@ -2570,22 +2604,6 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      Reference
-	      Name		      "currentNoise"
-	      SID		      "3:42"
-	      Ports		      [0, 1]
-	      Position		      [105, 380, 135, 410]
-	      ZOrder		      172
-	      LibraryVersion	      "1.358"
-	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
-	      SourceType	      "Band-Limited White Noise."
-	      ContentPreviewEnabled   off
-	      Cov		      "var_u * Ts"
-	      Ts		      "Ts"
-	      seed		      "[2435345645]"
-	      VectorParams1D	      on
-	    }
-	    Block {
 	      BlockType		      TransportDelay
 	      Name		      "input_delay"
 	      SID		      "3:43"
@@ -2676,7 +2694,7 @@ Library {
 		  Position		  [460, 101, 480, 119]
 		  ZOrder		  -5
 		  IconDisplay		  "Port number"
-		  PortDimensions	  "5"
+		  PortDimensions	  "3"
 		}
 		Line {
 		  ZOrder		  5
@@ -3042,6 +3060,22 @@ Library {
 	      OutputSizes	      "1,1"
 	    }
 	    Block {
+	      BlockType		      Reference
+	      Name		      "torqueNoise"
+	      SID		      "3:42"
+	      Ports		      [0, 1]
+	      Position		      [105, 380, 135, 410]
+	      ZOrder		      172
+	      LibraryVersion	      "1.358"
+	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+	      SourceType	      "Band-Limited White Noise."
+	      ContentPreviewEnabled   off
+	      Cov		      "var_u * Ts"
+	      Ts		      "Ts"
+	      seed		      "[2435345645]"
+	      VectorParams1D	      on
+	    }
+	    Block {
 	      BlockType		      Outport
 	      Name		      "jointBus"
 	      SID		      "3:67"
@@ -3155,7 +3189,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      19
-	      SrcBlock		      "currentNoise"
+	      SrcBlock		      "torqueNoise"
 	      SrcPort		      1
 	      Points		      [20, 0]
 	      DstBlock		      "Sum3"
@@ -3223,7 +3257,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      28
-	      SrcBlock		      "motorCurrent [A]"
+	      SrcBlock		      "motorTorque [Nm]"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
@@ -3516,7 +3550,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      70
-	      SrcBlock		      "tau_e [Nm] / q_l_dot [rad/s]"
+	      SrcBlock		      "tau_e [Nm] or q_l_dot [rad/s]"
 	      SrcPort		      1
 	      Points		      [254, 0; 0, -75]
 	      DstBlock		      "Mux"
@@ -3724,8 +3758,10 @@ Stateflow {
       "00, 200.000000];\nparams.n = 100.000000;\nparams.k_t = 0.045300;\nparams.r = 0.088500;\nparams.x = 0.000140;\npa"
       "rams.v_0 = 24.000000;\nparams.i_p = 40.000000;\nparams.dq_p = 5.860000;\nparams.r_th1 = 0.290000;\nparams.r_th2 "
       "= 3.450000;\nparams.T_thw = 3.960000;\nparams.T_thm = 1240.000000;\nparams.Tmp_WMax = 120.000000;\nparams.Tmp_AN"
-      "om = 25.000000;\nparams.name = 'output_fixed_test';\nparams.paramName = 'WMBig10k';\nparams.modelName = 'output_"
-      "fixed';\nparams.nonlinearModelName = '';\nparams.Ts = 0.001000;\ntau =zeros(size(x));\n	end\n\n"
+      "om = 25.000000;\nparams.name = 'output_fixed_rigid_gearbox_test';\nparams.paramName = 'WMBig10k';\nparams.modelN"
+      "ame = 'output_fixed_rigid_gearbox';\n%params.nonlinearModelName = {'coulomb_asym', 'viscous_asym', 'torque_rippl"
+      "e'}; % Cell arrays are not supported for code generation.\nparams.Ts = 0.001000;\ntau =coulomb_asym(params,x) +v"
+      "iscous_asym(params,x) +torque_ripple(params,x);\n	end\n\n"
       editorLayout	      "100 M4x1[205 227 1080 733]"
     }
   }
