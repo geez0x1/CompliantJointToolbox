@@ -5,12 +5,13 @@
 % jointObj is the instance of the joint class object for which this
 % function has been called.
 %
+%
 % Inputs::
 %   x: state vector depending on the model type as
 %     x = [q_m; q_g; q_l; q_m_dot; q_g_dot, q_l_dot'];  full_dyn
 %     x = [q_g, q_l, q_g_dot, q_l_dot]'                 rigid_gearbox
-%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 output_fixed
-%     x = [q_g, q_g_dot]'                               output_fixed_rigid_gearbox
+%     x = [q_m, q_g, q_l, q_m_dot, q_g_dot]'            output_fixed
+%     x = [q_g, q_l, q_g_dot]'                          output_fixed_rigid_gearbox
 %     x = [q_g, q_g_dot]'                               rigid
 %
 % Outputs::
@@ -33,7 +34,7 @@
 %  Joern Malzahn
 %  Wesley Roozing
 %
-% See also 
+% See also coulomb.
 
 % Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
@@ -82,7 +83,7 @@ function [ tau ] = torque_ripple(jointObj, x)
             elseif (strcmp(jointObj.modelName, 'rigid_gearbox'))
                 torque = jointObj.k_b * (x(1) - x(2));  % Torque from torsion bar deflection
             elseif (strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox'))
-                torque = jointObj.k_b * (x(1) - 0);     % Torque from torsion bar deflection
+                torque = jointObj.k_b * (x(1) - x(2));  % Torque from torsion bar deflection
             else
                 torque = 1.0;
             end
@@ -112,11 +113,13 @@ function [ tau ] = torque_ripple(jointObj, x)
     elseif (strcmp(jointObj.modelName, 'output_fixed'))
         c = [   0;
                 0;
+                0;
                 sum(taus);
                 0       	];
         
     elseif (strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox'))
         c = [   0;
+                0;
                 sum(taus)   ];
         
     elseif (strcmp(jointObj.modelName, 'rigid'))
