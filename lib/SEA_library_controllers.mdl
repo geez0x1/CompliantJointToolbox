@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [728.0, 19.0, 962.0, 1041.0]
+      Location		      [-1.0, -1.0, 1922.0, 1082.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -42,9 +42,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"3"
-	Extents			[713.0, 850.0]
+	Extents			[1691.0, 907.0]
 	ZoomFactor		[1.5]
-	Offset			[220.6319127094508, -140.60630836479203]
+	Offset			[-115.05142062388268, -94.622975031458679]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jun 09 08:02:02 2017"
-  RTWModifiedTimeStamp	  418896111
-  ModelVersionFormat	  "1.%<AutoIncrement:210>"
+  LastModifiedDate	  "Mon Dec 11 14:44:43 2017"
+  RTWModifiedTimeStamp	  434904266
+  ModelVersionFormat	  "1.%<AutoIncrement:228>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -925,7 +925,7 @@ Library {
   }
   System {
     Name		    "SEA_library_controllers"
-    Location		    [1597, 25, 2559, 1080]
+    Location		    [-1, -1, 1921, 1081]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -939,7 +939,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "539"
+    SIDHighWatermark	    "541"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -952,7 +952,7 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[728, 19, 1690, 1060]
+	Location		[-1, -1, 1921, 1081]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -991,7 +991,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Generic Controller"
-	    Location		    [1597, -250, 2559, 805]
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1003,7 +1003,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -1014,7 +1014,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "JointBus"
+	      Name		      "jointBus"
 	      SID		      "6"
 	      Position		      [680, 240, 710, 255]
 	      ZOrder		      205
@@ -1052,7 +1052,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "8"
 	      Position		      [1055, 188, 1085, 202]
 	      ZOrder		      208
@@ -1060,7 +1060,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      1
-	      SrcBlock		      "JointBus"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -30]
 	      DstBlock		      "Bus\nSelector1"
@@ -1138,7 +1138,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + Kalman (LQG)"
-	    Location		    [1597, -250, 2559, 805]
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1164,7 +1164,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "JointBus"
+	      Name		      "jointBus"
 	      SID		      "507"
 	      Position		      [150, 520, 180, 535]
 	      ZOrder		      285
@@ -1329,7 +1329,7 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	      Port {
 		PortNumber		1
-		Name			"u"
+		Name			"motorTorque [Nm]"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
@@ -1357,7 +1357,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "27"
 	      Position		      [1160, 463, 1190, 477]
 	      ZOrder		      208
@@ -1408,15 +1408,15 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      ZOrder		      6
-	      Labels		      [1, 1]
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
 	      Points		      [54, 0]
 	      Branch {
 		ZOrder			7
-		DstBlock		"u"
+		Labels			[0, 0]
+		DstBlock		"motorTorque [Nm]"
 		DstPort			1
 	      }
 	      Branch {
@@ -1498,7 +1498,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      17
-	      SrcBlock		      "JointBus"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -35]
 	      DstBlock		      "Bus\nSelector"
@@ -1608,7 +1608,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + state observer"
-	    Location		    [1597, 25, 2559, 1080]
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1634,7 +1634,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "JointBus"
+	      Name		      "jointBus"
 	      SID		      "498"
 	      Position		      [20, 535, 50, 550]
 	      ZOrder		      281
@@ -1849,7 +1849,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "44"
 	      Position		      [1160, 473, 1190, 487]
 	      ZOrder		      208
@@ -1894,7 +1894,7 @@ Library {
 	      Points		      [54, 0]
 	      Branch {
 		ZOrder			5
-		DstBlock		"u"
+		DstBlock		"motorTorque [Nm]"
 		DstPort			1
 	      }
 	      Branch {
@@ -1951,7 +1951,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      13
-	      SrcBlock		      "JointBus"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -35]
 	      DstBlock		      "Bus\nSelector"
@@ -2111,7 +2111,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR Full Measured State"
-	    Location		    [1597, -250, 2559, 805]
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2123,7 +2123,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2137,7 +2137,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "JointBus"
+	      Name		      "jointBus"
 	      SID		      "513"
 	      Position		      [1520, 720, 1550, 735]
 	      ZOrder		      295
@@ -2267,16 +2267,16 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	      Port {
 		PortNumber		1
-		Name			"u"
+		Name			"motorTorque [Nm]"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "524"
-	      Position		      [2150, 678, 2180, 692]
+	      Position		      [2195, 678, 2225, 692]
 	      ZOrder		      287
 	      IconDisplay	      "Port number"
 	    }
@@ -2345,7 +2345,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      30
-	      SrcBlock		      "JointBus"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -30]
 	      DstBlock		      "Bus\nSelector"
@@ -2366,12 +2366,12 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      ZOrder		      39
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
-	      DstBlock		      "u"
+	      DstBlock		      "motorTorque [Nm]"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2389,6 +2389,16 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "Gain1"
 	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "541"
+	      Name		      "<-- This may need further testing"
+	      Position		      [2079, 584, 2225, 601]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
 	    }
 	  }
 	}
@@ -2559,7 +2569,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF with inner-loop DOB"
-	    Location		    [-1, 27, 1921, 1109]
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2571,7 +2581,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2582,7 +2592,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "JointBus"
+	      Name		      "jointBus"
 	      SID		      "79"
 	      Position		      [465, 550, 495, 565]
 	      ZOrder		      215
@@ -2652,18 +2662,6 @@ Library {
 	      ICPrevScaledInput	      "DiscIntNeverNeededParam"
 	    }
 	    Block {
-	      BlockType		      Gain
-	      Name		      "Gain1"
-	      SID		      "537"
-	      Position		      [1015, 276, 1185, 344]
-	      ZOrder		      487
-	      NamePlacement	      "alternate"
-	      Gain		      "1 / (jointObj.n * jointObj.k_t)"
-	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
 	      BlockType		      Ground
 	      Name		      "Ground1"
 	      SID		      "538"
@@ -2690,7 +2688,7 @@ Library {
 	      ZOrder		      320
 	      ForegroundColor	      "red"
 	      BackgroundColor	      "yellow"
-	      LibraryVersion	      "1.87"
+	      LibraryVersion	      "1.92"
 	      SourceBlock	      "SEA_library_observers/Observers/Linear transfer function DOB"
 	      SourceType	      ""
 	      ContentPreviewEnabled   off
@@ -2716,6 +2714,12 @@ Library {
 	      ZOrder		      488
 	      InputSameDT	      off
 	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"feed-forward/compensation"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -2757,7 +2761,7 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	      Port {
 		PortNumber		1
-		Name			"u"
+		Name			"motorTorque [Nm]"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
@@ -2796,9 +2800,9 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "89"
-	      Position		      [1365, 538, 1395, 552]
+	      Position		      [1405, 538, 1435, 552]
 	      ZOrder		      216
 	      IconDisplay	      "Port number"
 	    }
@@ -2846,13 +2850,6 @@ Library {
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      8
-	      SrcBlock		      "Multiport\nSwitch"
-	      SrcPort		      1
-	      DstBlock		      "Gain1"
-	      DstPort		      1
-	    }
-	    Line {
 	      ZOrder		      9
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
@@ -2860,10 +2857,12 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "Gain1"
+	      Name		      "feed-forward/compensation"
+	      ZOrder		      31
+	      Labels		      [1, 1]
+	      SrcBlock		      "Multiport\nSwitch"
 	      SrcPort		      1
-	      Points		      [70, 0]
+	      Points		      [270, 0]
 	      DstBlock		      "Sum1"
 	      DstPort		      1
 	    }
@@ -2875,21 +2874,21 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      ZOrder		      12
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
-	      Points		      [66, 0]
+	      Points		      [87, 0]
 	      Branch {
 		ZOrder			13
-		Points			[0, 330; -440, 0; 0, -100]
+		Points			[0, 330; -461, 0; 0, -100]
 		DstBlock		"Linear transfer function DOB"
 		DstPort			1
 	      }
 	      Branch {
 		ZOrder			14
-		DstBlock		"u"
+		DstBlock		"motorTorque [Nm]"
 		DstPort			1
 	      }
 	    }
@@ -2904,7 +2903,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      16
-	      SrcBlock		      "JointBus"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -50; 64, 0]
 	      Branch {
@@ -3257,7 +3256,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp with outer-loop\nDOB and optional prefilter"
-	    Location		    [1597, -250, 2559, 805]
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -3280,7 +3279,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "JointBus"
+	      Name		      "jointBus"
 	      SID		      "56"
 	      Position		      [60, 325, 90, 340]
 	      ZOrder		      205
@@ -3380,24 +3379,6 @@ Library {
 	      ICPrevScaledInput	      "DiscIntNeverNeededParam"
 	    }
 	    Block {
-	      BlockType		      Gain
-	      Name		      "Gain"
-	      SID		      "60"
-	      Position		      [1115, 41, 1285, 109]
-	      ZOrder		      212
-	      NamePlacement	      "alternate"
-	      Gain		      "1 / (jointObj.n * jointObj.k_t)"
-	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	      Port {
-		PortNumber		1
-		Name			"feed-forward/compensation"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
 	      BlockType		      Ground
 	      Name		      "Ground"
 	      SID		      "61"
@@ -3475,6 +3456,12 @@ Library {
 	      ZOrder		      267
 	      InputSameDT	      off
 	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"feed-forward/compensation"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
 	    }
 	    Block {
 	      BlockType		      MultiPortSwitch
@@ -3545,7 +3532,7 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	      Port {
 		PortNumber		1
-		Name			"u"
+		Name			"motorTorque [Nm]"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
@@ -3635,7 +3622,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "76"
 	      Position		      [1545, 313, 1575, 327]
 	      ZOrder		      208
@@ -3727,7 +3714,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      14
-	      SrcBlock		      "JointBus"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -30]
 	      DstBlock		      "Bus\nSelector1"
@@ -3743,21 +3730,21 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      ZOrder		      16
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
-	      DstBlock		      "u"
+	      DstBlock		      "motorTorque [Nm]"
 	      DstPort		      1
 	    }
 	    Line {
 	      Name		      "feed-forward/compensation"
-	      ZOrder		      17
-	      Labels		      [2, 0]
-	      SrcBlock		      "Gain"
+	      ZOrder		      43
+	      Labels		      [1, 1]
+	      SrcBlock		      "Multiport\nSwitch"
 	      SrcPort		      1
-	      Points		      [145, 0]
+	      Points		      [345, 0]
 	      DstBlock		      "Sum1"
 	      DstPort		      1
 	    }
@@ -3817,13 +3804,6 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch2"
 	      DstPort		      3
-	    }
-	    Line {
-	      ZOrder		      27
-	      SrcBlock		      "Multiport\nSwitch"
-	      SrcPort		      1
-	      DstBlock		      "Gain"
-	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      28
@@ -4009,7 +3989,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp."
-	    Location		    [1597, 25, 2559, 1080]
+	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4021,7 +4001,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -4038,7 +4018,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "JointBus"
+	      Name		      "jointBus"
 	      SID		      "274"
 	      Position		      [105, 375, 120, 405]
 	      ZOrder		      205
@@ -4107,18 +4087,6 @@ Library {
 	      ICPrevScaledInput	      "DiscIntNeverNeededParam"
 	    }
 	    Block {
-	      BlockType		      Gain
-	      Name		      "Gain"
-	      SID		      "287"
-	      Position		      [755, 41, 925, 109]
-	      ZOrder		      335
-	      NamePlacement	      "alternate"
-	      Gain		      "1 / (jointObj.n * jointObj.k_t)"
-	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
 	      BlockType		      Ground
 	      Name		      "Ground1"
 	      SID		      "288"
@@ -4145,6 +4113,12 @@ Library {
 	      ZOrder		      336
 	      InputSameDT	      off
 	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"feed-forward/compensation"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -4225,7 +4199,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u"
+	      Name		      "motorTorque [Nm]"
 	      SID		      "285"
 	      Position		      [1095, 298, 1125, 312]
 	      ZOrder		      208
@@ -4340,12 +4314,12 @@ Library {
 	      ZOrder		      17
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
-	      DstBlock		      "u"
+	      DstBlock		      "motorTorque [Nm]"
 	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      18
-	      SrcBlock		      "JointBus"
+	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nSelector1"
 	      DstPort		      1
@@ -4376,13 +4350,6 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      22
-	      SrcBlock		      "Multiport\nSwitch"
-	      SrcPort		      1
-	      DstBlock		      "Gain"
-	      DstPort		      1
-	    }
-	    Line {
 	      ZOrder		      23
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
@@ -4390,10 +4357,12 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      24
-	      SrcBlock		      "Gain"
+	      Name		      "feed-forward/compensation"
+	      ZOrder		      25
+	      Labels		      [1, 1]
+	      SrcBlock		      "Multiport\nSwitch"
 	      SrcPort		      1
-	      Points		      [100, 0]
+	      Points		      [300, 0]
 	      DstBlock		      "Sum1"
 	      DstPort		      1
 	    }
