@@ -60,7 +60,7 @@ function [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx, doPlot)
     %% Get joint object and state-space system with current input and specified output
     sys     = jointObj.getStateSpace();
     sys     = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
-    P      = tf(sys);
+    P       = tf(sys);
 
     % Check if P is a dynamic system
     % If we select the output position for a fixed-output plant for

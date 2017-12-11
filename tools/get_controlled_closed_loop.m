@@ -119,7 +119,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     % feed-forward for the spring force
     if (ff_comp_switch == 1)            % Compensation
         % Compensation term
-        C2      = 1 / (n * k_t);
+        C2      = 1;
         
         % Closed-loop transfer function
         P       = tf(sys);
@@ -128,7 +128,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
         
     elseif (ff_comp_switch == 2)        % Feed-forward
         % Feed-forward term
-        C2      = tf(1 / (n * k_t));
+        C2      = tf(1);
         C2.u    = 'r';
         C2.y    = 'ff_u';
         
