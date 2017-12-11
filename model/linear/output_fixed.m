@@ -11,7 +11,7 @@
 %   C:   Output matrix
 %   D:   Direct Feedthrough matrix
 %   I:   Inertia matrix
-%   D:   Damping matrix
+%   R:   Damping matrix
 %   K:   Stiffness matrix
 %
 % Notes::

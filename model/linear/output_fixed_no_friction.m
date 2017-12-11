@@ -1,7 +1,7 @@
 %OUTPUT_FIXED_NO_FRICTION Get linear dynamics matrices - output link
 % fixed, no friction
 %
-% [A, B, C, I, D, K] = jointObj.output_fixed_no_friction
+% [A, B, C, D, I, R, K] = jointObj.output_fixed_no_friction
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
