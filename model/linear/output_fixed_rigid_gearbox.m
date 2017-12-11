@@ -19,6 +19,8 @@
 %  This function is identical to full_dyn, but with the difference that the
 %  joint output is now considered to be fixed and the gearbox is considered
 %  to be rigid. This leads to a reduced model structure by an order of two.
+%  Instead of environmental torque acting on the load, the load motion
+%  becomes a velocity input.
 %
 % Examples::
 %
@@ -51,46 +53,54 @@
 function [A, B, C, D, I, R, K] = output_fixed_rigid_gearbox(obj)
     
     % The computations below assume a state vector definition according to:
-    % x = [q_g, q_g_dot,]', where 
+    % x = [q_g, q_l, q_g_dot]', where
     % q_g is the gearbox output angle
+    % q_l is the load angle
     %
     % The '_dot' denotes the temporal derivative.
-    
+
     % Inertia matrix
     I = obj.I_m + obj.I_g;
 
     % Damping matrix
-    d_gl = obj.d_gl;
-    R = obj.d_m + obj.d_g + obj.d_gl;
+    d_m     = obj.d_m;
+    d_g     = obj.d_g;
+    %d_mg    = obj.d_mg;
+    d_gl    = obj.d_gl; % shorthands %#ok<*PROP>
+    R = d_m + d_g + d_gl;
 
     % Stiffness matrix
     k_b = obj.k_b;
     K   = k_b;
 
     % State-space matrices
-    A = [   zeros(size(I)),     eye(size(I));
-            -I\K,               -I\R            ];
+    A = [   zeros(size(I)),     zeros(size(I,1),1),     eye(size(I));
+            0,                  0,                      0;
+            -I\K,               k_b/I,                  -I\R            ];
         
     % Input
-    % u = [tau_m, tau_e]
+    % u = [tau_m, q_l_dot]
     k_t = obj.k_t;
     n   = obj.n;
-    B   = [ 0,              0;
-            k_t*n/I(1,1),   0       ];
+    B   = [ 0,          0;
+            0,          1;
+            k_t*n/I,    d_gl/I  ];
     
     % Output
-    d_gl = obj.d_gl;
-    C = [   1,      0;          % motor position
-            1,      0;          % gear position
-            0,      0;          % link position
-            0,      1;          % motor velocity
-            0,      1;          % gear velocity
-            0,      0;          % link velocity
-            k_b,    d_gl	];	% Torsion bar torque
+    C = [   1,      0,      0;          % motor position
+            1,      0,      0;          % gear position
+            0,      1,      0;          % link position
+            0,      0,      1;          % motor velocity
+            0,      0,      1;          % gear velocity
+            0,      0,      0;          % link velocity
+            k_b,    -k_b,   d_gl    ];  % Torsion bar torque
 
     % Direct Feedthrough
-    nIn = size(B,2);
-    nOut = size(C,1);
-    D = zeros(nOut,nIn);
+    nIn     = size(B,2);
+    nOut    = size(C,1);
+    D       = zeros(nOut,nIn);
+    D(6,2)  = 1;        % Link velocity
+    D(7,2)  = -d_gl;    % Torque
+    
 end
 

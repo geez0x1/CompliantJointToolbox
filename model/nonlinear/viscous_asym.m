@@ -10,8 +10,8 @@
 %   x: state vector depending on the model type as
 %     x = [q_m; q_g; q_l; q_m_dot; q_g_dot, q_l_dot'];  full_dyn
 %     x = [q_g, q_l, q_g_dot, q_l_dot]'                 rigid_gearbox
-%     x = [q_m, q_g, q_m_dot, q_g_dot]'                 output_fixed
-%     x = [q_g, q_g_dot]'                               output_fixed_rigid_gearbox
+%     x = [q_m, q_g, q_l, q_m_dot, q_g_dot]'            output_fixed
+%     x = [q_g, q_l, q_g_dot]'                          output_fixed_rigid_gearbox
 %     x = [q_g, q_g_dot]'                               rigid
 %
 % Outputs::
@@ -76,12 +76,12 @@ function [ tau ] = viscous_asym(obj, x)
         c_neg   = [0, 0, -d_m - d_g + d_m_n + d_g_n,    -d_g + d_g_n    ]';
         
     elseif (strcmp(obj.modelName, 'output_fixed'))
-        c       = [0, 0, 0,             0               ]';
-        c_neg   = [0, 0, -d_m + d_m_n,  -d_g + d_g_n    ]';
+        c       = [0, 0, 0, 0,              0               ]';
+        c_neg   = [0, 0, 0, -d_m + d_m_n,   -d_g + d_g_n    ]';
         
     elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
-        c       = [0, 0                             ]';
-        c_neg   = [0, -d_m - d_g + d_m_n + d_g_n    ]';
+        c       = [0, 0, 0                              ]';
+        c_neg   = [0, 0, -d_m - d_g + d_m_n + d_g_n     ]';
         
     elseif (strcmp(obj.modelName, 'rigid'))
         c       = 0;
