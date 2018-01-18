@@ -71,10 +71,8 @@ function [A, B, C, D, I, R, K] = rigid(obj)
 
     % Input
     % u = [tau_m, tau_e]
-    k_t = obj.k_t;
-    n   = obj.n;
-    B   = [ 0,              0;
-            k_t*n/I(1,1),	1/I(1,1)         ];
+    B   = [ 0,          0;
+            1/I(1,1),   1/I(1,1)         ];
     
     % Output
     C = [   1,  0;      % motor position

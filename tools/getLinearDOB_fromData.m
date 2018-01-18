@@ -107,15 +107,15 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     d = iddata(y, u, [], 'SamplingInstants', t);
 
     % Identify transfer function Pc
-    Options = tfestOptions;
-    Options.Display = 'on';
-    Options.InitMethod = 'all';
-    Pc = tfest(d, id_Np, id_Nz, Options);
+    Options             = tfestOptions;
+    Options.Display     = 'on';
+    Options.InitMethod  = 'all';
+    Pc                  = tfest(d, id_Np, id_Nz, Options);
 
     % Get magnitude and phase of Pc over f
-    [mag_Pc, phase_Pc] = bode(Pc, 2*pi*f);
-    mag_db_Pc   = mag2db(mag_Pc(:));
-    phase_Pc    = phase_Pc(:);
+    [mag_Pc, phase_Pc]  = bode(Pc, 2*pi*f);
+    mag_db_Pc           = mag2db(mag_Pc(:));
+    phase_Pc            = phase_Pc(:);
 
 
     %% Plot original data and Pc approximation

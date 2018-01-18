@@ -82,14 +82,12 @@ function [A, B, C, D, I, R, K] = full_dyn(obj)
 
     % Input
     % u = [tau_m, tau_e]
-    k_t = obj.k_t;
-    n   = obj.n;
-    B   = [ 0,              0;
-            0,              0;
-            0,              0;
-            k_t*n/I(1,1),   0;
-            0,              0;
-            0,              1/I(3,3)	];
+    B   = [ 0,          0;
+            0,          0;
+            0,          0;
+            1/I(1,1),   0;
+            0,          0;
+            0,          1/I(3,3)	];
     
     % Output
     C = [   eye(size(A,2));                     % All states

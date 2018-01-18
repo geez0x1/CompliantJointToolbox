@@ -82,13 +82,13 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     
     % Optimal (specified damping ratio of poles) gains
     zeta = 1.0; % Critical damping
-    Kd_opt =    (   2*(I_m + I_g) * ...
+    Kd_opt =    (   2 * (I_m + I_g) * ...
                     sqrt( ...
-                        (k_b * k_t * Kp * n + k_b) / ...
+                        (k_b * Kp + k_b) / ...
                         (I_m + I_g) ...
                     ) * zeta ...
                     - (d_m + d_g + d_gl) ...
-                ) / (k_b * k_t * Kp * n);
+                ) / k_b;
     
     % Set derivative gain Kd to Kd_opt if set to -1
     if (Kd == -1)
@@ -119,7 +119,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     % feed-forward for the spring force
     if (ff_comp_switch == 1)            % Compensation
         % Compensation term
-        C2      = 1 / (n * k_t);
+        C2      = tf(1);
         
         % Closed-loop transfer function
         P       = tf(sys);
@@ -128,7 +128,7 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
         
     elseif (ff_comp_switch == 2)        % Feed-forward
         % Feed-forward term
-        C2      = tf(1 / (n * k_t));
+        C2      = tf(1);
         C2.u    = 'r';
         C2.y    = 'ff_u';
         

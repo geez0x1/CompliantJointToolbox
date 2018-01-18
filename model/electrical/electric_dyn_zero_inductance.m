@@ -49,20 +49,23 @@ function [A, B, C, D] = electric_dyn_zero_inductance(obj)
     % With neglected winding inductance the model becomes a static gain for
     % the back emf and input voltage.
     
-    R = obj.r;
-    k_t = obj.k_t; % Torque constant.
-    N = obj.n;
+    r       = obj.r;    % Winding resistance [Ohm]
+    k_t     = obj.k_t;  % Torque constant [Nm/A]
+    n       = obj.n;    % Gearbox transmission ratio []
     
     % State-space matrix
     A = 0;
     
-    % u = [v, dot{q_m}] input voltage v and motor velocity dot{q_m}
+    % u = [v, q_m_dot] input voltage v and motor velocity q_m_dot
     B = [0 0];
     
     % Output
-    C = 0;
+    % y = [i, tau_m]'
+    C = [0; 0];
     
-    % Direct Feedthrough of input voltage and back emf
-    D = [1/R, -k_t*N/R];
+    % Direct feed-through of input voltage and back emf
+    % y = [i, tau_m]'
+    D = [   1/r,        -k_t*n/r;
+            k_t*n/r,    -(k_t*n)*(k_t*n/r);   ];
 
 end

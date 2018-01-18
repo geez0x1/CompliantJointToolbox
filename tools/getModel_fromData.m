@@ -86,10 +86,10 @@ function [ P ] = getModel_fromData(t, u, y, id_Np, id_Nz, roi)
     d = iddata(y, u, [], 'SamplingInstants', t);
 
     % Identify transfer function P
-    Options = tfestOptions;
-    Options.Display = 'on';
-    Options.InitMethod = 'all';
-    P = tfest(d, id_Np, id_Nz, Options);
+    Options             = tfestOptions;
+    Options.Display     = 'on';
+    Options.InitMethod  = 'all';
+    P                   = tfest(d, id_Np, id_Nz, Options);
 
     % Get magnitude and phase of Pc over f
     [mag_P, phase_P]    = bode(P, 2*pi*f);
