@@ -31,7 +31,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % Transmission ratio
-n = 160;
+n = 80;
 
 % Motor type
 % Color:            Orange &#x1F4D9
@@ -63,7 +63,7 @@ params.('I_g')      = 1.2320e-05 * n^2; 	%% Gear inertia [kg m^2]
 params.('I_l')      = 1.0;                  %% Load inertia [kg m^2] % TO BE UPDATED!
 % Stiffnesses
 params.('k_g')      = 25e3;                 %% Gearbox stiffness [Nm/rad] (using K_2 from datasheet, valid for 7..25 Nm)
-params.('k_b')      = 6500;                 %% Torsion bar stiffness [Nm/rad]
+params.('k_b')      = 5714;                 %% Torsion bar stiffness [Nm/rad]
 % Linear viscous friction
 params.('d_m')      = 5.1184e-05 * n^2;     %% Motor Damping [Nms/rad]
 params.('d_g')      = 3.4923e-04 * n^2;     %% Gearbox damping [Nms/rad]
