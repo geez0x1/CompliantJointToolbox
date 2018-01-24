@@ -101,7 +101,7 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
     phase   = phase(sIdx:eIdx);
     
     % Resample data using logarithmic frequency space.
-    % freq no longer starts at 0 due to the ROI above.
+    % freq may no longer start at 0 due to the ROI above.
     if (resample)
         a = log(freq(1)) / log(10);
         b = log(freq(end-1)) / log(10);
