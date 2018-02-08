@@ -8,7 +8,7 @@
 
 %% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %%
-%% This file is part of the Compliant Joint Toolbox (CJT).
+%% This file has been generated with the Compliant Joint Toolbox (CJT).
 %%
 %% CJT is free software: you can redistribute it and/or modify
 %% it under the terms of the GNU General Public License as published by
