@@ -517,7 +517,7 @@ classdef dataSheetGenerator
             end
             
             if ~exist('subtractFriction','var')
-                subtractFriction = 1;
+                subtractFriction = 0;
             end
             
             % Shorthands 
