@@ -31,10 +31,12 @@
 % #! Batch Build Some Joints
 
 %% Create jointBuilder
+ % Instantiate jointBuilder
 jb = jointBuilder;
+ % Configure jointBuilder: overwrite existing files without asking.
+jb.overwrite = 1;
 
 %% Configure parameters 
-
 % Parameter sets to use for the joint models
 allParams = {'cjt_Pomegranate_160_9000';
     'cjt_Orange_100_6000';
@@ -79,14 +81,9 @@ for iPar = 1:nPar
     jb.buildJoint(allParams{iPar}, 'output_fixed_rigid_gearbox', {'coulomb_asym', 'viscous_asym'});
 end
 
-%% Display result
-
-% Look how many joint models we have!
-dir(jb.buildDir)
-
 %% Finish up
-% You may wish to inspect and play with the generated models. Otherwise, if you wish to remove 
-% all the files that have been created by the builder, call the jointBuilder purge method:
+% Look how many nice joint models we have! You may wish to inspect and play with the generated models. Otherwise, 
+% if you wish to remove all the files that have been created by the builder, call the jointBuilder purge method:
 %
 %   |jb.purge|
 %
