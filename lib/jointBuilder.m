@@ -136,7 +136,7 @@ classdef jointBuilder
             eval(paramName);
             
             % If model name is empty, use "full_dyn" by default
-            if isempty(modelName)
+            if (~exist('modelName', 'var') || isempty(modelName))
                 modelName = 'full_dyn'; 
             end
             % Otherwise, check whether the linear model exists
