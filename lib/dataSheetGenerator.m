@@ -822,7 +822,7 @@ classdef dataSheetGenerator
         end
 
         
-        function createDataSheet(this)
+        function destFName = createDataSheet(this)
             % CREATEDATASHEET Main function to trigger the data sheet
             % generation.
             %
@@ -860,14 +860,15 @@ classdef dataSheetGenerator
             this.makeDataSheetPlots;
             
             % Compile the Tex source
-            this.compileTexFile
+            this.compileTexFile;
             
             % Put the generated datasheet in the final destination.
             [~, fName] = fileparts(this.texFName);
             if ~exist(this.outputDir,'dir')
                 mkdir(this.outputDir)
             end
-            copyfile([fName,'.pdf'],[this.outputDir,filesep, this.assembleOutFileName ]);
+            destFName = [this.outputDir,filesep, this.assembleOutFileName ];
+            copyfile([fName,'.pdf'],destFName);
 
             % Clean up.
             delete([fName,'.*'])
