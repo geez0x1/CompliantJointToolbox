@@ -57,9 +57,9 @@ dsGen = dataSheetGenerator(aJoint);
 
 figure(1)
 clf;
-dsGen.draw_torque_speed_curve;
+dsGen.drawTorqueSpeedCurve;
 
 
 figure(2)
 clf;
-dsGen.draw_thermal_characteristics;
+dsGen.drawThermalCharacteristics;
