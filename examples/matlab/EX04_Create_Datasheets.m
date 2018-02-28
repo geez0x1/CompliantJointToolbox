@@ -63,3 +63,7 @@ dsGen.drawTorqueSpeedCurve;
 figure(2)
 clf;
 dsGen.drawThermalCharacteristics;
+
+figure(3)
+clf;
+dsGen.drawEfficiencyCurve;
