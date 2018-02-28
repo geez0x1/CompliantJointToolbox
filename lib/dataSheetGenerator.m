@@ -304,13 +304,13 @@ classdef dataSheetGenerator
 
              set(hAx,'xlim',[0,t_p]);  
              
-             legend({'Steady state temperature [�C]',...
+             legend({'Steady state temperature [C]',...
                      'Critical winding temperature',...
                      'Copper melting temperature',...
                      'Time to critical winding temperature [s]'}, 'location','best')
                  
              xlabel('Torque [Nm]')
-             title(['Steady-state temperature rise for ambient temperature ',num2str(Tmp_ANom),' [�C]'])
+             title(['Steady-state temperature rise for ambient temperature ',num2str(Tmp_ANom),' [C]'])
              
              hold on;
              % Plot rated operation area
