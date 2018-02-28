@@ -46,11 +46,11 @@ params.('k_g') = 16000;     %% Gearbox stiffness [Nm/rad]
 params.('k_b') = 6000;     %% Torsion bar stiffness [Nm/rad]
 % Linear viscous friction
 params.('d_m') = 5.612979e-03;     %% Motor Damping [Nms/rad]
-params.('d_g') = 1.200000e+01;     %% Gearbox damping [Nms/rad]
+params.('d_g') = 6.000000e-01;     %% Gearbox damping [Nms/rad]
 params.('d_l') = 0;     %% Torsion bar damping [Nms/rad]
 % Asymmetric viscous friction
 params.('d_m_n') = 5.612979e-03;  %% Motor Damping - negative direction [Nms/rad]
-params.('d_g_n') = 1.200000e+01;  %% Gearbox Damping - negative direction [Nms/rad]
+params.('d_g_n') = 6.000000e-01;  %% Gearbox Damping - negative direction [Nms/rad]
 params.('d_l_n') = 0;  %% Torsion bar damping - negative direction [Nms/rad]
 % Linear internal viscous friction
 params.('d_mg')  = 100;  %% Gearbox internal damping [Nms/rad] (not identified)
