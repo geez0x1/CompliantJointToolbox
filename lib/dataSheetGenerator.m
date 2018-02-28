@@ -181,25 +181,26 @@ classdef dataSheetGenerator
             k_t = this.jointModel.k_t;
             r   = this.jointModel.r;
             t_NL = this.jointModel.t_NL;
+            i_NL = this.jointModel.i_NL;
             t_stall = this.jointModel.t_stall;
             N = this.jointModel.n;
             
             % Linearly spaced vector of torques between 0 and peak torque
             tauVals = (0:1/this.nPlotVals:1) * t_p;
-            
-            % Power computation
-            PL = v_0 / k_t/N * tauVals - r / k_t^2/N^2 * tauVals.^2;
-            P_tot = v_0 / k_t/N * tauVals;
             speedVals = this.torqueSpeedCurve(tauVals);
             
+            % Power computation
+            P_mech = speedVals .* (tauVals - i_NL*k_t*N);
+            P_tot = v_0 / k_t/N * tauVals;
+
             % Efficiency computation
-            eta = 100*( speedVals .* (tauVals - t_NL) * N * k_t / v_0 ) ./ tauVals;
-            eta_max = 100 * ( 1 - sqrt( t_NL / t_stall)  );
+            eta = 100 * P_mech ./ P_tot;
+            eta_max = 100 * ( 1 - sqrt( t_NL / t_stall)  )^2;
             
             % Initialize figure and plot
             h = gcf;
             [hAx,hLine1,hLine2] = plotyy(tauVals(:), eta(:), ... Efficiency plot 
-                tauVals(:),[PL(:) P_tot(:)]);                % Power plot
+                tauVals(:),[P_mech(:) P_tot(:)]);                % Power plot
             
             % Manipulate style of the efficiency plot 
             set(hLine1,'Color','r','linewidth',1.5)
