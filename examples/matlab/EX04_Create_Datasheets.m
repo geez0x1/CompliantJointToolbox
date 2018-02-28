@@ -32,25 +32,25 @@
 % #! A First Joint
 
 
-% %% Instantiate a jointBuilder
-% jb = jointBuilder;
-% 
-% %% Build joint model classes
-% % A model of a TREE Robotics Pomegranate actuator with 9 kNm/rad sensor stiffness Coulomb friction as well as
-% % electric dynamics including winding inductance and rigid gearbox.
-% jb.buildJoint('cjt_Orange_80_6000', ... parameters
-%     'rigid_gearbox', ... linear dynamics
-%     {'coulomb',...  {nonlinear
-%     'viscous_asym'}, ... dynamics}
-%     [],... electro-dynamics
-%     'My_Orange');  % class name
-% 
-% % add build directory to search path
-% addpath(jb.buildDir) 
-% 
-% %% Instantiate an object of the new class
-% aJoint = My_Orange;
-% 
+%% Instantiate a jointBuilder
+jb = jointBuilder;
+
+%% Build joint model classes
+% A model of a TREE Robotics Pomegranate actuator with 9 kNm/rad sensor stiffness Coulomb friction as well as
+% electric dynamics including winding inductance and rigid gearbox.
+jb.buildJoint('cjt_Orange_80_6000', ... parameters
+    'rigid_gearbox', ... linear dynamics
+    {'coulomb',...  {nonlinear
+    'viscous_asym'}, ... dynamics}
+    [],... electro-dynamics
+    'My_Orange');  % class name
+
+% add build directory to search path
+addpath(jb.buildDir) 
+
+%% Instantiate an object of the new class
+aJoint = My_Orange;
+
 
 %% Instantiate a dataSheetGenerator
 dsGen = dataSheetGenerator(aJoint);
