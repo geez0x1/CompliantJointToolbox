@@ -113,10 +113,10 @@ classdef dataSheetGenerator
         end
         
         function speed = torqueSpeedCurve(this,tau)
-            % TORQUE_SPEED_CURVE Computes the maximum feasible motor speed
+            % TORQUESPEEDCURVE Computes the maximum feasible motor speed
             % corresponding for a given torque level.
             %
-            %   speed = dsg.torque_speed_curve(tau)
+            %   speed = dsg.TorqueSpeedCurve(tau)
             %
             % Inputs:
             %   tau: Deliviered actuator torque.
@@ -190,7 +190,7 @@ classdef dataSheetGenerator
             % Power computation
             PL = v_0 / k_t/N * tauVals - r / k_t^2/N^2 * tauVals.^2;
             P_tot = v_0 / k_t/N * tauVals;
-            speedVals = this.torque_speed_curve(tauVals);
+            speedVals = this.torqueSpeedCurve(tauVals);
             
             % Efficiency computation
             eta = 100*( speedVals .* (tauVals - t_NL) * N * k_t / v_0 ) ./ tauVals;
@@ -515,10 +515,10 @@ classdef dataSheetGenerator
         end
         
         function h = drawTorqueSpeedCurve(this, subtractFriction, legendFontSize)
-            % draw_torque_speed_curve Displays speed-torque-curve in a
+            % draw_TorqueSpeedCurve Displays speed-torque-curve in a
             % figure.
             %
-            %   fHandle = dsg.draw_torque_speed_curve(subtractFriction, legendFontSize)
+            %   fHandle = dsg.draw_TorqueSpeedCurve(subtractFriction, legendFontSize)
             %
             % Inputs:
             %   subtractFriction: flag that controls if the torque axis
