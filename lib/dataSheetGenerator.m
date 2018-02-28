@@ -290,19 +290,49 @@ classdef dataSheetGenerator
             [hAx,hLine1,hLine2] = plotyy(tauVals(:), [Tmp_W(:), TmpLimW(:),TmpLimCU(:) ], ... Steady State Temperature
                 tauVals(:),[tCrit]);                % Time to critical temperature
              
-            % Manipulate style of the efficiency plot
-            set(hLine1,'Color','r')
-            set(hLine1(2),'LineStyle','--')
-            set(hLine1(3),'LineStyle','--')
+            % Manipulate line style
+            set(hLine1,'Color','r','linewidth',1.5)
+            set(hLine1(2),'LineStyle','--','linewidth',1)
+            set(hLine1(3),'LineStyle',':','linewidth',1)
             ylabel(hAx(1), 'Steady State Temp. [^\circC]','Color','r');
             set(hAx(1),'ylim',[0,1.05*max((Tmp_W))]);
 
              % Manipulate plot style
-             set(hLine2,'Color','b')
+             set(hLine2,'Color','b','linewidth',1.5)
              ylabel(hAx(2),'Time to Crit Temperature [s]','Color','b');
              set(hAx(2),'ylim',[0,1.05*max(real(tCrit))]);
 
-             set(hAx,'xlim',[0,t_p]);            
+             set(hAx,'xlim',[0,t_p]);  
+             
+             legend({'Steady state temperature [�C]',...
+                     'Critical winding temperature',...
+                     'Copper melting temperature',...
+                     'Time to critical winding temperature [s]'}, 'location','best')
+                 
+             xlabel('Torque [Nm]')
+             title(['Steady-state temperature rise for ambient temperature ',num2str(Tmp_ANom),' [�C]'])
+             
+             hold on;
+             % Plot rated operation area
+             Xr = [0 t_r t_r 0].';
+             Yr = [0 0   Tmp_WMax Tmp_WMax].';
+             rated_area = fill(Xr, Yr, 0.9* [0.2 0.2 1],'LineStyle','none');
+             
+             
+             alpha(0.25)     % add some transparency
+             plot(hAx(1),[t_r,t_r],[0,TmeltCU],'color','b','linestyle','--')
+             hold off;
+             
+             % Plot peak operation area
+             axes(hAx(2))
+             hold on
+             loc_subsamp = 10;
+             Xp = [t_r tauVals(idx+1:loc_subsamp:end) fliplr(tauVals(idx+1:loc_subsamp:end)) t_r].';
+             Yp = [0 tCrit(idx+1:loc_subsamp:end) zeros(size(fliplr(tauVals(idx+1:loc_subsamp:end)))) 0].';
+             peak_area = fill(Xp, Yp, 0.8* [1 0 0],'LineStyle','none');
+             alpha(0.25)     % add some transparency
+             hold off
+             
         end
                 
         function h = draw_torque_frequency_curve(this, subtractFriction)
