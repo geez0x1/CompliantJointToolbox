@@ -614,7 +614,7 @@ classdef dataSheetGenerator
                 ylabelStr = '$\dot{q}$ [rad/s]';
             end
             
-            plot( (mVals - fCorr )*tNorm, linCurve*dqNorm, 'k', 'DisplayName', 'Torque-Speed Boundary')
+            plot( (mVals - fCorr )*tNorm, linCurve*dqNorm, 'k', 'DisplayName', 'Torque-Speed Boundary','linewidth',1.5)
                         
             % OPERATING POINTS
             % Rated operating point
@@ -645,7 +645,7 @@ classdef dataSheetGenerator
                     [speedVals speedVals(end) 0]*dqNorm,...
                     0.8* [1 0 0],...
                     'LineStyle','none')
-                plot(Mf*tNorm, speedVals*dqNorm, 'k:', 'DisplayName', 'Friction Torque')
+                plot(Mf*tNorm, speedVals*dqNorm, 'k:', 'DisplayName', 'Friction Torque','linewidth',1.5)
             end
             alpha(0.25)     % add some transparency
             
@@ -659,8 +659,8 @@ classdef dataSheetGenerator
                 fCorr_1 = 0;
                 fCorr_2 = 0;
             end
-            plot([t_p, t_p-fCorr_1]*tNorm,[0, ymax]*dqNorm,'r--', 'DisplayName', 'Peak Torque')
-            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'r-', 'DisplayName', 'Peak Mechanical Power')
+            plot([t_p, t_p-fCorr_1]*tNorm,[0, ymax]*dqNorm,'r--', 'DisplayName', 'Peak Torque','linewidth',1.5)
+            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'r-', 'DisplayName', 'Peak Mechanical Power','linewidth',1)
             
             % Continuous operation 
             speedVals = p_cm ./ mVals;
@@ -671,8 +671,8 @@ classdef dataSheetGenerator
                 fCorr_1 = 0;
                 fCorr_2 = 0;
             end
-            plot((t_r*[1,1] - fCorr_1*[0, 1])*tNorm, [0,ymax]*dqNorm, 'b--', 'DisplayName', 'Maximum Continous Torque')
-            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'b-', 'DisplayName', 'Rated Mechanical Power')
+            plot((t_r*[1,1] - fCorr_1*[0, 1])*tNorm, [0,ymax]*dqNorm, 'b--', 'DisplayName', 'Maximum Continous Torque','linewidth',1.5)
+            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'b-', 'DisplayName', 'Rated Mechanical Power','linewidth',1)
             
             
             
