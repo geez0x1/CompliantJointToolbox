@@ -112,7 +112,7 @@ classdef dataSheetGenerator
             
         end
         
-        function speed = torque_speed_curve(this,tau)
+        function speed = torqueSpeedCurve(this,tau)
             % TORQUE_SPEED_CURVE Computes the maximum feasible motor speed
             % corresponding for a given torque level.
             %
@@ -146,7 +146,7 @@ classdef dataSheetGenerator
         end
         
         
-        function [h, hAx, hLine1, hLine2] = draw_efficiency_curve(this)
+        function [h, hAx, hLine1, hLine2] = drawEfficiencyCurve(this)
             % DRAW_EFFICIENCY_CURVE Creates a plot with two y-axes. One 
             % axis displays the actuator efficiency. The other one displays
             % the delivered mechanical power. Both plots are shown with 
@@ -217,7 +217,7 @@ classdef dataSheetGenerator
             
         end
 
-        function [h, hAx, hLine1, hLine2] = draw_thermal_characteristics(this)
+        function [h, hAx, hLine1, hLine2] = drawThermalCharacteristics(this)
             % DRAW_THERMAL_CHARACTERISTICS Creates a plot with two y-axes.
             % One axis displays the final temperature at the given
             % operating condition. The second axis displays the time to
@@ -335,7 +335,7 @@ classdef dataSheetGenerator
              
         end
                 
-        function h = draw_torque_frequency_curve(this, subtractFriction)
+        function h = drawTorqueFrequencyCurve(this, subtractFriction)
             
             % Check input parameters
             if ~exist('subtractFriction','var') % Should the friction torque be subtracted?
@@ -514,7 +514,7 @@ classdef dataSheetGenerator
             set(gca,'TickLabelInterpreter','latex');
         end
         
-        function h = draw_torque_speed_curve(this, subtractFriction, legendFontSize)
+        function h = drawTorqueSpeedCurve(this, subtractFriction, legendFontSize)
             % draw_torque_speed_curve Displays speed-torque-curve in a
             % figure.
             %
@@ -961,7 +961,7 @@ classdef dataSheetGenerator
             
             
             % Torque-Speed curve
-            h = this.draw_torque_speed_curve;
+            h = this.drawTorqueSpeedCurve;
                         
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
