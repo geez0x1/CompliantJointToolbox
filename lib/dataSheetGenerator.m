@@ -202,19 +202,44 @@ classdef dataSheetGenerator
                 tauVals(:),[PL(:) P_tot(:)]);                % Power plot
             
             % Manipulate style of the efficiency plot 
-            set(hLine1,'Color','r')
+            set(hLine1,'Color','r','linewidth',1.5)
             ylabel(hAx(1), 'Efficiency [%]','Color','r');
             set(hAx(1),'ylim',[0,100])
+            set(hAx(1),'ytick',0:10:100)
             
             % Manipulate style of the power plot 
-            set(hLine2,'Color','b')
+            set(hLine2,'Color','b','linewidth',1.5)
             set(hLine2(2),'LineStyle','--')
-            ylabel(hAx(2),'Load Power [W]','Color','b');
+            ylabel(hAx(2),'Power [W]','Color','b');
             
             set(hAx,'xlim',[0,t_p]);
             xlabel('torque [Nm]')
             title(['Maximum Efficiency_ ', sprintf('%2.0f',eta_max),' %']);
             
+            axes(hAx(1))
+            hold on
+            
+            [~, idx_eta_max] = max(eta);
+            stem(tauVals(idx_eta_max),eta_max,'or--');
+            
+            hLegend = legend({'Efficiency [%]',...
+                    'Max. Efficiency',...
+                    'Power deliverd to load [W]',...
+                    'Total electrical power [W]'},...
+                     'location','northwest', 'box','off');
+            
+            axes(hAx(2))
+            hold on
+            plot(tauVals,zeros(size(tauVals)),'--','color',0.5*[1 1 1])
+            hAreaPTot = area(tauVals,P_tot(:),'FaceColor',0.8* [1 0 0],'FaceAlpha',0.25,'LineStyle','none');
+            hAreaPMechWhite = area(tauVals,P_mech(:),'FaceColor', [1 1 1],'FaceAlpha',1,'LineStyle','none');
+            hAreaPMech = area(tauVals,P_mech(:),'FaceColor',0.9* [0.2 0.2 1],'FaceAlpha',0.25,'LineStyle','none');
+            plot(tauVals,P_mech,'b-','linewidth',1.5);
+            hold off
+            
+            
+            
+%             set(hLegend)
         end
 
         function [h, hAx, hLine1, hLine2] = drawThermalCharacteristics(this)
