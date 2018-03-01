@@ -361,6 +361,206 @@ classdef dataSheetGenerator
              
         end
                 
+        function h = drawTorqueFrequencyCurveLoad(this, fMax, plotNormalized)
+            % DRAWTORQUEFREQUENCYCURVELOAD Theoretically feasible torque bandwidth under varying load inertia.
+            %
+            % Creates a contour plot that displays the -3dB cut-off frequency for the torque transfer function magnitude 
+            % when the actuator generates peak torque. The contour lines are color coded on a logarithmic scale and 
+            % correspond to different load inertiae in relation to the combined motor and gear inertia.
+            %
+            % A very light load will causes the actuator to reach the speed generation limit before a substantial torque
+            % level can be established. A heavy load results in torques building up rapidly, with little actuator 
+            % motion.
+            %
+            % The red curve corresponds to an infinite load inertia, that is equivalent to a locked output. The balck
+            % solid curve corresponds to the load inertia being equal to the combined motor/gear inertia.
+            % 
+            % The plot includes the bandwidth limit due to the interplay of spring stiffness and back-EMF generation. 
+            % The red area indicates the reachable operating conditions under the assumption of negligible spring 
+            % damping. The zone expands with growing sping damping as indicated by black dotted curves. 
+            %
+            % One axis displays the final temperature at the given
+            % operating condition. The second axis displays the time to
+            % reach the maximum allowed temperature.
+            %
+            %   h = drawTorqueFrequencyCurveLoad(this, fMax, plotNormalized)
+            %
+            % Inputs:
+            %   fMax           - The frequency in Hz up to which the magnitude is analyzed (default 100 Hz).
+            %   plotNormalized - If true, the frequency axis is normalized to the frequency sqrt( k_ml/(I_m + I_g) ),
+            %                    while the torque axis is normalized to the peak torque t_p (default 0). 
+            %
+            % Outputs:
+            %   hContour: Handle to the contour plot
+            %   
+            %
+            % Notes::
+            %   For further reading, see: 
+            %   J. Malzahn, N. Kashiri, W. Roozing, N. Tsagarakis and D. Caldwell, "What is the torque bandwidth of 
+            %   this actuator?," 2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 
+            %   Vancouver, BC, 2017, pp. 4762-4768. doi: 10.1109/IROS.2017.8206351
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also createDataSheet, drawTorqueSpeedCurve, genericJoint, jointBuilder.      
+            
+            % Check input parameters
+            if ~exist('plotNormalized','var') % Normalize frequency and torque?
+                plotNormalized = 0;
+            end
+            if ~exist('fMax','var') % Maximum frequency to plot (Hz)
+                fMax = 100; 
+            end
+            
+            % SHORTHANDS
+            d_m  = this.jointModel.d_m;  % Viscous dampings
+            d_g  = this.jointModel.d_g;
+            d_l  = this.jointModel.d_l;
+            d_gl = this.jointModel.d_gl;
+            k_ml = this.jointModel.k_b;     % Spring stiffness
+            t_p = this.jointModel.t_p;   % Peak torque
+            dq_0 = this.jointModel.dq_0; % no torque speed
+            I_m = this.jointModel.I_m + this.jointModel.I_g;   % Motor and gear inertia
+            nVals = this.nPlotVals;
+            
+            % Compute characteristic parameters
+            I = I_m;% + I_l;
+            w0 = sqrt(k_ml/I);                     % Resonance Frequency in rad/s
+            dv = (d_m + d_g + d_l);             % Velocity dependent friction
+            magDrop = db2mag(-3);%1/sqrt(2); % -3dB         % Allowed magnitude drop for tracking
+            
+            logScale = -3:0.15:1;
+            I_l = I_m*10.^logScale;
+            nInertias = numel(I_l);
+            
+            % NORMALIZATION
+            if plotNormalized
+                wNorm = 1/w0;
+                fNorm = 2*pi*wNorm;
+                tNorm = 1/t_p;
+                xlabelStr = '$\tau_l / \tau_p$ [.]';
+                ylabelStr = ' $f_c / f_0$ [.]';
+            else
+                fNorm = 1;
+                tNorm = 1;
+                xlabelStr = '$\tau$ [Nm]';
+                ylabelStr = '$f_c$ [Hz]';
+            end
+            
+            xmax = 1.1 * t_p;
+            torque = (1/nVals:1/nVals:1) * xmax;
+            wn = (1/nVals:1/nVals:1) * max(2*pi*fMax) / w0;
+            
+            w = wn*w0;
+            
+            % EVALUATE MAGNITUDES
+            ZmagGain = zeros(nVals,nInertias);
+            
+            % N_l = (I_l(iI)*(1j*w).*(k_ml + d_gl*(1j*w)));
+            % D_l = (I_m*I_l(iI)*(1j*w).^3 + (I_m*d_gl + I_l(iI)*d_gl + I_l(iI)*dv)*(1j*w).^2 + (I_m*k_ml + I_l(iI)*k_ml + d_gl*dv)*(1j*w) + k_ml*dv);
+            % x:= w
+            % y:= I_l
+            N_l = @(x,y)(y.*(1j*x).*(k_ml + d_gl*(1j*x)));
+            D_l = @(x,y)(I_m*y.*(1j*x).^3 + (I_m*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I_m*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
+            tfMag = @(x,y) t_p*abs(N_l(x,y)./D_l(x,y));
+            
+            allTF = this.JointModel.getTF;
+            torqueTF = allTF(7,1);
+            
+            for iI = 1:nInertias
+                magGain = tfMag(w,I_l(iI));
+                ZmagGain(:,iI) = magGain;
+            end
+            
+            
+            figHandle = gcf;
+            clf;
+            hold on
+                         
+            % Plot the magnitude as a contour plot with colorbar legend
+            [F,NORM_I] = meshgrid(w/2/pi*fNorm, log10(I_l/I_m));
+            [~,h] = contour(tNorm/magDrop*ZmagGain.',F, (NORM_I), log10(I_l/I_m));
+            
+            myMap = flipud(winter(64));
+            colormap(myMap)
+            alpha(0.25)
+            
+            c = colorbar;%('YTick',log10(I_l/I_m));
+            c.Label.Interpreter = 'latex';
+            c.Label.String = '$\log_{10}(I_l / I_m)$ [.]';
+            
+            % A HACK TO GIVE THE COLOR BAR THE PROPER APPEARANCE
+            % The color bar does not feature transparency anymore. So we put an empty textbox on top of it. The textbox
+            % has the alpha property and we set it accordingly.
+            hBox = annotation('textbox',...
+                c.Position,...
+                'FitBoxToText','off',...
+                'FaceAlpha',0.25,...
+                'EdgeColor',[1 1 1],...
+                'BackgroundColor',[1 1 1]);
+
+            % An issue arises, if we resize the figure. Then the textbox element would be in the wrong place. So we
+            % register a callback to the figure. Whenever it resizes, it puts the textbox in the right spot.
+                function sBarFcn(src,~)                  % Local function that implements the callback behavior.
+                    txtBox = findall(src,'type','textboxshape');    % Locate the textbox handle
+                    cBar = findall(gcf,'type','colorbar');          % Locate the colorbar handle
+                    txtBox.Position = cBar.Position;                % Shift the textbox.
+                end            
+            set(gcf,'SizeChangedFcn',@sBarFcn);                     % Register handle to our callback function.
+            % Hack completed...
+            
+            % PLOT A FEW SPECIAL MAGNITUDES
+            hold on            
+            
+            % Load inertia equals motor+gear inertia
+            magGain = tfMag(w,I_m);
+            plot(magGain * tNorm/magDrop, w/2/pi*fNorm,'k','lineWidth',1.5)
+            
+            % Load inertia is quasi infinite
+            magGain = tfMag(w,10^5*I_m);
+            plot(magGain* tNorm/magDrop,w/2/pi*fNorm,'r','lineWidth',2)
+
+            
+            % LIMITATION DUE TO TORQUE SPEED CURVE
+            % This is the bandwidth limit due to the motor back-emf generation           
+            springTF = tf([0*d_gl, k_ml], [1 0]);
+            springMag = bode(springTF,w);
+            springMag = springMag(:);
+            
+            plot(dq_0*springMag *tNorm/ magDrop ,w/2/pi *fNorm,'k--','LineWidth',1.5)
+            
+            d =  2:2:20;
+            
+            for d_ = d
+                magInt = abs( (1j*w*d_ + k_ml) ./ (1j*w) )  / magDrop;
+                plot(dq_0*magInt * tNorm, w/2/pi * fNorm,':','color',0 * [ 1 1 1])
+            end
+            
+            legendHandle = legend({'$I_l/I_m$', '$I_l/I_m = 1$', '$I_l/I_m \rightarrow \infty$', '$d_{gl} = 0$', '$d_{gl} > 0$'},'Interpreter','latex');
+            set(legendHandle,'location','best')
+            
+            aHandle = area([0; dq_0*springMag] *tNorm/ magDrop , [fMax, w/2/pi]*fNorm );
+            aHandle.LineStyle = 'none';
+            aHandle.LineWidth = 1.5;
+            aHandle.FaceColor = [0.8 0 0];
+            aHandle.FaceAlpha = 0.15;
+            aHandle.DisplayName = 'reachable ($d_{gl}=0$)';
+            
+            % PLOT APPEARANCE AND LABELS
+            xlim([0,xmax]*tNorm);
+            ylim([0,fMax ]*fNorm);
+            xlabel(xlabelStr,'Interpreter','latex')
+            ylabel(ylabelStr,'Interpreter','latex')
+            title('Magnitude for harmonic peak torque operation with varying load inertia')
+            box on;
+            set(gca,'TickLabelInterpreter','latex');
+        end
+        
         function h = drawTorqueFrequencyCurve(this, subtractFriction)
             
             % Check input parameters
