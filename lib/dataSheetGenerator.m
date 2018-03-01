@@ -489,13 +489,15 @@ classdef dataSheetGenerator
             Z = repmat(magGain,1,nLines) .* tau;
             TMAX = repmat(magGain,1,nLines).*t_max;
             [F,TAU] = meshgrid(wn*w0/2/pi*fNorm, tau*tNorm/magDrop);
+            
+            idx = find(tau>t_r);
             %   Create plot
-            [~,h] = contour(TAU.',F.', (TMAX),t_max(tau>t_r));
+%             [~,h] = contour(TAU.',F.', (TMAX),t_max(idx));
             %   Configure plot
-            h.Fill = 'on';  % instead of lines use shaded colour surfaces
-            set(h,'LineStyle','none')
-            set(gcf,'renderer','painters') 
-            alpha(0.25)     % add some transparency to make lines plotted on top clearly visible
+%             h.Fill = 'on';  % instead of lines use shaded colour surfaces
+%             set(h,'LineStyle','none')
+%             set(gcf,'renderer','painters') 
+%             alpha(0.25)     % add some transparency to make lines plotted on top clearly visible
             %   adjust colormap from cold (blue) to hot (red)
             nCVals = 64;    
             myMap = [(nCVals:-1:0).', 0*ones(nCVals+1,1),(0:nCVals).' ]/nCVals;
