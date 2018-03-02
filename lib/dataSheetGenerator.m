@@ -453,7 +453,6 @@ classdef dataSheetGenerator
             end
             
             xmax = 1.1 * t_p;
-            torque = (1/nVals:1/nVals:1) * xmax;
             wn = (1/nVals:1/nVals:1) * max(2*pi*fMax) / w0;
             
             w = wn*w0;
@@ -469,12 +468,9 @@ classdef dataSheetGenerator
             D_l = @(x,y)(I_m*y.*(1j*x).^3 + (I_m*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I_m*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
             tfMag = @(x,y) t_p*abs(N_l(x,y)./D_l(x,y));
             
-            allTF = this.JointModel.getTF;
-            torqueTF = allTF(7,1);
             
             for iI = 1:nInertias
-                magGain = tfMag(w,I_l(iI));
-                ZmagGain(:,iI) = magGain;
+                ZmagGain(:,iI) = tfMag(w,I_l(iI));
             end
             
             
@@ -561,36 +557,40 @@ classdef dataSheetGenerator
             set(gca,'TickLabelInterpreter','latex');
         end
         
-        function h = drawTorqueFrequencyCurve(this, subtractFriction)
+        function h = drawTorqueFrequencyCurveLocked(this, fMax, plotNormalized)
             
             % Check input parameters
-            if ~exist('subtractFriction','var') % Should the friction torque be subtracted?
-                subtractFriction = 1;
+            if ~exist('plotNormalized','var') % Normalize frequency and torque?
+                plotNormalized = 0;
+            end
+            if ~exist('fMax','var') % Maximum frequency to plot (Hz)
+                fMax = this.freqMax; 
             end
                         
             % SHORTHANDS
-            d_cm = this.jointModel.d_cm; % Coulomb frictions
-            d_cg = this.jointModel.d_cg;
-            d_cl = this.jointModel.d_cl;
-            d_m  = this.jointModel.d_m;  % Viscous dampings
+            d_m  = this.jointModel.d_m;       % Viscous dampings
             d_g  = this.jointModel.d_g;
             d_l  = this.jointModel.d_l;
             d_gl = this.jointModel.d_gl;
-            k = this.jointModel.k_b;     % Spring stiffness
-            t_p = this.jointModel.t_p;   % Peak torque
-            t_r = this.jointModel.t_r;   % Rated torque
-            k_t = this.jointModel.k_t;   % Torque constant
-            N = this.jointModel.n;       % gear ratio
-            slope = this.jointModel.dq_over_dm; % torque speed slope
-            dq_0 = this.jointModel.dq_0; % no torque speed
-            v_0 = this.jointModel.v_0;   % supply voltage
-            r = this.jointModel.r;       % electrical winding resistance
-           
+            I_m  = this.jointModel.I_m;
+            k_ml = this.jointModel.k_b;       % Spring stiffness
+            t_p = this.jointModel.t_p;        % Peak torque
+            t_r = this.jointModel.t_r;        % Rated torque
+            k_t = this.jointModel.k_t;        % Torque constant
+            N = this.jointModel.n;            % Gear ratio
+            dq_0 = this.jointModel.dq_0;      % No load speed
+            r_th1 = this.jointModel.r_th1;    % Thermal resistance winding
+            r_th2 = this.jointModel.r_th2;    % Thermal resistance housing
+            r     = this.jointModel.r;        % Electrical winding resistance
+            a_cu  =  0.0039;                  % Themperature coefficient copper
+            T_max = this.jointModel.Tmp_WMax; % Max winding temperature
+            t_w   = this.jointModel.T_thw;    % Thermal time constant widnings
+            TmeltCU = 1084;                   % Melting temperature of copper
+            
             % Compute characteristic parameters
-            I = this.jointModel.I_m + this.jointModel.I_g; % inertia
-            w0 = sqrt(k/I);                     % Resonance Frequency in rad/s
+            I = this.jointModel.I_m + this.jointModel.I_g; % Combined Inertia
+            w0 = sqrt(k_ml/I);                             % Resonance Frequency in rad/s
             f0 = w0/2/pi;                       % Resonance Frequency in Hz
-            Mc = d_cm + d_cg + d_cl;            % Static friction
             dv = (d_m + d_g + d_l);             % Velocity dependent friction
             magDrop = db2mag(-3);               % -3dB, allowed magnitude drop for tracking
             
@@ -610,105 +610,103 @@ classdef dataSheetGenerator
             
             % Linearly spaced vectors of torques and normalized frequencies
             ymax =  this.freqMax;
-            xmax = 1.1 * t_p;   
-            torque = (1/this.nPlotVals:1/this.nPlotVals:1) * xmax;
+            xmax = 1.1 * t_p/magDrop;   
+            tau = (0 : 1/200 : 1)*xmax;
+            nLines = numel(tau);
             wn = (1/this.nPlotVals:1/this.nPlotVals:1) * 2*pi*ymax / w0;
 
-            % LIMITATION DUE TO MAGNITUDE GAIN
-            allTF = this.jointModel.getTF;
-            % Torque transfer function, convert current input to torque
-            torqueTF = allTF(7,1)/ k_t / N;  
+            % BANDWIDTH LIMITATION DUE TO MAGNITUDE GAIN
+            % N_l = (I_l(iI)*(1j*w).*(k_ml + d_gl*(1j*w)));
+            % D_l = (I_m*I_l(iI)*(1j*w).^3 + (I_m*d_gl + I_l(iI)*d_gl + I_l(iI)*dv)*(1j*w).^2 + (I_m*k_ml + I_l(iI)*k_ml + d_gl*dv)*(1j*w) + k_ml*dv);
+            % x:= w
+            % y:= I_l
+            N_l = @(x,y)(y.*(1j*x).*(k_ml + d_gl*(1j*x)));
+            D_l = @(x,y)(I_m*y.*(1j*x).^3 + (I_m*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I_m*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
+            tfMag = @(x,y) abs(N_l(x,y)./D_l(x,y));
+            magGain = tfMag(wn*w0,1e9).'; % 1e9 ~ infinite impedance reflects locked output
             
-            % Compute magnitude at given frequencies
-            magGain = bode(torqueTF,wn*w0); 
-            magGain = magGain(:);
-            
-            % Subtract friction toruqe if desired
-            if subtractFriction
-                dq_t_r = wn.*w0.*magGain.*t_r./k;
-                dq_t_p = wn.*w0.*magGain.*t_p./k;
-                fCorrC = Mc + dv.*dq_t_r;
-                fCorrP = Mc + dv.*dq_t_p;
-            else
-                fCorrC = 0;
-                fCorrP = 0;
-            end
            
             % LIMITATION DUE TO TORQUE SPEED CURVE
             % This is the bandwidth limit due to the motor back-emf
             % generation and limited supply voltage
-            contSpeeds = this.computeMaxContSpeed(torque);
-            peakSpeeds = this.computeMaxPeakSpeed(torque);
-            
-            % Subtract friction toruqe if desired
-            if subtractFriction
-                fCorrC = Mc + dv*contSpeeds;
-                fCorrP = Mc + dv*peakSpeeds;
-            else
-                fCorrC = 0;
-                fCorrP = 0;
-            end
-            
             % Torque sensor transfer function
-            springTF = tf([d_gl, k], [1 0]);
+            springTF = tf([d_gl, k_ml], [1 0]);
             springMag = bode(springTF,wn*w0);
             springMag = springMag(:);
             
-            %% TOTAL FREQUENCY LIMIT
-            fSpring = interp1(dq_0*springMag , wn*w0/2/pi, torque);
-            fAmp    = interp1(magGain*t_p    , wn*w0/2/pi, torque);
-             
-            fTotal = min(fAmp,fSpring);
+            % TOTAL FREQUENCY LIMIT
+%             fSpring = interp1(dq_0*springMag , wn*w0/2/pi, tau);
+%             fAmp    = interp1(magGain*t_p    , wn*w0/2/pi, tau);
+            
+            fSpring = dq_0*springMag;
+            fAmp = magGain*t_p;
+%             plot(dq_0*springMag, wn*w0/2/pi)
+%             plot(magGain*t_p, wn*w0/2/pi)
+            fIdx = find(fSpring < fAmp,1,'last');
+            fTot = [fSpring(1:fIdx); fAmp(fIdx+1:end)];
+%             fTotal = interp1(fTot    , wn*w0/2/pi, tau);
+%             fTotal = min(fAmp,fSpring);
              
              
             % THERMAL TIME LIMITATION
-            r_th2 = this.jointModel.r_th2;
-            r     = this.jointModel.r;
-            a_cu  =  0.0039;
-            k_t   = this.jointModel.k_t;
-            n     = this.jointModel.n;
-            T_max = this.jointModel.Tmp_WMax;
-            t_w   = this.jointModel.T_thw;
-            t_r   = this.jointModel.t_r;
+            % Steady State Temperature
+            resCoeff = (r_th1 + r_th2) * r / N^2 / k_t^2; % thermal resistance coefficient
+            Tmp_W = this.jointModel.Tmp_ANom + ...  
+                (  ( resCoeff * tau.^2 ) ./ ( 1 - a_cu * resCoeff *  min(tau,t_r).^2 )  );
             
-            % Torque linear space (some more lines for lower torques)
-            tau = [0:9, 10:20:(t_p)];
-            nLines = numel(tau);
+            % Saturate temperature at melting point
+            idx = find(Tmp_W > TmeltCU,1,'first');
+            Tmp_W(idx:end) = TmeltCU;
+
+            % Time to reach max winding temperature from normal conditions
+            Tmax = this.jointModel.Tmp_WMax;
+            T0 = this.jointModel.Tmp_ANom;
+            dTend = Tmp_W - T0;
+            tCrit = - this.jointModel.T_thw * log( - (Tmax - T0  - dTend ) ./ dTend);
             
-            % Compute time to maximal temperature
-            i_m2  = 0.25 * (tau / k_t / n).^2; % effective value -> multiply with 0.5            
-            deltaTw =  ( r_th2 * r * i_m2 ) ./ (1 - a_cu * r_th2 * r *i_m2  );
-            t_max = t_w * log( T_max ./ deltaTw );
-                        
+            % Within the rated operation, the time to reach the maximum allowed temperature is infinite.
+            idx = find(tau > t_r,1,'first');
+            tCrit(1:idx) = inf;
+            
+              
              %% PLOTTING
             figHandle = gcf;
+            clf;
             hold on
 
             % Contour plot
-            %   Prepare data
+            %   Prepare grid data
             Z = repmat(magGain,1,nLines) .* tau;
-            TMAX = repmat(magGain,1,nLines).*t_max;
-            [F,TAU] = meshgrid(wn*w0/2/pi*fNorm, tau*tNorm/magDrop);
+            TMAX = repmat(magGain,1,nLines).*tCrit;
+            [F,TAU] = meshgrid(wn*w0/2/pi*fNorm, tau*tNorm  /magDrop);
+  
+%             idx = find(tau>t_r);
+%             tCrit(isinf(tCrit)) = max(tCrit(~isinf(tCrit)));
             
-            idx = find(tau>t_r);
             %   Create plot
-%             [~,h] = contour(TAU.',F.', (TMAX),t_max(idx));
-            %   Configure plot
-%             h.Fill = 'on';  % instead of lines use shaded colour surfaces
-%             set(h,'LineStyle','none')
-%             set(gcf,'renderer','painters') 
-%             alpha(0.25)     % add some transparency to make lines plotted on top clearly visible
+%              h = surf(Z,F.', (TAU.'),min(TMAX,t_w))
+             h = surf(Z,F.', (TAU.'),min(TMAX,t_w))
+%              plot(Z,wn*w0/2/pi*fNorm,'k')
+
+            
+
+             %   Configure plot
+%              h.Fill = 'on';  % instead of lines use shaded colour surfaces
+             set(h,'LineStyle','none')
+%              set(gcf,'renderer','painters') 
+             alpha(0.25)     % add some transparency to make lines plotted on top clearly visible
             %   adjust colormap from cold (blue) to hot (red)
-            nCVals = 64;    
-            myMap = [(nCVals:-1:0).', 0*ones(nCVals+1,1),(0:nCVals).' ]/nCVals;
-            colormap(myMap)
+            nCVals = 512;    
+            myMap = [(nCVals:-1:0).', 0*ones(nCVals+1,1), (0:nCVals).']/nCVals;
+            colormap((myMap))
             %   add a color bar legend
             c = colorbar;      
-            cpos = c.Position;
-           
-            c = colorbar;%('YTick',log10(I_l/I_m));
+            % Saturate the time to for rated operation
+            tmp = c.TickLabels;
+            tmp{end} = '\infty';
+            c.TickLabels = tmp;
             c.Label.Interpreter = 'latex';
-            c.Label.String = '$\log_{10}(I_l / I_m)$ [.]';
+            c.Label.String = '$t_{max}$ [s]';
             
             % A HACK TO GIVE THE COLOR BAR THE PROPER APPEARANCE
             % The color bar does not feature transparency anymore. So we put an empty textbox on top of it. The textbox
@@ -733,16 +731,20 @@ classdef dataSheetGenerator
             
              
             % Plot total frequency limit (back-emf/voltage and sensor)
-            plot(torque(torque<=t_p)*tNorm/magDrop,fTotal(torque<=t_p)*fNorm,'Color', [0.8 1 0.8],'LineWidth',2)
+%             plot(tau(tau<=t_p)*tNorm/magDrop,fTotal(tau<=t_p)*fNorm,'Color', [0.8 1 0.8],'LineWidth',5)
+            plot(fTot*tNorm/magDrop, wn*w0/2/pi * fNorm,'Color', 0*[0.8 1 0.8],'LineWidth',5)
             
             % Plot torque transfer function magnitude
-            plot((magGain*t_p - fCorrP)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k','LineWidth',0.5) % -3 dB
+            plot(t_p*tNorm/magDrop * [1 1],   [0 ymax],'--','Color',0.5*[1 1 1],'LineWidth',1.5) % -3 dB
+            plot(t_r*tNorm/magDrop * [1 1],   [0 ymax],'--','Color',0.5*[1 1 1],'LineWidth',1.5) % -3 dB
+            plot((magGain*t_p)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k:','LineWidth',1.5) % -3 dB
+            plot((magGain*t_r)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k:','LineWidth',1.5) % -3 dB
             
             % Plot voltage saturation limit
-            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'k--','LineWidth',0.5)
+            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'r-','LineWidth',1.5)
             
             % plot resonance frequency
-            plot(torque*tNorm, f0*ones(size(torque))*fNorm, '--','color',0.8*[1 1 1],'LineWidth',0.5 )
+            plot(tau*tNorm, f0*ones(size(tau))*fNorm, '--','color',0.8*[1 1 1],'LineWidth',1.5 )
 
             %% Plot appearance and labels
             xlim([0,xmax]*tNorm);
@@ -779,7 +781,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.
+            % See also createDataSheet, drawTorqueFrequencyCurveLoad, genericJoint, jointBuilder.
             
             if ~exist('legendFontSize','var')
                 legendFontSize = get(0, 'DefaultTextFontSize');
