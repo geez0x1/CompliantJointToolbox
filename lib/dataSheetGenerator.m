@@ -474,7 +474,6 @@ classdef dataSheetGenerator
             % x:= w
             % y:= I_l
             N_l = @(x,y)(y.*(1j*x).*(k_ml + d_gl*(1j*x)));
-%             D_l = @(x,y)(I_m*y.*(1j*x).^3 + (I_m*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I_m*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
             D_l = @(x,y)(I*y.*(1j*x).^3 + (I*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
             tfMag = @(x,y) t_p*abs(N_l(x,y)./D_l(x,y));
             
