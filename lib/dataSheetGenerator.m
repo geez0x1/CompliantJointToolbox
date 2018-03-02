@@ -415,7 +415,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, drawTorqueSpeedCurve, genericJoint, jointBuilder.      
+            % See also createDataSheet, drawTorqueFrequencyCurveLocked, drawTorqueSpeedCurve, genericJoint, jointBuilder.      
             
             % Check input parameters
             if ~exist('plotNormalized','var') % Normalize frequency and torque?
