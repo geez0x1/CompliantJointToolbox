@@ -721,7 +721,7 @@ classdef dataSheetGenerator
 
             %% Plot appearance and labels
             xlim([0,xmax]*tNorm);
-            ylim([0,ymax]*fNorm);
+            ylim([ wn(1)*w0/2/pi ,ymax]*fNorm);
             xlabel(xlabelStr,'Interpreter','latex')
             ylabel(ylabelStr,'Interpreter','latex')
             box on;
