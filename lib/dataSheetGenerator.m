@@ -687,7 +687,7 @@ classdef dataSheetGenerator
 
             
             %   Create plot
-             h = surf(Z,F.', (TAU.'),min(TMAX,0.5*t_w))
+             h = surf(Z,F.', (TAU.'),min(TMAX,0.5*t_w),'DisplayName','t_{max} [s] to max. temperature')
 
             %   Configure plot
             set(h,'LineStyle','none') % no grid lines
@@ -713,16 +713,14 @@ classdef dataSheetGenerator
             plot(fTot*tNorm/magDrop, wn*w0/2/pi * fNorm,'Color', 0.75* [1 1 1 ],'LineWidth',5,'DisplayName','feasibility limit')
             
             % Plot torque transfer function magnitude
-            plot(t_p*tNorm/magDrop * [1 1],   [0 ymax],'--','Color',0.5*[1 1 1],'LineWidth',1.5) % -3 dB
-            plot(t_r*tNorm/magDrop * [1 1],   [0 ymax],'--','Color',0.5*[1 1 1],'LineWidth',1.5) % -3 dB
-            plot((magGain*t_p)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k:','LineWidth',1.5) % -3 dB
-            plot((magGain*t_r)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k:','LineWidth',1.5) % -3 dB
+            plot((magGain*t_p)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k:','Color',0.25*[1 1 1],'LineWidth',1.5,'DisplayName', 'peak amplitude \tau_p') % -3 dB
+            plot((magGain*t_r)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k:','Color',0.75*[1 1 1],'LineWidth',1.5,'DisplayName', 'rated amplitude \tau_r') % -3 dB
             
             % Plot voltage saturation limit
-            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'k--','LineWidth',1.5)
+            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'k--','LineWidth',1.5,'DisplayName','back-EMF limit')
             
             % plot resonance frequency
-            plot(tau*tNorm, f0*ones(size(tau))*fNorm, '--','color',0.8*[1 1 1],'LineWidth',1.5 )
+            plot(tau*tNorm, f0*ones(size(tau))*fNorm, '--','color',0.8*[1 1 1],'LineWidth',1.5,'DisplayName','f_0 [Hz]')
 
             %% Plot appearance and labels
             xlim([0,xmax]*tNorm);
@@ -731,6 +729,8 @@ classdef dataSheetGenerator
             ylabel(ylabelStr,'Interpreter','latex')
             box on;
             set(gca,'TickLabelInterpreter','latex');
+            legend('location','best')
+            title('Bandwidth for locked output with thermally permissible operation time.')
         end
         
         function h = drawTorqueSpeedCurve(this, subtractFriction, legendFontSize)
