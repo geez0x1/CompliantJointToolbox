@@ -705,21 +705,32 @@ classdef dataSheetGenerator
             %   add a color bar legend
             c = colorbar;      
             cpos = c.Position;
-            % A hack to give the color bar the proper appearance. The color
-            % bar does not feature transparency anymore.
-            annotation('textbox',...
+           
+            c = colorbar;%('YTick',log10(I_l/I_m));
+            c.Label.Interpreter = 'latex';
+            c.Label.String = '$\log_{10}(I_l / I_m)$ [.]';
+            
+            % A HACK TO GIVE THE COLOR BAR THE PROPER APPEARANCE
+            % The color bar does not feature transparency anymore. So we put an empty textbox on top of it. The textbox
+            % has the alpha property and we set it accordingly.
+            hBox = annotation('textbox',...
                 c.Position,...
                 'FitBoxToText','off',...
                 'FaceAlpha',0.25,...
                 'EdgeColor',[1 1 1],...
                 'BackgroundColor',[1 1 1]);
-            % Saturate the time to for rated operation
-            tmp = c.TickLabels;
-            tmp{end} = '\infty';
-            c.TickLabels = tmp;
-            c.Label.Interpreter = 'latex';
-            c.Label.String = '$t_{max}$ [s]';
 
+            % An issue arises, if we resize the figure. Then the textbox element would be in the wrong place. So we
+            % register a callback to the figure. Whenever it resizes, it puts the textbox in the right spot.
+                function sBarFcn(src,~)                  % Local function that implements the callback behavior.
+                    txtBox = findall(src,'type','textboxshape');    % Locate the textbox handle
+                    cBar = findall(gcf,'type','colorbar');          % Locate the colorbar handle
+                    txtBox.Position = cBar.Position;                % Shift the textbox.
+                end            
+            set(gcf,'SizeChangedFcn',@sBarFcn);                     % Register handle to our callback function.
+            % Hack completed...
+            
+            
              
             % Plot total frequency limit (back-emf/voltage and sensor)
             plot(torque(torque<=t_p)*tNorm/magDrop,fTotal(torque<=t_p)*fNorm,'Color', [0.8 1 0.8],'LineWidth',2)
