@@ -221,18 +221,15 @@ classdef dataSheetGenerator
             xlabel('torque [Nm]')
             title(['Maximum Efficiency_ ', sprintf('%2.0f',eta_max),' %']);
             
+            oldLim = get(hAx(2),'ylim');
+            set(hAx(2),'ylim',[min(P_mech), oldLim(2)]);
             axes(hAx(1))
             hold on
             
             [~, idx_eta_max] = max(eta);
             stem(tauVals(idx_eta_max),eta_max,'or--');
             
-            hLegend = legend({'Efficiency [%]',...
-                    'Max. Efficiency',...
-                    'Power deliverd to load [W]',...
-                    'Total electrical power [W]'},...
-                     'location','northwest', 'box','off');
-            
+
             axes(hAx(2))
             hold on
             plot(tauVals,zeros(size(tauVals)),'--','color',0.5*[1 1 1])
