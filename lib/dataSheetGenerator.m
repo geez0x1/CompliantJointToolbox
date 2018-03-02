@@ -697,7 +697,8 @@ classdef dataSheetGenerator
             set(h,'LineStyle','none') % no grid lines
             view(0,-90)               % since we are using surf with additionally plotted lines, we should look from the bottom
             set(gca,'YDir','reverse') % reverse frequency axis to compensate for the view
-             
+            set(gcf,'renderer','opengl')
+            
             %   adjust colormap from cold (blue) to hot (red)
             nCVals = 64;    
             myMap = [(nCVals:-1:0).', 0*ones(nCVals+1,1), (0:nCVals).']/nCVals;
