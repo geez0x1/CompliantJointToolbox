@@ -425,11 +425,12 @@ classdef dataSheetGenerator
             k_ml = this.jointModel.k_b;     % Spring stiffness
             t_p = this.jointModel.t_p;   % Peak torque
             dq_0 = this.jointModel.dq_0; % no torque speed
-            I_m = this.jointModel.I_m + this.jointModel.I_g;   % Motor and gear inertia
+            I_m = this.jointModel.I_m;   % Motor and gear inertia
+            I_g = this.jointModel.I_g;   % Motor and gear inertia
             nVals = this.nPlotVals;
             
             % Compute characteristic parameters
-            I = I_m;% + I_l;
+            I = I_m + I_g;
             w0 = sqrt(k_ml/I);                     % Resonance Frequency in rad/s
             dv = (d_m + d_g + d_l);             % Velocity dependent friction
             magDrop = db2mag(-3);%1/sqrt(2); % -3dB         % Allowed magnitude drop for tracking
@@ -465,7 +466,8 @@ classdef dataSheetGenerator
             % x:= w
             % y:= I_l
             N_l = @(x,y)(y.*(1j*x).*(k_ml + d_gl*(1j*x)));
-            D_l = @(x,y)(I_m*y.*(1j*x).^3 + (I_m*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I_m*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
+%             D_l = @(x,y)(I_m*y.*(1j*x).^3 + (I_m*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I_m*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
+            D_l = @(x,y)(I*y.*(1j*x).^3 + (I*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
             tfMag = @(x,y) t_p*abs(N_l(x,y)./D_l(x,y));
             
             
@@ -479,16 +481,16 @@ classdef dataSheetGenerator
             hold on
                          
             % Plot the magnitude as a contour plot with colorbar legend
-            [F,NORM_I] = meshgrid(w/2/pi*fNorm, log10(I_l/I_m));
-            [~,h] = contour(tNorm/magDrop*ZmagGain.',F, (NORM_I), log10(I_l/I_m));
+            [F,NORM_I] = meshgrid(w/2/pi*fNorm, log10(I_l/I));
+            [~,h] = contour(tNorm/magDrop*ZmagGain.',F, (NORM_I), log10(I_l/I));
             
             myMap = flipud(winter(64));
             colormap(myMap)
             alpha(0.25)
             
-            c = colorbar;%('YTick',log10(I_l/I_m));
+            c = colorbar;%('YTick',log10(I_l/I));
             c.Label.Interpreter = 'latex';
-            c.Label.String = '$\log_{10}(I_l / I_m)$ [.]';
+            c.Label.String = '$\log_{10}(I_l / I)$ [.]';
             
             % A HACK TO GIVE THE COLOR BAR THE PROPER APPEARANCE
             % The color bar does not feature transparency anymore. So we put an empty textbox on top of it. The textbox
@@ -514,11 +516,11 @@ classdef dataSheetGenerator
             hold on            
             
             % Load inertia equals motor+gear inertia
-            magGain = tfMag(w,I_m);
+            magGain = tfMag(w,I);
             plot(magGain * tNorm/magDrop, w/2/pi*fNorm,'k','lineWidth',1.5)
             
             % Load inertia is quasi infinite
-            magGain = tfMag(w,10^5*I_m);
+            magGain = tfMag(w,10^5*I);
             plot(magGain* tNorm/magDrop,w/2/pi*fNorm,'r','lineWidth',2)
 
             
@@ -537,7 +539,7 @@ classdef dataSheetGenerator
                 plot(dq_0*magInt * tNorm, w/2/pi * fNorm,':','color',0 * [ 1 1 1])
             end
             
-            legendHandle = legend({'$I_l/I_m$', '$I_l/I_m = 1$', '$I_l/I_m \rightarrow \infty$', '$d_{gl} = 0$', '$d_{gl} > 0$'},'Interpreter','latex');
+            legendHandle = legend({'$I_l/I$', '$I_l/I = 1$', '$I_l/I \rightarrow \infty$', '$d_{gl} = 0$', '$d_{gl} > 0$'},'Interpreter','latex');
             set(legendHandle,'location','best')
             
             aHandle = area([0; dq_0*springMag] *tNorm/ magDrop , [fMax, w/2/pi]*fNorm );
@@ -624,7 +626,7 @@ classdef dataSheetGenerator
             % x:= w
             % y:= I_l
             N_l = @(x,y)(y.*(1j*x).*(k_ml + d_gl*(1j*x)));
-            D_l = @(x,y)(I_m*y.*(1j*x).^3 + (I_m*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I_m*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
+            D_l = @(x,y)(I*y.*(1j*x).^3 + (I*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
             tfMag = @(x,y) abs(N_l(x,y)./D_l(x,y));
             magGain = tfMag(wn*w0,1e9).'; % 1e9 ~ infinite impedance reflects locked output
             
