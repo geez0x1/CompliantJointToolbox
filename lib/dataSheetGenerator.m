@@ -239,6 +239,13 @@ classdef dataSheetGenerator
             plot(tauVals,P_mech,'b-','linewidth',1.5);
             hold off
             
+           axes(hAx(1))
+           hLegend = legend({'Efficiency [%]',...
+               'Max. Efficiency',...
+               'Power deliverd to load [W]',...
+               'Total electrical power [W]'},...
+               'location','southeast', 'box','off');
+           
             
             
 %             set(hLegend)
