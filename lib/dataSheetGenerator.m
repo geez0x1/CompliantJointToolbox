@@ -414,7 +414,7 @@ classdef dataSheetGenerator
                 plotNormalized = 0;
             end
             if ~exist('fMax','var') % Maximum frequency to plot (Hz)
-                fMax = 100; 
+                fMax = this.freqMax; 
             end
             
             % SHORTHANDS
