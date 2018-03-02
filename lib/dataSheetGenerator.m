@@ -585,6 +585,7 @@ classdef dataSheetGenerator
             a_cu  =  0.0039;                  % Themperature coefficient copper
             T_max = this.jointModel.Tmp_WMax; % Max winding temperature
             t_w   = this.jointModel.T_thw;    % Thermal time constant widnings
+            TAN   = this.jointModel.Tmp_ANom; % Normal ambient temperature.
             TmeltCU = 1084;                   % Melting temperature of copper
             
             nPoints = 100;
@@ -653,7 +654,7 @@ classdef dataSheetGenerator
             % THERMAL TIME LIMITATION
             % Steady State Temperature
             resCoeff = (r_th1 + r_th2) * r / N^2 / k_t^2; % thermal resistance coefficient
-            Tmp_W = this.jointModel.Tmp_ANom + ...  
+            Tmp_W = TAN + ...  
                 (  ( resCoeff * tau.^2 ) ./ ( 1 - a_cu * resCoeff *  min(tau,t_r).^2 )  );
             
             % Saturate temperature at melting point
