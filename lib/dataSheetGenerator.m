@@ -564,6 +564,51 @@ classdef dataSheetGenerator
         end
         
         function h = drawTorqueFrequencyCurveLocked(this, fMax, plotNormalized)
+            % DRAWTORQUEFREQUENCYCURVELOAD Theoretically feasible torque bandwidth under locked actuator output.
+            %
+            % Creates a contour plot that displays the -3dB cut-off frequency for the torque transfer function magnitude 
+            % and any torque amplitude from zero to peak torque. The color illustrates the thermally admissible 
+            % operation time at a given frequency and torque amplitude, assuming the initial winding temperature being
+            % normal temperature.
+            %
+            % Around the natural frequency f_0 (gray dashed line), theoretically any torque amplitude can be generated 
+            % for an infinite amount of time.
+            % Below and above the natural frequency, high torque amplitudes demand high motor currents that heat up the
+            % motor windings. Beyond the rated torque (gray dotted lines), operating points can only be attained for
+            % limited time. Operating points beyond the peak torque (black dotted line) are unreachable.
+            % 
+            % The plot includes the bandwidth limit due to the interplay of spring stiffness and back-EMF generation as 
+            % black dashed line. The line rises towards higher frequencies with growing spring damping. 
+            %
+            % The line merges with the peak operation limit as indicated by the gray solid line. Operating points above 
+            % this gray solid line are infeasible.
+            %
+            %
+            %   h = drawTorqueFrequencyCurveLocked(this, fMax, plotNormalized)
+            %
+            % Inputs:
+            %   fMax           - The frequency in Hz up to which the magnitude is analyzed (default 100 Hz).
+            %   plotNormalized - If true, the frequency axis is normalized to the frequency sqrt( k_ml/(I_m + I_g) ),
+            %                    while the torque axis is normalized to the peak torque t_p (default 0). 
+            %
+            % Outputs:
+            %   hContour: Handle to the plot
+            %   
+            %
+            % Notes::
+            %   For further reading, see: 
+            %   J. Malzahn, N. Kashiri, W. Roozing, N. Tsagarakis and D. Caldwell, "What is the torque bandwidth of 
+            %   this actuator?," 2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 
+            %   Vancouver, BC, 2017, pp. 4762-4768. doi: 10.1109/IROS.2017.8206351
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also createDataSheet, drawTorqueFrequencyCurveLoad, drawTorqueSpeedCurve, genericJoint, jointBuilder. 
             
             % Check input parameters
             if ~exist('plotNormalized','var') % Normalize frequency and torque?
