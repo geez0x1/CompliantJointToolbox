@@ -587,6 +587,8 @@ classdef dataSheetGenerator
             t_w   = this.jointModel.T_thw;    % Thermal time constant widnings
             TmeltCU = 1084;                   % Melting temperature of copper
             
+            nPoints = 100;
+            
             % Compute characteristic parameters
             I = this.jointModel.I_m + this.jointModel.I_g; % Combined Inertia
             w0 = sqrt(k_ml/I);                             % Resonance Frequency in rad/s
@@ -611,9 +613,9 @@ classdef dataSheetGenerator
             % Linearly spaced vectors of torques and normalized frequencies
             ymax =  this.freqMax;
             xmax = 1.1 * t_p/magDrop;   
-            tau = (0 : 1/200 : 1)*xmax;
+            tau = (0 : 1/nPoints : 1)*xmax;
             nLines = numel(tau);
-            wn = (1/this.nPlotVals:1/this.nPlotVals:1) * 2*pi*ymax / w0;
+            wn = (1/nPoints:1/nPoints:1) * 2*pi*ymax / w0;
 
             % BANDWIDTH LIMITATION DUE TO MAGNITUDE GAIN
             % N_l = (I_l(iI)*(1j*w).*(k_ml + d_gl*(1j*w)));
