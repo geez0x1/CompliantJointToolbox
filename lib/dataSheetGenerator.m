@@ -679,24 +679,18 @@ classdef dataSheetGenerator
             Z = repmat(magGain,1,nLines) .* tau;
             TMAX = repmat(magGain,1,nLines).*tCrit;
             [F,TAU] = meshgrid(wn*w0/2/pi*fNorm, tau*tNorm  /magDrop);
-  
-%             idx = find(tau>t_r);
-%             tCrit(isinf(tCrit)) = max(tCrit(~isinf(tCrit)));
+
             
             %   Create plot
-%              h = surf(Z,F.', (TAU.'),min(TMAX,t_w))
-             h = surf(Z,F.', (TAU.'),min(TMAX,t_w))
-%              plot(Z,wn*w0/2/pi*fNorm,'k')
+             h = surf(Z,F.', (TAU.'),min(TMAX,0.5*t_w))
 
-            
-
-             %   Configure plot
-%              h.Fill = 'on';  % instead of lines use shaded colour surfaces
-             set(h,'LineStyle','none')
-%              set(gcf,'renderer','painters') 
-             alpha(0.25)     % add some transparency to make lines plotted on top clearly visible
+            %   Configure plot
+            set(h,'LineStyle','none') % no grid lines
+            view(0,-90)               % since we are using surf with additionally plotted lines, we should look from the bottom
+            set(gca,'YDir','reverse') % reverse frequency axis to compensate for the view
+             
             %   adjust colormap from cold (blue) to hot (red)
-            nCVals = 512;    
+            nCVals = 64;    
             myMap = [(nCVals:-1:0).', 0*ones(nCVals+1,1), (0:nCVals).']/nCVals;
             colormap((myMap))
             %   add a color bar legend
@@ -707,27 +701,6 @@ classdef dataSheetGenerator
             c.TickLabels = tmp;
             c.Label.Interpreter = 'latex';
             c.Label.String = '$t_{max}$ [s]';
-            
-            % A HACK TO GIVE THE COLOR BAR THE PROPER APPEARANCE
-            % The color bar does not feature transparency anymore. So we put an empty textbox on top of it. The textbox
-            % has the alpha property and we set it accordingly.
-            hBox = annotation('textbox',...
-                c.Position,...
-                'FitBoxToText','off',...
-                'FaceAlpha',0.25,...
-                'EdgeColor',[1 1 1],...
-                'BackgroundColor',[1 1 1]);
-
-            % An issue arises, if we resize the figure. Then the textbox element would be in the wrong place. So we
-            % register a callback to the figure. Whenever it resizes, it puts the textbox in the right spot.
-                function sBarFcn(src,~)                  % Local function that implements the callback behavior.
-                    txtBox = findall(src,'type','textboxshape');    % Locate the textbox handle
-                    cBar = findall(gcf,'type','colorbar');          % Locate the colorbar handle
-                    txtBox.Position = cBar.Position;                % Shift the textbox.
-                end            
-            set(gcf,'SizeChangedFcn',@sBarFcn);                     % Register handle to our callback function.
-            % Hack completed...
-            
             
              
             % Plot total frequency limit (back-emf/voltage and sensor)
