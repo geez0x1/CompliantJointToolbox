@@ -955,6 +955,7 @@ classdef dataSheetGenerator
             xlabel(xlabelStr,'interpreter','latex')
             ylabel(ylabelStr,'interpreter','latex')
             box on
+            title('Torque-speed diagram.')
             
             % CREATE COSTUMIZED LEGEND
             if legendFontSize ~= 0
