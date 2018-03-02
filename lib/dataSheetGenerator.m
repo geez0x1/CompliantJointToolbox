@@ -63,6 +63,10 @@ classdef dataSheetGenerator
         clsFName = 'cjtdsheet.cls';                    % Name of the style file for the datasheet.
         cfgFName = 'cjtdsheet.cfg';                    % Name of the temporary file containing the macro configuration for the datasheet sources.
         torqueSpeedFName = 'torqueSpeedCurve.pdf';     % Name of the temporary file that contains the torque speed curve of the actuator.
+        efficiencyFName  = 'efficiencyCurve.pdf';      % Name of the temporary file that contains the efficiency plot of the actuator.
+        thermalCharFName = 'thermalChar.pdf';          % Name of the temporary file that contains the curves with thermal operation ranges of the actuator.
+        torFreqLoadFName = 'torFreqLoad.pdf';          % Name of the temporary file that contains the torque-frequency diagram for varying load inertia.
+        torFreqLockFName = 'torFreqLock.pdf';          % Name of the temporary file that contains the torque-frequency diagram for varying locked output.
         
     end
     
@@ -1178,6 +1182,7 @@ classdef dataSheetGenerator
             %
             % See also createDataSheet, genericJoint, jointBuilder.    
             
+            close all;
             
             % Torque-Speed curve
             h = this.drawTorqueSpeedCurve;
@@ -1186,7 +1191,7 @@ classdef dataSheetGenerator
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
             pos(3) = 18;
-            pos(4) = 8;
+            pos(4) = 10;
              
             set(gcf,'Position',pos)
             set(h,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
@@ -1195,7 +1200,75 @@ classdef dataSheetGenerator
             printpdf(gcf,this.torqueSpeedFName,['-r',num2str(this.plotResolution)])
 
             close(h);
+            
+            % Efficiency curve
+            h = this.drawEfficiencyCurve;
+                        
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 8;
              
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            printpdf(gcf,this.efficiencyFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+             
+            % Thermal characteristics
+            h = this.drawThermalCharacteristics;
+                        
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 8;
+             
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            printpdf(gcf,this.thermalCharFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+            
+            % Torque Frequency Characteristics varying load
+            h = this.drawTorqueFrequencyCurveLoad;
+                        
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 12;
+             
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            printpdf(gcf,this.torFreqLoadFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+            
+            % Torque Frequency Characteristics varying load
+            h = this.drawTorqueFrequencyCurveLocked;
+                        
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 9;
+             
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            printpdf(gcf,this.torFreqLockFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+            
         end
         
         function createDefFile(this)
