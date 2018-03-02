@@ -704,11 +704,11 @@ classdef dataSheetGenerator
             c.TickLabels = tmp;
             c.Label.Interpreter = 'latex';
             c.Label.String = '$t_{max}$ [s]';
+              
             
              
             % Plot total frequency limit (back-emf/voltage and sensor)
-%             plot(tau(tau<=t_p)*tNorm/magDrop,fTotal(tau<=t_p)*fNorm,'Color', [0.8 1 0.8],'LineWidth',5)
-            plot(fTot*tNorm/magDrop, wn*w0/2/pi * fNorm,'Color', 0*[0.8 1 0.8],'LineWidth',5)
+            plot(fTot*tNorm/magDrop, wn*w0/2/pi * fNorm,'Color', 0.75* [1 1 1 ],'LineWidth',5,'DisplayName','feasibility limit')
             
             % Plot torque transfer function magnitude
             plot(t_p*tNorm/magDrop * [1 1],   [0 ymax],'--','Color',0.5*[1 1 1],'LineWidth',1.5) % -3 dB
@@ -717,7 +717,7 @@ classdef dataSheetGenerator
             plot((magGain*t_r)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k:','LineWidth',1.5) % -3 dB
             
             % Plot voltage saturation limit
-            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'r-','LineWidth',1.5)
+            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'k--','LineWidth',1.5)
             
             % plot resonance frequency
             plot(tau*tNorm, f0*ones(size(tau))*fNorm, '--','color',0.8*[1 1 1],'LineWidth',1.5 )
