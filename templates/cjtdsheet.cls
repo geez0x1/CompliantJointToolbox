@@ -76,7 +76,7 @@
 \definecolor{cjtblue}{rgb}{ 0.0314, 0.2157, 0.3882}
 \definecolor{cjtlightblue}{rgb}{ 0.4314, 0.6157, 0.7882}
 \definecolor{cjtred}{rgb}{ 0.7529, 0, 0}
-
+\definecolor{cjtlightred}{rgb}{ 0.7529, 0.25, 0.25}
 
 \RequirePackage[justification=raggedright,
                 singlelinecheck=false, 
