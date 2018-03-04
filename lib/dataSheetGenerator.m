@@ -1236,12 +1236,16 @@ classdef dataSheetGenerator
             
             % Torque-Speed curve
             h = this.drawTorqueSpeedCurve;
-                        
+                      
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            ax = get(gcf,'children');
+            set(ax,'Title',[])
+            
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
             pos(3) = 18;
-            pos(4) = 10;
+            pos(4) = 8;
              
             set(gcf,'Position',pos)
             set(h,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
@@ -1253,7 +1257,10 @@ classdef dataSheetGenerator
             
             % Efficiency curve
             h = this.drawEfficiencyCurve;
-                        
+            
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            title('') 
+            
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
@@ -1270,7 +1277,10 @@ classdef dataSheetGenerator
              
             % Thermal characteristics
             h = this.drawThermalCharacteristics;
-                        
+
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            title('') 
+            
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
@@ -1287,7 +1297,10 @@ classdef dataSheetGenerator
             
             % Torque Frequency Characteristics varying load
             h = this.drawTorqueFrequencyCurveLoad;
-                        
+
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            title('') 
+            
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
@@ -1304,7 +1317,10 @@ classdef dataSheetGenerator
             
             % Torque Frequency Characteristics varying load
             h = this.drawTorqueFrequencyCurveLocked;
-                        
+
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            title('') 
+            
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
