@@ -1165,9 +1165,22 @@ classdef dataSheetGenerator
             this.makeDataSheetPlots;
             
             % Compile the Tex source. We complie three times to get all references right.
+            cmdout = [];
+            for it = 1:3 
             [flag, cmdout] = this.compileTexFile;
-            [flag, cmdout] = this.compileTexFile;
-            [flag, cmdout] = this.compileTexFile;
+                if flag ~= 1
+                    disp('Datasheet compilation failed. See compiler output for details: ')
+                    disp(cmdout)
+                    exit
+                end
+            end
+            
+            % Ouptut last console output, if desired.
+            if this.verbose
+                disp(cmdout);
+            end
+            
+            
             
             % Put the generated datasheet in the final destination.
             [~, fName] = fileparts(this.texFName);
