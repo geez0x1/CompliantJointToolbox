@@ -1586,7 +1586,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also generateDataSheet, genericJoint, jointBuilder.    
+            % See also system, generateDataSheet, genericJoint, jointBuilder.    
             %
             
             % Tested with MiKTeX/2.9 under Windows 7 x64 and
