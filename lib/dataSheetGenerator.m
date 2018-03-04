@@ -78,6 +78,8 @@ classdef dataSheetGenerator
         nPlotVals = 10000;                             % Number of samples used to produce the graphs in the datasheet figures.
         plotNormalized = 0;                            % Plot graphs in normalized quantities (default: false)
         freqMax = 100;                                 % Maximum frequency for spectral plots in Hz (default: 100 Hz)
+        
+        verbose = 0;                                   % Verbosity flag. 0 - (default) minimal console output, 1 - full console output. 
     end
     
     methods
