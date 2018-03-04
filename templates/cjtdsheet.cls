@@ -37,11 +37,14 @@
 
 \RequirePackage{multicol}
 
-% Fonts
-\RequirePackage[sc]{mathpazo}       % Palatino (not Palatino Linotype!) as font with serifs
-\linespread{1.05}                   % Palatino needs more space between lines
-\RequirePackage[scaled=.90]{helvet} % Helvetica as font without serifs
-\RequirePackage{courier} 			% Courier as type writer font
+\RequirePackage{ifluatex}
+\ifluatex
+	\RequirePackage{luatex85} % For outdated PDF commands ...
+	\RequirePackage{luaotfload}
+	\RequirePackage{fontspec} % Font handling in Lualatex
+\else
+	\RequirePackage[T1]{fontenc} 	
+\fi
 
 \RequirePackage{fancyhdr}
 \fancypagestyle{cjtpage}{%
