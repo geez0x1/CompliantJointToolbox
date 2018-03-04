@@ -91,7 +91,7 @@
 \newcommand{\actuatorname}[1]
 {
 \begin{Huge}
-	\Huge{\textcolor{cjtred}{\textbf{#1}}}
+	\textbf{\Huge{\textcolor{cjtred}{#1}}}
 \end{Huge}
 
 \vspace{0.3cm}
@@ -101,3 +101,13 @@
 \renewcommand\emph[1]{
     \textcolor{cjtblue}{\textbf{#1}}
 }
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\color{cjtblue}\LARGE\bfseries}
+	{\color{cjtblue}\bfseries\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\color{cjtred}\large\bfseries}
+	{\color{cjtred}\bfseries\thesubsection}{1em}{}
+
