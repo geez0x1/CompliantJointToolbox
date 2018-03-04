@@ -1260,14 +1260,11 @@ classdef dataSheetGenerator
             % Efficiency curve
             h = this.drawEfficiencyCurve;
             
-            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
-            title('') 
-            
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
             pos(3) = 18;
-            pos(4) = 8;
+            pos(4) = 10.5;
              
             set(gcf,'Position',pos)
             set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
@@ -1602,7 +1599,7 @@ classdef dataSheetGenerator
             
             % Make the system call invoking the LuaLatex compiler.
             [flag, cmdout] = system(cmd);
-                        
+                                    
         end
         
         
