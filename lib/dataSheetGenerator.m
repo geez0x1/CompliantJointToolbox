@@ -1381,7 +1381,7 @@ classdef dataSheetGenerator
             
             fid = fopen(this.cfgFName,'w+');
             %
-            fprintf(fid,'\\def \\valJointName{%s}\n'                 , jM.name                          );
+            fprintf(fid,'\\def \\valJointName{%s}\n'                 , strrep(jM.name,'_',' ')          );
             %
             fprintf(fid,'%s\n','% Mechanical Properties');
             fprintf(fid,'%s\n','%');
