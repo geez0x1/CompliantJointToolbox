@@ -137,7 +137,7 @@ function testTorqueSpeedCurve(testCase)
 
 dsg = dataSheetGenerator(testCase.('TestData').aJoint);
 
-dsg.createDataSheet;
+dsg.generateDataSheet;
 
 delete( dsg.assembleOutFileName );
     

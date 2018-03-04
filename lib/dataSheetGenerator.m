@@ -25,7 +25,7 @@ classdef dataSheetGenerator
 %     dsg = dataSheetGenerator(aJoint);       
 % 
 %     % Finally, we generate the data sheet:
-%     dsg.createDataSheet;                    
+%     dsg.generateDataSheet;                    
 %
 %
 % Author::
@@ -104,7 +104,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder. 
+            % See also generateDataSheet, genericJoint, jointBuilder. 
             
             this.jointModel = jointModel;
             
@@ -139,7 +139,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.
+            % See also generateDataSheet, genericJoint, jointBuilder.
             
             % shorthands
             slope = this.jointModel.dq_over_dm;
@@ -177,7 +177,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.      
+            % See also generateDataSheet, genericJoint, jointBuilder.      
             
             % Shorthands
             t_p = this.jointModel.t_p;
@@ -278,7 +278,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.      
+            % See also generateDataSheet, genericJoint, jointBuilder.      
 
             % Shorthands
             r_th1    = this.jointModel.r_th1;      % Thermal Resistance Windings to Housing [K/W]
@@ -415,7 +415,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, drawTorqueFrequencyCurveLocked, drawTorqueSpeedCurve, genericJoint, jointBuilder.      
+            % See also generateDataSheet, drawTorqueFrequencyCurveLocked, drawTorqueSpeedCurve, genericJoint, jointBuilder.      
             
             % Check input parameters
             if ~exist('plotNormalized','var') % Normalize frequency and torque?
@@ -611,7 +611,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, drawTorqueFrequencyCurveLoad, drawTorqueSpeedCurve, genericJoint, jointBuilder. 
+            % See also generateDataSheet, drawTorqueFrequencyCurveLoad, drawTorqueSpeedCurve, genericJoint, jointBuilder. 
             
             % Check input parameters
             if ~exist('plotNormalized','var') % Normalize frequency and torque?
@@ -812,7 +812,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, drawTorqueFrequencyCurveLoad, genericJoint, jointBuilder.
+            % See also generateDataSheet, drawTorqueFrequencyCurveLoad, genericJoint, jointBuilder.
             
             if ~exist('legendFontSize','var')
                 legendFontSize = get(0, 'DefaultTextFontSize');
@@ -1125,11 +1125,11 @@ classdef dataSheetGenerator
         end
 
         
-        function destFName = createDataSheet(this)
-            % CREATEDATASHEET Main function to trigger the data sheet
+        function destFName = generateDataSheet(this)
+            % GENERATEDATASHEET Main function to trigger the data sheet
             % generation.
             %
-            %   dsg.createDataSheet
+            %   dsg.generateDataSheet
             %
             % As a result of this function call, a data sheet file will be
             % created and stored in dsg.outputDir. The filename will have 
@@ -1149,7 +1149,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.            
+            % See also genericJoint, jointBuilder.            
             
             % Get local copies of all template files.
             copyfile([this.templateDir, filesep, this.texFName],this.texFName);
@@ -1201,7 +1201,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.   
+            % See also generateDataSheet, genericJoint, jointBuilder.   
             
             fName = [this.jointModel.name, '_', this.outFName];
             
@@ -1230,7 +1230,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.    
+            % See also generateDataSheet, genericJoint, jointBuilder.    
             
             close all;
             
@@ -1358,7 +1358,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.    
+            % See also generateDataSheet, genericJoint, jointBuilder.    
             %
             
             jM = this.jointModel; % Shorthand
@@ -1563,7 +1563,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.    
+            % See also generateDataSheet, genericJoint, jointBuilder.    
             %
             
             % Tested with MiKTeX/2.9 under Windows 7 x64 and
