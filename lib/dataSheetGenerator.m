@@ -1383,6 +1383,14 @@ classdef dataSheetGenerator
             %
             fprintf(fid,'\\def \\valJointName{%s}\n'                 , strrep(jM.name,'_',' ')          );
             %
+            % File names of plots to include
+            %
+            fprintf(fid,'\\def \\valTorqueSpeedFName{%s}\n'           , this.torqueSpeedFName           );
+            fprintf(fid,'\\def \\valEfficiencyFName{%s}\n'            , this.efficiencyFName            );
+            fprintf(fid,'\\def \\valThermalCharFName{%s}\n'           , this.thermalCharFName           );
+            fprintf(fid,'\\def \\valTorFreqLoadFName{%s}\n'           , this.torFreqLoadFName           );
+            fprintf(fid,'\\def \\valTorFreqLockFName{%s}\n'           , this.torFreqLockFName           );       
+            %
             fprintf(fid,'%s\n','% Mechanical Properties');
             fprintf(fid,'%s\n','%');
             %
