@@ -1162,17 +1162,17 @@ classdef dataSheetGenerator
             % Produce all plots
             this.makeDataSheetPlots;
             
-            % Compile the Tex source. We complie three times to get all references right.
-            cmdout = [];
-            for it = 1:3 
+%             % Compile the Tex source. We complie three times to get all references right.
+%             cmdout = [];
+%             for it = 1:3 
             [flag, cmdout] = this.compileTexFile;
-                if flag ~= 1
-                    disp('Datasheet compilation failed. See compiler output for details: ')
-                    disp(cmdout)
-                    exit
-                end
-            end
-            
+%                 if flag ~= 1
+%                     disp('Datasheet compilation failed. See compiler output for details: ')
+%                     disp(cmdout)
+%                     exit
+%                 end
+%             end
+%             
             % Ouptut last console output, if desired.
             if this.verbose
                 disp(cmdout);
@@ -1610,8 +1610,21 @@ classdef dataSheetGenerator
                 cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
             end
             
-            % Make the system call invoking the LuaLatex compiler.
+            % Make the system call invoking the \Latex compiler. We complie three times to get all references right.
+            cmdout = [];
+            flag = 0;
+            for it = 1:3 
             [flag, cmdout] = system(cmd);
+                if flag ~= 0
+                    disp('Datasheet compilation failed. See compiler output for details: ')
+                    disp(cmdout)
+                end
+            end
+            
+            % Ouptut last console output, if desired.
+            if this.verbose
+                disp(cmdout);
+            end
                                     
         end
         
