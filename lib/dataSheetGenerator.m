@@ -353,7 +353,9 @@ classdef dataSheetGenerator
              Xr = [0 t_r t_r 0].';
              Yr = [0 0   Tmp_WMax Tmp_WMax].';
              rated_area = fill(Xr, Yr, 0.9* [0.2 0.2 1],'LineStyle','none');
-             
+             Xp = [t_r t_p t_p t_r].';
+             Yp = [0 0  Tmp_WMax Tmp_WMax].';
+             peak_area = fill(Xp, Yp, 0.8* [1 0 0],'LineStyle','none');
              
              alpha(0.25)     % add some transparency
              plot(hAx(1),[t_r,t_r],[0,TmeltCU],'color','b','linestyle','--')
@@ -362,10 +364,6 @@ classdef dataSheetGenerator
              % Plot peak operation area
              axes(hAx(2))
              hold on
-             loc_subsamp = 10;
-             Xp = [t_r tauVals(idx+1:loc_subsamp:end) fliplr(tauVals(idx+1:loc_subsamp:end)) t_r].';
-             Yp = [0 tCrit(idx+1:loc_subsamp:end) zeros(size(fliplr(tauVals(idx+1:loc_subsamp:end)))) 0].';
-             peak_area = fill(Xp, Yp, 0.8* [1 0 0],'LineStyle','none');
              alpha(0.25)     % add some transparency
              hold off
              
