@@ -136,31 +136,59 @@ Note, that the diagram ignores acceleration and deceleration of the actuator sha
 
 The actuator efficiency varies with the operating point as visible in Fig.~\ref{fig:EfficiencyCurve}. BLDC motors typically display poor efficiency at very low torques, where most of the generated mechanical power is used to overcome friction. The efficiency also drops for very high torques, where electrical losses dominate.
 
-\section*{Thermal Characteristics}
-%\section*{\textcolor{cjtblue}{Actuator Efficiency}}
-\begin{figure}[tb]
+\end{multicols}
+
+\newpage
+
+\section{Thermal Characteristics}\label{sec:ThermalChar}
+
+\begin{figure}%[tb]
+		\includegraphics[width=\textwidth]{\valThermalCharFName}
 	\caption{Thermal characteristics of the actuator.}
-  \includegraphics[width=\textwidth]{\valThermalCharFName}
 	\label{fig:ThermalCharacteristics}
 \end{figure}
 
-\lipsum[1-3]
+\begin{multicols}{2}
 
-\section*{Torque Bandwidth}
-\begin{figure}[tb]
-	\caption{Maximum torque bandwidth for variable load inertiae when generating peak torque.}
-  \includegraphics[width=\textwidth]{\valTorFreqLoadFName}
-	\label{fig:TorqueBandwidthLoad}
-\end{figure}
+The actuator can be continuously operated within the rated operation limits. Figure~\ref{fig:ThermalCharacteristics} shows the rated operation limit as blue shaded area. Up to these limits, the actuator temperature will reside below the maximum admissible temperature $\symTmpWindMax$ (red dashed line). 
 
-\lipsum[1-3]
+The actuator can be intermittently overloaded up to the peak operation limits indicated by the red shaded area. During this intermittent operation, the actuator temperature will rise towards the maximum admissible temperature and eventually exceed it. For a given generated torque, the blue graph in Fig.~\ref{fig:ThermalCharacteristics} illustrates the time it takes the motor to heat up from ambient temperature ($25\:{^{\text{\circ}}}$C) to $\symTmpWindMax$. If the actuator heats up beyond this temperature, thermal wear to the windings must be expected.
 
-\begin{figure}[tb]
-	\caption{Torque Bandwidth for locked output with thermal admissability of the operation.}
-  \includegraphics[width=\textwidth]{\valTorFreqLockFName}
+Note that the characteristics displayed in Fig.~\ref{fig:ThermalCharacteristics} must not be considered sharp boundaries. They are theoretical values considering the thermal resistances and time constants in the parameter table. Those parameters are obtained from a standardized experiment where the actuator without active cooling is mounted in free air against a plastic flange. The true thermal characteristics for a given application depends on many other parameters, such as the actuator operation history (actual winding temperature), true ambient temperature, humidity, the actual mounting and potential cooling of the motor.
+
+
+\end{multicols}
+
+
+
+\section{Torque Bandwidth}
+
+\begin{multicols}{2}
+
+While the torque-speed diagram Fig.~\ref{fig:TorqueSpeedCurve} considers static actuator operation, many robotic applications demnand dynamic torque generation. A way to characterize the dynamic torque generation capability of an actuator consists of looking at the 3 dB cut-off frequency of the torque transfer function magnitude. Due to nonlinear friction, actuator compliance, current and voltage saturation as well as back-emf generation and the influence of the actual load seen by the actuator, the torque bandwidth of an actuator cannot be characterized by just a single value.
+
+A common technique to assess the achievable torque bandwidth of an actuator is to lock its output and control the actuator to track a sweep reference, i.e. a sinusoidal input signal with growing frequency. By determining the cut-off frequency of the resulting response, this technique yields the locked torque bandwidth of the actuator controlled by the implemented controller in the specific parameter tuning for the chosen sweep amplitude. The illustration inf Fig.~\ref{fig:TorqueBandwidthLocked} emerges from a different procedure. For any electrically generated torque between zero and peak torque, the graphic shows, what 3 dB cut-off frequency can be ideally attained with the actuator irrespective of any controller. The dotted light gray line represents the case of rated torque generation. Analogously, the black dotted line corresponds to peak torque generation. The gray solid line illustrates the operation feasibility boundary. It computes from the minimum of the peak torque generation curve (black dotted line) and the back-EMF generation limit (black dashed line). The gray dashed line is the natural actuator frequency. The color shade encodes the thermally admissible operation time at each frequency and torque amplitude considering the operation starts from motor windings at ambient temperature. The restrictions mentioned in Sec.~\ref{sec:ThermalChar} apply.
+
+In a similar way, Fig.~\ref{fig:TorqueBandwidthLoad} illustrates the controller independent achievable torque bandwidth across different load inertias. This addresses fact that the actuator in practice is supposed to drive a certain link mechanism as a load. The graphic exclusively considers peak operation. The line colors from green to blue encode the ratio of the load inertia to the actuator inertia. The red solid line corresponds to the locked output case illustrated in Fig.~\ref{fig:TorqueBandwidthLocked}, where the ratio becomes infinite. The black solid curve represents a link inertia equal to the actuator inertia, where the ratio equals one. The dashed black line is again the back-EMF generation limit for a damping-free actautor compliance. The gray dotted lines illustrate the same limit for nonzero internal damping. The set of theoretically reachable operating conditions is indicated by the red shaded area.
+
+
+\end{multicols}
+
+
+\begin{figure}%[ftb]
+		\includegraphics[width=\textwidth]{\valTorFreqLockFName}
+		\caption{Torque Bandwidth for locked output with thermal admissability of the operation.}
 	\label{fig:TorqueBandwidthLocked}
 \end{figure}
 
+%\lipsum[1-3]
+
+
+\begin{figure}%[ftb]
+		\includegraphics[width=\textwidth]{\valTorFreqLoadFName}
+		\caption{Maximum torque bandwidth for variable load inertias when generating peak torque.}
+	\label{fig:TorqueBandwidthLoad}
+\end{figure}
 
 \section*{Parameter Definitions}
 The parameters listed in the table on the previous page are briefly explained in the following.
