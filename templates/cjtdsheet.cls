@@ -78,14 +78,14 @@
 \definecolor{cjtred}{rgb}{ 0.7529, 0, 0}
 \definecolor{cjtlightred}{rgb}{ 0.7529, 0.25, 0.25}
 
-\RequirePackage[justification=raggedright,
+\RequirePackage[justification=centering,
                 singlelinecheck=false, 
-                font={bf,color=cjtred},
+                font={bf,color=cjtlightred},
                 labelfont+={it},
-                position=top,
+                position=bottom,
                 skip=0.5\baselineskip
                 ]{caption}
-\RequirePackage{subcaption}
+%\RequirePackage{subcaption}
 
 
 \newcommand{\actuatorname}[1]
