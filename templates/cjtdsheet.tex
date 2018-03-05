@@ -156,6 +156,7 @@ The actuator can be intermittently overloaded up to the peak operation limits in
 
 Note that the characteristics displayed in Fig.~\ref{fig:ThermalCharacteristics} must not be considered sharp boundaries. They are theoretical values considering the thermal resistances and time constants in the parameter table. Those parameters are obtained from a standardized experiment where the actuator without active cooling is mounted in free air against a plastic flange. The true thermal characteristics for a given application depends on many other parameters, such as the actuator operation history (actual winding temperature), true ambient temperature, humidity, the actual mounting and potential cooling of the motor.
 
+For further reading on thermal operating conditions \cite{Leonhard_2001} is suggested.
 
 \end{multicols}
 
@@ -171,6 +172,7 @@ A common technique to assess the achievable torque bandwidth of an actuator is t
 
 In a similar way, Fig.~\ref{fig:TorqueBandwidthLoad} illustrates the controller independent achievable torque bandwidth across different load inertias. This addresses fact that the actuator in practice is supposed to drive a certain link mechanism as a load. The graphic exclusively considers peak operation. The line colors from green to blue encode the ratio of the load inertia to the actuator inertia. The red solid line corresponds to the locked output case illustrated in Fig.~\ref{fig:TorqueBandwidthLocked}, where the ratio becomes infinite. The black solid curve represents a link inertia equal to the actuator inertia, where the ratio equals one. The dashed black line is again the back-EMF generation limit for a damping-free actautor compliance. The gray dotted lines illustrate the same limit for nonzero internal damping. The set of theoretically reachable operating conditions is indicated by the red shaded area.
 
+For further reading on how the torque bandwidth plots are obtained, please refer to: \cite{Malzahn_2017}.
 
 \end{multicols}
 
@@ -331,5 +333,23 @@ The peak operation parameters define the maximum intermittend operating conditio
 \emph{Peak Mechanical Power:} Computed as the product of the peak torque $\symMaxtorque$ and peak speed $\symMaxspeed$.
 
 \end{multicols}
+
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+
+\begin{thebibliography}{99}
+%
+\bibitem{Leonhard_2001} 
+W. Leonhard: 
+\newblock "Control of Electrical Drives". 
+\newblock \textit{3rd Edition, Springer-Verlag Berlin Heidelberg NewYork 2001}.
+%
+\bibitem{Malzahn_2017} 
+J. Malzahn, N. Kashiri, W. Roozing, N. Tsagarakis and D. Caldwell: 
+\newblock "What is the torque bandwidth of this actuator?". 
+\newblock In: \textit{2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, Vancouver, BC, 2017, pp. 4762-4768. doi: 10.1109/IROS.2017.8206351.
+%
+\end{thebibliography}
 
 \end{document}
