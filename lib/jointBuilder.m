@@ -175,7 +175,7 @@ classdef jointBuilder
 
             
             % Check whether the params exist
-            if (~exist(paramName, 'file'))
+            if (exist(paramName, 'file') ~= 2)
                 error(['jointBuilder.buildJoint error: Parameters ''' paramName ''' do not exist!']);
             end
 
