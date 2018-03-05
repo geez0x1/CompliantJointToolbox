@@ -193,7 +193,7 @@ For further reading on how the torque bandwidth plots are obtained, please refer
 \end{figure}
 
 \section*{Parameter Definitions}
-The parameters listed in the table on the previous page are briefly explained in the following.
+The parameters listed in the table on the first page of this document are briefly explained in the following.
 
 \begin{multicols}{2}
 
@@ -205,7 +205,7 @@ The mechanical properties define the outer shape of the actuator and the transmi
 
 \emph{Transmission Ratio:} The actuator typically comprises a transmission mechanism such as a gear box, that amplifies the torque output trading off the deliverable speed. The value is the ratio of the transmission input speed to the obtained output speed. Conversely, it describes the ratio of the output torque over the input torque.
 
-\emph{Mass:} The actuator comprises of three main parts: the motor, the transmission mechanism and the torque sensor. The value is the summed mass of all three components.
+\emph{Mass:} The actuator comprises three main parts: the motor, the transmission mechanism and the torque sensor. The value is the summed mass of all three components.
 
 \emph{Rotor Inertia:} The rotary inertia of the motor shaft.
 
@@ -217,7 +217,7 @@ The mechanical properties define the outer shape of the actuator and the transmi
 
 \emph{Length:} The overall length of the actuator including the motor, transmission mechanism and torque sensor.
 
-\emph{Mechanical Time Constant:} Describes the acceleration of the actuator when a constant voltage is applied, under the condition that the required starting current can be provided. The value is the time for the actuator output to arrive at 63 \% of the steady state velocity for the applied voltage ignoring friction and additional load. The mechanical time constant is computed to:
+\emph{Mechanical Time Constant:} Describes the acceleration of the actuator when a constant voltage is applied, under the condition that the required starting current can be provided. The value is the time for the actuator output to arrive at 63 \% of the steady state velocity corresponding to the applied voltage ignoring friction and additional load. The mechanical time constant is computed to:
 \begin{equation}
 \symTmech = \frac{
 	\left(
@@ -232,23 +232,23 @@ The mechanical properties define the outer shape of the actuator and the transmi
 	}.
 \end{equation}
 
-\emph{Viscous Friction:} Coefficient for the speed dependent friction torque. The value is an approximation of the effect. Due to individual assembly and manufacturing tolerances of each actuator, the actual friction torque at a given speed will differ. Moreover the friction torque varies with temperature, lubrication changes, load, wear and tear.
+\emph{Viscous Friction:} Coefficient for the speed dependent friction torque. The value is an approximation of the effect. Due to individual assembly and manufacturing tolerances of each actuator, the actual friction torque at a given speed observed for a specific motor will differ. Moreover the friction torque varies with temperature, lubrication changes, load and wear. The value given here should therefore be treated as a ballpark number.
 
-\emph{Coulomb Friction:} Constant friction torque. The constant friction torque is subject to the same variations and tolerances as the viscous friction coefficient.
+\emph{Coulomb Friction:} Constant friction torque. The constant friction torque is subject to the same variations and tolerances as the viscous friction coefficient. It is a ballpark number.
 
 %
 %------------------------------------------------------
 %
 \subsection*{Electrical Properties}
-The electrical properties describe the windings, which form the core element of the actuator. 
+The electrical properties characterize the motor windings, which form the core element of the actuator. 
 
-\emph{Winding Resistance:} Manufacturing tolerances (wire diameter) can cause variations in the order of 8~\%. The value is given for the windings with leads at a temperature of $25^\circ$C. The resistance variation with respect to a temperature increase by $\Delta \nu$ is:
+\emph{Winding Resistance:} Manufacturing tolerances (wire diameter) can cause variations in the order of 10~\%. The value is given for the windings with leads at a temperature of $25^\circ$C. The resistance variation with respect to a temperature increase by $\Delta \nu$ is:
 \begin{equation}
 	\symArmatureresistance(\nu) = \symArmatureresistance(25^\circ\text{ C})\:\left(1+\alpha_{CU} 	\: \Delta \nu\right)	\:.
 \end{equation}
 The temperature coefficient of copper $\alpha_{CU}$ is 0.0039~$K^{-1}$. As a consequence the Joule losses increase with higher winding temperatures.
  
-\emph{Winding Inductance:} The inductance of the motor windings. The effective inductance can vary with the frequency of the current signal. The apparent inductance can be smaller when the motor is operated using pulse-width modulation.
+\emph{Winding Inductance:} The inductance of the motor windings. The observed inductance may vary depending on the implementation of the current modulation. The The effective inductance depends on the modulation frequency and shape.
 
 \emph{Electrical Time Constant:} Describes the time for the motor current to reach the 63~\% of the steady state value, when a constant voltage is applied to the windings. The value is computed from the winding inductance and resistance to:
 \begin{equation}
@@ -259,7 +259,7 @@ The temperature coefficient of copper $\alpha_{CU}$ is 0.0039~$K^{-1}$. As a con
 \begin{equation}
 	\tau = \symTorqueconstant \: i\:.
 \end{equation}
-The electrical torque is the amplified by the transmission system. The torque constant is determined by the rotor magnet. The rotor magnetisation has a tolerance in the order of 8~\%. Moreover magnetisation weakens with increasing temperature. The effect is reversible as long as the winding current does not exceed the admissible peak current.
+The electrical torque is the amplified by the transmission system. The torque constant is determined by the rotor magnet. The rotor magnetisation has a tolerance in the order of typically 10~\%. Moreover magnetization weakens with increasing temperature. The effect is reversible as long as the winding current does not exceed the admissible peak current.
 
 \emph{Generator Constant:} Relates the voltage induced in the windings to the rotor speed:
 \begin{equation}
@@ -271,7 +271,7 @@ The generator constant is the inverse of the torque constant $\symTorqueconstant
 %------------------------------------------------------
 %
 \subsection*{Thermal Properties}
-The thermal properties represent a simplified and practical set of parameters to model the thermodynamics of the actuator. They are the foundation for the definition of the current and power ratings as well as the intermittend operating times beyond the limit of the rated operation.
+The thermal properties represent a simplified and practical set of parameters to model the thermodynamics of the actuator. They are the foundation for the definition of the current and power ratings as well as the intermittent operating times beyond the limit of the rated operation.
 
 \emph{Maximum Temperature:} Defines the maximum winding temperature before heat induced irreversible damage occurs.
 
@@ -281,7 +281,7 @@ The thermal properties represent a simplified and practical set of parameters to
 
 \emph{Thermal Resistance Winding-Housing:} Thermal resistance to a heat flow between the motor windings and housing. Defines the winding temperature increase for a given Joule power loss.
 
-\emph{Thermal Resistance Housing-Air:} Thermal resistance to a heat flow between the motor housing and the surrounding environment. Defines the housing temperature increase for a given Joule power loss. The value is typically obtained with standard experiment. In that experiment the motor is flanged to a plastic plate with the motor body being free and sorrounded by air.
+\emph{Thermal Resistance Housing-Air:} Thermal resistance to a heat flow between the motor housing and the surrounding environment. Defines the housing temperature increase for a given Joule power loss. The value is typically obtained with standard experiment. In that experiment the motor is flanged to a plastic plate with the motor body being free and surrounded by air.
 
 %
 %------------------------------------------------------
@@ -305,7 +305,7 @@ The rated parameters together with the No-Load parameters frame the conditions a
 
 \emph{No-Load Torque:} Torque that is generated by the No-Load current $\symNoloadcurrent$. It is equivalent to the friction torque.
 
-\emph{No-Load Speed:} Rotor speed that emerges when the rated voltage is applied to the load free actuator. The theoretical No-Load speed $\dot{\theta}_0$ for a frictionless actuator would be computed from the rated voltage $\symRatedvoltage$ and the generator constant $\symGeneratorconstant$:
+\emph{No-Load Speed:} Rotor speed that emerges when the rated voltage is applied to the load free actuator. The theoretical No-Load Speed $\dot{\theta}_0$ for a frictionless actuator would be computed from the rated voltage $\symRatedvoltage$ and the generator constant $\symGeneratorconstant$:
 \begin{equation}
 	\dot{\theta}_0 = \symRatedvoltage / \symGeneratorconstant\:.
 \end{equation}
