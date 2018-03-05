@@ -107,13 +107,34 @@ Each of the parameters is explained in more detail at the end of this document.
 
 \newpage % Force a new page
 
-\section*{Actuator Efficiency}
-\begin{figure}[tb]
-	\caption{Efficiency diagram of the actuator.}
-  \includegraphics[width=\textwidth]{\valEfficiencyFName}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Torque-Speed Characteristics}
+
+\begin{multicols}{2}
+The diagram show in Fig.~\ref{fig:TorqueSpeedCurve} is frequently used to obtain an overview over the actuator capabilities. It illustrates the steady state operation (no acceleration) of the actuator when supplied with the rated voltage $\symRatedvoltage$. The available supply voltage is used to produce the motor current and to compensate for the voltage induced by the spinning motor. This results in the torque-speed boundary indicated by the solid black line in the figure. The boundary connects the No-Load point characterized by the no-load torque $\symNoloadtorque$ and the no-load speed $\symNoloadspeed$ with the stall point at the stall torque $\symStalltorque$.  The intersection with the rated torque limit $\symRatedtorque$ (blue dashed line) is the rated operating point. The speed at this point along the line is the rated speed $\symRatedspeed$. The product of the two quantities is the rated mechanical power $\symRatedpowerm$. Operating points with a delivered mechanical power equal to the rated power are connected by a solid blue line. 
+
+The intersection of the torque-speed boundary with the peak torque $\symMaxtorque$ (red dashed line) defines the peak operating point. The product with the speed at this point defines the peak mechanical power (red solid curve).
+
+The diagram indicates the rated operating range as blue shaded area. The amount of electrically generated torque required to overcome friction is illustrated as red shaded area.
+
+The true actuator behavior varies from the depicted nominal diagram due to parameter tolerances (winding resistance, torque constant, friction) and thermal influences (friction, permanent magnet properties) on the torque generation. 
+
+Note, that the diagram ignores acceleration and deceleration of the actuator shaft. When choosing a motor based on this diagram, torque and speed reserves should therefore be taken into account.
+%
+\end{multicols}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Actuator Efficiency}
+\begin{figure}%[b!]
+		\includegraphics[width=\textwidth]{\valEfficiencyFName}
+		\caption{Efficiency diagram of the actuator.}
 	\label{fig:EfficiencyCurve}
 \end{figure}
 
+\begin{multicols}{2}
+
+The actuator efficiency varies with the operating point as visible in Fig.~\ref{fig:EfficiencyCurve}. BLDC motors typically display poor efficiency at very low torques, where most of the generated mechanical power is used to overcome friction. The efficiency also drops for very high torques, where electrical losses dominate.
 
 \section*{Thermal Characteristics}
 %\section*{\textcolor{cjtblue}{Actuator Efficiency}}
