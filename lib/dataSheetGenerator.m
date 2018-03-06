@@ -1191,7 +1191,10 @@ classdef dataSheetGenerator
             % Clean up.
             delete([fName,'.*'])
             delete([this.torqueSpeedFName])
-            
+            delete([this.efficiencyFName])
+            delete([this.thermalCharFName])
+            delete([this.torFreqLoadFName])
+            delete([this.torFreqLockFName])
         end
         
         function fName = assembleOutFileName(this)
