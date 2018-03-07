@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.145"
+    ComputedModelVersion    "1.152"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -32,7 +32,7 @@ Model {
     }
     ExternalFileReference {
       Reference		      "cjt_library_models/Joint models/JointMechanicalSubsystem"
-      Path		      "simulinkBlockLibraryTest/JointModel"
+      Path		      "simulinkBlockLibraryTest/JointMechanicalSubsystem"
       SID		      "8"
       Type		      "LIBRARY_BLOCK"
     }
@@ -94,30 +94,39 @@ Model {
       }
       Array {
 	Type			"Simulink.EditorInfo"
-	Dimension		2
+	Dimension		3
 	Object {
 	  $ObjectID		  6
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [0.8]
-	  Offset		  [10.928571428571217, -271.56404343167333]
+	  ZoomFactor		  [1.0]
+	  Offset		  [53.0, -349.433884701516]
 	}
 	Object {
 	  $ObjectID		  7
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "49"
 	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [1.5]
-	  Offset		  [-45.812499999999432, 86.555555555555713]
+	  ZoomFactor		  [1.75]
+	  Offset		  [-42.906349206349688, 120.88253968253923]
+	}
+	Object {
+	  $ObjectID		  8
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "8"
+	  Extents		  [2883.0, 1620.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [859.60677083333348, 135.0]
 	}
 	PropName		"EditorsInfo"
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		8
+	$ObjectID		9
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -147,9 +156,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 12:18:41 2018"
-  RTWModifiedTimeStamp	  442325920
-  ModelVersionFormat	  "1.%<AutoIncrement:145>"
+  LastModifiedDate	  "Wed Mar 07 12:40:14 2018"
+  RTWModifiedTimeStamp	  442327213
+  ModelVersionFormat	  "1.%<AutoIncrement:152>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -199,7 +208,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    9
+    $ObjectID		    10
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "simulinkBlockLibraryTest"
     overrideMode_	    [0.0]
@@ -244,7 +253,7 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      10
+      $ObjectID		      11
       Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
@@ -252,7 +261,7 @@ Model {
 	Type			"Handle"
 	Dimension		10
 	Simulink.SolverCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -291,7 +300,7 @@ Model {
 	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -332,7 +341,7 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -394,7 +403,7 @@ Model {
 	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -509,7 +518,7 @@ Model {
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -557,7 +566,7 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  16
+	  $ObjectID		  17
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -576,7 +585,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  17
+	  $ObjectID		  18
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -606,7 +615,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  18
+	  $ObjectID		  19
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -693,7 +702,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      19
+	      $ObjectID		      20
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -779,7 +788,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      20
+	      $ObjectID		      21
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -878,7 +887,7 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  21
+	  $ObjectID		  22
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -918,7 +927,7 @@ Model {
 	  CovMcdcMode		  "Masking"
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  22
+	  $ObjectID		  23
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "HDL Coder custom configuration component"
@@ -942,11 +951,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    10
+    $ObjectID		    11
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    23
+    $ObjectID		    24
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1014,6 +1023,24 @@ Model {
   BlockParameterDefaults {
     Block {
       BlockType		      BusSelector
+    }
+    Block {
+      BlockType		      Delay
+      DelayLengthSource	      "Dialog"
+      DelayLength	      "2"
+      DelayLengthUpperLimit   "100"
+      InitialConditionSource  "Dialog"
+      InitialCondition	      "0.0"
+      ExternalReset	      "None"
+      ShowEnablePort	      off
+      PreventDirectFeedthrough off
+      DiagnosticForDelayLength "None"
+      RemoveDelayLengthCheckInGeneratedCode off
+      InputProcessing	      "Elements as channels (sample based)"
+      UseCircularBuffer	      off
+      SampleTime	      "-1"
+      StateMustResolveToSignalObject off
+      CodeGenStateStorageClass "Auto"
     }
     Block {
       BlockType		      DiscreteIntegrator
@@ -1134,9 +1161,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "71"
+    SIDHighWatermark	    "75"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector"
@@ -1169,6 +1196,20 @@ Model {
       NumInputPorts	      "1"
     }
     Block {
+      BlockType		      Delay
+      Name		      "Delay"
+      SID		      "74"
+      Ports		      [1, 1]
+      Position		      [465, 88, 505, 122]
+      ZOrder		      460
+      BlockMirror	      on
+      NamePlacement	      "alternate"
+      InputPortMap	      "u0"
+      DelayLength	      "1"
+      InitialCondition	      "0"
+      SampleTime	      "jObj.Ts"
+    }
+    Block {
       BlockType		      DiscreteIntegrator
       Name		      "Discrete-Time\nIntegrator"
       SID		      "14"
@@ -1184,7 +1225,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground"
       SID		      "51"
-      Position		      [695, 215, 715, 235]
+      Position		      [695, 210, 715, 230]
       ZOrder		      455
     }
     Block {
@@ -1221,18 +1262,15 @@ Model {
       Ports		      [2, 2]
       Position		      [465, 181, 650, 219]
       ZOrder		      453
-      LibraryVersion	      "1.120"
-      LinkData {
-	BlockName		"Quantize"
-	DialogParameters {
-	  SourceBlock		  "cjt_library_models/Joint models/JointMechanicalSubsystem/Quantize1"
-	}
-      }
+      ForegroundColor	      "red"
+      BackgroundColor	      "yellow"
+      HideAutomaticName	      off
+      LibraryVersion	      "1.122"
       SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
       jointObj		      "jObj"
-      input_delay	      "0"
+      input_delay	      "1"
       quantize		      off
       quantize_bits	      "32"
       input_noise_enabled     off
@@ -1240,12 +1278,13 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "JointModel"
+      Name		      "JointMechanicalSubsystem"
       SID		      "8"
       Ports		      [2, 1]
-      Position		      [740, 186, 910, 239]
+      Position		      [740, 181, 910, 234]
       ZOrder		      222
-      LibraryVersion	      "1.120"
+      HideAutomaticName	      off
+      LibraryVersion	      "1.122"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
@@ -1253,7 +1292,7 @@ Model {
       fc_vel		      "499"
       fc_torque		      "499"
       input_delay	      "0"
-      output_delay	      "0"
+      output_delay	      "1"
       quantize		      off
       quantize_bits	      "19"
       input_noise_enabled     off
@@ -1305,6 +1344,7 @@ Model {
       SID		      "6"
       Position		      [65, 185, 95, 215]
       ZOrder		      6
+      SampleTime	      "jObj.Ts"
     }
     Block {
       BlockType		      Sum
@@ -1402,42 +1442,16 @@ Model {
       ZOrder		      124
       SrcBlock		      "JointElectricalSubsystem"
       SrcPort		      1
-      Points		      [0, 10; 9, 0]
+      Points		      [0, 10; 9, 0; 0, -5]
       Branch {
 	ZOrder			158
-	Points			[0, -97; -494, 0]
-	Branch {
-	  ZOrder		  145
-	  Points		  [0, -28]
-	  DstBlock		  "Mux"
-	  DstPort		  2
-	}
-	Branch {
-	  ZOrder		  141
-	  DstBlock		  "Sum2"
-	  DstPort		  1
-	}
+	Points			[0, -92; 0, 2]
+	DstBlock		"Delay"
+	DstPort			1
       }
       Branch {
 	ZOrder			157
-	DstBlock		"JointModel"
-	DstPort			1
-      }
-    }
-    Line {
-      ZOrder		      58
-      SrcBlock		      "JointModel"
-      SrcPort		      1
-      Points		      [0, -5; 11, 0]
-      Branch {
-	ZOrder			114
-	Points			[0, 65; -488, 0; 0, -65]
-	DstBlock		"JointElectricalSubsystem"
-	DstPort			2
-      }
-      Branch {
-	ZOrder			113
-	DstBlock		"Bus\nSelector"
+	DstBlock		"JointMechanicalSubsystem"
 	DstPort			1
       }
     }
@@ -1488,8 +1502,42 @@ Model {
       ZOrder		      134
       SrcBlock		      "Ground"
       SrcPort		      1
-      DstBlock		      "JointModel"
+      DstBlock		      "JointMechanicalSubsystem"
       DstPort		      2
+    }
+    Line {
+      ZOrder		      58
+      SrcBlock		      "JointMechanicalSubsystem"
+      SrcPort		      1
+      Points		      [0, 0; 11, 0]
+      Branch {
+	ZOrder			175
+	Points			[0, 70; -488, 0; 0, -70]
+	DstBlock		"JointElectricalSubsystem"
+	DstPort			2
+      }
+      Branch {
+	ZOrder			113
+	DstBlock		"Bus\nSelector"
+	DstPort			1
+      }
+    }
+    Line {
+      ZOrder		      176
+      SrcBlock		      "Delay"
+      SrcPort		      1
+      Points		      [-290, 0]
+      Branch {
+	ZOrder			177
+	Points			[0, -30]
+	DstBlock		"Mux"
+	DstPort			2
+      }
+      Branch {
+	ZOrder			141
+	DstBlock		"Sum2"
+	DstPort			1
+      }
     }
   }
 }
