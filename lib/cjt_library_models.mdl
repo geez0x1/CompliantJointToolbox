@@ -48,10 +48,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"68"
+	LoadSaveID		"4"
 	Extents			[2610.0, 1384.0]
-	ZoomFactor		[2.0]
-	Offset			[-69.793650793650954, 81.958730158730162]
+	ZoomFactor		[1.25]
+	Offset			[-492.7047619047629, 0.41904761904771703]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -85,9 +85,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 12:40:25 2018"
-  RTWModifiedTimeStamp	  442327224
-  ModelVersionFormat	  "1.%<AutoIncrement:123>"
+  LastModifiedDate	  "Wed Mar 07 12:57:26 2018"
+  RTWModifiedTimeStamp	  442328245
+  ModelVersionFormat	  "1.%<AutoIncrement:125>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1141,6 +1141,19 @@ Library {
       TransDelayFeedthrough   off
       PadeOrder		      "0"
     }
+    Block {
+      BlockType		      VariableTransportDelay
+      VariableDelayType	      "Variable time delay"
+      MaximumDelay	      "1"
+      InitialOutput	      "0"
+      MaximumPoints	      "1024"
+      FixedBuffer	      off
+      ZeroDelay		      off
+      TransDelayFeedthrough   off
+      PadeOrder		      "0"
+      AbsoluteTolerance	      "auto"
+      ContinuousStateAttributes	"''"
+    }
   }
   System {
     Name		    "cjt_library_models"
@@ -1172,7 +1185,7 @@ Library {
       System {
 	Name			"Joint models"
 	Location		[58, 108, 1980, 1190]
-	Open			off
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1184,7 +1197,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"175"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
@@ -1314,7 +1327,7 @@ Library {
 	  System {
 	    Name		    "JointElectricalSubsystem"
 	    Location		    [58, 108, 1980, 1190]
-	    Open		    on
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1326,7 +1339,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "200"
+	    ZoomFactor		    "175"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "voltage [V]"
@@ -1747,6 +1760,8 @@ Library {
 	  Ports			  [2, 1]
 	  Position		  [105, 291, 305, 344]
 	  ZOrder		  451
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "cyan"
 	  LibraryVersion	  "1.109"
 	  ModelCloseFcn		  "sfsave"
 	  DestroyFcn		  "sfsave"
@@ -1851,7 +1866,7 @@ Library {
 	  }
 	  System {
 	    Name		    "JointMechanicalSubsystem"
-	    Location		    [-1, -1, 1921, 1081]
+	    Location		    [58, 108, 1980, 1190]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -1864,8 +1879,8 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
-	    SIDHighWatermark	    "1227"
+	    ZoomFactor		    "300"
+	    SIDHighWatermark	    "1229"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -1946,6 +1961,14 @@ Library {
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "3:1229"
+	      Position		      [145, 470, 175, 500]
+	      ZOrder		      247
+	      Value		      "input_delay * jointObj.Ts"
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -2800,12 +2823,22 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      VariableTransportDelay
+	      Name		      "Variable\nTime Delay"
+	      SID		      "3:1228"
+	      Ports		      [2, 1]
+	      Position		      [225, 425, 265, 465]
+	      ZOrder		      246
+	      MaximumDelay	      "10"
+	    }
+	    Block {
 	      BlockType		      TransportDelay
 	      Name		      "input_delay"
 	      SID		      "3:43"
 	      Ports		      [1, 1]
-	      Position		      [240, 430, 270, 460]
-	      ZOrder		      184
+	      Position		      [255, 375, 285, 405]
+	      ZOrder		      245
+	      Commented		      "on"
 	      DelayTime		      "input_delay * jointObj.Ts"
 	      TransDelayFeedthrough   on
 	    }
@@ -3283,17 +3316,18 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      6
-	      SrcBlock		      "input_delay"
+	      ZOrder		      94
+	      SrcBlock		      "Variable\nTime Delay"
 	      SrcPort		      1
 	      DstBlock		      "Mux"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      7
+	      ZOrder		      95
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
-	      DstBlock		      "input_delay"
+	      Points		      [23, 0; 0, -10]
+	      DstBlock		      "Variable\nTime Delay"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3858,6 +3892,14 @@ Library {
 	      SrcBlock		      "C"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      96
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      Points		      [20, 0; 0, -30]
+	      DstBlock		      "Variable\nTime Delay"
 	      DstPort		      2
 	    }
 	  }

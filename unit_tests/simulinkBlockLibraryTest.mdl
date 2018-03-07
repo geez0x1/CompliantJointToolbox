@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.153"
+    ComputedModelVersion    "1.154"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -97,12 +97,12 @@ Model {
 	Dimension		3
 	Object {
 	  $ObjectID		  6
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [0.6]
-	  Offset		  [-75.620634920635439, -484.15293232056467]
+	  ZoomFactor		  [1.0]
+	  Offset		  [231.61269841269791, -112.98071009834285]
 	}
 	Object {
 	  $ObjectID		  7
@@ -110,17 +110,17 @@ Model {
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "49"
 	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [1.75]
-	  Offset		  [-42.90634920634966, 120.88253968253923]
+	  ZoomFactor		  [1.4999999999999998]
+	  Offset		  [381.82242063492055, 90.333333333333314]
 	}
 	Object {
 	  $ObjectID		  8
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "8"
 	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [0.6]
-	  Offset		  [-223.86666666666679, -232.87777777777796]
+	  ZoomFactor		  [1.0]
+	  Offset		  [-175.84719742063515, -53.139682539683236]
 	}
 	PropName		"EditorsInfo"
       }
@@ -156,9 +156,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 12:46:32 2018"
-  RTWModifiedTimeStamp	  442327583
-  ModelVersionFormat	  "1.%<AutoIncrement:153>"
+  LastModifiedDate	  "Wed Mar 07 12:58:20 2018"
+  RTWModifiedTimeStamp	  442328268
+  ModelVersionFormat	  "1.%<AutoIncrement:154>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1161,7 +1161,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "75"
     Block {
@@ -1186,13 +1186,35 @@ Model {
       Ports		      [1]
       Position		      [225, 49, 255, 81]
       ZOrder		      235
-      ScopeSpecificationString "C++SS(StrPVP('Location','[-1408, 198, -300, 649]'),StrPVP('Open','off'),MxPVP('AxesTit"
-      "les',53,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',56,'struct(''FigureColor'',''[0.5 0.5 0.5]"
-      "'',''AxesColor'',''[0 0 0]'',''AxesTickColor'',''[1 1 1]'',''LineColors'',''[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1"
-      "]'',''LineStyles'',''-|-|-|-|-|-'',''LineWidths'',''[0.8 0.8 0.8 0.8 0.8 0.8]'',''MarkerStyles'',''none|none|non"
-      "e|none|none|none'')'),StrPVP('ShowLegends','off'),StrPVP('TimeRange','3               '),StrPVP('YMin','0'),StrP"
-      "VP('YMax','1.05'),StrPVP('SaveName','ScopeData3'),StrPVP('LimitDataPoints','off'),StrPVP('DataFormat','Array'),S"
-      "trPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
+      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
+      "gr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI',t"
+      "rue),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData3','DataLoggingSave"
+      "Format','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time"
+      " Domain',true,'SerializedDisplays',{struct('MinYLimReal','-422.10515','MaxYLimReal','421.10922','YLabelReal','',"
+      "'MinYLimMag',' 0.00000','MaxYLimMag','422.10515','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhas"
+      "e',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.6"
+      "23529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.7"
+      "17647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<Sig"
+      "nalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visib"
+      "le','on'),struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',"
+      "[0 1 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','"
+      "LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','"
+      "none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'"
+      "UserDefinedChannelNames',{{}},'NumLines',2,'LineNames',{{'Step','Delay'}},'ShowContent',true,'Placement',1)},'Di"
+      "splayPropertyDefaults',struct('MinYLimReal','-422.10515','MaxYLimReal','421.10922','YLabelReal','','MinYLimMag',"
+      "' 0.00000','MaxYLimMag','422.10515','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axe"
+      "sColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.62352941176470"
+      "6 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.71764705882352"
+      "9 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','L"
+      "inePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),str"
+      "uct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1],'Line"
+      "Style','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0."
+      "8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visibl"
+      "e','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedCh"
+      "annelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','3        "
+      "       ','TimeRangeFrames','3               '),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',"
+      "false),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Location',[299 25"
+      "4.333333333333 1407 705])"
       NumInputPorts	      "1"
     }
     Block {
@@ -1265,7 +1287,7 @@ Model {
       ForegroundColor	      "red"
       BackgroundColor	      "yellow"
       HideAutomaticName	      off
-      LibraryVersion	      "1.123"
+      LibraryVersion	      "1.125"
       SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
@@ -1283,8 +1305,16 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
+      ForegroundColor	      "red"
+      BackgroundColor	      "yellow"
       HideAutomaticName	      off
-      LibraryVersion	      "1.123"
+      LibraryVersion	      "1.125"
+      LinkData {
+	BlockName		"Constant"
+	DialogParameters {
+	  Value			  " jointObj.Ts"
+	}
+      }
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
