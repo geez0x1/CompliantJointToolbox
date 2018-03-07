@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.152"
+    ComputedModelVersion    "1.153"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -101,8 +101,8 @@ Model {
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [53.0, -349.433884701516]
+	  ZoomFactor		  [0.6]
+	  Offset		  [-75.620634920635439, -484.15293232056467]
 	}
 	Object {
 	  $ObjectID		  7
@@ -111,16 +111,16 @@ Model {
 	  LoadSaveID		  "49"
 	  Extents		  [1362.0, 1367.0]
 	  ZoomFactor		  [1.75]
-	  Offset		  [-42.906349206349688, 120.88253968253923]
+	  Offset		  [-42.90634920634966, 120.88253968253923]
 	}
 	Object {
 	  $ObjectID		  8
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "8"
-	  Extents		  [2883.0, 1620.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [859.60677083333348, 135.0]
+	  Extents		  [1362.0, 1367.0]
+	  ZoomFactor		  [0.6]
+	  Offset		  [-223.86666666666679, -232.87777777777796]
 	}
 	PropName		"EditorsInfo"
       }
@@ -156,9 +156,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 12:40:14 2018"
-  RTWModifiedTimeStamp	  442327213
-  ModelVersionFormat	  "1.%<AutoIncrement:152>"
+  LastModifiedDate	  "Wed Mar 07 12:46:32 2018"
+  RTWModifiedTimeStamp	  442327583
+  ModelVersionFormat	  "1.%<AutoIncrement:153>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -944,8 +944,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      ""
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    [ -1303, -43, -345, 695 ]
+      CurrentDlgPage	      "Diagnostics"
+      ConfigPrmDlgPosition    [ 3164, 158, 4122, 896 ]
     }
     PropName		    "ConfigurationSets"
   }
@@ -1161,7 +1161,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "60"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "75"
     Block {
@@ -1169,7 +1169,7 @@ Model {
       Name		      "Bus\nSelector"
       SID		      "9"
       Ports		      [1, 1]
-      Position		      [1015, 191, 1020, 229]
+      Position		      [995, 206, 1000, 244]
       ZOrder		      223
       ShowName		      off
       OutputSignals	      "MotorVelNoNoise"
@@ -1225,7 +1225,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground"
       SID		      "51"
-      Position		      [695, 210, 715, 230]
+      Position		      [690, 225, 710, 245]
       ZOrder		      455
     }
     Block {
@@ -1265,7 +1265,7 @@ Model {
       ForegroundColor	      "red"
       BackgroundColor	      "yellow"
       HideAutomaticName	      off
-      LibraryVersion	      "1.122"
+      LibraryVersion	      "1.123"
       SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
@@ -1281,10 +1281,10 @@ Model {
       Name		      "JointMechanicalSubsystem"
       SID		      "8"
       Ports		      [2, 1]
-      Position		      [740, 181, 910, 234]
+      Position		      [730, 196, 900, 249]
       ZOrder		      222
       HideAutomaticName	      off
-      LibraryVersion	      "1.122"
+      LibraryVersion	      "1.123"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
@@ -1305,7 +1305,7 @@ Model {
       Name		      "MotorVel"
       SID		      "50"
       Ports		      [1]
-      Position		      [1135, 194, 1165, 226]
+      Position		      [1125, 154, 1155, 186]
       ZOrder		      454
       ScopeSpecificationString "C++SS(StrPVP('Location','[5, 52, 1371, 731]'),StrPVP('Open','off'),MxPVP('AxesTitles',"
       "53,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',56,'struct(''FigureColor'',''[0.5 0.5 0.5]'',''"
@@ -1377,7 +1377,7 @@ Model {
       BlockType		      Outport
       Name		      "Out1"
       SID		      "60"
-      Position		      [1155, 283, 1185, 297]
+      Position		      [1125, 218, 1155, 232]
       ZOrder		      456
       IconDisplay	      "Port number"
     }
@@ -1442,18 +1442,9 @@ Model {
       ZOrder		      124
       SrcBlock		      "JointElectricalSubsystem"
       SrcPort		      1
-      Points		      [0, 10; 9, 0; 0, -5]
-      Branch {
-	ZOrder			158
-	Points			[0, -92; 0, 2]
-	DstBlock		"Delay"
-	DstPort			1
-      }
-      Branch {
-	ZOrder			157
-	DstBlock		"JointMechanicalSubsystem"
-	DstPort			1
-      }
+      Points		      [9, 0; 0, -85]
+      DstBlock		      "Delay"
+      DstPort		      1
     }
     Line {
       ZOrder		      144
@@ -1485,15 +1476,15 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector"
       SrcPort		      1
-      Points		      [85, 0]
+      Points		      [29, 0]
       Branch {
-	ZOrder			160
-	Points			[0, 80]
+	ZOrder			183
 	DstBlock		"Out1"
 	DstPort			1
       }
       Branch {
-	ZOrder			159
+	ZOrder			182
+	Points			[0, -55]
 	DstBlock		"MotorVel"
 	DstPort			1
       }
@@ -1509,15 +1500,15 @@ Model {
       ZOrder		      58
       SrcBlock		      "JointMechanicalSubsystem"
       SrcPort		      1
-      Points		      [0, 0; 11, 0]
+      Points		      [21, 0]
       Branch {
-	ZOrder			175
-	Points			[0, 70; -488, 0; 0, -70]
+	ZOrder			181
+	Points			[0, 55; -488, 0; 0, -70]
 	DstBlock		"JointElectricalSubsystem"
 	DstPort			2
       }
       Branch {
-	ZOrder			113
+	ZOrder			180
 	DstBlock		"Bus\nSelector"
 	DstPort			1
       }
@@ -1538,6 +1529,13 @@ Model {
 	DstBlock		"Sum2"
 	DstPort			1
       }
+    }
+    Line {
+      ZOrder		      179
+      SrcBlock		      "JointElectricalSubsystem"
+      SrcPort		      2
+      DstBlock		      "JointMechanicalSubsystem"
+      DstPort		      1
     }
   }
 }
