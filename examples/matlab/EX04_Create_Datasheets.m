@@ -42,7 +42,7 @@ jb.buildJoint('cjt_Orange_80_6000', ... parameters
     'rigid_gearbox', ... linear dynamics
     {'coulomb',...  {nonlinear
     'viscous_asym'}, ... dynamics}
-    [],... electro-dynamics
+    ['electric_dyn_zero_inductance'],... electro-dynamics
     'My_Orange');  % class name
 
 % add build directory to search path

@@ -25,7 +25,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2553.0, -7.0, 1935.0, 1055.0]
+      Location		      [3521.0, 1.0, 1922.0, 1082.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -49,9 +49,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"3"
-	Extents			[2629.0, 1343.0]
-	ZoomFactor		[1.5]
-	Offset			[-115.05142062388279, -94.622975031458679]
+	Extents			[2553.0, 1384.0]
+	ZoomFactor		[1.75]
+	Offset			[28.273976201513449, -5.9023401108233315]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -67,11 +67,11 @@ Library {
 	Width			[426]
 	Height			[320]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFjfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAD2AAAFtvwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABY0AAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABbYAAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAp9AAAFjQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAoxAAAFtgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
@@ -85,9 +85,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 12:11:22 2018"
-  RTWModifiedTimeStamp	  442262948
-  ModelVersionFormat	  "1.%<AutoIncrement:229>"
+  LastModifiedDate	  "Wed Mar 07 19:52:21 2018"
+  RTWModifiedTimeStamp	  442353035
+  ModelVersionFormat	  "1.%<AutoIncrement:232>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -1105,7 +1105,7 @@ Library {
   }
   System {
     Name		    "cjt_library_controllers"
-    Location		    [58, 108, 1980, 1190]
+    Location		    [2649, 266, 4571, 1348]
     Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
@@ -1133,7 +1133,7 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[2553, -7, 4488, 1048]
+	Location		[3521, 1, 5443, 1083]
 	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
@@ -1146,13 +1146,13 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"175"
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "Generic Controller"
+	  Name			  "Controller Template"
 	  SID			  "4"
 	  Ports			  [2, 1]
-	  Position		  [60, 23, 190, 112]
+	  Position		  [620, 7, 750, 98]
 	  ZOrder		  206
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -1172,7 +1172,7 @@ Library {
 	    }
 	  }
 	  System {
-	    Name		    "Generic Controller"
+	    Name		    "Controller Template"
 	    Location		    [-1, -1, 1921, 1081]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
@@ -1251,7 +1251,7 @@ Library {
 	  Name			  "LQR + Kalman (LQG)"
 	  SID			  "9"
 	  Ports			  [2, 2]
-	  Position		  [260, 160, 390, 255]
+	  Position		  [440, 7, 570, 98]
 	  ZOrder		  470
 	  LibraryVersion	  "1.177"
 	  RequestExecContextInheritance	off
@@ -1713,7 +1713,7 @@ Library {
 	  Name			  "LQR + state observer"
 	  SID			  "28"
 	  Ports			  [2, 2]
-	  Position		  [260, 21, 390, 114]
+	  Position		  [240, 7, 370, 98]
 	  ZOrder		  502
 	  LibraryVersion	  "*1.195"
 	  RequestExecContextInheritance	off
@@ -2205,7 +2205,7 @@ Library {
 	  Name			  "LQR Full Measured State"
 	  SID			  "187"
 	  Ports			  [2, 1]
-	  Position		  [260, 305, 390, 400]
+	  Position		  [40, 7, 170, 98]
 	  ZOrder		  300
 	  LibraryVersion	  "1.89"
 	  RequestExecContextInheritance	off
@@ -2533,7 +2533,7 @@ Library {
 	  Name			  "PID + FF with inner-loop DOB"
 	  SID			  "77"
 	  Ports			  [2, 1]
-	  Position		  [460, 162, 590, 253]
+	  Position		  [440, 147, 570, 238]
 	  ZOrder		  495
 	  LibraryVersion	  "*1.209"
 	  RequestExecContextInheritance	off
@@ -3123,7 +3123,7 @@ Library {
 	  Name			  "PID + FF/comp with outer-loop\nDOB and optional prefilter"
 	  SID			  "54"
 	  Ports			  [2, 1]
-	  Position		  [460, 22, 590, 113]
+	  Position		  [240, 147, 370, 238]
 	  ZOrder		  482
 	  LibraryVersion	  "*1.194"
 	  RequestExecContextInheritance	off
@@ -4034,7 +4034,7 @@ Library {
 	  Name			  "PID + FF/comp."
 	  SID			  "272"
 	  Ports			  [2, 1]
-	  Position		  [60, 163, 190, 252]
+	  Position		  [40, 147, 170, 238]
 	  ZOrder		  456
 	  LibraryVersion	  "*1.146"
 	  RequestExecContextInheritance	off
