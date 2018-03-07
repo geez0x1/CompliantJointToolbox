@@ -50,8 +50,8 @@ Library {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4"
 	Extents			[2610.0, 1384.0]
-	ZoomFactor		[1.25]
-	Offset			[-492.7047619047629, 0.41904761904771703]
+	ZoomFactor		[1.0]
+	Offset			[-612.97142857142967, -46.914285714285541]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -85,9 +85,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 12:57:26 2018"
-  RTWModifiedTimeStamp	  442328245
-  ModelVersionFormat	  "1.%<AutoIncrement:125>"
+  LastModifiedDate	  "Wed Mar 07 13:04:00 2018"
+  RTWModifiedTimeStamp	  442328639
+  ModelVersionFormat	  "1.%<AutoIncrement:126>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1141,19 +1141,6 @@ Library {
       TransDelayFeedthrough   off
       PadeOrder		      "0"
     }
-    Block {
-      BlockType		      VariableTransportDelay
-      VariableDelayType	      "Variable time delay"
-      MaximumDelay	      "1"
-      InitialOutput	      "0"
-      MaximumPoints	      "1024"
-      FixedBuffer	      off
-      ZeroDelay		      off
-      TransDelayFeedthrough   off
-      PadeOrder		      "0"
-      AbsoluteTolerance	      "auto"
-      ContinuousStateAttributes	"''"
-    }
   }
   System {
     Name		    "cjt_library_models"
@@ -1197,7 +1184,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"100"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
@@ -1760,8 +1747,6 @@ Library {
 	  Ports			  [2, 1]
 	  Position		  [105, 291, 305, 344]
 	  ZOrder		  451
-	  ForegroundColor	  "blue"
-	  BackgroundColor	  "cyan"
 	  LibraryVersion	  "1.109"
 	  ModelCloseFcn		  "sfsave"
 	  DestroyFcn		  "sfsave"
@@ -1879,7 +1864,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "300"
+	    ZoomFactor		    "50"
 	    SIDHighWatermark	    "1229"
 	    Block {
 	      BlockType		      Inport
@@ -1961,14 +1946,6 @@ Library {
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Constant
-	      Name		      "Constant"
-	      SID		      "3:1229"
-	      Position		      [145, 470, 175, 500]
-	      ZOrder		      247
-	      Value		      "input_delay * jointObj.Ts"
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -2823,22 +2800,12 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      VariableTransportDelay
-	      Name		      "Variable\nTime Delay"
-	      SID		      "3:1228"
-	      Ports		      [2, 1]
-	      Position		      [225, 425, 265, 465]
-	      ZOrder		      246
-	      MaximumDelay	      "10"
-	    }
-	    Block {
 	      BlockType		      TransportDelay
 	      Name		      "input_delay"
 	      SID		      "3:43"
 	      Ports		      [1, 1]
-	      Position		      [255, 375, 285, 405]
-	      ZOrder		      245
-	      Commented		      "on"
+	      Position		      [240, 430, 270, 460]
+	      ZOrder		      184
 	      DelayTime		      "input_delay * jointObj.Ts"
 	      TransDelayFeedthrough   on
 	    }
@@ -3316,18 +3283,17 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      94
-	      SrcBlock		      "Variable\nTime Delay"
+	      ZOrder		      6
+	      SrcBlock		      "input_delay"
 	      SrcPort		      1
 	      DstBlock		      "Mux"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      95
+	      ZOrder		      7
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
-	      Points		      [23, 0; 0, -10]
-	      DstBlock		      "Variable\nTime Delay"
+	      DstBlock		      "input_delay"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3892,14 +3858,6 @@ Library {
 	      SrcBlock		      "C"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      96
-	      SrcBlock		      "Constant"
-	      SrcPort		      1
-	      Points		      [20, 0; 0, -30]
-	      DstBlock		      "Variable\nTime Delay"
 	      DstPort		      2
 	    }
 	  }
