@@ -14,6 +14,5 @@ jObj = example_joint_locked;
 f_min = 0.01; % Initial frequency in Hz
 f_max = 100;  % Final frequency in Hz
 t_max = f_max; % Simulation stop time in s
-chrip_amp = 5; % A
 
 
