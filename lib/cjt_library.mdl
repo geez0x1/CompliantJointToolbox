@@ -25,7 +25,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2922.0, 85.0, 1721.0, 935.0]
+      Location		      [4473.0, -7.0, 1295.0, 999.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -42,20 +42,32 @@ Library {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"227"
-	Extents			[2309.0, 1164.0]
-	ZoomFactor		[1.5]
-	Offset			[0.0, 0.0]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
+	  Extents		  [1669.0, 1254.0]
+	  ZoomFactor		  [1.7499999999999993]
+	  Offset		  [0.0, -8.5265128291212022e-14]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "229:42"
+	  Extents		  [1669.0, 1254.0]
+	  ZoomFactor		  [1.5]
+	  Offset		  [534.11635664682422, -86.437301587301818]
+	}
+	PropName		"EditorsInfo"
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		6
+	$ObjectID		7
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -67,11 +79,11 @@ Library {
 	Width			[426]
 	Height			[320]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAE2vwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFOfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABNoAAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABTkAAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAk9AAAE2gAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAa9AAAFOQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
@@ -85,9 +97,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 12:15:04 2018"
-  RTWModifiedTimeStamp	  442325641
-  ModelVersionFormat	  "1.%<AutoIncrement:140>"
+  LastModifiedDate	  "Wed Mar 07 22:28:58 2018"
+  RTWModifiedTimeStamp	  442352573
+  ModelVersionFormat	  "1.%<AutoIncrement:141>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -159,7 +171,7 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      8
       Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
@@ -167,7 +179,7 @@ Library {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -206,7 +218,7 @@ Library {
 	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -247,7 +259,7 @@ Library {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -309,7 +321,7 @@ Library {
 	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -424,7 +436,7 @@ Library {
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -472,7 +484,7 @@ Library {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -491,7 +503,7 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -521,7 +533,7 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -608,7 +620,7 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -694,7 +706,7 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -794,7 +806,7 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  18
+	  $ObjectID		  19
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -903,8 +915,8 @@ Library {
   }
   System {
     Name		    "cjt_library"
-    Location		    [2922, 85, 4643, 1020]
-    Open		    off
+    Location		    [4473, -7, 5768, 992]
+    Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -927,29 +939,7 @@ Library {
       Position		      [255, 34, 360, 116]
       ZOrder		      188
       HideAutomaticName	      off
-      LibraryVersion	      "1.229"
-      LinkData {
-	BlockName		"LQR + Kalman (LQG)"
-	DialogParameters {
-	  jointObj		  "My_joint"
-	}
-	BlockName		"LQR + state observer"
-	DialogParameters {
-	  jointObj		  "My_joint"
-	}
-	BlockName		"PID + FF with inner-loop DOB"
-	DialogParameters {
-	  N			  "2*pi*200"
-	}
-	BlockName		"PID + FF//comp with outer-loop\nDOB and optional prefilter"
-	DialogParameters {
-	  N			  "2*pi*200"
-	}
-	BlockName		"PID + FF//comp."
-	DialogParameters {
-	  N			  "2*pi*200"
-	}
-      }
+      LibraryVersion	      "1.231"
       SourceBlock	      "cjt_library_controllers/Controllers"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -975,7 +965,7 @@ Library {
       Position		      [87, 31, 192, 113]
       ZOrder		      192
       HideAutomaticName	      off
-      LibraryVersion	      "1.120"
+      LibraryVersion	      "1.130"
       SourceBlock	      "cjt_library_models/Joint models"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off

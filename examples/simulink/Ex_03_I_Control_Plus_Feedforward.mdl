@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.216"
+    ComputedModelVersion    "1.217"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -23,11 +23,17 @@ Model {
     HasTerminateEvent	    0
     IsExportFunctionModel   0
     NumParameterArguments   0
-    NumExternalFileReferences 2
+    NumExternalFileReferences 3
     ExternalFileReference {
       Reference		      "simulink/Sources/Chirp Signal"
       Path		      "Ex_03_I_Control_Plus_Feedforward/Chirp Signal"
       SID		      "82"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "cjt_library_controllers/Controllers/I Controller plus Feedforward"
+      Path		      "Ex_03_I_Control_Plus_Feedforward/I Controller plus Feedforward"
+      SID		      "95"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
@@ -76,7 +82,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2494.0, 65.0, 1271.0, 927.0]
+      Location		      [4473.0, -7.0, 1295.0, 999.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -100,7 +106,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1829.0, 1143.0]
+	Extents			[1864.0, 1250.0]
 	ZoomFactor		[1.0]
 	Offset			[66.036507936507064, -226.01587301587335]
       }
@@ -122,7 +128,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAddAAAExQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAeAAAAFMAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAHX/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAQy/////wAAAAAAAAAA/"
@@ -136,9 +142,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Mar 09 12:47:01 2018"
-  RTWModifiedTimeStamp	  442495243
-  ModelVersionFormat	  "1.%<AutoIncrement:216>"
+  LastModifiedDate	  "Fri Mar 09 12:55:16 2018"
+  RTWModifiedTimeStamp	  442500896
+  ModelVersionFormat	  "1.%<AutoIncrement:217>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1005,65 +1011,7 @@ Model {
       BlockType		      BusSelector
     }
     Block {
-      BlockType		      DiscreteIntegrator
-      IntegratorMethod	      "Integration: Forward Euler"
-      gainval		      "1.0"
-      ExternalReset	      "none"
-      InitialConditionSource  "internal"
-      InitialCondition	      "0"
-      InitialConditionSetting "Output"
-      SampleTime	      "1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      LimitOutput	      off
-      UpperSaturationLimit    "inf"
-      LowerSaturationLimit    "-inf"
-      ShowSaturationPort      off
-      ShowStatePort	      off
-      IgnoreLimit	      off
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
-    Block {
-      BlockType		      Gain
-      Gain		      "1"
-      Multiplication	      "Element-wise(K.*u)"
-      ParamMin		      "[]"
-      ParamMax		      "[]"
-      ParamDataTypeStr	      "Inherit: Same as input"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      Ground
-    }
-    Block {
-      BlockType		      Inport
-      Port		      "1"
-      OutputFunctionCall      off
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: auto"
-      LockScale		      off
-      BusOutputAsStruct	      off
-      Unit		      "inherit"
-      PortDimensions	      "-1"
-      VarSizeSig	      "Inherit"
-      SampleTime	      "-1"
-      SignalType	      "auto"
-      SamplingMode	      "auto"
-      LatchByDelayingOutsideSignal off
-      LatchInputForFeedbackSignals off
-      Interpolate	      on
     }
     Block {
       BlockType		      Mux
@@ -1101,60 +1049,10 @@ Model {
       DefaultConfigurationName "Simulink.scopes.TimeScopeBlockCfg"
       Floating		      off
     }
-    Block {
-      BlockType		      SubSystem
-      ShowPortLabels	      "FromPortIcon"
-      Permissions	      "ReadWrite"
-      PermitHierarchicalResolution "All"
-      TreatAsAtomicUnit	      off
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      SystemSampleTime	      "-1"
-      RTWSystemCode	      "Auto"
-      RTWFcnNameOpts	      "Auto"
-      RTWFileNameOpts	      "Auto"
-      FunctionInterfaceSpec   "void_void"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      SimViewingDevice	      off
-      DataTypeOverride	      "UseLocalSettings"
-      DataTypeOverrideAppliesTo	"AllNumericTypes"
-      MinMaxOverflowLogging   "UseLocalSettings"
-      Opaque		      off
-      MaskHideContents	      off
-      SFBlockType	      "NONE"
-      GeneratePreprocessorConditionals off
-      AllowZeroVariantControls off
-      PropagateVariantConditions off
-      TreatAsGroupedWhenPropagatingVariantConditions on
-      ContentPreviewEnabled   off
-      IsWebBlock	      off
-      IsObserver	      off
-    }
-    Block {
-      BlockType		      Sum
-      IconShape		      "rectangular"
-      Inputs		      "++"
-      CollapseMode	      "All dimensions"
-      CollapseDim	      "1"
-      InputSameDT	      on
-      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
   }
   System {
     Name		    "Ex_03_I_Control_Plus_Feedforward"
-    Location		    [2494, 65, 3765, 992]
+    Location		    [4473, -7, 5768, 992]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1169,7 +1067,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "94"
+    SIDHighWatermark	    "95"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector"
@@ -1227,259 +1125,18 @@ Model {
       ZOrder		      455
     }
     Block {
-      BlockType		      SubSystem
+      BlockType		      Reference
       Name		      "I Controller plus Feedforward"
-      SID		      "83"
+      SID		      "95"
       Ports		      [2, 1]
       Position		      [450, 162, 580, 253]
-      ZOrder		      468
-      RequestExecContextInheritance off
-      Variant		      off
-      Object {
-	$PropName		"MaskObject"
-	$ObjectID		23
-	$ClassName		"Simulink.Mask"
-	Type			"CJT Torque Controller"
-	Description		"The block implements a torque controller comprised of a feedforward term complemented by an integral ac"
-	"tion with gain K_I to compensate for disturbances. \n\nThe controller is implemented following:\nD. Vischer and O. Kh"
-	"atib, “Design and development of high-performance torque-controlled joints,” Robotics and Automation, IEEE Transactio"
-	"ns on, vol. 11, no. 4, pp. 537–544, 1995.\n\nClick >Help< for details on the parameters."
-	Help			"The block implements a torque controller comprised of a feedforward term complemented by an integral action t"
-	"o compensate for disturbances. This type of controller has been used and discussed as lag-type control design in comp"
-	"arison to a pure feedforward action as well as a Proportional-Derivative control action in [1].\n\n<b>The mask parame"
-	"ters are: </b>\n\nJoint Object:  The class name of the CJT joint class name or the variable representing an instance "
-	"of a CJT joint class, describing the \n\nK<sub>I</sub>: Integral gain\n\nAccording to [1] the controller reduces dist"
-	"urbances up to a frequency <i>f = K<sub>I</sub>  / ( 2 PI ). </i>\n\nReferences:\n[1] D. Vischer and O. Khatib, “Desi"
-	"gn and development of high-performance torque-controlled joints,” Robotics and Automation, IEEE Transactions on, vol."
-	" 11, no. 4, pp. 537–544, 1995."
-	Array {
-	  Type			  "Simulink.MaskParameter"
-	  Dimension		  2
-	  Object {
-	    $ObjectID		    24
-	    Type		    "edit"
-	    Name		    "jointObj"
-	    Prompt		    "Joint Object"
-	    Value		    "jObj"
-	  }
-	  Object {
-	    $ObjectID		    25
-	    Type		    "edit"
-	    Name		    "I_Gain"
-	    Prompt		    "Integral gain K_I"
-	    Value		    "10"
-	  }
-	  PropName		  "Parameters"
-	}
-	Array {
-	  Type			  "Simulink.dialog.Control"
-	  Dimension		  3
-	  Object {
-	    $ObjectID		    26
-	    $ClassName		    "Simulink.dialog.Group"
-	    Prompt		    "%<MaskType>"
-	    Object {
-	      $PropName		      "DialogControls"
-	      $ObjectID		      27
-	      $ClassName	      "Simulink.dialog.Text"
-	      Prompt		      "%<MaskDescription>"
-	      Name		      "DescTextVar"
-	    }
-	    Name		    "DescGroupVar"
-	  }
-	  Object {
-	    $ObjectID		    28
-	    $ClassName		    "Simulink.dialog.Group"
-	    Prompt		    "Simulink:studio:ToolBarParametersMenu"
-	    Object {
-	      $PropName		      "DialogControls"
-	      $ObjectID		      29
-	      $ClassName	      "Simulink.dialog.parameter.Edit"
-	      Name		      "jointObj"
-	    }
-	    Name		    "ParameterGroupVar"
-	  }
-	  Object {
-	    $ObjectID		    30
-	    $ClassName		    "Simulink.dialog.parameter.Edit"
-	    PromptLocation	    "left"
-	    Name		    "I_Gain"
-	  }
-	  PropName		  "DialogControls"
-	}
-      }
-      System {
-	Name			"I Controller plus Feedforward"
-	Location		[4473, -7, 5768, 992]
-	Open			off
-	PortBlocksUseCompactNotation off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"125"
-	Block {
-	  BlockType		  Inport
-	  Name			  "Reference"
-	  SID			  "84"
-	  Position		  [680, 138, 710, 152]
-	  ZOrder		  204
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "jointBus"
-	  SID			  "85"
-	  Position		  [680, 240, 710, 255]
-	  ZOrder		  205
-	  BlockRotation		  270
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  BusSelector
-	  Name			  "Bus\nSelector"
-	  SID			  "90"
-	  Ports			  [1, 1]
-	  Position		  [790, 186, 795, 224]
-	  ZOrder		  210
-	  ShowName		  off
-	  OutputSignals		  "Torque"
-	  OutputAsBus		  off
-	  Port {
-	    PortNumber		    1
-	    Name		    "<Torque>"
-	  }
-	}
-	Block {
-	  BlockType		  DiscreteIntegrator
-	  Name			  "Discrete-Time\nIntegrator"
-	  SID			  "92"
-	  Ports			  [1, 1]
-	  Position		  [1015, 127, 1050, 163]
-	  ZOrder		  212
-	  InitialConditionSetting "State (most efficient)"
-	  SampleTime		  "-1"
-	  ICPrevOutput		  "DiscIntNeverNeededParam"
-	  ICPrevScaledInput	  "DiscIntNeverNeededParam"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "94"
-	  Position		  [945, 130, 975, 160]
-	  ZOrder		  214
-	  Gain			  "I_Gain"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum"
-	  SID			  "91"
-	  Ports			  [2, 1]
-	  Position		  [870, 135, 890, 155]
-	  ZOrder		  211
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|+-"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum1"
-	  SID			  "93"
-	  Ports			  [2, 1]
-	  Position		  [1120, 135, 1140, 155]
-	  ZOrder		  213
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "motorTorque [Nm]"
-	  SID			  "87"
-	  Position		  [1350, 138, 1380, 152]
-	  ZOrder		  208
-	  IconDisplay		  "Port number"
-	}
-	Line {
-	  ZOrder		  4
-	  SrcBlock		  "jointBus"
-	  SrcPort		  1
-	  Points		  [0, -30]
-	  DstBlock		  "Bus\nSelector"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  5
-	  SrcBlock		  "Reference"
-	  SrcPort		  1
-	  Points		  [76, 0]
-	  Branch {
-	    ZOrder		    12
-	    Points		    [0, -62; 339, 0]
-	    DstBlock		    "Sum1"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    11
-	    DstBlock		    "Sum"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  Name			  "<Torque>"
-	  ZOrder		  6
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  1
-	  Points		  [80, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  7
-	  SrcBlock		  "Sum"
-	  SrcPort		  1
-	  DstBlock		  "Gain"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  8
-	  SrcBlock		  "Gain"
-	  SrcPort		  1
-	  DstBlock		  "Discrete-Time\nIntegrator"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  9
-	  SrcBlock		  "Discrete-Time\nIntegrator"
-	  SrcPort		  1
-	  DstBlock		  "Sum1"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  10
-	  SrcBlock		  "Sum1"
-	  SrcPort		  1
-	  DstBlock		  "motorTorque [Nm]"
-	  DstPort		  1
-	}
-      }
+      ZOrder		      507
+      LibraryVersion	      "1.235"
+      SourceBlock	      "cjt_library_controllers/Controllers/I Controller plus Feedforward"
+      SourceType	      "CJT Torque Controller"
+      ContentPreviewEnabled   off
+      jointObj		      "jObj"
+      I_Gain		      "10"
     }
     Block {
       BlockType		      Reference
@@ -1638,6 +1295,12 @@ Model {
       SrcPort		      1
       Points		      [53, 0]
       Branch {
+	ZOrder			247
+	Points			[0, 92; -619, 0; 0, -87]
+	DstBlock		"I Controller plus Feedforward"
+	DstPort			2
+      }
+      Branch {
 	ZOrder			236
 	Points			[2, 0]
 	Branch {
@@ -1651,15 +1314,9 @@ Model {
 	  DstPort		  1
 	}
       }
-      Branch {
-	ZOrder			225
-	Points			[0, 92; -619, 0; 0, -87]
-	DstBlock		"I Controller plus Feedforward"
-	DstPort			2
-      }
     }
     Line {
-      ZOrder		      222
+      ZOrder		      245
       SrcBlock		      "I Controller plus Feedforward"
       SrcPort		      1
       DstBlock		      "JointMechanicalSubsystem"
@@ -1681,14 +1338,14 @@ Model {
       SrcPort		      1
       Points		      [89, 0]
       Branch {
-	ZOrder			239
-	Points			[0, -145]
-	DstBlock		"Mux"
+	ZOrder			246
+	DstBlock		"I Controller plus Feedforward"
 	DstPort			1
       }
       Branch {
-	ZOrder			238
-	DstBlock		"I Controller plus Feedforward"
+	ZOrder			239
+	Points			[0, -145]
+	DstBlock		"Mux"
 	DstPort			1
       }
     }
