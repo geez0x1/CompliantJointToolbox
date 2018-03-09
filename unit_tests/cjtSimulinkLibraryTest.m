@@ -134,6 +134,10 @@ jObj.Ts = 0.5e-4;
 
 simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
+curChkSum = cjtComputeChecksum(simOut.yout(:));
+refChkSum = 'B1B9F54B37C8A68389D6DCD483642C6C';
+
+verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
 function testExample_03(testCase)
@@ -142,6 +146,10 @@ function testExample_03(testCase)
 % simOut = sim('../examples/simulink/Ex_03_I_Control_Plus_Feedforward.mdl','SrcWorkspace','current');
 simOut = sim('Ex_03_I_Control_Plus_Feedforward.mdl','SrcWorkspace','current');
 
+curChkSum = cjtComputeChecksum(simOut.yout(:));
+refChkSum = '373099EC0BFFB5020646C62356AC8532';
+
+verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
 

@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.179"
+    ComputedModelVersion    "1.180"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -75,7 +75,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2868.0, 50.0, 960.0, 1080.0]
+      Location		      [2553.0, -7.0, 1935.0, 1055.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -100,27 +100,27 @@ Model {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [1.25]
-	  Offset		  [29.355759649675747, -45.704935676977072]
+	  Extents		  [2824.0, 1329.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [389.79873015873005, 55.095064323022939]
 	}
 	Object {
 	  $ObjectID		  7
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "49"
-	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [342.56666666666774, -19.633333333333383]
+	  Extents		  [2043.0, 1620.0]
+	  ZoomFactor		  [1.75]
+	  Offset		  [634.42380952381063, 211.795238095238]
 	}
 	Object {
 	  $ObjectID		  8
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "8"
-	  Extents		  [1362.0, 1367.0]
-	  ZoomFactor		  [1.0000000000000002]
-	  Offset		  [227.99999999999977, 418.0]
+	  Extents		  [2824.0, 1329.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [407.199999999999, 497.06666666666626]
 	}
 	PropName		"EditorsInfo"
       }
@@ -142,7 +142,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAWKAAAFqgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAtAAAAFhAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAHX/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAQy/////wAAAAAAAAAA/"
@@ -156,9 +156,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 13:22:53 2018"
-  RTWModifiedTimeStamp	  442329729
-  ModelVersionFormat	  "1.%<AutoIncrement:179>"
+  LastModifiedDate	  "Fri Mar 09 12:47:32 2018"
+  RTWModifiedTimeStamp	  442500407
+  ModelVersionFormat	  "1.%<AutoIncrement:180>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1148,7 +1148,7 @@ Model {
   }
   System {
     Name		    "simulinkBlockLibraryTest"
-    Location		    [2868, 50, 3828, 1130]
+    Location		    [2553, -7, 4488, 1048]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1161,7 +1161,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "125"
+    ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "81"
     Block {
@@ -1318,7 +1318,7 @@ Model {
       Position		      [465, 181, 650, 219]
       ZOrder		      453
       HideAutomaticName	      off
-      LibraryVersion	      "1.126"
+      LibraryVersion	      "1.130"
       SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
@@ -1337,14 +1337,14 @@ Model {
       Position		      [730, 196, 900, 249]
       ZOrder		      222
       HideAutomaticName	      off
-      LibraryVersion	      "1.126"
+      LibraryVersion	      "1.130"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
       jointObj		      "jObj"
       fc_vel		      "499"
       fc_torque		      "499"
-      input_delay	      "0"
+      input_delay	      "1"
       output_delay	      "1"
       quantize		      off
       quantize_bits	      "19"
