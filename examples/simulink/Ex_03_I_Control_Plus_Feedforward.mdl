@@ -4,16 +4,23 @@ Model {
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    0
-    NumRootOutports	    1
+    NumRootOutports	    2
     Outport {
       Name		      "Out1"
       BusObject		      ""
       BusOutputAsStruct	      "off"
-      SignalName	      "MotorVelNoNoise"
+      SignalName	      "Reference"
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "Out2"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      SignalName	      "Response"
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.219"
+    ComputedModelVersion    "1.227"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -31,7 +38,7 @@ Model {
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
-      Reference		      "cjt_library_controllers/Controllers/I Controller plus Feedforward"
+      Reference		      "cjt_library_controllers/Controllers/Integral Controller plus Feedforward"
       Path		      "Ex_03_I_Control_Plus_Feedforward/I Controller plus Feedforward"
       SID		      "95"
       Type		      "LIBRARY_BLOCK"
@@ -71,7 +78,6 @@ Model {
   MinMaxOverflowArchiveMode "Overwrite"
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  InitFcn		  "Ex_00_example_config"
   LastSavedArchitecture	  "win64"
   Object {
     $PropName		    "BdWindowsInfo"
@@ -142,9 +148,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Mar 09 13:00:08 2018"
-  RTWModifiedTimeStamp	  442501205
-  ModelVersionFormat	  "1.%<AutoIncrement:219>"
+  LastModifiedDate	  "Fri Mar 09 16:12:56 2018"
+  RTWModifiedTimeStamp	  442512258
+  ModelVersionFormat	  "1.%<AutoIncrement:227>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -294,7 +300,7 @@ Model {
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
 	  InitialState		  "xInitial"
-	  LimitDataPoints	  on
+	  LimitDataPoints	  off
 	  MaxDataPoints		  "1000"
 	  LoadExternalInput	  off
 	  LoadInitialState	  off
@@ -930,8 +936,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      ""
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    [ 678, 152, 1636, 890 ]
+      CurrentDlgPage	      "Data Import//Export"
+      ConfigPrmDlgPosition    [ 678, 120, 1636, 858 ]
     }
     PropName		    "ConfigurationSets"
   }
@@ -1067,30 +1073,14 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "96"
-    Block {
-      BlockType		      BusSelector
-      Name		      "Bus\nSelector"
-      SID		      "9"
-      Ports		      [1, 1]
-      Position		      [995, 206, 1000, 244]
-      ZOrder		      223
-      ShowName		      off
-      OutputSignals	      "MotorVelNoNoise"
-      OutputAsBus	      off
-      Port {
-	PortNumber		1
-	Name			"<MotorVelNoNoise>"
-      }
-    }
+    SIDHighWatermark	    "98"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector1"
       SID		      "89"
       Ports		      [1, 1]
-      Position		      [941, 170, 979, 180]
+      Position		      [1005, 206, 1015, 244]
       ZOrder		      469
-      BlockRotation	      270
       ShowName		      off
       OutputSignals	      "TorqueFiltered"
       OutputAsBus	      off
@@ -1132,7 +1122,7 @@ Model {
       Position		      [450, 162, 580, 253]
       ZOrder		      507
       LibraryVersion	      "1.235"
-      SourceBlock	      "cjt_library_controllers/Controllers/I Controller plus Feedforward"
+      SourceBlock	      "cjt_library_controllers/Controllers/Integral Controller plus Feedforward"
       SourceType	      "CJT Torque Controller"
       ContentPreviewEnabled   off
       jointObj		      "jObj"
@@ -1163,48 +1153,11 @@ Model {
       var_y		      "1.8e-10"
     }
     Block {
-      BlockType		      Scope
-      Name		      "MotorVel"
-      SID		      "50"
-      Ports		      [1]
-      Position		      [1125, 154, 1155, 186]
-      ZOrder		      454
-      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
-      "gr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI',t"
-      "rue),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1','DataLoggingSave"
-      "Format','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time"
-      " Domain',true,'SerializedDisplays',{struct('MinYLimReal','-0.0378','MaxYLimReal','0.03773','YLabelReal','','MinY"
-      "LimMag','0.00000','MaxYLimMag','0.0378','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,"
-      "'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.6235294117"
-      "64706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.7176470588"
-      "23529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>"
-      "','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')"
-      ",struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1],'"
-      "LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth"
-      "',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Vi"
-      "sible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefin"
-      "edChannelNames',{{}},'NumLines',1,'LineNames',{{'<MotorVelNoNoise>'}},'ShowContent',true,'Placement',1)},'Displa"
-      "yPropertyDefaults',struct('MinYLimReal','-0.0378','MaxYLimReal','0.03773','YLabelReal','','MinYLimMag','0.00000'"
-      ",'MaxYLimMag','0.0378','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 "
-      "0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.41176"
-      "4705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803"
-      "921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LineProperties"
-      "Cache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',["
-      "1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1],'LineStyle','-','L"
-      "ineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.8,'Marker','n"
-      "one','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),stru"
-      "ct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{"
-      "{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)),extmgr.Configuration('Tools','Plot Naviga"
-      "tion',true,'OnceAtStop',false),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2"
-      "017b','Location',[2693.66666666667 200.333333333333 4059.66666666667 879])"
-      NumInputPorts	      "1"
-    }
-    Block {
       BlockType		      Mux
       Name		      "Mux"
       SID		      "20"
       Ports		      [2, 1]
-      Position		      [1035, 31, 1040, 69]
+      Position		      [1100, 196, 1105, 234]
       ZOrder		      234
       ShowName		      off
       Inputs		      "2"
@@ -1215,7 +1168,7 @@ Model {
       Name		      "Torque"
       SID		      "21"
       Ports		      [1]
-      Position		      [1125, 34, 1155, 66]
+      Position		      [1190, 199, 1220, 231]
       ZOrder		      235
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
       "gr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI',t"
@@ -1252,8 +1205,19 @@ Model {
       BlockType		      Outport
       Name		      "Out1"
       SID		      "60"
-      Position		      [1125, 218, 1155, 232]
+      Position		      [1120, 163, 1150, 177]
       ZOrder		      456
+      SignalName	      "Reference"
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Out2"
+      SID		      "98"
+      Position		      [1115, 258, 1145, 272]
+      ZOrder		      508
+      Port		      "2"
+      SignalName	      "Response"
       IconDisplay	      "Port number"
     }
     Line {
@@ -1262,25 +1226,6 @@ Model {
       SrcPort		      1
       DstBlock		      "Torque"
       DstPort		      1
-    }
-    Line {
-      Name		      "<MotorVelNoNoise>"
-      ZOrder		      133
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector"
-      SrcPort		      1
-      Points		      [29, 0]
-      Branch {
-	ZOrder			183
-	DstBlock		"Out1"
-	DstPort			1
-      }
-      Branch {
-	ZOrder			182
-	Points			[0, -55]
-	DstBlock		"MotorVel"
-	DstPort			1
-      }
     }
     Line {
       ZOrder		      134
@@ -1295,24 +1240,15 @@ Model {
       SrcPort		      1
       Points		      [53, 0]
       Branch {
-	ZOrder			247
+	ZOrder			253
 	Points			[0, 92; -619, 0; 0, -87]
 	DstBlock		"I Controller plus Feedforward"
 	DstPort			2
       }
       Branch {
 	ZOrder			236
-	Points			[2, 0]
-	Branch {
-	  ZOrder		  226
-	  DstBlock		  "Bus\nSelector1"
-	  DstPort		  1
-	}
-	Branch {
-	  ZOrder		  230
-	  DstBlock		  "Bus\nSelector"
-	  DstPort		  1
-	}
+	DstBlock		"Bus\nSelector1"
+	DstPort			1
       }
     }
     Line {
@@ -1321,16 +1257,6 @@ Model {
       SrcPort		      1
       DstBlock		      "JointMechanicalSubsystem"
       DstPort		      1
-    }
-    Line {
-      Name		      "<TorqueFiltered>"
-      ZOrder		      231
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector1"
-      SrcPort		      1
-      Points		      [0, -105]
-      DstBlock		      "Mux"
-      DstPort		      2
     }
     Line {
       ZOrder		      223
@@ -1344,19 +1270,38 @@ Model {
       }
       Branch {
 	ZOrder			239
-	Points			[0, -145]
-	DstBlock		"Mux"
-	DstPort			1
+	Points			[0, -37; 704, 0; 0, 22]
+	Branch {
+	  ZOrder		  257
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Branch {
+	  ZOrder		  256
+	  Points		  [0, 35]
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
       }
     }
-    Annotation {
-      SID		      "96"
-      Name		      "Note: This block diagram calls Ex_00_example_config.m in the init Callback to provide an example jo"
-      "int object (jObj)"
-      Position		      [345, 18, 859, 32]
-      InternalMargins	      [0, 0, 0, 0]
-      HorizontalAlignment     "left"
-      VerticalAlignment	      "top"
+    Line {
+      Name		      "<TorqueFiltered>"
+      ZOrder		      255
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector1"
+      SrcPort		      1
+      Points		      [30, 0]
+      Branch {
+	ZOrder			259
+	Points			[0, 40]
+	DstBlock		"Out2"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			258
+	DstBlock		"Mux"
+	DstPort			2
+      }
     }
   }
 }
