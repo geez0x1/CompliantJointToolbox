@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.217"
+    ComputedModelVersion    "1.219"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -142,9 +142,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Jörn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Mar 09 12:55:16 2018"
-  RTWModifiedTimeStamp	  442500896
-  ModelVersionFormat	  "1.%<AutoIncrement:217>"
+  LastModifiedDate	  "Fri Mar 09 13:00:08 2018"
+  RTWModifiedTimeStamp	  442501205
+  ModelVersionFormat	  "1.%<AutoIncrement:219>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1067,7 +1067,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "95"
+    SIDHighWatermark	    "96"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector"
@@ -1348,6 +1348,15 @@ Model {
 	DstBlock		"Mux"
 	DstPort			1
       }
+    }
+    Annotation {
+      SID		      "96"
+      Name		      "Note: This block diagram calls Ex_00_example_config.m in the init Callback to provide an example jo"
+      "int object (jObj)"
+      Position		      [345, 18, 859, 32]
+      InternalMargins	      [0, 0, 0, 0]
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
     }
   }
 }
