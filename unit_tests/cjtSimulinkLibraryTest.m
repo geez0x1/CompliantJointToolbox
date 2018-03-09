@@ -91,7 +91,7 @@ function setupOnce(testCase)  % do not change function name
     % joint builder to the search path.
     testCase.('TestData').testJoint = eval(testCase.('TestData').className);
     
-    addpath('../examples/simulink/') % Add the examples directory
+%     addpath('../examples/simulink/') % Add the examples directory
 
 end
 
@@ -102,7 +102,7 @@ function teardownOnce(testCase)  % do not change function name
     rmpath(testCase.('TestData').JB.buildDir); % Remove the built directory from the search path, then
     testCase.('TestData').JB.purge;            % remove all files created during the tests
 
-    rmpath('../examples/simulink/') % Remove the examples directory
+%     rmpath('../examples/simulink/') % Remove the examples directory
 
 end
 
@@ -140,14 +140,29 @@ refChkSum = 'B1B9F54B37C8A68389D6DCD483642C6C';
 verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
+function testExample_02(testCase)
+% Test specific code
+
+% Run the example
+Ex_02_Current_Control_run
+
+% The example creates a variable simOut in the workspace. Use it to compute the checksum
+curChkSum = cjtComputeChecksum(simOut.yout(:));
+refChkSum = '4EB5B6F944C62640891572B26229B5D1';
+
+verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+
 function testExample_03(testCase)
 % Test specific code
 
-% simOut = sim('../examples/simulink/Ex_03_I_Control_Plus_Feedforward.mdl','SrcWorkspace','current');
-simOut = sim('Ex_03_I_Control_Plus_Feedforward.mdl','SrcWorkspace','current');
+% Run the example
+Ex_03_I_Control_Plus_Feedforward_run
 
+% The example creates a variable simOut in the workspace. Use it to compute the checksum
 curChkSum = cjtComputeChecksum(simOut.yout(:));
-refChkSum = '373099EC0BFFB5020646C62356AC8532';
+refChkSum = 'FED49142F09A1E5531C5C3BB39CFA161';
 
 verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
