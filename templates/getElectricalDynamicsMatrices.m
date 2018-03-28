@@ -44,5 +44,5 @@
 %% For more information on the toolbox and contact to the authors visit
 %% <https://github.com/geez0x1/CompliantJointToolbox>
 function [A, B, C, D] = getElectricalDynamicsMatrices(obj)
-    [A, B, C, D] = %s(obj);
+    %s
 end

@@ -354,7 +354,12 @@ classdef jointBuilder
             % getElectricalDynamicsMatrices
             getDynStr = fileread('getElectricalDynamicsMatrices.m');
             getDynStr = regexprep(getDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
-            fprintf(fid, [getDynStr '\n\n'], electricalDynamicsName);
+            if (strcmp(electricalDynamicsName, 'electric_dyn_dq'))
+                errStr = sprintf('error(''This joint was built with nonlinear electrical dynamics. Therefore, getElectricalDynamicsMatrices() is not valid.'');');
+                fprintf(fid, [getDynStr '\n\n'], errStr);
+            else
+                fprintf(fid, [getDynStr '\n\n'], ['[A, B, C, D] = ' electricalDynamicsName '(obj);']);
+            end
             
             % End methods
             fprintf(fid,'\tend\n\n');
