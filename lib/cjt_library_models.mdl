@@ -33,7 +33,7 @@ Library {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -49,8 +49,8 @@ Library {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"103"
 	Extents			[1702.0, 878.0]
-	ZoomFactor		[1.25]
-	Offset			[0.0, 0.0]
+	ZoomFactor		[2.0]
+	Offset			[266.85714285714289, 81.35952380952358]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 14:09:01 2018"
-  RTWModifiedTimeStamp	  444146941
-  ModelVersionFormat	  "1.%<AutoIncrement:144>"
+  LastModifiedDate	  "Wed Mar 28 14:31:37 2018"
+  RTWModifiedTimeStamp	  444148276
+  ModelVersionFormat	  "1.%<AutoIncrement:156>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1139,9 +1139,9 @@ Library {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "250"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "131"
+    SIDHighWatermark	    "133"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -1931,8 +1931,11 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    35
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is "
-	    "disabled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
+	    Initialization	    "% Generate params object to relay jointObj parameters to the internal\n% function for the non"
+	    "linear electrical dynamics\nparams      = struct;\nparams.r    = jointObj.r;\nparams.x    = jointObj.x;\nparams.k"
+	    "_t  = jointObj.k_t;\nparams.n    = jointObj.n;\nparams.p    = jointObj.p;\nparams.v_0  = jointObj.v_0;\n\n% Get o"
+	    "ther properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is disabled, overwrite the giv"
+	    "en variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -2057,7 +2060,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "200"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "v_q [V]"
@@ -2101,10 +2104,10 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Constant
-	      Name		      "Constant"
-	      SID		      "110"
-	      Position		      [630, 155, 960, 185]
-	      ZOrder		      272
+	      Name		      "Constant1"
+	      SID		      "132"
+	      Position		      [620, 145, 950, 175]
+	      ZOrder		      276
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
 	      ShowName		      off
@@ -2167,7 +2170,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"32"
+		SIDHighWatermark	"40"
 		Block {
 		  BlockType		  Inport
 		  Name			  "params"
@@ -2322,7 +2325,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 142, 195, 178]
 	      ZOrder		      273
-	      LibraryVersion	      "1.143"
+	      LibraryVersion	      "1.155"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2334,7 +2337,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 297, 195, 333]
 	      ZOrder		      274
-	      LibraryVersion	      "1.143"
+	      LibraryVersion	      "1.155"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2671,10 +2674,10 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      52
-	      SrcBlock		      "Constant"
+	      ZOrder		      74
+	      SrcBlock		      "Constant1"
 	      SrcPort		      1
-	      Points		      [-27, 0; 0, 115]
+	      Points		      [-17, 0; 0, 125]
 	      DstBlock		      "MATLAB Function"
 	      DstPort		      1
 	    }
@@ -2813,7 +2816,7 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "80"
-	    SIDHighWatermark	    "1561"
+	    SIDHighWatermark	    "1644"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -3788,7 +3791,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"62"
+		SIDHighWatermark	"67"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -4826,7 +4829,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Electrical Models</span></p></body></html>"
-	  Position		  [-251, 59, -99, 90]
+	  Position		  [-251, 59, -249, 75]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -4843,7 +4846,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Mechanical Models</span></p></body></html>"
-	  Position		  [83, 59, 256, 90]
+	  Position		  [83, 59, 85, 75]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -4910,7 +4913,13 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function [x_dot, tau_m] = fcn(params, x, u)\n    [x_dot, tau_m] = electric_dyn_dq(params, x, u);"
+      script		      "function [x_dot, tau_m] = fcn(params, x, u)\n    % Build parameters object from hacky constant bl"
+      "ock:\n    % [jointObj.r; jointObj.x; jointObj.k_t; jointObj.n; p; jointObj.v_0]\n    paramsObj       = struct;\n"
+      "    paramsObj.r     = params(1);    % Winding resistance [Ohm]\n    paramsObj.x     = params(2);    % Winding in"
+      "ductance [H]\n    paramsObj.k_t   = params(3);    % Torque constant [Nm/A]\n    paramsObj.n     = params(4);    "
+      "% Gearbox transmission ratio []\n    paramsObj.p     = params(5);    % Number of pole pairs\n    paramsObj.v_0  "
+      " = params(6);    % Supply voltage [V]\n    \n    % Compute state derivative and generated motor torque\n    [x_d"
+      "ot, tau_m]  = electric_dyn_dq(paramsObj, x, u);"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
