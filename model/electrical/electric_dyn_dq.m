@@ -1,13 +1,18 @@
 %ELECTRIC_DYN_DQ Get compute nonlinear dynamics for the electrical
 %subsystem with a d-q axis current model
 %
-% [x_dot, tau_m] = jointObj.electric_dyn_dq
+% [x_dot, tau_m] = electric_dyn_dq(jointObj, x, u)
 %
-% jointObj is the instance of the joint class object for which this
-% function has been called.
-%
+% Inputs::
+%   jointObj: instance of the joint class object for which this function
+%             has been called.
+%   x:        Current state vector x = [i_q, i_d]'
+%   u:        Input voltages v_q, v_d, and motor velocity q_m_dot, given as
+%             u = [v_q, v_d, q_m_dot]
 %
 % Outputs::
+%   x_dot:    State derivative
+%   tau_m:    Generated motor torque
 %
 %
 % Notes::
@@ -47,7 +52,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [x_dot, tau_m] = electric_dyn_dq(params, x, u)
+function [x_dot, tau_m] = electric_dyn_dq(jointObj, x, u)
     
     % Hack for initialisation - problems with dimensioning
     if (length(x) ~= 2 || length(u) ~= 3)
@@ -68,14 +73,13 @@ function [x_dot, tau_m] = electric_dyn_dq(params, x, u)
     q_m_dot     = u(3);
 
     % Get parameters
-    % In hacky constant block: [jointObj.r; jointObj.x; jointObj.k_t; jointObj.n, p, jointObj.v_0]
-    r           = params(1);    % Winding resistance [Ohm]
-    L_q         = params(2);    % Winding inductance [H] % Equal q-d inductances for SPMSMs
-    L_d         = params(2);    % Winding inductance [H] % Equal q-d inductances for SPMSMs
-    k_t         = params(3);    % Torque constant [Nm/A]
-    n           = params(4);    % Gearbox transmission ratio []
-    p           = params(5);    % Number of pole pairs
-    v_0         = params(6);    % Supply voltage [V]
+    r           = jointObj.r;   % Winding resistance [Ohm]
+    L_q         = jointObj.x;   % Winding inductance [H] % Equal q-d inductances for SPMSMs
+    L_d         = jointObj.x;   % Winding inductance [H] % Equal q-d inductances for SPMSMs
+    k_t         = jointObj.k_t; % Torque constant [Nm/A]
+    n           = jointObj.n;   % Gearbox transmission ratio []
+    p           = jointObj.p;   % Number of pole pairs
+    v_0         = jointObj.v_0; % Supply voltage [V]
     
     % Calculate dependent parameters
     % Here p denotes the number of pole pairs
