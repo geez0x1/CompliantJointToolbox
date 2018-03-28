@@ -41,12 +41,7 @@ function [  ] = handleMatlabFunctionBlock( thisBlock, jointObj )
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % Get linear dynamics matrices
-[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();
-
-% Other properties
-Ts = jointObj.Ts;
-k_t = jointObj.k_t;
-k_b = jointObj.k_b;
+[A, ~, ~, ~, ~, ~] = jointObj.getDynamicsMatrices();
 
 % ---------------------------------
 % Edit contents of nonLinDynamicsFcn block
