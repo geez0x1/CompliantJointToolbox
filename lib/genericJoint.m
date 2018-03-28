@@ -128,6 +128,7 @@ classdef genericJoint < handle
         
         % Misc
         Ts      = 1e-3;     % Sampling time [s]
+        Ts_elec = 5e-5;     % Sampling time for electrical system [s]
     end
     
     methods
