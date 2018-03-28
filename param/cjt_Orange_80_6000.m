@@ -67,6 +67,7 @@ params.('d_cl_n') = 0;  %% Torsion bar Coulomb damping - negative direction [Nm]
 params.('k_t') = 7.800000e-02;     %% Torque constant [Nm/A]
 params.('r') = 3.180000e-01;         %% Armature resistance [Ohm]
 params.('x') = 2.000000e-04;         %% Armature inductance [H]
+params.('p') = 12/2;                     %% Number of pole pairs []
 params.('Ts') = 1.000000e-03;       %% Sampling time [s]
 params.('Ts_elec')  = 5e-5;                 %% Sampling time for electrical system [s]
 % Operating/max conditions

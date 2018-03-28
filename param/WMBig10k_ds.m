@@ -73,6 +73,7 @@ params.('n')        = n;                    %% Gear ratio []
 params.('k_t')      = 0.0453;               %% Torque constant [Nm/A]
 params.('r')        = 0.0885;               %% Armature resistance [Ohm]
 params.('x')        = 0.000140;             %% Armature inductance [H]
+params.('p')        = 12/2;                 %% Number of pole pairs [] %% MAY BE INCORRECT FOR WALKMAN MOTORS
 params.('Ts')       = 1e-3;                 %% Sampling time [s]
 params.('Ts_elec')  = 5e-5;                 %% Sampling time for electrical system [s]
 % Operating/max conditions

@@ -82,7 +82,6 @@ function [x_dot, tau_m] = electric_dyn_iq_id(params, x, u)
     
     % Calculate dependent variables
     omega_m     = n * q_m_dot; % rotor angular velocity, reflected across gearbox
-    %omega_m_e   = p * omega_m; %#ok<NASGU> % electrical angular velocity, unused
     
     % Calculate state derivative
     % x = [i_q; i_d];

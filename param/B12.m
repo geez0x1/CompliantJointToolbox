@@ -64,6 +64,7 @@ params.('v_s')      = 0.01;                     %% Stribeck velocity range [rad/
 params.('k_t')      = 0.0445;                   %% Torque constant [Nm/A]
 params.('r')        = 0.0885;                   %% Armature resistance [Ohm]
 params.('x')        = 0.000140;                 %% Armature inductance [H]
+params.('p')        = 12/2;                     %% Number of pole pairs [] %% MAY BE INCORRECT FOR WALKMAN MOTORS
 params.('Ts')       = 5e-4;                     %% Sampling time [s]
 params.('Ts_elec')  = 5e-5;                     %% Sampling time for electrical system [s]
 % Operating/max conditions

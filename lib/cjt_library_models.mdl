@@ -49,7 +49,7 @@ Library {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "3"
-	  Extents		  [1680.0, 872.0]
+	  Extents		  [1702.0, 928.0]
 	  ZoomFactor		  [0.8]
 	  Offset		  [-98.857142857144709, -210.1753968253978]
 	}
@@ -57,10 +57,10 @@ Library {
 	  $ObjectID		  6
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "103"
+	  LoadSaveID		  "4"
 	  Extents		  [1702.0, 872.0]
-	  ZoomFactor		  [1.25]
-	  Offset		  [0.0, 0.0]
+	  ZoomFactor		  [1.5]
+	  Offset		  [-570.50000000000011, -101.33333333333331]
 	}
 	PropName		"EditorsInfo"
       }
@@ -96,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 11:44:42 2018"
-  RTWModifiedTimeStamp	  444138276
-  ModelVersionFormat	  "1.%<AutoIncrement:142>"
+  LastModifiedDate	  "Wed Mar 28 13:47:03 2018"
+  RTWModifiedTimeStamp	  444145609
+  ModelVersionFormat	  "1.%<AutoIncrement:143>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1166,7 +1166,7 @@ Library {
       System {
 	Name			"Joint models"
 	Location		[8, 35, 1943, 1090]
-	Open			off
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -2057,7 +2057,7 @@ Library {
 	  System {
 	    Name		    "JointElectricalSubsystem with d-q axes"
 	    Location		    [8, 35, 1943, 1090]
-	    Open		    on
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2115,12 +2115,12 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant"
 	      SID		      "110"
-	      Position		      [675, 110, 1005, 140]
+	      Position		      [630, 155, 960, 185]
 	      ZOrder		      272
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
 	      ShowName		      off
-	      Value		      "[jointObj.r; jointObj.x; jointObj.k_t; jointObj.n; 12/2; jointObj.v_0]"
+	      Value		      "[jointObj.r; jointObj.x; jointObj.k_t; jointObj.n; jointObj.p; jointObj.v_0]"
 	    }
 	    Block {
 	      BlockType		      Demux
@@ -2334,7 +2334,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 142, 195, 178]
 	      ZOrder		      273
-	      LibraryVersion	      "1.141"
+	      LibraryVersion	      "1.142"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2346,7 +2346,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 297, 195, 333]
 	      ZOrder		      274
-	      LibraryVersion	      "1.141"
+	      LibraryVersion	      "1.142"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2686,7 +2686,7 @@ Library {
 	      ZOrder		      52
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
-	      Points		      [-72, 0; 0, 160]
+	      Points		      [-27, 0; 0, 115]
 	      DstBlock		      "MATLAB Function"
 	      DstPort		      1
 	    }
@@ -3850,7 +3850,7 @@ Library {
 		  Position		  [460, 101, 480, 119]
 		  ZOrder		  -5
 		  IconDisplay		  "Port number"
-		  PortDimensions	  "3"
+		  PortDimensions	  "4"
 		}
 		Line {
 		  ZOrder		  13
@@ -4838,7 +4838,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Electrical Models</span></p></body></html>"
-	  Position		  [-251, 59, -99, 90]
+	  Position		  [-251, 59, -249, 75]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -4855,7 +4855,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Mechanical Models</span></p></body></html>"
-	  Position		  [83, 59, 256, 90]
+	  Position		  [83, 59, 85, 75]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -4892,10 +4892,7 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 3 0 0]
     viewObj		    2
-    visible		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -5123,19 +5120,18 @@ Stateflow {
       isEML		      1
       script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;"
       "\nparams.c_FE = 460.000000;\nparams.diam = 100.000000;\nparams.len = 150.000000;\nparams.m = 2.000000;\nparams.I"
-      "_m = 0.671555;\nparams.I_g = 0.322297;\nparams.I_l = 0.106248;\nparams.k_g = 31000.000000;\nparams.k_b = 12823.0"
-      "00000;\nparams.d_m = 1.478600;\nparams.d_g = 11.828800;\nparams.d_l = 1.478600;\nparams.d_m_n = 1.616200;\nparam"
-      "s.d_g_n = 12.929600;\nparams.d_l_n = 1.616200;\nparams.d_mg = 100.000000;\nparams.d_gl = 0.500000;\nparams.d_cm "
-      "= 0.185790;\nparams.d_cg = 1.486320;\nparams.d_cl = 0.185790;\nparams.d_cm_n = 0.242380;\nparams.d_cg_n = 1.9390"
-      "40;\nparams.d_cl_n = 0.242380;\nparams.d_s = 8.900000;\nparams.v_s = 0.010000;\nparams.rip_types = [1.000000, 2."
-      "000000];\nparams.rip_a1 = [1.500000, 0.100000];\nparams.rip_a2 = [0.000000, 0.000000];\nparams.rip_f = [600.0000"
-      "00, 200.000000];\nparams.n = 100.000000;\nparams.k_t = 0.045300;\nparams.r = 0.088500;\nparams.x = 0.000140;\npa"
-      "rams.v_0 = 24.000000;\nparams.i_p = 40.000000;\nparams.dq_p = 5.860000;\nparams.r_th1 = 0.290000;\nparams.r_th2 "
-      "= 3.450000;\nparams.T_thw = 3.960000;\nparams.T_thm = 1240.000000;\nparams.Tmp_WMax = 120.000000;\nparams.Tmp_AN"
-      "om = 25.000000;\nparams.name = 'output_fixed_rigid_gearbox_test';\nparams.paramName = 'WMBig10k';\nparams.modelN"
-      "ame = 'output_fixed_rigid_gearbox';\n%params.nonlinearModelName = {'coulomb_asym', 'viscous_asym', 'torque_rippl"
-      "e'}; % Cell arrays are not supported for code generation.\nparams.Ts = 0.001000;\ntau =coulomb_asym(params,x) +v"
-      "iscous_asym(params,x) +torque_ripple(params,x);\n	end\n\n"
+      "_m = 0.216397;\nparams.I_g = 0.078848;\nparams.I_l = 1.000000;\nparams.k_g = 25000.000000;\nparams.k_b = 5714.00"
+      "0000;\nparams.d_m = 0.327578;\nparams.d_g = 2.235072;\nparams.d_l = 0.000010;\nparams.d_m_n = 0.327578;\nparams."
+      "d_g_n = 2.235072;\nparams.d_l_n = 0.000010;\nparams.d_mg = 300.000000;\nparams.d_gl = 5.000000;\nparams.d_cm = 2"
+      ".640000;\nparams.d_cg = 2.320000;\nparams.d_cl = 0.020000;\nparams.d_cm_n = 2.640000;\nparams.d_cg_n = 2.320000;"
+      "\nparams.d_cl_n = 0.020000;\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.rip_types = [];\nparams.rip_"
+      "a1 = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.3"
+      "18000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 0.000000;\nparams.dq_p"
+      " = 0.000000;\nparams.r_th1 = 0.290000;\nparams.r_th2 = 3.450000;\nparams.T_thw = 3.960000;\nparams.T_thm = 1240."
+      "000000;\nparams.Tmp_WMax = 120.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'CE_Med_ds_rigid_gearbox_cou"
+      "lomb_torque_ripple';\nparams.paramName = 'CE_Med_ds';\nparams.modelName = 'rigid_gearbox';\n%params.nonlinearMod"
+      "elName = {'coulomb', 'torque_ripple'}; % Cell arrays are not supported for code generation.\nparams.Ts = 0.00100"
+      "0;\nparams.Ts_elec = 0.000050;\ntau =coulomb(params,x) +torque_ripple(params,x);\n	end\n\n"
       editorLayout	      "100 M4x1[205 227 1080 733]"
     }
   }

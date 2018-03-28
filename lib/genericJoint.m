@@ -104,6 +104,7 @@ classdef genericJoint < handle
         k_t  	= 0.0453;   % Torque constant [Nm/A]                                (default: 0.0453)
         r       = 0.0885;   % Armature resistance at normal temperature [Ohm]       (default: 0.0885)
         x       = 1.4e-4;   % Armature inductance [H]                               (default: 1.4e-4)
+        p       = 12/2;     % Number of pole pairs []                               (default: 12/2)
         %
         % Operating/max conditions
         %
