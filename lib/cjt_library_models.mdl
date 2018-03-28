@@ -57,10 +57,10 @@ Library {
 	  $ObjectID		  6
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "4"
+	  LoadSaveID		  "103"
 	  Extents		  [1702.0, 872.0]
-	  ZoomFactor		  [1.5]
-	  Offset		  [-414.46428571428561, -133.2642857142859]
+	  ZoomFactor		  [1.25]
+	  Offset		  [0.0, 0.0]
 	}
 	PropName		"EditorsInfo"
       }
@@ -96,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 10:58:47 2018"
-  RTWModifiedTimeStamp	  444135526
-  ModelVersionFormat	  "1.%<AutoIncrement:141>"
+  LastModifiedDate	  "Wed Mar 28 11:44:42 2018"
+  RTWModifiedTimeStamp	  444138276
+  ModelVersionFormat	  "1.%<AutoIncrement:142>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1153,7 +1153,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "130"
+    SIDHighWatermark	    "131"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -1166,7 +1166,7 @@ Library {
       System {
 	Name			"Joint models"
 	Location		[8, 35, 1943, 1090]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -2057,7 +2057,7 @@ Library {
 	  System {
 	    Name		    "JointElectricalSubsystem with d-q axes"
 	    Location		    [8, 35, 1943, 1090]
-	    Open		    off
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2149,10 +2149,10 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "MATLAB Function"
-	      SID		      "113"
+	      SID		      "131"
 	      Ports		      [3, 2]
-	      Position		      [615, 275, 720, 325]
-	      ZOrder		      269
+	      Position		      [620, 276, 720, 324]
+	      ZOrder		      275
 	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
@@ -2179,28 +2179,28 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"33"
+		SIDHighWatermark	"24"
 		Block {
 		  BlockType		  Inport
 		  Name			  "params"
-		  SID			  "113::24"
+		  SID			  "131::22"
 		  Position		  [20, 101, 40, 119]
-		  ZOrder		  15
+		  ZOrder		  13
 		  IconDisplay		  "Port number"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
-		  SID			  "113::22"
+		  SID			  "131::23"
 		  Position		  [20, 136, 40, 154]
-		  ZOrder		  13
+		  ZOrder		  14
 		  Port			  "2"
 		  IconDisplay		  "Port number"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "u"
-		  SID			  "113::1"
+		  SID			  "131::1"
 		  Position		  [20, 171, 40, 189]
 		  ZOrder		  -1
 		  Port			  "3"
@@ -2209,7 +2209,7 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "113::20"
+		  SID			  "131::20"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
 		  ZOrder		  11
@@ -2218,8 +2218,8 @@ Library {
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "113::19"
-		  Tag			  "Stateflow S-Function Copy_of_SEA_library_models 1"
+		  SID			  "131::19"
+		  Tag			  "Stateflow S-Function cjt_library_models 1"
 		  Ports			  [3, 3]
 		  Position		  [180, 100, 230, 180]
 		  ZOrder		  10
@@ -2240,14 +2240,14 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "113::21"
+		  SID			  "131::21"
 		  Position		  [460, 241, 480, 259]
 		  ZOrder		  12
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "x_dot"
-		  SID			  "113::5"
+		  SID			  "131::5"
 		  Position		  [460, 101, 480, 119]
 		  ZOrder		  -5
 		  IconDisplay		  "Port number"
@@ -2255,28 +2255,28 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "tau_m"
-		  SID			  "113::25"
+		  SID			  "131::24"
 		  Position		  [460, 136, 480, 154]
-		  ZOrder		  16
+		  ZOrder		  15
 		  Port			  "2"
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  1
+		  ZOrder		  34
 		  SrcBlock		  "params"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  2
+		  ZOrder		  35
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  3
+		  ZOrder		  36
 		  SrcBlock		  "u"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2284,7 +2284,7 @@ Library {
 		}
 		Line {
 		  Name			  "x_dot"
-		  ZOrder		  4
+		  ZOrder		  37
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2293,7 +2293,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau_m"
-		  ZOrder		  5
+		  ZOrder		  38
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2301,14 +2301,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  6
+		  ZOrder		  39
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  7
+		  ZOrder		  40
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2334,7 +2334,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 142, 195, 178]
 	      ZOrder		      273
-	      LibraryVersion	      "1.139"
+	      LibraryVersion	      "1.141"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2346,7 +2346,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 297, 195, 333]
 	      ZOrder		      274
-	      LibraryVersion	      "1.139"
+	      LibraryVersion	      "1.141"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2569,7 +2569,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "states_derivative"
-	      ZOrder		      8
+	      ZOrder		      55
 	      Labels		      [0, 0]
 	      SrcBlock		      "MATLAB Function"
 	      SrcPort		      1
@@ -2584,20 +2584,20 @@ Library {
 	      SrcPort		      1
 	      Points		      [41, 0]
 	      Branch {
+		ZOrder			53
+		Points			[0, -52; -306, 0; 0, 62]
+		DstBlock		"MATLAB Function"
+		DstPort			2
+	      }
+	      Branch {
 		ZOrder			10
 		Labels			[1, 0]
 		DstBlock		"Demux"
 		DstPort			1
 	      }
-	      Branch {
-		ZOrder			11
-		Points			[0, -52; -306, 0; 0, 62]
-		DstBlock		"MATLAB Function"
-		DstPort			2
-	      }
 	    }
 	    Line {
-	      ZOrder		      12
+	      ZOrder		      51
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function"
@@ -2683,7 +2683,7 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      24
+	      ZOrder		      52
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
 	      Points		      [-72, 0; 0, 160]
@@ -2691,10 +2691,10 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      25
+	      ZOrder		      54
 	      SrcBlock		      "MATLAB Function"
 	      SrcPort		      2
-	      Points		      [30, 0; 0, 80]
+	      Points		      [38, 0; 0, 80]
 	      DstBlock		      "motorTorque [Nm]"
 	      DstPort		      1
 	    }
@@ -2825,7 +2825,7 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "80"
-	    SIDHighWatermark	    "1395"
+	    SIDHighWatermark	    "1478"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -3800,7 +3800,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"52"
+		SIDHighWatermark	"57"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -4881,29 +4881,32 @@ Stateflow {
     created		    "06-Feb-2016 20:55:41"
     isLibrary		    1
     sfVersion		    80000011
-    firstTarget		    9
+    firstTarget		    19
   }
   chart {
     id			    2
     machine		    1
-    name		    "Joint models/JointMechanicalSubsystem/nonLinDynamicsFcn"
+    name		    "Joint models/JointElectricalSubsystem with d-q axes/MATLAB Function"
     windowPosition	    [422 539.941 189 413]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 3 0 0]
     viewObj		    2
+    visible		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    ssIdHighWaterMark	    5
+    subviewS {
+    }
+    ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    chartFileNumber	    2
+    chartFileNumber	    1
     disableImplicitCasting  1
     eml {
-      name		      "nonLinDynamics"
+      name		      "fcn"
     }
     firstData		    4
-    firstTransition	    7
-    firstJunction	    6
+    firstTransition	    10
+    firstJunction	    9
   }
   state {
     id			    3
@@ -4914,6 +4917,205 @@ Stateflow {
     treeNode		    [2 0 0 0]
     superState		    SUBCHART
     subviewer		    2
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function [x_dot, tau_m] = fcn(params, x, u)\n    [x_dot, tau_m] = electric_dyn_iq_id(params, x, u);"
+      editorLayout	      "100 M4x1[10 5 700 500]"
+    }
+  }
+  data {
+    id			    4
+    ssIdNumber		    6
+    name		    "params"
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 0 5]
+  }
+  data {
+    id			    5
+    ssIdNumber		    7
+    name		    "x"
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 4 6]
+  }
+  data {
+    id			    6
+    ssIdNumber		    4
+    name		    "u"
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 5 7]
+  }
+  data {
+    id			    7
+    ssIdNumber		    5
+    name		    "x_dot"
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 6 8]
+  }
+  data {
+    id			    8
+    ssIdNumber		    8
+    name		    "tau_m"
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 7 0]
+  }
+  junction {
+    id			    9
+    position		    [23.5747 49.5747 7]
+    chart		    2
+    subviewer		    2
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+    linkNode		    [2 0 0]
+  }
+  transition {
+    id			    10
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [28.125 13.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      9
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    2
+    dataLimits		    [21.175 25.975 14.625 42.575]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
+    linkNode		    [2 0 0]
+  }
+  instance {
+    id			    11
+    machine		    1
+    name		    "Joint models/JointElectricalSubsystem with d-q axes/MATLAB Function"
+    chart		    2
+  }
+  chart {
+    id			    12
+    machine		    1
+    name		    "Joint models/JointMechanicalSubsystem/nonLinDynamicsFcn"
+    windowPosition	    [422 539.941 189 413]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 3600 1200 1.180555555555556]
+    treeNode		    [0 13 0 0]
+    viewObj		    12
+    toolbarMode		    LIBRARY_TOOLBAR
+    ssIdHighWaterMark	    5
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    chartFileNumber	    2
+    disableImplicitCasting  1
+    eml {
+      name		      "nonLinDynamics"
+    }
+    firstData		    14
+    firstTransition	    17
+    firstJunction	    16
+  }
+  state {
+    id			    13
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    12
+    treeNode		    [12 0 0 0]
+    superState		    SUBCHART
+    subviewer		    12
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -4938,7 +5140,7 @@ Stateflow {
     }
   }
   data {
-    id			    4
+    id			    14
     ssIdNumber		    4
     name		    "x"
     scope		    INPUT_DATA
@@ -4957,10 +5159,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [2 0 5]
+    linkNode		    [12 0 15]
   }
   data {
-    id			    5
+    id			    15
     ssIdNumber		    5
     name		    "tau"
     scope		    OUTPUT_DATA
@@ -4980,19 +5182,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [2 4 0]
+    linkNode		    [12 14 0]
   }
   junction {
-    id			    6
+    id			    16
     position		    [23.5747 49.5747 7]
-    chart		    2
-    subviewer		    2
+    chart		    12
+    subviewer		    12
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [2 0 0]
+    linkNode		    [12 0 0]
   }
   transition {
-    id			    7
+    id			    17
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -5000,29 +5202,29 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      6
+      id		      16
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    2
+    chart		    12
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    2
+    subviewer		    12
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [2 0 0]
+    linkNode		    [12 0 0]
   }
   instance {
-    id			    8
+    id			    18
     machine		    1
     name		    "Joint models/JointMechanicalSubsystem/nonLinDynamicsFcn"
-    chart		    2
+    chart		    12
   }
   target {
-    id			    9
+    id			    19
     machine		    1
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
