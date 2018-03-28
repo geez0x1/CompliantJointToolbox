@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 1023.0]
+      Location		      [147.0, 1050.0, 1366.0, 768.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -47,10 +47,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"571"
-	Extents			[1447.0, 846.0]
-	ZoomFactor		[1.5]
-	Offset			[466.95000000000022, -83.749999999999886]
+	LoadSaveID		"3"
+	Extents			[1133.0, 591.0]
+	ZoomFactor		[0.8]
+	Offset			[-343.5119047619047, -326.08333333333337]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -66,11 +66,11 @@ Library {
 	Width			[640]
 	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADjPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAACjfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA4wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAAo0AAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADjAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAASTAAACjQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 09:11:09 2018"
-  RTWModifiedTimeStamp	  444129065
-  ModelVersionFormat	  "1.%<AutoIncrement:245>"
+  LastModifiedDate	  "Wed Mar 28 10:00:04 2018"
+  RTWModifiedTimeStamp	  444131993
+  ModelVersionFormat	  "1.%<AutoIncrement:247>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1120,8 +1120,8 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[0, 27, 1680, 1050]
-	Open			off
+	Location		[147, 1050, 1513, 1818]
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1133,7 +1133,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"300"
+	ZoomFactor		"80"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Controller Template"
@@ -1456,8 +1456,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Current Controller"
-	    Location		    [0, 27, 1680, 1050]
-	    Open		    on
+	    Location		    [147, 1050, 1513, 1818]
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1469,7 +1469,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Measurement"
@@ -1851,9 +1851,7 @@ Library {
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "CJT Torque Controller"
 	    Description		    "The block implements a torque controller comprised of a feedforward term complemented by an int"
-	    "egral action with gain K_I to compensate for disturbances. \n\nThe controller is implemented following:\nD. Visch"
-	    "er and O. Khatib, “Design and development of high-performance torque-controlled joints,” Robotics and Automat"
-	    "ion, IEEE Transactions on, vol. 11, no. 4, pp. 537–544, 1995.\n\nClick >Help< for details on the parameters."
+	    "egral action with gain K_I to compensate for disturbances. \n\nClick >Help< for further documentation."
 	    Help		    "The block implements a torque controller comprised of a feedforward term complemented by an integral a"
 	    "ction to compensate for disturbances. This type of controller has been used and discussed as lag-type control des"
 	    "ign in comparison to a pure feedforward action as well as a Proportional-Derivative control action in [1].\n\n<b>"
@@ -2125,7 +2123,7 @@ Library {
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured output"
-		Value			"3"
+		Value			"7"
 	      }
 	      Object {
 		$ObjectID		46
@@ -2586,7 +2584,7 @@ Library {
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured output"
-		Value			"3"
+		Value			"7"
 	      }
 	      Object {
 		$ObjectID		53
@@ -3078,7 +3076,7 @@ Library {
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured output"
-		Value			"3"
+		Value			"7"
 	      }
 	      Object {
 		$ObjectID		59
@@ -3405,21 +3403,21 @@ Library {
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
-		Value			"Kp"
+		Value			"1"
 	      }
 	      Object {
 		$ObjectID		64
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
-		Value			"Ki"
+		Value			"0"
 	      }
 	      Object {
 		$ObjectID		65
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
-		Value			"Kd"
+		Value			"0"
 	      }
 	      Object {
 		$ObjectID		66
@@ -4011,7 +4009,7 @@ Library {
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
-		Value			"0.35"
+		Value			"1"
 	      }
 	      Object {
 		$ObjectID		85
@@ -4025,9 +4023,7 @@ Library {
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
-		Value			"(2*(jointObj.I_m + jointObj.I_g)*sqrt((jointObj.k_b * jointObj.k_t * 0.35 * jointObj.n + jointObj.k_b)/(joi"
-		"ntObj.I_m + jointObj.I_g))*1.2 - (jointObj.d_m + jointObj.d_g + jointObj.d_gb)) / (jointObj.k_b * jointObj.k_t * joi"
-		"ntObj.n)"
+		Value			"0"
 	      }
 	      Object {
 		$ObjectID		87
@@ -4890,6 +4886,13 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    110
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "PID + FF/comp."
+	    Description		    "This block implements a PID torque controller with optional feed-forward or compensation term.\n"
+	    "\nClick >Help< for further documentation."
+	    Help		    "This block implements a PID torque controller with optional feed-forward or compensation term.\n\n<b>T"
+	    "he mask parameters are: </b>\n\nJoint Object: The class name of the CJT joint class name or the variable represen"
+	    "ting an instance of a CJT joint class.\nK<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>: Proportional, derivative, an"
+	    "d integral gain, respectively.\nN: Derivative low-pass filter coefficient"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -4906,7 +4909,7 @@ Library {
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
-		Value			"0.35"
+		Value			"1"
 	      }
 	      Object {
 		$ObjectID		113
@@ -4920,9 +4923,7 @@ Library {
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
-		Value			"(2*(jointObj.I_m + jointObj.I_g)*sqrt((jointObj.k_b * jointObj.k_t * 0.35 * jointObj.n + jointObj.k_b)/(joi"
-		"ntObj.I_m + jointObj.I_g))*1.2 - (jointObj.d_m + jointObj.d_g + jointObj.d_gb)) / (jointObj.k_b * jointObj.k_t * joi"
-		"ntObj.n)"
+		Value			"0"
 	      }
 	      Object {
 		$ObjectID		115
