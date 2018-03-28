@@ -46,10 +46,10 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"3"
 	Extents			[1133.0, 591.0]
-	ZoomFactor		[2.5]
+	ZoomFactor		[2.0]
 	Offset			[0.0, 0.0]
       }
       Object {
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 10:07:43 2018"
-  RTWModifiedTimeStamp	  444132454
-  ModelVersionFormat	  "1.%<AutoIncrement:248>"
+  LastModifiedDate	  "Wed Mar 28 10:19:55 2018"
+  RTWModifiedTimeStamp	  444133194
+  ModelVersionFormat	  "1.%<AutoIncrement:249>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1093,7 +1093,7 @@ Library {
   System {
     Name		    "cjt_library_controllers"
     Location		    [147, 1050, 1513, 1818]
-    Open		    on
+    Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1121,7 +1121,7 @@ Library {
       System {
 	Name			"Controllers"
 	Location		[147, 1050, 1513, 1818]
-	Open			off
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -4944,7 +4944,7 @@ Library {
 		  PropName		  "TypeOptions"
 		}
 		Name			"ff_comp_switch"
-		Prompt			"Spring force rejection"
+		Prompt			"Feed-forward/compensation"
 		Value			"Feed-forward"
 	      }
 	      PropName		      "Parameters"

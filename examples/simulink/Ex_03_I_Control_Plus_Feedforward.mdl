@@ -1,7 +1,7 @@
 Model {
   Name			  "Ex_03_I_Control_Plus_Feedforward"
-  Version		  9.0
-  SavedCharacterEncoding  "windows-1252"
+  Version		  8.9
+  SavedCharacterEncoding  "UTF-8"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    2
@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.227"
+    ComputedModelVersion    "1.231"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -30,33 +30,13 @@ Model {
     HasTerminateEvent	    0
     IsExportFunctionModel   0
     NumParameterArguments   0
-    NumExternalFileReferences 3
-    ExternalFileReference {
-      Reference		      "simulink/Sources/Chirp Signal"
-      Path		      "Ex_03_I_Control_Plus_Feedforward/Chirp Signal"
-      SID		      "82"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
-      Reference		      "cjt_library_controllers/Controllers/Integral Controller plus Feedforward"
-      Path		      "Ex_03_I_Control_Plus_Feedforward/I Controller plus Feedforward"
-      SID		      "95"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
-      Reference		      "cjt_library_models/Joint models/JointMechanicalSubsystem"
-      Path		      "Ex_03_I_Control_Plus_Feedforward/JointMechanicalSubsystem"
-      SID		      "8"
-      Type		      "LIBRARY_BLOCK"
-    }
     OrderedModelArguments   1
   }
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
   DiagnosticSuppressor	  "on"
-  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 8 0"
-  CustomCodeFunctionData  ""
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
   SLCCPlugin		  "on"
   slprops.hdlmdlprops {
     $PropName		    "HDLParams"
@@ -65,7 +45,7 @@ Model {
       Type		      "Cell"
       Dimension		      2
       Cell		      "HDLSubsystem"
-      Cell		      "simulinkBlockLibraryTest"
+      Cell		      "$bdroot"
       PropName		      "mdlProps"
     }
   }
@@ -78,7 +58,7 @@ Model {
   MinMaxOverflowArchiveMode "Overwrite"
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "win64"
+  LastSavedArchitecture	  "glnxa64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    2
@@ -88,7 +68,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [4473.0, -7.0, 1295.0, 999.0]
+      Location		      [8.0, 35.0, 1295.0, 999.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -112,7 +92,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1864.0, 1250.0]
+	Extents			[1257.0, 813.0]
 	ZoomFactor		[1.0]
 	Offset			[66.036507936507064, -226.01587301587335]
       }
@@ -127,18 +107,18 @@ Model {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[426]
-	Height			[320]
+	Width			[640]
+	Height			[480]
       }
       WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAeAAAAFMAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAUPAAADawAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAHX/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAQy/////wAAAAAAAAAA/"
-      "////wEAAARz/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
+      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOH/////wAAAAAAAAAA/"
+      "////wEAAAO5/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
   HideAutomaticNames	  on
@@ -146,11 +126,12 @@ Model {
   Creator		  "joern"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Jörn"
+  LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Mar 09 16:12:56 2018"
-  RTWModifiedTimeStamp	  442512258
-  ModelVersionFormat	  "1.%<AutoIncrement:227>"
+  LastModifiedDate	  "Wed Mar 28 10:23:07 2018"
+  RTWModifiedTimeStamp	  444133387
+  ModelVersionFormat	  "1.%<AutoIncrement:231>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -178,7 +159,6 @@ Model {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
-  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
@@ -246,7 +226,7 @@ Model {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      9
-      Version		      "1.17.1"
+      Version		      "1.17.0"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -254,14 +234,15 @@ Model {
 	Dimension		10
 	Simulink.SolverCC {
 	  $ObjectID		  10
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
 	  StopTime		  "t_max"
 	  AbsTol		  "auto"
-	  FixedStep		  "jObj.Ts"
+	  FixedStep		  "jointObj.Ts"
 	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -273,6 +254,7 @@ Model {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode3"
 	  SolverName		  "ode3"
@@ -289,11 +271,10 @@ Model {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
-	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  11
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -334,7 +315,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  12
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -392,11 +373,10 @@ Model {
 	  OptimizeBlockOrder	  "off"
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
-	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  13
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -435,7 +415,6 @@ Model {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
-	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -477,7 +456,6 @@ Model {
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
-	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -504,14 +482,11 @@ Model {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
-	  RCSCRenamedMsg	  "warning"
-	  RCSCObservableMsg	  "warning"
-	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  14
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -559,7 +534,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  15
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -578,7 +553,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  16
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -608,7 +583,7 @@ Model {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  17
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -659,7 +634,6 @@ Model {
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
 	  CustomLAPACKCallback	  ""
-	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -695,7 +669,7 @@ Model {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      18
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -735,16 +709,18 @@ Model {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
+	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
 	      MangleLength	      1
-	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -768,7 +744,6 @@ Model {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
-	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -781,7 +756,7 @@ Model {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      19
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		16
@@ -827,6 +802,7 @@ Model {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -856,9 +832,6 @@ Model {
 	      CoderGroups	      []
 	      AccessMethods	      []
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
-	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
-	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
-	      ArrayLayout	      "Column-major"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -880,7 +853,7 @@ Model {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  20
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -920,7 +893,7 @@ Model {
 	}
 	hdlcoderui.hdlcc {
 	  $ObjectID		  21
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
@@ -936,8 +909,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      ""
-      CurrentDlgPage	      "Data Import//Export"
-      ConfigPrmDlgPosition    [ 678, 120, 1636, 858 ]
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition    [ 652, 83, 1610, 821 ]
     }
     PropName		    "ConfigurationSets"
   }
@@ -980,12 +953,7 @@ Model {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
-    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
-    AnnotationType	    "note_annotation"
-    FixedHeight		    off
-    FixedWidth		    off
-    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -1046,9 +1014,6 @@ Model {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
-      OutputWhenUnConnected   off
-      OutputWhenUnconnectedValue "0"
-      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Scope
@@ -1058,7 +1023,7 @@ Model {
   }
   System {
     Name		    "Ex_03_I_Control_Plus_Feedforward"
-    Location		    [4473, -7, 5768, 992]
+    Location		    [8, 35, 1303, 1034]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1073,7 +1038,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "98"
+    SIDHighWatermark	    "114"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector1"
@@ -1096,7 +1061,7 @@ Model {
       Ports		      [0, 1]
       Position		      [220, 170, 250, 200]
       ZOrder		      467
-      LibraryVersion	      "1.401"
+      LibraryVersion	      "1.391"
       SourceBlock	      "simulink/Sources/Chirp Signal"
       SourceType	      "chirp"
       SourceProductName	      "Simulink"
@@ -1121,11 +1086,11 @@ Model {
       Ports		      [2, 1]
       Position		      [450, 162, 580, 253]
       ZOrder		      507
-      LibraryVersion	      "1.235"
+      LibraryVersion	      "1.249"
       SourceBlock	      "cjt_library_controllers/Controllers/Integral Controller plus Feedforward"
       SourceType	      "CJT Torque Controller"
       ContentPreviewEnabled   off
-      jointObj		      "jObj"
+      jointObj		      "jointObj"
       I_Gain		      "10"
     }
     Block {
@@ -1136,11 +1101,11 @@ Model {
       Position		      [730, 196, 900, 249]
       ZOrder		      222
       HideAutomaticName	      off
-      LibraryVersion	      "1.130"
+      LibraryVersion	      "1.133"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      ""
       ContentPreviewEnabled   off
-      jointObj		      "jObj"
+      jointObj		      "jointObj"
       fc_vel		      "499"
       fc_torque		      "499"
       input_delay	      "1"
@@ -1307,7 +1272,7 @@ Model {
 }
 #Finite State Machines
 #
-#   Stateflow 80000012
+#   Stateflow 80000011
 #
 #
 Stateflow {
@@ -1316,11 +1281,149 @@ Stateflow {
     name		    "Ex_03_I_Control_Plus_Feedforward"
     created		    "21-Jun-2016 09:44:34"
     isLibrary		    0
-    sfVersion		    80000012
-    firstTarget		    2
+    sfVersion		    80000011
+    firstTarget		    9
+  }
+  chart {
+    id			    2
+    machine		    1
+    name		    "JointMechanicalSubsystem/nonLinDynamicsFcn"
+    windowPosition	    [422 539.941 189 413]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 3600 1200 1.180555555555556]
+    treeNode		    [0 3 0 0]
+    viewObj		    2
+    toolbarMode		    LIBRARY_TOOLBAR
+    subviewS {
+    }
+    ssIdHighWaterMark	    5
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    chartFileNumber	    2
+    disableImplicitCasting  1
+    eml {
+      name		      "nonLinDynamics"
+    }
+    firstData		    4
+    firstTransition	    7
+    firstJunction	    6
+  }
+  state {
+    id			    3
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 0 0]
+    superState		    SUBCHART
+    subviewer		    2
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;"
+      "\nparams.c_FE = 460.000000;\nparams.diam = 93.000000;\nparams.len = 163.000000;\nparams.m = 1.450000;\nparams.I_"
+      "m = 0.229997;\nparams.I_g = 0.071680;\nparams.I_l = 0.000114;\nparams.k_g = 16000.000000;\nparams.k_b = 6000.000"
+      "000;\nparams.d_m = 0.003592;\nparams.d_g = 0.384000;\nparams.d_l = 0.000000;\nparams.d_m_n = 0.003592;\nparams.d"
+      "_g_n = 0.384000;\nparams.d_l_n = 0.000000;\nparams.d_mg = 100.000000;\nparams.d_gl = 0.000000;\nparams.d_cm = 2."
+      "640000;\nparams.d_cg = 3.280000;\nparams.d_cl = 0.000000;\nparams.d_cm_n = 2.640000;\nparams.d_cg_n = 3.280000;\n"
+      "params.d_cl_n = 0.000000;\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.rip_types = [];\nparams.rip_a1"
+      " = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.318"
+      "000;\nparams.x = 0.000200;\nparams.v_0 = 48.000000;\nparams.i_p = 33.900000;\nparams.dq_p = 7.728395;\nparams.r_"
+      "th1 = 3.136441;\nparams.r_th2 = 32.663680;\nparams.T_thw = 98.081750;\nparams.T_thm = 4679.965000;\nparams.Tmp_W"
+      "Max = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint_locked';\nparams.paramName = 'cjt_"
+      "Orange_80_6000';\nparams.modelName = 'output_fixed';\nparams.nonlinearModelName = 'coulomb_asym';\nparams.Ts = 0"
+      ".001000;\nparams.Ts_elec = 0.000050;\ntau =coulomb_asym(params,x);\n	end\n\n"
+      editorLayout	      "100 M4x1[10 5 700 500]"
+    }
+  }
+  data {
+    id			    4
+    ssIdNumber		    4
+    name		    "x"
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 0 5]
+  }
+  data {
+    id			    5
+    ssIdNumber		    5
+    name		    "tau"
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [2 4 0]
+  }
+  junction {
+    id			    6
+    position		    [23.5747 49.5747 7]
+    chart		    2
+    subviewer		    2
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+    linkNode		    [2 0 0]
+  }
+  transition {
+    id			    7
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [28.125 13.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      6
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    2
+    dataLimits		    [21.175 25.975 14.625 42.575]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
+    linkNode		    [2 0 0]
+  }
+  instance {
+    id			    8
+    machine		    1
+    name		    "JointMechanicalSubsystem/nonLinDynamicsFcn"
+    chart		    2
   }
   target {
-    id			    2
+    id			    9
     machine		    1
     name		    "sfun"
     description		    "Default Simulink S-Function Target."

@@ -12,7 +12,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.270"
+    ComputedModelVersion    "1.272"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -120,9 +120,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 10:06:37 2018"
-  RTWModifiedTimeStamp	  444132394
-  ModelVersionFormat	  "1.%<AutoIncrement:270>"
+  LastModifiedDate	  "Wed Mar 28 10:23:34 2018"
+  RTWModifiedTimeStamp	  444133407
+  ModelVersionFormat	  "1.%<AutoIncrement:272>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -232,7 +232,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "t_max"
 	  AbsTol		  "auto"
-	  FixedStep		  "jObj.Ts_elec"
+	  FixedStep		  "jointObj.Ts_elec"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -902,7 +902,7 @@ Model {
       Name		      "Configuration"
       ExtraOptions	      ""
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    [ 652, 115, 1610, 853 ]
+      ConfigPrmDlgPosition    [ 652, 78, 1610, 816 ]
     }
     PropName		    "ConfigurationSets"
   }
@@ -1045,7 +1045,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "132"
+    SIDHighWatermark	    "148"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector1"
@@ -1128,7 +1128,7 @@ Model {
       Ports		      [3, 1]
       Position		      [175, 139, 305, 231]
       ZOrder		      509
-      LibraryVersion	      "1.247"
+      LibraryVersion	      "1.249"
       SourceBlock	      "cjt_library_controllers/Controllers/Current Controller"
       SourceType	      "CJT Torque Controller"
       ContentPreviewEnabled   off
@@ -1274,7 +1274,7 @@ Model {
       "truct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelNames"
       "',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','TimeRangeFr"
       "ames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Too"
-      "ls','Measurements',true,'Version','2017a')),'Version','2017a','Location',[281 311 1390 762],'VisibleAtModelOpen'"
+      "ls','Measurements',true,'Version','2017a')),'Version','2017a','Location',[271 335 1400 772],'VisibleAtModelOpen'"
       ",'on')"
       NumInputPorts	      "1"
     }
