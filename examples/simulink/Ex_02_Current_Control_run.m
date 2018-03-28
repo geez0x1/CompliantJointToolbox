@@ -42,27 +42,8 @@ dispText = ...
 displayFormattedText(dispText)
 
 %% Configure example environment
-
-% Joint Builder
-jb = jointBuilder;
-jb.overwrite = 1;
-
-jb.buildJoint('cjt_Orange_80_6000',...
-       'output_fixed','coulomb_asym',...
-       'electric_dyn',...
-       'example_joint_locked');
-
-addpath(jb.buildDir);
-
-jObj = example_joint_locked;
-jObj.Ts = 0.5e-4; % The current controller runs at 20 kHz
-
-%% Configure Chirp Source
-f_min = 0.01; % Initial frequency in Hz
-f_max = 1000;  % Final frequency in Hz
-t_max = 3; % Simulation stop time in s
-
-
+% Standard configuration
+Ex_00_example_config
 mdlName = 'Ex_02_Current_Control.mdl';
 
 %% Run model
