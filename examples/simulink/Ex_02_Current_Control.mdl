@@ -12,7 +12,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.272"
+    ComputedModelVersion    "1.276"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -85,8 +85,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1257.0, 813.0]
-	ZoomFactor		[1.25]
-	Offset			[-113.63868479477253, -271.28271345475457]
+	ZoomFactor		[0.8]
+	Offset			[-148.16725622334388, -381.25176107380207]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -120,9 +120,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 10:23:34 2018"
-  RTWModifiedTimeStamp	  444133407
-  ModelVersionFormat	  "1.%<AutoIncrement:272>"
+  LastModifiedDate	  "Wed Mar 28 10:31:49 2018"
+  RTWModifiedTimeStamp	  444133908
+  ModelVersionFormat	  "1.%<AutoIncrement:276>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1043,9 +1043,24 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "125"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "148"
+    SIDHighWatermark	    "172"
+    Block {
+      BlockType		      Gain
+      Name		      "1 / (k_t N)"
+      SID		      "99"
+      Position		      [-10, 170, 20, 200]
+      ZOrder		      479
+      Gain		      "1/(jointObj.k_t * jointObj.n)"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+	Name			"current reference"
+      }
+    }
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector1"
@@ -1274,24 +1289,9 @@ Model {
       "truct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelNames"
       "',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','TimeRangeFr"
       "ames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Too"
-      "ls','Measurements',true,'Version','2017a')),'Version','2017a','Location',[271 335 1400 772],'VisibleAtModelOpen'"
+      "ls','Measurements',true,'Version','2017a')),'Version','2017a','Location',[256 371 1415 787],'VisibleAtModelOpen'"
       ",'on')"
       NumInputPorts	      "1"
-    }
-    Block {
-      BlockType		      Gain
-      Name		      "k_t N"
-      SID		      "99"
-      Position		      [-10, 170, 20, 200]
-      ZOrder		      479
-      Gain		      "1/(jObj.k_t * jObj.n)"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-      Port {
-	PortNumber		1
-	Name			"current reference"
-      }
     }
     Block {
       BlockType		      Outport
@@ -1348,7 +1348,7 @@ Model {
       Labels		      [1, 1]
       SrcBlock		      "Chirp Signal"
       SrcPort		      1
-      DstBlock		      "k_t N"
+      DstBlock		      "1 / (k_t N)"
       DstPort		      1
     }
     Line {
@@ -1374,7 +1374,7 @@ Model {
     Line {
       Name		      "current reference"
       ZOrder		      269
-      SrcBlock		      "k_t N"
+      SrcBlock		      "1 / (k_t N)"
       SrcPort		      1
       Points		      [34, 0]
       Branch {
@@ -1464,7 +1464,7 @@ Stateflow {
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    chartFileNumber	    1
+    chartFileNumber	    2
     disableImplicitCasting  1
     eml {
       name		      "nonLinDynamics"
