@@ -1,10 +1,12 @@
 %ELECTRIC_DYN_ZERO_INDUCTANCE Get linear dynamics matrices for the
 %electrical subsystem when inductance can be ignored
 %
-% [A, B, C, D] = jointObj.electric_dyn
+% [A, B, C, D] = electric_dyn(jointObj)
 %
 % jointObj is the instance of the joint class object for which this
-% function has been called.
+% function has been called. Alternatively, it can be called for joints
+% which were built with these dynamics as:
+% [A, B, C, D] = jointObj.getElectricalDynamicsMatrices()
 %
 % Outputs::
 %   A:   System matrix
