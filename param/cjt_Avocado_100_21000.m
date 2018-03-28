@@ -68,6 +68,7 @@ params.('k_t') = 4.100000e-02;     %% Torque constant [Nm/A]
 params.('r') = 6.640000e-01;         %% Armature resistance [Ohm]
 params.('x') = 3.200000e-04;         %% Armature inductance [H]
 params.('Ts') = 1.000000e-03;       %% Sampling time [s]
+params.('Ts_elec')  = 5e-5;                 %% Sampling time for electrical system [s]
 % Operating/max conditions
 params.('v_0') = 48;     %% Operating voltage [V]
 params.('i_p') = 20;     %% Peak current [A]
@@ -77,4 +78,4 @@ params.('r_th1') = 3.861945e+00;  %% Thermal Resistance Windings to Housing (the
 params.('r_th2') = 4.018306e+01;  %% Thermal Resistance Housing to Air (theoretical value!) [K/W]
 params.('T_thw') = 8.825813e+01;  %% Thermal Time Constant of the Windings  (theoretical value!) [s]
 params.('T_thm') = 2.611705e+03;  %% Thermal Time Constant of the Motor  (theoretical value!) [s]
-params.('Tmp_WMax') = 155;  %% Maximum Armature Temperature [°C]
+params.('Tmp_WMax') = 155;  %% Maximum Armature Temperature [ï¿½C]
