@@ -125,7 +125,8 @@ classdef genericJoint < handle
         name                % Joint name
         paramName           % Parameter name
         modelName           % Model name
-        nonlinearModelName  % Nonlinear model name
+        nonlinearModelName  % Nonlinear model name(s)
+        electricalModelName % Electrical model name
         
         % Misc
         Ts      = 1e-3;     % Sampling time [s]
