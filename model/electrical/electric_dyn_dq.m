@@ -1,7 +1,7 @@
-%ELECTRIC_DYN_IQ_ID Get linear dynamics matrices for the electrical
-%subsystem, including the d-axis
+%ELECTRIC_DYN_DQ Get compute nonlinear dynamics for the electrical
+%subsystem with a d-q axis current model
 %
-% [] = jointObj.electric_dyn_iq_id
+% [x_dot, tau_m] = jointObj.electric_dyn_dq
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -13,8 +13,9 @@
 % Notes::
 % When this model is used for simulation, it may require very small
 % sampling times that prolong the computation time for the simulation. If
-% the d-axis is not important and the electrical transients may be
-% neglected, refer to the electric_dyn_zero_inductance model.
+% the d-axis is not important one may refer to electric_dyn instead, and if
+% the electrical transients may be neglected, refer to the
+% electric_dyn_zero_inductance model.
 % 
 %
 % Examples::
@@ -46,7 +47,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [x_dot, tau_m] = electric_dyn_iq_id(params, x, u)
+function [x_dot, tau_m] = electric_dyn_dq(params, x, u)
     
     % Hack for initialisation - problems with dimensioning
     if (length(x) ~= 2 || length(u) ~= 3)
