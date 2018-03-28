@@ -322,7 +322,7 @@ classdef jointBuilder
             paramsStr = fileread([paramName '.m']);
             paramsStr = regexprep(paramsStr, '^', '\t', 'emptymatch', 'lineanchors');
             constructorStr = fileread('constructor.m');
-            constructorStr = sprintf(constructorStr, className, paramsStr, jointName, paramName, modelName, nonlinearModelNameCellStr);
+            constructorStr = sprintf(constructorStr, className, paramsStr, jointName, paramName, modelName, nonlinearModelNameCellStr, electricalDynamicsName);
             constructorStr = regexprep(constructorStr, '^', '\t\t', 'emptymatch', 'lineanchors');
             constructorStr = regexprep(constructorStr, '%', '%%', 'emptymatch', 'lineanchors');
             fprintf(fid, [constructorStr '\n\n']);

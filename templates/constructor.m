@@ -34,6 +34,7 @@ function this = %s
     params.('paramName')            = '%s'; %% Parameter name
     params.('modelName')            = '%s'; %% Model name
     params.('nonlinearModelName')   = %s; %% Nonlinear model name(s)
+    params.('electricalModelName')  = '%s'; %% Electrical model name
     
     %% Build joint
     this = this@genericJoint(params);
