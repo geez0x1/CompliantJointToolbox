@@ -1,13 +1,12 @@
 Library {
   Name			  "cjt_library_controllers"
-  Version		  9.0
-  SavedCharacterEncoding  "windows-1252"
+  Version		  8.9
+  SavedCharacterEncoding  "UTF-8"
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
   DiagnosticSuppressor	  "on"
-  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 8 0"
-  CustomCodeFunctionData  ""
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
   SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
@@ -15,7 +14,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "win64"
+  LastSavedArchitecture	  "glnxa64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -25,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-7.0, -7.0, 1721.0, 935.0]
+      Location		      [0.0, 27.0, 1680.0, 1023.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -48,10 +47,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
-	Extents			[2252.0, 1163.0]
-	ZoomFactor		[1.2499999999999998]
-	Offset			[-307.00380157626466, -291.2658321743175]
+	LoadSaveID		"571"
+	Extents			[1447.0, 846.0]
+	ZoomFactor		[1.5]
+	Offset			[466.95000000000022, -83.749999999999886]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -64,30 +63,31 @@ Library {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[426]
-	Height			[320]
+	Width			[640]
+	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAD2AAAE2fwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADjPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABNkAAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA4wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAkEAAAE2QAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADjAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
+      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
-  HideAutomaticNames	  on
+  HideAutomaticNames	  off
   Created		  "Thu Nov 05 10:46:41 2015"
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Jˆrn"
+  LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Mar 09 18:52:37 2018"
-  RTWModifiedTimeStamp	  442522343
-  ModelVersionFormat	  "1.%<AutoIncrement:241>"
+  LastModifiedDate	  "Wed Mar 28 09:11:09 2018"
+  RTWModifiedTimeStamp	  444129065
+  ModelVersionFormat	  "1.%<AutoIncrement:245>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -115,7 +115,6 @@ Library {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
-  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
@@ -160,7 +159,7 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      7
-      Version		      "1.17.1"
+      Version		      "1.17.0"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -168,7 +167,7 @@ Library {
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  8
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -176,6 +175,7 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -187,6 +187,7 @@ Library {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
@@ -203,11 +204,10 @@ Library {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
-	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  9
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -248,7 +248,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  10
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -306,11 +306,10 @@ Library {
 	  OptimizeBlockOrder	  "off"
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
-	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  11
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -349,7 +348,6 @@ Library {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
-	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -391,7 +389,6 @@ Library {
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
-	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -418,14 +415,11 @@ Library {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
-	  RCSCRenamedMsg	  "warning"
-	  RCSCObservableMsg	  "warning"
-	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  12
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -473,7 +467,7 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  13
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -492,7 +486,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  14
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -522,7 +516,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  15
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -573,7 +567,6 @@ Library {
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
 	  CustomLAPACKCallback	  ""
-	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -609,7 +602,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      16
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -649,16 +642,18 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
+	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
 	      MangleLength	      1
-	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -682,7 +677,6 @@ Library {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
-	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -695,7 +689,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      17
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		17
@@ -742,6 +736,7 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -771,9 +766,6 @@ Library {
 	      CoderGroups	      []
 	      AccessMethods	      []
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
-	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
-	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
-	      ArrayLayout	      "Column-major"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -795,7 +787,7 @@ Library {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  18
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -867,12 +859,7 @@ Library {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
-    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
-    AnnotationType	    "note_annotation"
-    FixedHeight		    off
-    FixedWidth		    off
-    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -946,7 +933,7 @@ Library {
       B			      "1"
       C			      "1"
       D			      "1"
-      InitialCondition	      "0"
+      X0		      "0"
       SampleTime	      "1"
       StateMustResolveToSignalObject off
       RTWStateStorageClass    "Auto"
@@ -1034,9 +1021,6 @@ Library {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
-      OutputWhenUnConnected   off
-      OutputWhenUnconnectedValue "0"
-      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Scope
@@ -1077,12 +1061,10 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
-      AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
-      IsObserver	      off
     }
     Block {
       BlockType		      Sum
@@ -1138,8 +1120,8 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[-7, -7, 1714, 928]
-	Open			on
+	Location		[0, 27, 1680, 1050]
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1151,7 +1133,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"300"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Controller Template"
@@ -1360,7 +1342,7 @@ Library {
 	  Name			  "Current Controller"
 	  SID			  "571"
 	  Ports			  [3, 1]
-	  Position		  [-165, -131, -35, -39]
+	  Position		  [-230, -131, -100, -39]
 	  ZOrder		  508
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -1386,9 +1368,9 @@ Library {
 	      Object {
 		$ObjectID		22
 		Type			"edit"
-		Name			"jointObject"
+		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"jObj"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		23
@@ -1445,7 +1427,7 @@ Library {
 	      Object {
 		$ObjectID		30
 		$ClassName		"Simulink.dialog.parameter.Edit"
-		Name			"jointObject"
+		Name			"jointObj"
 	      }
 	      Object {
 		$ObjectID		31
@@ -1474,8 +1456,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Current Controller"
-	    Location		    [-7, -7, 1714, 928]
-	    Open		    off
+	    Location		    [0, 27, 1680, 1050]
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1487,7 +1469,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Measurement"
@@ -1541,7 +1523,7 @@ Library {
 	      Position		      [985, 264, 1020, 296]
 	      ZOrder		      483
 	      IntegratorMethod	      "Accumulation: Forward Euler"
-	      SampleTime	      "jObj.Ts"
+	      SampleTime	      "jointObj.Ts_elec"
 	      ICPrevOutput	      "DiscIntNeverNeededParam"
 	      ICPrevScaledInput	      "DiscIntNeverNeededParam"
 	    }
@@ -1549,7 +1531,7 @@ Library {
 	      BlockType		      Gain
 	      Name		      "FF (U = R i)"
 	      SID		      "577"
-	      Position		      [835, 100, 865, 130]
+	      Position		      [865, 100, 895, 130]
 	      ZOrder		      489
 	      Gain		      "jointObject.r"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1620,7 +1602,7 @@ Library {
 	      "'on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChan"
 	      "nelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','3         "
 	      "      ','TimeRangeFrames','3               '),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',"
-	      "false),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Location',[-316."
+	      "false),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017a','Location',[-316."
 	      "333333333333 181.666666666667 1390.33333333333 1029])"
 	      NumInputPorts	      "1"
 	    }
@@ -1741,7 +1723,7 @@ Library {
 	      Labels		      [1, 1]
 	      SrcBlock		      "FF (U = R i)"
 	      SrcPort		      1
-	      Points		      [245, 0]
+	      Points		      [215, 0]
 	      DstBlock		      "Sum2"
 	      DstPort		      1
 	    }
@@ -1870,16 +1852,16 @@ Library {
 	    Type		    "CJT Torque Controller"
 	    Description		    "The block implements a torque controller comprised of a feedforward term complemented by an int"
 	    "egral action with gain K_I to compensate for disturbances. \n\nThe controller is implemented following:\nD. Visch"
-	    "er and O. Khatib, ìDesign and development of high-performance torque-controlled joints,î Robotics and Automation,"
-	    " IEEE Transactions on, vol. 11, no. 4, pp. 537ñ544, 1995.\n\nClick >Help< for details on the parameters."
+	    "er and O. Khatib, ‚ÄúDesign and development of high-performance torque-controlled joints,‚Äù Robotics and Automat"
+	    "ion, IEEE Transactions on, vol. 11, no. 4, pp. 537‚Äì544, 1995.\n\nClick >Help< for details on the parameters."
 	    Help		    "The block implements a torque controller comprised of a feedforward term complemented by an integral a"
 	    "ction to compensate for disturbances. This type of controller has been used and discussed as lag-type control des"
 	    "ign in comparison to a pure feedforward action as well as a Proportional-Derivative control action in [1].\n\n<b>"
 	    "The mask parameters are: </b>\n\nJoint Object:  The class name of the CJT joint class name or the variable repres"
 	    "enting an instance of a CJT joint class, describing the \n\nK<sub>I</sub>: Integral gain\n\nAccording to [1] the "
 	    "controller reduces disturbances up to a frequency <i>f = K<sub>I</sub>  / ( 2 PI ). </i>\n\nReferences:\n[1] D. V"
-	    "ischer and O. Khatib, ìDesign and development of high-performance torque-controlled joints,î Robotics and Automat"
-	    "ion, IEEE Transactions on, vol. 11, no. 4, pp. 537ñ544, 1995."
+	    "ischer and O. Khatib, ‚ÄúDesign and development of high-performance torque-controlled joints,‚Äù Robotics and Aut"
+	    "omation, IEEE Transactions on, vol. 11, no. 4, pp. 537‚Äì544, 1995."
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
@@ -1888,7 +1870,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"jObj"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		37
@@ -3383,8 +3365,10 @@ Library {
 	    Annotation {
 	      SID		      "541"
 	      Name		      "<-- This may need further testing"
-	      Position		      [2079, 584, 2225, 598]
+	      Position		      [2079, 584, 2225, 601]
 	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      ZOrder		      -1
@@ -3414,7 +3398,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"joint_DOB"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		63
@@ -3631,7 +3615,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1015, 612, 1160, 648]
 	      ZOrder		      328
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4020,7 +4004,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"W2k_output_fixed_coulomb"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		84
@@ -4339,7 +4323,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1130, 387, 1275, 423]
 	      ZOrder		      334
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4393,7 +4377,7 @@ Library {
 	      ZOrder		      335
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4409,7 +4393,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [615, 547, 710, 583]
 	      ZOrder		      336
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4425,7 +4409,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [505, 332, 600, 368]
 	      ZOrder		      337
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -5044,7 +5028,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [765, 372, 910, 408]
 	      ZOrder		      334
-	      LibraryVersion	      "1.220"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -5349,12 +5333,15 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Torque Controllers</span></p></body></html>"
-	  Position		  [40, -207, 205, -182]
+	  Position		  [40, -207, 205, -176]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"
 	  Interpreter		  "rich"
+	  ZOrder		  -1
 	}
 	Annotation {
 	  SID			  "588"
@@ -5363,8 +5350,10 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Current Controllers</span></p></body></html>"
-	  Position		  [-185, -207, -15, -182]
+	  Position		  [-250, -207, -80, -176]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"

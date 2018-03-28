@@ -1,13 +1,12 @@
 Library {
   Name			  "cjt_library_models"
-  Version		  9.0
-  SavedCharacterEncoding  "windows-1252"
+  Version		  8.9
+  SavedCharacterEncoding  "UTF-8"
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
   DiagnosticSuppressor	  "on"
-  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 8 0"
-  CustomCodeFunctionData  ""
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
   SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
@@ -15,7 +14,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "win64"
+  LastSavedArchitecture	  "glnxa64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -25,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2553.0, -7.0, 1935.0, 1055.0]
+      Location		      [8.0, 35.0, 1935.0, 1055.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -50,18 +49,18 @@ Library {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "3"
-	  Extents		  [2629.0, 1338.0]
-	  ZoomFactor		  [1.25]
-	  Offset		  [969.69999999999993, 109.15555555555562]
+	  Extents		  [1702.0, 872.0]
+	  ZoomFactor		  [0.8]
+	  Offset		  [-98.857142857144709, -210.1753968253978]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "68"
-	  Extents		  [2629.0, 1338.0]
-	  ZoomFactor		  [1.75]
-	  Offset		  [0.0, 0.0]
+	  LoadSaveID		  "4"
+	  Extents		  [1702.0, 872.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [-131.78571428571445, 33.519047619047569]
 	}
 	PropName		"EditorsInfo"
       }
@@ -76,30 +75,31 @@ Library {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[426]
-	Height			[320]
+	Width			[640]
+	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFjfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADrPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABY0AAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA6wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAp9AAAFjQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAbMAAADrAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
+      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
-  HideAutomaticNames	  on
+  HideAutomaticNames	  off
   Created		  "Thu Nov 05 10:47:58 2015"
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Jörn"
+  LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 20:48:05 2018"
-  RTWModifiedTimeStamp	  442356483
-  ModelVersionFormat	  "1.%<AutoIncrement:130>"
+  LastModifiedDate	  "Wed Mar 28 09:07:38 2018"
+  RTWModifiedTimeStamp	  444128856
+  ModelVersionFormat	  "1.%<AutoIncrement:133>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -127,7 +127,6 @@ Library {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
-  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
@@ -172,7 +171,7 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      8
-      Version		      "1.17.1"
+      Version		      "1.17.0"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -180,7 +179,7 @@ Library {
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  9
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -188,6 +187,7 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -199,6 +199,7 @@ Library {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
@@ -215,11 +216,10 @@ Library {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
-	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  10
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -260,7 +260,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  11
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -318,11 +318,10 @@ Library {
 	  OptimizeBlockOrder	  "off"
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
-	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  12
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -361,7 +360,6 @@ Library {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
-	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -403,7 +401,6 @@ Library {
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
-	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "None"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -430,14 +427,11 @@ Library {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
-	  RCSCRenamedMsg	  "warning"
-	  RCSCObservableMsg	  "warning"
-	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  13
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -485,7 +479,7 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  14
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -504,7 +498,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  15
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -534,7 +528,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  16
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -585,7 +579,6 @@ Library {
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
 	  CustomLAPACKCallback	  ""
-	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -621,7 +614,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      17
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -661,16 +654,18 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
+	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
 	      MangleLength	      1
-	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -694,7 +689,6 @@ Library {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
-	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -707,7 +701,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      18
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		17
@@ -754,6 +748,7 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -783,9 +778,6 @@ Library {
 	      CoderGroups	      []
 	      AccessMethods	      []
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
-	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
-	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
-	      ArrayLayout	      "Column-major"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -807,7 +799,7 @@ Library {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  19
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -879,12 +871,7 @@ Library {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
-    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
-    AnnotationType	    "note_annotation"
-    FixedHeight		    off
-    FixedWidth		    off
-    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -1033,9 +1020,6 @@ Library {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
-      OutputWhenUnConnected   off
-      OutputWhenUnconnectedValue "0"
-      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Quantizer
@@ -1103,12 +1087,10 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
-      AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
-      IsObserver	      off
     }
     Block {
       BlockType		      Sum
@@ -1156,7 +1138,7 @@ Library {
   }
   System {
     Name		    "cjt_library_models"
-    Location		    [2553, -7, 4488, 1048]
+    Location		    [8, 35, 1943, 1090]
     Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
@@ -1183,8 +1165,8 @@ Library {
       Variant		      off
       System {
 	Name			"Joint models"
-	Location		[2553, -7, 4488, 1048]
-	Open			off
+	Location		[8, 35, 1943, 1090]
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1196,7 +1178,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"175"
+	ZoomFactor		"200"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
@@ -1212,8 +1194,8 @@ Library {
 	    $ObjectID		    20
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
-	    " Get other properties\nTs      = jointObj.Ts;\n\n% If noise is disabled, overwrite the given variances\nif (input"
-	    "_noise_enabled == 0)\n    var_u = 0;\nend\n"
+	    " Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is disabled, overwrite t"
+	    "he given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -1325,8 +1307,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointElectricalSubsystem"
-	    Location		    [2553, -7, 4488, 1048]
-	    Open		    on
+	    Location		    [8, 35, 1943, 1090]
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1338,7 +1320,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "voltage [V]"
@@ -1467,7 +1449,7 @@ Library {
 	      Variant		      off
 	      System {
 		Name			"Quantize"
-		Location		[2553, -7, 4488, 1048]
+		Location		[8, 35, 1943, 1090]
 		Open			off
 		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
@@ -1509,7 +1491,7 @@ Library {
 		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [-1632, 27, 64, 1089]
+		    Location		    [8, 35, 1943, 1090]
 		    Open		    off
 		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
@@ -1661,12 +1643,33 @@ Library {
 	      Ports		      [1]
 	      Position		      [435, 369, 465, 401]
 	      ZOrder		      256
-	      ScopeSpecificationString "C++SS(StrPVP('Location','[188, 365, 512, 604]'),StrPVP('Open','off'),MxPVP('AxesTitle"
-	      "s',53,'struct(''axes1'',''%<SignalLabel>'')'),MxPVP('ScopeGraphics',56,'struct(''FigureColor'',''[0.5 0.5 0.5]'"
-	      "',''AxesColor'',''[0 0 0]'',''AxesTickColor'',''[1 1 1]'',''LineColors'',''[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1"
-	      "]'',''LineStyles'',''-|-|-|-|-|-'',''LineWidths'',''[0.8 0.8 0.8 0.8 0.8 0.8]'',''MarkerStyles'',''none|none|no"
-	      "ne|none|none|none'')'),StrPVP('ShowLegends','off'),StrPVP('YMin','1.8'),StrPVP('YMax','2.35'),StrPVP('LimitData"
-	      "Points','off'),StrPVP('DataFormat','Array'),StrPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
+	      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(ext"
+	      "mgr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI'"
+	      ",true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingSaveFormat','Array','DataLoggingDecimati"
+	      "on','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',"
+	      "{struct('MinYLimReal','1.8','MaxYLimReal','2.35','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisi"
+	      "bility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'Color"
+	      "Order',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.39"
+	      "2156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1"
+	      ";1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0"
+	      "],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 1],'LineStyle','-','LineW"
+	      "idth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1],'LineStyle','-','LineWidth',0.8,'Marker','none"
+	      "','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct"
+	      "('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineSt"
+	      "yle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNam"
+	      "es',{{[]}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','1.8','MaxYLimReal"
+	      "','2.35','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,"
+	      "'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098"
+	      "039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.074509"
+	      "8039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863]"
+	      ",'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marke"
+	      "r','none','Visible','on'),struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'"
+	      "),struct('Color',[0 1 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0]"
+	      ",'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWi"
+	      "dth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none'"
+	      ",'Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement"
+	      "',1)),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Mea"
+	      "surements',true)),'Version','2017a','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -1722,7 +1725,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [125, 275, 155, 305]
 	      ZOrder		      258
-	      DelayTime		      "input_delay * jointObj.Ts"
+	      DelayTime		      "input_delay * Ts_elec"
 	      TransDelayFeedthrough   on
 	    }
 	    Block {
@@ -1732,14 +1735,14 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [125, 210, 155, 240]
 	      ZOrder		      244
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
 	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
-	      Cov		      "var_u * Ts"
-	      Ts		      "Ts"
+	      Cov		      "var_u * Ts_elec"
+	      Ts		      "Ts_elec"
 	      seed		      "[2435345645]"
 	      VectorParams1D	      on
 	    }
@@ -1945,10 +1948,10 @@ Library {
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
 	    "Build B matrix for nonlinear components\nB_nonlinear = [zeros([size(B,1)-size(I,1),1]); 1./diag(I)];\n\n% Get oth"
-	    "er properties\nTs      = jointObj.Ts;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k_t;\nn       = jointObj.n;\n\n"
-	    "% Handle MATLAB function block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If noise is disabled, overwrite th"
-	    "e given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0"
-	    ";\nend"
+	    "er properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k"
+	    "_t;\nn       = jointObj.n;\n\n% Handle MATLAB function block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If n"
+	    "oise is disabled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_n"
+	    "oise_enabled == 0)\n	var_y = 0;\nend"
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -2038,7 +2041,7 @@ Library {
 	  }
 	  System {
 	    Name		    "JointMechanicalSubsystem"
-	    Location		    [2553, -7, 4488, 1048]
+	    Location		    [8, 35, 1943, 1090]
 	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -2051,8 +2054,8 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
-	    SIDHighWatermark	    "1312"
+	    ZoomFactor		    "80"
+	    SIDHighWatermark	    "1395"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -2165,7 +2168,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 382, 1965, 418]
 	      ZOrder		      157
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -2181,7 +2184,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 162, 1965, 198]
 	      ZOrder		      145
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -2197,7 +2200,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 822, 1965, 858]
 	      ZOrder		      154
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -2213,7 +2216,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 602, 1965, 638]
 	      ZOrder		      200
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -2240,7 +2243,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 20, 1540, 50]
 	      ZOrder		      167
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -2258,7 +2261,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 240, 1540, 270]
 	      ZOrder		      170
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -2276,7 +2279,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 460, 1540, 490]
 	      ZOrder		      199
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -3027,7 +3030,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"44"
+		SIDHighWatermark	"52"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -3039,20 +3042,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "3:978::23"
+		  SID			  "3:978::51"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  14
+		  ZOrder		  17
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "3:978::22"
+		  SID			  "3:978::50"
 		  Tag			  "Stateflow S-Function cjt_library_models 2"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  13
+		  ZOrder		  16
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
 		  SFunctionDeploymentMode off
@@ -3066,9 +3069,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "3:978::24"
+		  SID			  "3:978::52"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  15
+		  ZOrder		  18
 		}
 		Block {
 		  BlockType		  Outport
@@ -3080,7 +3083,7 @@ Library {
 		  PortDimensions	  "3"
 		}
 		Line {
-		  ZOrder		  9
+		  ZOrder		  13
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -3088,7 +3091,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau"
-		  ZOrder		  10
+		  ZOrder		  14
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -3096,14 +3099,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  11
+		  ZOrder		  15
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  12
+		  ZOrder		  16
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -3120,9 +3123,18 @@ Library {
 	      ZOrder		      165
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      ScopeSpecificationString "C++SS(StrPVP('Location','[188, 365, 512, 604]'),StrPVP('Open','off'),MxPVP('AxesTitle"
-	      "s',53,'struct(''axes1'',''%<SignalLabel>'')'),StrPVP('ShowLegends','off'),StrPVP('LimitDataPoints','on'),StrPVP"
-	      "('DataFormat','Array'),StrPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
+	      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(ext"
+	      "mgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration("
+	      "'Sources','WiredSimulink',true,'DataLoggingLimitDataPoints',true,'DataLoggingSaveFormat','Array','DataLoggingDe"
+	      "cimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'DisplayPropert"
+	      "yDefaults',struct('MinYLimReal','-10','MaxYLimReal','10','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','Le"
+	      "gendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686"
+	      "274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623"
+	      "529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.71"
+	      "7647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<Sig"
+	      "nalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowConte"
+	      "nt',true,'Placement',1)),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Mea"
+	      "surements',true)),'Version','2017a','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -3420,7 +3432,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [105, 380, 135, 410]
 	      ZOrder		      172
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -4055,7 +4067,7 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow 80000012
+#   Stateflow 80000011
 #
 #
 Stateflow {
@@ -4064,7 +4076,7 @@ Stateflow {
     name		    "cjt_library_models"
     created		    "06-Feb-2016 20:55:41"
     isLibrary		    1
-    sfVersion		    80000012
+    sfVersion		    80000011
     firstTarget		    9
   }
   chart {
