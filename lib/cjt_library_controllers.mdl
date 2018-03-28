@@ -46,11 +46,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[1133.0, 591.0]
-	ZoomFactor		[0.8]
-	Offset			[-343.5119047619047, -326.08333333333337]
+	ZoomFactor		[2.5]
+	Offset			[0.0, 0.0]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 10:00:04 2018"
-  RTWModifiedTimeStamp	  444131993
-  ModelVersionFormat	  "1.%<AutoIncrement:247>"
+  LastModifiedDate	  "Wed Mar 28 10:07:43 2018"
+  RTWModifiedTimeStamp	  444132454
+  ModelVersionFormat	  "1.%<AutoIncrement:248>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1092,8 +1092,8 @@ Library {
   }
   System {
     Name		    "cjt_library_controllers"
-    Location		    [2553, -7, 4248, 1018]
-    Open		    off
+    Location		    [147, 1050, 1513, 1818]
+    Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1121,7 +1121,7 @@ Library {
       System {
 	Name			"Controllers"
 	Location		[147, 1050, 1513, 1818]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1133,7 +1133,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"80"
+	ZoomFactor		"200"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Controller Template"
@@ -1533,7 +1533,7 @@ Library {
 	      SID		      "577"
 	      Position		      [865, 100, 895, 130]
 	      ZOrder		      489
-	      Gain		      "jointObject.r"
+	      Gain		      "jointObj.r"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -1548,7 +1548,7 @@ Library {
 	      SID		      "578"
 	      Position		      [1085, 345, 1115, 375]
 	      ZOrder		      490
-	      Gain		      "1/jointObject.k_t"
+	      Gain		      "1/jointObj.k_t"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
