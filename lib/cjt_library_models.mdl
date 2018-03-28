@@ -49,7 +49,7 @@ Library {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "3"
-	  Extents		  [1702.0, 872.0]
+	  Extents		  [1680.0, 872.0]
 	  ZoomFactor		  [0.8]
 	  Offset		  [-98.857142857144709, -210.1753968253978]
 	}
@@ -59,8 +59,8 @@ Library {
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "4"
 	  Extents		  [1702.0, 872.0]
-	  ZoomFactor		  [2.0]
-	  Offset		  [-131.78571428571445, 33.519047619047569]
+	  ZoomFactor		  [1.5]
+	  Offset		  [-414.46428571428561, -133.2642857142859]
 	}
 	PropName		"EditorsInfo"
       }
@@ -96,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 09:07:38 2018"
-  RTWModifiedTimeStamp	  444128856
-  ModelVersionFormat	  "1.%<AutoIncrement:133>"
+  LastModifiedDate	  "Wed Mar 28 10:58:47 2018"
+  RTWModifiedTimeStamp	  444135526
+  ModelVersionFormat	  "1.%<AutoIncrement:141>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1153,7 +1153,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "102"
+    SIDHighWatermark	    "130"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -1178,13 +1178,13 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"200"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
 	  SID			  "68"
 	  Ports			  [2, 2]
-	  Position		  [55, 168, 255, 217]
+	  Position		  [-275, 253, -75, 302]
 	  ZOrder		  453
 	  LibraryVersion	  "1.120"
 	  RequestExecContextInheritance	off
@@ -1204,7 +1204,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"jObj"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		22
@@ -1320,7 +1320,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "voltage [V]"
@@ -1932,10 +1932,780 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
+	  Name			  "JointElectricalSubsystem with d-q axes"
+	  SID			  "103"
+	  Ports			  [3, 3]
+	  Position		  [-275, 132, -75, 208]
+	  ZOrder		  456
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    36
+	    $ClassName		    "Simulink.Mask"
+	    Initialization	    "% Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is "
+	    "disabled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
+	    Array {
+	      Type		      "Simulink.MaskParameter"
+	      Dimension		      6
+	      Object {
+		$ObjectID		37
+		Type			"edit"
+		Name			"jointObj"
+		Prompt			"Joint Object"
+		Value			"jointObj"
+	      }
+	      Object {
+		$ObjectID		38
+		Type			"edit"
+		Name			"input_delay"
+		Prompt			"Input Delay (num samples)"
+		Value			"0"
+	      }
+	      Object {
+		$ObjectID		39
+		Type			"checkbox"
+		Name			"quantize"
+		Prompt			"Quantize input"
+		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
+	      }
+	      Object {
+		$ObjectID		40
+		Type			"edit"
+		Name			"quantize_bits"
+		Prompt			"Quantization bits"
+		Value			"32"
+		Enabled			"off"
+	      }
+	      Object {
+		$ObjectID		41
+		Type			"checkbox"
+		Name			"input_noise_enabled"
+		Prompt			"Enable input noise"
+		Value			"off"
+		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
+	      }
+	      Object {
+		$ObjectID		42
+		Type			"edit"
+		Name			"var_u"
+		Prompt			"Input Noise Variance"
+		Value			"0.0013"
+		Enabled			"off"
+	      }
+	      PropName		      "Parameters"
+	    }
+	    Array {
+	      Type		      "Simulink.dialog.Group"
+	      Dimension		      2
+	      Object {
+		$ObjectID		43
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  44
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		45
+		Prompt			"Parameters"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  6
+		  Object {
+		    $ObjectID		    46
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "jointObj"
+		  }
+		  Object {
+		    $ObjectID		    47
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "input_delay"
+		  }
+		  Object {
+		    $ObjectID		    48
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "quantize"
+		  }
+		  Object {
+		    $ObjectID		    49
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "quantize_bits"
+		  }
+		  Object {
+		    $ObjectID		    50
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "input_noise_enabled"
+		  }
+		  Object {
+		    $ObjectID		    51
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "var_u"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterGroupVar"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	  }
+	  System {
+	    Name		    "JointElectricalSubsystem with d-q axes"
+	    Location		    [8, 35, 1943, 1090]
+	    Open		    off
+	    PortBlocksUseCompactNotation off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "125"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "v_q [V]"
+	      SID		      "106"
+	      Position		      [40, 153, 70, 167]
+	      ZOrder		      240
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "v_d [V]"
+	      SID		      "107"
+	      Position		      [40, 308, 70, 322]
+	      ZOrder		      262
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "jointBus"
+	      SID		      "108"
+	      Position		      [40, 423, 70, 437]
+	      ZOrder		      246
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      SID		      "109"
+	      Ports		      [1, 1]
+	      Position		      [145, 411, 150, 449]
+	      ZOrder		      252
+	      ShowName		      off
+	      OutputSignals	      "MotorVelNoNoise"
+	      OutputAsBus	      off
+	      Port {
+		PortNumber		1
+		Name			"<MotorVelNoNoise>"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "110"
+	      Position		      [675, 110, 1005, 140]
+	      ZOrder		      272
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      ShowName		      off
+	      Value		      "[jointObj.r; jointObj.x; jointObj.k_t; jointObj.n; 12/2; jointObj.v_0]"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux"
+	      SID		      "111"
+	      Ports		      [1, 2]
+	      Position		      [955, 221, 960, 359]
+	      ZOrder		      259
+	      ShowName		      off
+	      Outputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Integrator
+	      Name		      "Integrator"
+	      SID		      "112"
+	      Ports		      [1, 1]
+	      Position		      [810, 275, 840, 305]
+	      ZOrder		      236
+	      InitialCondition	      "[0;0]"
+	      Port {
+		PortNumber		1
+		Name			"states"
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "MATLAB Function"
+	      SID		      "113"
+	      Ports		      [3, 2]
+	      Position		      [615, 275, 720, 325]
+	      ZOrder		      269
+	      ErrorFcn		      "Stateflow.Translate.translate"
+	      PermitHierarchicalResolution "ExplicitOnly"
+	      TreatAsAtomicUnit	      on
+	      RequestExecContextInheritance off
+	      SFBlockType	      "MATLAB Function"
+	      Variant		      off
+	      Port {
+		PortNumber		1
+		Name			"states_derivative"
+	      }
+	      System {
+		Name			"MATLAB Function"
+		Location		[223, 338, 826, 833]
+		Open			off
+		PortBlocksUseCompactNotation off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		SIDHighWatermark	"33"
+		Block {
+		  BlockType		  Inport
+		  Name			  "params"
+		  SID			  "113::24"
+		  Position		  [20, 101, 40, 119]
+		  ZOrder		  15
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "x"
+		  SID			  "113::22"
+		  Position		  [20, 136, 40, 154]
+		  ZOrder		  13
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "113::1"
+		  Position		  [20, 171, 40, 189]
+		  ZOrder		  -1
+		  Port			  "3"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Demux
+		  Name			  " Demux "
+		  SID			  "113::20"
+		  Ports			  [1, 1]
+		  Position		  [270, 230, 320, 270]
+		  ZOrder		  11
+		  Outputs		  "1"
+		}
+		Block {
+		  BlockType		  S-Function
+		  Name			  " SFunction "
+		  SID			  "113::19"
+		  Tag			  "Stateflow S-Function Copy_of_SEA_library_models 1"
+		  Ports			  [3, 3]
+		  Position		  [180, 100, 230, 180]
+		  ZOrder		  10
+		  FunctionName		  "sf_sfun"
+		  PortCounts		  "[3 3]"
+		  SFunctionDeploymentMode off
+		  EnableBusSupport	  off
+		  SFcnIsStateOwnerBlock	  off
+		  Port {
+		    PortNumber		    2
+		    Name		    "x_dot"
+		  }
+		  Port {
+		    PortNumber		    3
+		    Name		    "tau_m"
+		  }
+		}
+		Block {
+		  BlockType		  Terminator
+		  Name			  " Terminator "
+		  SID			  "113::21"
+		  Position		  [460, 241, 480, 259]
+		  ZOrder		  12
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "x_dot"
+		  SID			  "113::5"
+		  Position		  [460, 101, 480, 119]
+		  ZOrder		  -5
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "tau_m"
+		  SID			  "113::25"
+		  Position		  [460, 136, 480, 154]
+		  ZOrder		  16
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "params"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "x"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  3
+		}
+		Line {
+		  Name			  "x_dot"
+		  ZOrder		  4
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  2
+		  DstBlock		  "x_dot"
+		  DstPort		  1
+		}
+		Line {
+		  Name			  "tau_m"
+		  ZOrder		  5
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  3
+		  DstBlock		  "tau_m"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  " Demux "
+		  SrcPort		  1
+		  DstBlock		  " Terminator "
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  7
+		  SrcBlock		  " SFunction "
+		  SrcPort		  1
+		  DstBlock		  " Demux "
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "114"
+	      Ports		      [3, 1]
+	      Position		      [530, 258, 535, 372]
+	      ZOrder		      247
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quantize"
+	      SID		      "129"
+	      Ports		      [1, 1]
+	      Position		      [165, 142, 195, 178]
+	      ZOrder		      273
+	      LibraryVersion	      "1.139"
+	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quantize1"
+	      SID		      "130"
+	      Ports		      [1, 1]
+	      Position		      [165, 297, 195, 333]
+	      ZOrder		      274
+	      LibraryVersion	      "1.139"
+	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Saturate
+	      Name		      "Saturation"
+	      SID		      "117"
+	      Ports		      [1, 1]
+	      Position		      [325, 145, 355, 175]
+	      ZOrder		      255
+	      InputPortMap	      "u0"
+	      UpperLimit	      "jointObj.v_0"
+	      LowerLimit	      "-jointObj.v_0"
+	    }
+	    Block {
+	      BlockType		      Saturate
+	      Name		      "Saturation1"
+	      SID		      "118"
+	      Ports		      [1, 1]
+	      Position		      [325, 300, 355, 330]
+	      ZOrder		      266
+	      InputPortMap	      "u0"
+	      UpperLimit	      "jointObj.v_0"
+	      LowerLimit	      "-jointObj.v_0"
+	    }
+	    Block {
+	      BlockType		      Scope
+	      Name		      "Scope"
+	      SID		      "119"
+	      Ports		      [1]
+	      Position		      [540, 414, 570, 446]
+	      ZOrder		      256
+	      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(ext"
+	      "mgr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI'"
+	      ",true),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingSaveFormat','Array','DataLoggingDecimati"
+	      "on','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',"
+	      "{struct('MinYLimReal','1.8','MaxYLimReal','2.35','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisi"
+	      "bility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'Color"
+	      "Order',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.39"
+	      "2156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1"
+	      ";1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0"
+	      "],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 1],'LineStyle','-','LineW"
+	      "idth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1],'LineStyle','-','LineWidth',0.8,'Marker','none"
+	      "','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct"
+	      "('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineSt"
+	      "yle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNam"
+	      "es',{{[]}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','1.8','MaxYLimReal"
+	      "','2.35','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off','XGrid',true,'YGrid',true,"
+	      "'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098"
+	      "039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.074509"
+	      "8039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863]"
+	      ",'Title','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marke"
+	      "r','none','Visible','on'),struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'"
+	      "),struct('Color',[0 1 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0]"
+	      ",'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWi"
+	      "dth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none'"
+	      ",'Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement"
+	      "',1)),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutoscale','XY'),extmgr.C"
+	      "onfiguration('Tools','Measurements',true,'Version','2017a')),'Version','2017a','Location',[183 377 763 682])"
+	      NumInputPorts	      "1"
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum1"
+	      SID		      "120"
+	      Ports		      [2, 1]
+	      Position		      [280, 305, 300, 325]
+	      ZOrder		      264
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "++|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum3"
+	      SID		      "121"
+	      Ports		      [2, 1]
+	      Position		      [280, 150, 300, 170]
+	      ZOrder		      243
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "++|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      TransportDelay
+	      Name		      "input_delay"
+	      SID		      "122"
+	      Ports		      [1, 1]
+	      Position		      [225, 145, 255, 175]
+	      ZOrder		      258
+	      DelayTime		      "input_delay * Ts_elec"
+	      TransDelayFeedthrough   on
+	    }
+	    Block {
+	      BlockType		      TransportDelay
+	      Name		      "input_delay1"
+	      SID		      "123"
+	      Ports		      [1, 1]
+	      Position		      [225, 300, 255, 330]
+	      ZOrder		      268
+	      DelayTime		      "input_delay * Ts_elec"
+	      TransDelayFeedthrough   on
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "voltageNoise"
+	      SID		      "124"
+	      Ports		      [0, 1]
+	      Position		      [225, 80, 255, 110]
+	      ZOrder		      244
+	      LibraryVersion	      "1.391"
+	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
+	      ContentPreviewEnabled   off
+	      Cov		      "var_u * Ts_elec"
+	      Ts		      "Ts_elec"
+	      seed		      "[2435345645]"
+	      VectorParams1D	      on
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "voltageNoise1"
+	      SID		      "125"
+	      Ports		      [0, 1]
+	      Position		      [225, 235, 255, 265]
+	      ZOrder		      265
+	      LibraryVersion	      "1.391"
+	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
+	      ContentPreviewEnabled   off
+	      Cov		      "var_u * Ts_elec"
+	      Ts		      "Ts_elec"
+	      seed		      "[2435345645]"
+	      VectorParams1D	      on
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "i_q [A]"
+	      SID		      "126"
+	      Position		      [1060, 248, 1090, 262]
+	      ZOrder		      260
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "i_d [A]"
+	      SID		      "127"
+	      Position		      [1060, 318, 1090, 332]
+	      ZOrder		      263
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "motorTorque [Nm]"
+	      SID		      "128"
+	      Position		      [1060, 388, 1090, 402]
+	      ZOrder		      261
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "input_delay"
+	      SrcPort		      1
+	      DstBlock		      "Sum3"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "Quantize"
+	      SrcPort		      1
+	      DstBlock		      "input_delay"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<MotorVelNoNoise>"
+	      ZOrder		      3
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      Points		      [337, 0]
+	      Branch {
+		ZOrder			4
+		Points			[0, -75]
+		DstBlock		"Mux"
+		DstPort			3
+	      }
+	      Branch {
+		ZOrder			5
+		DstBlock		"Scope"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "Sum3"
+	      SrcPort		      1
+	      DstBlock		      "Saturation"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "voltageNoise"
+	      SrcPort		      1
+	      Points		      [30, 0]
+	      DstBlock		      "Sum3"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "states_derivative"
+	      ZOrder		      8
+	      Labels		      [0, 0]
+	      SrcBlock		      "MATLAB Function"
+	      SrcPort		      1
+	      DstBlock		      "Integrator"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "states"
+	      ZOrder		      9
+	      Labels		      [0, 0]
+	      SrcBlock		      "Integrator"
+	      SrcPort		      1
+	      Points		      [41, 0]
+	      Branch {
+		ZOrder			10
+		Labels			[1, 0]
+		DstBlock		"Demux"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			11
+		Points			[0, -52; -306, 0; 0, 62]
+		DstBlock		"MATLAB Function"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "jointBus"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      26
+	      SrcBlock		      "v_q [V]"
+	      SrcPort		      1
+	      DstBlock		      "Quantize"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "Saturation"
+	      SrcPort		      1
+	      Points		      [85, 0; 0, 115]
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "Demux"
+	      SrcPort		      1
+	      DstBlock		      "i_q [A]"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "Demux"
+	      SrcPort		      2
+	      DstBlock		      "i_d [A]"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "voltageNoise1"
+	      SrcPort		      1
+	      Points		      [30, 0]
+	      DstBlock		      "Sum1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "Sum1"
+	      SrcPort		      1
+	      DstBlock		      "Saturation1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      28
+	      SrcBlock		      "Quantize1"
+	      SrcPort		      1
+	      DstBlock		      "input_delay1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "input_delay1"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "v_d [V]"
+	      SrcPort		      1
+	      DstBlock		      "Quantize1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "Saturation1"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      Points		      [-72, 0; 0, 160]
+	      DstBlock		      "MATLAB Function"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      25
+	      SrcBlock		      "MATLAB Function"
+	      SrcPort		      2
+	      Points		      [30, 0; 0, 80]
+	      DstBlock		      "motorTorque [Nm]"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "JointMechanicalSubsystem"
 	  SID			  "3"
 	  Ports			  [2, 1]
-	  Position		  [55, 303, 255, 352]
+	  Position		  [70, 148, 270, 197]
 	  ZOrder		  451
 	  LibraryVersion	  "1.109"
 	  ModelCloseFcn		  "sfsave"
@@ -1944,7 +2714,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    36
+	    $ObjectID		    52
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
 	    "Build B matrix for nonlinear components\nB_nonlinear = [zeros([size(B,1)-size(I,1),1]); 1./diag(I)];\n\n% Get oth"
@@ -1957,42 +2727,42 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      11
 	      Object {
-		$ObjectID		37
+		$ObjectID		53
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		38
+		$ObjectID		54
 		Type			"edit"
 		Name			"fc_vel"
 		Prompt			"Velocity filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		39
+		$ObjectID		55
 		Type			"edit"
 		Name			"fc_torque"
 		Prompt			"Torque filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		40
+		$ObjectID		56
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Input delay (num samples)"
 		Value			"1"
 	      }
 	      Object {
-		$ObjectID		41
+		$ObjectID		57
 		Type			"edit"
 		Name			"output_delay"
 		Prompt			"Output delay (num samples)"
 		Value			"1"
 	      }
 	      Object {
-		$ObjectID		42
+		$ObjectID		58
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize measurements"
@@ -2000,14 +2770,14 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		43
+		$ObjectID		59
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
 		Value			"19"
 	      }
 	      Object {
-		$ObjectID		44
+		$ObjectID		60
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -2015,7 +2785,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		45
+		$ObjectID		61
 		Type			"checkbox"
 		Name			"output_noise_enabled"
 		Prompt			"Enable measurement noise"
@@ -2023,14 +2793,14 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'output_noise_enabled', 'var_y');"
 	      }
 	      Object {
-		$ObjectID		46
+		$ObjectID		62
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
 		Value			"0.12^2"
 	      }
 	      Object {
-		$ObjectID		47
+		$ObjectID		63
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -4060,6 +4830,40 @@ Library {
 	      DstPort		      2
 	    }
 	  }
+	}
+	Annotation {
+	  SID			  "104"
+	  Name			  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html"
+	  "><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</styl"
+	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
+	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
+	  "ight:100%;\"><span style=\" font-size:20px;\">Electrical Models</span></p></body></html>"
+	  Position		  [-251, 59, -99, 90]
+	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
+	  HorizontalAlignment	  "left"
+	  VerticalAlignment	  "top"
+	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
+	  Interpreter		  "rich"
+	  ZOrder		  -1
+	}
+	Annotation {
+	  SID			  "105"
+	  Name			  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html"
+	  "><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</styl"
+	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
+	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
+	  "ight:100%;\"><span style=\" font-size:20px;\">Mechanical Models</span></p></body></html>"
+	  Position		  [83, 59, 256, 90]
+	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
+	  HorizontalAlignment	  "left"
+	  VerticalAlignment	  "top"
+	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
+	  Interpreter		  "rich"
+	  ZOrder		  -2
 	}
       }
     }
