@@ -96,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 29 10:11:21 2018"
-  RTWModifiedTimeStamp	  444219074
-  ModelVersionFormat	  "1.%<AutoIncrement:160>"
+  LastModifiedDate	  "Thu Mar 29 10:25:38 2018"
+  RTWModifiedTimeStamp	  444219931
+  ModelVersionFormat	  "1.%<AutoIncrement:161>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1200,7 +1200,9 @@ Library {
 	    "electric_dyn' or 'electric_dyn_zero_inductance' was chosen as the electrical dynamics model in building the suppl"
 	    "ied joint model, the resulting dynamics are either the small time-constant electrical dynamics, or the steady-sta"
 	    "te gain from voltage to current and torque, given the motor speed.\n\nFor a more complex model, please see the el"
-	    "ectrical model with d-q axes, that implements the 2-phase rotating reference frame model."
+	    "ectrical model with d-q axes, that implements the 2-phase rotating reference frame model.\n\nInputs:\nVoltage: In"
+	    "put voltage imposed on the phase.\njointBus: Joint measurements as coming from the jointMechanicalSubsystem.\n\nO"
+	    "utputs:\nmotorCurrent: Single-phase current.\nmotorTorque: Electromechanical torque generated."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
 	    " Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is disabled, overwrite t"
 	    "he given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
@@ -1955,10 +1957,12 @@ Library {
 	    Description		    "This block implements the 2-phase electrical model in rotating reference frame (d-q), for Surfa"
 	    "ce Permanent Magnet Synchronous Motors (SPMSMs).\n\nFor further information, click on > Help <."
 	    Help		    "This block implements the 2-phase electrical model in rotating reference frame (d-q), for Surface Perm"
-	    "anent Magnet Synchronous Motors (SPMSMs).\n\n\nReferences:\n\nMATLAB documentation: https://it.mathworks.com/help"
-	    "/physmod/sps/powersys/ref/permanentmagnetsynchronousmachine.html\n\nS.-M. Sue and C.-T. Pan, “Voltage-Constrain"
-	    "t-Tracking-Based Field-Weakening Control of IPM Synchronous Motor Drives,” IEEE Transactions on Industrial Elec"
-	    "tronics, vol. 55, no. 1, pp. 340–347, Jan. 2008."
+	    "anent Magnet Synchronous Motors (SPMSMs).\n\nInputs:\nv_q, v_d; Voltages in the q- and d-axis, respectively.\njoi"
+	    "ntBus: Joint measurements as coming from the jointMechanicalSubsystem.\n\nOutputs:\ni_q, i_d, Currents in the q- "
+	    "and d-axis, respectively.\nmotorTorque: Electromechanical torque generated.\n\n\nReferences:\n\nMATLAB documentat"
+	    "ion: https://it.mathworks.com/help/physmod/sps/powersys/ref/permanentmagnetsynchronousmachine.html\n\nS.-M. Sue a"
+	    "nd C.-T. Pan, “Voltage-Constraint-Tracking-Based Field-Weakening Control of IPM Synchronous Motor Drives,” IE"
+	    "EE Transactions on Industrial Electronics, vol. 55, no. 1, pp. 340–347, Jan. 2008."
 	    Initialization	    "% Generate params object to relay jointObj parameters to the internal\n% function for the non"
 	    "linear electrical dynamics\nparams      = struct;\nparams.r    = jointObj.r;\nparams.x    = jointObj.x;\nparams.k"
 	    "_t  = jointObj.k_t;\nparams.n    = jointObj.n;\nparams.p    = jointObj.p;\nparams.v_0  = jointObj.v_0;\n\n% Get o"
@@ -4921,10 +4925,7 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 3 0 0]
     viewObj		    2
-    visible		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
