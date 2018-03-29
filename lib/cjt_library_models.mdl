@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [8.0, 35.0, 1935.0, 1055.0]
+      Location		      [0.0, 27.0, 1680.0, 1023.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -41,20 +41,32 @@ Library {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"103"
-	Extents			[1702.0, 878.0]
-	ZoomFactor		[2.0]
-	Offset			[266.85714285714289, 81.35952380952358]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "4"
+	  Extents		  [1447.0, 840.0]
+	  ZoomFactor		  [1.5]
+	  Offset		  [-485.16666666666663, -92.666666666666629]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "68"
+	  Extents		  [1447.0, 840.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [-82.949999999999818, -204.2833333333333]
+	}
+	PropName		"EditorsInfo"
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		6
+	$ObjectID		7
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -66,11 +78,11 @@ Library {
 	Width			[640]
 	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADrPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADjPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA6wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA4wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAbMAAADrAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADjAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
@@ -84,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 28 14:31:37 2018"
-  RTWModifiedTimeStamp	  444148276
-  ModelVersionFormat	  "1.%<AutoIncrement:156>"
+  LastModifiedDate	  "Thu Mar 29 10:11:21 2018"
+  RTWModifiedTimeStamp	  444219074
+  ModelVersionFormat	  "1.%<AutoIncrement:160>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -158,7 +170,7 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      8
       Version		      "1.17.0"
       DisabledProps	      []
       Description	      ""
@@ -166,7 +178,7 @@ Library {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -206,7 +218,7 @@ Library {
 	  SampleTimeProperty	  []
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -247,7 +259,7 @@ Library {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
@@ -308,7 +320,7 @@ Library {
 	  BusAssignmentInplaceUpdate on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
@@ -418,7 +430,7 @@ Library {
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -466,7 +478,7 @@ Library {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -485,7 +497,7 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -515,7 +527,7 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
@@ -601,7 +613,7 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
@@ -688,7 +700,7 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
@@ -786,7 +798,7 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  18
+	  $ObjectID		  19
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -1153,8 +1165,8 @@ Library {
       Variant		      off
       System {
 	Name			"Joint models"
-	Location		[8, 35, 1943, 1090]
-	Open			off
+	Location		[0, 27, 1680, 1050]
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1179,8 +1191,16 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    19
+	    $ObjectID		    20
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "JointElectricalSubsystem"
+	    Description		    "This block implements the classical single-phase electrical dynamics model.\n\nFor more informa"
+	    "tion, see the > Help <."
+	    Help		    "This block implements the classical single-phase electrical dynamics model. \n\nDepending on whether '"
+	    "electric_dyn' or 'electric_dyn_zero_inductance' was chosen as the electrical dynamics model in building the suppl"
+	    "ied joint model, the resulting dynamics are either the small time-constant electrical dynamics, or the steady-sta"
+	    "te gain from voltage to current and torque, given the motor speed.\n\nFor a more complex model, please see the el"
+	    "ectrical model with d-q axes, that implements the 2-phase rotating reference frame model."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
 	    " Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is disabled, overwrite t"
 	    "he given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
@@ -1188,21 +1208,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
 	      Object {
-		$ObjectID		20
+		$ObjectID		21
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		21
+		$ObjectID		22
 		Type			"edit"
 		Name			"input_delay"
-		Prompt			"Input Delay (num samples)"
+		Prompt			"Input Delay (num samples of Ts_elec)"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		22
+		$ObjectID		23
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize input"
@@ -1210,7 +1230,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		23
+		$ObjectID		24
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
@@ -1218,7 +1238,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		24
+		$ObjectID		25
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -1226,7 +1246,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		25
+		$ObjectID		26
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input Noise Variance"
@@ -1239,11 +1259,11 @@ Library {
 	      Type		      "Simulink.dialog.Group"
 	      Dimension		      2
 	      Object {
-		$ObjectID		26
+		$ObjectID		27
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  27
+		  $ObjectID		  28
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -1251,38 +1271,38 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		28
+		$ObjectID		29
 		Prompt			"Parameters"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  6
 		  Object {
-		    $ObjectID		    29
+		    $ObjectID		    30
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "jointObj"
 		  }
 		  Object {
-		    $ObjectID		    30
+		    $ObjectID		    31
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "input_delay"
 		  }
 		  Object {
-		    $ObjectID		    31
+		    $ObjectID		    32
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "quantize"
 		  }
 		  Object {
-		    $ObjectID		    32
+		    $ObjectID		    33
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "quantize_bits"
 		  }
 		  Object {
-		    $ObjectID		    33
+		    $ObjectID		    34
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "input_noise_enabled"
 		  }
 		  Object {
-		    $ObjectID		    34
+		    $ObjectID		    35
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "var_u"
 		  }
@@ -1295,8 +1315,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointElectricalSubsystem"
-	    Location		    [8, 35, 1943, 1090]
-	    Open		    off
+	    Location		    [0, 27, 1680, 1050]
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1308,7 +1328,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "voltage [V]"
@@ -1437,7 +1457,7 @@ Library {
 	      Variant		      off
 	      System {
 		Name			"Quantize"
-		Location		[8, 35, 1943, 1090]
+		Location		[0, 27, 1680, 1050]
 		Open			off
 		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
@@ -1929,8 +1949,16 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    35
+	    $ObjectID		    36
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "JointElectricalSubsystem with d-q axes"
+	    Description		    "This block implements the 2-phase electrical model in rotating reference frame (d-q), for Surfa"
+	    "ce Permanent Magnet Synchronous Motors (SPMSMs).\n\nFor further information, click on > Help <."
+	    Help		    "This block implements the 2-phase electrical model in rotating reference frame (d-q), for Surface Perm"
+	    "anent Magnet Synchronous Motors (SPMSMs).\n\n\nReferences:\n\nMATLAB documentation: https://it.mathworks.com/help"
+	    "/physmod/sps/powersys/ref/permanentmagnetsynchronousmachine.html\n\nS.-M. Sue and C.-T. Pan, “Voltage-Constrain"
+	    "t-Tracking-Based Field-Weakening Control of IPM Synchronous Motor Drives,” IEEE Transactions on Industrial Elec"
+	    "tronics, vol. 55, no. 1, pp. 340–347, Jan. 2008."
 	    Initialization	    "% Generate params object to relay jointObj parameters to the internal\n% function for the non"
 	    "linear electrical dynamics\nparams      = struct;\nparams.r    = jointObj.r;\nparams.x    = jointObj.x;\nparams.k"
 	    "_t  = jointObj.k_t;\nparams.n    = jointObj.n;\nparams.p    = jointObj.p;\nparams.v_0  = jointObj.v_0;\n\n% Get o"
@@ -1940,21 +1968,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
 	      Object {
-		$ObjectID		36
+		$ObjectID		37
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		37
+		$ObjectID		38
 		Type			"edit"
 		Name			"input_delay"
-		Prompt			"Input Delay (num samples)"
+		Prompt			"Input Delay (num samples of Ts_elec)"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		38
+		$ObjectID		39
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize input"
@@ -1962,7 +1990,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		39
+		$ObjectID		40
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
@@ -1970,7 +1998,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		40
+		$ObjectID		41
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -1978,7 +2006,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		41
+		$ObjectID		42
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input Noise Variance"
@@ -1991,11 +2019,11 @@ Library {
 	      Type		      "Simulink.dialog.Group"
 	      Dimension		      2
 	      Object {
-		$ObjectID		42
+		$ObjectID		43
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  43
+		  $ObjectID		  44
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -2003,38 +2031,38 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		44
+		$ObjectID		45
 		Prompt			"Parameters"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  6
 		  Object {
-		    $ObjectID		    45
+		    $ObjectID		    46
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "jointObj"
 		  }
 		  Object {
-		    $ObjectID		    46
+		    $ObjectID		    47
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "input_delay"
 		  }
 		  Object {
-		    $ObjectID		    47
+		    $ObjectID		    48
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "quantize"
 		  }
 		  Object {
-		    $ObjectID		    48
+		    $ObjectID		    49
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "quantize_bits"
 		  }
 		  Object {
-		    $ObjectID		    49
+		    $ObjectID		    50
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "input_noise_enabled"
 		  }
 		  Object {
-		    $ObjectID		    50
+		    $ObjectID		    51
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "var_u"
 		  }
@@ -2047,8 +2075,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointElectricalSubsystem with d-q axes"
-	    Location		    [8, 35, 1943, 1090]
-	    Open		    on
+	    Location		    [0, 27, 1680, 1050]
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2060,7 +2088,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "200"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "v_q [V]"
@@ -2325,7 +2353,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 142, 195, 178]
 	      ZOrder		      273
-	      LibraryVersion	      "1.155"
+	      LibraryVersion	      "1.156"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2337,7 +2365,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 297, 195, 333]
 	      ZOrder		      274
-	      LibraryVersion	      "1.155"
+	      LibraryVersion	      "1.156"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2705,8 +2733,18 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    51
+	    $ObjectID		    52
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "jointMechanicalSubsystem"
+	    Description		    "This block implements the mechanical dynamics of the actuator.\n\nFor more information, see the"
+	    " > Help <."
+	    Help		    "This block implements the mechanical dynamics of the actuator. Depending on the configuration in which"
+	    " the joint class was built, its dynamics are given by one of the variants provided by the toolbox (see model/line"
+	    "ar/). If provided, the linear dynamics are enhanced with nonlinear components.\n\nInputs:\nmotorTorque: Electrome"
+	    "chanical motor torque provided on the rotor\ntau_e or q_l_dot: External interaction torque. Depending on the sele"
+	    "cted dynamics, either the external torque acting on the load or the imposed load velocity (for fixed-output model"
+	    "s).\n\nOutputs:\njointBus: The various variables and their measurements, with optional delays/noise/quantisation "
+	    "etc."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
 	    "Build B matrix for nonlinear components\nB_nonlinear = [zeros([size(B,1)-size(I,1),1]); 1./diag(I)];\n\n% Get oth"
 	    "er properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k"
@@ -2718,42 +2756,42 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      11
 	      Object {
-		$ObjectID		52
+		$ObjectID		53
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		53
+		$ObjectID		54
 		Type			"edit"
 		Name			"fc_vel"
 		Prompt			"Velocity filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		54
+		$ObjectID		55
 		Type			"edit"
 		Name			"fc_torque"
 		Prompt			"Torque filter cut-off frequency [Hz]"
 		Value			"200"
 	      }
 	      Object {
-		$ObjectID		55
-		Type			"edit"
-		Name			"input_delay"
-		Prompt			"Input delay (num samples)"
-		Value			"1"
-	      }
-	      Object {
 		$ObjectID		56
 		Type			"edit"
-		Name			"output_delay"
-		Prompt			"Output delay (num samples)"
+		Name			"input_delay"
+		Prompt			"Input delay (num samples of Ts)"
 		Value			"1"
 	      }
 	      Object {
 		$ObjectID		57
+		Type			"edit"
+		Name			"output_delay"
+		Prompt			"Output delay (num samples of Ts)"
+		Value			"1"
+	      }
+	      Object {
+		$ObjectID		58
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize measurements"
@@ -2761,14 +2799,14 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		58
+		$ObjectID		59
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
 		Value			"19"
 	      }
 	      Object {
-		$ObjectID		59
+		$ObjectID		60
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -2776,7 +2814,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		60
+		$ObjectID		61
 		Type			"checkbox"
 		Name			"output_noise_enabled"
 		Prompt			"Enable measurement noise"
@@ -2784,14 +2822,14 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'output_noise_enabled', 'var_y');"
 	      }
 	      Object {
-		$ObjectID		61
+		$ObjectID		62
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
 		Value			"0.12^2"
 	      }
 	      Object {
-		$ObjectID		62
+		$ObjectID		63
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -4829,7 +4867,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Electrical Models</span></p></body></html>"
-	  Position		  [-251, 59, -249, 75]
+	  Position		  [-251, 59, -99, 90]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -4846,7 +4884,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Mechanical Models</span></p></body></html>"
-	  Position		  [83, 59, 85, 75]
+	  Position		  [83, 59, 256, 90]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
