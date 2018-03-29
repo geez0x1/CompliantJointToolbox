@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 29 10:20:18 2018"
-  RTWModifiedTimeStamp	  444219614
-  ModelVersionFormat	  "1.%<AutoIncrement:255>"
+  LastModifiedDate	  "Thu Mar 29 10:41:39 2018"
+  RTWModifiedTimeStamp	  444220894
+  ModelVersionFormat	  "1.%<AutoIncrement:259>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1967,11 +1967,12 @@ Library {
 	    Help		    "The block implements a torque controller comprised of a feedforward term complemented by an integral a"
 	    "ction to compensate for disturbances. This type of controller has been used and discussed as lag-type control des"
 	    "ign in comparison to a pure feedforward action as well as a Proportional-Derivative control action in [1].\n\n<b>"
-	    "The mask parameters are: </b>\n\nJoint Object:  The class name of the CJT joint class name or the variable repres"
-	    "enting an instance of a CJT joint class, describing the \n\nK<sub>I</sub>: Integral gain\n\nAccording to [1] the "
-	    "controller reduces disturbances up to a frequency <i>f = K<sub>I</sub>  / ( 2 PI ). </i>\n\nReferences:\n[1] D. V"
-	    "ischer and O. Khatib, “Design and development of high-performance torque-controlled joints,” Robotics and Aut"
-	    "omation, IEEE Transactions on, vol. 11, no. 4, pp. 537–544, 1995."
+	    "Mask parameters:</b>\n\nJoint Object:  The class name of the CJT joint class name or the variable representing an"
+	    " instance of a CJT joint class, describing the \n\nK<sub>I</sub>: Integral gain\n\nAccording to [1] the controlle"
+	    "r reduces disturbances up to a frequency <i>f = K<sub>I</sub>  / ( 2 PI ). </i>\n\n<b>References:</b>\n[1] D. Vis"
+	    "cher and O. Khatib, “Design and development of high-performance torque-controlled joints,” Robotics and Autom"
+	    "ation, IEEE Transactions on, vol. 11, no. 4, pp. 537–544, 1995.\n[2] M. C. Readman, Flexible Joint Robots. CRC "
+	    "press, 1994."
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
@@ -3531,6 +3532,18 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    61
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "PID + FF with inner-loop DOB"
+	    Description		    "This block implements a PID torque controller with optional feed-forward or compensation term, "
+	    "supplemented with an inner-loop DOB.\n\nClick >Help< for further documentation."
+	    Help		    "This block implements a PID torque controller with optional feed-forward or compensation term, supplem"
+	    "ented with an inner-loop DOB.\n\n<b>Mask parameters:</b>\n\nJoint Object: The class name of the CJT joint class n"
+	    "ame or the variable representing an instance of a CJT joint class.\nK<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>: "
+	    "Proportional, derivative, and integral gain, respectively.\nN: Derivative low-pass filter coefficient\nDOB cutoff"
+	    " frequency: Cut-off frequency computed for the low-pass filter that must be used to make the inverse transfer fun"
+	    "ction realisible.\nMeasurement index: Measured plant output that should be used for the DOB.\n\n\n<b>References:<"
+	    "/b>\n\nW. Roozing, J. Malzahn, D. G. Caldwell, and N. G. Tsagarakis, “Comparison of open-loop and closed-loop d"
+	    "isturbance observers for series elastic actuators,” in Intelligent Robots and Systems (IROS), 2016 IEEE/RSJ Int"
+	    "ernational Conference on, 2016, pp. 3842–3847.\n\nM. C. Readman, Flexible Joint Robots. CRC press, 1994."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -3610,41 +3623,54 @@ Library {
 	    }
 	    Array {
 	      Type		      "Simulink.dialog.Control"
-	      Dimension		      3
+	      Dimension		      4
 	      Object {
 		$ObjectID		71
+		$ClassName		"Simulink.dialog.Group"
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  72
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		73
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		72
+		$ObjectID		74
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Controller"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  5
 		  Object {
-		    $ObjectID		    73
+		    $ObjectID		    75
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kp"
 		  }
 		  Object {
-		    $ObjectID		    74
+		    $ObjectID		    76
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Ki"
 		  }
 		  Object {
-		    $ObjectID		    75
+		    $ObjectID		    77
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kd"
 		  }
 		  Object {
-		    $ObjectID		    76
+		    $ObjectID		    78
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "N"
 		  }
 		  Object {
-		    $ObjectID		    77
+		    $ObjectID		    79
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "ff_comp_switch"
 		  }
@@ -3653,24 +3679,24 @@ Library {
 		Name			"Container3"
 	      }
 	      Object {
-		$ObjectID		78
+		$ObjectID		80
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"DOB parameters"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    79
+		    $ObjectID		    81
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "f_c"
 		  }
 		  Object {
-		    $ObjectID		    80
+		    $ObjectID		    82
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "measIdx"
 		  }
 		  Object {
-		    $ObjectID		    81
+		    $ObjectID		    83
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "doPlot"
 		  }
@@ -4119,8 +4145,23 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    82
+	    $ObjectID		    84
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "PID + FF/comp with outer-loop DOB and optional prefilter"
+	    Description		    "This block implements a PID torque controller with optional feed-forward or compensation term, "
+	    "supplemented with an outer-loop DOB and optional prefilter.\n\nClick >Help< for further documentation."
+	    Help		    "This block implements a PID torque controller with optional feed-forward or compensation term, supplem"
+	    "ented with an outer-loop DOB and optional prefilter. Multiplication by the prefilter simply means taking the inve"
+	    "rse of the closed-loop as premultiplication, with a low-pass filter, very similar to a classical lead filter.\n\n"
+	    "<b>Mask parameters:</b>\n\nJoint Object: The class name of the CJT joint class name or the variable representing "
+	    "an instance of a CJT joint class.\nK<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>: Proportional, derivative, and int"
+	    "egral gain, respectively.\nN: Derivative low-pass filter coefficient\nModels/filters file: Instead of analytical "
+	    "computation from the given joint model, a DOB model can be loaded from file, that is e.g. computed from experimen"
+	    "tal data.\nPremultiplication and DOB cutoff frequency: Cut-off frequency computed for the low-pass filters that m"
+	    "ust be used to make the inverse transfer functions realisible.\n\n\n<b>References:</b>\n\nW. Roozing, J. Malzahn,"
+	    " D. G. Caldwell, and N. G. Tsagarakis, “Comparison of open-loop and closed-loop disturbance observers for serie"
+	    "s elastic actuators,” in Intelligent Robots and Systems (IROS), 2016 IEEE/RSJ International Conference on, 2016"
+	    ", pp. 3842–3847.\n\nM. C. Readman, Flexible Joint Robots. CRC press, 1994."
 	    Initialization	    "% Calculate the approximated closed-loop transfer function Pc and\n% filters Q_* etc.\n% This"
 	    " is the standalone code, that does not require measurement data\n% from a simulink model to design the model.\n% "
 	    "However, it uses a linear state-space model to estimate the transfer\n% function of the plant, thus the results a"
@@ -4142,42 +4183,42 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      12
 	      Object {
-		$ObjectID		83
+		$ObjectID		85
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		84
+		$ObjectID		86
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
 		Value			"1"
 	      }
 	      Object {
-		$ObjectID		85
+		$ObjectID		87
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		86
+		$ObjectID		88
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		87
+		$ObjectID		89
 		Type			"edit"
 		Name			"N"
 		Prompt			"Derivative filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
-		$ObjectID		88
+		$ObjectID		90
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -4192,7 +4233,7 @@ Library {
 		Value			"Feed-forward"
 	      }
 	      Object {
-		$ObjectID		89
+		$ObjectID		91
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -4211,7 +4252,7 @@ Library {
 		"\n    toggleMaskFields(gcbh, 'loadData', {'f_c_FF', 'f_c_DOB'}, 'off');\nend"
 	      }
 	      Object {
-		$ObjectID		90
+		$ObjectID		92
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -4226,7 +4267,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		91
+		$ObjectID		93
 		Type			"checkbox"
 		Name			"loadData"
 		Prompt			"Load model/filters from file (see getLinearDOB_fromData)"
@@ -4237,7 +4278,7 @@ Library {
 		"off');\nend"
 	      }
 	      Object {
-		$ObjectID		92
+		$ObjectID		94
 		Type			"edit"
 		Name			"modelFname"
 		Prompt			"Model/filters file (.mat)"
@@ -4246,7 +4287,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		93
+		$ObjectID		95
 		Type			"edit"
 		Name			"f_c_FF"
 		Prompt			"Premultiplication (model inversion) cutoff frequency [Hz]"
@@ -4254,7 +4295,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		94
+		$ObjectID		96
 		Type			"edit"
 		Name			"f_c_DOB"
 		Prompt			"DOB cutoff frequency [Hz]"
@@ -4265,41 +4306,54 @@ Library {
 	    }
 	    Array {
 	      Type		      "Simulink.dialog.Control"
-	      Dimension		      3
+	      Dimension		      4
 	      Object {
-		$ObjectID		95
+		$ObjectID		97
+		$ClassName		"Simulink.dialog.Group"
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  98
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		99
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		96
+		$ObjectID		100
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Controller"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  5
 		  Object {
-		    $ObjectID		    97
+		    $ObjectID		    101
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kp"
 		  }
 		  Object {
-		    $ObjectID		    98
+		    $ObjectID		    102
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Ki"
 		  }
 		  Object {
-		    $ObjectID		    99
+		    $ObjectID		    103
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kd"
 		  }
 		  Object {
-		    $ObjectID		    100
+		    $ObjectID		    104
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "N"
 		  }
 		  Object {
-		    $ObjectID		    101
+		    $ObjectID		    105
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "ff_comp_switch"
 		  }
@@ -4308,46 +4362,46 @@ Library {
 		Name			"Container2"
 	      }
 	      Object {
-		$ObjectID		102
+		$ObjectID		106
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"DOB and premultiplication"
 		Array {
 		  Type			  "Simulink.dialog.Control"
 		  Dimension		  5
 		  Object {
-		    $ObjectID		    103
+		    $ObjectID		    107
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    PromptLocation	    "top"
 		    Name		    "DOB_enable_switch"
 		  }
 		  Object {
-		    $ObjectID		    104
+		    $ObjectID		    108
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "premult_enable_switch"
 		  }
 		  Object {
-		    $ObjectID		    105
+		    $ObjectID		    109
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "loadData"
 		  }
 		  Object {
-		    $ObjectID		    106
+		    $ObjectID		    110
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "modelFname"
 		  }
 		  Object {
-		    $ObjectID		    107
+		    $ObjectID		    111
 		    $ClassName		    "Simulink.dialog.Group"
 		    Prompt		    "Analytical DOB"
 		    Array {
 		    Type		    "Simulink.dialog.parameter.Edit"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    108
+		    $ObjectID		    112
 		    Name		    "f_c_FF"
 		    }
 		    Object {
-		    $ObjectID		    109
+		    $ObjectID		    113
 		    Name		    "f_c_DOB"
 		    }
 		    PropName		    "DialogControls"
@@ -5028,56 +5082,57 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    110
+	    $ObjectID		    114
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "PID + FF/comp."
 	    Description		    "This block implements a PID torque controller with optional feed-forward or compensation term.\n"
 	    "\nClick >Help< for further documentation."
-	    Help		    "This block implements a PID torque controller with optional feed-forward or compensation term.\n\n<b>T"
-	    "he mask parameters are: </b>\n\nJoint Object: The class name of the CJT joint class name or the variable represen"
-	    "ting an instance of a CJT joint class.\nK<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>: Proportional, derivative, an"
-	    "d integral gain, respectively.\nN: Derivative low-pass filter coefficient"
+	    Help		    "This block implements a PID torque controller with optional feed-forward or compensation term.\n\n<b>M"
+	    "ask parameters:</b>\n\nJoint Object: The class name of the CJT joint class name or the variable representing an i"
+	    "nstance of a CJT joint class.\nK<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>: Proportional, derivative, and integra"
+	    "l gain, respectively.\nN: Derivative low-pass filter coefficient\n\n\n<b>References:</b>\n\nM. C. Readman, Flexib"
+	    "le Joint Robots. CRC press, 1994."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
 	      Object {
-		$ObjectID		111
+		$ObjectID		115
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		112
+		$ObjectID		116
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
 		Value			"1"
 	      }
 	      Object {
-		$ObjectID		113
+		$ObjectID		117
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		114
+		$ObjectID		118
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		115
+		$ObjectID		119
 		Type			"edit"
 		Name			"N"
 		Prompt			"Filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
-		$ObjectID		116
+		$ObjectID		120
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
