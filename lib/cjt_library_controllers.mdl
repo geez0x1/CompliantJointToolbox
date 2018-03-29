@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 29 10:44:39 2018"
-  RTWModifiedTimeStamp	  444221078
-  ModelVersionFormat	  "1.%<AutoIncrement:260>"
+  LastModifiedDate	  "Thu Mar 29 10:47:31 2018"
+  RTWModifiedTimeStamp	  444221247
+  ModelVersionFormat	  "1.%<AutoIncrement:261>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1420,10 +1420,10 @@ Library {
 	    "stem block.\n\nClick >Help< for details on the parameters."
 	    Help		    "The block implements a PI current controller augmented by a voltage feedforward term and a back-EMF co"
 	    "mpensation based on motor velocity readings. \n\nThis block serves in combination with an electrical subsystem bl"
-	    "ock.\n\n<b>The mask parameters are: </b>\n\nJoint Object:  The class name of the CJT joint class name or the vari"
-	    "able representing an instance of a CJT joint class, describing the \n\nProportional Gain: PI controller P-gain\nI"
-	    "ntegral Gain: PI controller I-gain\n\nFeedforward Action: check, if feedforward action is desired.\nBack EMF Comp"
-	    "ensation : check, if back EMF compensation shall be active .\n"
+	    "ock.\n\n<b>Mask parameters:</b>\n\nJoint Object:  The class name of the CJT joint class name or the variable repr"
+	    "esenting an instance of a CJT joint class, describing the \n\nProportional Gain: PI controller P-gain\nIntegral G"
+	    "ain: PI controller I-gain\n\nFeedforward Action: check, if feedforward action is desired.\nBack EMF Compensation "
+	    ": check, if back EMF compensation shall be active .\n"
 	    Initialization	    "ff_enable = 0;\nif ff_chk\n    ff_enable = 1.0;\nend\n\nbemf_enable = 0;\nif bemf_chk\n    be"
 	    "mf_enable = 1.0;\nend"
 	    Array {
@@ -1467,11 +1467,10 @@ Library {
 	      PropName		      "Parameters"
 	    }
 	    Array {
-	      Type		      "Simulink.dialog.Control"
-	      Dimension		      7
+	      Type		      "Simulink.dialog.Group"
+	      Dimension		      2
 	      Object {
 		$ObjectID		27
-		$ClassName		"Simulink.dialog.Group"
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
@@ -1484,36 +1483,40 @@ Library {
 	      }
 	      Object {
 		$ObjectID		29
-		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Simulink:studio:ToolBarParametersMenu"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  5
+		  Object {
+		    $ObjectID		    30
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "jointObj"
+		  }
+		  Object {
+		    $ObjectID		    31
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "P_Gain"
+		  }
+		  Object {
+		    $ObjectID		    32
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    PromptLocation	    "left"
+		    Name		    "I_Gain"
+		  }
+		  Object {
+		    $ObjectID		    33
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ff_chk"
+		  }
+		  Object {
+		    $ObjectID		    34
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "bemf_chk"
+		  }
+		  PropName		  "DialogControls"
+		}
 		Name			"ParameterGroupVar"
-	      }
-	      Object {
-		$ObjectID		30
-		$ClassName		"Simulink.dialog.parameter.Edit"
-		Name			"jointObj"
-	      }
-	      Object {
-		$ObjectID		31
-		$ClassName		"Simulink.dialog.parameter.Edit"
-		PromptLocation		"left"
-		Name			"P_Gain"
-	      }
-	      Object {
-		$ObjectID		32
-		$ClassName		"Simulink.dialog.parameter.Edit"
-		PromptLocation		"left"
-		Name			"I_Gain"
-	      }
-	      Object {
-		$ObjectID		33
-		$ClassName		"Simulink.dialog.parameter.CheckBox"
-		Name			"ff_chk"
-	      }
-	      Object {
-		$ObjectID		34
-		$ClassName		"Simulink.dialog.parameter.CheckBox"
-		Name			"bemf_chk"
 	      }
 	      PropName		      "DialogControls"
 	    }
