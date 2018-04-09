@@ -1,12 +1,13 @@
 Library {
   Name			  "cjt_library_controllers"
-  Version		  8.9
-  SavedCharacterEncoding  "UTF-8"
+  Version		  9.0
+  SavedCharacterEncoding  "windows-1252"
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
   DiagnosticSuppressor	  "on"
-  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 8 0"
+  CustomCodeFunctionData  ""
   SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
@@ -14,7 +15,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "glnxa64"
+  LastSavedArchitecture	  "win64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -24,7 +25,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 1023.0]
+      Location		      [2553.0, -7.0, 1695.0, 1025.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -48,9 +49,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"3"
-	Extents			[1447.0, 846.0]
+	Extents			[2269.0, 1298.0]
 	ZoomFactor		[1.25]
-	Offset			[-277.94047619047637, -284.83095238095228]
+	Offset			[-397.14047619047636, -272.96428571428567]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -63,17 +64,17 @@ Library {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[640]
-	Height			[480]
+	Width			[426]
+	Height			[320]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADjPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFYPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA4wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABWAAAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADjAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAkVAAAFYAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
+      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
@@ -82,12 +83,11 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "wesley"
+  LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 29 10:47:31 2018"
-  RTWModifiedTimeStamp	  444221247
-  ModelVersionFormat	  "1.%<AutoIncrement:261>"
-  ConfigurationManager	  "none"
+  LastModifiedDate	  "Mon Apr 09 11:01:01 2018"
+  RTWModifiedTimeStamp	  445172427
+  ModelVersionFormat	  "1.%<AutoIncrement:263>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -115,6 +115,7 @@ Library {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
+  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
@@ -159,7 +160,7 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      7
-      Version		      "1.17.0"
+      Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -167,7 +168,7 @@ Library {
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  8
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -175,7 +176,6 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
-	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -187,7 +187,6 @@ Library {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
-	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
@@ -204,10 +203,11 @@ Library {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
+	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  9
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -248,7 +248,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  10
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -306,10 +306,11 @@ Library {
 	  OptimizeBlockOrder	  "off"
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
+	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  11
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -348,6 +349,7 @@ Library {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
+	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -389,6 +391,7 @@ Library {
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
+	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -415,11 +418,14 @@ Library {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
+	  RCSCRenamedMsg	  "warning"
+	  RCSCObservableMsg	  "warning"
+	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  12
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -467,7 +473,7 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  13
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -486,7 +492,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  14
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -516,7 +522,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  15
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -567,6 +573,7 @@ Library {
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
 	  CustomLAPACKCallback	  ""
+	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -602,7 +609,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      16
-	      Version		      "1.17.0"
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -642,18 +649,16 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
-	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
-	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
-	      IncDataTypeInIds	      off
 	      MangleLength	      1
+	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -677,6 +682,7 @@ Library {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
+	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -689,7 +695,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      17
-	      Version		      "1.17.0"
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
 		Dimension		17
@@ -736,7 +742,6 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
-	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -766,6 +771,9 @@ Library {
 	      CoderGroups	      []
 	      AccessMethods	      []
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
+	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
+	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
+	      ArrayLayout	      "Column-major"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -787,7 +795,7 @@ Library {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  18
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -859,7 +867,12 @@ Library {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
+    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
+    AnnotationType	    "note_annotation"
+    FixedHeight		    off
+    FixedWidth		    off
+    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -933,7 +946,7 @@ Library {
       B			      "1"
       C			      "1"
       D			      "1"
-      X0		      "0"
+      InitialCondition	      "0"
       SampleTime	      "1"
       StateMustResolveToSignalObject off
       RTWStateStorageClass    "Auto"
@@ -1021,6 +1034,9 @@ Library {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
+      OutputWhenUnConnected   off
+      OutputWhenUnconnectedValue "0"
+      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Scope
@@ -1061,10 +1077,12 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
+      AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
+      IsObserver	      off
     }
     Block {
       BlockType		      Sum
@@ -1120,7 +1138,7 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[0, 27, 1680, 1050]
+	Location		[2553, -7, 4248, 1018]
 	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
@@ -3511,10 +3529,8 @@ Library {
 	    Annotation {
 	      SID		      "541"
 	      Name		      "<-- This may need further testing"
-	      Position		      [2079, 584, 2225, 601]
+	      Position		      [2079, 584, 2225, 598]
 	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      ZOrder		      -1
@@ -3544,12 +3560,12 @@ Library {
 	    "oint class.\nK<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>: Proportional, derivative, and integral gain, respective"
 	    "ly.\nN: Derivative low-pass filter coefficient\nDOB cutoff frequency: Cut-off frequency computed for the low-pass"
 	    " filter that must be used to make the inverse transfer function realisible.\nMeasurement index: Measured plant ou"
-	    "tput that should be used for the DOB.\n\n\n<b>References:</b>\n\nH. S. Lee and M. Tomizuka, “Robust motion cont"
-	    "roller design for high-accuracy positioning systems,” IEEE Transactions on Industrial Electronics, vol. 43, no."
-	    " 1, pp. 48–55, 1996.\n\nW. Roozing, J. Malzahn, D. G. Caldwell, and N. G. Tsagarakis, “Comparison of open-loo"
-	    "p and closed-loop disturbance observers for series elastic actuators,” in Intelligent Robots and Systems (IROS)"
-	    ", 2016 IEEE/RSJ International Conference on, 2016, pp. 3842–3847.\n\nM. C. Readman, Flexible Joint Robots. CRC "
-	    "press, 1994."
+	    "tput that should be used for the DOB.\n\n\n<b>References:</b>\n\nH. S. Lee and M. Tomizuka, \"Robust motion contr"
+	    "oller design for high-accuracy positioning systems\". In IEEE Transactions on Industrial Electronics, vol. 43, no"
+	    ". 1, pp. 48--55, 1996.\n\nW. Roozing, J. Malzahn, D. G. Caldwell, and N. G. Tsagarakis, \"Comparison of open-loop"
+	    " and closed-loop disturbance observers for series elastic actuators\". In Intelligent Robots and Systems (IROS), "
+	    "2016 IEEE/RSJ International Conference on, 2016, pp. 3842--3847.\n\nM. C. Readman, Flexible Joint Robots. CRC pre"
+	    "ss, 1994."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -4159,25 +4175,25 @@ Library {
 	    Help		    "This block implements a PID torque controller with optional feed-forward or compensation term, supplem"
 	    "ented with an outer-loop DOB and optional prefilter. The DOB is based on a nominal model of the closed control lo"
 	    "op. Multiplication by the prefilter simply means taking the inverse of the closed-loop as premultiplication, with"
-	    " a low-pass filter, very similar to a classical lead filter.\n\n<b>Mask parameters:</b>\n\nW. Roozing, J. Malzahn"
-	    ", D. G. Caldwell, and N. G. Tsagarakis, “Comparison of open-loop and closed-loop disturbance observers for seri"
-	    "es elastic actuators,” in Intelligent Robots and Systems (IROS), 2016 IEEE/RSJ International Conference on, 201"
-	    "6, pp. 3842–3847.\n\nJoint Object: The class name of the CJT joint class name or the variable representing an i"
-	    "nstance of a CJT joint class.\nK<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>: Proportional, derivative, and integra"
-	    "l gain, respectively.\nN: Derivative low-pass filter coefficient\nModels/filters file: Instead of analytical comp"
-	    "utation from the given joint model, a DOB model can be loaded from file, that is e.g. computed from experimental "
-	    "data.\nPremultiplication and DOB cutoff frequency: Cut-off frequency computed for the low-pass filters that must "
-	    "be used to make the inverse transfer functions realisible.\n\n\n<b>References:</b>\n\nK. Kong, J. Bae, and M. Tom"
-	    "izuka, “Control of Rotary Series Elastic Actuator for Ideal Force-Mode Actuation in Human-Robot Interaction App"
-	    "lications,” IEEE/ASME Transactions on Mechatronics, vol. 14, no. 1, pp. 105–118, Feb. 2009.\n\nN. Paine, S. O"
-	    "h, and L. Sentis, “Design and Control Considerations for High-Performance Series Elastic Actuators,” IEEE/ASM"
-	    "E Transactions on Mechatronics, vol. 19, no. 3, pp. 1080–1091, Jun. 2014.\n\nN. Paine, J. S. Mehling, J. Holley"
-	    ", N. A. Radford, G. Johnson, C.-L. Fok, and L. Sentis, “Actuator Control for the NASA-JSC Valkyrie Humanoid Rob"
-	    "ot: A Decoupled Dynamics Approach for Torque Control of Series Elastic Robots: Actuator Control for the NASA-JSC "
-	    "Valkyrie Humanoid Robot,” Journal of Field Robotics, vol. 32, no. 3, pp. 378–396, May 2015.\n\nJ. S. Mehling,"
-	    " J. Holley, and M. K. O’Malley, “Leveraging disturbance observer based torque control for improved impedance "
-	    "rendering with series elastic actuators,” in Intelligent Robots and Systems (IROS), 2015 IEEE/RSJ International"
-	    " Conference On. IEEE, 2015, pp. 1646–1651.\n\nM. C. Readman, Flexible Joint Robots. CRC press, 1994."
+	    " a low-pass filter, very similar to a classical lead filter.\n\n<b>Mask parameters:</b>\n\nJoint Object: The clas"
+	    "s name of the CJT joint class name or the variable representing an instance of a CJT joint class.\nK<sub>P</sub>,"
+	    " K<sub>I</sub>, K<sub>D</sub>: Proportional, derivative, and integral gain, respectively.\nN: Derivative low-pass"
+	    " filter coefficient\nModels/filters file: Instead of analytical computation from the given joint model, a DOB mod"
+	    "el can be loaded from file, that is e.g. computed from experimental data.\nPremultiplication and DOB cutoff frequ"
+	    "ency: Cut-off frequency computed for the low-pass filters that must be used to make the inverse transfer function"
+	    "s realisible.\n\n\n<b>References:</b>\n\nM. C. Readman, Flexible Joint Robots. CRC press, 1994.\n\nK. Kong, J. Ba"
+	    "e, and M. Tomizuka, \"Control of Rotary Series Elastic Actuator for Ideal Force-Mode Actuation in Human-Robot Int"
+	    "eraction Applications\". In: IEEE/ASME Transactions on Mechatronics, vol. 14, no. 1, pp. 105--118, Feb. 2009.\n\n"
+	    "N. Paine, S. Oh, and L. Sentis, \"Design and Control Considerations for High-Performance Series Elastic Actuators"
+	    "\". In: IEEE/ASME Transactions on Mechatronics, vol. 19, no. 3, pp. 1080--1091, Jun. 2014.\n\nN. Paine, J. S. Meh"
+	    "ling, J. Holley, N. A. Radford, G. Johnson, C.-L. Fok, and L. Sentis, \"Actuator Control for the NASA-JSC Valkyri"
+	    "e Humanoid Robot: A Decoupled Dynamics Approach for Torque Control of Series Elastic Robots: Actuator Control for"
+	    " the NASA-JSC Valkyrie Humanoid Robot\". In: Journal of Field Robotics, vol. 32, no. 3, pp. 378--396, May 2015.\n"
+	    "\nJ. S. Mehling, J. Holley, and M. K. O'Malley, \"Leveraging disturbance observer based torque control for improv"
+	    "ed impedance rendering with series elastic actuators\". In: IEEE/RSJ International Conference on Intelligent Robo"
+	    "ts and Systems (IROS), 2015, pp. 1646--1651.\n\nW. Roozing, J. Malzahn, D. G. Caldwell, and N. G. Tsagarakis, \"C"
+	    "omparison of open-loop and closed-loop disturbance observers for series elastic actuators\". In:  IEEE/RSJ Intern"
+	    "ational Conference on Intelligent Robots and Systems (IROS), 2016, pp. 3842--3847."
 	    Initialization	    "% Calculate the approximated closed-loop transfer function Pc and\n% filters Q_* etc.\n% This"
 	    " is the standalone code, that does not require measurement data\n% from a simulink model to design the model.\n% "
 	    "However, it uses a linear state-space model to estimate the transfer\n% function of the plant, thus the results a"
@@ -5549,10 +5565,8 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Torque Controllers</span></p></body></html>"
-	  Position		  [40, -207, 205, -176]
+	  Position		  [40, -207, 205, -182]
 	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"
@@ -5566,10 +5580,8 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Current Controllers</span></p></body></html>"
-	  Position		  [-250, -207, -80, -176]
+	  Position		  [-250, -207, -80, -182]
 	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"
