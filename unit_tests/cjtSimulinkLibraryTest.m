@@ -179,6 +179,19 @@ function testExample_04(testCase)
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
+function testExample_05(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_05_PD_Control_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'C92B83149F43EDE9880213C8D1996E7E';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
 % function testFunctionalityTwo(testCase)
 % % Test specific code
 % end
