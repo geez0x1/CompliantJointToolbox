@@ -1,4 +1,4 @@
-%DATASHEETGENERATORTEST Test implementation of the datasheet generator.
+%CJTDATASHEETGENERATORTEST Test implementation of the datasheet generator.
 %
 % About this main function:
 % The main function collects all of the local test functions
@@ -9,11 +9,11 @@
 % To run tests from the command prompt, use the runtests command with your
 % MATLAB test file as input. For example:
 %
-%   results = runtests('dataSheetGeneratorTest.m')
+%   results = runtests('cjtDataSheetGeneratorTest.m')
 %
 % Alternatively, you can run tests using the run function.
 %
-%   results = run(dataSheetGeneratorTest)
+%   results = run(cjtDataSheetGeneratorTest)
 %
 % To analyze the test results, examine the output structure from runtests
 % or run. For each test, the result contains the name of the test function,
@@ -46,7 +46,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function tests = dataSheetGeneratorTest
+function tests = cjtDataSheetGeneratorTest
     tests = functiontests(localfunctions);
 end
 

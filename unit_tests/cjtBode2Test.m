@@ -9,11 +9,11 @@
 % To run tests from the command prompt, use the runtests command with your
 % MATLAB test file as input. For example:
 %
-%   results = runtests('jointBuilderTest.m')
+%   results = runtests('cjtBode2Test.m')
 %
 % Alternatively, you can run tests using the run function.
 %
-%   results = run(jointBuilderTest)
+%   results = run(cjtBode2Test)
 %
 % To analyze the test results, examine the output structure from runtests
 % or run. For each test, the result contains the name of the test function,
@@ -46,7 +46,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function tests = bode2Test
+function tests = cjtBode2Test
     tests = functiontests(localfunctions);
 end
 
