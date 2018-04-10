@@ -1,13 +1,12 @@
 Library {
   Name			  "cjt_library_controllers"
-  Version		  9.0
-  SavedCharacterEncoding  "windows-1252"
+  Version		  8.9
+  SavedCharacterEncoding  "UTF-8"
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
   DiagnosticSuppressor	  "on"
-  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 8 0"
-  CustomCodeFunctionData  ""
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
   SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
@@ -15,7 +14,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "win64"
+  LastSavedArchitecture	  "glnxa64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -25,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2553.0, -7.0, 1695.0, 1025.0]
+      Location		      [0.0, 27.0, 1680.0, 1023.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -48,10 +47,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
-	Extents			[2269.0, 1298.0]
-	ZoomFactor		[1.25]
-	Offset			[-397.14047619047636, -272.96428571428567]
+	LoadSaveID		"77"
+	Extents			[1447.0, 846.0]
+	ZoomFactor		[1.5]
+	Offset			[543.46666666666715, 363.86666666666679]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -64,17 +63,17 @@ Library {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[426]
-	Height			[320]
+	Width			[640]
+	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFYPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADjPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABWAAAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA4wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAkVAAAFYAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADjAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
+      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
@@ -83,11 +82,12 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "J�rn"
+  LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 09 11:01:01 2018"
-  RTWModifiedTimeStamp	  445172427
-  ModelVersionFormat	  "1.%<AutoIncrement:263>"
+  LastModifiedDate	  "Tue Apr 10 15:23:21 2018"
+  RTWModifiedTimeStamp	  445274598
+  ModelVersionFormat	  "1.%<AutoIncrement:270>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -115,7 +115,6 @@ Library {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
-  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
@@ -160,7 +159,7 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      7
-      Version		      "1.17.1"
+      Version		      "1.17.0"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -168,7 +167,7 @@ Library {
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  8
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -176,6 +175,7 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -187,6 +187,7 @@ Library {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
@@ -203,11 +204,10 @@ Library {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
-	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  9
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -248,7 +248,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  10
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -306,11 +306,10 @@ Library {
 	  OptimizeBlockOrder	  "off"
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
-	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  11
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -349,7 +348,6 @@ Library {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
-	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -391,7 +389,6 @@ Library {
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
-	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -418,14 +415,11 @@ Library {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
-	  RCSCRenamedMsg	  "warning"
-	  RCSCObservableMsg	  "warning"
-	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  12
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -473,7 +467,7 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  13
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -492,7 +486,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  14
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -522,7 +516,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  15
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -573,7 +567,6 @@ Library {
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
 	  CustomLAPACKCallback	  ""
-	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -609,7 +602,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      16
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -649,16 +642,18 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
+	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
 	      MangleLength	      1
-	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -682,7 +677,6 @@ Library {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
-	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -695,7 +689,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      17
-	      Version		      "1.17.1"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		17
@@ -742,6 +736,7 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -771,9 +766,6 @@ Library {
 	      CoderGroups	      []
 	      AccessMethods	      []
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
-	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
-	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
-	      ArrayLayout	      "Column-major"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -795,7 +787,7 @@ Library {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  18
-	  Version		  "1.17.1"
+	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -867,12 +859,7 @@ Library {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
-    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
-    AnnotationType	    "note_annotation"
-    FixedHeight		    off
-    FixedWidth		    off
-    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -946,7 +933,7 @@ Library {
       B			      "1"
       C			      "1"
       D			      "1"
-      InitialCondition	      "0"
+      X0		      "0"
       SampleTime	      "1"
       StateMustResolveToSignalObject off
       RTWStateStorageClass    "Auto"
@@ -1034,9 +1021,6 @@ Library {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
-      OutputWhenUnConnected   off
-      OutputWhenUnconnectedValue "0"
-      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Scope
@@ -1077,12 +1061,10 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
-      AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
-      IsObserver	      off
     }
     Block {
       BlockType		      Sum
@@ -1125,7 +1107,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "605"
+    SIDHighWatermark	    "606"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -1138,8 +1120,8 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[2553, -7, 4248, 1018]
-	Open			on
+	Location		[0, 27, 1680, 1050]
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1151,7 +1133,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"175"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Controller Template"
@@ -1991,9 +1973,9 @@ Library {
 	    "Mask parameters:</b>\n\nJoint Object:  The class name of the CJT joint class name or the variable representing an"
 	    " instance of a CJT joint class, describing the \n\nK<sub>I</sub>: Integral gain\n\nAccording to [1] the controlle"
 	    "r reduces disturbances up to a frequency <i>f = K<sub>I</sub>  / ( 2 PI ). </i>\n\n<b>References:</b>\n[1] D. Vis"
-	    "cher and O. Khatib, “Design and development of high-performance torque-controlled joints,” Robotics and Autom"
-	    "ation, IEEE Transactions on, vol. 11, no. 4, pp. 537–544, 1995.\n[2] M. C. Readman, Flexible Joint Robots. CRC "
-	    "press, 1994."
+	    "cher and O. Khatib, â€œDesign and development of high-performance torque-controlled joints,â€ Robotics a"
+	    "nd Automation, IEEE Transactions on, vol. 11, no. 4, pp. 537â€“544, 1995.\n[2] M. C. Readman, Flexible Joint"
+	    " Robots. CRC press, 1994."
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
@@ -3529,8 +3511,10 @@ Library {
 	    Annotation {
 	      SID		      "541"
 	      Name		      "<-- This may need further testing"
-	      Position		      [2079, 584, 2225, 598]
+	      Position		      [2079, 584, 2225, 601]
 	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      ZOrder		      -1
@@ -3732,7 +3716,7 @@ Library {
 	  System {
 	    Name		    "PID + FF with inner-loop DOB"
 	    Location		    [0, 27, 1680, 1050]
-	    Open		    off
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -3744,7 +3728,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -3846,21 +3830,20 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Linear transfer function DOB"
-	      SID		      "152"
+	      SID		      "606"
 	      Ports		      [2, 1]
 	      Position		      [1010, 760, 1160, 820]
-	      ZOrder		      320
-	      ForegroundColor	      "red"
-	      BackgroundColor	      "yellow"
-	      LibraryVersion	      "1.92"
-	      SourceBlock	      "SEA_library_observers/Observers/Linear transfer function DOB"
+	      ZOrder		      491
+	      HideAutomaticName	      off
+	      LibraryVersion	      "1.105"
+	      SourceBlock	      "cjt_library_observers/Observers/Linear transfer function DOB"
 	      SourceType	      ""
 	      ContentPreviewEnabled   off
 	      loadData		      off
-	      modelFname	      "DOB_inner_results.mat"
+	      modelFname	      "DOB_results.mat"
 	      jointObj		      "jointObj"
-	      f_c		      "f_c"
-	      measIdx		      "measIdx"
+	      f_c		      "100"
+	      measIdx		      "7"
 	      doPlot		      off
 	      Port {
 		PortNumber		1
@@ -4039,7 +4022,7 @@ Library {
 	      SrcPort		      1
 	      Points		      [87, 0]
 	      Branch {
-		ZOrder			13
+		ZOrder			53
 		Points			[0, 330; -461, 0; 0, -100]
 		DstBlock		"Linear transfer function DOB"
 		DstPort			1
@@ -4065,7 +4048,7 @@ Library {
 	      SrcPort		      1
 	      Points		      [0, -50; 64, 0]
 	      Branch {
-		ZOrder			17
+		ZOrder			52
 		Points			[0, 310]
 		DstBlock		"Linear transfer function DOB"
 		DstPort			2
@@ -4078,7 +4061,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "d_hat"
-	      ZOrder		      19
+	      ZOrder		      51
 	      Labels		      [2, 1]
 	      SrcBlock		      "Linear transfer function DOB"
 	      SrcPort		      1
@@ -5565,8 +5548,10 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Torque Controllers</span></p></body></html>"
-	  Position		  [40, -207, 205, -182]
+	  Position		  [40, -207, 42, -191]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"
@@ -5580,8 +5565,10 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Current Controllers</span></p></body></html>"
-	  Position		  [-250, -207, -80, -182]
+	  Position		  [-250, -207, -248, -191]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"
