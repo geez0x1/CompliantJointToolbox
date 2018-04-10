@@ -31,7 +31,7 @@
 
 dispText = ...
 {'-----'
- 'EX 04'
+ 'EX 05'
  '-----'
  'This example demonstrates the torque control of a compliant actuator with locked '
  'output using a simple PD controller.'
