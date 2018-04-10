@@ -127,46 +127,57 @@ end
 % A test function is also called a "Qualification". There exist different
 % conceptual types of qualifications.
 function testBuiltJoint(testCase)
-% Test specific code
+    % Test specific code
 
-jObj = testCase.('TestData').testJoint;
-jObj.Ts = 0.5e-4;
+    jObj = testCase.('TestData').testJoint;
+    jObj.Ts = 0.5e-4;
 
-simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
+    simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
-curChkSum = cjtComputeChecksum(simOut.yout(:));
-refChkSum = 'B1B9F54B37C8A68389D6DCD483642C6C';
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = '26F1E9B76339DA2D1F4B4C6D9659C052';
 
-verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
 function testExample_02(testCase)
-% Test specific code
+    % Test specific code
 
-% Run the example
-Ex_02_Current_Control_run
+    % Run the example
+    Ex_02_Current_Control_run
 
-% The example creates a variable simOut in the workspace. Use it to compute the checksum
-curChkSum = cjtComputeChecksum(simOut.yout(:));
-refChkSum = '4EB5B6F944C62640891572B26229B5D1';
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = '66C8FC1E7117D34E2EF3D7654F0DA11A';
 
-verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
-
 
 function testExample_03(testCase)
-% Test specific code
+    % Test specific code
 
-% Run the example
-Ex_03_I_Control_Plus_Feedforward_run
+    % Run the example
+    Ex_03_I_Control_Plus_Feedforward_run
 
-% The example creates a variable simOut in the workspace. Use it to compute the checksum
-curChkSum = cjtComputeChecksum(simOut.yout(:));
-refChkSum = 'FED49142F09A1E5531C5C3BB39CFA161';
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = '73F38B99C0F6F6939F46A950F06D1DD3';
 
-verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
+function testExample_04(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_04_PD_Control_Plus_Feedforward_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'A986E7B998B7AE7EE3AB9AD937351A21';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
 
 % function testFunctionalityTwo(testCase)
 % % Test specific code
