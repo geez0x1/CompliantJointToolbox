@@ -3,14 +3,14 @@ jb = jointBuilder;
 jb.overwrite = 1;
 
 jb.buildJoint(  'cjt_Orange_80_6000', ...
-                'output_fixed', ...
+                'output_fixed_rigid_gearbox', ...
                 'coulomb_asym', ...
                 [], ...
-                'example_joint_locked'      );
+                'example_joint'                 );
 
 addpath(jb.buildDir);
 
-jointObj = example_joint_locked;
+jointObj = example_joint;
 
 %% Configure Chirp Source
 f_min = 0.01;   % Initial frequency in Hz

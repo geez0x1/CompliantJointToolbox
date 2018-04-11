@@ -192,6 +192,58 @@ function testExample_05(testCase)
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
+function testExample_06(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_06_PD_Feedforward_OpenLoopDOB_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'xxxxxx';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+function testExample_07(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_07_PD_OpenLoopDOB_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'xxxxxx';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+function testExample_08(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_08_PD_Feedforward_ClosedLoopDOB_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'xxxxxx';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+function testExample_09(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_09_PD_ClosedLoopDOB_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'xxxxxx';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
 % function testFunctionalityTwo(testCase)
 % % Test specific code
 % end

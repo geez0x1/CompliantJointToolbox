@@ -1,4 +1,4 @@
-% EX_04 An example of PID + feed-forward.
+% EX_06 An example of PD + FF + open-loop DOB
 %
 % Author::
 %  Joern Malzahn
@@ -31,10 +31,11 @@
 
 dispText = ...
 {'-----'
- 'EX 04'
+ 'EX 06'
  '-----'
  'This example demonstrates the torque control of a compliant actuator with locked '
- 'output using PID plus a feedforward term.'
+ 'output using a open-loop disturbance observer, combined with a PD controller with '
+ 'feed-forward.'
  ' ' 
 };
 
@@ -43,7 +44,7 @@ displayFormattedText(dispText)
 %% Configure example environment
 % Standard configuration
 Ex_00_example_config
-mdlName = 'Ex_04_PD_Control_Plus_Feedforward.mdl';
+mdlName = 'Ex_06_PD_Feedforward_OpenLoopDOB.mdl';
 
 %% Run model
 % Open block diagram

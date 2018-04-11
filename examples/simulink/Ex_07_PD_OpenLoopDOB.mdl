@@ -1,5 +1,5 @@
 Model {
-  Name			  "Ex_04_PD_Control_Plus_Feedforward"
+  Name			  "Ex_07_PD_OpenLoopDOB"
   Version		  8.9
   SavedCharacterEncoding  "UTF-8"
   GraphicalInterface {
@@ -19,7 +19,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.245"
+    ComputedModelVersion    "1.270"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -67,7 +67,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [273.0, 51.0, 1295.0, 999.0]
+      Location		      [0.0, 27.0, 1680.0, 1023.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -91,9 +91,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1257.0, 813.0]
+	Extents			[1642.0, 837.0]
 	ZoomFactor		[1.25]
-	Offset			[157.11031746031659, -151.60396825396833]
+	Offset			[80.110317460316764, -163.60396825396833]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -113,7 +113,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAUPAAADawAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAaQAAADgwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAANR/////wAAAAAAAAAA/"
@@ -127,9 +127,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 11 15:15:52 2018"
-  RTWModifiedTimeStamp	  445360551
-  ModelVersionFormat	  "1.%<AutoIncrement:245>"
+  LastModifiedDate	  "Wed Apr 11 15:15:40 2018"
+  RTWModifiedTimeStamp	  445360539
+  ModelVersionFormat	  "1.%<AutoIncrement:270>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -181,12 +181,12 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    8
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "Ex_04_PD_Control_Plus_Feedforward"
+    model_		    "Ex_07_PD_OpenLoopDOB"
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "Ex_04_PD_Control_Plus_Feedforward"
+      Cell		      "Ex_07_PD_OpenLoopDOB"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -239,7 +239,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "t_max"
 	  AbsTol		  "auto"
-	  FixedStep		  "jointObj.Ts"
+	  FixedStep		  "jointObj.Ts/10"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -255,8 +255,8 @@ Model {
 	  EnableMultiTasking	  off
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "ode3"
-	  SolverName		  "ode3"
+	  Solver		  "VariableStepAuto"
+	  SolverName		  "VariableStepAuto"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -909,7 +909,7 @@ Model {
       Name		      "Configuration"
       ExtraOptions	      ""
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    [ 378, 155, 1283, 805 ]
+      ConfigPrmDlgPosition    [ 378, 118, 1283, 768 ]
     }
     PropName		    "ConfigurationSets"
   }
@@ -1036,8 +1036,8 @@ Model {
     }
   }
   System {
-    Name		    "Ex_04_PD_Control_Plus_Feedforward"
-    Location		    [273, 51, 1568, 1050]
+    Name		    "Ex_07_PD_OpenLoopDOB"
+    Location		    [0, 27, 1680, 1050]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1052,7 +1052,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "132"
+    SIDHighWatermark	    "173"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector1"
@@ -1116,9 +1116,9 @@ Model {
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
       jointObj		      "jointObj"
-      fc_vel		      "499"
-      fc_torque		      "499"
-      input_delay	      "1"
+      fc_vel		      "1000"
+      fc_torque		      "1000"
+      input_delay	      "0"
       output_delay	      "1"
       quantize		      on
       quantize_bits	      "19"
@@ -1140,21 +1140,24 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "PID + FF/comp."
-      SID		      "99"
+      Name		      "PID + FF with inner-loop DOB"
+      SID		      "149"
       Ports		      [2, 1]
       Position		      [450, 162, 580, 253]
-      ZOrder		      509
+      ZOrder		      512
       LibraryVersion	      "1.270"
-      SourceBlock	      "cjt_library_controllers/Controllers/PID + FF//comp."
-      SourceType	      "PID + FF/comp."
+      SourceBlock	      "cjt_library_controllers/Controllers/PID + FF with inner-loop DOB"
+      SourceType	      "PID + FF with inner-loop DOB"
       ContentPreviewEnabled   off
       jointObj		      "jointObj"
-      Kp		      "0.3"
+      Kp		      "0.1"
       Ki		      "0"
-      Kd		      "0.005"
+      Kd		      "0.001"
       N			      "2*pi*200"
-      ff_comp_switch	      "Feed-forward"
+      ff_comp_switch	      "Off"
+      f_c		      "80"
+      measIdx		      "[7]"
+      doPlot		      off
     }
     Block {
       BlockType		      Scope
@@ -1167,8 +1170,8 @@ Model {
       "gr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI',t"
       "rue),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData3','DataLoggingSave"
       "Format','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time"
-      " Domain',true,'SerializedDisplays',{struct('MinYLimReal','-22.58329','MaxYLimReal','22.44592','YLabelReal','','M"
-      "inYLimMag','0.00000','MaxYLimMag','22.58329','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',fa"
+      " Domain',true,'SerializedDisplays',{struct('MinYLimReal','-92.14609','MaxYLimReal','92.29166','YLabelReal','','M"
+      "inYLimMag','0.00000','MaxYLimMag','92.29166','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',fa"
       "lse,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529"
       "411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647"
       "058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLa"
@@ -1178,8 +1181,8 @@ Model {
       "idth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none'"
       ",'Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserD"
       "efinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)},'TimeUnits','seconds"
-      "','DisplayPropertyDefaults',struct('MinYLimReal','-22.58329','MaxYLimReal','22.44592','YLabelReal','','MinYLimMa"
-      "g','0.00000','MaxYLimMag','22.58329','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axe"
+      "','DisplayPropertyDefaults',struct('MinYLimReal','-92.14609','MaxYLimReal','92.29166','YLabelReal','','MinYLimMa"
+      "g','0.00000','MaxYLimMag','92.29166','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axe"
       "sColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.62352941176470"
       "6 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.71764705882352"
       "9 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','L"
@@ -1189,9 +1192,9 @@ Model {
       "8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visibl"
       "e','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedCh"
       "annelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','T"
-      "imeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousZoomMod"
-      "e','ZoomY','PreviousAutoscale','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),'Versi"
-      "on','2017a','Location',[186 299 1314 736],'VisibleAtModelOpen','on')"
+      "imeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutosca"
+      "le','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),'Version','2017a','Location',[176"
+      " 323 1314 753],'VisibleAtModelOpen','on')"
       NumInputPorts	      "1"
     }
     Block {
@@ -1231,9 +1234,9 @@ Model {
       SrcPort		      1
       Points		      [53, 0]
       Branch {
-	ZOrder			266
+	ZOrder			284
 	Points			[0, 92; -619, 0; 0, -87]
-	DstBlock		"PID + FF/comp."
+	DstBlock		"PID + FF with inner-loop DOB"
 	DstPort			2
       }
       Branch {
@@ -1243,8 +1246,8 @@ Model {
       }
     }
     Line {
-      ZOrder		      264
-      SrcBlock		      "PID + FF/comp."
+      ZOrder		      282
+      SrcBlock		      "PID + FF with inner-loop DOB"
       SrcPort		      1
       DstBlock		      "JointMechanicalSubsystem"
       DstPort		      1
@@ -1281,8 +1284,8 @@ Model {
       SrcPort		      1
       Points		      [49, 0]
       Branch {
-	ZOrder			265
-	DstBlock		"PID + FF/comp."
+	ZOrder			283
+	DstBlock		"PID + FF with inner-loop DOB"
 	DstPort			1
       }
       Branch {
@@ -1311,7 +1314,7 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "Ex_04_PD_Control_Plus_Feedforward"
+    name		    "Ex_07_PD_OpenLoopDOB"
     created		    "21-Jun-2016 09:44:34"
     isLibrary		    0
     sfVersion		    80000011

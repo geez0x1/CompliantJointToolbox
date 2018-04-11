@@ -19,7 +19,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.248"
+    ComputedModelVersion    "1.249"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -116,8 +116,8 @@ Model {
       "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAaQAAADgwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOH/////wAAAAAAAAAA/"
-      "////wEAAAO5/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAANR/////wAAAAAAAAAA/"
+      "////wEAAAOD/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
   HideAutomaticNames	  on
@@ -127,9 +127,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 10 15:01:35 2018"
-  RTWModifiedTimeStamp	  445273294
-  ModelVersionFormat	  "1.%<AutoIncrement:248>"
+  LastModifiedDate	  "Wed Apr 11 15:15:48 2018"
+  RTWModifiedTimeStamp	  445360547
+  ModelVersionFormat	  "1.%<AutoIncrement:249>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1052,7 +1052,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "140"
+    SIDHighWatermark	    "148"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector1"
@@ -1145,7 +1145,7 @@ Model {
       Ports		      [2, 1]
       Position		      [450, 162, 580, 253]
       ZOrder		      509
-      LibraryVersion	      "1.263"
+      LibraryVersion	      "1.270"
       SourceBlock	      "cjt_library_controllers/Controllers/PID + FF//comp."
       SourceType	      "PID + FF/comp."
       ContentPreviewEnabled   off
@@ -1191,7 +1191,7 @@ Model {
       "annelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','T"
       "imeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousZoomMod"
       "e','ZoomY','PreviousAutoscale','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),'Versi"
-      "on','2017a','Location',[181 311 1309 748],'VisibleAtModelOpen','on')"
+      "on','2017a','Location',[181 311 1299 755],'VisibleAtModelOpen','on')"
       NumInputPorts	      "1"
     }
     Block {
@@ -1332,7 +1332,7 @@ Stateflow {
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    chartFileNumber	    1
+    chartFileNumber	    2
     disableImplicitCasting  1
     eml {
       name		      "nonLinDynamics"
@@ -1365,10 +1365,10 @@ Stateflow {
       " = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.318"
       "000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 33.900000;\nparams.dq_p "
       "= 7.728395;\nparams.r_th1 = 3.136441;\nparams.r_th2 = 32.663680;\nparams.T_thw = 98.081750;\nparams.T_thm = 4679"
-      ".965000;\nparams.Tmp_WMax = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint_locked';\npa"
-      "rams.paramName = 'cjt_Orange_80_6000';\nparams.modelName = 'output_fixed';\nparams.nonlinearModelName = 'coulomb"
-      "_asym';\nparams.electricalModelName = 'electric_dyn_zero_inductance';\nparams.Ts = 0.001000;\nparams.Ts_elec = 0"
-      ".000050;\ntau =coulomb_asym(params,x);\n	end\n\n"
+      ".965000;\nparams.Tmp_WMax = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint';\nparams.pa"
+      "ramName = 'cjt_Orange_80_6000';\nparams.modelName = 'output_fixed_rigid_gearbox';\nparams.nonlinearModelName = '"
+      "coulomb_asym';\nparams.electricalModelName = 'electric_dyn_zero_inductance';\nparams.Ts = 0.001000;\nparams.Ts_e"
+      "lec = 0.000050;\ntau =coulomb_asym(params,x);\n	end\n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }

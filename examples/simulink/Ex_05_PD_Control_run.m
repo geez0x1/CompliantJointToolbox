@@ -1,4 +1,4 @@
-% EX_04 An example of a simple PD controller
+% EX_05 An example of a simple PD controller
 %
 % Author::
 %  Joern Malzahn
