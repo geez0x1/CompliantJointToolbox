@@ -105,9 +105,9 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     
     % PID controller
     if (strcmpi(pid_form, 'ideal'))
-        G = pid(Kp, Kp*Ki, Kp*Kd, 1/N);     % ideal PID controller
+        G = pidstd(Kp, 1/(Kp*Ki), Kd/Kp, N);    % ideal PID controller
     elseif (strcmpi(pid_form, 'parallel'))
-        G = pid(Kp, Ki, Kd, 1/N);           % parallel PID controller
+        G = pid(Kp, Ki, Kd, 1/N);               % parallel PID controller
     else
         error('Invalid PID form');
     end
