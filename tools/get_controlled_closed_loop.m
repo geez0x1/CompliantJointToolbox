@@ -92,7 +92,13 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     
     % Set derivative gain Kd to Kd_opt if set to -1
     if (Kd == -1)
-        Kd = Kd_opt;
+        % The above optimal D-gain was computed for parallel PID form.
+        % Convert it for ideal PID form.
+        if (strcmpi(pid_form, 'ideal'))
+            Kd = Kd_opt/Kp;
+        else
+            Kd = Kd_opt;
+        end
     end
     
     
@@ -105,9 +111,9 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     
     % PID controller
     if (strcmpi(pid_form, 'ideal'))
-        G = pidstd(Kp, 1/(Kp*Ki), Kd/Kp, N);    % ideal PID controller
+        G = pidstd(Kp, 1/Ki, Kd, N);    % ideal PID controller
     elseif (strcmpi(pid_form, 'parallel'))
-        G = pid(Kp, Ki, Kd, 1/N);               % parallel PID controller
+        G = pid(Kp, Ki, Kd, 1/N);       % parallel PID controller
     else
         error('Invalid PID form');
     end
