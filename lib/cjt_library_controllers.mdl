@@ -47,10 +47,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"77"
+	LoadSaveID		"3"
 	Extents			[1447.0, 846.0]
-	ZoomFactor		[1.5]
-	Offset			[543.46666666666715, 363.86666666666679]
+	ZoomFactor		[1.75]
+	Offset			[0.0, 0.0]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 10 15:23:21 2018"
-  RTWModifiedTimeStamp	  445274598
-  ModelVersionFormat	  "1.%<AutoIncrement:270>"
+  LastModifiedDate	  "Fri Apr 13 09:42:02 2018"
+  RTWModifiedTimeStamp	  445513319
+  ModelVersionFormat	  "1.%<AutoIncrement:271>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1121,7 +1121,7 @@ Library {
       System {
 	Name			"Controllers"
 	Location		[0, 27, 1680, 1050]
-	Open			off
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1140,7 +1140,8 @@ Library {
 	  SID			  "4"
 	  Ports			  [2, 1]
 	  Position		  [40, -128, 170, -37]
-	  ZOrder		  206
+	  ZOrder		  524
+	  LibraryVersion	  "*1.270"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -1183,12 +1184,12 @@ Library {
 	      Type		      "edit"
 	      Name		      "jointObj"
 	      Prompt		      "Joint Object"
-	      Value		      "My_joint"
+	      Value		      "jointObj"
 	    }
 	  }
 	  System {
 	    Name		    "Controller Template"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [1920, 27, 3840, 1080]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -1196,12 +1197,12 @@ Library {
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -1228,7 +1229,7 @@ Library {
 	      Position		      [675, 113, 680, 317]
 	      ZOrder		      203
 	      ShowName		      off
-	      OutputSignals	      "GearPos,LinkPos,Torque"
+	      OutputSignals	      "GearPos,LinkPos,TorqueFiltered"
 	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
@@ -1240,7 +1241,7 @@ Library {
 	      }
 	      Port {
 		PortNumber		3
-		Name			"<Torque>"
+		Name			"<TorqueFiltered>"
 	      }
 	    }
 	    Block {
@@ -1349,7 +1350,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "<Torque>"
+	      Name		      "<TorqueFiltered>"
 	      ZOrder		      4
 	      Labels		      [1, 1]
 	      SrcBlock		      "Bus\nSelector1"
@@ -1957,7 +1958,8 @@ Library {
 	  SID			  "562"
 	  Ports			  [2, 1]
 	  Position		  [240, -128, 370, -37]
-	  ZOrder		  506
+	  ZOrder		  525
+	  LibraryVersion	  "*1.270"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -1984,7 +1986,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"My_joint"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		37
@@ -2034,7 +2036,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Integral Controller plus Feedforward"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [1920, 27, 3840, 1080]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -2047,12 +2049,12 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
 	      SID		      "563"
-	      Position		      [640, 138, 670, 152]
+	      Position		      [555, 138, 585, 152]
 	      ZOrder		      204
 	      IconDisplay	      "Port number"
 	    }
@@ -2060,7 +2062,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "jointBus"
 	      SID		      "564"
-	      Position		      [640, 240, 670, 255]
+	      Position		      [555, 240, 585, 255]
 	      ZOrder		      205
 	      BlockRotation	      270
 	      Port		      "2"
@@ -2071,14 +2073,14 @@ Library {
 	      Name		      "Bus\nSelector"
 	      SID		      "565"
 	      Ports		      [1, 1]
-	      Position		      [735, 186, 740, 224]
+	      Position		      [650, 186, 655, 224]
 	      ZOrder		      210
 	      ShowName		      off
-	      OutputSignals	      "Torque"
+	      OutputSignals	      "TorqueFiltered"
 	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
-		Name			"<Torque>"
+		Name			"<TorqueFiltered>"
 	      }
 	    }
 	    Block {
@@ -2123,7 +2125,7 @@ Library {
 	      Name		      "Sum1"
 	      SID		      "569"
 	      Ports		      [2, 1]
-	      Position		      [1120, 135, 1140, 155]
+	      Position		      [1115, 135, 1135, 155]
 	      ZOrder		      213
 	      ShowName		      off
 	      IconShape		      "round"
@@ -2136,7 +2138,7 @@ Library {
 	      BlockType		      ZeroOrderHold
 	      Name		      "Zero-Order\nHold1"
 	      SID		      "604"
-	      Position		      [800, 190, 835, 220]
+	      Position		      [755, 190, 790, 220]
 	      ZOrder		      343
 	      ShowName		      off
 	      SampleTime	      "jointObj.Ts"
@@ -2145,7 +2147,7 @@ Library {
 	      BlockType		      ZeroOrderHold
 	      Name		      "Zero-Order\nHold2"
 	      SID		      "605"
-	      Position		      [720, 130, 755, 160]
+	      Position		      [755, 130, 790, 160]
 	      ZOrder		      344
 	      ShowName		      off
 	      SampleTime	      "jointObj.Ts"
@@ -2154,7 +2156,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "motorTorque [Nm]"
 	      SID		      "570"
-	      Position		      [1350, 138, 1380, 152]
+	      Position		      [1225, 138, 1255, 152]
 	      ZOrder		      208
 	      IconDisplay	      "Port number"
 	    }
@@ -2174,8 +2176,8 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "<Torque>"
-	      ZOrder		      5
+	      Name		      "<TorqueFiltered>"
+	      ZOrder		      3
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector"
 	      SrcPort		      1
@@ -2183,55 +2185,55 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      6
+	      ZOrder		      4
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
 	      DstBlock		      "Gain"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      7
+	      ZOrder		      5
 	      SrcBlock		      "Gain"
 	      SrcPort		      1
 	      DstBlock		      "Discrete-Time\nIntegrator"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      8
+	      ZOrder		      6
 	      SrcBlock		      "Discrete-Time\nIntegrator"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      9
+	      ZOrder		      7
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
 	      DstBlock		      "motorTorque [Nm]"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      10
+	      ZOrder		      8
 	      SrcBlock		      "Zero-Order\nHold1"
 	      SrcPort		      1
-	      Points		      [40, 0]
+	      Points		      [85, 0]
 	      DstBlock		      "Sum"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      11
+	      ZOrder		      9
 	      SrcBlock		      "Zero-Order\nHold2"
 	      SrcPort		      1
-	      Points		      [31, 0]
+	      Points		      [39, 0]
 	      Branch {
-		ZOrder			3
-		Points			[0, -62; 339, 0]
-		DstBlock		"Sum1"
+		ZOrder			10
+		DstBlock		"Sum"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			4
-		DstBlock		"Sum"
+		ZOrder			11
+		Points			[0, -62; 291, 0]
+		DstBlock		"Sum1"
 		DstPort			1
 	      }
 	    }
@@ -2243,8 +2245,8 @@ Library {
 	  SID			  "9"
 	  Ports			  [2, 2]
 	  Position		  [440, 7, 570, 98]
-	  ZOrder		  470
-	  LibraryVersion	  "1.177"
+	  ZOrder		  527
+	  LibraryVersion	  "*1.270"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -2264,7 +2266,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object (fixed output model)"
-		Value			"My_joint"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		45
@@ -2306,7 +2308,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + Kalman (LQG)"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [1920, 27, 3840, 1080]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -2314,12 +2316,12 @@ Library {
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2349,7 +2351,7 @@ Library {
 	      Position		      [230, 427, 235, 533]
 	      ZOrder		      287
 	      ShowName		      off
-	      OutputSignals	      "MotorPos,GearPos,LinkPos,MotorVelFiltered,GearVelFiltered,LinkVelFiltered,Torque"
+	      OutputSignals	      "MotorPos,GearPos,LinkPos,MotorVelFiltered,GearVelFiltered,LinkVelFiltered,TorqueFiltered"
 	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
@@ -2377,7 +2379,7 @@ Library {
 	      }
 	      Port {
 		PortNumber		7
-		Name			"<Torque>"
+		Name			"<TorqueFiltered>"
 	      }
 	    }
 	    Block {
@@ -2567,7 +2569,7 @@ Library {
 	      Points		      [54, 0]
 	      Branch {
 		ZOrder			7
-		Labels			[0, 0]
+		Labels			[1, 0]
 		DstBlock		"motorTorque [Nm]"
 		DstPort			1
 	      }
@@ -2579,7 +2581,7 @@ Library {
 	      }
 	    }
 	    Line {
-	      Name		      "<Torque>"
+	      Name		      "<TorqueFiltered>"
 	      ZOrder		      9
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector"
@@ -2705,8 +2707,8 @@ Library {
 	  SID			  "28"
 	  Ports			  [2, 2]
 	  Position		  [240, 7, 370, 98]
-	  ZOrder		  502
-	  LibraryVersion	  "*1.195"
+	  ZOrder		  526
+	  LibraryVersion	  "*1.270"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -2725,7 +2727,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"My_joint"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		52
@@ -2760,7 +2762,7 @@ Library {
 	  }
 	  System {
 	    Name		    "LQR + state observer"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [1920, 27, 3840, 1080]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -2768,12 +2770,12 @@ Library {
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -2803,7 +2805,7 @@ Library {
 	      Position		      [100, 442, 105, 548]
 	      ZOrder		      283
 	      ShowName		      off
-	      OutputSignals	      "MotorPos,GearPos,LinkPos,MotorVelFiltered,GearVelFiltered,LinkVelFiltered,Torque"
+	      OutputSignals	      "MotorPos,GearPos,LinkPos,MotorVelFiltered,GearVelFiltered,LinkVelFiltered,TorqueFiltered"
 	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
@@ -2831,7 +2833,7 @@ Library {
 	      }
 	      Port {
 		PortNumber		7
-		Name			"<Torque>"
+		Name			"<TorqueFiltered>"
 	      }
 	    }
 	    Block {
@@ -3181,7 +3183,7 @@ Library {
 	      }
 	    }
 	    Line {
-	      Name		      "<Torque>"
+	      Name		      "<TorqueFiltered>"
 	      ZOrder		      26
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector"
@@ -3527,8 +3529,8 @@ Library {
 	  SID			  "77"
 	  Ports			  [2, 1]
 	  Position		  [440, 147, 570, 238]
-	  ZOrder		  495
-	  LibraryVersion	  "*1.209"
+	  ZOrder		  522
+	  LibraryVersion	  "*1.270"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -3559,7 +3561,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"My_joint"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		63
@@ -3715,20 +3717,20 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF with inner-loop DOB"
-	    Location		    [0, 27, 1680, 1050]
-	    Open		    on
+	    Location		    [1920, 27, 3840, 1080]
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "250"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -3755,11 +3757,11 @@ Library {
 	      Position		      [590, 453, 595, 537]
 	      ZOrder		      213
 	      ShowName		      off
-	      OutputSignals	      "Torque"
+	      OutputSignals	      "TorqueFiltered"
 	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
-		Name			"<Torque>"
+		Name			"<TorqueFiltered>"
 	      }
 	    }
 	    Block {
@@ -3835,7 +3837,7 @@ Library {
 	      Position		      [1010, 760, 1160, 820]
 	      ZOrder		      491
 	      HideAutomaticName	      off
-	      LibraryVersion	      "1.105"
+	      LibraryVersion	      "1.107"
 	      SourceBlock	      "cjt_library_observers/Observers/Linear transfer function DOB"
 	      SourceType	      ""
 	      ContentPreviewEnabled   off
@@ -3991,7 +3993,7 @@ Library {
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      9
+	      ZOrder		      8
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch"
@@ -3999,7 +4001,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "feed-forward/compensation"
-	      ZOrder		      31
+	      ZOrder		      9
 	      Labels		      [1, 1]
 	      SrcBlock		      "Multiport\nSwitch"
 	      SrcPort		      1
@@ -4008,7 +4010,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      11
+	      ZOrder		      10
 	      SrcBlock		      "Reference"
 	      SrcPort		      1
 	      DstBlock		      "Zero-Order\nHold1"
@@ -4016,26 +4018,26 @@ Library {
 	    }
 	    Line {
 	      Name		      "motorTorque [Nm]"
-	      ZOrder		      12
+	      ZOrder		      11
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
 	      Points		      [87, 0]
 	      Branch {
-		ZOrder			53
+		ZOrder			12
 		Points			[0, 330; -461, 0; 0, -100]
 		DstBlock		"Linear transfer function DOB"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			14
+		ZOrder			13
 		DstBlock		"motorTorque [Nm]"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      Name		      "<Torque>"
-	      ZOrder		      15
+	      Name		      "<TorqueFiltered>"
+	      ZOrder		      14
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector1"
 	      SrcPort		      1
@@ -4043,25 +4045,25 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      16
+	      ZOrder		      15
 	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -50; 64, 0]
 	      Branch {
-		ZOrder			52
+		ZOrder			16
 		Points			[0, 310]
 		DstBlock		"Linear transfer function DOB"
 		DstPort			2
 	      }
 	      Branch {
-		ZOrder			18
+		ZOrder			17
 		DstBlock		"Bus\nSelector1"
 		DstPort			1
 	      }
 	    }
 	    Line {
 	      Name		      "d_hat"
-	      ZOrder		      51
+	      ZOrder		      18
 	      Labels		      [2, 1]
 	      SrcBlock		      "Linear transfer function DOB"
 	      SrcPort		      1
@@ -4070,28 +4072,28 @@ Library {
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      20
+	      ZOrder		      19
 	      SrcBlock		      "D"
 	      SrcPort		      1
 	      DstBlock		      "Differential filter"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      21
+	      ZOrder		      20
 	      SrcBlock		      "I"
 	      SrcPort		      1
 	      DstBlock		      "Discrete-Time\nIntegrator"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      22
+	      ZOrder		      21
 	      SrcBlock		      "Discrete-Time\nIntegrator"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      23
+	      ZOrder		      22
 	      SrcBlock		      "P"
 	      SrcPort		      1
 	      Points		      [195, 0]
@@ -4099,7 +4101,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      24
+	      ZOrder		      23
 	      SrcBlock		      "Differential filter"
 	      SrcPort		      1
 	      Points		      [25, 0]
@@ -4107,30 +4109,30 @@ Library {
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      25
+	      ZOrder		      24
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      26
+	      ZOrder		      25
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
 	      Points		      [48, 0]
 	      Branch {
-		ZOrder			27
+		ZOrder			26
 		Points			[0, 85]
 		DstBlock		"D"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			28
+		ZOrder			27
 		DstBlock		"I"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			29
+		ZOrder			28
 		Points			[0, -65]
 		DstBlock		"P"
 		DstPort			1
@@ -4144,8 +4146,8 @@ Library {
 	  SID			  "54"
 	  Ports			  [2, 1]
 	  Position		  [240, 147, 370, 238]
-	  ZOrder		  482
-	  LibraryVersion	  "*1.194"
+	  ZOrder		  523
+	  LibraryVersion	  "*1.270"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -4202,7 +4204,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"My_joint"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		86
@@ -4432,7 +4434,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp with outer-loop\nDOB and optional prefilter"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [1920, 27, 3840, 1080]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -4440,12 +4442,12 @@ Library {
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -4458,7 +4460,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "jointBus"
 	      SID		      "56"
-	      Position		      [60, 325, 90, 340]
+	      Position		      [15, 325, 45, 340]
 	      ZOrder		      205
 	      BlockRotation	      270
 	      Port		      "2"
@@ -4469,10 +4471,10 @@ Library {
 	      Name		      "Bus\nSelector1"
 	      SID		      "57"
 	      Ports		      [1, 3]
-	      Position		      [170, 188, 175, 392]
+	      Position		      [125, 188, 130, 392]
 	      ZOrder		      203
 	      ShowName		      off
-	      OutputSignals	      "GearPos,LinkPos,Torque"
+	      OutputSignals	      "GearPos,LinkPos,TorqueFiltered"
 	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
@@ -4484,7 +4486,7 @@ Library {
 	      }
 	      Port {
 		PortNumber		3
-		Name			"<Torque>"
+		Name			"<TorqueFiltered>"
 	      }
 	    }
 	    Block {
@@ -4762,7 +4764,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "Terminator"
 	      SID		      "73"
-	      Position		      [240, 210, 260, 230]
+	      Position		      [195, 210, 215, 230]
 	      ZOrder		      274
 	      ShowName		      off
 	    }
@@ -4770,7 +4772,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "Terminator1"
 	      SID		      "74"
-	      Position		      [240, 280, 260, 300]
+	      Position		      [195, 280, 215, 300]
 	      ZOrder		      275
 	      ShowName		      off
 	    }
@@ -4893,7 +4895,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "<Torque>"
+	      Name		      "<TorqueFiltered>"
 	      ZOrder		      15
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector1"
@@ -4912,7 +4914,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "feed-forward/compensation"
-	      ZOrder		      43
+	      ZOrder		      17
 	      Labels		      [1, 1]
 	      SrcBlock		      "Multiport\nSwitch"
 	      SrcPort		      1
@@ -4978,21 +4980,21 @@ Library {
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      28
+	      ZOrder		      27
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      29
+	      ZOrder		      28
 	      SrcBlock		      "Multiport\nSwitch1"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      30
+	      ZOrder		      29
 	      SrcBlock		      "Ground"
 	      SrcPort		      1
 	      Points		      [10, 0]
@@ -5000,7 +5002,7 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      31
+	      ZOrder		      30
 	      SrcBlock		      "Constant1"
 	      SrcPort		      1
 	      Points		      [40, 0]
@@ -5008,35 +5010,35 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      32
+	      ZOrder		      31
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      33
+	      ZOrder		      32
 	      SrcBlock		      "D"
 	      SrcPort		      1
 	      DstBlock		      "Differential filter"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      34
+	      ZOrder		      33
 	      SrcBlock		      "I"
 	      SrcPort		      1
 	      DstBlock		      "Discrete-Time\nIntegrator"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      35
+	      ZOrder		      34
 	      SrcBlock		      "Discrete-Time\nIntegrator"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      36
+	      ZOrder		      35
 	      SrcBlock		      "P"
 	      SrcPort		      1
 	      Points		      [195, 0]
@@ -5044,7 +5046,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      37
+	      ZOrder		      36
 	      SrcBlock		      "Differential filter"
 	      SrcPort		      1
 	      Points		      [25, 0]
@@ -5052,7 +5054,7 @@ Library {
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      38
+	      ZOrder		      37
 	      SrcBlock		      "Sum4"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
@@ -5060,24 +5062,24 @@ Library {
 	    }
 	    Line {
 	      Name		      "e"
-	      ZOrder		      39
+	      ZOrder		      38
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
 	      Points		      [83, 0]
 	      Branch {
-		ZOrder			40
+		ZOrder			39
 		Points			[0, 85]
 		DstBlock		"D"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			41
+		ZOrder			40
 		DstBlock		"I"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			42
+		ZOrder			41
 		Points			[0, -65]
 		DstBlock		"P"
 		DstPort			1
@@ -5091,8 +5093,9 @@ Library {
 	  SID			  "272"
 	  Ports			  [2, 1]
 	  Position		  [40, 147, 170, 238]
-	  ZOrder		  456
-	  LibraryVersion	  "*1.146"
+	  ZOrder		  520
+	  ForegroundColor	  "red"
+	  LibraryVersion	  "*1.270"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -5116,14 +5119,14 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"My_joint"
+		Value			"jointObj"
 	      }
 	      Object {
 		$ObjectID		116
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
-		Value			"1"
+		Value			"2"
 	      }
 	      Object {
 		$ObjectID		117
@@ -5137,7 +5140,7 @@ Library {
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
-		Value			"0"
+		Value			"0.01"
 	      }
 	      Object {
 		$ObjectID		119
@@ -5166,7 +5169,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp."
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [1920, 27, 3840, 1080]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -5174,12 +5177,12 @@ Library {
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -5196,7 +5199,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "jointBus"
 	      SID		      "274"
-	      Position		      [105, 375, 120, 405]
+	      Position		      [65, 375, 80, 405]
 	      ZOrder		      205
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -5206,14 +5209,14 @@ Library {
 	      Name		      "Bus\nSelector1"
 	      SID		      "275"
 	      Ports		      [1, 1]
-	      Position		      [165, 355, 170, 425]
+	      Position		      [125, 355, 130, 425]
 	      ZOrder		      203
 	      ShowName		      off
-	      OutputSignals	      "Torque"
+	      OutputSignals	      "TorqueFiltered"
 	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
-		Name			"<Torque>"
+		Name			"<TorqueFiltered>"
 	      }
 	    }
 	    Block {
@@ -5505,7 +5508,7 @@ Library {
 	      DstPort		      4
 	    }
 	    Line {
-	      Name		      "<Torque>"
+	      Name		      "<TorqueFiltered>"
 	      ZOrder		      20
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector1"
@@ -5523,7 +5526,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      23
+	      ZOrder		      22
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch"
@@ -5531,7 +5534,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "feed-forward/compensation"
-	      ZOrder		      25
+	      ZOrder		      23
 	      Labels		      [1, 1]
 	      SrcBlock		      "Multiport\nSwitch"
 	      SrcPort		      1
@@ -5548,7 +5551,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Torque Controllers</span></p></body></html>"
-	  Position		  [40, -207, 42, -191]
+	  Position		  [40, -207, 205, -176]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -5565,7 +5568,7 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Current Controllers</span></p></body></html>"
-	  Position		  [-250, -207, -248, -191]
+	  Position		  [-250, -207, -80, -176]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
