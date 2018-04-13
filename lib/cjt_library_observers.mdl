@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [369.0, 1050.0, 840.0, 1025.0]
+      Location		      [8.0, 35.0, 840.0, 1025.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 10 15:25:59 2018"
-  RTWModifiedTimeStamp	  445274730
-  ModelVersionFormat	  "1.%<AutoIncrement:107>"
+  LastModifiedDate	  "Fri Apr 13 10:19:40 2018"
+  RTWModifiedTimeStamp	  445515577
+  ModelVersionFormat	  "1.%<AutoIncrement:108>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1111,7 +1111,7 @@ Library {
       Variant		      off
       System {
 	Name			"Observers"
-	Location		[369, 1050, 1209, 2075]
+	Location		[8, 35, 848, 1060]
 	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
@@ -2091,7 +2091,7 @@ Library {
 	    RunInitForIconRedraw    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      6
+	      Dimension		      5
 	      Object {
 		$ObjectID		29
 		Type			"checkbox"
@@ -2130,13 +2130,6 @@ Library {
 		Name			"measIdx"
 		Prompt			"Measurement index"
 		Value			"7"
-	      }
-	      Object {
-		$ObjectID		34
-		Type			"checkbox"
-		Name			"doPlot"
-		Prompt			"Do plot"
-		Value			"off"
 	      }
 	      PropName		      "Parameters"
 	    }
@@ -2439,7 +2432,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    35
+	    $ObjectID		    34
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getDynamicsMatrices();\n\n% Get Luenb"
 	    "erger observer\n[sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R);\n\n% Discretize using Tust"
@@ -2451,35 +2444,35 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
 	      Object {
-		$ObjectID		36
+		$ObjectID		35
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		37
+		$ObjectID		36
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured outputs (indices)"
 		Value			"[2]"
 	      }
 	      Object {
-		$ObjectID		38
+		$ObjectID		37
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
 		Value			"diag([0 1000 0 0])"
 	      }
 	      Object {
-		$ObjectID		39
+		$ObjectID		38
 		Type			"edit"
 		Name			"R"
 		Prompt			"Input weighing matrix R"
 		Value			"5e-6"
 	      }
 	      Object {
-		$ObjectID		40
+		$ObjectID		39
 		Type			"edit"
 		Name			"place_gain"
 		Prompt			"Observer place gain"

@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 1023.0]
+      Location		      [1920.0, 27.0, 1920.0, 1053.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -33,7 +33,7 @@ Library {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[9]
+	Filter			[8]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -47,10 +47,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
-	Extents			[1447.0, 846.0]
-	ZoomFactor		[1.75]
-	Offset			[0.0, 0.0]
+	LoadSaveID		"77"
+	Extents			[1687.0, 876.0]
+	ZoomFactor		[0.8]
+	Offset			[-20.333333333333258, 114.08333333333348]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -66,11 +66,11 @@ Library {
 	Width			[640]
 	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADjPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADqvwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA4wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA6oAAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADjAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAa9AAADqgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 13 09:42:02 2018"
-  RTWModifiedTimeStamp	  445513319
-  ModelVersionFormat	  "1.%<AutoIncrement:271>"
+  LastModifiedDate	  "Fri Apr 13 10:19:14 2018"
+  RTWModifiedTimeStamp	  445515531
+  ModelVersionFormat	  "1.%<AutoIncrement:283>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1092,7 +1092,7 @@ Library {
   }
   System {
     Name		    "cjt_library_controllers"
-    Location		    [0, 27, 1680, 1050]
+    Location		    [1920, 27, 3840, 1080]
     Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
@@ -1107,7 +1107,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "606"
+    SIDHighWatermark	    "607"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -1120,8 +1120,8 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[0, 27, 1680, 1050]
-	Open			on
+	Location		[1920, 27, 3840, 1080]
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1133,7 +1133,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"175"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Controller Template"
@@ -3608,24 +3608,26 @@ Library {
 	      }
 	      Object {
 		$ObjectID		68
+		Type			"checkbox"
+		Name			"DOB_enabled"
+		Prompt			"DOB enabled"
+		Value			"on"
+		Callback		"% Toggle all DOB fields\nfields = {  'f_c', ...\n            'measIdx'\n         };\ntoggleMaskFields(gcb"
+		"h, 'DOB_enabled', fields, 'on');"
+	      }
+	      Object {
+		$ObjectID		69
 		Type			"edit"
 		Name			"f_c"
 		Prompt			"DOB cut-off frequency [Hz]"
 		Value			"100"
 	      }
 	      Object {
-		$ObjectID		69
+		$ObjectID		70
 		Type			"edit"
 		Name			"measIdx"
 		Prompt			"Measurement index"
 		Value			"[7]"
-	      }
-	      Object {
-		$ObjectID		70
-		Type			"checkbox"
-		Name			"doPlot"
-		Prompt			"Do plot"
-		Value			"off"
 	      }
 	      PropName		      "Parameters"
 	    }
@@ -3695,18 +3697,18 @@ Library {
 		  Dimension		  3
 		  Object {
 		    $ObjectID		    81
-		    $ClassName		    "Simulink.dialog.parameter.Edit"
-		    Name		    "f_c"
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "DOB_enabled"
 		  }
 		  Object {
 		    $ObjectID		    82
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
-		    Name		    "measIdx"
+		    Name		    "f_c"
 		  }
 		  Object {
 		    $ObjectID		    83
-		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
-		    Name		    "doPlot"
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "measIdx"
 		  }
 		  PropName		  "DialogControls"
 		}
@@ -3718,7 +3720,7 @@ Library {
 	  System {
 	    Name		    "PID + FF with inner-loop DOB"
 	    Location		    [1920, 27, 3840, 1080]
-	    Open		    off
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -3730,7 +3732,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "250"
+	    ZoomFactor		    "80"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -3780,6 +3782,18 @@ Library {
 	      Position		      [960, 615, 990, 645]
 	      ZOrder		      323
 	      Gain		      "Kd"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "DOB enable"
+	      SID		      "607"
+	      Position		      [1245, 645, 1275, 675]
+	      ZOrder		      492
+	      BlockRotation	      270
+	      Gain		      "DOB_enabled"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -3844,8 +3858,8 @@ Library {
 	      loadData		      off
 	      modelFname	      "DOB_results.mat"
 	      jointObj		      "jointObj"
-	      f_c		      "100"
-	      measIdx		      "7"
+	      f_c		      "f_c"
+	      measIdx		      "measIdx"
 	      doPlot		      off
 	      Port {
 		PortNumber		1
@@ -4068,8 +4082,8 @@ Library {
 	      SrcBlock		      "Linear transfer function DOB"
 	      SrcPort		      1
 	      Points		      [95, 0]
-	      DstBlock		      "Sum1"
-	      DstPort		      3
+	      DstBlock		      "DOB enable"
+	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      19
@@ -4137,6 +4151,13 @@ Library {
 		DstBlock		"P"
 		DstPort			1
 	      }
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "DOB enable"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      3
 	    }
 	  }
 	}
@@ -4434,7 +4455,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp with outer-loop\nDOB and optional prefilter"
-	    Location		    [1920, 27, 3840, 1080]
+	    Location		    [0, 27, 1680, 1050]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -4447,7 +4468,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Reference"
@@ -5169,7 +5190,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp."
-	    Location		    [1920, 27, 3840, 1080]
+	    Location		    [0, 27, 1680, 1050]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
