@@ -144,7 +144,7 @@ function testExample_02(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '66C8FC1E7117D34E2EF3D7654F0DA11A';
+    refChkSum = '6C42869DFF5D316DA75E384874980385';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
