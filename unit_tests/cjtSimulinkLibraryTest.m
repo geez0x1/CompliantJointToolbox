@@ -131,7 +131,7 @@ function testBuiltJoint(testCase)
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '26F1E9B76339DA2D1F4B4C6D9659C052';
+    refChkSum = 'B1B9F54B37C8A68389D6DCD483642C6C';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
@@ -196,7 +196,7 @@ function testExample_06(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'xxxxxx';
+    refChkSum = '919F1A6BC6E7262FDB2CA78B67A528F4';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
@@ -209,7 +209,7 @@ function testExample_07(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'xxxxxx';
+    refChkSum = '64BC07E99BB6AB9D6DD57BCDAFE6DD4C';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
@@ -222,7 +222,7 @@ function testExample_08(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'xxxxxx';
+    refChkSum = '7E74E91CB695DB3587099E8C30D1211D';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
@@ -235,7 +235,7 @@ function testExample_09(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'xxxxxx';
+    refChkSum = '7E74E91CB695DB3587099E8C30D1211D';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end

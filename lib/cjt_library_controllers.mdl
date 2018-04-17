@@ -1,12 +1,13 @@
 Library {
   Name			  "cjt_library_controllers"
-  Version		  8.9
+  Version		  9.0
   SavedCharacterEncoding  "UTF-8"
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
   DiagnosticSuppressor	  "on"
-  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 8 0"
+  CustomCodeFunctionData  ""
   SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
@@ -14,7 +15,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "glnxa64"
+  LastSavedArchitecture	  "win64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -24,7 +25,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1920.0, 27.0, 1920.0, 1053.0]
+      Location		      [368.0, 349.0, 1724.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -33,7 +34,7 @@ Library {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -47,10 +48,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"77"
-	Extents			[1687.0, 876.0]
-	ZoomFactor		[0.8]
-	Offset			[-20.333333333333258, 114.08333333333348]
+	LoadSaveID		"3"
+	Extents			[2313.0, 1227.0]
+	ZoomFactor		[1.5]
+	Offset			[0.0, 0.0]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -63,17 +64,17 @@ Library {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[640]
-	Height			[480]
+	Width			[426]
+	Height			[320]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADqvwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFGfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA6oAAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABRkAAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAa9AAADqgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAlBAAAFGQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
+      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
@@ -82,12 +83,11 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "wesley"
+  LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 13 10:19:14 2018"
-  RTWModifiedTimeStamp	  445515531
-  ModelVersionFormat	  "1.%<AutoIncrement:283>"
-  ConfigurationManager	  "none"
+  LastModifiedDate	  "Tue Apr 17 20:34:11 2018"
+  RTWModifiedTimeStamp	  445898045
+  ModelVersionFormat	  "1.%<AutoIncrement:284>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -115,6 +115,7 @@ Library {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
+  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
@@ -159,7 +160,7 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      7
-      Version		      "1.17.0"
+      Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -167,7 +168,7 @@ Library {
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  8
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -175,7 +176,6 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
-	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -187,7 +187,6 @@ Library {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
-	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
@@ -204,10 +203,11 @@ Library {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
+	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  9
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -248,7 +248,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  10
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -306,10 +306,11 @@ Library {
 	  OptimizeBlockOrder	  "off"
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
+	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  11
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -348,6 +349,7 @@ Library {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
+	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -389,6 +391,7 @@ Library {
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
+	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -415,11 +418,14 @@ Library {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
+	  RCSCRenamedMsg	  "warning"
+	  RCSCObservableMsg	  "warning"
+	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  12
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -467,7 +473,7 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  13
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -486,7 +492,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  14
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -516,7 +522,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  15
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -567,6 +573,7 @@ Library {
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
 	  CustomLAPACKCallback	  ""
+	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -602,7 +609,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      16
-	      Version		      "1.17.0"
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -642,18 +649,16 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
-	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
-	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
-	      IncDataTypeInIds	      off
 	      MangleLength	      1
+	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -677,6 +682,7 @@ Library {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
+	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -689,7 +695,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      17
-	      Version		      "1.17.0"
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
 		Dimension		17
@@ -736,7 +742,6 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
-	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -766,6 +771,9 @@ Library {
 	      CoderGroups	      []
 	      AccessMethods	      []
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
+	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
+	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
+	      ArrayLayout	      "Column-major"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -787,7 +795,7 @@ Library {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  18
-	  Version		  "1.17.0"
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -859,7 +867,12 @@ Library {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
+    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
+    AnnotationType	    "note_annotation"
+    FixedHeight		    off
+    FixedWidth		    off
+    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -904,6 +917,24 @@ Library {
       PreserveConstantTs      off
     }
     Block {
+      BlockType		      Delay
+      DelayLengthSource	      "Dialog"
+      DelayLength	      "2"
+      DelayLengthUpperLimit   "100"
+      InitialConditionSource  "Dialog"
+      InitialCondition	      "0.0"
+      ExternalReset	      "None"
+      ShowEnablePort	      off
+      PreventDirectFeedthrough off
+      DiagnosticForDelayLength "None"
+      RemoveDelayLengthCheckInGeneratedCode off
+      InputProcessing	      "Elements as channels (sample based)"
+      UseCircularBuffer	      off
+      SampleTime	      "-1"
+      StateMustResolveToSignalObject off
+      CodeGenStateStorageClass "Auto"
+    }
+    Block {
       BlockType		      DiscreteIntegrator
       IntegratorMethod	      "Integration: Forward Euler"
       gainval		      "1.0"
@@ -933,7 +964,7 @@ Library {
       B			      "1"
       C			      "1"
       D			      "1"
-      X0		      "0"
+      InitialCondition	      "0"
       SampleTime	      "1"
       StateMustResolveToSignalObject off
       RTWStateStorageClass    "Auto"
@@ -1021,6 +1052,9 @@ Library {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
+      OutputWhenUnConnected   off
+      OutputWhenUnconnectedValue "0"
+      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Scope
@@ -1061,10 +1095,12 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
+      AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
+      IsObserver	      off
     }
     Block {
       BlockType		      Sum
@@ -1107,7 +1143,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "607"
+    SIDHighWatermark	    "608"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -1120,8 +1156,8 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[1920, 27, 3840, 1080]
-	Open			off
+	Location		[368, 349, 2092, 1326]
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -3513,10 +3549,8 @@ Library {
 	    Annotation {
 	      SID		      "541"
 	      Name		      "<-- This may need further testing"
-	      Position		      [2079, 584, 2225, 601]
+	      Position		      [2079, 584, 2225, 598]
 	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      ZOrder		      -1
@@ -3720,7 +3754,7 @@ Library {
 	  System {
 	    Name		    "PID + FF with inner-loop DOB"
 	    Location		    [1920, 27, 3840, 1080]
-	    Open		    on
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4167,8 +4201,8 @@ Library {
 	  SID			  "54"
 	  Ports			  [2, 1]
 	  Position		  [240, 147, 370, 238]
-	  ZOrder		  523
-	  LibraryVersion	  "*1.270"
+	  ZOrder		  515
+	  LibraryVersion	  "*1.283"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -4232,7 +4266,7 @@ Library {
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
-		Value			"1"
+		Value			"0.1"
 	      }
 	      Object {
 		$ObjectID		87
@@ -4246,7 +4280,7 @@ Library {
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
-		Value			"0"
+		Value			"0.001"
 	      }
 	      Object {
 		$ObjectID		89
@@ -4282,7 +4316,7 @@ Library {
 		}
 		Name			"DOB_enable_switch"
 		Prompt			"DOB"
-		Value			"Off"
+		Value			"On"
 		Callback		"% Toggle all DOB fields\nfields = {  'premult_enable_switch', ...\n            'loadData', ...\n         "
 		"   'modelFname', ...\n            'id_Np', ...\n            'id_Nz', ...\n            'f_c_FF', ...\n            'f_"
 		"c_DOB', ...\n         };\ntoggleMaskFields(gcbh, 'DOB_enable_switch', fields, 'on');\n\n% File load or model generat"
@@ -4301,8 +4335,7 @@ Library {
 		}
 		Name			"premult_enable_switch"
 		Prompt			"Premultiplication"
-		Value			"On"
-		Enabled			"off"
+		Value			"Off"
 	      }
 	      Object {
 		$ObjectID		93
@@ -4310,7 +4343,6 @@ Library {
 		Name			"loadData"
 		Prompt			"Load model/filters from file (see getLinearDOB_fromData)"
 		Value			"off"
-		Enabled			"off"
 		Callback		"if (strcmpi(get(gcbh, 'DOB_enable_switch'), 'on'))\n    toggleMaskFields(gcbh, 'loadData', 'modelFname', "
 		"'on');\n    toggleMaskFields(gcbh, 'loadData', {'button_build_DOB', 'f_c', 'id_Np', 'id_Nz', 'f_c_FF', 'f_c_DOB'}, '"
 		"off');\nend"
@@ -4330,15 +4362,13 @@ Library {
 		Name			"f_c_FF"
 		Prompt			"Premultiplication (model inversion) cutoff frequency [Hz]"
 		Value			"50"
-		Enabled			"off"
 	      }
 	      Object {
 		$ObjectID		96
 		Type			"edit"
 		Name			"f_c_DOB"
 		Prompt			"DOB cutoff frequency [Hz]"
-		Value			"100"
-		Enabled			"off"
+		Value			"80"
 	      }
 	      PropName		      "Parameters"
 	    }
@@ -4455,7 +4485,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp with outer-loop\nDOB and optional prefilter"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [0, 27, 1724, 1004]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
@@ -4549,13 +4579,25 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      Delay
+	      Name		      "Delay"
+	      SID		      "608"
+	      Ports		      [1, 1]
+	      Position		      [728, 460, 762, 500]
+	      ZOrder		      354
+	      BlockRotation	      270
+	      InputPortMap	      "u0"
+	      DelayLength	      "1"
+	      InitialCondition	      "0"
+	    }
+	    Block {
 	      BlockType		      Reference
 	      Name		      "Differential filter"
 	      SID		      "266"
 	      Ports		      [1, 1]
 	      Position		      [1130, 387, 1275, 423]
 	      ZOrder		      334
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4609,7 +4651,7 @@ Library {
 	      ZOrder		      335
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4625,7 +4667,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [615, 547, 710, 583]
 	      ZOrder		      336
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4641,7 +4683,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [505, 332, 600, 368]
 	      ZOrder		      337
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -4825,65 +4867,72 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      1
+	      SrcBlock		      "Delay"
+	      SrcPort		      1
+	      DstBlock		      "Multiport\nSwitch1"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      2
 	      SrcBlock		      "Multiport\nSwitch2"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      2
+	      ZOrder		      3
 	      SrcBlock		      "Zero-Order\nHold1"
 	      SrcPort		      1
 	      Points		      [17, 0]
 	      Branch {
-		ZOrder			3
+		ZOrder			4
 		DstBlock		"LTI System2"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			4
+		ZOrder			5
 		Points			[0, -30]
 		DstBlock		"Multiport\nSwitch2"
 		DstPort			2
 	      }
 	    }
 	    Line {
-	      ZOrder		      5
+	      ZOrder		      6
 	      SrcBlock		      "Zero-Order\nHold2"
 	      SrcPort		      1
 	      Points		      [30, 0]
 	      Branch {
-		ZOrder			6
+		ZOrder			7
 		Labels			[-1, 0]
 		Points			[0, 205]
 		DstBlock		"LTI System1"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			7
+		ZOrder			8
 		Points			[0, -150; 635, 0]
 		Branch {
-		  ZOrder		  8
+		  ZOrder		  9
 		  Points		  [0, -150]
 		  DstBlock		  "Multiport\nSwitch"
 		  DstPort		  2
 		}
 		Branch {
-		  ZOrder		  9
+		  ZOrder		  10
 		  DstBlock		  "Sum"
 		  DstPort		  1
 		}
 	      }
 	    }
 	    Line {
-	      ZOrder		      10
+	      ZOrder		      11
 	      SrcBlock		      "Reference"
 	      SrcPort		      1
 	      DstBlock		      "Zero-Order\nHold1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      11
+	      ZOrder		      12
 	      SrcBlock		      "Ground1"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch"
@@ -4891,7 +4940,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "<LinkPos>"
-	      ZOrder		      12
+	      ZOrder		      13
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector1"
 	      SrcPort		      2
@@ -4900,7 +4949,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "<GearPos>"
-	      ZOrder		      13
+	      ZOrder		      14
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector1"
 	      SrcPort		      1
@@ -4908,7 +4957,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      14
+	      ZOrder		      15
 	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      Points		      [0, -30]
@@ -4917,7 +4966,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "<TorqueFiltered>"
-	      ZOrder		      15
+	      ZOrder		      16
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector1"
 	      SrcPort		      3
@@ -4926,7 +4975,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "motorTorque [Nm]"
-	      ZOrder		      16
+	      ZOrder		      17
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
@@ -4935,7 +4984,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "feed-forward/compensation"
-	      ZOrder		      17
+	      ZOrder		      18
 	      Labels		      [1, 1]
 	      SrcBlock		      "Multiport\nSwitch"
 	      SrcPort		      1
@@ -4945,77 +4994,77 @@ Library {
 	    }
 	    Line {
 	      Name		      "r"
-	      ZOrder		      18
+	      ZOrder		      19
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
 	      Points		      [111, 0]
 	      Branch {
-		ZOrder			19
+		ZOrder			20
 		Labels			[-1, 0]
 		Points			[43, 0]
 		Branch {
-		  ZOrder		  20
+		  ZOrder		  21
 		  Points		  [0, 245]
 		  DstBlock		  "LTI System"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  21
+		  ZOrder		  22
 		  DstBlock		  "Sum"
 		  DstPort		  2
 		}
 	      }
 	      Branch {
-		ZOrder			22
+		ZOrder			23
 		Points			[0, -235]
 		DstBlock		"Multiport\nSwitch"
 		DstPort			3
 	      }
 	    }
 	    Line {
-	      ZOrder		      23
+	      ZOrder		      24
 	      SrcBlock		      "LTI System1"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      24
+	      ZOrder		      25
 	      SrcBlock		      "LTI System"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      25
+	      ZOrder		      26
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
-	      DstBlock		      "Multiport\nSwitch1"
-	      DstPort		      3
+	      DstBlock		      "Delay"
+	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      26
+	      ZOrder		      27
 	      SrcBlock		      "LTI System2"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch2"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      27
+	      ZOrder		      28
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      28
+	      ZOrder		      29
 	      SrcBlock		      "Multiport\nSwitch1"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      29
+	      ZOrder		      30
 	      SrcBlock		      "Ground"
 	      SrcPort		      1
 	      Points		      [10, 0]
@@ -5023,7 +5072,7 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      30
+	      ZOrder		      31
 	      SrcBlock		      "Constant1"
 	      SrcPort		      1
 	      Points		      [40, 0]
@@ -5031,35 +5080,35 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      31
+	      ZOrder		      32
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
 	      DstBlock		      "Multiport\nSwitch2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      32
+	      ZOrder		      33
 	      SrcBlock		      "D"
 	      SrcPort		      1
 	      DstBlock		      "Differential filter"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      33
+	      ZOrder		      34
 	      SrcBlock		      "I"
 	      SrcPort		      1
 	      DstBlock		      "Discrete-Time\nIntegrator"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      34
+	      ZOrder		      35
 	      SrcBlock		      "Discrete-Time\nIntegrator"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      35
+	      ZOrder		      36
 	      SrcBlock		      "P"
 	      SrcPort		      1
 	      Points		      [195, 0]
@@ -5067,7 +5116,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      36
+	      ZOrder		      37
 	      SrcBlock		      "Differential filter"
 	      SrcPort		      1
 	      Points		      [25, 0]
@@ -5075,7 +5124,7 @@ Library {
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      37
+	      ZOrder		      38
 	      SrcBlock		      "Sum4"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
@@ -5083,24 +5132,24 @@ Library {
 	    }
 	    Line {
 	      Name		      "e"
-	      ZOrder		      38
+	      ZOrder		      39
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
 	      Points		      [83, 0]
 	      Branch {
-		ZOrder			39
+		ZOrder			40
 		Points			[0, 85]
 		DstBlock		"D"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			40
+		ZOrder			41
 		DstBlock		"I"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			41
+		ZOrder			42
 		Points			[0, -65]
 		DstBlock		"P"
 		DstPort			1
@@ -5572,10 +5621,8 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Torque Controllers</span></p></body></html>"
-	  Position		  [40, -207, 205, -176]
+	  Position		  [40, -207, 205, -182]
 	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"
@@ -5589,10 +5636,8 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
 	  " style=\" font-size:20px;\">Current Controllers</span></p></body></html>"
-	  Position		  [-250, -207, -80, -176]
+	  Position		  [-250, -207, -80, -182]
 	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.611765, 0.729412, 0.894118]"

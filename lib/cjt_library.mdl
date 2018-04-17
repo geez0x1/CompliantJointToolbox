@@ -1,7 +1,7 @@
 Library {
   Name			  "cjt_library"
   Version		  9.0
-  SavedCharacterEncoding  "windows-1252"
+  SavedCharacterEncoding  "UTF-8"
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
@@ -25,7 +25,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [4473.0, -7.0, 1295.0, 999.0]
+      Location		      [8.0, 8.0, 1295.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -50,18 +50,18 @@ Library {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1669.0, 1254.0]
+	  Extents		  [1670.0, 1222.0]
 	  ZoomFactor		  [1.7499999999999993]
-	  Offset		  [0.0, -8.5265128291212022e-14]
+	  Offset		  [-1.7053025658242404e-13, -5.6843418860808015e-14]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "229:42"
-	  Extents		  [1669.0, 1254.0]
+	  Extents		  [2504.0, 1440.0]
 	  ZoomFactor		  [1.5]
-	  Offset		  [534.11635664682422, -86.437301587301818]
+	  Offset		  [534.1163566468241, -86.437301587301818]
 	}
 	PropName		"EditorsInfo"
       }
@@ -79,11 +79,11 @@ Library {
 	Width			[426]
 	Height			[320]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFOfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFGfwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABTkAAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABRkAAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAa9AAAFOQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAa+AAAFGQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
@@ -95,9 +95,9 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Jörn"
+  LastModifiedBy	  "Jï¿½rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 07 22:28:58 2018"
+  LastModifiedDate	  "Tue Apr 17 19:22:13 2018"
   RTWModifiedTimeStamp	  442352573
   ModelVersionFormat	  "1.%<AutoIncrement:141>"
   SampleTimeColors	  off
@@ -915,7 +915,7 @@ Library {
   }
   System {
     Name		    "cjt_library"
-    Location		    [4473, -7, 5768, 992]
+    Location		    [8, 8, 1303, 985]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
@@ -939,7 +939,7 @@ Library {
       Position		      [255, 34, 360, 116]
       ZOrder		      188
       HideAutomaticName	      off
-      LibraryVersion	      "1.231"
+      LibraryVersion	      "1.283"
       SourceBlock	      "cjt_library_controllers/Controllers"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -965,7 +965,7 @@ Library {
       Position		      [87, 31, 192, 113]
       ZOrder		      192
       HideAutomaticName	      off
-      LibraryVersion	      "1.130"
+      LibraryVersion	      "1.161"
       SourceBlock	      "cjt_library_models/Joint models"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -978,7 +978,7 @@ Library {
       Position		      [87, 169, 192, 251]
       ZOrder		      193
       HideAutomaticName	      off
-      LibraryVersion	      "1.95"
+      LibraryVersion	      "1.108"
       SourceBlock	      "cjt_library_observers/Observers"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
