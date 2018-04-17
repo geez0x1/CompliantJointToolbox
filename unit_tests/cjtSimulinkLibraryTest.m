@@ -91,8 +91,6 @@ function setupOnce(testCase)  % do not change function name
     % joint builder to the search path.
     testCase.('TestData').testJoint = eval(testCase.('TestData').className);
     
-%     addpath('../examples/simulink/') % Add the examples directory
-
 end
 
 function teardownOnce(testCase)  % do not change function name
@@ -101,8 +99,6 @@ function teardownOnce(testCase)  % do not change function name
     close all
     rmpath(testCase.('TestData').JB.buildDir); % Remove the built directory from the search path, then
     testCase.('TestData').JB.purge;            % remove all files created during the tests
-
-%     rmpath('../examples/simulink/') % Remove the examples directory
 
 end
 
