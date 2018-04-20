@@ -19,7 +19,9 @@
 %   jointObj: Joint object
 %   Kp: Inner control loop proportional gain
 %   Ki: Inner control loop integral gain
-%   Kd: Inner control loop derivative gain
+%   Kd: Inner control loop derivative gain - set to -1 for critically
+%       damped poles for the 2nd-order system (see
+%       get_controlled_closed_loop)
 %   N: PID derivative filter
 %   pid_form: Flag that determines whether PID controller is constructed in
 %             product or summation form
