@@ -47,10 +47,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"1"
+	LoadSaveID		"29"
 	Extents			[802.0, 848.0]
-	ZoomFactor		[1.25]
-	Offset			[-20.173015873015572, -45.373015873016016]
+	ZoomFactor		[1.5]
+	Offset			[288.2, -31.933333333333337]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 13 10:19:40 2018"
-  RTWModifiedTimeStamp	  445515577
-  ModelVersionFormat	  "1.%<AutoIncrement:108>"
+  LastModifiedDate	  "Sun Apr 22 20:27:22 2018"
+  RTWModifiedTimeStamp	  446329641
+  ModelVersionFormat	  "1.%<AutoIncrement:109>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1112,7 +1112,7 @@ Library {
       System {
 	Name			"Observers"
 	Location		[8, 35, 848, 1060]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2136,8 +2136,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Linear transfer function DOB"
-	    Location		    [369, 1050, 1209, 2075]
-	    Open		    off
+	    Location		    [8, 35, 848, 1060]
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2149,7 +2149,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
+	    ZoomFactor		    "150"
 	    SIDHighWatermark	    "114"
 	    Block {
 	      BlockType		      Inport
@@ -2225,7 +2225,7 @@ Library {
 	      SourceProductName	      "Control System Toolbox"
 	      SourceProductBaseCode   "CT"
 	      ContentPreviewEnabled   off
-	      sys		      "Q_td_tust"
+	      sys		      "Q_td_d"
 	      IC		      "[]"
 	    }
 	    Block {
@@ -2241,7 +2241,7 @@ Library {
 	      SourceProductName	      "Control System Toolbox"
 	      SourceProductBaseCode   "CT"
 	      ContentPreviewEnabled   off
-	      sys		      "PQ_td_tust"
+	      sys		      "PQ_td_d"
 	      IC		      "[]"
 	    }
 	    Block {
