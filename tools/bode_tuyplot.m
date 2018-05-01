@@ -100,6 +100,12 @@ function [ h, mag_db, phase, freq ] = bode_tuyplot(t, u, y, resample, filter, bo
     mag_db  = mag_db(sIdx:eIdx);
     phase   = phase(sIdx:eIdx);
     
+    % Fix phase offset if requested by removing multiples of 180 deg at the
+    % lowest frequency
+    if (opt.fixPhaseOffset)
+        phase = phase - round(phase(1)/180) * 180;
+    end
+    
     % Resample data using logarithmic frequency space.
     % freq may no longer start at 0 due to the ROI above.
     if (resample)
