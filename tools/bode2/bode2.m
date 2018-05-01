@@ -78,6 +78,12 @@ function [ h, mag_db, phase, freq ] = bode2( P, bodeOpt, opt, varargin )
         freq = omega;
     end
     
+    % Fix phase offset if requested by removing multiples of 180 deg at the
+    % lowest frequency
+    if (opt.fixPhaseOffset)
+        phase = phase - round(phase(1)/180) * 180;
+    end
+    
     % Get figure handle and resize
     hFig = gcf;
     pos = get(hFig, 'Position');

@@ -42,6 +42,7 @@
 
 function [ opt ] = bode2options()
 
+    % General options
     opt                 = struct;
     opt.showTitle       = 1;
     opt.interpreter     = 'tex'; %#ok<*NASGU>
@@ -49,6 +50,7 @@ function [ opt ] = bode2options()
     opt.fig_w           = 600; % Default figure width [px]
     opt.fig_h           = 400; % Default figure height [px]
     opt.legendPos       = 'best'; % See doc on legend()
+    opt.fixPhaseOffset  = 0; % Whether to fix the starting phase by removing multiples of 180 deg
 
     % Default plot colours
     opt.C_R         = [1.0 0.4 0.4];
