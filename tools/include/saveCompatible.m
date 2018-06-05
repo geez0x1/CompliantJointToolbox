@@ -15,6 +15,14 @@ files = { ...
     'examples/simulink/openLoop_inputFromFile.mdl', ...
 };
 
+% Define Simulink versions (uncomment the one to save to)
+%toSimulinkVersion       = '8.4';    % R2014b
+%toSimulinkVersionName   = 'R2014b'; % R2014b
+toSimulinkVersion       = '8.7';    % R2016a
+toSimulinkVersionName   = 'R2016a'; % R2016a
+%toSimulinkVersion       = '8.9';    % R2017a
+%toSimulinkVersionName   = 'R2017a'; % R2017a
+
 % Counter for number of converted files
 j = 0;
 
@@ -32,8 +40,8 @@ for i=1:length(files)
     % release>" for newer versions of MATLAB than the used one..)
     fileInfo = Simulink.MDLInfo(file);
     
-    if (~strcmpi(fileInfo.SimulinkVersion, '8.7'))
-        disp(['Saving library file ''' file ''' to Simulink 8.7 (MATLAB R2016a)...']);
+    if (~strcmpi(fileInfo.SimulinkVersion, toSimulinkVersion))
+        disp(['Saving library file ''' file ''' to Simulink ' toSimulinkVersion ' (MATLAB ' toSimulinkVersionName ')...']);
         
         % Get new filename/path
         [pathstr,name,ext] = fileparts(file);
@@ -45,7 +53,7 @@ for i=1:length(files)
         
         % Load old file and save standardised version to new filename
         load_system(file);
-        Simulink.exportToVersion(name, newFile, 'R2016a_MDL');
+        Simulink.exportToVersion(name, newFile, [toSimulinkVersionName '_MDL']);
         close_system(file);
         
         % Delete old file and move new file into its place
