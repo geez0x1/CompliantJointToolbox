@@ -22,6 +22,7 @@ toSimulinkVersion       = '8.7';    % R2016a
 toSimulinkVersionName   = 'R2016a'; % R2016a
 %toSimulinkVersion       = '8.9';    % R2017a
 %toSimulinkVersionName   = 'R2017a'; % R2017a
+simulinkFileType        = 'MDL';    % Simulink file type (SLX or MDL)
 
 % Counter for number of converted files
 j = 0;
@@ -53,7 +54,7 @@ for i=1:length(files)
         
         % Load old file and save standardised version to new filename
         load_system(file);
-        Simulink.exportToVersion(name, newFile, [toSimulinkVersionName '_MDL']);
+        Simulink.exportToVersion(name, newFile, [toSimulinkVersionName '_' simulinkFileType]);
         close_system(file);
         
         % Delete old file and move new file into its place
