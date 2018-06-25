@@ -50,8 +50,8 @@ Library {
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "4"
 	  Extents		  [1447.0, 840.0]
-	  ZoomFactor		  [1.5]
-	  Offset		  [-484.99999999999994, -90.666666666666686]
+	  ZoomFactor		  [1.75]
+	  Offset		  [-360.13333333333333, -53.552380952381043]
 	}
 	Object {
 	  $ObjectID		  6
@@ -68,8 +68,8 @@ Library {
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "3"
 	  Extents		  [1447.0, 840.0]
-	  ZoomFactor		  [0.79999999999999993]
-	  Offset		  [939.866666666666, -40.049999999999272]
+	  ZoomFactor		  [1.5]
+	  Offset		  [1391.9976190476179, 525.98032896107509]
 	}
 	PropName		"EditorsInfo"
       }
@@ -105,9 +105,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jun 21 09:58:15 2018"
-  RTWModifiedTimeStamp	  451475891
-  ModelVersionFormat	  "1.%<AutoIncrement:163>"
+  LastModifiedDate	  "Mon Jun 25 14:44:06 2018"
+  RTWModifiedTimeStamp	  451838602
+  ModelVersionFormat	  "1.%<AutoIncrement:166>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1187,7 +1187,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"175"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
@@ -2761,7 +2761,13 @@ Library {
 	    "</b>: The various variables and their measurements, with optional delays/noise/quantisation etc. For most outputs"
 	    ", several instances exist. Output variables ending in \"NoNoise\" denote physical quantities, without noise, filt"
 	    "ering, or delays. All other variables are affected by noise and delays (if enabled). Lastly, variables ending in "
-	    "\"Filtered\" are also low-pass filtered, with cut-off frequency set in the mask."
+	    "\"Filtered\" are also low-pass filtered, with cut-off frequency set in the mask.\n\n<b>An important note with reg"
+	    "ards to output variables associated with torque.</b>\nThe \"Torque\" and \"TorqueFiltered\" are computed in the w"
+	    "ay torque is usually sensed by the control system; deflection times spring constant, i.e. only the stiffness cont"
+	    "ribution is considered, as usually the internal damping of the used flexible element (parameter d_gl) is very sma"
+	    "ll. Hence, TorqueFiltered is used by the toolbox controllers as well.\nHowever, as noted before, \"TorqueNoNoise\""
+	    " denotes the physical quantity. This means that it includes the torque produced by internal damping of the elasti"
+	    "c element (parameter d_gl).\n"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
 	    "Build B matrix for nonlinear components\nB_nonlinear = [zeros([size(B,1)-size(I,1),1]); 1./diag(I)];\n\n% Get oth"
 	    "er properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k"
@@ -2870,8 +2876,8 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
-	    SIDHighWatermark	    "1803"
+	    ZoomFactor		    "150"
+	    SIDHighWatermark	    "1806"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -2933,7 +2939,7 @@ Library {
 	      Name		      "Bus\nCreator"
 	      SID		      "3:16"
 	      Ports		      [15, 1]
-	      Position		      [2235, 52, 2240, 858]
+	      Position		      [2235, 32, 2240, 948]
 	      ZOrder		      14
 	      ShowName		      off
 	      Inputs		      "15"
@@ -2982,7 +2988,7 @@ Library {
 	      Name		      "LTI System1"
 	      SID		      "3:19"
 	      Ports		      [1, 1]
-	      Position		      [1835, 382, 1965, 418]
+	      Position		      [1835, 412, 1965, 448]
 	      ZOrder		      157
 	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
@@ -2998,7 +3004,7 @@ Library {
 	      Name		      "LTI System2"
 	      SID		      "3:20"
 	      Ports		      [1, 1]
-	      Position		      [1835, 162, 1965, 198]
+	      Position		      [1835, 172, 1965, 208]
 	      ZOrder		      145
 	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
@@ -3014,7 +3020,7 @@ Library {
 	      Name		      "LTI System3"
 	      SID		      "3:21"
 	      Ports		      [1, 1]
-	      Position		      [1835, 822, 1965, 858]
+	      Position		      [1835, 892, 1965, 928]
 	      ZOrder		      154
 	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
@@ -3030,7 +3036,7 @@ Library {
 	      Name		      "LTI System4"
 	      SID		      "3:22"
 	      Ports		      [1, 1]
-	      Position		      [1835, 602, 1965, 638]
+	      Position		      [1835, 652, 1965, 688]
 	      ZOrder		      200
 	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
@@ -3075,7 +3081,7 @@ Library {
 	      Name		      "Noise2"
 	      SID		      "3:24"
 	      Ports		      [0, 1]
-	      Position		      [1510, 240, 1540, 270]
+	      Position		      [1510, 260, 1540, 290]
 	      ZOrder		      170
 	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
@@ -3093,7 +3099,7 @@ Library {
 	      Name		      "Noise5"
 	      SID		      "3:27"
 	      Ports		      [0, 1]
-	      Position		      [1510, 460, 1540, 490]
+	      Position		      [1510, 500, 1540, 530]
 	      ZOrder		      199
 	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
@@ -3298,7 +3304,7 @@ Library {
 	      Name		      "Quantize1"
 	      SID		      "3:699"
 	      Ports		      [1, 1]
-	      Position		      [1450, 272, 1480, 308]
+	      Position		      [1450, 292, 1480, 328]
 	      ZOrder		      232
 	      RequestExecContextInheritance off
 	      Variant		      off
@@ -3485,7 +3491,7 @@ Library {
 	      Name		      "Quantize2"
 	      SID		      "3:709"
 	      Ports		      [1, 1]
-	      Position		      [1450, 492, 1480, 528]
+	      Position		      [1450, 532, 1480, 568]
 	      ZOrder		      233
 	      RequestExecContextInheritance off
 	      Variant		      off
@@ -3690,7 +3696,7 @@ Library {
 	      Name		      "Sum1"
 	      SID		      "3:30"
 	      Ports		      [2, 1]
-	      Position		      [1660, 720, 1680, 740]
+	      Position		      [1660, 780, 1680, 800]
 	      ZOrder		      152
 	      ShowName		      off
 	      IconShape		      "round"
@@ -3746,7 +3752,7 @@ Library {
 	      Name		      "Sum5"
 	      SID		      "3:35"
 	      Ports		      [2, 1]
-	      Position		      [1550, 280, 1570, 300]
+	      Position		      [1550, 300, 1570, 320]
 	      ZOrder		      169
 	      ShowName		      off
 	      IconShape		      "round"
@@ -3757,10 +3763,42 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Sum
+	      Name		      "Sum6"
+	      SID		      "3:1804"
+	      Ports		      [2, 1]
+	      Position		      [1925, 840, 1945, 860]
+	      ZOrder		      245
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "++|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"TorqueNoNoise"
+	      }
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum7"
+	      SID		      "3:1806"
+	      Ports		      [2, 1]
+	      Position		      [1760, 745, 1780, 765]
+	      ZOrder		      247
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "-+|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
 	      Name		      "Sum8"
 	      SID		      "3:38"
 	      Ports		      [2, 1]
-	      Position		      [1615, 775, 1635, 795]
+	      Position		      [1615, 840, 1635, 860]
 	      ZOrder		      177
 	      ShowName		      off
 	      IconShape		      "round"
@@ -3774,7 +3812,7 @@ Library {
 	      Name		      "Sum9"
 	      SID		      "3:39"
 	      Ports		      [2, 1]
-	      Position		      [1550, 500, 1570, 520]
+	      Position		      [1550, 540, 1570, 560]
 	      ZOrder		      198
 	      ShowName		      off
 	      IconShape		      "round"
@@ -3785,9 +3823,20 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Gain
+	      Name		      "TorsionBarDamping"
+	      SID		      "3:1805"
+	      Position		      [1805, 742, 1895, 768]
+	      ZOrder		      246
+	      Gain		      "d_gl"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
 	      Name		      "TorsionBarStiffness"
 	      SID		      "3:40"
-	      Position		      [1695, 717, 1790, 743]
+	      Position		      [1695, 777, 1790, 803]
 	      ZOrder		      153
 	      Gain		      "k_b"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -3798,16 +3847,12 @@ Library {
 	      BlockType		      Gain
 	      Name		      "TorsionBarStiffness1"
 	      SID		      "3:41"
-	      Position		      [1700, 772, 1790, 798]
+	      Position		      [1700, 837, 1790, 863]
 	      ZOrder		      178
 	      Gain		      "k_b"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
-	      Port {
-		PortNumber		1
-		Name			"TorqueNoNoise"
-	      }
 	    }
 	    Block {
 	      BlockType		      TransportDelay
@@ -3976,7 +4021,7 @@ Library {
 	      Name		      "output_delay10"
 	      SID		      "3:48"
 	      Ports		      [1, 1]
-	      Position		      [2055, 715, 2085, 745]
+	      Position		      [2055, 775, 2085, 805]
 	      ZOrder		      195
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -3990,7 +4035,7 @@ Library {
 	      Name		      "output_delay12"
 	      SID		      "3:50"
 	      Ports		      [1, 1]
-	      Position		      [2055, 825, 2085, 855]
+	      Position		      [2055, 895, 2085, 925]
 	      ZOrder		      197
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -4004,7 +4049,7 @@ Library {
 	      Name		      "output_delay13"
 	      SID		      "3:51"
 	      Ports		      [1, 1]
-	      Position		      [2055, 495, 2085, 525]
+	      Position		      [2055, 535, 2085, 565]
 	      ZOrder		      201
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -4018,7 +4063,7 @@ Library {
 	      Name		      "output_delay14"
 	      SID		      "3:52"
 	      Ports		      [1, 1]
-	      Position		      [2055, 605, 2085, 635]
+	      Position		      [2055, 655, 2085, 685]
 	      ZOrder		      202
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -4032,7 +4077,7 @@ Library {
 	      Name		      "output_delay2"
 	      SID		      "3:53"
 	      Ports		      [1, 1]
-	      Position		      [2055, 165, 2085, 195]
+	      Position		      [2055, 175, 2085, 205]
 	      ZOrder		      187
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -4046,7 +4091,7 @@ Library {
 	      Name		      "output_delay4"
 	      SID		      "3:55"
 	      Ports		      [1, 1]
-	      Position		      [2055, 275, 2085, 305]
+	      Position		      [2055, 295, 2085, 325]
 	      ZOrder		      189
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -4060,7 +4105,7 @@ Library {
 	      Name		      "output_delay6"
 	      SID		      "3:57"
 	      Ports		      [1, 1]
-	      Position		      [2055, 385, 2085, 415]
+	      Position		      [2055, 415, 2085, 445]
 	      ZOrder		      191
 	      ShowName		      off
 	      DelayTime		      "output_delay * jointObj.Ts"
@@ -4074,7 +4119,7 @@ Library {
 	      Name		      "selectGearAngle"
 	      SID		      "3:723"
 	      Ports		      [1, 1]
-	      Position		      [1285, 271, 1325, 309]
+	      Position		      [1285, 351, 1325, 389]
 	      ZOrder		      238
 	      NumberOfDimensions      "2"
 	      InputPortWidth	      "3"
@@ -4091,7 +4136,7 @@ Library {
 	      Name		      "selectGearVelocity"
 	      SID		      "3:725"
 	      Ports		      [1, 1]
-	      Position		      [1285, 436, 1325, 474]
+	      Position		      [1285, 471, 1325, 509]
 	      ZOrder		      240
 	      NumberOfDimensions      "2"
 	      InputPortWidth	      "3"
@@ -4125,7 +4170,7 @@ Library {
 	      Name		      "selectLinkVelocity"
 	      SID		      "3:722"
 	      Ports		      [1, 1]
-	      Position		      [1285, 216, 1325, 254]
+	      Position		      [1285, 231, 1325, 269]
 	      ZOrder		      237
 	      NumberOfDimensions      "2"
 	      InputPortWidth	      "3"
@@ -4142,7 +4187,7 @@ Library {
 	      Name		      "selectMotorAngle"
 	      SID		      "3:726"
 	      Ports		      [1, 1]
-	      Position		      [1285, 491, 1325, 529]
+	      Position		      [1285, 591, 1325, 629]
 	      ZOrder		      241
 	      NumberOfDimensions      "2"
 	      InputPortWidth	      "3"
@@ -4159,7 +4204,7 @@ Library {
 	      Name		      "selectMotorVelocity"
 	      SID		      "3:727"
 	      Ports		      [1, 1]
-	      Position		      [1285, 656, 1325, 694]
+	      Position		      [1285, 711, 1325, 749]
 	      ZOrder		      242
 	      NumberOfDimensions      "2"
 	      InputPortWidth	      "3"
@@ -4193,7 +4238,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "jointBus"
 	      SID		      "3:67"
-	      Position		      [2320, 448, 2350, 462]
+	      Position		      [2315, 483, 2345, 497]
 	      ZOrder		      159
 	      IconDisplay	      "Port number"
 	    }
@@ -4254,11 +4299,11 @@ Library {
 	      SrcPort		      1
 	      Points		      [72, 0]
 	      Branch {
-		ZOrder			10
+		ZOrder			160
 		Points			[144, 0]
 		Branch {
 		  ZOrder		  11
-		  Points		  [0, 110]
+		  Points		  [0, 120]
 		  DstBlock		  "LTI System1"
 		  DstPort		  1
 		}
@@ -4270,7 +4315,7 @@ Library {
 	      }
 	      Branch {
 		ZOrder			13
-		Points			[0, 440]
+		Points			[0, 480]
 		DstBlock		"Sum1"
 		DstPort			2
 	      }
@@ -4285,7 +4330,7 @@ Library {
 		Points			[119, 0]
 		Branch {
 		  ZOrder		  16
-		  Points		  [0, 110]
+		  Points		  [0, 120]
 		  DstBlock		  "LTI System2"
 		  DstPort		  1
 		}
@@ -4398,46 +4443,50 @@ Library {
 	      SrcPort		      1
 	      Points		      [140, 0]
 	      Branch {
-		ZOrder			36
-		DstBlock		"selectGearVelocity"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			37
-		Points			[0, -165]
+		ZOrder			156
+		Points			[0, 35]
 		Branch {
-		  ZOrder		  38
-		  DstBlock		  "selectGearAngle"
+		  ZOrder		  36
+		  DstBlock		  "selectGearVelocity"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  39
-		  Points		  [0, -55]
+		  ZOrder		  42
+		  Points		  [0, 120]
+		  Branch {
+		    ZOrder		    43
+		    Points		    [0, 120]
+		    DstBlock		    "selectMotorVelocity"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    44
+		    DstBlock		    "selectMotorAngle"
+		    DstPort		    1
+		  }
+		}
+	      }
+	      Branch {
+		ZOrder			37
+		Points			[0, -85]
+		Branch {
+		  ZOrder		  165
+		  Points		  [0, -120]
+		  Branch {
+		    ZOrder		    163
+		    Points		    [0, -180]
+		    DstBlock		    "selectLinkAngle"
+		    DstPort		    1
+		  }
 		  Branch {
 		    ZOrder		    40
 		    DstBlock		    "selectLinkVelocity"
 		    DstPort		    1
 		  }
-		  Branch {
-		    ZOrder		    41
-		    Points		    [0, -165]
-		    DstBlock		    "selectLinkAngle"
-		    DstPort		    1
-		  }
-		}
-	      }
-	      Branch {
-		ZOrder			42
-		Points			[0, 55]
-		Branch {
-		  ZOrder		  43
-		  Points		  [0, 165]
-		  DstBlock		  "selectMotorVelocity"
-		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  44
-		  DstBlock		  "selectMotorAngle"
+		  ZOrder		  38
+		  DstBlock		  "selectGearAngle"
 		  DstPort		  1
 		}
 	      }
@@ -4479,17 +4528,17 @@ Library {
 	      }
 	      Branch {
 		ZOrder			86
-		Points			[0, 55; 209, 0]
+		Points			[0, 60; 209, 0]
+		Branch {
+		  ZOrder		  151
+		  DstBlock		  "Sum8"
+		  DstPort		  1
+		}
 		Branch {
 		  ZOrder		  94
 		  Labels		  [-1, 0]
 		  DstBlock		  "Bus\nCreator"
 		  DstPort		  2
-		}
-		Branch {
-		  ZOrder		  88
-		  DstBlock		  "Sum8"
-		  DstPort		  1
 		}
 	      }
 	    }
@@ -4505,11 +4554,20 @@ Library {
 	    Line {
 	      Name		      "LinkVelNoNoise"
 	      ZOrder		      95
-	      Labels		      [-1, 0]
 	      SrcBlock		      "selectLinkVelocity"
 	      SrcPort		      1
-	      DstBlock		      "Bus\nCreator"
-	      DstPort		      4
+	      Points		      [440, 0]
+	      Branch {
+		ZOrder			150
+		DstBlock		"Sum7"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			140
+		Labels			[-1, 0]
+		DstBlock		"Bus\nCreator"
+		DstPort			4
+	      }
 	    }
 	    Line {
 	      Name		      "GearPos"
@@ -4527,25 +4585,26 @@ Library {
 	      SrcPort		      1
 	      Points		      [87, 0]
 	      Branch {
+		ZOrder			164
+		Points			[0, -60]
+		DstBlock		"Quantize1"
+		DstPort			1
+	      }
+	      Branch {
 		ZOrder			80
-		Points			[0, 55; 184, 0]
+		Points			[184, 0]
+		Branch {
+		  ZOrder		  161
+		  Points		  [0, 480]
+		  DstBlock		  "Sum8"
+		  DstPort		  2
+		}
 		Branch {
 		  ZOrder		  96
 		  Labels		  [-1, 0]
 		  DstBlock		  "Bus\nCreator"
 		  DstPort		  6
 		}
-		Branch {
-		  ZOrder		  82
-		  Points		  [0, 440]
-		  DstBlock		  "Sum8"
-		  DstPort		  2
-		}
-	      }
-	      Branch {
-		ZOrder			83
-		DstBlock		"Quantize1"
-		DstPort			1
 	      }
 	    }
 	    Line {
@@ -4560,11 +4619,21 @@ Library {
 	    Line {
 	      Name		      "GearVelNoNoise"
 	      ZOrder		      97
-	      Labels		      [-1, 0]
 	      SrcBlock		      "selectGearVelocity"
 	      SrcPort		      1
-	      DstBlock		      "Bus\nCreator"
-	      DstPort		      8
+	      Points		      [408, 0]
+	      Branch {
+		ZOrder			155
+		Labels			[-1, 0]
+		DstBlock		"Bus\nCreator"
+		DstPort			8
+	      }
+	      Branch {
+		ZOrder			138
+		Points			[0, 265]
+		DstBlock		"Sum7"
+		DstPort			2
+	      }
 	    }
 	    Line {
 	      Name		      "MotorPosNoNoise"
@@ -4573,16 +4642,16 @@ Library {
 	      SrcPort		      1
 	      Points		      [87, 0]
 	      Branch {
-		ZOrder			98
-		Labels			[-1, 0]
-		Points			[0, 55]
-		DstBlock		"Bus\nCreator"
-		DstPort			10
-	      }
-	      Branch {
-		ZOrder			78
+		ZOrder			166
+		Points			[0, -60]
 		DstBlock		"Quantize2"
 		DstPort			1
+	      }
+	      Branch {
+		ZOrder			98
+		Labels			[-1, 0]
+		DstBlock		"Bus\nCreator"
+		DstPort			10
 	      }
 	    }
 	    Line {
@@ -4605,9 +4674,9 @@ Library {
 	    }
 	    Line {
 	      Name		      "TorqueNoNoise"
-	      ZOrder		      100
+	      ZOrder		      133
 	      Labels		      [-1, 0]
-	      SrcBlock		      "TorsionBarStiffness1"
+	      SrcBlock		      "Sum6"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      14
@@ -4660,8 +4729,8 @@ Library {
 	      SrcPort		      1
 	      Points		      [218, 0]
 	      Branch {
-		ZOrder			65
-		Points			[0, 110]
+		ZOrder			152
+		Points			[0, 120]
 		DstBlock		"LTI System4"
 		DstPort			1
 	      }
@@ -4715,7 +4784,7 @@ Library {
 	      }
 	      Branch {
 		ZOrder			75
-		Points			[0, 110]
+		Points			[0, 120]
 		DstBlock		"LTI System3"
 		DstPort			1
 	      }
@@ -4755,6 +4824,28 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      134
+	      SrcBlock		      "TorsionBarStiffness1"
+	      SrcPort		      1
+	      DstBlock		      "Sum6"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      135
+	      SrcBlock		      "TorsionBarDamping"
+	      SrcPort		      1
+	      Points		      [35, 0]
+	      DstBlock		      "Sum6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      136
+	      SrcBlock		      "Sum7"
+	      SrcPort		      1
+	      DstBlock		      "TorsionBarDamping"
+	      DstPort		      1
 	    }
 	  }
 	}
