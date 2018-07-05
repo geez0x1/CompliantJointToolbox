@@ -27,7 +27,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % The text in the following line defines the display name for this Example
-% #! A Test Simulink Example
+% #! 06: PD control with feed-forward action and open loop DOB
 
 dispText = ...
 {'-----'
