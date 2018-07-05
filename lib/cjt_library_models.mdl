@@ -1,12 +1,13 @@
 Library {
   Name			  "cjt_library_models"
-  Version		  8.9
+  Version		  9.0
   SavedCharacterEncoding  "UTF-8"
   LogicAnalyzerGraphicalSettings ""
   LogicAnalyzerPlugin	  "on"
   LogicAnalyzerSignalOrdering ""
   DiagnosticSuppressor	  "on"
-  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 8 0"
+  CustomCodeFunctionData  ""
   SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
@@ -14,7 +15,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "glnxa64"
+  LastSavedArchitecture	  "win64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -41,41 +42,20 @@ Library {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Array {
-	Type			"Simulink.EditorInfo"
-	Dimension		3
-	Object {
-	  $ObjectID		  5
-	  IsActive		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "4"
-	  Extents		  [1447.0, 840.0]
-	  ZoomFactor		  [1.75]
-	  Offset		  [-360.13333333333333, -53.552380952381043]
-	}
-	Object {
-	  $ObjectID		  6
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "68"
-	  Extents		  [1447.0, 896.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [-82.949999999999818, -204.2833333333333]
-	}
-	Object {
-	  $ObjectID		  7
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "3"
-	  Extents		  [1447.0, 840.0]
-	  ZoomFactor		  [1.5]
-	  Offset		  [1391.9976190476179, 525.98032896107509]
-	}
-	PropName		"EditorsInfo"
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"4"
+	Extents			[2247.0, 1296.0]
+	ZoomFactor		[1.75]
+	Offset			[-360.13333333333333, -53.552380952381043]
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		8
+	$ObjectID		6
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -84,17 +64,17 @@ Library {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[640]
-	Height			[480]
+	Width			[426]
+	Height			[320]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADjPwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAFXvwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA4wAAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAATAAABV4AAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADjAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAj/AAAFXgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
+      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
@@ -103,12 +83,11 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "wesley"
+  LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jun 25 14:44:06 2018"
-  RTWModifiedTimeStamp	  451838602
-  ModelVersionFormat	  "1.%<AutoIncrement:166>"
-  ConfigurationManager	  "none"
+  LastModifiedDate	  "Thu Jul 05 10:26:49 2018"
+  RTWModifiedTimeStamp	  452687205
+  ModelVersionFormat	  "1.%<AutoIncrement:167>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -136,6 +115,7 @@ Library {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
+  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
@@ -179,16 +159,16 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      9
-      Version		      "1.17.0"
+      $ObjectID		      7
+      Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  10
-	  Version		  "1.17.0"
+	  $ObjectID		  8
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -196,7 +176,6 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
-	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -208,7 +187,6 @@ Library {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
-	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
@@ -225,10 +203,11 @@ Library {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
+	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  11
-	  Version		  "1.17.0"
+	  $ObjectID		  9
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -268,8 +247,8 @@ Library {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  12
-	  Version		  "1.17.0"
+	  $ObjectID		  10
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -327,10 +306,11 @@ Library {
 	  OptimizeBlockOrder	  "off"
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
+	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  13
-	  Version		  "1.17.0"
+	  $ObjectID		  11
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -369,6 +349,7 @@ Library {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
+	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -410,6 +391,7 @@ Library {
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
+	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "None"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -436,11 +418,14 @@ Library {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
+	  RCSCRenamedMsg	  "warning"
+	  RCSCObservableMsg	  "warning"
+	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  14
-	  Version		  "1.17.0"
+	  $ObjectID		  12
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -487,8 +472,8 @@ Library {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  15
-	  Version		  "1.17.0"
+	  $ObjectID		  13
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -506,8 +491,8 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  16
-	  Version		  "1.17.0"
+	  $ObjectID		  14
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -536,8 +521,8 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  17
-	  Version		  "1.17.0"
+	  $ObjectID		  15
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -588,6 +573,7 @@ Library {
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
 	  CustomLAPACKCallback	  ""
+	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -622,8 +608,8 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      18
-	      Version		      "1.17.0"
+	      $ObjectID		      16
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -663,18 +649,16 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
-	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
-	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
-	      IncDataTypeInIds	      off
 	      MangleLength	      1
+	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -698,6 +682,7 @@ Library {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
+	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -709,8 +694,8 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      19
-	      Version		      "1.17.0"
+	      $ObjectID		      17
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
 		Dimension		17
@@ -757,7 +742,6 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
-	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -787,6 +771,9 @@ Library {
 	      CoderGroups	      []
 	      AccessMethods	      []
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
+	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
+	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
+	      ArrayLayout	      "Column-major"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -807,8 +794,8 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  20
-	  Version		  "1.17.0"
+	  $ObjectID		  18
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -880,7 +867,12 @@ Library {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
+    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
+    AnnotationType	    "note_annotation"
+    FixedHeight		    off
+    FixedWidth		    off
+    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -1029,6 +1021,9 @@ Library {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
+      OutputWhenUnConnected   off
+      OutputWhenUnconnectedValue "0"
+      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Quantizer
@@ -1096,10 +1091,12 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
+      AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
+      IsObserver	      off
     }
     Block {
       BlockType		      Sum
@@ -1200,7 +1197,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    21
+	    $ObjectID		    19
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "JointElectricalSubsystem"
 	    Description		    "This block implements the classical single-phase electrical dynamics model.\n\nFor more informa"
@@ -1219,21 +1216,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
 	      Object {
-		$ObjectID		22
+		$ObjectID		20
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		23
+		$ObjectID		21
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Input Delay (num samples of Ts_elec)"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		24
+		$ObjectID		22
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize input"
@@ -1241,7 +1238,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		25
+		$ObjectID		23
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
@@ -1249,7 +1246,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		26
+		$ObjectID		24
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -1257,7 +1254,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		27
+		$ObjectID		25
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input Noise Variance"
@@ -1270,11 +1267,11 @@ Library {
 	      Type		      "Simulink.dialog.Group"
 	      Dimension		      2
 	      Object {
-		$ObjectID		28
+		$ObjectID		26
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  29
+		  $ObjectID		  27
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -1282,38 +1279,38 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		30
+		$ObjectID		28
 		Prompt			"Parameters"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  6
 		  Object {
-		    $ObjectID		    31
+		    $ObjectID		    29
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "jointObj"
 		  }
 		  Object {
-		    $ObjectID		    32
+		    $ObjectID		    30
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "input_delay"
 		  }
 		  Object {
-		    $ObjectID		    33
+		    $ObjectID		    31
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "quantize"
 		  }
 		  Object {
-		    $ObjectID		    34
+		    $ObjectID		    32
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "quantize_bits"
 		  }
 		  Object {
-		    $ObjectID		    35
+		    $ObjectID		    33
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "input_noise_enabled"
 		  }
 		  Object {
-		    $ObjectID		    36
+		    $ObjectID		    34
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "var_u"
 		  }
@@ -1327,7 +1324,7 @@ Library {
 	  System {
 	    Name		    "JointElectricalSubsystem"
 	    Location		    [0, 27, 1680, 1050]
-	    Open		    on
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1960,7 +1957,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    37
+	    $ObjectID		    35
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "JointElectricalSubsystem with d-q axes"
 	    Description		    "This block implements the 2-phase electrical model in rotating reference frame (d-q), for Surfa"
@@ -1981,21 +1978,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
 	      Object {
-		$ObjectID		38
+		$ObjectID		36
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		39
+		$ObjectID		37
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Input Delay (num samples of Ts_elec)"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		40
+		$ObjectID		38
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize input"
@@ -2003,7 +2000,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		41
+		$ObjectID		39
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
@@ -2011,7 +2008,7 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		42
+		$ObjectID		40
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -2019,7 +2016,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		43
+		$ObjectID		41
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input Noise Variance"
@@ -2032,11 +2029,11 @@ Library {
 	      Type		      "Simulink.dialog.Group"
 	      Dimension		      2
 	      Object {
-		$ObjectID		44
+		$ObjectID		42
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  45
+		  $ObjectID		  43
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -2044,38 +2041,38 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		46
+		$ObjectID		44
 		Prompt			"Parameters"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  6
 		  Object {
-		    $ObjectID		    47
+		    $ObjectID		    45
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "jointObj"
 		  }
 		  Object {
-		    $ObjectID		    48
+		    $ObjectID		    46
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "input_delay"
 		  }
 		  Object {
-		    $ObjectID		    49
+		    $ObjectID		    47
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "quantize"
 		  }
 		  Object {
-		    $ObjectID		    50
+		    $ObjectID		    48
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "quantize_bits"
 		  }
 		  Object {
-		    $ObjectID		    51
+		    $ObjectID		    49
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "input_noise_enabled"
 		  }
 		  Object {
-		    $ObjectID		    52
+		    $ObjectID		    50
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "var_u"
 		  }
@@ -2211,7 +2208,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"40"
+		SIDHighWatermark	"43"
 		Block {
 		  BlockType		  Inport
 		  Name			  "params"
@@ -2241,20 +2238,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "131::20"
+		  SID			  "131::42"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  11
+		  ZOrder		  17
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "131::19"
+		  SID			  "131::41"
 		  Tag			  "Stateflow S-Function cjt_library_models 1"
 		  Ports			  [3, 3]
 		  Position		  [180, 100, 230, 180]
-		  ZOrder		  10
+		  ZOrder		  16
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 3]"
 		  SFunctionDeploymentMode off
@@ -2272,9 +2269,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "131::21"
+		  SID			  "131::43"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  12
+		  ZOrder		  18
 		}
 		Block {
 		  BlockType		  Outport
@@ -2294,21 +2291,21 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  34
+		  ZOrder		  41
 		  SrcBlock		  "params"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  35
+		  ZOrder		  42
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  36
+		  ZOrder		  43
 		  SrcBlock		  "u"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2316,7 +2313,7 @@ Library {
 		}
 		Line {
 		  Name			  "x_dot"
-		  ZOrder		  37
+		  ZOrder		  44
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2325,7 +2322,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau_m"
-		  ZOrder		  38
+		  ZOrder		  45
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2333,14 +2330,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  39
+		  ZOrder		  46
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  40
+		  ZOrder		  47
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2738,15 +2735,15 @@ Library {
 	  SID			  "3"
 	  Ports			  [2, 1]
 	  Position		  [70, 148, 270, 197]
-	  ZOrder		  451
-	  LibraryVersion	  "1.109"
+	  ZOrder		  222
+	  LibraryVersion	  "*1.166"
 	  ModelCloseFcn		  "sfsave"
 	  DestroyFcn		  "sfsave"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    53
+	    $ObjectID		    51
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "jointMechanicalSubsystem"
 	    Description		    "This block implements the mechanical dynamics of the actuator.\n\nFor more information, see the"
@@ -2771,50 +2768,50 @@ Library {
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();\n\n% "
 	    "Build B matrix for nonlinear components\nB_nonlinear = [zeros([size(B,1)-size(I,1),1]); 1./diag(I)];\n\n% Get oth"
 	    "er properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k"
-	    "_t;\nn       = jointObj.n;\n\n% Handle MATLAB function block\nhandleMatlabFunctionBlock(gcb, jointObj);\n\n% If n"
-	    "oise is disabled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\nif (output_n"
-	    "oise_enabled == 0)\n	var_y = 0;\nend"
+	    "_t;\nn       = jointObj.n;\nd_gl    = jointObj.d_gl;\n\n% Handle MATLAB function block\nhandleMatlabFunctionBlock"
+	    "(gcb, jointObj);\n\n% If noise is disabled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var"
+	    "_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0;\nend"
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      11
 	      Object {
-		$ObjectID		54
+		$ObjectID		52
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		55
+		$ObjectID		53
 		Type			"edit"
 		Name			"fc_vel"
 		Prompt			"Velocity filter cut-off frequency [Hz]"
-		Value			"200"
+		Value			"1000"
 	      }
 	      Object {
-		$ObjectID		56
+		$ObjectID		54
 		Type			"edit"
 		Name			"fc_torque"
 		Prompt			"Torque filter cut-off frequency [Hz]"
-		Value			"200"
+		Value			"1000"
 	      }
 	      Object {
-		$ObjectID		57
+		$ObjectID		55
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Motor torque input delay (num samples of Ts)"
-		Value			"1"
+		Value			"0"
 	      }
 	      Object {
-		$ObjectID		58
+		$ObjectID		56
 		Type			"edit"
 		Name			"output_delay"
 		Prompt			"Output delay (num samples of Ts)"
 		Value			"1"
 	      }
 	      Object {
-		$ObjectID		59
+		$ObjectID		57
 		Type			"checkbox"
 		Name			"quantize"
 		Prompt			"Quantize measurements"
@@ -2822,14 +2819,14 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'quantize', 'quantize_bits');"
 	      }
 	      Object {
-		$ObjectID		60
+		$ObjectID		58
 		Type			"edit"
 		Name			"quantize_bits"
 		Prompt			"Quantization bits"
 		Value			"19"
 	      }
 	      Object {
-		$ObjectID		61
+		$ObjectID		59
 		Type			"checkbox"
 		Name			"input_noise_enabled"
 		Prompt			"Enable input noise"
@@ -2837,7 +2834,7 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'input_noise_enabled', 'var_u');"
 	      }
 	      Object {
-		$ObjectID		62
+		$ObjectID		60
 		Type			"checkbox"
 		Name			"output_noise_enabled"
 		Prompt			"Enable measurement noise"
@@ -2845,14 +2842,14 @@ Library {
 		Callback		"toggleMaskFields(gcbh, 'output_noise_enabled', 'var_y');"
 	      }
 	      Object {
-		$ObjectID		63
+		$ObjectID		61
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
 		Value			"0.12^2"
 	      }
 	      Object {
-		$ObjectID		64
+		$ObjectID		62
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -2863,8 +2860,8 @@ Library {
 	  }
 	  System {
 	    Name		    "JointMechanicalSubsystem"
-	    Location		    [0, 27, 1680, 1050]
-	    Open		    on
+	    Location		    [2553, -7, 4248, 1018]
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2876,8 +2873,8 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
-	    SIDHighWatermark	    "1806"
+	    ZoomFactor		    "100"
+	    SIDHighWatermark	    "1886"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -2990,7 +2987,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 412, 1965, 448]
 	      ZOrder		      157
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -3006,7 +3003,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 172, 1965, 208]
 	      ZOrder		      145
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -3022,7 +3019,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 892, 1965, 928]
 	      ZOrder		      154
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -3038,7 +3035,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 652, 1965, 688]
 	      ZOrder		      200
-	      LibraryVersion	      "1.224"
+	      LibraryVersion	      "1.338"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -3065,7 +3062,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 20, 1540, 50]
 	      ZOrder		      167
-	      LibraryVersion	      "1.391"
+	      LibraryVersion	      "1.401"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -3083,7 +3080,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 260, 1540, 290]
 	      ZOrder		      170
-	      LibraryVersion	      "1.391"
+	      LibraryVersion	      "1.401"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -3101,7 +3098,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 500, 1540, 530]
 	      ZOrder		      199
-	      LibraryVersion	      "1.391"
+	      LibraryVersion	      "1.401"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -3867,12 +3864,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "nonLinDynamicsFcn"
-	      SID		      "3:978"
+	      SID		      "3:1886"
 	      Ports		      [1, 1]
 	      Position		      [630, 312, 700, 358]
-	      ZOrder		      244
+	      ZOrder		      248
 	      BlockMirror	      on
-	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
@@ -3895,11 +3891,11 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"77"
+		SIDHighWatermark	"24"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
-		  SID			  "3:978::1"
+		  SID			  "3:1886::1"
 		  Position		  [20, 101, 40, 119]
 		  ZOrder		  -1
 		  IconDisplay		  "Port number"
@@ -3907,20 +3903,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "3:978::51"
+		  SID			  "3:1886::23"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  17
+		  ZOrder		  14
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "3:978::50"
+		  SID			  "3:1886::22"
 		  Tag			  "Stateflow S-Function cjt_library_models 2"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  16
+		  ZOrder		  13
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
 		  SFunctionDeploymentMode off
@@ -3934,21 +3930,21 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "3:978::52"
+		  SID			  "3:1886::24"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  18
+		  ZOrder		  15
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "tau"
-		  SID			  "3:978::5"
+		  SID			  "3:1886::5"
 		  Position		  [460, 101, 480, 119]
 		  ZOrder		  -5
 		  IconDisplay		  "Port number"
 		  PortDimensions	  "3"
 		}
 		Line {
-		  ZOrder		  13
+		  ZOrder		  5
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -3956,7 +3952,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau"
-		  ZOrder		  14
+		  ZOrder		  6
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -3964,14 +3960,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  15
+		  ZOrder		  7
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  16
+		  ZOrder		  8
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -4223,7 +4219,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [105, 380, 135, 410]
 	      ZOrder		      172
-	      LibraryVersion	      "1.391"
+	      LibraryVersion	      "1.401"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      SourceProductName	      "Simulink"
@@ -4299,7 +4295,7 @@ Library {
 	      SrcPort		      1
 	      Points		      [72, 0]
 	      Branch {
-		ZOrder			160
+		ZOrder			10
 		Points			[144, 0]
 		Branch {
 		  ZOrder		  11
@@ -4371,7 +4367,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      23
+	      ZOrder		      22
 	      SrcBlock		      "LTI System1"
 	      SrcPort		      1
 	      DstBlock		      "output_delay6"
@@ -4379,7 +4375,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "states_derivative"
-	      ZOrder		      25
+	      ZOrder		      23
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
@@ -4387,21 +4383,21 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      27
+	      ZOrder		      24
 	      SrcBlock		      "LTI System2"
 	      SrcPort		      1
 	      DstBlock		      "output_delay2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      28
+	      ZOrder		      25
 	      SrcBlock		      "motorTorque [Nm]"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      29
+	      ZOrder		      26
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
 	      DstBlock		      "TorsionBarStiffness"
@@ -4409,28 +4405,27 @@ Library {
 	    }
 	    Line {
 	      Name		      "states"
-	      ZOrder		      30
-	      Labels		      [1, 1]
+	      ZOrder		      27
 	      SrcBlock		      "Integrator"
 	      SrcPort		      1
 	      Points		      [10, 0]
 	      Branch {
-		ZOrder			31
+		ZOrder			28
 		Points			[0, -120]
 		DstBlock		"nonLinDynamicsFcn"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			32
-		Labels			[1, 0]
+		ZOrder			29
+		Labels			[1, 1; 1, 0]
 		Points			[70, 0]
 		Branch {
-		  ZOrder		  33
+		  ZOrder		  30
 		  DstBlock		  "C"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  34
+		  ZOrder		  31
 		  Points		  [0, 135]
 		  DstBlock		  "A"
 		  DstPort		  1
@@ -4438,68 +4433,68 @@ Library {
 	      }
 	    }
 	    Line {
-	      ZOrder		      35
+	      ZOrder		      32
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
 	      Points		      [140, 0]
 	      Branch {
-		ZOrder			156
+		ZOrder			33
 		Points			[0, 35]
 		Branch {
-		  ZOrder		  36
+		  ZOrder		  34
 		  DstBlock		  "selectGearVelocity"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  42
+		  ZOrder		  35
 		  Points		  [0, 120]
 		  Branch {
-		    ZOrder		    43
+		    ZOrder		    36
 		    Points		    [0, 120]
 		    DstBlock		    "selectMotorVelocity"
 		    DstPort		    1
 		  }
 		  Branch {
-		    ZOrder		    44
+		    ZOrder		    37
 		    DstBlock		    "selectMotorAngle"
 		    DstPort		    1
 		  }
 		}
 	      }
 	      Branch {
-		ZOrder			37
+		ZOrder			38
 		Points			[0, -85]
 		Branch {
-		  ZOrder		  165
+		  ZOrder		  39
 		  Points		  [0, -120]
 		  Branch {
-		    ZOrder		    163
+		    ZOrder		    40
 		    Points		    [0, -180]
 		    DstBlock		    "selectLinkAngle"
 		    DstPort		    1
 		  }
 		  Branch {
-		    ZOrder		    40
+		    ZOrder		    41
 		    DstBlock		    "selectLinkVelocity"
 		    DstPort		    1
 		  }
 		}
 		Branch {
-		  ZOrder		  38
+		  ZOrder		  42
 		  DstBlock		  "selectGearAngle"
 		  DstPort		  1
 		}
 	      }
 	    }
 	    Line {
-	      ZOrder		      45
+	      ZOrder		      43
 	      SrcBlock		      "B"
 	      SrcPort		      1
 	      DstBlock		      "Sum"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      46
+	      ZOrder		      44
 	      SrcBlock		      "A"
 	      SrcPort		      1
 	      Points		      [-85, 0]
@@ -4508,7 +4503,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "LinkPos"
-	      ZOrder		      47
+	      ZOrder		      45
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay"
 	      SrcPort		      1
@@ -4517,25 +4512,25 @@ Library {
 	    }
 	    Line {
 	      Name		      "LinkPosNoNoise"
-	      ZOrder		      84
+	      ZOrder		      46
 	      SrcBlock		      "selectLinkAngle"
 	      SrcPort		      1
 	      Points		      [86, 0]
 	      Branch {
-		ZOrder			85
+		ZOrder			47
 		DstBlock		"Quantize"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			86
+		ZOrder			48
 		Points			[0, 60; 209, 0]
 		Branch {
-		  ZOrder		  151
+		  ZOrder		  49
 		  DstBlock		  "Sum8"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  94
+		  ZOrder		  50
 		  Labels		  [-1, 0]
 		  DstBlock		  "Bus\nCreator"
 		  DstPort		  2
@@ -4544,7 +4539,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "LinkVelFiltered"
-	      ZOrder		      49
+	      ZOrder		      51
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay2"
 	      SrcPort		      1
@@ -4553,17 +4548,17 @@ Library {
 	    }
 	    Line {
 	      Name		      "LinkVelNoNoise"
-	      ZOrder		      95
+	      ZOrder		      52
 	      SrcBlock		      "selectLinkVelocity"
 	      SrcPort		      1
 	      Points		      [440, 0]
 	      Branch {
-		ZOrder			150
+		ZOrder			53
 		DstBlock		"Sum7"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			140
+		ZOrder			54
 		Labels			[-1, 0]
 		DstBlock		"Bus\nCreator"
 		DstPort			4
@@ -4571,7 +4566,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "GearPos"
-	      ZOrder		      51
+	      ZOrder		      55
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay4"
 	      SrcPort		      1
@@ -4580,27 +4575,27 @@ Library {
 	    }
 	    Line {
 	      Name		      "GearPosNoNoise"
-	      ZOrder		      79
+	      ZOrder		      56
 	      SrcBlock		      "selectGearAngle"
 	      SrcPort		      1
 	      Points		      [87, 0]
 	      Branch {
-		ZOrder			164
+		ZOrder			57
 		Points			[0, -60]
 		DstBlock		"Quantize1"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			80
+		ZOrder			58
 		Points			[184, 0]
 		Branch {
-		  ZOrder		  161
+		  ZOrder		  59
 		  Points		  [0, 480]
 		  DstBlock		  "Sum8"
 		  DstPort		  2
 		}
 		Branch {
-		  ZOrder		  96
+		  ZOrder		  60
 		  Labels		  [-1, 0]
 		  DstBlock		  "Bus\nCreator"
 		  DstPort		  6
@@ -4609,7 +4604,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "GearVelFiltered"
-	      ZOrder		      53
+	      ZOrder		      61
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay6"
 	      SrcPort		      1
@@ -4618,18 +4613,18 @@ Library {
 	    }
 	    Line {
 	      Name		      "GearVelNoNoise"
-	      ZOrder		      97
+	      ZOrder		      62
 	      SrcBlock		      "selectGearVelocity"
 	      SrcPort		      1
 	      Points		      [408, 0]
 	      Branch {
-		ZOrder			155
+		ZOrder			63
 		Labels			[-1, 0]
 		DstBlock		"Bus\nCreator"
 		DstPort			8
 	      }
 	      Branch {
-		ZOrder			138
+		ZOrder			64
 		Points			[0, 265]
 		DstBlock		"Sum7"
 		DstPort			2
@@ -4637,18 +4632,18 @@ Library {
 	    }
 	    Line {
 	      Name		      "MotorPosNoNoise"
-	      ZOrder		      76
+	      ZOrder		      65
 	      SrcBlock		      "selectMotorAngle"
 	      SrcPort		      1
 	      Points		      [87, 0]
 	      Branch {
-		ZOrder			166
+		ZOrder			66
 		Points			[0, -60]
 		DstBlock		"Quantize2"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			98
+		ZOrder			67
 		Labels			[-1, 0]
 		DstBlock		"Bus\nCreator"
 		DstPort			10
@@ -4656,7 +4651,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "MotorVelNoNoise"
-	      ZOrder		      99
+	      ZOrder		      68
 	      Labels		      [-1, 0]
 	      SrcBlock		      "selectMotorVelocity"
 	      SrcPort		      1
@@ -4665,7 +4660,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "Torque"
-	      ZOrder		      57
+	      ZOrder		      69
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay10"
 	      SrcPort		      1
@@ -4674,7 +4669,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "TorqueNoNoise"
-	      ZOrder		      133
+	      ZOrder		      70
 	      Labels		      [-1, 0]
 	      SrcBlock		      "Sum6"
 	      SrcPort		      1
@@ -4683,7 +4678,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "TorqueFiltered"
-	      ZOrder		      59
+	      ZOrder		      71
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay12"
 	      SrcPort		      1
@@ -4691,7 +4686,7 @@ Library {
 	      DstPort		      15
 	    }
 	    Line {
-	      ZOrder		      60
+	      ZOrder		      72
 	      SrcBlock		      "Noise5"
 	      SrcPort		      1
 	      Points		      [15, 0]
@@ -4699,7 +4694,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      61
+	      ZOrder		      73
 	      SrcBlock		      "LTI System4"
 	      SrcPort		      1
 	      DstBlock		      "output_delay14"
@@ -4707,7 +4702,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "MotorPos"
-	      ZOrder		      62
+	      ZOrder		      74
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay13"
 	      SrcPort		      1
@@ -4716,7 +4711,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "MotorVelFiltered"
-	      ZOrder		      63
+	      ZOrder		      75
 	      Labels		      [1, 1]
 	      SrcBlock		      "output_delay14"
 	      SrcPort		      1
@@ -4724,41 +4719,41 @@ Library {
 	      DstPort		      11
 	    }
 	    Line {
-	      ZOrder		      64
+	      ZOrder		      76
 	      SrcBlock		      "Sum9"
 	      SrcPort		      1
 	      Points		      [218, 0]
 	      Branch {
-		ZOrder			152
+		ZOrder			77
 		Points			[0, 120]
 		DstBlock		"LTI System4"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			66
+		ZOrder			78
 		DstBlock		"output_delay13"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      67
+	      ZOrder		      79
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
 	      Points		      [14, 0]
 	      Branch {
-		ZOrder			68
+		ZOrder			80
 		Points			[0, -250]
 		DstBlock		"D"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			69
+		ZOrder			81
 		DstBlock		"B"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      70
+	      ZOrder		      82
 	      SrcBlock		      "tau_e [Nm] or q_l_dot [rad/s]"
 	      SrcPort		      1
 	      Points		      [254, 0; 0, -75]
@@ -4766,52 +4761,52 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      71
+	      ZOrder		      83
 	      SrcBlock		      "LTI System3"
 	      SrcPort		      1
 	      DstBlock		      "output_delay12"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      73
+	      ZOrder		      84
 	      SrcBlock		      "TorsionBarStiffness"
 	      SrcPort		      1
 	      Points		      [16, 0]
 	      Branch {
-		ZOrder			74
+		ZOrder			85
 		DstBlock		"output_delay10"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			75
+		ZOrder			86
 		Points			[0, 120]
 		DstBlock		"LTI System3"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      89
+	      ZOrder		      87
 	      SrcBlock		      "Quantize"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      90
+	      ZOrder		      88
 	      SrcBlock		      "Quantize1"
 	      SrcPort		      1
 	      DstBlock		      "Sum5"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      91
+	      ZOrder		      89
 	      SrcBlock		      "Quantize2"
 	      SrcPort		      1
 	      DstBlock		      "Sum9"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      92
+	      ZOrder		      90
 	      SrcBlock		      "D"
 	      SrcPort		      1
 	      Points		      [310, 0]
@@ -4819,21 +4814,21 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      93
+	      ZOrder		      91
 	      SrcBlock		      "C"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      134
+	      ZOrder		      92
 	      SrcBlock		      "TorsionBarStiffness1"
 	      SrcPort		      1
 	      DstBlock		      "Sum6"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      135
+	      ZOrder		      93
 	      SrcBlock		      "TorsionBarDamping"
 	      SrcPort		      1
 	      Points		      [35, 0]
@@ -4841,7 +4836,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      136
+	      ZOrder		      94
 	      SrcBlock		      "Sum7"
 	      SrcPort		      1
 	      DstBlock		      "TorsionBarDamping"
@@ -4856,10 +4851,8 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Electrical Models</span></p></body></html>"
-	  Position		  [-251, 59, -99, 90]
+	  Position		  [-251, 59, -98, 84]
 	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
@@ -4873,10 +4866,8 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Mechanical Models</span></p></body></html>"
-	  Position		  [83, 59, 256, 90]
+	  Position		  [83, 59, 256, 84]
 	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
@@ -4889,7 +4880,7 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow 80000011
+#   Stateflow 80000012
 #
 #
 Stateflow {
@@ -4898,7 +4889,7 @@ Stateflow {
     name		    "cjt_library_models"
     created		    "06-Feb-2016 20:55:41"
     isLibrary		    1
-    sfVersion		    80000011
+    sfVersion		    80000012
     firstTarget		    19
   }
   chart {
@@ -5116,6 +5107,8 @@ Stateflow {
     treeNode		    [0 13 0 0]
     viewObj		    12
     toolbarMode		    LIBRARY_TOOLBAR
+    subviewS {
+    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -5143,20 +5136,20 @@ Stateflow {
     eml {
       isEML		      1
       script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;"
-      "\nparams.c_FE = 460.000000;\nparams.diam = 100.000000;\nparams.len = 150.000000;\nparams.m = 2.000000;\nparams.I"
-      "_m = 0.216397;\nparams.I_g = 0.078848;\nparams.I_l = 1.000000;\nparams.k_g = 25000.000000;\nparams.k_b = 5714.00"
-      "0000;\nparams.d_m = 0.221800;\nparams.d_g = 1.996600;\nparams.d_l = 0.000000;\nparams.d_m_n = 0.223700;\nparams."
-      "d_g_n = 2.012900;\nparams.d_l_n = 0.000000;\nparams.d_mg = 300.000000;\nparams.d_gl = 0.000000;\nparams.d_cm = 0"
-      ".353800;\nparams.d_cg = 3.183800;\nparams.d_cl = 0.000000;\nparams.d_cm_n = 0.345500;\nparams.d_cg_n = 3.109200;"
-      "\nparams.d_cl_n = 0.000000;\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.rip_types = [];\nparams.rip_"
-      "a1 = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.3"
-      "18000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 0.000000;\nparams.dq_p"
-      " = 0.000000;\nparams.r_th1 = 0.290000;\nparams.r_th2 = 3.450000;\nparams.T_thw = 3.960000;\nparams.T_thm = 1240."
-      "000000;\nparams.Tmp_WMax = 120.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'CE_Med_output_fixed_rigid_g"
-      "earbox_coulomb_asym';\nparams.paramName = 'CE_Med';\nparams.modelName = 'output_fixed_rigid_gearbox';\nparams.no"
-      "nlinearModelName = 'coulomb_asym';\nparams.electricalModelName = 'electric_dyn_zero_inductance';\nparams.Ts = 0."
-      "001000;\nparams.Ts_elec = 0.000050;\ntau =coulomb_asym(params,x);\n	end\n\n"
-      editorLayout	      "100 M4x1[205 227 1080 733]"
+      "\nparams.c_FE = 460.000000;\nparams.diam = 93.000000;\nparams.len = 163.000000;\nparams.m = 1.450000;\nparams.I_"
+      "m = 0.229997;\nparams.I_g = 0.071680;\nparams.I_l = 0.000114;\nparams.k_g = 16000.000000;\nparams.k_b = 6000.000"
+      "000;\nparams.d_m = 0.003592;\nparams.d_g = 0.384000;\nparams.d_l = 0.000000;\nparams.d_m_n = 0.003592;\nparams.d"
+      "_g_n = 0.384000;\nparams.d_l_n = 0.000000;\nparams.d_mg = 100.000000;\nparams.d_gl = 0.000000;\nparams.d_cm = 2."
+      "640000;\nparams.d_cg = 3.280000;\nparams.d_cl = 0.000000;\nparams.d_cm_n = 2.640000;\nparams.d_cg_n = 3.280000;\n"
+      "params.d_cl_n = 0.000000;\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.rip_types = [];\nparams.rip_a1"
+      " = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.318"
+      "000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 33.900000;\nparams.dq_p "
+      "= 7.728395;\nparams.r_th1 = 3.136441;\nparams.r_th2 = 32.663680;\nparams.T_thw = 98.081750;\nparams.T_thm = 4679"
+      ".965000;\nparams.Tmp_WMax = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint';\nparams.pa"
+      "ramName = 'cjt_Orange_80_6000';\nparams.modelName = 'output_fixed_rigid_gearbox';\nparams.nonlinearModelName = '"
+      "coulomb_asym';\nparams.electricalModelName = 'electric_dyn_zero_inductance';\nparams.Ts = 0.001000;\nparams.Ts_e"
+      "lec = 0.000050;\ntau =coulomb_asym(params,x);\n	end\n\n"
+      editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
   data {
