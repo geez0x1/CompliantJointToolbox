@@ -25,7 +25,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [8.0, 35.0, 840.0, 1025.0]
+      Location		      [2831.0, 53.0, 840.0, 1025.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -50,8 +50,8 @@ Library {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"1"
 	Extents			[1182.0, 1299.0]
-	ZoomFactor		[1.5]
-	Offset			[-12.623809523809598, 26.014285714285734]
+	ZoomFactor		[1.25]
+	Offset			[-3.8301587301587574, -43.388888888888971]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -85,7 +85,7 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 05 11:46:21 2018"
+  LastModifiedDate	  "Thu Jul 05 12:57:56 2018"
   RTWModifiedTimeStamp	  452691953
   ModelVersionFormat	  "1.%<AutoIncrement:115>"
   SampleTimeColors	  off
@@ -1101,7 +1101,7 @@ Library {
       Variant		      off
       System {
 	Name			"Observers"
-	Location		[8, 35, 848, 1060]
+	Location		[2831, 53, 3671, 1078]
 	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
@@ -1114,7 +1114,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Generalized Momentum Based DOB"
@@ -1496,7 +1496,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Kalman observer"
-	    Location		    [-1, -1, 1921, 1081]
+	    Location		    [2831, 53, 3671, 1078]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
@@ -2204,7 +2204,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Luenberger observer"
-	    Location		    [-1, -1, 1921, 1081]
+	    Location		    [2831, 53, 3671, 1078]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
