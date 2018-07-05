@@ -240,6 +240,45 @@ function testExample_09(testCase)
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
+function testExample_10(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_10_Open_Loop_With_Disturbance_Observer_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'to be filled';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+function testExample_11(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_11_Passivity_Based_Control_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'to be filled';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+function testExample_12(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_12_Passivity_Based_Control_Plus_Disturbance_Observer_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'to be filled';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
 % function testFunctionalityTwo(testCase)
 % % Test specific code
 % end
