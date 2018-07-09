@@ -81,13 +81,13 @@ clc;
 jb = jointBuilder;
 jb.overwrite = 1;
 
-motorName = 'dummyMotor';
+motorName = 'cjt_Orange_80_6000';
 dynName = 'full_dyn';
 jb.buildJoint(motorName, dynName);
 addpath(jb.buildDir)
 
 testCase.('TestData').aJoint = eval([motorName,'_',dynName]);
-testCase.('TestData').aJoint.name = 'Dummy Motor';
+testCase.('TestData').aJoint.name = 'CJT Orange';
 
 testCase.('TestData').jb = jb;
 
