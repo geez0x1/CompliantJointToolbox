@@ -80,9 +80,9 @@ function setupOnce(testCase)  % do not change function name
     testCase.('TestData').JB = jointBuilder;
     testCase.('TestData').JB.overwrite = 1; % Overwrite existing model files.
     
-    parName = 'WMBig2300_ds';
+    parName = 'cjt_Orange_80_6000';
     dynName = 'full_dyn';
-    testCase.('TestData').className = ['WMBig2300_ds','_','full_dyn'];%     Instantiate a joint model
+    testCase.('TestData').className = ['cjt_Orange_80_6000','_','full_dyn'];%     Instantiate a joint model
 
     % build a joint class for the test
     testCase.('TestData').JB.buildJoint(parName,...
@@ -126,7 +126,7 @@ function testBuiltJoint(testCase)
     % Test specific code
 
     jObj = testCase.('TestData').testJoint;
-    jObj.Ts = 0.5e-4;
+%     jObj.Ts = 0.5e-4;
 
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
