@@ -32,51 +32,51 @@
 %
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
-params.('n')   = 50;    %% Gear transmission ratio [.]
+params.('n')        =         50;  %% Gear transmission ratio [.]
 % Dimensions
-params.('diam') = 93;         %% Actuator diameter [mm] 
-params.('len') = 150;         %% Actuator length [mm] 
-% Inertiae
-params.('m') = 1.280000e+00;         %% Actuator mass [kg] 
-params.('I_m') = 4.716000e-02;     %% Motor rotor inertia [kg m^2]
-params.('I_g') = 2.800000e-02;     %% Gear inertia [kg m^2]
-params.('I_l') = 1.137000e-04;     %% Torsion bar inertia [kg m^2]
+params.('diam')     =         93;  %% Actuator diameter [mm] 
+params.('len')      =        150;  %% Actuator length [mm] 
+% Inertia
+params.('m')        =      1e+00;  %% Actuator mass [kg] 
+params.('I_m')      =     0.0472;  %% Motor rotor inertia [kg m^2]
+params.('I_g')      =     0.0280;  %% Gear inertia [kg m^2]
+params.('I_l')      =     0.0001;  %% Torsion bar inertia [kg m^2]
 % Stiffnesses
-params.('k_g') = 13000;     %% Gearbox stiffness [Nm/rad]
-params.('k_b') = 6000;     %% Torsion bar stiffness [Nm/rad]
+params.('k_g')      =      13000;  %% Gearbox stiffness [Nm/rad]
+params.('k_b')      =       6000;  %% Torsion bar stiffness [Nm/rad]
 % Linear viscous friction
-params.('d_m') = 5.340708e-04;     %% Motor Damping [Nms/rad]
-params.('d_g') = 1.500000e-01;     %% Gearbox damping [Nms/rad]
-params.('d_l') = 0;     %% Torsion bar damping [Nms/rad]
+params.('d_m')      =     0.0005;  %% Motor Damping [Nms/rad]
+params.('d_g')      =     0.8594;  %% Gearbox damping [Nms/rad]
+params.('d_l')      =     0.0000;  %% Torsion bar damping [Nms/rad]
 % Asymmetric viscous friction
-params.('d_m_n') = 5.340708e-04;  %% Motor Damping - negative direction [Nms/rad]
-params.('d_g_n') = 1.500000e-01;  %% Gearbox Damping - negative direction [Nms/rad]
-params.('d_l_n') = 0;  %% Torsion bar damping - negative direction [Nms/rad]
+params.('d_m_n')    =     0.0005;  %% Motor Damping - negative direction [Nms/rad]
+params.('d_g_n')    =     0.8594;  %% Gearbox Damping - negative direction [Nms/rad]
+params.('d_l_n')    =     0.0000;  %% Torsion bar damping - negative direction [Nms/rad]
 % Linear internal viscous friction
-params.('d_mg')  = 100;  %% Gearbox internal damping [Nms/rad] (not identified)
-params.('d_gl')  = 0;  %% Torsion bar internal damping [Nms/rad] (not identified)
+params.('d_mg')     =   100.0000;  %% Gearbox internal damping [Nms/rad] (not identified)
+params.('d_gl')     =     0.0000;  %% Torsion bar internal damping [Nms/rad] (not identified)
 % Coulomb friction
-params.('d_cm') = 1.050000e+00;   %% Motor Coulomb damping [Nm]
-params.('d_cg') = 3.300000e+00;   %% Gearbox Coulomb damping [Nm]
-params.('d_cl') = 0;   %% Torsion bar Coulomb damping [Nm]
+params.('d_cm')     =     1.0500;  %% Motor Coulomb damping [Nm]
+params.('d_cg')     =     3.3000;  %% Gearbox Coulomb damping [Nm]
+params.('d_cl')     =     0.0000;  %% Torsion bar Coulomb damping [Nm]
 % Asymmetric Coulomb friction
-params.('d_cm_n') = 1.050000e+00;  %% Motor Coulomb damping - negative direction [Nm]
-params.('d_cg_n') = 3.300000e+00;  %% Gearbox Coulomb damping - negative direction [Nm]
-params.('d_cl_n') = 0;  %% Torsion bar Coulomb damping - negative direction [Nm]
+params.('d_cm_n')   =     1.0500;  %% Motor Coulomb damping - negative direction [Nm]
+params.('d_cg_n')   =     3.3000;  %% Gearbox Coulomb damping - negative direction [Nm]
+params.('d_cl_n')   =     0.0000;  %% Torsion bar Coulomb damping - negative direction [Nm]
 % Electrical Properties
-params.('k_t') = 4.900000e-02;     %% Torque constant [Nm/A]
-params.('r') = 3.550000e-01;         %% Armature resistance [Ohm]
-params.('x') = 1.500000e-04;         %% Armature inductance [H]
-params.('p') = 12/2;                     %% Number of pole pairs []
-params.('Ts') = 1.000000e-03;       %% Sampling time [s]
-params.('Ts_elec')  = 5e-5;                 %% Sampling time for electrical system [s]
+params.('k_t')      =     0.0490;  %% Torque constant [Nm/A]
+params.('r')        =     0.3550;  %% Armature resistance [Ohm]
+params.('x')        =     0.0001;  %% Armature inductance [H]
+params.('p')        =     6.0000;  %% Number of pole pairs [.]
+params.('Ts')       =     0.0010;  %% Sampling time [s]
+params.('Ts_elec')  =     0.0001;  %% Sampling time for the electrical subsystem [s]
 % Operating/max conditions
-params.('v_0') = 48;     %% Operating voltage [V]
-params.('i_p') = 2.690000e+01;     %% Peak current [A]
-params.('dq_p') = 1.940752e+01;   %% Max. reachable speed (output) [rad/s]
+params.('v_0')      =         48;  %% Operating voltage [V]
+params.('i_p')      =      3e+01;  %% Peak current [A]
+params.('dq_p')     =    19.4075;  %% Max. reachable speed (output) [rad/s]
 % Thermal parameters
-params.('r_th1') = 3.527326e+00;  %% Thermal Resistance Windings to Housing (theoretical value!)[K/W]
-params.('r_th2') = 3.266368e+01;  %% Thermal Resistance Housing to Air (theoretical value!) [K/W]
-params.('T_thw') = 2.345093e+01;  %% Thermal Time Constant of the Windings  (theoretical value!) [s]
-params.('T_thm') = 3.008549e+03;  %% Thermal Time Constant of the Motor  (theoretical value!) [s]
-params.('Tmp_WMax') = 155;  %% Maximum Armature Temperature [�C]
+params.('r_th1')    =     3.5273;  %% Thermal Resistance Windings to Housing (theoretical value!)[K/W]
+params.('r_th2')    =    32.6637;  %% Thermal Resistance Housing to Air (theoretical value!) [K/W]
+params.('T_thw')    =    23.4509;  %% Thermal Time Constant of the Windings  (theoretical value!) [s]
+params.('T_thm')    =  3008.5492;  %% Thermal Time Constant of the Motor  (theoretical value!) [s]
+params.('Tmp_WMax') =        155;  %% Maximum Armature Temperature [�C]
