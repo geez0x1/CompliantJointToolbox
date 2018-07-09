@@ -81,9 +81,9 @@ clc;
 testCase.('TestData').JB = jointBuilder;
 testCase.('TestData').JB.overwrite = 1; % Overwrite existing model files.
 
-testCase.('TestData').allParams = {'WMBig10k_ds';
-    'WMBig10k';
-    'WMBig2300_ds'};
+testCase.('TestData').allParams = {'cjt_Avocado_100_21000';
+    'cjt_Orange_80_6000';
+    'cjt_Orange_100_6000'};
 
 
 end
@@ -250,10 +250,10 @@ function testElectricalSubsystem(testCase)
     [A, B, C, D] = jObj.getElectricalDynamicsMatrices;
 
     % Check model against preevaluated values
-    flags(1) = A == -6.321428571428571e+02;
-    flags(2) = all( B == 1.0e+04 * [7.142857142857143/10  -3.235714285714286] );
-    flags(3) = all( C == [1; 4.53] );
-    flags(4) = all(all( D == zeros(2) ));
+    verifyEqual(testCase, A, -2.213333333333333e+03, 'AbsTol', 1e-10);
+    verifyEqual(testCase, B,  1.0e+04 * [0.333333333333333  -1.366666666666667], 'AbsTol', 1e-10);
+    verifyEqual(testCase, C, [1.000000000000000; 4.100000000000001], 'AbsTol', 1e-10 );
+    verifyEqual(testCase, D, zeros(2) );
     
     % 2ND MODEL
     % Build a joint
@@ -267,12 +267,11 @@ function testElectricalSubsystem(testCase)
     [A, B, C, D] = jObj.getElectricalDynamicsMatrices;
 
     % Check model against preevaluated values
-    flags(5) = A == 0;
-    flags(6) = all( B == [0, 0] );
-    flags(7) = all( C == [0; 0] );
-    flags(8) = (max(max(abs( D - [ 1.129943502824859e+01,  -5.118644067796610e+01;
-                                   5.118644067796610e+01,  -2.318745762711865e+02 ]))) < 1e-10);
+    verifyEqual(testCase, A, 0, 'AbsTol', 1e-10);
+    verifyEqual(testCase, B,   [0, 0], 'AbsTol', 1e-10 );
+    verifyEqual(testCase, C,   [0; 0], 'AbsTol', 1e-10 );
+    verifyEqual(testCase, D, [ 1.506024096385542,  -6.174698795180723; 6.174698795180723,  -25.316265060240969 ],'AbsTol', 1e-10 );
     
     
-    verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
+%     verifyTrue(testCase,all(flags)) % If we arrive here with all flags == 1, everything is fine.
 end
