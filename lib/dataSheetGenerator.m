@@ -1613,7 +1613,8 @@ classdef dataSheetGenerator
                 cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
             end
             
-            % Make the system call invoking the \Latex compiler. We complie three times to get all references right.
+            % Make the system call invoking the \Latex compiler.
+            % We compile three times to get all references right.
             cmdout = [];
             flag = 0;
             for it = 1:3 
@@ -1621,6 +1622,15 @@ classdef dataSheetGenerator
                 if flag ~= 0
                     disp('Datasheet compilation failed. See compiler output for details: ')
                     disp(cmdout)
+                    
+                    if (isunix)
+                        disp('-------');
+                        disp('Warning: If the above error references libstdc++, this issue arises due to MATLAB including libraries which are too old for your system. Try removing the following symlinks:');
+                        disp('- /MATLAB/sys/os/glnxa64/libstdc++.so.6');
+                        disp('- /MATLAB/bin/glnxa64/libtiff.so.5');
+                        disp('See also: https://mathworks.com/matlabcentral/answers/329796-issue-with-libstdc-so-6');
+                        disp('-------');
+                    end
                 end
             end
             
