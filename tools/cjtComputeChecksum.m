@@ -10,10 +10,10 @@ function [ outSum ] = cjtComputeChecksum( input)
 %   outSum: character array containing the checksum corresponding to the input
 %
 % Notes::
-%   If 'input' is a path to an existing file on the path, the checksum will 
+%   If 'input' is a path to an existing file on the path, the checksum will
 %   be computed for that file. Otherwise the checksum will be computed for
 %   the corresponding character array.
-%   
+%
 %
 % Author::
 %  Joern Malzahn
@@ -41,34 +41,28 @@ function [ outSum ] = cjtComputeChecksum( input)
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-    if isnumeric(input)    % Numeric input?
+
+
+    if exist(input,'file') % File input?
+        
+        % The input is a file path. We can use the built-in function directly.
+        outSum = Simulink.getFileChecksum(input);
+        
+    else
         % Since we use Simlinki.getFileChecksum, we need to save the
-        % numeric data to a file first. 
+        % numeric data to a file first.
         fName = 'tmp_cjt_compute_checksum.txt';
-        save(fName, 'input','-ascii');
         
-        outSum = Simulink.getFileChecksum(fName);   
-        
+        fid = fopen(fName,'w');
+        fprintf(fid, '%s', input);
+        fclose(fid);
+
+        % Actual checksum computation
+        outSum = Simulink.getFileChecksum(fName);
+
         % Delete temporary file.
         delete(fName);
 
-    elseif ischar(input) && ~exist(input,'file')
-        % The input is a character array that does not correspond to a file
-        % name. Compute the checksum of the character array. 
-        
-        % Since we use Simlinki.getFileChecksum, we need to save the
-        % numeric data to a file first. 
-        fName = 'tmp_cjt_compute_checksum.txt';
-        save(fName, 'input','-ascii');
-        
-        outSum = Simulink.getFileChecksum(fName);   
-        
-        % Delete temporary file.
-        delete(fName);
-        
-    else
-        % The input is a file path. We can use the built-in function directly. 
-        outSum = Simulink.getFileChecksum(input);
     end
 
 end

@@ -124,9 +124,9 @@ function testLoremIpsumArray(testCase)
     res_1 = cjtCompareChecksum(testCase.('TestData').LoremIpsum,...
         testCase.('TestData').LoremIpsum);                            % self-check
     res_2 = cjtCompareChecksum(testCase.('TestData').LoremIpsum, ...
-                                        '804F52A6C2563816396963B5C8B88F1E'); 
+                                        'CEE2BD6F0C8368B4783A9B3B7F905951'); 
     res_3 = cjtCompareChecksum(testCase.('TestData').LoremIpsum, ...
-                                        '804F52A6C2563816396963B5C8B88FE1'); 
+                                        'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'); 
     
     verifyTrue(testCase, res_1);    % Self-check
     verifyTrue(testCase, res_2);    % Matching checksum
