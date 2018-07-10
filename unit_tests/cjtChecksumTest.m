@@ -128,7 +128,9 @@ function testLoremIpsumArray(testCase)
     res_3 = cjtCompareChecksum(testCase.('TestData').LoremIpsum, ...
                                         '804F52A6C2563816396963B5C8B88FE1'); 
     
-    verifyTrue(testCase, res_1 && res_2 && ~res_3); % Checksums must always match 
+    verifyTrue(testCase, res_1);    % Self-check
+    verifyTrue(testCase, res_2);    % Matching checksum
+    verifyTrue(testCase, ~res_3);   % Check of cjtCompareChecksum (must not always return true)
     
 end
 
