@@ -120,7 +120,6 @@ end
 function testLoremIpsumArray(testCase)
 % This test verifies that the checksums of character arrays are compared correctly
 
-
     res_1 = cjtCompareChecksum(testCase.('TestData').LoremIpsum,...
         testCase.('TestData').LoremIpsum);                            % self-check
     res_2 = cjtCompareChecksum(testCase.('TestData').LoremIpsum, ...
@@ -139,44 +138,30 @@ function testLoremIpsumFile(testCase)
 
     LoremIpsum = testCase.('TestData').LoremIpsum;
     fName = 'tmp_cjt_checksum_test.txt';
-    save(fName,...
-        'LoremIpsum',...
-        '-ascii');
+    
+    fid = fopen(fName,'w');
+    fprintf(fid, '%s', LoremIpsum);
+    fclose(fid);
 
     res_1 = cjtCompareChecksum(fName, fName); % self-check
-    res_2 = cjtCompareChecksum(fName, '804F52A6C2563816396963B5C8B88F1E'); 
-    res_3 = cjtCompareChecksum(fName, '804F52A6C2563816396963B5C8B88FE1'); 
+    res_2 = cjtCompareChecksum(fName, 'CEE2BD6F0C8368B4783A9B3B7F905951'); 
+    res_3 = cjtCompareChecksum(fName, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'); 
 
     delete(fName);
-
-    verifyTrue(testCase,res_1 && res_2 && ~res_3); % Checksums must always match
+    
+    verifyTrue(testCase, res_1);    % Self-check
+    verifyTrue(testCase, res_2);    % Matching checksum
+    verifyTrue(testCase, ~res_3);   % Check of cjtCompareChecksum (must not always return true)
     
 end
 
 function testMagic10Array(testCase)
 % This test verifies that the identical checksums of numeric arrays are compared correctly
     
-    mysum = cjtComputeChecksum(testCase.('TestData').Magic10);          % compute checksum
-    res = cjtCompareChecksum(testCase.('TestData').Magic10, mysum);     % self-check
+    mysum   = cjtComputeChecksum(testCase.('TestData').Magic10);            % compute checksum
+    res     = cjtCompareChecksum(testCase.('TestData').Magic10, mysum);     % self-check
     
-    verifyTrue(testCase,res);                                           % validate self-check
-    verifyEqual(testCase,mysum, '2FEC13058FA99395A58FB4C0FE3F4BE9');    % validate reference checksum
-    
-end
-
-function testMagic10File(testCase)
-% This test verifies that the checksums of mat files are compared correctly
-
-    magic10 = testCase.('TestData').Magic10;
-    fName = 'tmp_cjt_checksum_test.mat';
-    save(fName,'magic10');
-
-    res_1 = cjtCompareChecksum(fName, fName); % self-check
-    % For binary files, the checksum also includes the file creation date.
-    % That makes it hard to define a reference checksum.
-
-    delete(fName);
-
-    verifyTrue(testCase,res_1); % Checksums must always match
+    verifyTrue(testCase, res);                                              % validate self-check
+    verifyEqual(testCase, mysum, '3F83E99F9B64AA7AD330BC0DFA9226D6');       % validate reference checksum
     
 end

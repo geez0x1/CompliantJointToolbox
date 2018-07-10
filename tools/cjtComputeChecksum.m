@@ -43,7 +43,7 @@ function [ outSum ] = cjtComputeChecksum( input)
 
 
 
-    if exist(input,'file') % File input?
+    if ischar(input) && exist(input,'file') % File input?
         
         % The input is a file path. We can use the built-in function directly.
         outSum = Simulink.getFileChecksum(input);
