@@ -210,18 +210,18 @@ classdef dataSheetGenerator
             
             % Manipulate style of the efficiency plot 
             set(hLine1,'Color','r','linewidth',1.5)
-            ylabel(hAx(1), 'Efficiency [%]','Color','r');
+            ylabel(hAx(1), 'Efficiency $\eta$ [%]','Color','r');
             set(hAx(1),'ylim',[0,100])
             set(hAx(1),'ytick',0:10:100)
             
             % Manipulate style of the power plot 
             set(hLine2,'Color','b','linewidth',1.5)
             set(hLine2(2),'LineStyle','--')
-            ylabel(hAx(2),'Power [W]','Color','b');
+            ylabel(hAx(2),'Power $P$ [W]','Color','b');
             
             set(hAx,'xlim',[0,t_p]);
-            xlabel('torque [Nm]')
-            title(['Maximum Efficiency_ ', sprintf('%2.0f',eta_max),' %']);
+            xlabel('Torque $\tau$ [Nm]')
+            title(['Maximum efficiency_ ', sprintf('%2.0f',eta_max),' %']);
             
             oldLim = get(hAx(2),'ylim');
             set(hAx(2),'ylim',[min(P_mech), oldLim(2)]);
@@ -335,7 +335,7 @@ classdef dataSheetGenerator
 
              % Manipulate plot style
              set(hLine2,'Color','b','linewidth',1.5)
-             ylabel(hAx(2),'Time to Crit Temperature [s]','Color','b');
+             ylabel(hAx(2),'Time to crit. temperature [s]','Color','b');
              set(hAx(2),'ylim',[0,1.05*max(real(tCrit))]);
 
              set(hAx,'xlim',[0,t_p]);  
@@ -345,7 +345,7 @@ classdef dataSheetGenerator
                      'Copper melting temperature',...
                      'Time to critical winding temperature [s]'}, 'location','best')
                  
-             xlabel('Torque [Nm]')
+             xlabel('Torque $\tau$ [Nm]')
              title(['Steady-state temperature rise for ambient temperature ',num2str(Tmp_ANom),' [C]'])
              
              hold on;
@@ -457,8 +457,8 @@ classdef dataSheetGenerator
             else
                 fNorm = 1;
                 tNorm = 1;
-                xlabelStr = '$\tau$ [Nm]';
-                ylabelStr = '$f_c$ [Hz]';
+                xlabelStr = 'Torque $\tau$ [Nm]';
+                ylabelStr = '3dB cut-off $f_c$ [Hz]';
             end
             
             xmax = 1.1 * t_p;
@@ -656,13 +656,13 @@ classdef dataSheetGenerator
                 wNorm = 1/w0;
                 fNorm = 2*pi*wNorm;
                 tNorm = 1/t_p;
-                xlabelStr = '$|\tau / \tau_p|$ [.]';
-                ylabelStr = ' $f_c / f_0$ [.]';
+                xlabelStr = 'Torque $|\tau / \tau_p|$ [.]';
+                ylabelStr = '3dB cut-off $f_c / f_0$ [.]';
             else
                 fNorm = 1;
                 tNorm = 1;
-                xlabelStr = '$\tau$ [Nm]';
-                ylabelStr = '$f_c$ [Hz]';
+                xlabelStr = 'Torque $\tau$ [Nm]';
+                ylabelStr = '3dB cut-off $f_c$ [Hz]';
             end
             
             % Linearly spaced vectors of torques and normalized frequencies
@@ -739,7 +739,7 @@ classdef dataSheetGenerator
 
             
             %   Create plot
-             h = surf(Z,F.', (TAU.'),min(TMAX,0.5*t_w),'DisplayName','t_{max} [s] to max. temperature')
+             h = surf(Z,F.', (TAU.'),min(TMAX,0.5*t_w),'DisplayName','t_{max} [s] to max. temperature');
 
             %   Configure plot
             set(h,'LineStyle','none') % no grid lines
@@ -877,13 +877,13 @@ classdef dataSheetGenerator
             if this.plotNormalized
                 tNorm = 1/t_p;
                 dqNorm = 1/dq_NL;
-                xlabelStr = '$\tau / \tau_p$ [.]';
-                ylabelStr = '$\dot{q} / \dot{q}_{NL}$ [.]';
+                xlabelStr = 'Torque $\tau / \tau_p$ [.]';
+                ylabelStr = 'Speed $\dot{q} / \dot{q}_{NL}$ [.]';
             else
                 tNorm = 1;
                 dqNorm = 1;
-                xlabelStr = '$\tau$ [Nm]';
-                ylabelStr = '$\dot{q}$ [rad/s]';
+                xlabelStr = 'Torque $\tau$ [Nm]';
+                ylabelStr = 'Speed $\dot{q}$ [rad/s]';
             end
             
             plot( (mVals - fCorr )*tNorm, linCurve*dqNorm, 'k', 'DisplayName', 'Torque-Speed Boundary','linewidth',1.5)
