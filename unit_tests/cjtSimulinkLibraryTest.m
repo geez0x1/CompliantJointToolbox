@@ -126,7 +126,7 @@ function testBuiltJoint(testCase)
     % Test specific code
 
     jObj = testCase.('TestData').testJoint;
-%     jObj.Ts = 0.5e-4;
+    jObj.Ts = jObj.Ts_elec;
 
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
