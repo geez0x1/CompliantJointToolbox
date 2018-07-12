@@ -1162,31 +1162,25 @@ classdef dataSheetGenerator
             % Produce all plots
             this.makeDataSheetPlots;
             
-%             % Compile the Tex source. We complie three times to get all references right.
-%             cmdout = [];
-%             for it = 1:3 
+            % Make sure, the output directory exists
+            if ~exist(this.outputDir,'dir')
+                mkdir(this.outputDir)
+            end
+            
+            % Compile the Tex source. 
             [flag, cmdout] = this.compileTexFile;
-%                 if flag ~= 1
-%                     disp('Datasheet compilation failed. See compiler output for details: ')
-%                     disp(cmdout)
-%                     exit
-%                 end
-%             end
-%             
+
             % Ouptut last console output, if desired.
             if this.verbose
                 disp(cmdout);
             end
             
-            
-            
             % Put the generated datasheet in the final destination.
             [~, fName] = fileparts(this.texFName);
-            if ~exist(this.outputDir,'dir')
-                mkdir(this.outputDir)
-            end
+
             destFName = [this.outputDir,filesep, this.assembleOutFileName ];
-            copyfile([fName,'.pdf'],destFName);
+            srcFName =  [this.outputDir,filesep, fName, '.pdf'];
+            copyfile(srcFName,destFName);
 
             % Clean up.
             delete([fName,'.*'])
@@ -1608,9 +1602,13 @@ classdef dataSheetGenerator
             % Tested with MiKTeX/2.9 under Windows 7 x64 and
             % TexLive 2015.20160320-1 under Linux (Ubuntu 16.04)
             if (isunix)
-                cmd = ['pdflatex -synctex=-1 -interaction=nonstopmode ', this.texFName];
+%                 cmd = ['pdflatex -synctex=-1 -interaction=nonstopmode ', this.texFName];
+                  cmd = sprintf('pdflatex -synctex=-1 -interaction=nonstopmode -output-directory %s %s',...
+                      this.outputDir, this.texFName);
             else
-                cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
+%                 cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
+                cmd = sprintf('lualatex.exe -synctex=-1 -interaction=nonstopmode -output-directory=%s %s',...
+                      this.outputDir, this.texFName);
             end
             
             % Make the system call invoking the \Latex compiler.
