@@ -116,10 +116,5 @@ function [sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R)
     D_hat   = zeros(size(C_hat,1), size(B_hat,2));
     sys_hat = ss(A_hat, B_hat, C_hat, D_hat);
     
-    % Display results
-    %disp('Calculated observer gain L:');
-    %disp(L);
-    %disp('and observer state-space system sys_hat:');
-    %sys_hat
 
 end
