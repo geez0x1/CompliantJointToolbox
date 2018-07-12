@@ -25,7 +25,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2831.0, 53.0, 840.0, 1025.0]
+      Location		      [2553.0, 195.0, 854.0, 822.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -49,7 +49,7 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"1"
-	Extents			[1182.0, 1299.0]
+	Extents			[800.0, 649.0]
 	ZoomFactor		[1.25]
 	Offset			[-3.8301587301587574, -43.388888888888971]
       }
@@ -64,17 +64,17 @@ Library {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[426]
-	Height			[320]
+	Width			[640]
+	Height			[480]
       }
       WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAATWAAAFYQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAKwD///8AAANGAAACwgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAGa/////wAAAAAAAAAA/"
+      "////wEAAAB5/////wAAAAAAAAAA/////wEAAADa/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAEo/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
@@ -85,9 +85,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 05 12:57:56 2018"
-  RTWModifiedTimeStamp	  452691953
-  ModelVersionFormat	  "1.%<AutoIncrement:115>"
+  LastModifiedDate	  "Thu Jul 12 13:08:42 2018"
+  RTWModifiedTimeStamp	  453297107
+  ModelVersionFormat	  "1.%<AutoIncrement:116>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1101,7 +1101,7 @@ Library {
       Variant		      off
       System {
 	Name			"Observers"
-	Location		[2831, 53, 3671, 1078]
+	Location		[2553, 195, 3407, 1017]
 	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
@@ -1452,6 +1452,19 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    28
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "Kalman estimator"
+	    Description		    "The block implements a Kalman state estimator based on a linear state-space model of the joint."
+	    " Therefore, the block relies on the function 'kalman' shipped with the Mathworks Control System Toolbox (required"
+	    " dependency for this block).\n\nClick >Help< for further documentation."
+	    Help		    "The block implements a Kalman state estimator based on a linear state-space model of the joint. Theref"
+	    "ore, the block relies on the function 'kalman' shipped with the Mathworks Control System Toolbox (required depend"
+	    "ency for this block).\n\n<b>Mask parameters</b>\nJoint Object: The class name of the CJT joint class name or the "
+	    "variable representing an instance of a CJT joint class.\nMeasurement Outputs: vector of indices defining the elem"
+	    "ents of the output vector to be used for observation. Choices are\n1 - motor angle\n2 - gear angle\n3 - link  ang"
+	    "le\n4 - motor velocity\n5 - gear velocity\n6  - link velocity\n7  - spring torque\n\nInput noise variance\n\nMeas"
+	    "urement noise variance (vector of variances)\n\n\n<b>References</b>\n[1] Franklin, G.F., J.D. Powell, and M.L. Wo"
+	    "rkman, Digital Control of Dynamic Systems, Second Edition, Addison-Wesley, 1990.\n\n[2] Lewis, F., Optimal Estima"
+	    "tion, John Wiley & Sons, Inc, 1986."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();\n\n% Get"
 	    " Kalman observer\n[kest, L, Cc]	= getKalman(jointObj, outputIdx, var_u, var_y);\n\n% Discretize using Tustin tran"
 	    "sform\nkest_tust       = c2d(kest, jointObj.Ts, 'tustin');\n\n% Get demuxing indices\ndemux_N         = size(kest"
@@ -1807,6 +1820,26 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    33
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "Linear Transfer Function Disturbance Observer"
+	    Description		    "The block implements a disturbance observer based on a linear laplace domain transfer function "
+	    "model of the plant. \n\nThe block allows to select the DOB bandwidth and the joint measurement to be used. load. "
+	    "The joint model and  filter params can optionally chosen to to be automatically loaded from a .mat file.\n\nClick"
+	    " >Help< for further documentation."
+	    Help		    "The block implements a disturbance observer based on a linear laplace domain transfer function model o"
+	    "f the plant as described e.g. in [1]. The implementation in this block has in particular been used to compensate "
+	    "plant model uncertainties and to compensate unmodelled dynamics effects in [2,3]. \n\n<b>Mask parameters:</b>\n\n"
+	    "The block allows to select the DOB bandwidth and the joint measurement to be used. load. The joint model and  fil"
+	    "ter params can optionally chosen to to be automatically loaded from a .mat file.\n\nJoint Object: The class name "
+	    "of the CJT joint class name or the variable representing an instance of a CJT joint class.\nQ-filter cut-off freq"
+	    "uency: Cut-off frequency  for the low-pass filter that is used to ensure causality of the observer (in Hz).\nMeas"
+	    "urement Index: index value that defines the element of the output vector to be used for observation. Choices are\n"
+	    "1 - motor angle\n2 - gear angle\n3 - link  angle\n4 - motor velocity\n5 - gear velocity\n6  - link velocity\n7  -"
+	    " spring torque\n\n\n<b>References:</b>\n[1] Chen, Wen-Hua, et al. \"Disturbance-observer-based control and relate"
+	    "d methods—An overview.\" IEEE Transactions on Industrial Electronics 63.2 (2016): 1083-1095.\n\n[2] Paine, Nich"
+	    "olas, Sehoon Oh, and Luis Sentis. \"Design and control considerations for high-performance series elastic actuato"
+	    "rs.\" IEEE/ASME Transactions on Mechatronics 19.3 (2014): 1080-1091.\n\n[3] Roozing, Wesley, et al. \"Comparison "
+	    "of open-loop and closed-loop disturbance observers for series elastic actuators.\" Intelligent Robots and Systems"
+	    " (IROS), 2016 IEEE/RSJ International Conference on. IEEE, 2016."
 	    Initialization	    "mask_Linear_Transfer_Function_DOB"
 	    SelfModifiable	    "on"
 	    RunInitForIconRedraw    "on"
@@ -2217,7 +2250,7 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "80"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
