@@ -57,7 +57,6 @@ classdef dataSheetGenerator
     properties (SetAccess = private)
         jointModel                                     % The joint object to generate the datasheet for.
         templateDir                                    % Directory that contains all template files for the datasheet.
-        outputDir                                      % Directory to place the generated files.
         
         texFName = 'cjtdsheet.tex';                    % Datasheet source filename.
         clsFName = 'cjtdsheet.cls';                    % Name of the style file for the datasheet.
@@ -74,6 +73,7 @@ classdef dataSheetGenerator
         
         outFName = 'datasheet.pdf';                    % Name stub for the generated datasheet file. The final name will 
                                                        % be composed of the "jointModel.name_outFName".
+        outputDir = ['.',filesep];                     % Directory to place the generated files. Defaults to the current directory.
         plotResolution = 600;                          % Print resolution for the figures contained in the datasheet.
         nPlotVals = 10000;                             % Number of samples used to produce the graphs in the datasheet figures.
         plotNormalized = 0;                            % Plot graphs in normalized quantities (default: false)
