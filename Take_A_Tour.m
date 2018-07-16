@@ -1,7 +1,7 @@
 %% THE _COMPLIANT JOINT TOOLBOX_
 %
-% Note: This is the User System version of this example.
-% 
+% Note: This is the Code Ocean version of this example.
+%
 % The _Compliant Joint Toolbox_ (_CJT_) for MATLAB is being developed to ease the modelling and design of (compliant) robotic 
 % joints. The goal is to provide rapid iteration of different models and control architectures by providing a number of 
 % pre-built components with consistent interfaces, together with a set of tools to build new ones.
@@ -38,7 +38,7 @@ setCJTPaths
 % m-scripts defining a struct named param. The class |genericJoint| already assigns default values to all parameters. 
 % To see a full list parameters and methods, open the documentation of the |genericJoint| class by typing:
 %
-doc genericJoint
+help genericJoint
 
 %%
 % A parameter script only requires to specify deviations from these default values. An example of such
@@ -144,18 +144,22 @@ dsg.outputDir = ['..', filesep, 'results']
 % Draw a torque-speed diagram for the actuator in figure(1)
 figure(1); clf;
 dsg.drawTorqueSpeedCurve
+print([dsg.outputDir,filesep,'torqueSpeedCurve'],'-dpdf','-fillpage') % save the figure in the output directory
 
 % Draw an efficiency curve for the actuator in figure(2)
 figure(2); clf;
 dsg.drawEfficiencyCurve
+print([dsg.outputDir,filesep,'efficiencyCurve'],'-dpdf','-fillpage') % save the figure in the output directory
 
 % Draw a diagram with the thermal operation characteristics for the actuator in figure(3)
 figure(3); clf;
 dsg.drawThermalCharacteristics
+print([dsg.outputDir,filesep,'thermalCharacteristics'],'-dpdf','-fillpage') % save the figure in the output directory
 
 % Draw a torque-frequency curve for the actuator with locked output in figure(4)
 figure(4); clf;
 dsg.drawTorqueFrequencyCurveLocked
+print([dsg.outputDir,filesep,'torqueFrequencyCurveLocked'],'-dpdf','-fillpage') % save the figure in the output directory
 
 %% Datasheet Generation
 % Provided, that a _LaTeX_ installation is present on the user’s computer, the |datasheetGenerator| class can assemble 
@@ -183,17 +187,47 @@ open(fName)
 
 % Run an example of a simulation using the mechanical actuator model block and controller using a disturbance observer
 % inside.
-Ex_12_Passivity_Based_Control_Plus_Disturbance_Observer_run
+
+dispText = ...
+{'-----'
+'Note: Unfortunately this does not yet run properly in Code Ocean environment...'
+'The User System version |Take_A_Tour.m| however will display a functioning GUI by running the command:'
+'|Ex_12_Passivity_Based_Control_Plus_Disturbance_Observer_run|'
+'-----'
+};
+displayFormattedText(dispText)
 
 
 %% More Examples
 % The _Compliant Joint Toolbox_ features many more examples in the |example| directory. A small graphical user interface
 % helps to get an overview over existing examples.
 %%
-cjtExamples
+
+%%
+% Note: Unfortunately the GUI cannot be displayed in Code Ocean. When trying to print the GUI figure into a file, it
+% throws the error: "Printing of uicontrols is not supported on this platform." The User System version |Take_A_Tour.m|
+% however will display a functioning GUI by running the command:
+% |cjtExamples|
+%%
+
+dispText = ...
+{'-----'
+'Unfortunately the GUI cannot be displayed in Code Ocean. When trying to print the GUI figure into a file, it'
+'throws the error: "Printing of uicontrols is not supported on this platform." The User System version |Take_A_Tour.m|'
+'however will display a functioning GUI by running the command:'
+'|cjtExamples|'
+'-----'
+};
+
+displayFormattedText(dispText)
+
 
 %% That's it!
 % We hope it will be helpful for you. If it is, tell it to others. If you run into problems and find problems, please 
-% tell it to us! % Enjoy experimenting with the _Compliant Joint Toolbox_. 
+% tell it to us by opening an issue on GitHub! 
+%
+% |https://github.com/geez0x1/CompliantJointToolbox|
+%
+% Enjoy experimenting with the _Compliant Joint Toolbox_. 
 %%
 
