@@ -16,6 +16,9 @@ Wesley Roozing
 | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/Getting-Started"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_get_started.png" alt="Getting Started"></a> | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/Technical-Documentation"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_take_a_tour.png" alt="Documentation"></a> | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/About"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_about.png" alt="Getting Started"></a> | 
 | Quick start. | All the details.| A bit of background. |
 
+## Dependencies and Compatibility
+See [this Wiki page](https://github.com/geez0x1/CompliantJointToolbox/wiki/Compatibility-and-Dependencies).
+
 ## Questions or Comments?
 
 * If you like the toolbox, share the news with others. 
