@@ -11,7 +11,7 @@ Wesley Roozing
 
 
 ## Quick Navigation
-| [Getting Started](https://github.com/geez0x1/CompliantJointToolbox/wiki/Getting-Started) |[Technical Documentation](https://github.com/geez0x1/CompliantJointToolbox/wiki/Technical-Documentation) | [About](https://github.com/geez0x1/CompliantJointToolbox/wiki/About) |
+| [Getting Started](https://github.com/geez0x1/CompliantJointToolbox/wiki/Getting-Started) |[Documentation](https://github.com/geez0x1/CompliantJointToolbox/wiki/Technical-Documentation) | [About](https://github.com/geez0x1/CompliantJointToolbox/wiki/About) |
 |------------|-----------------|-------|
 | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/Getting-Started"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_get_started.png" alt="Getting Started"></a> | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/Technical-Documentation"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_take_a_tour.png" alt="Documentation"></a> | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/About"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_about.png" alt="Getting Started"></a> | 
 | Quick start. | All the details.| A bit of background. |
