@@ -695,20 +695,13 @@ classdef dataSheetGenerator
             springMag = bode(springTF,wn*w0);
             springMag = springMag(:);
             
-            % TOTAL FREQUENCY LIMIT
-%             fSpring = interp1(dq_0*springMag , wn*w0/2/pi, tau);
-%             fAmp    = interp1(magGain*t_p    , wn*w0/2/pi, tau);
-            
+            % TOTAL FREQUENCY LIMIT          
             fSpring = dq_0*springMag;
             fAmp = magGain*t_p;
-%             plot(dq_0*springMag, wn*w0/2/pi)
-%             plot(magGain*t_p, wn*w0/2/pi)
             fIdx = find(fSpring < fAmp,1,'last');
             fTot = [fSpring(1:fIdx); fAmp(fIdx+1:end)];
-%             fTotal = interp1(fTot    , wn*w0/2/pi, tau);
-%             fTotal = min(fAmp,fSpring);
-             
-             
+            
+            
             % THERMAL TIME LIMITATION
             % Steady State Temperature
             resCoeff = (r_th1 + r_th2) * r / N^2 / k_t^2; % thermal resistance coefficient
@@ -763,7 +756,7 @@ classdef dataSheetGenerator
             c.TickLabels = tmp;
             c.Label.Interpreter = 'latex';
             c.Label.String = '$t_{max}$ [s]';
-              
+                         
             
              
             % Plot total frequency limit (back-emf/voltage and sensor)
@@ -1318,11 +1311,14 @@ classdef dataSheetGenerator
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
             pos(3) = 18;
-            pos(4) = 12;
+            pos(4) = 9;
              
             set(gcf,'Position',pos)
             set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
             set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            hCbar = findobj(gcf,'Type','colorbar');
+            hCbar.AxisLocation = 'out';
             
             printpdf(gcf,this.torFreqLoadFName,['-r',num2str(this.plotResolution)])
 
@@ -1344,6 +1340,10 @@ classdef dataSheetGenerator
             set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
             set(gca,'LooseInset',get(gca,'TightInset'))
             
+            hCbar = findobj(gcf,'Type','colorbar');
+            hCbar.FontSize = get(gca,'FontSize');
+            hCbar.AxisLocation = 'in';
+                        
             printpdf(gcf,this.torFreqLockFName,['-r',num2str(this.plotResolution)])
 
             close(gcf);
