@@ -1,4 +1,4 @@
-% EX_00 An minimum example joint class generation to use the joint model blocks.
+% EX_01 An example of using a joint mechanical subsystem with direct open-loop torque input.
 %
 % Author::
 %  Joern Malzahn
@@ -27,36 +27,42 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % The text in the following line defines the display name for this Example
-% #! 00: Example Joint Configuration
+% #! 01: Open-Loop Mechanical Subsystem
 
 dispText = ...
 {'-----'
- 'EX 00'
+ 'EX 01'
  '-----'
- 'This is an example of a minimal joint class generation for the usage of CJT Simulink blocks. This file is called in'
- 'all other example files to configure the example joint.'
+ 'This example demonstrates the basic usage of a joint mechanical subsystem block. A torque is directly fed to'
+ 'joint input and several measurements are displayed using scopes.'
  ' ' 
 };
 
 displayFormattedText(dispText)
 
-%% Configure Joint Model
-jb = jointBuilder;
-jb.overwrite = 1;
+%% Configure example environment
+% Standard configuration
+Ex_00_example_config
+mdlName = 'Ex_01_Open_Loop.mdl';
 
-jb.buildJoint(  'cjt_Orange_80_6000', ...
-                'output_fixed_rigid_gearbox', ...
-                'coulomb_asym', ...
-                [], ...
-                'example_joint'                 );
+%% Run model
+% Open block diagram
+open(mdlName)
 
-addpath(jb.buildDir);
+% Run it
+simOut = sim(mdlName,'SrcWorkspace','current');
 
-jointObj = example_joint;
+%% Plot results
+% Reshape data
+t = simOut.tout;
+ref = simOut.yout(:,1);
+res = simOut.yout(:,2);
 
-%% Configure Chirp Source
-f_min = 0.01;   % Initial frequency in Hz
-f_max = 100;    % Final frequency in Hz
-t_max = f_max;  % Simulation stop time in s
-
-
+% Plot some results
+figure(1)
+clf;
+plot(t,[ref,res])
+legend({'reference', 'response'})
+xlabel('t [s]')
+ylabel('torque [Nm]')
+title('Torque chirp response')
