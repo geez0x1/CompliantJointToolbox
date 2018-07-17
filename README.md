@@ -21,6 +21,7 @@ See [this Wiki page](https://github.com/geez0x1/CompliantJointToolbox/wiki/Compa
 
 ## Questions or Comments?
 
+
 * If you like the toolbox, share the news with others. 
-* If you find bugs, wish to give feedback or have ideas for improvements, share it with us! 
-* If you have questions regarding the toolbox, feel free to contact us as well. 
+* If you find bugs, wish to give feedback or have ideas for improvements, [share it with us](https://github.com/geez0x1/CompliantJointToolbox/wiki/About#the-authors)! 
+* If you have questions regarding the toolbox, feel free to contact [us](https://github.com/geez0x1/CompliantJointToolbox/wiki/About#the-authors) as well. 
