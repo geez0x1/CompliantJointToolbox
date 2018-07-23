@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 23 18:17:11 2018"
-  RTWModifiedTimeStamp	  454270630
-  ModelVersionFormat	  "1.%<AutoIncrement:190>"
+  LastModifiedDate	  "Mon Jul 23 18:21:11 2018"
+  RTWModifiedTimeStamp	  454270870
+  ModelVersionFormat	  "1.%<AutoIncrement:191>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1203,9 +1203,7 @@ Library {
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
 	    " Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If input delay is enabled, set th"
 	    "e flag to 1\ninput_delay_enable = 0;\nif (input_delay > 0)\n    input_delay_enable = 1;\nend\n\n% If noise is dis"
-	    "abled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n\n% If the model has di"
-	    "rect feed-through (zero inductance model),\n% then activate the memory block on the motor velocity to avoid\n% cr"
-	    "eating algebraic loops.\nmemory_enable = 0;\nif (find(D>0))\n    memory_enable = 1;\nend"
+	    "abled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -2154,6 +2152,7 @@ Library {
 	      FixedWidth	      off
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
+	      ZOrder		      -1
 	    }
 	  }
 	}
@@ -3467,7 +3466,7 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "2339"
+	    SIDHighWatermark	    "2427"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -4674,7 +4673,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"49"
+		SIDHighWatermark	"54"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
