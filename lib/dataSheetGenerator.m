@@ -1,4 +1,3 @@
-classdef dataSheetGenerator
 %DATASHEETGENERATOR Module that creates datasheets for actuator models
 %created with the CompliantJointToolbox. 
 %
@@ -53,6 +52,8 @@ classdef dataSheetGenerator
 %
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
+
+classdef dataSheetGenerator
 
     properties (SetAccess = private)
         jointModel                                     % The joint object to generate the datasheet for.
