@@ -131,7 +131,7 @@ function testBuiltJoint(testCase)
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '7EC2B5AE39E0953DD55FBD0347BA47CD';
+    refChkSum = '9A64D9FC8FA0D4A91432B0EED0205A18';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end

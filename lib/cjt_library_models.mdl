@@ -50,7 +50,7 @@ Library {
 	LoadSaveID		"4"
 	Extents			[1447.0, 846.0]
 	ZoomFactor		[1.75]
-	Offset			[-416.14285714285717, -52.285714285714278]
+	Offset			[-416.14285714285717, -15.0]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -84,9 +84,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 23 16:14:09 2018"
-  RTWModifiedTimeStamp	  454263248
-  ModelVersionFormat	  "1.%<AutoIncrement:184>"
+  LastModifiedDate	  "Mon Jul 23 18:17:11 2018"
+  RTWModifiedTimeStamp	  454270630
+  ModelVersionFormat	  "1.%<AutoIncrement:190>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -982,6 +982,15 @@ Library {
       ContinuousStateAttributes	"''"
     }
     Block {
+      BlockType		      Memory
+      X0		      "0"
+      InheritSampleTime	      off
+      LinearizeMemory	      off
+      LinearizeAsDelay	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -1141,7 +1150,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "166"
+    SIDHighWatermark	    "180"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -1194,7 +1203,9 @@ Library {
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
 	    " Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If input delay is enabled, set th"
 	    "e flag to 1\ninput_delay_enable = 0;\nif (input_delay > 0)\n    input_delay_enable = 1;\nend\n\n% If noise is dis"
-	    "abled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
+	    "abled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n\n% If the model has di"
+	    "rect feed-through (zero inductance model),\n% then activate the memory block on the motor velocity to avoid\n% cr"
+	    "eating algebraic loops.\nmemory_enable = 0;\nif (find(D>0))\n    memory_enable = 1;\nend"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -1319,7 +1330,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "200"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "voltage [V]"
@@ -1425,6 +1436,15 @@ Library {
 		PortNumber		1
 		Name			"states"
 	      }
+	    }
+	    Block {
+	      BlockType		      Memory
+	      Name		      "Memory"
+	      SID		      "178"
+	      Position		      [225, 370, 255, 400]
+	      ZOrder		      264
+	      LinearizeMemory	      on
+	      LinearizeAsDelay	      on
 	    }
 	    Block {
 	      BlockType		      Mux
@@ -1668,7 +1688,7 @@ Library {
 	      "dth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none'"
 	      ",'Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement"
 	      "',1)),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Mea"
-	      "surements',true)),'Version','2017a','Location',[188 365 512 604])"
+	      "surements',true,'Version','2017a')),'Version','2017a','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -1968,22 +1988,12 @@ Library {
 	    }
 	    Line {
 	      Name		      "<MotorVelNoNoise>"
-	      ZOrder		      3
+	      ZOrder		      53
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector"
 	      SrcPort		      1
-	      Points		      [172, 0]
-	      Branch {
-		ZOrder			4
-		Points			[0, -75]
-		DstBlock		"Mux"
-		DstPort			2
-	      }
-	      Branch {
-		ZOrder			5
-		DstBlock		"Scope"
-		DstPort			1
-	      }
+	      DstBlock		      "Memory"
+	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      6
@@ -2093,7 +2103,6 @@ Library {
 	      ZOrder		      21
 	      SrcBlock		      "voltage [V]"
 	      SrcPort		      1
-	      Points		      [5, 0]
 	      DstBlock		      "Quantize"
 	      DstPort		      1
 	    }
@@ -2117,6 +2126,34 @@ Library {
 	      SrcPort		      2
 	      DstBlock		      "motorTorque [Nm]"
 	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      52
+	      SrcBlock		      "Memory"
+	      SrcPort		      1
+	      Points		      [37, 0]
+	      Branch {
+		ZOrder			4
+		Points			[0, -75]
+		DstBlock		"Mux"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			5
+		DstBlock		"Scope"
+		DstPort			1
+	      }
+	    }
+	    Annotation {
+	      SID		      "180"
+	      Name		      "This avoids an algebraic loop being generated when\nthe zero-inductance model is used and the mech"
+	      "anical\nmodel does not have input/output delays."
+	      Position		      [132, 432, 375, 479]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
 	    }
 	  }
 	}
@@ -3430,7 +3467,7 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "2163"
+	    SIDHighWatermark	    "2339"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -4637,7 +4674,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"39"
+		SIDHighWatermark	"49"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
