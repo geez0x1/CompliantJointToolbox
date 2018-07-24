@@ -126,12 +126,11 @@ function testBuiltJoint(testCase)
     % Test specific code
 
     jObj = testCase.('TestData').testJoint;
-    jObj.Ts = jObj.Ts_elec;
 
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '9A64D9FC8FA0D4A91432B0EED0205A18';
+    refChkSum = '1EB30708627EA219980A2951D9D0AB44';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
