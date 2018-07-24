@@ -1,12 +1,26 @@
 Model {
-  Name			  "openLoop"
+  Name			  "Ex_01_Open_Loop"
   Version		  9.0
   SavedCharacterEncoding  "UTF-8"
   GraphicalInterface {
     NumRootInports	    0
-    NumRootOutports	    0
+    NumRootOutports	    2
+    Outport {
+      Name		      "Out1"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      SignalName	      "Reference"
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "Out2"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      SignalName	      "Response"
+      UnitExpr		      "inherit"
+    }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.619"
+    ComputedModelVersion    "1.620"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -19,13 +33,13 @@ Model {
     NumExternalFileReferences 2
     ExternalFileReference {
       Reference		      "simulink/Sources/Chirp Signal"
-      Path		      "openLoop/Chirp Signal"
+      Path		      "Ex_01_Open_Loop/Chirp Signal"
       SID		      "47"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "cjt_library_models/Joint models/JointMechanicalSubsystem"
-      Path		      "openLoop/JointMechanicalSubsystem"
+      Path		      "Ex_01_Open_Loop/JointMechanicalSubsystem"
       SID		      "955"
       Type		      "LIBRARY_BLOCK"
     }
@@ -57,7 +71,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2570.0, 85.0, 1696.0, 1066.0]
+      Location		      [2553.0, -7.0, 1695.0, 1025.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -81,7 +95,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[2466.0, 1351.0]
+	Extents			[2464.0, 1289.0]
 	ZoomFactor		[1.25]
 	Offset			[175.36833658275168, -39.352543931158891]
       }
@@ -103,7 +117,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACSAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAnaAAAFlQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAnYAAAFVwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAHX/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAQy/////wAAAAAAAAAA/"
@@ -117,9 +131,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jul 17 15:21:58 2018"
-  RTWModifiedTimeStamp	  453741705
-  ModelVersionFormat	  "1.%<AutoIncrement:619>"
+  LastModifiedDate	  "Tue Jul 17 15:27:42 2018"
+  RTWModifiedTimeStamp	  453742061
+  ModelVersionFormat	  "1.%<AutoIncrement:620>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -171,12 +185,12 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "openLoop"
+    model_		    "Ex_01_Open_Loop"
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "openLoop"
+      Cell		      "Ex_01_Open_Loop"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -999,14 +1013,37 @@ Model {
       NonVirtualBus	      off
     }
     Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      Unit		      "inherit"
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      EnsureOutportIsVirtual  off
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+      MustResolveToSignalObject	off
+      OutputWhenUnConnected   off
+      OutputWhenUnconnectedValue "0"
+      VectorParamsAs1DForOutWhenUnconnected off
+    }
+    Block {
       BlockType		      Scope
       DefaultConfigurationName "Simulink.scopes.TimeScopeBlockCfg"
       Floating		      off
     }
   }
   System {
-    Name		    "openLoop"
-    Location		    [2570, 85, 4266, 1151]
+    Name		    "Ex_01_Open_Loop"
+    Location		    [2553, -7, 4248, 1018]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1021,7 +1058,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "955"
+    SIDHighWatermark	    "957"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector"
@@ -1176,6 +1213,25 @@ Model {
       "DataFormat','Array'),StrPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
       NumInputPorts	      "1"
     }
+    Block {
+      BlockType		      Outport
+      Name		      "Out1"
+      SID		      "956"
+      Position		      [640, 483, 670, 497]
+      ZOrder		      509
+      SignalName	      "Reference"
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Out2"
+      SID		      "957"
+      Position		      [975, 483, 1005, 497]
+      ZOrder		      510
+      Port		      "2"
+      SignalName	      "Response"
+      IconDisplay	      "Port number"
+    }
     Line {
       ZOrder		      600
       SrcBlock		      "JointMechanicalSubsystem"
@@ -1199,8 +1255,26 @@ Model {
       SrcBlock		      "Bus\nSelector"
       SrcPort		      3
       Points		      [62, 0; 0, 45]
-      DstBlock		      "Torque"
-      DstPort		      1
+      Branch {
+	ZOrder			604
+	Points			[0, 90; 1, 0]
+	Branch {
+	  ZOrder		  607
+	  Points		  [0, 60]
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Branch {
+	  ZOrder		  606
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+      }
+      Branch {
+	ZOrder			603
+	DstBlock		"Torque"
+	DstPort			1
+      }
     }
     Line {
       ZOrder		      220
@@ -1215,19 +1289,9 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector"
       SrcPort		      1
-      Points		      [49, 0]
-      Branch {
-	ZOrder			593
-	Points			[0, 175]
-	DstBlock		"Mux"
-	DstPort			2
-      }
-      Branch {
-	ZOrder			592
-	Points			[14, 0; 0, -50]
-	DstBlock		"GearPos"
-	DstPort			1
-      }
+      Points		      [63, 0; 0, -50]
+      DstBlock		      "GearPos"
+      DstPort		      1
     }
     Line {
       ZOrder		      520
@@ -1254,9 +1318,18 @@ Model {
       }
       Branch {
 	ZOrder			495
-	Points			[0, 150]
-	DstBlock		"Mux"
-	DstPort			1
+	Points			[0, 150; 2, 0]
+	Branch {
+	  ZOrder		  609
+	  Points		  [0, 80]
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Branch {
+	  ZOrder		  608
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -1276,7 +1349,7 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "openLoop"
+    name		    "Ex_01_Open_Loop"
     created		    "25-Aug-2015 12:13:59"
     isLibrary		    0
     sfVersion		    80000012

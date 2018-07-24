@@ -210,18 +210,19 @@ classdef dataSheetGenerator
             
             % Manipulate style of the efficiency plot 
             set(hLine1,'Color','r','linewidth',1.5)
-            ylabel(hAx(1), 'Efficiency $\eta$ [%]','Color','r');
+            ylabel(hAx(1), 'Efficiency $\eta$ [\%]','Color','r','Interpreter','latex');
             set(hAx(1),'ylim',[0,100])
             set(hAx(1),'ytick',0:10:100)
             
             % Manipulate style of the power plot 
             set(hLine2,'Color','b','linewidth',1.5)
             set(hLine2(2),'LineStyle','--')
-            ylabel(hAx(2),'Power $P$ [W]','Color','b');
+            ylabel(hAx(2),'Power $P$ [W]','Color','b','Interpreter','latex');
             
             set(hAx,'xlim',[0,t_p]);
-            xlabel('Torque $\tau$ [Nm]')
+            xlabel('Torque $\tau$ [Nm]','Interpreter','latex')
             title(['Maximum efficiency_ ', sprintf('%2.0f',eta_max),' %']);
+            set(gca,'TickLabelInterpreter','latex');
             
             oldLim = get(hAx(2),'ylim');
             set(hAx(2),'ylim',[min(P_mech), oldLim(2)]);
@@ -330,23 +331,26 @@ classdef dataSheetGenerator
             set(hLine1,'Color','r','linewidth',1.5)
             set(hLine1(2),'LineStyle','--','linewidth',1)
             set(hLine1(3),'LineStyle',':','linewidth',1)
-            ylabel(hAx(1), 'Steady State Temp. [^\circC]','Color','r');
+            ylabel(hAx(1), 'Steady State Temp. [$^{\circ}$C]','Color','r','Interpreter','latex')
             set(hAx(1),'ylim',[0,1.05*max((Tmp_W))]);
 
              % Manipulate plot style
              set(hLine2,'Color','b','linewidth',1.5)
-             ylabel(hAx(2),'Time to crit. temperature [s]','Color','b');
+             ylabel(hAx(2),'Time to crit. temperature [s]','Color','b','Interpreter','latex')
              set(hAx(2),'ylim',[0,1.05*max(real(tCrit))]);
 
              set(hAx,'xlim',[0,t_p]);  
              
-             legend({'Steady state temperature [C]',...
+             legend({'Steady state temperature [$^{\circ}$C] ',...
                      'Critical winding temperature',...
                      'Copper melting temperature',...
-                     'Time to critical winding temperature [s]'}, 'location','best')
+                     'Time to critical winding temperature [s]'}, ...
+                     'location','best',...
+                     'Interpreter','latex')
                  
-             xlabel('Torque $\tau$ [Nm]')
-             title(['Steady-state temperature rise for ambient temperature ',num2str(Tmp_ANom),' [C]'])
+             xlabel('Torque $\tau$ [Nm]','Interpreter','latex')
+             title(['Steady-state temperature rise from ',num2str(Tmp_ANom),' [${^\circ}$C]'],'Interpreter','latex')
+             set(gca,'TickLabelInterpreter','latex');
              
              hold on;
              % Plot rated operation area
@@ -691,20 +695,13 @@ classdef dataSheetGenerator
             springMag = bode(springTF,wn*w0);
             springMag = springMag(:);
             
-            % TOTAL FREQUENCY LIMIT
-%             fSpring = interp1(dq_0*springMag , wn*w0/2/pi, tau);
-%             fAmp    = interp1(magGain*t_p    , wn*w0/2/pi, tau);
-            
+            % TOTAL FREQUENCY LIMIT          
             fSpring = dq_0*springMag;
             fAmp = magGain*t_p;
-%             plot(dq_0*springMag, wn*w0/2/pi)
-%             plot(magGain*t_p, wn*w0/2/pi)
             fIdx = find(fSpring < fAmp,1,'last');
             fTot = [fSpring(1:fIdx); fAmp(fIdx+1:end)];
-%             fTotal = interp1(fTot    , wn*w0/2/pi, tau);
-%             fTotal = min(fAmp,fSpring);
-             
-             
+            
+            
             % THERMAL TIME LIMITATION
             % Steady State Temperature
             resCoeff = (r_th1 + r_th2) * r / N^2 / k_t^2; % thermal resistance coefficient
@@ -759,7 +756,7 @@ classdef dataSheetGenerator
             c.TickLabels = tmp;
             c.Label.Interpreter = 'latex';
             c.Label.String = '$t_{max}$ [s]';
-              
+                         
             
              
             % Plot total frequency limit (back-emf/voltage and sensor)
@@ -1314,11 +1311,14 @@ classdef dataSheetGenerator
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
             pos(3) = 18;
-            pos(4) = 12;
+            pos(4) = 9;
              
             set(gcf,'Position',pos)
             set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
             set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            hCbar = findobj(gcf,'Type','colorbar');
+            hCbar.AxisLocation = 'out';
             
             printpdf(gcf,this.torFreqLoadFName,['-r',num2str(this.plotResolution)])
 
@@ -1340,6 +1340,10 @@ classdef dataSheetGenerator
             set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
             set(gca,'LooseInset',get(gca,'TightInset'))
             
+            hCbar = findobj(gcf,'Type','colorbar');
+            hCbar.FontSize = get(gca,'FontSize');
+            hCbar.AxisLocation = 'in';
+                        
             printpdf(gcf,this.torFreqLockFName,['-r',num2str(this.plotResolution)])
 
             close(gcf);

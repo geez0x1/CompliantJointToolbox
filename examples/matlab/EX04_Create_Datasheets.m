@@ -29,7 +29,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % The text in the following line defines the display name for this Example
-% #! A First Joint
+% #! 04: Create Datasheets
 
 
 %% Instantiate a jointBuilder

@@ -28,7 +28,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % The text in the following line defines the display name for this Example
-% #! Build Multiple Joints
+% #! 02: Build Multiple Joints
 
 %% Instantiate a jointBuilder
 jb = jointBuilder;

@@ -27,7 +27,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % The text in the following line defines the display name for this Example
-% #! PID control + feed-forward
+% #! 04: PID control + feed-forward
 
 dispText = ...
 {'-----'
