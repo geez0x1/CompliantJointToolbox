@@ -81,7 +81,6 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 classdef jointBuilder
-    %JOINTBUILDER Builds joint model files
     
     properties
         buildDir = ['.',filesep,'build'];
