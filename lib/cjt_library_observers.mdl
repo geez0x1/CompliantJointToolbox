@@ -85,9 +85,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 12 13:21:49 2018"
-  RTWModifiedTimeStamp	  453302508
-  ModelVersionFormat	  "1.%<AutoIncrement:117>"
+  LastModifiedDate	  "Thu Jul 12 13:08:42 2018"
+  RTWModifiedTimeStamp	  453297107
+  ModelVersionFormat	  "1.%<AutoIncrement:116>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1445,7 +1445,6 @@ Library {
 	  Position		  [345, 278, 470, 342]
 	  ZOrder		  476
 	  HideAutomaticName	  off
-	  Commented		  "on"
 	  LibraryVersion	  "1.75"
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -2183,7 +2182,6 @@ Library {
 	  Position		  [345, 148, 470, 212]
 	  ZOrder		  294
 	  HideAutomaticName	  off
-	  Commented		  "on"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {

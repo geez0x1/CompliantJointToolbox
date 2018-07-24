@@ -279,32 +279,31 @@ function testExample_12(testCase)
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
-%% Excluded because of Issue #53
-% function testExample_13(testCase)
-%     % Test specific code
-% 
-%     % Run the example
-%     Ex_13_Kalman_Estimator_run
-% 
-%     % The example creates a variable simOut in the workspace. Use it to compute the checksum
-%     curChkSum = cjtComputeChecksum(simOut.yout(:));
-%     refChkSum = 'TO BE ASSIGNED';
-% 
-%     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
-% end
-% 
-% function testExample_14(testCase)
-%     % Test specific code
-% 
-%     % Run the example
-%     Ex_14_Luenberger_Observer_run
-% 
-%     % The example creates a variable simOut in the workspace. Use it to compute the checksum
-%     curChkSum = cjtComputeChecksum(simOut.yout(:));
-%     refChkSum = 'TO BE ASSIGNED';
-% 
-%     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
-% end
+function testExample_13(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_13_Kalman_Estimator_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'TO BE ASSIGNED';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+function testExample_14(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_14_Luenberger_Observer_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'TO BE ASSIGNED';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
 
 % function testFunctionalityTwo(testCase)
 % % Test specific code
