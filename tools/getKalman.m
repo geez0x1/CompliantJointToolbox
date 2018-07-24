@@ -52,6 +52,31 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 function [kest, L, Cc] = getKalman(jointObj, outputIdx, var_u, var_y)
+    %% Check inputs
+    
+    % Output variance dimensions
+    if (length(outputIdx) ~= length(var_y))
+        error('getKalman error: Unequal number of outputs and output variances specified.');
+    end
+    
+    % Add the second input (load motion) for output_fixed models
+    % This is a bit of a hack which can possibly be removed with some
+    % refactoring.
+    inputIdx = 1;
+    if (    strcmp(jointObj.modelName, 'output_fixed')                              || ...
+            strcmp(jointObj.modelName, 'output_fixed_no_friction')                  || ...
+            strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox')                || ...
+            strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox_no_friction')    )
+        warning('getKalman warning: Adding secondary input (load velocity) as required input for Kalman filter.');
+        inputIdx = [1 2];
+    end
+    
+    % Input variance dimensions
+    if (length(inputIdx) ~= length(var_u))
+        error('getKalman error: Invalid number of input variances specified.');
+    end
+
+    
     %% Get state-space model
     sys     = jointObj.getStateSpace();
 
@@ -59,13 +84,21 @@ function [kest, L, Cc] = getKalman(jointObj, outputIdx, var_u, var_y)
     A       = sys.A;
     B       = sys.B;
     C       = sys.C;
-    %D       = sys.D;
-
-    % Create system with current input and outputs specified
+    D       = sys.D;
+    
+    
+    %% Create system with current input and outputs specified
     Ac      = A;
-    Bc      = B(:,1);
+    Bc      = B(:,inputIdx);
     Cc      = C(outputIdx,:);
-    %Dc     = D(outputIdx,1);
+    Dc      = D(outputIdx,inputIdx);
+    
+    % Check observability
+    % Using very small rank tolerance due to poles possibly being close to
+    % the origin (effectively integrators)
+    if (rank(obsv(Ac,Cc), eps) ~= length(A))
+        error('getKalman error: This combination of model and measured outputs is not observable (observability matrix not full rank within tolerance of eps).');
+    end
 
 
     %% Design Kalman filter
@@ -74,20 +107,29 @@ function [kest, L, Cc] = getKalman(jointObj, outputIdx, var_u, var_y)
     % y     = Cx + Du + Hw + v  Measurement equation
 
     % Build G, H
-    G = Bc;                     % Additive noise on the current (adding to u)
-    H = zeros(size(Cc,1),1);    % No input noise feed-through
+    G       = Bc;                           % Additive noise on the current (adding to u)
+    H       = zeros(size(Cc,1),size(Bc,2)); % No input noise feed-through
 
     % Construct sys_hat
     A_hat   = Ac;
     B_hat   = [Bc, G];
     C_hat   = Cc;
-    D_hat   = [zeros(size(Cc,1),1), H];
+    D_hat   = [Dc, H];
     sys_hat = ss(A_hat, B_hat, C_hat, D_hat);
 
     % Define Kalman variance matrices
-    Qn = var_u;                 % Input noise variance
-    Rn = diag(var_y);           % Additive noise on the measurements
+    Qn      = diag(var_u);                  % Input noise variance
+    Rn      = diag(var_y);                  % Additive noise on the measurements
+    Nn      = zeros(length(var_u),length(var_y)); % Zero noise covariance
 
+    % Check noise variances
+    Z1      = [G zeros(size(G,1),size(H,1)); H eye(size(H,1))];
+    Z2      = [Qn Nn;Nn' Rn];
+    Z       = Z1 * Z2 * Z1';
+    if (find(eig(Z)<0))
+        error('getKalman error: Invalid noise variances (negative eigenvalues).');
+    end
+    
     % Calculate Kalman gains
     [kest, L, ~] = kalman(sys_hat, Qn, Rn);
 
