@@ -19,6 +19,8 @@
 %   L: Kalman gain
 %   Cc: Output matrix that selects the outputs specified by outputIdx from
 %       the output matrix C of the joint object.
+%   inputIdx: The input indices, which may have been modified (see note
+%   below).
 %
 % Notes::
 %  For output_fixed models, when inputIdx does not contain the load
@@ -56,7 +58,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [kest, L, Cc] = getKalman(jointObj, inputIdx, outputIdx, var_u, var_y)
+function [kest, L, Cc, inputIdx] = getKalman(jointObj, inputIdx, outputIdx, var_u, var_y)
     %% Get state-space model
     sys     = jointObj.getStateSpace();
 

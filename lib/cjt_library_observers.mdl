@@ -41,20 +41,32 @@ Library {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"1"
-	Extents			[816.0, 645.0]
-	ZoomFactor		[1.25]
-	Offset			[-3.8301587301587574, -43.388888888888971]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1"
+	  Extents		  [816.0, 639.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [-3.8301587301587574, -43.388888888888971]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "58"
+	  Extents		  [816.0, 639.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [476.43359375, -138.5]
+	}
+	PropName		"EditorsInfo"
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		6
+	$ObjectID		7
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -84,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jul 24 17:29:38 2018"
-  RTWModifiedTimeStamp	  454354173
-  ModelVersionFormat	  "1.%<AutoIncrement:117>"
+  LastModifiedDate	  "Wed Jul 25 10:45:04 2018"
+  RTWModifiedTimeStamp	  454416291
+  ModelVersionFormat	  "1.%<AutoIncrement:126>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -158,7 +170,7 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      8
       Version		      "1.17.0"
       DisabledProps	      []
       Description	      ""
@@ -166,7 +178,7 @@ Library {
 	Type			"Handle"
 	Dimension		10
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -206,7 +218,7 @@ Library {
 	  SampleTimeProperty	  []
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -247,7 +259,7 @@ Library {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
@@ -308,7 +320,7 @@ Library {
 	  BusAssignmentInplaceUpdate on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
@@ -418,7 +430,7 @@ Library {
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -466,7 +478,7 @@ Library {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -485,7 +497,7 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -515,7 +527,7 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
@@ -601,7 +613,7 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
@@ -688,7 +700,7 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
@@ -785,7 +797,7 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  18
+	  $ObjectID		  19
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -825,7 +837,7 @@ Library {
 	  CovMcdcMode		  "Masking"
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  19
+	  $ObjectID		  20
 	  Version		  "1.17.0"
 	  DisabledProps		  []
 	  Description		  "HDL Coder custom configuration component"
@@ -1056,7 +1068,7 @@ Library {
   }
   System {
     Name		    "cjt_library_observers"
-    Location		    [3039, 10, 3879, 1035]
+    Location		    [8, 35, 862, 857]
     Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1071,7 +1083,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "116"
+    SIDHighWatermark	    "119"
     Block {
       BlockType		      SubSystem
       Name		      "Observers"
@@ -1108,7 +1120,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    20
+	    $ObjectID		    21
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Generalized Momentum Based Disturbance Observer (DOB)"
 	    Description		    "The observer outputs a low-pass filtered version of the actual disturbance and  introduces one "
@@ -1130,14 +1142,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		21
+		$ObjectID		22
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		22
+		$ObjectID		23
 		Type			"edit"
 		Name			"L"
 		Prompt			"Gain L"
@@ -1149,12 +1161,12 @@ Library {
 	      Type		      "Simulink.dialog.Control"
 	      Dimension		      4
 	      Object {
-		$ObjectID		23
+		$ObjectID		24
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  24
+		  $ObjectID		  25
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -1162,19 +1174,19 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		25
+		$ObjectID		26
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Simulink:studio:ToolBarParametersMenu"
 		Name			"ParameterGroupVar"
 	      }
 	      Object {
-		$ObjectID		26
+		$ObjectID		27
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		PromptLocation		"left"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		27
+		$ObjectID		28
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		PromptLocation		"left"
 		Name			"L"
@@ -1423,8 +1435,8 @@ Library {
 	  BlockType		  SubSystem
 	  Name			  "Kalman observer"
 	  SID			  "58"
-	  Ports			  [2, 2]
-	  Position		  [345, 278, 470, 342]
+	  Ports			  [3, 2]
+	  Position		  [330, 280, 490, 380]
 	  ZOrder		  476
 	  HideAutomaticName	  off
 	  LibraryVersion	  "1.75"
@@ -1432,7 +1444,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    28
+	    $ObjectID		    29
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Kalman estimator"
 	    Description		    "The block implements a Kalman state estimator based on a linear state-space model of the joint."
@@ -1451,30 +1463,44 @@ Library {
 	    RunInitForIconRedraw    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      4
+	      Dimension		      6
 	      Object {
-		$ObjectID		29
+		$ObjectID		30
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		30
+		$ObjectID		31
+		Type			"checkbox"
+		Name			"inputIdx1_enable"
+		Prompt			"motorTorque [Nm]"
+		Value			"on"
+	      }
+	      Object {
+		$ObjectID		32
+		Type			"checkbox"
+		Name			"inputIdx2_enable"
+		Prompt			"tau_e [Nm] or q_l_dot [rad/s]"
+		Value			"off"
+	      }
+	      Object {
+		$ObjectID		33
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured outputs (indices)"
-		Value			"[2]"
+		Value			"[7]"
 	      }
 	      Object {
-		$ObjectID		31
+		$ObjectID		34
 		Type			"edit"
 		Name			"var_u"
 		Prompt			"Input noise variance"
 		Value			"0.12^2"
 	      }
 	      Object {
-		$ObjectID		32
+		$ObjectID		35
 		Type			"edit"
 		Name			"var_y"
 		Prompt			"Measurement noise variance"
@@ -1482,11 +1508,77 @@ Library {
 	      }
 	      PropName		      "Parameters"
 	    }
+	    Array {
+	      Type		      "Simulink.dialog.Group"
+	      Dimension		      2
+	      Object {
+		$ObjectID		36
+		Prompt			"%<MaskType>"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  37
+		  $ClassName		  "Simulink.dialog.Text"
+		  Prompt		  "%<MaskDescription>"
+		  Name			  "DescTextVar"
+		}
+		Name			"DescGroupVar"
+	      }
+	      Object {
+		$ObjectID		38
+		Prompt			"Simulink:studio:ToolBarParametersMenu"
+		Array {
+		  Type			  "Simulink.dialog.Control"
+		  Dimension		  5
+		  Object {
+		    $ObjectID		    39
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "jointObj"
+		  }
+		  Object {
+		    $ObjectID		    40
+		    $ClassName		    "Simulink.dialog.Group"
+		    Prompt		    "Measured inputs:"
+		    Array {
+		    Type		    "Simulink.dialog.parameter.CheckBox"
+		    Dimension		    2
+		    Object {
+		    $ObjectID		    41
+		    Name		    "inputIdx1_enable"
+		    }
+		    Object {
+		    $ObjectID		    42
+		    Name		    "inputIdx2_enable"
+		    }
+		    PropName		    "DialogControls"
+		    }
+		    Name		    "Container3"
+		  }
+		  Object {
+		    $ObjectID		    43
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "outputIdx"
+		  }
+		  Object {
+		    $ObjectID		    44
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "var_u"
+		  }
+		  Object {
+		    $ObjectID		    45
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "var_y"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterGroupVar"
+	      }
+	      PropName		      "DialogControls"
+	    }
 	  }
 	  System {
 	    Name		    "Kalman observer"
-	    Location		    [2831, 53, 3671, 1078]
-	    Open		    off
+	    Location		    [8, 35, 862, 857]
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1498,13 +1590,22 @@ Library {
 	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
 	      SID		      "59"
-	      Position		      [545, 138, 575, 152]
+	      Position		      [545, 63, 575, 77]
 	      ZOrder		      204
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "tau_e [Nm] or q_l_dot [rad/s]"
+	      SID		      "117"
+	      Position		      [545, 128, 575, 142]
+	      ZOrder		      293
+	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1514,7 +1615,7 @@ Library {
 	      Position		      [555, 230, 570, 260]
 	      ZOrder		      289
 	      NamePlacement	      "alternate"
-	      Port		      "2"
+	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1563,7 +1664,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [955, 187, 1050, 223]
 	      ZOrder		      263
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"
@@ -1592,6 +1693,17 @@ Library {
 	      ZOrder		      292
 	      ShowName		      off
 	      Inputs		      "7"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux2"
+	      SID		      "118"
+	      Ports		      [2, 1]
+	      Position		      [705, 86, 710, 124]
+	      ZOrder		      294
+	      ShowName		      off
+	      Inputs		      "2"
 	      DisplayOption	      "bar"
 	    }
 	    Block {
@@ -1628,6 +1740,18 @@ Library {
 	      InputPortWidth	      "demux_N"
 	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "demux_yIdx"
+	      OutputSizes	      "1"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector3"
+	      SID		      "119"
+	      Ports		      [1, 1]
+	      Position		      [760, 56, 805, 154]
+	      ZOrder		      295
+	      InputPortWidth	      "size(B,2)"
+	      IndexOptions	      "Index vector (dialog)"
+	      Indices		      "inputIdx"
 	      OutputSizes	      "1"
 	    }
 	    Block {
@@ -1671,14 +1795,6 @@ Library {
 		DstBlock		"Selector2"
 		DstPort			1
 	      }
-	    }
-	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "motorTorque [Nm]"
-	      SrcPort		      1
-	      Points		      [257, 0; 0, 50]
-	      DstBlock		      "Mux"
-	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      6
@@ -1779,6 +1895,37 @@ Library {
 	      DstBlock		      "Selector"
 	      DstPort		      1
 	    }
+	    Line {
+	      ZOrder		      37
+	      SrcBlock		      "Mux2"
+	      SrcPort		      1
+	      DstBlock		      "Selector3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      38
+	      SrcBlock		      "motorTorque [Nm]"
+	      SrcPort		      1
+	      Points		      [71, 0; 0, 25]
+	      DstBlock		      "Mux2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      39
+	      SrcBlock		      "tau_e [Nm] or q_l_dot [rad/s]"
+	      SrcPort		      1
+	      Points		      [69, 0; 0, -20]
+	      DstBlock		      "Mux2"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      40
+	      SrcBlock		      "Selector3"
+	      SrcPort		      1
+	      Points		      [28, 0; 0, 90]
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
 	  }
 	}
 	Block {
@@ -1786,7 +1933,7 @@ Library {
 	  Name			  "Linear transfer function DOB"
 	  SID			  "29"
 	  Ports			  [2, 1]
-	  Position		  [105, 278, 230, 342]
+	  Position		  [105, 298, 230, 362]
 	  ZOrder		  486
 	  HideAutomaticName	  off
 	  LibraryVersion	  "*1.84"
@@ -1794,7 +1941,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    33
+	    $ObjectID		    46
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Linear Transfer Function Disturbance Observer"
 	    Description		    "The block implements a disturbance observer based on a linear laplace domain transfer function "
@@ -1823,7 +1970,7 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
 	      Object {
-		$ObjectID		34
+		$ObjectID		47
 		Type			"checkbox"
 		Name			"loadData"
 		Prompt			"Load model/filters/parameters from file"
@@ -1832,7 +1979,7 @@ Library {
 		"'f_c', 'doPlot'}, 'off');"
 	      }
 	      Object {
-		$ObjectID		35
+		$ObjectID		48
 		Type			"edit"
 		Name			"modelFname"
 		Prompt			"Model/filters file (.mat)"
@@ -1841,21 +1988,21 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		36
+		$ObjectID		49
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		37
+		$ObjectID		50
 		Type			"edit"
 		Name			"f_c"
 		Prompt			"Q-filter cut-of frequency [Hz]"
 		Value			"100"
 	      }
 	      Object {
-		$ObjectID		38
+		$ObjectID		51
 		Type			"edit"
 		Name			"measIdx"
 		Prompt			"Measurement index"
@@ -2162,7 +2309,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    39
+	    $ObjectID		    52
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getDynamicsMatrices();\n\n% Get Luenb"
 	    "erger observer\n[sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R);\n\n% Discretize using Tust"
@@ -2174,35 +2321,35 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
 	      Object {
-		$ObjectID		40
+		$ObjectID		53
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"My_joint"
 	      }
 	      Object {
-		$ObjectID		41
+		$ObjectID		54
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured outputs (indices)"
 		Value			"[2]"
 	      }
 	      Object {
-		$ObjectID		42
+		$ObjectID		55
 		Type			"edit"
 		Name			"Q"
 		Prompt			"State weighing matrix Q"
 		Value			"diag([0 1000 0 0])"
 	      }
 	      Object {
-		$ObjectID		43
+		$ObjectID		56
 		Type			"edit"
 		Name			"R"
 		Prompt			"Input weighing matrix R"
 		Value			"5e-6"
 	      }
 	      Object {
-		$ObjectID		44
+		$ObjectID		57
 		Type			"edit"
 		Name			"place_gain"
 		Prompt			"Observer place gain"

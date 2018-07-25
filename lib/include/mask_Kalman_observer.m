@@ -27,18 +27,29 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % Get linear dynamics matrices
-[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();
+[A, B, C, I, D, K]      = jointObj.getDynamicsMatrices();
+
+% Build vector of input indices
+inputIdx = [];
+if (inputIdx1_enable)
+    inputIdx = [inputIdx(:) 1];
+end
+if (inputIdx2_enable)
+    inputIdx = [inputIdx(:) 2];
+end
 
 % Get Kalman observer
-[kest, L, Cc]	= getKalman(jointObj, outputIdx, var_u, var_y);
+% inputIdx may be modified by getKalman() to add the secondary input to
+% enforce observability (see documentation for getKalman()).
+[kest, L, Cc, inputIdx] = getKalman(jointObj, inputIdx, outputIdx, var_u, var_y);
 
 % Discretize using Tustin transform
-kest_tust       = c2d(kest, jointObj.Ts, 'tustin');
+kest_tust               = c2d(kest, jointObj.Ts, 'tustin');
 
 % Get demuxing indices
-demux_N         = size(kest.C,1);               % Kalman state-space block output size
-demux_yIdx      = 1:length(outputIdx);        	% Estimated outputs indices
-demux_stateIdx	= length(outputIdx)+1:demux_N;	% Estimated state indices
+demux_N                 = size(kest.C,1);               % Kalman state-space block output size
+demux_yIdx              = 1:length(outputIdx);        	% Estimated outputs indices
+demux_stateIdx          = length(outputIdx)+1:demux_N;	% Estimated state indices
 
 % Output
 %disp('Kalman gain L:');
