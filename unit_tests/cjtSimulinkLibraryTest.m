@@ -126,12 +126,11 @@ function testBuiltJoint(testCase)
     % Test specific code
 
     jObj = testCase.('TestData').testJoint;
-    jObj.Ts = jObj.Ts_elec;
 
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '9A64D9FC8FA0D4A91432B0EED0205A18';
+    refChkSum = '1EB30708627EA219980A2951D9D0AB44';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
@@ -279,32 +278,31 @@ function testExample_12(testCase)
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
 
-%% Excluded because of Issue #53
-% function testExample_13(testCase)
-%     % Test specific code
-% 
-%     % Run the example
-%     Ex_13_Kalman_Estimator_run
-% 
-%     % The example creates a variable simOut in the workspace. Use it to compute the checksum
-%     curChkSum = cjtComputeChecksum(simOut.yout(:));
-%     refChkSum = 'TO BE ASSIGNED';
-% 
-%     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
-% end
-% 
-% function testExample_14(testCase)
-%     % Test specific code
-% 
-%     % Run the example
-%     Ex_14_Luenberger_Observer_run
-% 
-%     % The example creates a variable simOut in the workspace. Use it to compute the checksum
-%     curChkSum = cjtComputeChecksum(simOut.yout(:));
-%     refChkSum = 'TO BE ASSIGNED';
-% 
-%     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
-% end
+function testExample_13(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_13_Kalman_Estimator_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = '6B0633F496C00E11D91983364A9BE6C3';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
+
+function testExample_14(testCase)
+    % Test specific code
+
+    % Run the example
+    Ex_14_Luenberger_Observer_run
+
+    % The example creates a variable simOut in the workspace. Use it to compute the checksum
+    curChkSum = cjtComputeChecksum(simOut.yout(:));
+    refChkSum = 'EC03D953AD1F34BBF84029CE8FD7354B';
+
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+end
 
 % function testFunctionalityTwo(testCase)
 % % Test specific code
