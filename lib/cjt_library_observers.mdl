@@ -47,10 +47,10 @@ Library {
 	Object {
 	  $ObjectID		  5
 	  IsActive		  [1]
-	  ViewObjType		  "SimulinkTopLevel"
-	  LoadSaveID		  "0"
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1"
 	  Extents		  [816.0, 639.0]
-	  ZoomFactor		  [2.0]
+	  ZoomFactor		  [1.25]
 	  Offset		  [0.0, 0.0]
 	}
 	Object {
@@ -96,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 11:52:04 2018"
-  RTWModifiedTimeStamp	  454420308
-  ModelVersionFormat	  "1.%<AutoIncrement:129>"
+  LastModifiedDate	  "Wed Jul 25 14:22:17 2018"
+  RTWModifiedTimeStamp	  454429329
+  ModelVersionFormat	  "1.%<AutoIncrement:131>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1069,7 +1069,7 @@ Library {
   System {
     Name		    "cjt_library_observers"
     Location		    [8, 35, 862, 857]
-    Open		    on
+    Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1081,7 +1081,7 @@ Library {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "200"
+    ZoomFactor		    "250"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "119"
     Block {
@@ -1096,7 +1096,7 @@ Library {
       System {
 	Name			"Observers"
 	Location		[8, 35, 862, 857]
-	Open			off
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1447,22 +1447,24 @@ Library {
 	    $ObjectID		    29
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Kalman estimator"
-	    Description		    "The block implements a Kalman state estimator based on a linear state-space model of the joint."
-	    " Therefore, the block relies on the function 'kalman' shipped with the Mathworks Control System Toolbox (required"
-	    " dependency for this block).\n\nClick >Help< for further documentation."
+	    Description		    "This block implements a Kalman state estimator based on a linear state-space model of the joint"
+	    ". Therefore, the block relies on the function 'kalman' shipped with the Mathworks Control System Toolbox (require"
+	    "d dependency for this block).\n\nClick >Help< for further documentation."
 	    Help		    "The block implements a Kalman state estimator based on a linear state-space model of the joint. Theref"
 	    "ore, the block relies on the function 'kalman' shipped with the Mathworks Control System Toolbox (required depend"
 	    "ency for this block).\n\n<b>Mask parameters</b>\n<b>Joint Object</b>: The class name of the CJT joint class name "
 	    "or the variable representing an instance of a CJT joint class.\n<b>Measured inputs</b>: The inputs that are measu"
 	    "red by the Kalman filter.\n<b>Measurement Outputs</b>: vector of indices defining the elements of the output vect"
 	    "or to be used for observation. Choices are\n1 - motor angle\n2 - gear angle\n3 - link  angle\n4 - motor velocity\n"
-	    "5 - gear velocity\n6  - link velocity\n7  - spring torque\n\nInput noise variance(s) (vector of variances)\n\nMea"
-	    "surement noise variance(s) (vector of variances)\n\n<b>Notes</b>\nFor output_fixed models, when inputIdx does not"
-	    " contain the load velocity (input 2), it is forcibly added, as it is required for the system to be observable. Ob"
-	    "viously during use this input can be zero for truly locked actuator outputs, but the input needs to be given to r"
-	    "econstruct the state of the model. See also getKalman() documentation.\n\n\n<b>References</b>\n[1] Franklin, G.F."
-	    ", J.D. Powell, and M.L. Workman, Digital Control of Dynamic Systems, Second Edition, Addison-Wesley, 1990.\n\n[2]"
-	    " Lewis, F., Optimal Estimation, John Wiley & Sons, Inc, 1986."
+	    "5 - gear velocity\n6  - link velocity\n7  - spring torque\n\n<b>Input noise variance(s)</b>: Variance or variance"
+	    "s (for multiple inputs) of the measurement noise affecting the measured inputs to the plant.\n\n<b>Measurement no"
+	    "ise variance(s)</b>: Variance or variances (for multiple outputs) of the measurement noise affecting the measured"
+	    " outputs to the plant.\n\n<b>Notes</b>\nFor output_fixed models, when inputIdx does not contain the load velocity"
+	    " (input 2), it is forcibly added, as it is required for the system to be observable. Obviously during use this in"
+	    "put can be zero for truly locked actuator outputs, but the input needs to be given to reconstruct the state of th"
+	    "e model. See also getKalman() documentation.\n\n\n<b>References</b>\n[1] Franklin, G.F., J.D. Powell, and M.L. Wo"
+	    "rkman, Digital Control of Dynamic Systems, Second Edition, Addison-Wesley, 1990.\n\n[2] Lewis, F., Optimal Estima"
+	    "tion, John Wiley & Sons, Inc, 1986."
 	    Initialization	    "mask_Kalman_observer"
 	    RunInitForIconRedraw    "on"
 	    Array {
@@ -2315,6 +2317,20 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    52
 	    $ClassName		    "Simulink.Mask"
+	    Type		    "Luenberger observer"
+	    Description		    "This block implements a standard Luenberger state estimator based on a linear state-space model"
+	    " of the joint. Therefore, the block relies on the function 'place' shipped with the Mathworks Control System Tool"
+	    "box (required dependency for this block).\n\nClick >Help< for further documentation."
+	    Help		    "This block implements a standard Luenberger state estimator based on a linear state-space model of the"
+	    " joint. Therefore, the block relies on the function 'place' shipped with the Mathworks Control System Toolbox (re"
+	    "quired dependency for this block).\n\n<b>Mask parameters</b>\n<b>Joint Object</b>: The class name of the CJT join"
+	    "t class name or the variable representing an instance of a CJT joint class.\n<b>Measurement Outputs</b>: vector o"
+	    "f indices defining the elements of the output vector to be used for observation. Choices are\n1 - motor angle\n2 "
+	    "- gear angle\n3 - link  angle\n4 - motor velocity\n5 - gear velocity\n6  - link velocity\n7  - spring torque\n\n<"
+	    "b>Observer poles</b>: Where to place the poles of the state observer. All poles need to be supplied, i.e. the sam"
+	    "e number as rows in the A state-space matrix of the chosen actuator model.\n\n<b>References</b>\n[1] Franklin, G."
+	    "F., J.D. Powell, and M.L. Workman, Digital Control of Dynamic Systems, Second Edition, Addison-Wesley, 1990.\n\n["
+	    "2] Lewis, F., Optimal Estimation, John Wiley & Sons, Inc, 1986."
 	    Initialization	    "mask_Luenberger_observer"
 	    RunInitForIconRedraw    "on"
 	    Array {
@@ -2339,7 +2355,7 @@ Library {
 		Type			"edit"
 		Name			"poles"
 		Prompt			"Observer poles"
-		Value			"-1"
+		Value			"[-100 -110 -120 -130 -140 -150]"
 	      }
 	      PropName		      "Parameters"
 	    }
