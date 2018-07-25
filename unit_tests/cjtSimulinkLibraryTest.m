@@ -130,7 +130,7 @@ function testBuiltJoint(testCase)
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '1EB30708627EA219980A2951D9D0AB44';
+    refChkSum = '3DF508F55AB34C21AFBCE083A43713E1';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
@@ -140,6 +140,9 @@ function testExample_02(testCase)
 
     % Run the example
     Ex_02_Current_Control_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -153,6 +156,9 @@ function testExample_03(testCase)
 
     % Run the example
     Ex_03_I_Control_Plus_Feedforward_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -166,6 +172,9 @@ function testExample_04(testCase)
 
     % Run the example
     Ex_04_PD_Control_Plus_Feedforward_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -179,6 +188,9 @@ function testExample_05(testCase)
 
     % Run the example
     Ex_05_PD_Control_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -192,6 +204,9 @@ function testExample_06(testCase)
 
     % Run the example
     Ex_06_PD_Feedforward_OpenLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -205,6 +220,9 @@ function testExample_07(testCase)
 
     % Run the example
     Ex_07_PD_OpenLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -218,6 +236,9 @@ function testExample_08(testCase)
 
     % Run the example
     Ex_08_PD_Feedforward_ClosedLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -231,6 +252,9 @@ function testExample_09(testCase)
 
     % Run the example
     Ex_09_PD_ClosedLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -244,6 +268,9 @@ function testExample_10(testCase)
 
     % Run the example
     Ex_10_Open_Loop_With_Disturbance_Observer_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -257,6 +284,9 @@ function testExample_11(testCase)
 
     % Run the example
     Ex_11_Passivity_Based_Control_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -270,6 +300,9 @@ function testExample_12(testCase)
 
     % Run the example
     Ex_12_Passivity_Based_Control_Plus_Disturbance_Observer_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
@@ -283,10 +316,13 @@ function testExample_13(testCase)
 
     % Run the example
     Ex_13_Kalman_Estimator_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '6B0633F496C00E11D91983364A9BE6C3';
+    refChkSum = 'FF401A273D671A877F53E6F4D0DC2F0E';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
@@ -296,10 +332,13 @@ function testExample_14(testCase)
 
     % Run the example
     Ex_14_Luenberger_Observer_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'EC03D953AD1F34BBF84029CE8FD7354B';
+    refChkSum = 'BB72C581FF054B78C331209F065D6FD1';
 
     verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
 end
