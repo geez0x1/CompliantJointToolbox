@@ -96,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 10:45:04 2018"
-  RTWModifiedTimeStamp	  454416291
-  ModelVersionFormat	  "1.%<AutoIncrement:126>"
+  LastModifiedDate	  "Wed Jul 25 11:20:25 2018"
+  RTWModifiedTimeStamp	  454418423
+  ModelVersionFormat	  "1.%<AutoIncrement:127>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1452,13 +1452,17 @@ Library {
 	    " dependency for this block).\n\nClick >Help< for further documentation."
 	    Help		    "The block implements a Kalman state estimator based on a linear state-space model of the joint. Theref"
 	    "ore, the block relies on the function 'kalman' shipped with the Mathworks Control System Toolbox (required depend"
-	    "ency for this block).\n\n<b>Mask parameters</b>\nJoint Object: The class name of the CJT joint class name or the "
-	    "variable representing an instance of a CJT joint class.\nMeasurement Outputs: vector of indices defining the elem"
-	    "ents of the output vector to be used for observation. Choices are\n1 - motor angle\n2 - gear angle\n3 - link  ang"
-	    "le\n4 - motor velocity\n5 - gear velocity\n6  - link velocity\n7  - spring torque\n\nInput noise variance\n\nMeas"
-	    "urement noise variance (vector of variances)\n\n\n<b>References</b>\n[1] Franklin, G.F., J.D. Powell, and M.L. Wo"
-	    "rkman, Digital Control of Dynamic Systems, Second Edition, Addison-Wesley, 1990.\n\n[2] Lewis, F., Optimal Estima"
-	    "tion, John Wiley & Sons, Inc, 1986."
+	    "ency for this block).\n\n<b>Mask parameters</b>\n<b>Joint Object</b>: The class name of the CJT joint class name "
+	    "or the variable representing an instance of a CJT joint class.\n<b>Measured inputs</b>: The inputs that are measu"
+	    "red by the Kalman filter.\n<b>Measurement Outputs</b>: vector of indices defining the elements of the output vect"
+	    "or to be used for observation. Choices are\n1 - motor angle\n2 - gear angle\n3 - link  angle\n4 - motor velocity\n"
+	    "5 - gear velocity\n6  - link velocity\n7  - spring torque\n\nInput noise variance(s) (vector of variances)\n\nMea"
+	    "surement noise variance(s) (vector of variances)\n\n<b>Notes</b>\nFor output_fixed models, when inputIdx does not"
+	    " contain the load velocity (input 2), it is forcibly added, as it is required for the system to be observable. Ob"
+	    "viously during use this input can be zero for truly locked actuator outputs, but the input needs to be given to r"
+	    "econstruct the state of the model. See also getKalman() documentation.\n\n\n<b>References</b>\n[1] Franklin, G.F."
+	    ", J.D. Powell, and M.L. Workman, Digital Control of Dynamic Systems, Second Edition, Addison-Wesley, 1990.\n\n[2]"
+	    " Lewis, F., Optimal Estimation, John Wiley & Sons, Inc, 1986."
 	    Initialization	    "mask_Kalman_observer"
 	    RunInitForIconRedraw    "on"
 	    Array {
@@ -1496,14 +1500,14 @@ Library {
 		$ObjectID		34
 		Type			"edit"
 		Name			"var_u"
-		Prompt			"Input noise variance"
+		Prompt			"Input noise variance(s)"
 		Value			"0.12^2"
 	      }
 	      Object {
 		$ObjectID		35
 		Type			"edit"
 		Name			"var_y"
-		Prompt			"Measurement noise variance"
+		Prompt			"Measurement noise variance(s)"
 		Value			"1.8e-10"
 	      }
 	      PropName		      "Parameters"
