@@ -47,11 +47,11 @@ Library {
 	Object {
 	  $ObjectID		  5
 	  IsActive		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "1"
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
 	  Extents		  [816.0, 639.0]
-	  ZoomFactor		  [1.25]
-	  Offset		  [-3.8301587301587574, -43.388888888888971]
+	  ZoomFactor		  [2.0]
+	  Offset		  [0.0, 0.0]
 	}
 	Object {
 	  $ObjectID		  6
@@ -96,9 +96,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 11:20:25 2018"
-  RTWModifiedTimeStamp	  454418423
-  ModelVersionFormat	  "1.%<AutoIncrement:127>"
+  LastModifiedDate	  "Wed Jul 25 11:52:04 2018"
+  RTWModifiedTimeStamp	  454420308
+  ModelVersionFormat	  "1.%<AutoIncrement:129>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1069,7 +1069,7 @@ Library {
   System {
     Name		    "cjt_library_observers"
     Location		    [8, 35, 862, 857]
-    Open		    off
+    Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1096,7 +1096,7 @@ Library {
       System {
 	Name			"Observers"
 	Location		[8, 35, 862, 857]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1146,7 +1146,7 @@ Library {
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
-		Value			"jointObj"
+		Value			"My_joint"
 	      }
 	      Object {
 		$ObjectID		23
@@ -2315,15 +2315,11 @@ Library {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    52
 	    $ClassName		    "Simulink.Mask"
-	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getDynamicsMatrices();\n\n% Get Luenb"
-	    "erger observer\n[sys_hat, L, Cc] = getObserver(jointObj, outputIdx, place_gain, Q, R);\n\n% Discretize using Tust"
-	    "in transform\nsys_hat_tust = c2d(sys_hat, jointObj.Ts, 'tustin');\n\n% Output\n%disp('Observer gain L:');\n%disp("
-	    "L);\n%disp('Estimator sys_hat:')\n%sys_hat\n%disp('Original dynamic system sys:');\n%jointObj.getStateSpace()\n%s"
-	    "ys_hat.A - A\n%sys_hat.B(:,1) - B"
+	    Initialization	    "mask_Luenberger_observer"
 	    RunInitForIconRedraw    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      5
+	      Dimension		      3
 	      Object {
 		$ObjectID		53
 		Type			"edit"
@@ -2336,35 +2332,21 @@ Library {
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured outputs (indices)"
-		Value			"[2]"
+		Value			"[7]"
 	      }
 	      Object {
 		$ObjectID		55
 		Type			"edit"
-		Name			"Q"
-		Prompt			"State weighing matrix Q"
-		Value			"diag([0 1000 0 0])"
-	      }
-	      Object {
-		$ObjectID		56
-		Type			"edit"
-		Name			"R"
-		Prompt			"Input weighing matrix R"
-		Value			"5e-6"
-	      }
-	      Object {
-		$ObjectID		57
-		Type			"edit"
-		Name			"place_gain"
-		Prompt			"Observer place gain"
-		Value			"4"
+		Name			"poles"
+		Prompt			"Observer poles"
+		Value			"-1"
 	      }
 	      PropName		      "Parameters"
 	    }
 	  }
 	  System {
 	    Name		    "Luenberger observer"
-	    Location		    [2831, 53, 3671, 1078]
+	    Location		    [8, 35, 862, 857]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
@@ -2465,7 +2447,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1030, 242, 1125, 278]
 	      ZOrder		      262
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      SourceProductName	      "Control System Toolbox"

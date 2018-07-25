@@ -61,7 +61,7 @@ res = simOut.yout(:,2);
 figure(1)
 clf;
 plot(t,[ref,res])
-legend({'response', 'reference'})
+legend({'estimated torque', 'measured torque'})
 xlabel('t [s]')
 ylabel('torque [Nm]')
 title('Torque chirp response')

@@ -105,7 +105,7 @@ function [kest, L, Cc, inputIdx] = getKalman(jointObj, inputIdx, outputIdx, var_
     end
     
     
-    %% Create system with current input and outputs specified
+    %% Create system with inputs and outputs specified
     Ac      = A;
     Bc      = B(:,inputIdx);
     Cc      = C(outputIdx,:);
