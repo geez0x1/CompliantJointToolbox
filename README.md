@@ -1,4 +1,7 @@
 # Compliant Joint Toolbox (CJT)
+
+<a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/About"><img src="https://github.com/geez0x1/CompliantJointToolbox/blob/master/doc/CJT_logo.svg" alt="Getting Started" width="150px"></a>  
+
 The Compliant Joint Toolbox (CJT) for MATLAB is being developed to ease the modelling and design of (compliant) robotic joints. The goal is to provide rapid iteration of different models and control architectures by providing a number of pre-built components with consistent interfaces, together with a set of tools to build new ones.
 
 <a href="https://github.com/geez0x1/CompliantJointToolbox" target="_blank">https://github.com/geez0x1/CompliantJointToolbox</a>
