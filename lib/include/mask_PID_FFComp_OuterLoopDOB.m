@@ -31,7 +31,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % Get linear dynamics matrices
-[A, B, C, I, D, K] = jointObj.getDynamicsMatrices();
+[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();
 
 % Default values (off)
 Q_td    = tf(0);
