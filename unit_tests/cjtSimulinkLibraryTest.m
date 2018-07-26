@@ -132,7 +132,10 @@ function testBuiltJoint(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '1EB30708627EA219980A2951D9D0AB44';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_02(testCase)
@@ -148,7 +151,10 @@ function testExample_02(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = 'D2EADE46D9D53D80066C50F5F99D3E96';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_03(testCase)
@@ -164,7 +170,10 @@ function testExample_03(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '12278F3D9A79B6CD2E480FC8C5FADE91';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_04(testCase)
@@ -180,7 +189,11 @@ function testExample_04(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = 'CCAA9A54B846DF9F483DFBF678048C99';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
+    
 end
 
 function testExample_05(testCase)
@@ -196,7 +209,10 @@ function testExample_05(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = 'FB7124CF43EBBB0B3A63DF38E8E4CFE8';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_06(testCase)
@@ -212,7 +228,10 @@ function testExample_06(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = 'E516D5DEDC6C74D30E61BF17F081CF71';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_07(testCase)
@@ -228,7 +247,10 @@ function testExample_07(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = 'ABD8FDC9DDE48C4C066623FB3B3F6132';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_08(testCase)
@@ -244,7 +266,10 @@ function testExample_08(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '210651D0CBAEF97285860FF46146CAD8';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_09(testCase)
@@ -260,7 +285,10 @@ function testExample_09(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '210651D0CBAEF97285860FF46146CAD8';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_10(testCase)
@@ -276,7 +304,10 @@ function testExample_10(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '3634D15BD1F906BB18E1B579A8A82CF5';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_11(testCase)
@@ -292,7 +323,10 @@ function testExample_11(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '86B39CB9696E8B6947EAF5F6DA980013';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_12(testCase)
@@ -308,7 +342,10 @@ function testExample_12(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '4C0FF77852B11FDA73E8A8B5697B2395';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_13(testCase)
@@ -324,7 +361,10 @@ function testExample_13(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = 'FF401A273D671A877F53E6F4D0DC2F0E';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_14(testCase)
@@ -340,7 +380,10 @@ function testExample_14(testCase)
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = 'BB72C581FF054B78C331209F065D6FD1';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 % function testFunctionalityTwo(testCase)
