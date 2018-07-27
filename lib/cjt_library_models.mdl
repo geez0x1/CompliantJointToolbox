@@ -19,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 1023.0]
+      Location		      [0.0, 27.0, 1680.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -43,7 +43,7 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4"
-	Extents			[1447.0, 846.0]
+	Extents			[2247.0, 1227.0]
 	ZoomFactor		[1.75]
 	Offset			[-416.14285714285717, -15.0]
       }
@@ -55,9 +55,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 26 16:37:58 2018"
-  RTWModifiedTimeStamp	  454523878
-  ModelVersionFormat	  "1.%<AutoIncrement:192>"
+  LastModifiedDate	  "Fri Jul 27 12:33:35 2018"
+  RTWModifiedTimeStamp	  454595615
+  ModelVersionFormat	  "1.%<AutoIncrement:196>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -1025,7 +1025,7 @@ Library {
       Variant		      off
       System {
 	Name			"Joint models"
-	Location		[0, 27, 1680, 1050]
+	Location		[0, 27, 1680, 1004]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -2266,7 +2266,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"54"
+		SIDHighWatermark	"60"
 		Block {
 		  BlockType		  Inport
 		  Name			  "params"
@@ -2296,20 +2296,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "131::53"
+		  SID			  "131::59"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  20
+		  ZOrder		  26
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "131::52"
+		  SID			  "131::58"
 		  Tag			  "Stateflow S-Function cjt_library_models_compat 1"
 		  Ports			  [3, 3]
 		  Position		  [180, 100, 230, 180]
-		  ZOrder		  19
+		  ZOrder		  25
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 3]"
 		  SFunctionDeploymentMode off
@@ -2326,9 +2326,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "131::54"
+		  SID			  "131::60"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  21
+		  ZOrder		  27
 		}
 		Block {
 		  BlockType		  Outport
@@ -2348,21 +2348,21 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  48
+		  ZOrder		  62
 		  SrcBlock		  "params"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  49
+		  ZOrder		  63
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  50
+		  ZOrder		  64
 		  SrcBlock		  "u"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2370,7 +2370,7 @@ Library {
 		}
 		Line {
 		  Name			  "x_dot"
-		  ZOrder		  51
+		  ZOrder		  65
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2379,7 +2379,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau_m"
-		  ZOrder		  52
+		  ZOrder		  66
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2387,14 +2387,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  53
+		  ZOrder		  67
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  54
+		  ZOrder		  68
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2420,7 +2420,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 144, 195, 176]
 	      ZOrder		      273
-	      LibraryVersion	      "1.191"
+	      LibraryVersion	      "1.195"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2432,7 +2432,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 299, 195, 331]
 	      ZOrder		      274
-	      LibraryVersion	      "1.191"
+	      LibraryVersion	      "1.195"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -3162,8 +3162,6 @@ Library {
 	  Position		  [70, 148, 270, 197]
 	  ZOrder		  222
 	  LibraryVersion	  "*1.166"
-	  ModelCloseFcn		  "sfsave"
-	  DestroyFcn		  "sfsave"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -4481,7 +4479,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"57"
+		SIDHighWatermark	"63"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -4493,20 +4491,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "3:1886::56"
+		  SID			  "3:1886::62"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  17
+		  ZOrder		  23
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "3:1886::55"
+		  SID			  "3:1886::61"
 		  Tag			  "Stateflow S-Function cjt_library_models_compat 2"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  16
+		  ZOrder		  22
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
 		  SFunctionDeploymentMode off
@@ -4519,9 +4517,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "3:1886::57"
+		  SID			  "3:1886::63"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  18
+		  ZOrder		  24
 		}
 		Block {
 		  BlockType		  Outport
@@ -4533,7 +4531,7 @@ Library {
 		  PortDimensions	  "3"
 		}
 		Line {
-		  ZOrder		  9
+		  ZOrder		  17
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -4541,7 +4539,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau"
-		  ZOrder		  10
+		  ZOrder		  18
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -4549,14 +4547,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  11
+		  ZOrder		  19
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  12
+		  ZOrder		  20
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
