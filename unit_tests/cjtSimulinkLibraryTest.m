@@ -149,7 +149,7 @@ function testExample_02(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'D2EADE46D9D53D80066C50F5F99D3E96';
+    refChkSum = '5E5B24A8F8146A8086E8F604DBDC9C40';
 
     import matlab.unittest.diagnostics.StringDiagnostic
     diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
@@ -187,7 +187,7 @@ function testExample_04(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'CCAA9A54B846DF9F483DFBF678048C99';
+    refChkSum = 'B287C7B751FF4B45BBF1A077C7A9EAFF';
 
     import matlab.unittest.diagnostics.StringDiagnostic
     diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
@@ -207,7 +207,7 @@ function testExample_05(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'FB7124CF43EBBB0B3A63DF38E8E4CFE8';
+    refChkSum = '11E402C0F7AAD4FC3038BBD5289E1C85';
 
     import matlab.unittest.diagnostics.StringDiagnostic
     diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
@@ -302,7 +302,7 @@ function testExample_10(testCase)
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '3634D15BD1F906BB18E1B579A8A82CF5';
+    refChkSum = '2C932218CE5BA9360D4E9AC012C53C6C';
 
     import matlab.unittest.diagnostics.StringDiagnostic
     diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
