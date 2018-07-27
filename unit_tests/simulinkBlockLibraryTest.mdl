@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.201"
+    ComputedModelVersion    "1.208"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -61,7 +61,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [8.0, 35.0, 1695.0, 1025.0]
+      Location		      [1928.0, 35.0, 1717.0, 1075.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -104,7 +104,7 @@ Model {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1657.0, 833.0]
+	  Extents		  [1679.0, 883.0]
 	  ZoomFactor		  [1.25]
 	  Offset		  [-80.996507936509033, -95.381126153167543]
 	}
@@ -128,11 +128,11 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAafAAADhQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAa1AAADtwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOH/////wAAAAAAAAAA/"
-      "////wEAAAO5/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAANR/////wAAAAAAAAAA/"
+      "////wEAAAOD/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
   HideAutomaticNames	  on
@@ -142,9 +142,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 23 18:18:11 2018"
-  RTWModifiedTimeStamp	  454270690
-  ModelVersionFormat	  "1.%<AutoIncrement:201>"
+  LastModifiedDate	  "Fri Jul 27 11:02:53 2018"
+  RTWModifiedTimeStamp	  454590172
+  ModelVersionFormat	  "1.%<AutoIncrement:208>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1119,7 +1119,7 @@ Model {
   }
   System {
     Name		    "simulinkBlockLibraryTest"
-    Location		    [8, 35, 1703, 1060]
+    Location		    [1928, 35, 3645, 1110]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1134,7 +1134,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "122"
+    SIDHighWatermark	    "140"
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector"
@@ -1148,6 +1148,21 @@ Model {
       Port {
 	PortNumber		1
 	Name			"<MotorVelNoNoise>"
+      }
+    }
+    Block {
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector1"
+      SID		      "124"
+      Ports		      [1, 1]
+      Position		      [995, 146, 1000, 184]
+      ZOrder		      468
+      ShowName		      off
+      OutputSignals	      "MotorVelFiltered"
+      OutputAsBus	      off
+      Port {
+	PortNumber		1
+	Name			"<MotorVelFiltered>"
       }
     }
     Block {
@@ -1289,7 +1304,7 @@ Model {
       Position		      [465, 181, 650, 219]
       ZOrder		      453
       HideAutomaticName	      off
-      LibraryVersion	      "1.190"
+      LibraryVersion	      "1.196"
       SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem"
       SourceType	      "JointElectricalSubsystem"
       ContentPreviewEnabled   off
@@ -1308,7 +1323,7 @@ Model {
       Position		      [730, 196, 900, 249]
       ZOrder		      222
       HideAutomaticName	      off
-      LibraryVersion	      "1.190"
+      LibraryVersion	      "1.196"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
@@ -1328,15 +1343,15 @@ Model {
       BlockType		      Scope
       Name		      "MotorVel"
       SID		      "50"
-      Ports		      [1]
-      Position		      [1125, 154, 1155, 186]
+      Ports		      [2]
+      Position		      [1125, 156, 1155, 189]
       ZOrder		      454
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
       "gr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI',t"
       "rue),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1','DataLoggingSave"
       "Format','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time"
-      " Domain',true,'SerializedDisplays',{struct('MinYLimReal','-0.00112','MaxYLimReal','0.01011','YLabelReal','','Min"
-      "YLimMag','0.00000','MaxYLimMag','0.01011','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',fals"
+      " Domain',true,'SerializedDisplays',{struct('MinYLimReal','-0.34888','MaxYLimReal','3.13996','YLabelReal','','Min"
+      "YLimMag','0.00000','MaxYLimMag','3.13996','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',fals"
       "e,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.62352941"
       "1764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.71764705"
       "8823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabe"
@@ -1346,8 +1361,8 @@ Model {
       "th',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','"
       "Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDef"
       "inedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaul"
-      "ts',struct('MinYLimReal','-0.00112','MaxYLimReal','0.01011','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag',"
-      "'0.01011','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickC"
+      "ts',struct('MinYLimReal','-0.34888','MaxYLimReal','3.13996','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag',"
+      "'3.13996','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickC"
       "olor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0."
       "16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.05"
       "88235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{stru"
@@ -1358,8 +1373,8 @@ Model {
       " 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines"
       "',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)),extmgr.Configuration('Tools','Plot Navigation',true,'O"
       "nceAtStop',false,'PreviousAutoscale','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),"
-      "'Version','2017a','Location',[150 188 1556 839],'VisibleAtModelOpen','on')"
-      NumInputPorts	      "1"
+      "'Version','2017a','Location',[92 169 1518 806],'VisibleAtModelOpen','on')"
+      NumInputPorts	      "2"
     }
     Block {
       BlockType		      Mux
@@ -1418,6 +1433,43 @@ Model {
       InputSameDT	      off
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "motorCurrent"
+      SID		      "123"
+      Ports		      [1]
+      Position		      [700, 89, 730, 121]
+      ZOrder		      467
+      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
+      "gr.Configuration('Core','General UI',true,'FigureColor',[0.5 0.5 0.5]),extmgr.Configuration('Core','Source UI',t"
+      "rue),extmgr.Configuration('Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1','DataLoggingSave"
+      "Format','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time"
+      " Domain',true,'SerializedDisplays',{struct('MinYLimReal','-0.14465','MaxYLimReal','1.30189','YLabelReal','','Min"
+      "YLimMag','0.00000','MaxYLimMag','1.30189','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',fals"
+      "e,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.62352941"
+      "1764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.71764705"
+      "8823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabe"
+      "l>','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on"
+      "'),struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1]"
+      ",'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWid"
+      "th',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','"
+      "Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDef"
+      "inedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaul"
+      "ts',struct('MinYLimReal','-0.14465','MaxYLimReal','1.30189','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag',"
+      "'1.30189','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickC"
+      "olor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0."
+      "16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.05"
+      "88235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{stru"
+      "ct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 1],'LineS"
+      "tyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1],'LineStyle','-','LineWidth',0.8"
+      ",'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible"
+      "','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0"
+      " 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines"
+      "',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)),extmgr.Configuration('Tools','Plot Navigation',true,'O"
+      "nceAtStop',false,'PreviousAutoscale','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),"
+      "'Version','2017a','Location',[430 400 1856 1037],'VisibleAtModelOpen','on')"
+      NumInputPorts	      "1"
     }
     Block {
       BlockType		      Outport
@@ -1479,8 +1531,16 @@ Model {
       SrcBlock		      "JointElectricalSubsystem"
       SrcPort		      1
       Points		      [9, 0; 0, -85]
-      DstBlock		      "Delay"
-      DstPort		      1
+      Branch {
+	ZOrder			224
+	DstBlock		"motorCurrent"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			223
+	DstBlock		"Delay"
+	DstPort			1
+      }
     }
     Line {
       ZOrder		      144
@@ -1524,14 +1584,14 @@ Model {
       SrcPort		      1
       Points		      [29, 0]
       Branch {
-	ZOrder			183
-	DstBlock		"Out1"
-	DstPort			1
+	ZOrder			225
+	Points			[0, -45]
+	DstBlock		"MotorVel"
+	DstPort			2
       }
       Branch {
-	ZOrder			182
-	Points			[0, -55]
-	DstBlock		"MotorVel"
+	ZOrder			183
+	DstBlock		"Out1"
 	DstPort			1
       }
     }
@@ -1547,6 +1607,12 @@ Model {
       SrcBlock		      "JointMechanicalSubsystem"
       SrcPort		      1
       Points		      [21, 0]
+      Branch {
+	ZOrder			227
+	Points			[0, -60]
+	DstBlock		"Bus\nSelector1"
+	DstPort			1
+      }
       Branch {
 	ZOrder			181
 	Points			[0, 149; -488, 0; 0, -164]
@@ -1597,6 +1663,15 @@ Model {
       SrcBlock		      "JointElectricalSubsystem"
       SrcPort		      2
       DstBlock		      "JointMechanicalSubsystem"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<MotorVelFiltered>"
+      ZOrder		      226
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector1"
+      SrcPort		      1
+      DstBlock		      "MotorVel"
       DstPort		      1
     }
   }
