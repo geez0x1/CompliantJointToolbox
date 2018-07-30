@@ -130,7 +130,7 @@ function testBuiltJoint(testCase)
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '1EB30708627EA219980A2951D9D0AB44';
+    refChkSum = 'DDDF1AE0626D782B11B71D0C75F8B87B';
 
     import matlab.unittest.diagnostics.StringDiagnostic
     diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
