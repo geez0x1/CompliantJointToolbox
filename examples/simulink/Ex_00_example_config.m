@@ -38,7 +38,7 @@ dispText = ...
  ' ' 
 };
 
-displayFormattedText(dispText)
+% displayFormattedText(dispText)
 
 %% Configure Joint Model
 jb = jointBuilder;
