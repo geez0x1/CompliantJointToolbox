@@ -19,7 +19,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.424"
+    ComputedModelVersion    "1.425"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -43,9 +43,9 @@ Model {
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
-      Reference		      "cstblocks/LTI System"
-      Path		      "Ex_14_Luenberger_Observer/Luenberger observer/LTI System"
-      SID		      "320:75"
+      Reference		      "cjt_library_observers/Observers/Luenberger observer"
+      Path		      "Ex_14_Luenberger_Observer/Luenberger observer"
+      SID		      "320"
       Type		      "LIBRARY_BLOCK"
     }
     OrderedModelArguments   1
@@ -109,7 +109,7 @@ Model {
 	Dimension		2
 	Object {
 	  $ObjectID		  6
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [2442.0, 1213.0]
@@ -118,10 +118,10 @@ Model {
 	}
 	Object {
 	  $ObjectID		  7
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "320"
-	  Extents		  [2442.0, 1213.0]
+	  Extents		  [2561.0, 1440.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [106.74999999999989, 102.74999999999989]
 	}
@@ -159,9 +159,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 30 08:17:54 2018"
-  RTWModifiedTimeStamp	  454839472
-  ModelVersionFormat	  "1.%<AutoIncrement:424>"
+  LastModifiedDate	  "Mon Jul 30 08:54:56 2018"
+  RTWModifiedTimeStamp	  454841046
+  ModelVersionFormat	  "1.%<AutoIncrement:425>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1046,34 +1046,6 @@ Model {
       BlockType		      Ground
     }
     Block {
-      BlockType		      Inport
-      Port		      "1"
-      OutputFunctionCall      off
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: auto"
-      LockScale		      off
-      BusOutputAsStruct	      off
-      Unit		      "inherit"
-      PortDimensions	      "-1"
-      VarSizeSig	      "Inherit"
-      SampleTime	      "-1"
-      SignalType	      "auto"
-      SamplingMode	      "auto"
-      LatchByDelayingOutsideSignal off
-      LatchInputForFeedbackSignals off
-      Interpolate	      on
-    }
-    Block {
-      BlockType		      Memory
-      InitialCondition	      "0"
-      InheritSampleTime	      off
-      LinearizeMemory	      off
-      LinearizeAsDelay	      off
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
-    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -1114,56 +1086,6 @@ Model {
       NumberOfDimensions      "1"
       IndexMode		      "One-based"
       InputPortWidth	      "-1"
-      SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      SubSystem
-      ShowPortLabels	      "FromPortIcon"
-      Permissions	      "ReadWrite"
-      PermitHierarchicalResolution "All"
-      TreatAsAtomicUnit	      off
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      SystemSampleTime	      "-1"
-      RTWSystemCode	      "Auto"
-      RTWFcnNameOpts	      "Auto"
-      RTWFileNameOpts	      "Auto"
-      FunctionInterfaceSpec   "void_void"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      SimViewingDevice	      off
-      DataTypeOverride	      "UseLocalSettings"
-      DataTypeOverrideAppliesTo	"AllNumericTypes"
-      MinMaxOverflowLogging   "UseLocalSettings"
-      Opaque		      off
-      MaskHideContents	      off
-      SFBlockType	      "NONE"
-      GeneratePreprocessorConditionals off
-      AllowZeroVariantControls off
-      PropagateVariantConditions off
-      TreatAsGroupedWhenPropagatingVariantConditions on
-      ContentPreviewEnabled   off
-      IsWebBlock	      off
-      IsObserver	      off
-    }
-    Block {
-      BlockType		      Sum
-      IconShape		      "rectangular"
-      Inputs		      "++"
-      CollapseMode	      "All dimensions"
-      CollapseDim	      "1"
-      InputSameDT	      on
-      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
     }
     Block {
@@ -1261,7 +1183,7 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.196"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
@@ -1278,531 +1200,20 @@ Model {
       var_y		      "1.8e-10"
     }
     Block {
-      BlockType		      SubSystem
+      BlockType		      Reference
       Name		      "Luenberger observer"
       SID		      "320"
       Ports		      [2, 2]
       Position		      [465, 323, 590, 387]
       ZOrder		      543
       HideAutomaticName	      off
-      AncestorBlock	      "cjt_library_observers/Observers/Luenberger observer"
-      LibraryVersion	      "*1.132"
-      RequestExecContextInheritance off
-      Variant		      off
-      Object {
-	$PropName		"MaskObject"
-	$ObjectID		24
-	$ClassName		"Simulink.Mask"
-	Type			"Luenberger observer"
-	Description		"This block implements a standard Luenberger state estimator based on a linear state-space model of the "
-	"joint. Therefore, the block relies on the function 'place' shipped with the Mathworks Control System Toolbox (require"
-	"d dependency for this block).\n\nClick >Help< for further documentation."
-	Help			"This block implements a standard Luenberger state estimator based on a linear state-space model of the joint."
-	" Therefore, the block relies on the function 'place' shipped with the Mathworks Control System Toolbox (required depe"
-	"ndency for this block).\n\n<b>Mask parameters</b>\n<b>Joint Object</b>: The class name of the CJT joint class name or"
-	" the variable representing an instance of a CJT joint class.\n<b>Measurement Outputs</b>: vector of indices defining "
-	"the elements of the output vector to be used for observation. Choices are\n1 - motor angle\n2 - gear angle\n3 - link "
-	" angle\n4 - motor velocity\n5 - gear velocity\n6  - link velocity\n7  - spring torque\n\n<b>Observer poles</b>: Where"
-	" to place the poles of the state observer. All poles need to be supplied, i.e. the same number as rows in the A state"
-	"-space matrix of the chosen actuator model.\n\n<b>References</b>\n[1] Franklin, G.F., J.D. Powell, and M.L. Workman, "
-	"Digital Control of Dynamic Systems, Second Edition, Addison-Wesley, 1990.\n\n[2] Lewis, F., Optimal Estimation, John "
-	"Wiley & Sons, Inc, 1986."
-	Initialization		"mask_Luenberger_observer"
-	RunInitForIconRedraw	"on"
-	Array {
-	  Type			  "Simulink.MaskParameter"
-	  Dimension		  3
-	  Object {
-	    $ObjectID		    25
-	    Type		    "edit"
-	    Name		    "jointObj"
-	    Prompt		    "Joint Object"
-	    Value		    "jointObj"
-	  }
-	  Object {
-	    $ObjectID		    26
-	    Type		    "edit"
-	    Name		    "outputIdx"
-	    Prompt		    "Measured outputs (indices)"
-	    Value		    "[1 7]"
-	  }
-	  Object {
-	    $ObjectID		    27
-	    Type		    "edit"
-	    Name		    "poles"
-	    Prompt		    "Observer poles"
-	    Value		    "2*pi*[-60 -70 -80]"
-	  }
-	  PropName		  "Parameters"
-	}
-      }
-      System {
-	Name			"Luenberger observer"
-	Location		[0, 27, 1680, 1004]
-	Open			on
-	PortBlocksUseCompactNotation off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	SIDHighWatermark	"117"
-	SIDPrevWatermark	"116"
-	Block {
-	  BlockType		  Inport
-	  Name			  "motorTorque [Nm]"
-	  SID			  "320:43"
-	  Position		  [545, 158, 575, 172]
-	  ZOrder		  204
-	  IconDisplay		  "Port number"
-	  Port {
-	    PortNumber		    1
-	    Name		    "motorTorque"
-	  }
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "jointBus"
-	  SID			  "320:96"
-	  Position		  [555, 255, 570, 285]
-	  ZOrder		  285
-	  NamePlacement		  "alternate"
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  BusSelector
-	  Name			  "Bus\nSelector"
-	  SID			  "320:97"
-	  Ports			  [1, 7]
-	  Position		  [605, 217, 610, 323]
-	  ZOrder		  287
-	  ShowName		  off
-	  OutputSignals		  "MotorPos,GearPos,LinkPos,MotorVelFiltered,GearVelFiltered,LinkVelFiltered,Torque"
-	  OutputAsBus		  off
-	  Port {
-	    PortNumber		    1
-	    Name		    "<MotorPos>"
-	  }
-	  Port {
-	    PortNumber		    2
-	    Name		    "<GearPos>"
-	  }
-	  Port {
-	    PortNumber		    3
-	    Name		    "<LinkPos>"
-	  }
-	  Port {
-	    PortNumber		    4
-	    Name		    "<MotorVelFiltered>"
-	  }
-	  Port {
-	    PortNumber		    5
-	    Name		    "<GearVelFiltered>"
-	  }
-	  Port {
-	    PortNumber		    6
-	    Name		    "<LinkVelFiltered>"
-	  }
-	  Port {
-	    PortNumber		    7
-	    Name		    "<Torque>"
-	  }
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "320:47"
-	  Position		  [1117, 310, 1153, 355]
-	  ZOrder		  258
-	  BlockRotation		  270
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
-	  Gain			  "Cc"
-	  Multiplication	  "Matrix(K*u)"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	    Name		    "y^"
-	  }
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "LTI System"
-	  SID			  "320:75"
-	  Ports			  [1, 1]
-	  Position		  [1030, 242, 1125, 278]
-	  ZOrder		  262
-	  LibraryVersion	  "1.338"
-	  SourceBlock		  "cstblocks/LTI System"
-	  SourceType		  "LTI Block"
-	  SourceProductName	  "Control System Toolbox"
-	  SourceProductBaseCode	  "CT"
-	  ContentPreviewEnabled	  off
-	  sys			  "sys_hat_tust"
-	  IC			  "[]"
-	  Port {
-	    PortNumber		    1
-	    Name		    "x^"
-	  }
-	}
-	Block {
-	  BlockType		  Memory
-	  Name			  "Memory"
-	  SID			  "320:117"
-	  Position		  [1020, 375, 1050, 405]
-	  ZOrder		  289
-	  BlockMirror		  on
-	  LinearizeMemory	  on
-	  LinearizeAsDelay	  on
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux"
-	  SID			  "320:98"
-	  Ports			  [7, 1]
-	  Position		  [720, 217, 725, 323]
-	  ZOrder		  288
-	  ShowName		  off
-	  Inputs		  "7"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux2"
-	  SID			  "320:49"
-	  Ports			  [2, 1]
-	  Position		  [1010, 241, 1015, 279]
-	  ZOrder		  256
-	  ShowName		  off
-	  Inputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux3"
-	  SID			  "320:50"
-	  Ports			  [2, 1]
-	  Position		  [1340, 431, 1345, 484]
-	  ZOrder		  251
-	  ShowName		  off
-	  Inputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Selector
-	  Name			  "Selector"
-	  SID			  "320:99"
-	  Ports			  [1, 1]
-	  Position		  [760, 221, 805, 319]
-	  ZOrder		  286
-	  InputPortWidth	  "size(C,1)"
-	  IndexOptions		  "Index vector (dialog)"
-	  Indices		  "outputIdx"
-	  OutputSizes		  "1"
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum3"
-	  SID			  "320:52"
-	  Ports			  [2, 1]
-	  Position		  [920, 260, 940, 280]
-	  ZOrder		  257
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|+-"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum5"
-	  SID			  "320:53"
-	  Ports			  [2, 1]
-	  Position		  [1305, 375, 1325, 395]
-	  ZOrder		  253
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|+-"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Scope
-	  Name			  "e"
-	  SID			  "320:54"
-	  Ports			  [1]
-	  Position		  [1375, 369, 1405, 401]
-	  ZOrder		  254
-	  ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr."
-	  "Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources"
-	  "','WiredSimulink',true,'DataLoggingLimitDataPoints',true,'DataLoggingSaveFormat','Array','DataLoggingDecimation','1"
-	  "','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'DisplayPropertyDefaults',struc"
-	  "t('MinYLimReal','-10','MaxYLimReal','10','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off"
-	  "','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509"
-	  "803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705"
-	  "882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 "
-	  "1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}"
-	  "},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)),extmgr.Configur"
-	  "ation('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true)),'Version','2017b','Locatio"
-	  "n',[188 365 512 604])"
-	  NumInputPorts		  "1"
-	}
-	Block {
-	  BlockType		  Scope
-	  Name			  "y_hat1"
-	  SID			  "320:55"
-	  Ports			  [1]
-	  Position		  [1375, 444, 1405, 476]
-	  ZOrder		  250
-	  ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr."
-	  "Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources"
-	  "','WiredSimulink',true,'DataLoggingLimitDataPoints',true,'DataLoggingSaveFormat','Array','DataLoggingDecimation','1"
-	  "','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'DisplayPropertyDefaults',struc"
-	  "t('MinYLimReal','-10','MaxYLimReal','10','YLabelReal','','MinYLimMag','0','MaxYLimMag','10','LegendVisibility','off"
-	  "','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509"
-	  "803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705"
-	  "882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 "
-	  "1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}"
-	  "},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)),extmgr.Configur"
-	  "ation('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true)),'Version','2017b','Locatio"
-	  "n',[188 365 512 604])"
-	  NumInputPorts		  "1"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "y_hat"
-	  SID			  "320:56"
-	  Position		  [1300, 328, 1330, 342]
-	  ZOrder		  261
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "x_hat"
-	  SID			  "320:57"
-	  Position		  [1300, 253, 1330, 267]
-	  ZOrder		  260
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Line {
-	  ZOrder		  1
-	  SrcBlock		  "Mux"
-	  SrcPort		  1
-	  DstBlock		  "Selector"
-	  DstPort		  1
-	}
-	Line {
-	  Name			  "<MotorPos>"
-	  ZOrder		  2
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  1
-	  DstBlock		  "Mux"
-	  DstPort		  1
-	}
-	Line {
-	  Name			  "<GearVelFiltered>"
-	  ZOrder		  3
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  5
-	  DstBlock		  "Mux"
-	  DstPort		  5
-	}
-	Line {
-	  Name			  "<LinkPos>"
-	  ZOrder		  4
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  3
-	  DstBlock		  "Mux"
-	  DstPort		  3
-	}
-	Line {
-	  Name			  "<LinkVelFiltered>"
-	  ZOrder		  5
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  6
-	  DstBlock		  "Mux"
-	  DstPort		  6
-	}
-	Line {
-	  Name			  "<GearPos>"
-	  ZOrder		  6
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  2
-	  DstBlock		  "Mux"
-	  DstPort		  2
-	}
-	Line {
-	  Name			  "<MotorVelFiltered>"
-	  ZOrder		  7
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  4
-	  DstBlock		  "Mux"
-	  DstPort		  4
-	}
-	Line {
-	  ZOrder		  8
-	  SrcBlock		  "jointBus"
-	  SrcPort		  1
-	  DstBlock		  "Bus\nSelector"
-	  DstPort		  1
-	}
-	Line {
-	  Name			  "<Torque>"
-	  ZOrder		  9
-	  Labels		  [0, 0]
-	  SrcBlock		  "Bus\nSelector"
-	  SrcPort		  7
-	  DstBlock		  "Mux"
-	  DstPort		  7
-	}
-	Line {
-	  Name			  "y^"
-	  ZOrder		  10
-	  SrcBlock		  "Gain"
-	  SrcPort		  1
-	  Points		  [0, 29]
-	  Branch {
-	    ZOrder		    11
-	    Labels		    [2, 0]
-	    Points		    [0, 1]
-	    DstBlock		    "Memory"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    12
-	    Points		    [131, 0]
-	    Branch {
-	      ZOrder		      13
-	      Points		      [0, 81; 49, 0]
-	      Branch {
-		ZOrder			14
-		DstBlock		"Mux3"
-		DstPort			2
-	      }
-	      Branch {
-		ZOrder			15
-		DstBlock		"Sum5"
-		DstPort			2
-	      }
-	    }
-	    Branch {
-	      ZOrder		      16
-	      Points		      [0, -54]
-	      DstBlock		      "y_hat"
-	      DstPort		      1
-	    }
-	  }
-	}
-	Line {
-	  ZOrder		  17
-	  SrcBlock		  "Sum3"
-	  SrcPort		  1
-	  DstBlock		  "Mux2"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  18
-	  SrcBlock		  "Selector"
-	  SrcPort		  1
-	  Points		  [36, 0]
-	  Branch {
-	    ZOrder		    19
-	    Points		    [0, 175; 436, 0]
-	    Branch {
-	      ZOrder		      20
-	      Points		      [0, -60]
-	      DstBlock		      "Sum5"
-	      DstPort		      1
-	    }
-	    Branch {
-	      ZOrder		      21
-	      DstBlock		      "Mux3"
-	      DstPort		      1
-	    }
-	  }
-	  Branch {
-	    ZOrder		    22
-	    Labels		    [1, 1]
-	    DstBlock		    "Sum3"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  23
-	  SrcBlock		  "Mux2"
-	  SrcPort		  1
-	  DstBlock		  "LTI System"
-	  DstPort		  1
-	}
-	Line {
-	  Name			  "x^"
-	  ZOrder		  24
-	  SrcBlock		  "LTI System"
-	  SrcPort		  1
-	  Points		  [5, 0]
-	  Branch {
-	    ZOrder		    25
-	    Labels		    [1, 1]
-	    DstBlock		    "x_hat"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    26
-	    DstBlock		    "Gain"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  Name			  "motorTorque"
-	  ZOrder		  27
-	  Labels		  [0, 1]
-	  SrcBlock		  "motorTorque [Nm]"
-	  SrcPort		  1
-	  Points		  [348, 0; 0, 85]
-	  DstBlock		  "Mux2"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  28
-	  SrcBlock		  "Sum5"
-	  SrcPort		  1
-	  DstBlock		  "e"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  29
-	  SrcBlock		  "Mux3"
-	  SrcPort		  1
-	  DstBlock		  "y_hat1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  30
-	  SrcBlock		  "Memory"
-	  SrcPort		  1
-	  Points		  [-85, 0]
-	  DstBlock		  "Sum3"
-	  DstPort		  2
-	}
-      }
+      LibraryVersion	      "1.134"
+      SourceBlock	      "cjt_library_observers/Observers/Luenberger observer"
+      SourceType	      "Luenberger observer"
+      ContentPreviewEnabled   off
+      jointObj		      "jointObj"
+      outputIdx		      "[1 7]"
+      poles		      "2*pi*[-60 -70 -80]"
     }
     Block {
       BlockType		      Mux
