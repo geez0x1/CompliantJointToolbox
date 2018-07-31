@@ -13,7 +13,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.291"
+    ComputedModelVersion    "1.297"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -49,7 +49,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [8.0, 35.0, 1295.0, 999.0]
+      Location		      [8.0, 35.0, 1295.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -68,22 +68,22 @@ Model {
       }
       Array {
 	Type			"Simulink.EditorInfo"
-	Dimension		3
+	Dimension		4
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1257.0, 807.0]
+	  Extents		  [1865.0, 1213.0]
 	  ZoomFactor		  [0.8]
-	  Offset		  [-288.46725622334316, -305.44223726427811]
+	  Offset		  [-288.46725622334327, -305.44223726427828]
 	}
 	Object {
 	  $ObjectID		  7
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "132"
-	  Extents		  [1257.0, 807.0]
+	  Extents		  [2561.0, 1440.0]
 	  ZoomFactor		  [1.5]
 	  Offset		  [557.49088541666674, -41.083333333333371]
 	}
@@ -92,9 +92,18 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "90"
-	  Extents		  [1257.0, 807.0]
-	  ZoomFactor		  [2.0]
-	  Offset		  [-32.490476190476159, 118.91428571428571]
+	  Extents		  [2561.0, 1440.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [-110.65714285714171, -43.974603174602976]
+	}
+	Object {
+	  $ObjectID		  9
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "90:134"
+	  Extents		  [2561.0, 1440.0]
+	  ZoomFactor		  [2.5]
+	  Offset		  [0.0, 0.0]
 	}
 	PropName		"EditorsInfo"
       }
@@ -106,9 +115,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:35 2018"
-  RTWModifiedTimeStamp	  454436555
-  ModelVersionFormat	  "1.%<AutoIncrement:291>"
+  LastModifiedDate	  "Mon Jul 30 08:48:53 2018"
+  RTWModifiedTimeStamp	  454841333
+  ModelVersionFormat	  "1.%<AutoIncrement:297>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "user"
@@ -155,7 +164,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    10
+    $ObjectID		    11
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "Ex_02_Current_Control_compat"
     overrideMode_	    [0.0]
@@ -199,13 +208,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      11
+      $ObjectID		      12
       Version		      "1.16.2"
       Array {
 	Type			"Handle"
 	Dimension		10
 	Simulink.SolverCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.16.2"
 	  StartTime		  "0.0"
 	  StopTime		  "t_max"
@@ -225,8 +234,8 @@ Model {
 	  SolverMode		  "SingleTasking"
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "ode3"
-	  SolverName		  "ode3"
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -241,7 +250,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.16.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -279,7 +288,7 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.16.2"
 	  Array {
 	    Type		    "Cell"
@@ -336,7 +345,7 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.16.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -431,7 +440,7 @@ Model {
 	  AllowAutomaticUnitConversions	on
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  16
+	  $ObjectID		  17
 	  Version		  "1.16.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -473,7 +482,7 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  17
+	  $ObjectID		  18
 	  Version		  "1.16.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  EnableRefExpFcnMdlSchedulingChecks on
@@ -489,7 +498,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  18
+	  $ObjectID		  19
 	  Version		  "1.16.2"
 	  SFSimEcho		  on
 	  SimCtrlC		  on
@@ -501,7 +510,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  19
+	  $ObjectID		  20
 	  Version		  "1.16.2"
 	  Array {
 	    Type		    "Cell"
@@ -573,7 +582,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      20
+	      $ObjectID		      21
 	      Version		      "1.16.2"
 	      Array {
 		Type			"Cell"
@@ -645,7 +654,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      21
+	      $ObjectID		      22
 	      Version		      "1.16.2"
 	      Array {
 		Type			"Cell"
@@ -732,7 +741,7 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  22
+	  $ObjectID		  23
 	  Version		  "1.16.2"
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -765,7 +774,7 @@ Model {
 	  CovStopTime		  0
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  23
+	  $ObjectID		  24
 	  Version		  "1.16.2"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
@@ -787,11 +796,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    11
+    $ObjectID		    12
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    24
+    $ObjectID		    25
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -909,7 +918,7 @@ Model {
   }
   System {
     Name		    "Ex_02_Current_Control_compat"
-    Location		    [8, 35, 1303, 1034]
+    Location		    [8, 35, 1303, 1012]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1062,8 +1071,8 @@ Model {
       "'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedChannelN"
       "ames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','TimeRan"
       "geFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutoscale','X"
-      "Y'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),'Version','2017b','Location',[203 351 1"
-      "362 767],'VisibleAtModelOpen','on')"
+      "Y'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Location',[203 351 1"
+      "362 767])"
       NumInputPorts	      "1"
     }
     Block {
@@ -1080,7 +1089,7 @@ Model {
       Ports		      [2, 2]
       Position		      [465, 173, 665, 222]
       ZOrder		      470
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem"
       SourceType	      "JointElectricalSubsystem"
       ContentPreviewEnabled   off
@@ -1102,7 +1111,7 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off

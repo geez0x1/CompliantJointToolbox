@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.247"
+    ComputedModelVersion    "1.249"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -56,7 +56,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [273.0, 51.0, 1295.0, 999.0]
+      Location		      [273.0, 51.0, 1295.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -80,9 +80,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1865.0, 1251.0]
+	Extents			[1865.0, 1218.0]
 	ZoomFactor		[1.25]
-	Offset			[157.11031746031659, -151.60396825396833]
+	Offset			[157.11031746031654, -151.60396825396833]
       }
     }
   }
@@ -92,9 +92,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:39 2018"
-  RTWModifiedTimeStamp	  454436559
-  ModelVersionFormat	  "1.%<AutoIncrement:247>"
+  LastModifiedDate	  "Mon Jul 30 08:48:57 2018"
+  RTWModifiedTimeStamp	  454841337
+  ModelVersionFormat	  "1.%<AutoIncrement:249>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -211,8 +211,8 @@ Model {
 	  SolverMode		  "SingleTasking"
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "ode3"
-	  SolverName		  "ode3"
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -895,7 +895,7 @@ Model {
   }
   System {
     Name		    "Ex_04_PD_Control_Plus_Feedforward_compat"
-    Location		    [273, 51, 1568, 1050]
+    Location		    [273, 51, 1568, 1028]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -965,7 +965,7 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off

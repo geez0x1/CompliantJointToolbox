@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.275"
+    ComputedModelVersion    "1.277"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -56,7 +56,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [948.0, 64.0, 1724.0, 977.0]
+      Location		      [-7.0, -7.0, 1721.0, 935.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -80,7 +80,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[2508.0, 1218.0]
+	Extents			[2504.0, 1154.0]
 	ZoomFactor		[1.25]
 	Offset			[80.110317460316764, -163.60396825396833]
       }
@@ -92,9 +92,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:48 2018"
-  RTWModifiedTimeStamp	  454436568
-  ModelVersionFormat	  "1.%<AutoIncrement:275>"
+  LastModifiedDate	  "Mon Jul 30 08:49:05 2018"
+  RTWModifiedTimeStamp	  454841345
+  ModelVersionFormat	  "1.%<AutoIncrement:277>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -895,7 +895,7 @@ Model {
   }
   System {
     Name		    "Ex_09_PD_ClosedLoopDOB_compat"
-    Location		    [948, 64, 2672, 1041]
+    Location		    [-7, -7, 1714, 928]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -965,14 +965,14 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
       jointObj		      "jointObj"
       fc_vel		      "1000"
       fc_torque		      "1000"
-      input_delay	      "0"
+      input_delay	      "1"
       output_delay	      "1"
       quantize		      on
       quantize_bits	      "19"
@@ -1037,21 +1037,21 @@ Model {
       "1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineW"
       "idth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none'"
       ",'Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserD"
-      "efinedChannelNames',{{}},'NumLines',2,'LineNames',{{'Gain','<TorqueFiltered>'}},'ShowContent',true,'Placement',1"
-      ")},'TimeUnits','seconds','DisplayPropertyDefaults',struct('MinYLimReal','-92.14609','MaxYLimReal','92.29166','YL"
-      "abelReal','','MinYLimMag','0.00000','MaxYLimMag','92.29166','LegendVisibility','On','XGrid',true,'YGrid',true,'P"
-      "lotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039"
-      "215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039"
-      "215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Tit"
-      "le','%<SignalLabel>','LinePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','no"
-      "ne','Visible','on'),struct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struc"
-      "t('Color',[0 1 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineSt"
-      "yle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,"
-      "'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible'"
-      ",'on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeR"
-      "angeSamples','t_max','TimeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop'"
-      ",false,'PreviousAutoscale','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version',"
-      "'2017b','Location',[176.333333333333 323 1304.33333333333 760.333333333333],'VisibleAtModelOpen','on')"
+      "efinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)},'TimeUnits','seconds"
+      "','DisplayPropertyDefaults',struct('MinYLimReal','-92.14609','MaxYLimReal','92.29166','YLabelReal','','MinYLimMa"
+      "g','0.00000','MaxYLimMag','92.29166','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axe"
+      "sColor',[0 0 0],'AxesTickColor',[1 1 1],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.62352941176470"
+      "6 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.71764705882352"
+      "9 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','L"
+      "inePropertiesCache',{{struct('Color',[1 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),str"
+      "uct('Color',[1 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[0 1 1],'Line"
+      "Style','-','LineWidth',0.8,'Marker','none','Visible','on'),struct('Color',[1 0 0],'LineStyle','-','LineWidth',0."
+      "8,'Marker','none','Visible','on'),struct('Color',[0 1 0],'LineStyle','-','LineWidth',0.8,'Marker','none','Visibl"
+      "e','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedCh"
+      "annelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','T"
+      "imeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutosca"
+      "le','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Location',[176"
+      ".333333333333 323 1304.33333333333 760.333333333333])"
       NumInputPorts	      "1"
     }
     Block {

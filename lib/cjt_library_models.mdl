@@ -19,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 1023.0]
+      Location		      [0.0, 27.0, 1680.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -43,9 +43,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4"
-	Extents			[2247.0, 1296.0]
+	Extents			[2247.0, 1227.0]
 	ZoomFactor		[1.75]
-	Offset			[-360.13333333333333, -53.552380952381043]
+	Offset			[-416.14285714285717, -15.0]
       }
     }
   }
@@ -55,12 +55,12 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:22 2018"
-  RTWModifiedTimeStamp	  454436542
-  ModelVersionFormat	  "1.%<AutoIncrement:168>"
+  LastModifiedDate	  "Mon Jul 30 08:48:48 2018"
+  RTWModifiedTimeStamp	  454841327
+  ModelVersionFormat	  "1.%<AutoIncrement:198>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
-  LibraryLinkDisplay	  "disabled"
+  LibraryLinkDisplay	  "all"
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
@@ -848,6 +848,15 @@ Library {
       ContinuousStateAttributes	"''"
     }
     Block {
+      BlockType		      Memory
+      X0		      "0"
+      InheritSampleTime	      off
+      LinearizeMemory	      off
+      LinearizeAsDelay	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -990,7 +999,7 @@ Library {
   }
   System {
     Name		    "cjt_library_models_compat"
-    Location		    [8, 35, 1943, 1090]
+    Location		    [0, 27, 1680, 1050]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1002,9 +1011,9 @@ Library {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "250"
+    ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "133"
+    SIDHighWatermark	    "181"
     Block {
       BlockType		      SubSystem
       Name		      "Joint models"
@@ -1016,7 +1025,7 @@ Library {
       Variant		      off
       System {
 	Name			"Joint models"
-	Location		[0, 27, 1680, 1050]
+	Location		[0, 27, 1680, 1004]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1035,8 +1044,8 @@ Library {
 	  SID			  "68"
 	  Ports			  [2, 2]
 	  Position		  [-275, 253, -75, 302]
-	  ZOrder		  453
-	  LibraryVersion	  "1.120"
+	  ZOrder		  470
+	  LibraryVersion	  "*1.196"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -1054,8 +1063,9 @@ Library {
 	    "put voltage imposed on the phase.\njointBus: Joint measurements as coming from the jointMechanicalSubsystem.\n\nO"
 	    "utputs:\nmotorCurrent: Single-phase current.\nmotorTorque: Electromechanical torque generated."
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D] = jointObj.getElectricalDynamicsMatrices();\n\n%"
-	    " Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is disabled, overwrite t"
-	    "he given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
+	    " Get other properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If input delay is enabled, set th"
+	    "e flag to 1\ninput_delay_enable = 0;\nif (input_delay > 0)\n    input_delay_enable = 1;\nend\n\n% If noise is dis"
+	    "abled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -1071,7 +1081,7 @@ Library {
 		Type			"edit"
 		Name			"input_delay"
 		Prompt			"Input Delay (num samples of Ts_elec)"
-		Value			"0"
+		Value			"1"
 	      }
 	      Object {
 		$ObjectID		22
@@ -1167,7 +1177,7 @@ Library {
 	  }
 	  System {
 	    Name		    "JointElectricalSubsystem"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [8, 35, 1303, 1012]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1286,6 +1296,25 @@ Library {
 	      }
 	    }
 	    Block {
+	      BlockType		      Memory
+	      Name		      "Memory"
+	      SID		      "178"
+	      Position		      [225, 370, 255, 400]
+	      ZOrder		      264
+	      Commented		      "through"
+	      LinearizeMemory	      on
+	      LinearizeAsDelay	      on
+	    }
+	    Block {
+	      BlockType		      Memory
+	      Name		      "Memory1"
+	      SID		      "181"
+	      Position		      [825, 200, 855, 230]
+	      ZOrder		      265
+	      LinearizeMemory	      on
+	      LinearizeAsDelay	      on
+	    }
+	    Block {
 	      BlockType		      Mux
 	      Name		      "Mux"
 	      SID		      "78"
@@ -1301,7 +1330,7 @@ Library {
 	      Name		      "Quantize"
 	      SID		      "91"
 	      Ports		      [1, 1]
-	      Position		      [65, 272, 95, 308]
+	      Position		      [65, 274, 95, 306]
 	      ZOrder		      257
 	      RequestExecContextInheritance off
 	      Variant		      off
@@ -1348,7 +1377,7 @@ Library {
 		  Variant		  off
 		  System {
 		    Name		    "Quantizer"
-		    Location		    [8, 35, 1943, 1090]
+		    Location		    [0, 27, 1680, 1050]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -1525,7 +1554,7 @@ Library {
 	      "dth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none'"
 	      ",'Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement"
 	      "',1)),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Mea"
-	      "surements',true)),'Version','2017b','Location',[188 365 512 604])"
+	      "surements',true,'Version','2017a')),'Version','2017b','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -1575,14 +1604,200 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      TransportDelay
+	      BlockType		      SubSystem
 	      Name		      "input_delay"
-	      SID		      "83"
+	      SID		      "134"
 	      Ports		      [1, 1]
-	      Position		      [125, 275, 155, 305]
-	      ZOrder		      258
-	      DelayTime		      "input_delay * Ts_elec"
-	      TransDelayFeedthrough   on
+	      Position		      [125, 274, 155, 306]
+	      ZOrder		      262
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"input_delay"
+		Location		[8, 35, 1303, 1012]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"250"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "135"
+		  Position		  [0, 83, 30, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "136"
+		  Position		  [90, 80, 200, 100]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "input_delay_enable"
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "137"
+		  Position		  [235, 12, 285, 168]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "delay"
+		  SID			  "138"
+		  Ports			  [1, 1, 1]
+		  Position		  [120, 25, 175, 55]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "delay"
+		    Location		    [0, 27, 1680, 1050]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "150"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "139"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "140"
+		    Ports		    []
+		    Position		    [102, 100, 122, 120]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    TransportDelay
+		    Name		    "input_delay"
+		    SID			    "141"
+		    Ports		    [1, 1]
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    217
+		    DelayTime		    "input_delay * Ts_elec + 1 - input_delay_enable"
+		    TransDelayFeedthrough   on
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "142"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "input_delay"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "input_delay"
+		    DstPort		    1
+		    }
+		    Annotation {
+		    SID			    "143"
+		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
+		    "arnings unnecessarily."
+		    Position		    [-25, -24, 309, 2]
+		    InternalMargins	    [0, 0, 0, 0]
+		    HorizontalAlignment	    "left"
+		    VerticalAlignment	    "top"
+		    ZOrder		    -1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "144"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "delay"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    4
+		    Points		    [0, -80]
+		    DstBlock		    "delay"
+		    DstPort		    enable
+		  }
+		  Branch {
+		    ZOrder		    5
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [22, 0]
+		  Branch {
+		    ZOrder		    7
+		    Points		    [0, 50]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -50]
+		    DstBlock		    "delay"
+		    DstPort		    1
+		  }
+		}
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1619,13 +1834,21 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      1
+	      SrcBlock		      "Memory1"
+	      SrcPort		      1
+	      Points		      [190, 0]
+	      DstBlock		      "Sum2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
 	      SrcBlock		      "input_delay"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      2
+	      ZOrder		      3
 	      SrcBlock		      "Quantize"
 	      SrcPort		      1
 	      DstBlock		      "input_delay"
@@ -1633,32 +1856,22 @@ Library {
 	    }
 	    Line {
 	      Name		      "<MotorVelNoNoise>"
-	      ZOrder		      3
+	      ZOrder		      4
 	      Labels		      [0, 0]
 	      SrcBlock		      "Bus\nSelector"
 	      SrcPort		      1
-	      Points		      [172, 0]
-	      Branch {
-		ZOrder			4
-		Points			[0, -75]
-		DstBlock		"Mux"
-		DstPort			2
-	      }
-	      Branch {
-		ZOrder			5
-		DstBlock		"Scope"
-		DstPort			1
-	      }
+	      DstBlock		      "Memory"
+	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      6
+	      ZOrder		      5
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
 	      DstBlock		      "Saturation"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      7
+	      ZOrder		      6
 	      SrcBlock		      "voltageNoise"
 	      SrcPort		      1
 	      Points		      [30, 0]
@@ -1667,7 +1880,7 @@ Library {
 	    }
 	    Line {
 	      Name		      "states_derivative"
-	      ZOrder		      8
+	      ZOrder		      7
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
@@ -1676,25 +1889,25 @@ Library {
 	    }
 	    Line {
 	      Name		      "states"
-	      ZOrder		      9
+	      ZOrder		      8
 	      Labels		      [0, 0; -1, 1]
 	      SrcBlock		      "Integrator"
 	      SrcPort		      1
 	      Points		      [80, 0]
 	      Branch {
-		ZOrder			10
+		ZOrder			9
 		DstBlock		"C"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			11
+		ZOrder			10
 		Points			[0, 135]
 		DstBlock		"A"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      12
+	      ZOrder		      11
 	      SrcBlock		      "A"
 	      SrcPort		      1
 	      Points		      [-85, 0]
@@ -1702,85 +1915,111 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      13
+	      ZOrder		      12
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
 	      Points		      [14, 0]
 	      Branch {
-		ZOrder			14
+		ZOrder			13
 		Points			[0, -85]
 		DstBlock		"D"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			15
+		ZOrder			14
 		DstBlock		"B"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      16
+	      ZOrder		      15
 	      SrcBlock		      "D"
 	      SrcPort		      1
-	      Points		      [285, 0]
-	      DstBlock		      "Sum2"
+	      DstBlock		      "Memory1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      17
+	      ZOrder		      16
 	      SrcBlock		      "C"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      18
+	      ZOrder		      17
 	      SrcBlock		      "B"
 	      SrcPort		      1
 	      DstBlock		      "Sum"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      19
+	      ZOrder		      18
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
 	      DstBlock		      "Demux"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      20
+	      ZOrder		      19
 	      SrcBlock		      "jointBus"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nSelector"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      21
+	      ZOrder		      20
 	      SrcBlock		      "voltage [V]"
 	      SrcPort		      1
 	      DstBlock		      "Quantize"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      22
+	      ZOrder		      21
 	      SrcBlock		      "Saturation"
 	      SrcPort		      1
 	      DstBlock		      "Mux"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      23
+	      ZOrder		      22
 	      SrcBlock		      "Demux"
 	      SrcPort		      1
 	      DstBlock		      "motorCurrent [A]"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      24
+	      ZOrder		      23
 	      SrcBlock		      "Demux"
 	      SrcPort		      2
 	      DstBlock		      "motorTorque [Nm]"
 	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "Memory"
+	      SrcPort		      1
+	      Points		      [37, 0]
+	      Branch {
+		ZOrder			25
+		Points			[0, -75]
+		DstBlock		"Mux"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			26
+		DstBlock		"Scope"
+		DstPort			1
+	      }
+	    }
+	    Annotation {
+	      SID		      "180"
+	      Name		      "This avoids an algebraic loop being generated when\nthe zero-inductance model is used and the mech"
+	      "anical\nmodel does not have input/output delays."
+	      Position		      [816, 134, 1059, 172]
+	      InternalMargins	      [0, 0, 0, 0]
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
+	      ZOrder		      -1
 	    }
 	  }
 	}
@@ -1810,8 +2049,9 @@ Library {
 	    Initialization	    "% Generate params object to relay jointObj parameters to the internal\n% function for the non"
 	    "linear electrical dynamics\nparams      = struct;\nparams.r    = jointObj.r;\nparams.x    = jointObj.x;\nparams.k"
 	    "_t  = jointObj.k_t;\nparams.n    = jointObj.n;\nparams.p    = jointObj.p;\nparams.v_0  = jointObj.v_0;\n\n% Get o"
-	    "ther properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If noise is disabled, overwrite the giv"
-	    "en variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
+	    "ther properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\n\n% If input delay is enabled, set the flag"
+	    " to 1\ninput_delay_enable = 0;\nif (input_delay > 0)\n    input_delay_enable = 1;\nend\n\n% If noise is disabled,"
+	    " overwrite the given variances\nif (input_noise_enabled == 0)\n    var_u = 0;\nend\n"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      6
@@ -1935,7 +2175,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "175"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "v_q [V]"
@@ -2043,7 +2283,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"51"
+		SIDHighWatermark	"63"
 		Block {
 		  BlockType		  Inport
 		  Name			  "params"
@@ -2073,20 +2313,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "131::42"
+		  SID			  "131::62"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  17
+		  ZOrder		  29
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "131::41"
+		  SID			  "131::61"
 		  Tag			  "Stateflow S-Function cjt_library_models_compat 1"
 		  Ports			  [3, 3]
 		  Position		  [180, 100, 230, 180]
-		  ZOrder		  16
+		  ZOrder		  28
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 3]"
 		  SFunctionDeploymentMode off
@@ -2103,9 +2343,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "131::43"
+		  SID			  "131::63"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  18
+		  ZOrder		  30
 		}
 		Block {
 		  BlockType		  Outport
@@ -2125,21 +2365,21 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  41
+		  ZOrder		  69
 		  SrcBlock		  "params"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  42
+		  ZOrder		  70
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  43
+		  ZOrder		  71
 		  SrcBlock		  "u"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2147,7 +2387,7 @@ Library {
 		}
 		Line {
 		  Name			  "x_dot"
-		  ZOrder		  44
+		  ZOrder		  72
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2156,7 +2396,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau_m"
-		  ZOrder		  45
+		  ZOrder		  73
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2164,14 +2404,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  46
+		  ZOrder		  74
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  47
+		  ZOrder		  75
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2195,9 +2435,9 @@ Library {
 	      Name		      "Quantize"
 	      SID		      "129"
 	      Ports		      [1, 1]
-	      Position		      [165, 142, 195, 178]
+	      Position		      [165, 144, 195, 176]
 	      ZOrder		      273
-	      LibraryVersion	      "1.167"
+	      LibraryVersion	      "1.197"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2207,9 +2447,9 @@ Library {
 	      Name		      "Quantize1"
 	      SID		      "130"
 	      Ports		      [1, 1]
-	      Position		      [165, 297, 195, 333]
+	      Position		      [165, 299, 195, 331]
 	      ZOrder		      274
-	      LibraryVersion	      "1.167"
+	      LibraryVersion	      "1.197"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2301,24 +2541,396 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      TransportDelay
+	      BlockType		      SubSystem
 	      Name		      "input_delay"
-	      SID		      "122"
+	      SID		      "145"
 	      Ports		      [1, 1]
-	      Position		      [225, 145, 255, 175]
-	      ZOrder		      258
-	      DelayTime		      "input_delay * Ts_elec"
-	      TransDelayFeedthrough   on
+	      Position		      [225, 144, 255, 176]
+	      ZOrder		      277
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"input_delay"
+		Location		[0, 27, 1680, 1050]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"250"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "146"
+		  Position		  [0, 83, 30, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "147"
+		  Position		  [90, 80, 200, 100]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "input_delay_enable"
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "148"
+		  Position		  [235, 12, 285, 168]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "delay"
+		  SID			  "149"
+		  Ports			  [1, 1, 1]
+		  Position		  [120, 25, 175, 55]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "delay"
+		    Location		    [0, 27, 1680, 1050]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "150"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "150"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "151"
+		    Ports		    []
+		    Position		    [102, 100, 122, 120]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    TransportDelay
+		    Name		    "input_delay"
+		    SID			    "152"
+		    Ports		    [1, 1]
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    217
+		    DelayTime		    "input_delay * Ts_elec + 1 - input_delay_enable"
+		    TransDelayFeedthrough   on
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "153"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "input_delay"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "input_delay"
+		    DstPort		    1
+		    }
+		    Annotation {
+		    SID			    "154"
+		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
+		    "arnings unnecessarily."
+		    Position		    [-25, -24, 309, 2]
+		    InternalMargins	    [0, 0, 0, 0]
+		    HorizontalAlignment	    "left"
+		    VerticalAlignment	    "top"
+		    ZOrder		    -1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "155"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "delay"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    4
+		    Points		    [0, -80]
+		    DstBlock		    "delay"
+		    DstPort		    enable
+		  }
+		  Branch {
+		    ZOrder		    5
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [22, 0]
+		  Branch {
+		    ZOrder		    7
+		    Points		    [0, 50]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -50]
+		    DstBlock		    "delay"
+		    DstPort		    1
+		  }
+		}
+	      }
 	    }
 	    Block {
-	      BlockType		      TransportDelay
+	      BlockType		      SubSystem
 	      Name		      "input_delay1"
-	      SID		      "123"
+	      SID		      "156"
 	      Ports		      [1, 1]
-	      Position		      [225, 300, 255, 330]
-	      ZOrder		      268
-	      DelayTime		      "input_delay * Ts_elec"
-	      TransDelayFeedthrough   on
+	      Position		      [225, 299, 255, 331]
+	      ZOrder		      278
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"input_delay1"
+		Location		[0, 27, 1680, 1050]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"250"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "157"
+		  Position		  [0, 83, 30, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "158"
+		  Position		  [90, 80, 200, 100]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "input_delay_enable"
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "159"
+		  Position		  [235, 12, 285, 168]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "delay"
+		  SID			  "160"
+		  Ports			  [1, 1, 1]
+		  Position		  [120, 25, 175, 55]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "delay"
+		    Location		    [0, 27, 1680, 1050]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "150"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "161"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "162"
+		    Ports		    []
+		    Position		    [102, 100, 122, 120]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    TransportDelay
+		    Name		    "input_delay"
+		    SID			    "163"
+		    Ports		    [1, 1]
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    217
+		    DelayTime		    "input_delay * Ts_elec + 1 - input_delay_enable"
+		    TransDelayFeedthrough   on
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "164"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "input_delay"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "input_delay"
+		    DstPort		    1
+		    }
+		    Annotation {
+		    SID			    "165"
+		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
+		    "arnings unnecessarily."
+		    Position		    [-25, -24, 309, 2]
+		    InternalMargins	    [0, 0, 0, 0]
+		    HorizontalAlignment	    "left"
+		    VerticalAlignment	    "top"
+		    ZOrder		    -1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "166"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "delay"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    4
+		    Points		    [0, -80]
+		    DstBlock		    "delay"
+		    DstPort		    enable
+		  }
+		  Branch {
+		    ZOrder		    5
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [22, 0]
+		  Branch {
+		    ZOrder		    7
+		    Points		    [0, 50]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -50]
+		    DstBlock		    "delay"
+		    DstPort		    1
+		  }
+		}
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2379,14 +2991,14 @@ Library {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
+	      ZOrder		      77
 	      SrcBlock		      "input_delay"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      27
+	      ZOrder		      76
 	      SrcBlock		      "Quantize"
 	      SrcPort		      1
 	      DstBlock		      "input_delay"
@@ -2514,14 +3126,14 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      28
+	      ZOrder		      79
 	      SrcBlock		      "Quantize1"
 	      SrcPort		      1
 	      DstBlock		      "input_delay1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      21
+	      ZOrder		      78
 	      SrcBlock		      "input_delay1"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
@@ -2567,8 +3179,6 @@ Library {
 	  Position		  [70, 148, 270, 197]
 	  ZOrder		  222
 	  LibraryVersion	  "*1.166"
-	  ModelCloseFcn		  "sfsave"
-	  DestroyFcn		  "sfsave"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  Object {
@@ -2599,8 +3209,9 @@ Library {
 	    "Build B matrix for nonlinear components\nB_nonlinear = [zeros([size(B,1)-size(I,1),1]); 1./diag(I)];\n\n% Get oth"
 	    "er properties\nTs      = jointObj.Ts;\nTs_elec = jointObj.Ts_elec;\nk_b     = jointObj.k_b;\nk_t     = jointObj.k"
 	    "_t;\nn       = jointObj.n;\nd_gl    = jointObj.d_gl;\n\n% Handle MATLAB function block\nhandleMatlabFunctionBlock"
-	    "(gcb, jointObj);\n\n% If noise is disabled, overwrite the given variances\nif (input_noise_enabled == 0)\n    var"
-	    "_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0;\nend"
+	    "(gcb, jointObj);\n\n% If input delay is enabled, set the flag to 1\ninput_delay_enable = 0;\nif (input_delay > 0)"
+	    "\n    input_delay_enable = 1;\nend\n\n% If noise is disabled, overwrite the given variances\nif (input_noise_enab"
+	    "led == 0)\n    var_u = 0;\nend\nif (output_noise_enabled == 0)\n	var_y = 0;\nend"
 	    SelfModifiable	    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
@@ -2690,7 +3301,7 @@ Library {
 	  }
 	  System {
 	    Name		    "JointMechanicalSubsystem"
-	    Location		    [2553, -7, 4248, 1018]
+	    Location		    [0, 27, 1680, 1050]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2703,7 +3314,7 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "1965"
+	    SIDHighWatermark	    "2515"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -3661,14 +4272,200 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      TransportDelay
+	      BlockType		      SubSystem
 	      Name		      "input_delay"
-	      SID		      "3:43"
+	      SID		      "3:1887"
 	      Ports		      [1, 1]
-	      Position		      [240, 430, 270, 460]
-	      ZOrder		      184
-	      DelayTime		      "input_delay * jointObj.Ts"
-	      TransDelayFeedthrough   on
+	      Position		      [240, 429, 270, 461]
+	      ZOrder		      251
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"input_delay"
+		Location		[0, 27, 1680, 1050]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"250"
+		Block {
+		  BlockType		  Inport
+		  Name			  "u"
+		  SID			  "3:1888"
+		  Position		  [0, 83, 30, 97]
+		  ZOrder		  218
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "3:1889"
+		  Position		  [90, 80, 200, 100]
+		  ZOrder		  217
+		  ShowName		  off
+		  Value			  "input_delay_enable"
+		}
+		Block {
+		  BlockType		  Switch
+		  Name			  "Switch"
+		  SID			  "3:1895"
+		  Position		  [235, 12, 285, 168]
+		  ZOrder		  216
+		  Criteria		  "u2 > Threshold"
+		  InputSameDT		  off
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "delay"
+		  SID			  "3:1890"
+		  Ports			  [1, 1, 1]
+		  Position		  [120, 25, 175, 55]
+		  ZOrder		  -4
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "delay"
+		    Location		    [0, 27, 1680, 1050]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "300"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "3:1891"
+		    Position		    [20, 85, 50, 100]
+		    ZOrder		    214
+		    BlockRotation	    270
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    EnablePort
+		    Name		    "Enable"
+		    SID			    "3:1892"
+		    Ports		    []
+		    Position		    [102, 100, 122, 120]
+		    ZOrder		    216
+		    }
+		    Block {
+		    BlockType		    TransportDelay
+		    Name		    "input_delay"
+		    SID			    "3:43"
+		    Ports		    [1, 1]
+		    Position		    [95, 20, 125, 50]
+		    ZOrder		    217
+		    DelayTime		    "input_delay * jointObj.Ts + 1 - input_delay_enable"
+		    TransDelayFeedthrough   on
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "3:1894"
+		    Position		    [195, 28, 225, 42]
+		    ZOrder		    215
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "input_delay"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [0, -45]
+		    DstBlock		    "input_delay"
+		    DstPort		    1
+		    }
+		    Annotation {
+		    SID			    "3:2075"
+		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
+		    "arnings unnecessarily."
+		    Position		    [-25, -24, 309, 2]
+		    InternalMargins	    [0, 0, 0, 0]
+		    HorizontalAlignment	    "left"
+		    VerticalAlignment	    "top"
+		    ZOrder		    -1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "3:1896"
+		  Position		  [310, 83, 340, 97]
+		  ZOrder		  219
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "delay"
+		  SrcPort		  1
+		  DstBlock		  "Switch"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Switch"
+		  SrcPort		  1
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [6, 0]
+		  Branch {
+		    ZOrder		    4
+		    Points		    [0, -80]
+		    DstBlock		    "delay"
+		    DstPort		    enable
+		  }
+		  Branch {
+		    ZOrder		    5
+		    DstBlock		    "Switch"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "u"
+		  SrcPort		  1
+		  Points		  [22, 0]
+		  Branch {
+		    ZOrder		    7
+		    Points		    [0, 50]
+		    DstBlock		    "Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -50]
+		    DstBlock		    "delay"
+		    DstPort		    1
+		  }
+		}
+	      }
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -3699,7 +4496,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"71"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -3711,20 +4508,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "3:1886::23"
+		  SID			  "3:1886::70"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  14
+		  ZOrder		  26
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "3:1886::22"
+		  SID			  "3:1886::69"
 		  Tag			  "Stateflow S-Function cjt_library_models_compat 2"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  13
+		  ZOrder		  25
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
 		  SFunctionDeploymentMode off
@@ -3737,9 +4534,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "3:1886::24"
+		  SID			  "3:1886::71"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  15
+		  ZOrder		  27
 		}
 		Block {
 		  BlockType		  Outport
@@ -3751,7 +4548,7 @@ Library {
 		  PortDimensions	  "3"
 		}
 		Line {
-		  ZOrder		  5
+		  ZOrder		  21
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -3759,7 +4556,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau"
-		  ZOrder		  6
+		  ZOrder		  22
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -3767,14 +4564,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  7
+		  ZOrder		  23
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  8
+		  ZOrder		  24
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -4074,14 +4871,14 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      6
+	      ZOrder		      273
 	      SrcBlock		      "input_delay"
 	      SrcPort		      1
 	      DstBlock		      "Mux"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      7
+	      ZOrder		      274
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
 	      DstBlock		      "input_delay"
@@ -4939,19 +5736,19 @@ Stateflow {
     eml {
       isEML		      1
       script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;"
-      "\nparams.c_FE = 460.000000;\nparams.diam = 93.000000;\nparams.len = 163.000000;\nparams.m = 1.450000;\nparams.I_"
-      "m = 0.229997;\nparams.I_g = 0.071680;\nparams.I_l = 0.000114;\nparams.k_g = 16000.000000;\nparams.k_b = 6000.000"
-      "000;\nparams.d_m = 0.003592;\nparams.d_g = 0.384000;\nparams.d_l = 0.000000;\nparams.d_m_n = 0.003592;\nparams.d"
-      "_g_n = 0.384000;\nparams.d_l_n = 0.000000;\nparams.d_mg = 100.000000;\nparams.d_gl = 0.000000;\nparams.d_cm = 2."
+      "\nparams.c_FE = 460.000000;\nparams.diam = 93.000000;\nparams.len = 163.000000;\nparams.m = 1.000000;\nparams.I_"
+      "m = 0.230000;\nparams.I_g = 0.071700;\nparams.I_l = 0.000100;\nparams.k_g = 16000.000000;\nparams.k_b = 6000.000"
+      "000;\nparams.d_m = 0.003600;\nparams.d_g = 2.200000;\nparams.d_l = 0.000000;\nparams.d_m_n = 0.003600;\nparams.d"
+      "_g_n = 2.200000;\nparams.d_l_n = 0.000000;\nparams.d_mg = 100.000000;\nparams.d_gl = 0.000000;\nparams.d_cm = 2."
       "640000;\nparams.d_cg = 3.280000;\nparams.d_cl = 0.000000;\nparams.d_cm_n = 2.640000;\nparams.d_cg_n = 3.280000;\n"
       "params.d_cl_n = 0.000000;\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.rip_types = [];\nparams.rip_a1"
       " = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.318"
-      "000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 33.900000;\nparams.dq_p "
-      "= 7.728395;\nparams.r_th1 = 3.136441;\nparams.r_th2 = 32.663680;\nparams.T_thw = 98.081750;\nparams.T_thm = 4679"
-      ".965000;\nparams.Tmp_WMax = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint';\nparams.pa"
+      "000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 30.000000;\nparams.dq_p "
+      "= 7.728400;\nparams.r_th1 = 3.136400;\nparams.r_th2 = 32.663700;\nparams.T_thw = 98.081700;\nparams.T_thm = 4679"
+      ".965500;\nparams.Tmp_WMax = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint';\nparams.pa"
       "ramName = 'cjt_Orange_80_6000';\nparams.modelName = 'output_fixed_rigid_gearbox';\nparams.nonlinearModelName = '"
       "coulomb_asym';\nparams.electricalModelName = 'electric_dyn_zero_inductance';\nparams.Ts = 0.001000;\nparams.Ts_e"
-      "lec = 0.000050;\ntau =coulomb_asym(params,x);\n	end\n\n"
+      "lec = 0.000100;\ntau =coulomb_asym(params,x);\n	end\n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }

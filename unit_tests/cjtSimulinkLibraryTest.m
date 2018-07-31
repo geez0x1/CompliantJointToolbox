@@ -130,9 +130,12 @@ function testBuiltJoint(testCase)
     simOut = sim('simulinkBlockLibraryTest.mdl','SrcWorkspace','current');
 
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '1EB30708627EA219980A2951D9D0AB44';
+    refChkSum = 'DDDF1AE0626D782B11B71D0C75F8B87B';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_02(testCase)
@@ -140,12 +143,18 @@ function testExample_02(testCase)
 
     % Run the example
     Ex_02_Current_Control_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'D2EADE46D9D53D80066C50F5F99D3E96';
+    refChkSum = '50EB85C7F629F9D1527CE393091993AC';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_03(testCase)
@@ -153,12 +162,18 @@ function testExample_03(testCase)
 
     % Run the example
     Ex_03_I_Control_Plus_Feedforward_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '12278F3D9A79B6CD2E480FC8C5FADE91';
+    refChkSum = '93D29518D7032BBD9F4CF14A86ED409D';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_04(testCase)
@@ -166,12 +181,19 @@ function testExample_04(testCase)
 
     % Run the example
     Ex_04_PD_Control_Plus_Feedforward_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'CCAA9A54B846DF9F483DFBF678048C99';
+    refChkSum = '3640A161985BBD7CE3AFBFA6F8116EC8';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
+    
 end
 
 function testExample_05(testCase)
@@ -179,12 +201,18 @@ function testExample_05(testCase)
 
     % Run the example
     Ex_05_PD_Control_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'FB7124CF43EBBB0B3A63DF38E8E4CFE8';
+    refChkSum = 'B054AA7EBE4D99212F55E016973ECAA3';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_06(testCase)
@@ -192,12 +220,18 @@ function testExample_06(testCase)
 
     % Run the example
     Ex_06_PD_Feedforward_OpenLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'E516D5DEDC6C74D30E61BF17F081CF71';
+    refChkSum = '760A93CEE2452F1E137AD139B9E185D8';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_07(testCase)
@@ -205,12 +239,18 @@ function testExample_07(testCase)
 
     % Run the example
     Ex_07_PD_OpenLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'ABD8FDC9DDE48C4C066623FB3B3F6132';
+    refChkSum = '68CA88D5E3B6430A9CCD0574CE4D3960';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_08(testCase)
@@ -218,12 +258,18 @@ function testExample_08(testCase)
 
     % Run the example
     Ex_08_PD_Feedforward_ClosedLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '210651D0CBAEF97285860FF46146CAD8';
+    refChkSum = '7D11CACB5700871D0063D64DDADB6D1A';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_09(testCase)
@@ -231,12 +277,18 @@ function testExample_09(testCase)
 
     % Run the example
     Ex_09_PD_ClosedLoopDOB_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '210651D0CBAEF97285860FF46146CAD8';
+    refChkSum = '7D11CACB5700871D0063D64DDADB6D1A';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_10(testCase)
@@ -244,12 +296,18 @@ function testExample_10(testCase)
 
     % Run the example
     Ex_10_Open_Loop_With_Disturbance_Observer_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '3634D15BD1F906BB18E1B579A8A82CF5';
+    refChkSum = '5C5C452FB4F5469581849B09FF558AD2';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_11(testCase)
@@ -257,12 +315,18 @@ function testExample_11(testCase)
 
     % Run the example
     Ex_11_Passivity_Based_Control_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '86B39CB9696E8B6947EAF5F6DA980013';
+    refChkSum = '9A79781D932136DCE38D78065AD8A6E1';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_12(testCase)
@@ -270,12 +334,18 @@ function testExample_12(testCase)
 
     % Run the example
     Ex_12_Passivity_Based_Control_Plus_Disturbance_Observer_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
     refChkSum = '4C0FF77852B11FDA73E8A8B5697B2395';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_13(testCase)
@@ -283,12 +353,18 @@ function testExample_13(testCase)
 
     % Run the example
     Ex_13_Kalman_Estimator_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = '6B0633F496C00E11D91983364A9BE6C3';
+    refChkSum = '2E715A3DECEF386C6D9F37501BAD83B9';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 function testExample_14(testCase)
@@ -296,12 +372,18 @@ function testExample_14(testCase)
 
     % Run the example
     Ex_14_Luenberger_Observer_run
+    
+    % Close block diagrams after simulation during unit tests
+    close_system(mdlName);
 
     % The example creates a variable simOut in the workspace. Use it to compute the checksum
     curChkSum = cjtComputeChecksum(simOut.yout(:));
-    refChkSum = 'EC03D953AD1F34BBF84029CE8FD7354B';
+    refChkSum = 'EBE941988C2D22DB43BCD95823B20503';
 
-    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum));
+    import matlab.unittest.diagnostics.StringDiagnostic
+    diagStr = sprintf(' Computed checksum: %s \n Reference: %s',curChkSum,refChkSum);
+    verifyTrue(testCase, cjtCompareChecksum(curChkSum, refChkSum),...
+        StringDiagnostic(diagStr) );
 end
 
 % function testFunctionalityTwo(testCase)

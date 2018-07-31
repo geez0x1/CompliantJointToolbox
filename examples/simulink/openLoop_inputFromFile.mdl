@@ -68,8 +68,8 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:58 2018"
-  RTWModifiedTimeStamp	  454436578
+  LastModifiedDate	  "Thu Jul 26 16:38:20 2018"
+  RTWModifiedTimeStamp	  454523899
   ModelVersionFormat	  "1.%<AutoIncrement:627>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1193,7 +1193,7 @@ Model {
       Ports		      [2, 1]
       Position		      [635, 231, 805, 284]
       ZOrder		      457
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.192"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off

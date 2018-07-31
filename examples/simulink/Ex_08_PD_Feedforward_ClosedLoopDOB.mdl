@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.280"
+    ComputedModelVersion    "1.282"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -80,7 +80,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1642.0, 791.0]
+	Extents			[2442.0, 1218.0]
 	ZoomFactor		[1.25]
 	Offset			[0.0, 0.0]
       }
@@ -92,9 +92,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:46 2018"
-  RTWModifiedTimeStamp	  454436566
-  ModelVersionFormat	  "1.%<AutoIncrement:280>"
+  LastModifiedDate	  "Mon Jul 30 08:49:03 2018"
+  RTWModifiedTimeStamp	  454841343
+  ModelVersionFormat	  "1.%<AutoIncrement:282>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -965,14 +965,14 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
       jointObj		      "jointObj"
       fc_vel		      "1000"
       fc_torque		      "1000"
-      input_delay	      "0"
+      input_delay	      "1"
       output_delay	      "1"
       quantize		      on
       quantize_bits	      "19"
@@ -1050,8 +1050,8 @@ Model {
       "e','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedCh"
       "annelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','T"
       "imeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutosca"
-      "le','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),'Version','2017b','Location',[181"
-      " 311 1299 755],'VisibleAtModelOpen','on')"
+      "le','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Location',[181"
+      " 311 1299 755])"
       NumInputPorts	      "1"
     }
     Block {

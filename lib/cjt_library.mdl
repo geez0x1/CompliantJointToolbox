@@ -67,8 +67,8 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:29 2018"
-  RTWModifiedTimeStamp	  454436549
+  LastModifiedDate	  "Thu Jul 26 16:38:01 2018"
+  RTWModifiedTimeStamp	  454523881
   ModelVersionFormat	  "1.%<AutoIncrement:142>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -812,7 +812,7 @@ Library {
       Ports		      []
       Position		      [87, 31, 192, 113]
       ZOrder		      192
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.192"
       SourceBlock	      "cjt_library_models/Joint models"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off

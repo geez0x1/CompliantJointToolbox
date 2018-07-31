@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.233"
+    ComputedModelVersion    "1.235"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -56,7 +56,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [8.0, 35.0, 1295.0, 999.0]
+      Location		      [8.0, 35.0, 1295.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -80,7 +80,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1257.0, 813.0]
+	Extents			[1865.0, 1218.0]
 	ZoomFactor		[1.0]
 	Offset			[66.036507936507064, -226.01587301587335]
       }
@@ -92,9 +92,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:37 2018"
-  RTWModifiedTimeStamp	  454436557
-  ModelVersionFormat	  "1.%<AutoIncrement:233>"
+  LastModifiedDate	  "Mon Jul 30 08:48:55 2018"
+  RTWModifiedTimeStamp	  454841335
+  ModelVersionFormat	  "1.%<AutoIncrement:235>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -211,8 +211,8 @@ Model {
 	  SolverMode		  "SingleTasking"
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "ode3"
-	  SolverName		  "ode3"
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -880,7 +880,7 @@ Model {
   }
   System {
     Name		    "Ex_03_I_Control_Plus_Feedforward_compat"
-    Location		    [8, 35, 1303, 1034]
+    Location		    [8, 35, 1303, 1012]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -953,7 +953,7 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off

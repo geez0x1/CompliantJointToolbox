@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.379"
+    ComputedModelVersion    "1.381"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -56,7 +56,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2553.0, -7.0, 1695.0, 1025.0]
+      Location		      [8.0, 8.0, 1695.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -80,7 +80,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[2464.0, 1289.0]
+	Extents			[2465.0, 1218.0]
 	ZoomFactor		[1.5]
 	Offset			[146.30317460317326, -12.253968253967628]
       }
@@ -92,9 +92,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:52 2018"
-  RTWModifiedTimeStamp	  454436572
-  ModelVersionFormat	  "1.%<AutoIncrement:379>"
+  LastModifiedDate	  "Mon Jul 30 08:49:08 2018"
+  RTWModifiedTimeStamp	  454841348
+  ModelVersionFormat	  "1.%<AutoIncrement:381>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -895,7 +895,7 @@ Model {
   }
   System {
     Name		    "Ex_11_Passivity_Based_Control_compat"
-    Location		    [2553, -7, 4248, 1018]
+    Location		    [8, 8, 1703, 985]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -965,14 +965,14 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
       jointObj		      "jointObj"
       fc_vel		      "1000"
       fc_torque		      "1000"
-      input_delay	      "0"
+      input_delay	      "1"
       output_delay	      "1"
       quantize		      on
       quantize_bits	      "19"
@@ -1044,7 +1044,7 @@ Model {
       "annelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','T"
       "imeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutosca"
       "le','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Location',[176"
-      ".333333333333 323 1304.33333333333 760.333333333333],'VisibleAtModelOpen','on')"
+      ".333333333333 323 1304.33333333333 760.333333333333])"
       NumInputPorts	      "1"
     }
     Block {

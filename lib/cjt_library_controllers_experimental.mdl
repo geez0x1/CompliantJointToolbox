@@ -55,8 +55,8 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:19 2018"
-  RTWModifiedTimeStamp	  454436539
+  LastModifiedDate	  "Thu Jul 26 16:37:57 2018"
+  RTWModifiedTimeStamp	  454523877
   ModelVersionFormat	  "1.%<AutoIncrement:11>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off

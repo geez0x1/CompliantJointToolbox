@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.273"
+    ComputedModelVersion    "1.275"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -81,7 +81,7 @@ Model {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1642.0, 785.0]
+	  Extents		  [2442.0, 1213.0]
 	  ZoomFactor		  [1.5]
 	  Offset		  [150.45317460317415, -66.810317460317322]
 	}
@@ -90,25 +90,25 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "149"
-	  Extents		  [1642.0, 785.0]
+	  Extents		  [2463.0, 1178.0]
 	  ZoomFactor		  [1.5]
-	  Offset		  [593.27777777777737, 385.5999999999998]
+	  Offset		  [593.27777777777749, 385.59999999999974]
 	}
 	Object {
 	  $ObjectID		  8
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "149:606"
-	  Extents		  [2520.0, 1080.0]
+	  Extents		  [2561.0, 1440.0]
 	  ZoomFactor		  [1.75]
-	  Offset		  [52.603174603174693, 156.65079365079362]
+	  Offset		  [52.60317460317475, 156.65079365079362]
 	}
 	Object {
 	  $ObjectID		  9
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "8"
-	  Extents		  [2442.0, 1080.0]
+	  Extents		  [2561.0, 1440.0]
 	  ZoomFactor		  [0.5]
 	  Offset		  [-421.69166666666706, -75.200000000000159]
 	}
@@ -122,9 +122,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:42 2018"
-  RTWModifiedTimeStamp	  454436562
-  ModelVersionFormat	  "1.%<AutoIncrement:273>"
+  LastModifiedDate	  "Mon Jul 30 08:49:00 2018"
+  RTWModifiedTimeStamp	  454841340
+  ModelVersionFormat	  "1.%<AutoIncrement:275>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -995,14 +995,14 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
       jointObj		      "jointObj"
       fc_vel		      "1000"
       fc_torque		      "1000"
-      input_delay	      "0"
+      input_delay	      "1"
       output_delay	      "1"
       quantize		      on
       quantize_bits	      "19"
@@ -1077,8 +1077,8 @@ Model {
       "e','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none','Visible','on')}},'UserDefinedCh"
       "annelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','t_max','T"
       "imeRangeFrames','t_max'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutosca"
-      "le','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017a')),'Version','2017b','Location',[176"
-      " 323 1294 767],'VisibleAtModelOpen','on')"
+      "le','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Location',[176"
+      " 323 1294 767])"
       NumInputPorts	      "1"
     }
     Block {

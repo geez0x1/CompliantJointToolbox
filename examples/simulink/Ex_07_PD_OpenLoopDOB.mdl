@@ -20,7 +20,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.273"
+    ComputedModelVersion    "1.275"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -56,7 +56,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 1023.0]
+      Location		      [0.0, 27.0, 1680.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -80,7 +80,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1642.0, 837.0]
+	Extents			[2442.0, 1218.0]
 	ZoomFactor		[1.25]
 	Offset			[80.110317460316764, -163.60396825396833]
       }
@@ -92,9 +92,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "J�rn"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 25 16:22:44 2018"
-  RTWModifiedTimeStamp	  454436564
-  ModelVersionFormat	  "1.%<AutoIncrement:273>"
+  LastModifiedDate	  "Mon Jul 30 08:49:02 2018"
+  RTWModifiedTimeStamp	  454841342
+  ModelVersionFormat	  "1.%<AutoIncrement:275>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -895,7 +895,7 @@ Model {
   }
   System {
     Name		    "Ex_07_PD_OpenLoopDOB_compat"
-    Location		    [0, 27, 1680, 1050]
+    Location		    [0, 27, 1680, 1004]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -965,14 +965,14 @@ Model {
       Ports		      [2, 1]
       Position		      [730, 196, 900, 249]
       ZOrder		      222
-      LibraryVersion	      "1.168"
+      LibraryVersion	      "1.198"
       SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem"
       SourceType	      "jointMechanicalSubsystem"
       ContentPreviewEnabled   off
       jointObj		      "jointObj"
       fc_vel		      "1000"
       fc_torque		      "1000"
-      input_delay	      "0"
+      input_delay	      "1"
       output_delay	      "1"
       quantize		      on
       quantize_bits	      "19"
