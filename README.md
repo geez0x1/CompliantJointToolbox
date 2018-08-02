@@ -19,7 +19,7 @@ Wesley Roozing
 | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/Getting-Started"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_get_started.png" alt="Getting Started"></a> | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/Technical-Documentation"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_take_a_tour.png" alt="Documentation"></a> | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/About"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_about.png" alt="Getting Started"></a> | <a href="https://codeocean.com/2018/08/02/compliant-joint-toolbox-capsule/"><img src="https://github.com/geez0x1/CompliantJointToolbox/wiki/images/btn_cloud.png" alt="Code Ocean"></a> | 
 | Quick start. | All the details.| A bit of background. | Try it in the cloud! |
 
-If you wish to give the toolbox a try, but do not have MATLAB installed, you can use the [Compute Capsule](https://codeocean.com/2018/08/02/compliant-joint-toolbox-capsule/) that we published on Code Ocean. You do not need to create a Code Ocean account or install anything. Just explore!
+If you wish to give the toolbox a try, but do not have MATLAB installed, you can use the [Compute Capsule](https://codeocean.com/2018/08/02/compliant-joint-toolbox-capsule/) that we published on Code Ocean. You do not need to install anything. Just explore!
 
 ## Dependencies and Compatibility
 See [this Wiki page](https://github.com/geez0x1/CompliantJointToolbox/wiki/Compatibility-and-Dependencies).
