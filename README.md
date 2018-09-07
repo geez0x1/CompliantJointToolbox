@@ -3,8 +3,6 @@
 |-------|------------| 
 |The Compliant Joint Toolbox (CJT) for MATLAB is being developed to ease the modelling and design of (compliant) robotic joints. The goal is to provide rapid iteration of different models and control architectures by providing a number of pre-built components with consistent interfaces, together with a set of tools to build new ones. | <a href="https://github.com/geez0x1/CompliantJointToolbox/wiki/About"><img src="https://github.com/geez0x1/CompliantJointToolbox/blob/master/doc/CJT_logo.svg" alt="Getting Started" width="500px"></a>  |
 
-<a href="https://github.com/geez0x1/CompliantJointToolbox" target="_blank">https://github.com/geez0x1/CompliantJointToolbox</a>
-
 If you wish to give the toolbox a try, but do not have MATLAB installed, you can use the [Compute Capsule](https://codeocean.com/2018/08/02/compliant-joint-toolbox-capsule/) that we published on Code Ocean. You do not need to install anything. Just explore!
 
 | <a href="https://github.com/geez0x1/CompliantJointToolbox/blob/master/doc/CJT_Toolbox_submission.pdf"> PDF </a>  |  Citation (<a href="https://github.com/geez0x1/CompliantJointToolbox/blob/master/bibtex_entry.txt"> BibTeX </a>)  |
