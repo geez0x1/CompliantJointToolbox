@@ -27,7 +27,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % The text in the following line defines the display name for this Example
-% #! 12: Passivity based control with friction compensation
+% #! 13: Kalman Estimator
 
 dispText = ...
 {'-----'
