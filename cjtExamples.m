@@ -356,7 +356,7 @@ fileContents = fileread(fName);
 
 [startIndex,endIndex] = regexp(fileContents,'% #! [^\f\n\r\t\v]*[\f\n\r\t\v]');
 
-dispName = fileContents(startIndex+5:endIndex);
+dispName = fileContents(startIndex+5:endIndex-1);
 
 end
 
