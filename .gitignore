@@ -7,3 +7,8 @@ slprj/
 *.r2013b
 *.mat
 *.pdf
+*.log
+*.autosave
+*.r2017a
+results
+*.r2016a

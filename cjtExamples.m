@@ -271,12 +271,16 @@ index_selected = get(fig_handles.activeListbox,'Value');
 switch listboxTag
     case 'matlabListbox'
         mFileName = fig_handles.matlabExamples(index_selected).fileName;
+        % Run example and display results
+        pubPath = publish(mFileName);
+        web(pubPath)
+        
     case 'simulinkListbox'
         mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+        run(mFileName);
 end
 
-% Open in editor
-run(mFileName);
+
 
 end
 
@@ -352,7 +356,7 @@ fileContents = fileread(fName);
 
 [startIndex,endIndex] = regexp(fileContents,'% #! [^\f\n\r\t\v]*[\f\n\r\t\v]');
 
-dispName = fileContents(startIndex+5:endIndex);
+dispName = fileContents(startIndex+5:endIndex-1);
 
 end
 

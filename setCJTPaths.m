@@ -37,7 +37,9 @@ end
 
 % Add paths recursively
 addpath(genpath([pwd, filesep, 'build']));
+addpath(genpath([pwd, filesep, 'examples']));
 addpath(genpath([pwd, filesep, 'lib']));
+addpath(genpath([pwd, filesep, 'lib', filesep,'include']));
 addpath(genpath([pwd, filesep, 'model']));
 addpath(genpath([pwd, filesep, 'param']));
 addpath(genpath([pwd, filesep, 'templates']));

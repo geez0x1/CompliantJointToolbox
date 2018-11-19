@@ -8,7 +8,7 @@
 
 %% Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %%
-%% This file is part of the Compliant Joint Toolbox (CJT).
+%% This file has been generated with the Compliant Joint Toolbox (CJT).
 %%
 %% CJT is free software: you can redistribute it and/or modify
 %% it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ function this = %s
     params.('paramName')            = '%s'; %% Parameter name
     params.('modelName')            = '%s'; %% Model name
     params.('nonlinearModelName')   = %s; %% Nonlinear model name(s)
+    params.('electricalModelName')  = '%s'; %% Electrical model name
     
     %% Build joint
     this = this@genericJoint(params);

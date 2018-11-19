@@ -1,4 +1,3 @@
-classdef dataSheetGenerator
 %DATASHEETGENERATOR Module that creates datasheets for actuator models
 %created with the CompliantJointToolbox. 
 %
@@ -25,7 +24,7 @@ classdef dataSheetGenerator
 %     dsg = dataSheetGenerator(aJoint);       
 % 
 %     % Finally, we generate the data sheet:
-%     dsg.createDataSheet;                    
+%     dsg.generateDataSheet;                    
 %
 %
 % Author::
@@ -54,15 +53,20 @@ classdef dataSheetGenerator
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
+classdef dataSheetGenerator
+
     properties (SetAccess = private)
         jointModel                                     % The joint object to generate the datasheet for.
         templateDir                                    % Directory that contains all template files for the datasheet.
-        outputDir                                      % Directory to place the generated files.
         
         texFName = 'cjtdsheet.tex';                    % Datasheet source filename.
         clsFName = 'cjtdsheet.cls';                    % Name of the style file for the datasheet.
         cfgFName = 'cjtdsheet.cfg';                    % Name of the temporary file containing the macro configuration for the datasheet sources.
         torqueSpeedFName = 'torqueSpeedCurve.pdf';     % Name of the temporary file that contains the torque speed curve of the actuator.
+        efficiencyFName  = 'efficiencyCurve.pdf';      % Name of the temporary file that contains the efficiency plot of the actuator.
+        thermalCharFName = 'thermalChar.pdf';          % Name of the temporary file that contains the curves with thermal operation ranges of the actuator.
+        torFreqLoadFName = 'torFreqLoad.pdf';          % Name of the temporary file that contains the torque-frequency diagram for varying load inertia.
+        torFreqLockFName = 'torFreqLock.pdf';          % Name of the temporary file that contains the torque-frequency diagram for varying locked output.
         
     end
     
@@ -70,10 +74,13 @@ classdef dataSheetGenerator
         
         outFName = 'datasheet.pdf';                    % Name stub for the generated datasheet file. The final name will 
                                                        % be composed of the "jointModel.name_outFName".
+        outputDir = ['.',filesep];                     % Directory to place the generated files. Defaults to the current directory.
         plotResolution = 600;                          % Print resolution for the figures contained in the datasheet.
         nPlotVals = 10000;                             % Number of samples used to produce the graphs in the datasheet figures.
         plotNormalized = 0;                            % Plot graphs in normalized quantities (default: false)
         freqMax = 100;                                 % Maximum frequency for spectral plots in Hz (default: 100 Hz)
+        
+        verbose = 0;                                   % Verbosity flag. 0 - (default) minimal console output, 1 - full console output. 
     end
     
     methods
@@ -100,7 +107,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder. 
+            % See also generateDataSheet, genericJoint, jointBuilder. 
             
             this.jointModel = jointModel;
             
@@ -112,11 +119,11 @@ classdef dataSheetGenerator
             
         end
         
-        function speed = torque_speed_curve(this,tau)
-            % TORQUE_SPEED_CURVE Computes the maximum feasible motor speed
+        function speed = torqueSpeedCurve(this,tau)
+            % TORQUESPEEDCURVE Computes the maximum feasible motor speed
             % corresponding for a given torque level.
             %
-            %   speed = dsg.torque_speed_curve(tau)
+            %   speed = dsg.TorqueSpeedCurve(tau)
             %
             % Inputs:
             %   tau: Deliviered actuator torque.
@@ -135,7 +142,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.
+            % See also generateDataSheet, genericJoint, jointBuilder.
             
             % shorthands
             slope = this.jointModel.dq_over_dm;
@@ -146,7 +153,7 @@ classdef dataSheetGenerator
         end
         
         
-        function [h, hAx, hLine1, hLine2] = draw_efficiency_curve(this)
+        function [h, hAx, hLine1, hLine2] = drawEfficiencyCurve(this)
             % DRAW_EFFICIENCY_CURVE Creates a plot with two y-axes. One 
             % axis displays the actuator efficiency. The other one displays
             % the delivered mechanical power. Both plots are shown with 
@@ -173,7 +180,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.      
+            % See also generateDataSheet, genericJoint, jointBuilder.      
             
             % Shorthands
             t_p = this.jointModel.t_p;
@@ -181,43 +188,74 @@ classdef dataSheetGenerator
             k_t = this.jointModel.k_t;
             r   = this.jointModel.r;
             t_NL = this.jointModel.t_NL;
+            i_NL = this.jointModel.i_NL;
             t_stall = this.jointModel.t_stall;
             N = this.jointModel.n;
             
             % Linearly spaced vector of torques between 0 and peak torque
             tauVals = (0:1/this.nPlotVals:1) * t_p;
+            speedVals = this.torqueSpeedCurve(tauVals);
             
             % Power computation
-            PL = v_0 / k_t/N * tauVals - r / k_t^2/N^2 * tauVals.^2;
+            P_mech = speedVals .* (tauVals - i_NL*k_t*N);
             P_tot = v_0 / k_t/N * tauVals;
-            speedVals = this.torque_speed_curve(tauVals);
-            
+
             % Efficiency computation
-            eta = 100*( speedVals .* (tauVals - t_NL) * N * k_t / v_0 ) ./ tauVals;
-            eta_max = 100 * ( 1 - sqrt( t_NL / t_stall)  );
+            eta = 100 * P_mech ./ P_tot;
+            eta_max = 100 * ( 1 - sqrt( t_NL / t_stall)  )^2;
             
             % Initialize figure and plot
             h = gcf;
             [hAx,hLine1,hLine2] = plotyy(tauVals(:), eta(:), ... Efficiency plot 
-                tauVals(:),[PL(:) P_tot(:)]);                % Power plot
+                tauVals(:),[P_mech(:) P_tot(:)]);                % Power plot
             
             % Manipulate style of the efficiency plot 
-            set(hLine1,'Color','r')
-            ylabel(hAx(1), 'Efficiency [%]','Color','r');
+            set(hLine1,'Color','r','linewidth',1.5)
+            ylabel(hAx(1), 'Efficiency $\eta$ [\%]','Color','r','Interpreter','latex');
             set(hAx(1),'ylim',[0,100])
+            set(hAx(1),'ytick',0:10:100)
             
             % Manipulate style of the power plot 
-            set(hLine2,'Color','b')
+            set(hLine2,'Color','b','linewidth',1.5)
             set(hLine2(2),'LineStyle','--')
-            ylabel(hAx(2),'Load Power [W]','Color','b');
+            ylabel(hAx(2),'Power $P$ [W]','Color','b','Interpreter','latex');
             
             set(hAx,'xlim',[0,t_p]);
-            xlabel('torque [Nm]')
-            title(['Maximum Efficiency_ ', sprintf('%2.0f',eta_max),' %']);
+            xlabel('Torque $\tau$ [Nm]','Interpreter','latex')
+            title(['Maximum efficiency_ ', sprintf('%2.0f',eta_max),' %']);
+            set(gca,'TickLabelInterpreter','latex');
             
+            oldLim = get(hAx(2),'ylim');
+            set(hAx(2),'ylim',[min(P_mech), oldLim(2)]);
+            axes(hAx(1))
+            hold on
+            
+            [~, idx_eta_max] = max(eta);
+            stem(tauVals(idx_eta_max),eta_max,'or--');
+            
+
+            axes(hAx(2))
+            hold on
+            plot(tauVals,zeros(size(tauVals)),'--','color',0.5*[1 1 1])
+            hAreaPTot = area(tauVals,P_tot(:),'FaceColor',0.8* [1 0 0],'FaceAlpha',0.25,'LineStyle','none');
+            hAreaPMechWhite = area(tauVals,P_mech(:),'FaceColor', [1 1 1],'FaceAlpha',1,'LineStyle','none');
+            hAreaPMech = area(tauVals,P_mech(:),'FaceColor',0.9* [0.2 0.2 1],'FaceAlpha',0.25,'LineStyle','none');
+            plot(tauVals,P_mech,'b-','linewidth',1.5);
+            hold off
+            
+           axes(hAx(1))
+           hLegend = legend({'Efficiency [%]',...
+               'Max. Efficiency',...
+               'Power deliverd to load [W]',...
+               'Total electrical power [W]'},...
+               'location','southeast', 'box','off');
+           
+            
+            
+%             set(hLegend)
         end
 
-        function [h, hAx, hLine1, hLine2] = draw_thermal_characteristics(this)
+        function [h, hAx, hLine1, hLine2] = drawThermalCharacteristics(this)
             % DRAW_THERMAL_CHARACTERISTICS Creates a plot with two y-axes.
             % One axis displays the final temperature at the given
             % operating condition. The second axis displays the time to
@@ -244,7 +282,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.      
+            % See also generateDataSheet, genericJoint, jointBuilder.      
 
             % Shorthands
             r_th1    = this.jointModel.r_th1;      % Thermal Resistance Windings to Housing [K/W]
@@ -290,51 +328,331 @@ classdef dataSheetGenerator
             [hAx,hLine1,hLine2] = plotyy(tauVals(:), [Tmp_W(:), TmpLimW(:),TmpLimCU(:) ], ... Steady State Temperature
                 tauVals(:),[tCrit]);                % Time to critical temperature
              
-            % Manipulate style of the efficiency plot
-            set(hLine1,'Color','r')
-            set(hLine1(2),'LineStyle','--')
-            set(hLine1(3),'LineStyle','--')
-            ylabel(hAx(1), 'Steady State Temp. [^\circC]','Color','r');
+            % Manipulate line style
+            set(hLine1,'Color','r','linewidth',1.5)
+            set(hLine1(2),'LineStyle','--','linewidth',1)
+            set(hLine1(3),'LineStyle',':','linewidth',1)
+            ylabel(hAx(1), 'Steady State Temp. [$^{\circ}$C]','Color','r','Interpreter','latex')
             set(hAx(1),'ylim',[0,1.05*max((Tmp_W))]);
 
              % Manipulate plot style
-             set(hLine2,'Color','b')
-             ylabel(hAx(2),'Time to Crit Temperature [s]','Color','b');
+             set(hLine2,'Color','b','linewidth',1.5)
+             ylabel(hAx(2),'Time to crit. temperature [s]','Color','b','Interpreter','latex')
              set(hAx(2),'ylim',[0,1.05*max(real(tCrit))]);
 
-             set(hAx,'xlim',[0,t_p]);            
+             set(hAx,'xlim',[0,t_p]);  
+             
+             legend({'Steady state temperature [$^{\circ}$C] ',...
+                     'Critical winding temperature',...
+                     'Copper melting temperature',...
+                     'Time to critical winding temperature [s]'}, ...
+                     'location','best',...
+                     'Interpreter','latex')
+                 
+             xlabel('Torque $\tau$ [Nm]','Interpreter','latex')
+             title(['Steady-state temperature rise from ',num2str(Tmp_ANom),' [${^\circ}$C]'],'Interpreter','latex')
+             set(gca,'TickLabelInterpreter','latex');
+             
+             hold on;
+             % Plot rated operation area
+             Xr = [0 t_r t_r 0].';
+             Yr = [0 0   Tmp_WMax Tmp_WMax].';
+             rated_area = fill(Xr, Yr, 0.9* [0.2 0.2 1],'LineStyle','none');
+             Xp = [t_r t_p t_p t_r].';
+             Yp = [0 0  Tmp_WMax Tmp_WMax].';
+             peak_area = fill(Xp, Yp, 0.8* [1 0 0],'LineStyle','none');
+             
+             alpha(0.25)     % add some transparency
+             plot(hAx(1),[t_r,t_r],[0,TmeltCU],'color','b','linestyle','--')
+             hold off;
+             
+             % Plot peak operation area
+             axes(hAx(2))
+             hold on
+             alpha(0.25)     % add some transparency
+             hold off
+             
         end
                 
-        function h = draw_torque_frequency_curve(this, subtractFriction)
+        function h = drawTorqueFrequencyCurveLoad(this, fMax, plotNormalized)
+            % DRAWTORQUEFREQUENCYCURVELOAD Theoretically feasible torque bandwidth under varying load inertia.
+            %
+            % Creates a contour plot that displays the -3dB cut-off frequency for the torque transfer function magnitude 
+            % when the actuator generates peak torque. The contour lines are color coded on a logarithmic scale and 
+            % correspond to different load inertiae in relation to the combined motor and gear inertia.
+            %
+            % A very light load will causes the actuator to reach the speed generation limit before a substantial torque
+            % level can be established. A heavy load results in torques building up rapidly, with little actuator 
+            % motion.
+            %
+            % The red curve corresponds to an infinite load inertia, that is equivalent to a locked output. The balck
+            % solid curve corresponds to the load inertia being equal to the combined motor/gear inertia.
+            % 
+            % The plot includes the bandwidth limit due to the interplay of spring stiffness and back-EMF generation. 
+            % The red area indicates the reachable operating conditions under the assumption of negligible spring 
+            % damping. The zone expands with growing sping damping as indicated by black dotted curves. 
+            %
+            % One axis displays the final temperature at the given
+            % operating condition. The second axis displays the time to
+            % reach the maximum allowed temperature.
+            %
+            %   h = drawTorqueFrequencyCurveLoad(this, fMax, plotNormalized)
+            %
+            % Inputs:
+            %   fMax           - The frequency in Hz up to which the magnitude is analyzed (default 100 Hz).
+            %   plotNormalized - If true, the frequency axis is normalized to the frequency sqrt( k_ml/(I_m + I_g) ),
+            %                    while the torque axis is normalized to the peak torque t_p (default 0). 
+            %
+            % Outputs:
+            %   hContour: Handle to the contour plot
+            %   
+            %
+            % Notes::
+            %   For further reading, see: 
+            %   J. Malzahn, N. Kashiri, W. Roozing, N. Tsagarakis and D. Caldwell, "What is the torque bandwidth of 
+            %   this actuator?," 2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 
+            %   Vancouver, BC, 2017, pp. 4762-4768. doi: 10.1109/IROS.2017.8206351
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also generateDataSheet, drawTorqueFrequencyCurveLocked, drawTorqueSpeedCurve, genericJoint, jointBuilder.      
             
             % Check input parameters
-            if ~exist('subtractFriction','var') % Should the friction torque be subtracted?
-                subtractFriction = 1;
+            if ~exist('plotNormalized','var') % Normalize frequency and torque?
+                plotNormalized = 0;
             end
-                        
+            if ~exist('fMax','var') % Maximum frequency to plot (Hz)
+                fMax = this.freqMax; 
+            end
+            
             % SHORTHANDS
-            d_cm = this.jointModel.d_cm; % Coulomb frictions
-            d_cg = this.jointModel.d_cg;
-            d_cl = this.jointModel.d_cl;
             d_m  = this.jointModel.d_m;  % Viscous dampings
             d_g  = this.jointModel.d_g;
             d_l  = this.jointModel.d_l;
             d_gl = this.jointModel.d_gl;
-            k = this.jointModel.k_b;     % Spring stiffness
+            k_ml = this.jointModel.k_b;     % Spring stiffness
             t_p = this.jointModel.t_p;   % Peak torque
-            t_r = this.jointModel.t_r;   % Rated torque
-            k_t = this.jointModel.k_t;   % Torque constant
-            N = this.jointModel.n;       % gear ratio
-            slope = this.jointModel.dq_over_dm; % torque speed slope
             dq_0 = this.jointModel.dq_0; % no torque speed
-            v_0 = this.jointModel.v_0;   % supply voltage
-            r = this.jointModel.r;       % electrical winding resistance
-           
+            I_m = this.jointModel.I_m;   % Motor and gear inertia
+            I_g = this.jointModel.I_g;   % Motor and gear inertia
+            nVals = this.nPlotVals;
+            
             % Compute characteristic parameters
-            I = this.jointModel.I_m + this.jointModel.I_g; % inertia
-            w0 = sqrt(k/I);                     % Resonance Frequency in rad/s
+            I = I_m + I_g;
+            w0 = sqrt(k_ml/I);                     % Resonance Frequency in rad/s
+            dv = (d_m + d_g + d_l);             % Velocity dependent friction
+            magDrop = db2mag(-3);%1/sqrt(2); % -3dB         % Allowed magnitude drop for tracking
+            
+            logScale = -3:0.15:1;
+            I_l = I_m*10.^logScale;
+            nInertias = numel(I_l);
+            
+            % NORMALIZATION
+            if plotNormalized
+                wNorm = 1/w0;
+                fNorm = 2*pi*wNorm;
+                tNorm = 1/t_p;
+                xlabelStr = '$\tau_l / \tau_p$ [.]';
+                ylabelStr = ' $f_c / f_0$ [.]';
+            else
+                fNorm = 1;
+                tNorm = 1;
+                xlabelStr = 'Torque $\tau$ [Nm]';
+                ylabelStr = '3dB cut-off $f_c$ [Hz]';
+            end
+            
+            xmax = 1.1 * t_p;
+            wn = (1/nVals:1/nVals:1) * max(2*pi*fMax) / w0;
+            
+            w = wn*w0;
+            
+            % EVALUATE MAGNITUDES
+            ZmagGain = zeros(nVals,nInertias);
+            
+            % N_l = (I_l(iI)*(1j*w).*(k_ml + d_gl*(1j*w)));
+            % D_l = (I_m*I_l(iI)*(1j*w).^3 + (I_m*d_gl + I_l(iI)*d_gl + I_l(iI)*dv)*(1j*w).^2 + (I_m*k_ml + I_l(iI)*k_ml + d_gl*dv)*(1j*w) + k_ml*dv);
+            % x:= w
+            % y:= I_l
+            N_l = @(x,y)(y.*(1j*x).*(k_ml + d_gl*(1j*x)));
+            D_l = @(x,y)(I*y.*(1j*x).^3 + (I*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
+            tfMag = @(x,y) t_p*abs(N_l(x,y)./D_l(x,y));
+            
+            
+            for iI = 1:nInertias
+                ZmagGain(:,iI) = tfMag(w,I_l(iI));
+            end
+            
+            
+            figHandle = gcf;
+            clf;
+            hold on
+                         
+            % Plot the magnitude as a contour plot with colorbar legend
+            [F,NORM_I] = meshgrid(w/2/pi*fNorm, log10(I_l/I));
+            [~,h] = contour(tNorm/magDrop*ZmagGain.',F, (NORM_I), log10(I_l/I));
+            
+            myMap = flipud(winter(64));
+            colormap(myMap)
+            alpha(0.25)
+            
+            c = colorbar;%('YTick',log10(I_l/I));
+            c.Label.Interpreter = 'latex';
+            c.Label.String = '$\log_{10}(I_l / I)$ [.]';
+            
+            % A HACK TO GIVE THE COLOR BAR THE PROPER APPEARANCE
+            % The color bar does not feature transparency anymore. So we put an empty textbox on top of it. The textbox
+            % has the alpha property and we set it accordingly.
+            hBox = annotation('textbox',...
+                c.Position,...
+                'FitBoxToText','off',...
+                'FaceAlpha',0.25,...
+                'EdgeColor',[1 1 1],...
+                'BackgroundColor',[1 1 1]);
+
+            % An issue arises, if we resize the figure. Then the textbox element would be in the wrong place. So we
+            % register a callback to the figure. Whenever it resizes, it puts the textbox in the right spot.
+                function sBarFcn(src,~)                  % Local function that implements the callback behavior.
+                    txtBox = findall(src,'type','textboxshape');    % Locate the textbox handle
+                    cBar = findall(gcf,'type','colorbar');          % Locate the colorbar handle
+                    txtBox.Position = cBar.Position;                % Shift the textbox.
+                end            
+            set(gcf,'SizeChangedFcn',@sBarFcn);                     % Register handle to our callback function.
+            % Hack completed...
+            
+            % PLOT A FEW SPECIAL MAGNITUDES
+            hold on            
+            
+            % Load inertia equals motor+gear inertia
+            magGain = tfMag(w,I);
+            plot(magGain * tNorm/magDrop, w/2/pi*fNorm,'k','lineWidth',1.5)
+            
+            % Load inertia is quasi infinite
+            magGain = tfMag(w,10^5*I);
+            plot(magGain* tNorm/magDrop,w/2/pi*fNorm,'r','lineWidth',2)
+
+            
+            % LIMITATION DUE TO TORQUE SPEED CURVE
+            % This is the bandwidth limit due to the motor back-emf generation           
+            springTF = tf([0*d_gl, k_ml], [1 0]);
+            springMag = bode(springTF,w);
+            springMag = springMag(:);
+            
+            plot(dq_0*springMag *tNorm/ magDrop ,w/2/pi *fNorm,'k--','LineWidth',1.5)
+            
+            d =  2:2:20;
+            
+            for d_ = d
+                magInt = abs( (1j*w*d_ + k_ml) ./ (1j*w) )  / magDrop;
+                plot(dq_0*magInt * tNorm, w/2/pi * fNorm,':','color',0 * [ 1 1 1])
+            end
+            
+            legendHandle = legend({'$I_l/I$', '$I_l/I = 1$', '$I_l/I \rightarrow \infty$', '$d_{gl} = 0$', '$d_{gl} > 0$'},'Interpreter','latex');
+            set(legendHandle,'location','best')
+            
+            aHandle = area([0; dq_0*springMag] *tNorm/ magDrop , [fMax, w/2/pi]*fNorm );
+            aHandle.LineStyle = 'none';
+            aHandle.LineWidth = 1.5;
+            aHandle.FaceColor = [0.8 0 0];
+            aHandle.FaceAlpha = 0.15;
+            aHandle.DisplayName = 'reachable ($d_{gl}=0$)';
+            
+            % PLOT APPEARANCE AND LABELS
+            xlim([0,xmax]*tNorm);
+            ylim([0,fMax ]*fNorm);
+            xlabel(xlabelStr,'Interpreter','latex')
+            ylabel(ylabelStr,'Interpreter','latex')
+            title('Magnitude for harmonic peak torque operation with varying load inertia')
+            box on;
+            set(gca,'TickLabelInterpreter','latex');
+        end
+        
+        function h = drawTorqueFrequencyCurveLocked(this, fMax, plotNormalized)
+            % DRAWTORQUEFREQUENCYCURVELOAD Theoretically feasible torque bandwidth under locked actuator output.
+            %
+            % Creates a contour plot that displays the -3dB cut-off frequency for the torque transfer function magnitude 
+            % and any torque amplitude from zero to peak torque. The color illustrates the thermally admissible 
+            % operation time at a given frequency and torque amplitude, assuming the initial winding temperature being
+            % normal temperature.
+            %
+            % Around the natural frequency f_0 (gray dashed line), theoretically any torque amplitude can be generated 
+            % for an infinite amount of time.
+            % Below and above the natural frequency, high torque amplitudes demand high motor currents that heat up the
+            % motor windings. Beyond the rated torque (gray dotted lines), operating points can only be attained for
+            % limited time. Operating points beyond the peak torque (black dotted line) are unreachable.
+            % 
+            % The plot includes the bandwidth limit due to the interplay of spring stiffness and back-EMF generation as 
+            % black dashed line. The line rises towards higher frequencies with growing spring damping. 
+            %
+            % The line merges with the peak operation limit as indicated by the gray solid line. Operating points above 
+            % this gray solid line are infeasible.
+            %
+            %
+            %   h = drawTorqueFrequencyCurveLocked(this, fMax, plotNormalized)
+            %
+            % Inputs:
+            %   fMax           - The frequency in Hz up to which the magnitude is analyzed (default 100 Hz).
+            %   plotNormalized - If true, the frequency axis is normalized to the frequency sqrt( k_ml/(I_m + I_g) ),
+            %                    while the torque axis is normalized to the peak torque t_p (default 0). 
+            %
+            % Outputs:
+            %   hContour: Handle to the plot
+            %   
+            %
+            % Notes::
+            %   For further reading, see: 
+            %   J. Malzahn, N. Kashiri, W. Roozing, N. Tsagarakis and D. Caldwell, "What is the torque bandwidth of 
+            %   this actuator?," 2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 
+            %   Vancouver, BC, 2017, pp. 4762-4768. doi: 10.1109/IROS.2017.8206351
+            %
+            % Examples::
+            %
+            %
+            % Author::
+            %  Joern Malzahn
+            %  Wesley Roozing
+            %
+            % See also generateDataSheet, drawTorqueFrequencyCurveLoad, drawTorqueSpeedCurve, genericJoint, jointBuilder. 
+            
+            % Check input parameters
+            if ~exist('plotNormalized','var') % Normalize frequency and torque?
+                plotNormalized = 0;
+            end
+            if ~exist('fMax','var') % Maximum frequency to plot (Hz)
+                fMax = this.freqMax; 
+            end
+                        
+            % SHORTHANDS
+            d_m  = this.jointModel.d_m;       % Viscous dampings
+            d_g  = this.jointModel.d_g;
+            d_l  = this.jointModel.d_l;
+            d_gl = this.jointModel.d_gl;
+            I_m  = this.jointModel.I_m;
+            k_ml = this.jointModel.k_b;       % Spring stiffness
+            t_p = this.jointModel.t_p;        % Peak torque
+            t_r = this.jointModel.t_r;        % Rated torque
+            k_t = this.jointModel.k_t;        % Torque constant
+            N = this.jointModel.n;            % Gear ratio
+            dq_0 = this.jointModel.dq_0;      % No load speed
+            r_th1 = this.jointModel.r_th1;    % Thermal resistance winding
+            r_th2 = this.jointModel.r_th2;    % Thermal resistance housing
+            r     = this.jointModel.r;        % Electrical winding resistance
+            a_cu  =  0.0039;                  % Themperature coefficient copper
+            T_max = this.jointModel.Tmp_WMax; % Max winding temperature
+            t_w   = this.jointModel.T_thw;    % Thermal time constant widnings
+            TAN   = this.jointModel.Tmp_ANom; % Normal ambient temperature.
+            TmeltCU = 1084;                   % Melting temperature of copper
+            
+            nPoints = 100;
+            
+            % Compute characteristic parameters
+            I = this.jointModel.I_m + this.jointModel.I_g; % Combined Inertia
+            w0 = sqrt(k_ml/I);                             % Resonance Frequency in rad/s
             f0 = w0/2/pi;                       % Resonance Frequency in Hz
-            Mc = d_cm + d_cg + d_cl;            % Static friction
             dv = (d_m + d_g + d_l);             % Velocity dependent friction
             magDrop = db2mag(-3);               % -3dB, allowed magnitude drop for tracking
             
@@ -343,152 +661,134 @@ classdef dataSheetGenerator
                 wNorm = 1/w0;
                 fNorm = 2*pi*wNorm;
                 tNorm = 1/t_p;
-                xlabelStr = '$|\tau / \tau_p|$ [.]';
-                ylabelStr = ' $f_c / f_0$ [.]';
+                xlabelStr = 'Torque $|\tau / \tau_p|$ [.]';
+                ylabelStr = '3dB cut-off $f_c / f_0$ [.]';
             else
                 fNorm = 1;
                 tNorm = 1;
-                xlabelStr = '$\tau$ [Nm]';
-                ylabelStr = '$f_c$ [Hz]';
+                xlabelStr = 'Torque $\tau$ [Nm]';
+                ylabelStr = '3dB cut-off $f_c$ [Hz]';
             end
             
             % Linearly spaced vectors of torques and normalized frequencies
             ymax =  this.freqMax;
-            xmax = 1.1 * t_p;   
-            torque = (1/this.nPlotVals:1/this.nPlotVals:1) * xmax;
-            wn = (1/this.nPlotVals:1/this.nPlotVals:1) * 2*pi*ymax / w0;
+            xmax = 1.1 * t_p/magDrop;   
+            tau = (0 : 1/nPoints : 1)*xmax;
+            nLines = numel(tau);
+            wn = (1/nPoints:1/nPoints:1) * 2*pi*ymax / w0;
 
-            % LIMITATION DUE TO MAGNITUDE GAIN
-            allTF = this.jointModel.getTF;
-            % Torque transfer function, convert current input to torque
-            torqueTF = allTF(7,1)/ k_t / N;  
+            % BANDWIDTH LIMITATION DUE TO MAGNITUDE GAIN
+            % N_l = (I_l(iI)*(1j*w).*(k_ml + d_gl*(1j*w)));
+            % D_l = (I_m*I_l(iI)*(1j*w).^3 + (I_m*d_gl + I_l(iI)*d_gl + I_l(iI)*dv)*(1j*w).^2 + (I_m*k_ml + I_l(iI)*k_ml + d_gl*dv)*(1j*w) + k_ml*dv);
+            % x:= w
+            % y:= I_l
+            N_l = @(x,y)(y.*(1j*x).*(k_ml + d_gl*(1j*x)));
+            D_l = @(x,y)(I*y.*(1j*x).^3 + (I*d_gl + y.*d_gl + y.*dv)*(1j*x).^2 + (I*k_ml + y.*k_ml + d_gl*dv)*(1j*x) + k_ml*dv);
+            tfMag = @(x,y) abs(N_l(x,y)./D_l(x,y));
+            magGain = tfMag(wn*w0,1e9).'; % 1e9 ~ infinite impedance reflects locked output
             
-            % Compute magnitude at given frequencies
-            magGain = bode(torqueTF,wn*w0); 
-            magGain = magGain(:);
-            
-            % Subtract friction toruqe if desired
-            if subtractFriction
-                dq_t_r = wn.*w0.*magGain.*t_r./k;
-                dq_t_p = wn.*w0.*magGain.*t_p./k;
-                fCorrC = Mc + dv.*dq_t_r;
-                fCorrP = Mc + dv.*dq_t_p;
-            else
-                fCorrC = 0;
-                fCorrP = 0;
-            end
            
             % LIMITATION DUE TO TORQUE SPEED CURVE
             % This is the bandwidth limit due to the motor back-emf
             % generation and limited supply voltage
-            contSpeeds = this.computeMaxContSpeed(torque);
-            peakSpeeds = this.computeMaxPeakSpeed(torque);
-            
-            % Subtract friction toruqe if desired
-            if subtractFriction
-                fCorrC = Mc + dv*contSpeeds;
-                fCorrP = Mc + dv*peakSpeeds;
-            else
-                fCorrC = 0;
-                fCorrP = 0;
-            end
-            
             % Torque sensor transfer function
-            springTF = tf([d_gl, k], [1 0]);
+            springTF = tf([d_gl, k_ml], [1 0]);
             springMag = bode(springTF,wn*w0);
             springMag = springMag(:);
             
-            %% TOTAL FREQUENCY LIMIT
-            fSpring = interp1(dq_0*springMag , wn*w0/2/pi, torque);
-            fAmp    = interp1(magGain*t_p    , wn*w0/2/pi, torque);
-             
-            fTotal = min(fAmp,fSpring);
-             
-             
+            % TOTAL FREQUENCY LIMIT          
+            fSpring = dq_0*springMag;
+            fAmp = magGain*t_p;
+            fIdx = find(fSpring < fAmp,1,'last');
+            fTot = [fSpring(1:fIdx); fAmp(fIdx+1:end)];
+            
+            
             % THERMAL TIME LIMITATION
-            r_th2 = this.jointModel.r_th2;
-            r     = this.jointModel.r;
-            a_cu  =  0.0039;
-            k_t   = this.jointModel.k_t;
-            n     = this.jointModel.n;
-            T_max = this.jointModel.Tmp_WMax;
-            t_w   = this.jointModel.T_thw;
-            t_r   = this.jointModel.t_r;
+            % Steady State Temperature
+            resCoeff = (r_th1 + r_th2) * r / N^2 / k_t^2; % thermal resistance coefficient
+            Tmp_W = TAN + ...  
+                (  ( resCoeff * tau.^2 ) ./ ( 1 - a_cu * resCoeff *  min(tau,t_r).^2 )  );
             
-            % Torque linear space (some more lines for lower torques)
-            tau = [0:9, 10:20:(t_p)];
-            nLines = numel(tau);
+            % Saturate temperature at melting point
+            idx = find(Tmp_W > TmeltCU,1,'first');
+            Tmp_W(idx:end) = TmeltCU;
+
+            % Time to reach max winding temperature from normal conditions
+            Tmax = this.jointModel.Tmp_WMax;
+            T0 = this.jointModel.Tmp_ANom;
+            dTend = Tmp_W - T0;
+            tCrit = - this.jointModel.T_thw * log( - (Tmax - T0  - dTend ) ./ dTend);
             
-            % Compute time to maximal temperature
-            i_m2  = 0.25 * (tau / k_t / n).^2; % effective value -> multiply with 0.5            
-            deltaTw =  ( r_th2 * r * i_m2 ) ./ (1 - a_cu * r_th2 * r *i_m2  );
-            t_max = t_w * log( T_max ./ deltaTw );
-                        
+            % Within the rated operation, the time to reach the maximum allowed temperature is infinite.
+            idx = find(tau > t_r,1,'first');
+            tCrit(1:idx) = inf;
+            
+              
              %% PLOTTING
             figHandle = gcf;
+            clf;
             hold on
 
             % Contour plot
-            %   Prepare data
+            %   Prepare grid data
             Z = repmat(magGain,1,nLines) .* tau;
-            TMAX = repmat(magGain,1,nLines).*t_max;
-            [F,TAU] = meshgrid(wn*w0/2/pi*fNorm, tau*tNorm/magDrop);
+            TMAX = repmat(magGain,1,nLines).*tCrit;
+            [F,TAU] = meshgrid(wn*w0/2/pi*fNorm, tau*tNorm  /magDrop);
+
+            
             %   Create plot
-            [~,h] = contour(TAU.',F.', (TMAX),t_max(tau>t_r));
+             h = surf(Z,F.', (TAU.'),min(TMAX,0.5*t_w),'DisplayName','t_{max} [s] to max. temperature');
+
             %   Configure plot
-            h.Fill = 'on';  % instead of lines use shaded colour surfaces
-            set(h,'LineStyle','none')
-            set(gcf,'renderer','painters') 
-            alpha(0.25)     % add some transparency to make lines plotted on top clearly visible
+            set(h,'LineStyle','none') % no grid lines
+            view(0,-90)               % since we are using surf with additionally plotted lines, we should look from the bottom
+            set(gca,'YDir','reverse') % reverse frequency axis to compensate for the view
+            set(gcf,'renderer','opengl')
+            
             %   adjust colormap from cold (blue) to hot (red)
             nCVals = 64;    
-            myMap = [(nCVals:-1:0).', 0*ones(nCVals+1,1),(0:nCVals).' ]/nCVals;
-            colormap(myMap)
+            myMap = [(nCVals:-1:0).', 0*ones(nCVals+1,1), (0:nCVals).']/nCVals;
+            colormap((myMap))
             %   add a color bar legend
             c = colorbar;      
-            cpos = c.Position;
-            % A hack to give the color bar the proper appearance. The color
-            % bar does not feature transparency anymore.
-            annotation('textbox',...
-                c.Position,...
-                'FitBoxToText','off',...
-                'FaceAlpha',0.25,...
-                'EdgeColor',[1 1 1],...
-                'BackgroundColor',[1 1 1]);
             % Saturate the time to for rated operation
             tmp = c.TickLabels;
             tmp{end} = '\infty';
             c.TickLabels = tmp;
             c.Label.Interpreter = 'latex';
             c.Label.String = '$t_{max}$ [s]';
-
+                         
+            
              
             % Plot total frequency limit (back-emf/voltage and sensor)
-            plot(torque(torque<=t_p)*tNorm/magDrop,fTotal(torque<=t_p)*fNorm,'Color', [0.8 1 0.8],'LineWidth',2)
+            plot(fTot*tNorm/magDrop, wn*w0/2/pi * fNorm,'Color', 0.75* [1 1 1 ],'LineWidth',5,'DisplayName','feasibility limit')
             
             % Plot torque transfer function magnitude
-            plot((magGain*t_p - fCorrP)*tNorm/magDrop,    wn*w0/2/pi * fNorm,'k','LineWidth',0.5) % -3 dB
+            plot((magGain*t_p)*tNorm/magDrop,    wn*w0/2/pi * fNorm,':','Color',0*[1 1 1],'LineWidth',1.5,'DisplayName', 'peak amplitude \tau_p') % -3 dB
+            plot((magGain*t_r)*tNorm/magDrop,    wn*w0/2/pi * fNorm,':','Color',0.75*[1 1 1],'LineWidth',1.5,'DisplayName', 'rated amplitude \tau_r') % -3 dB
             
             % Plot voltage saturation limit
-            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'k--','LineWidth',0.5)
+            plot(dq_0*springMag *tNorm/ magDrop , wn*w0/2/pi *fNorm,'k--','LineWidth',1.5,'DisplayName','back-EMF limit')
             
             % plot resonance frequency
-            plot(torque*tNorm, f0*ones(size(torque))*fNorm, '--','color',0.8*[1 1 1],'LineWidth',0.5 )
+            plot(tau*tNorm, f0*ones(size(tau))*fNorm, '--','color',0.8*[1 1 1],'LineWidth',1.0,'DisplayName','f_0 [Hz]')
 
             %% Plot appearance and labels
             xlim([0,xmax]*tNorm);
-            ylim([0,ymax]*fNorm);
+            ylim([ wn(1)*w0/2/pi ,ymax]*fNorm);
             xlabel(xlabelStr,'Interpreter','latex')
             ylabel(ylabelStr,'Interpreter','latex')
             box on;
             set(gca,'TickLabelInterpreter','latex');
+            legend('location','best')
+            title('Bandwidth for locked output with thermally permissible operation time.')
         end
         
-        function h = draw_torque_speed_curve(this, subtractFriction, legendFontSize)
-            % draw_torque_speed_curve Displays speed-torque-curve in a
+        function h = drawTorqueSpeedCurve(this, subtractFriction, legendFontSize)
+            % draw_TorqueSpeedCurve Displays speed-torque-curve in a
             % figure.
             %
-            %   fHandle = dsg.draw_torque_speed_curve(subtractFriction, legendFontSize)
+            %   fHandle = dsg.draw_TorqueSpeedCurve(subtractFriction, legendFontSize)
             %
             % Inputs:
             %   subtractFriction: flag that controls if the torque axis
@@ -510,14 +810,14 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.
+            % See also generateDataSheet, drawTorqueFrequencyCurveLoad, genericJoint, jointBuilder.
             
             if ~exist('legendFontSize','var')
                 legendFontSize = get(0, 'DefaultTextFontSize');
             end
             
             if ~exist('subtractFriction','var')
-                subtractFriction = 1;
+                subtractFriction = 0;
             end
             
             % Shorthands 
@@ -575,16 +875,16 @@ classdef dataSheetGenerator
             if this.plotNormalized
                 tNorm = 1/t_p;
                 dqNorm = 1/dq_NL;
-                xlabelStr = '$\tau / \tau_p$ [.]';
-                ylabelStr = '$\dot{q} / \dot{q}_{NL}$ [.]';
+                xlabelStr = 'Torque $\tau / \tau_p$ [.]';
+                ylabelStr = 'Speed $\dot{q} / \dot{q}_{NL}$ [.]';
             else
                 tNorm = 1;
                 dqNorm = 1;
-                xlabelStr = '$\tau$ [Nm]';
-                ylabelStr = '$\dot{q}$ [rad/s]';
+                xlabelStr = 'Torque $\tau$ [Nm]';
+                ylabelStr = 'Speed $\dot{q}$ [rad/s]';
             end
             
-            plot( (mVals - fCorr )*tNorm, linCurve*dqNorm, 'k', 'DisplayName', 'Torque-Speed Boundary')
+            plot( (mVals - fCorr )*tNorm, linCurve*dqNorm, 'k', 'DisplayName', 'Torque-Speed Boundary','linewidth',1.5)
                         
             % OPERATING POINTS
             % Rated operating point
@@ -615,7 +915,7 @@ classdef dataSheetGenerator
                     [speedVals speedVals(end) 0]*dqNorm,...
                     0.8* [1 0 0],...
                     'LineStyle','none')
-                plot(Mf*tNorm, speedVals*dqNorm, 'k:', 'DisplayName', 'Friction Torque')
+                plot(Mf*tNorm, speedVals*dqNorm, 'k:', 'DisplayName', 'Friction Torque','linewidth',1.5)
             end
             alpha(0.25)     % add some transparency
             
@@ -629,8 +929,8 @@ classdef dataSheetGenerator
                 fCorr_1 = 0;
                 fCorr_2 = 0;
             end
-            plot([t_p, t_p-fCorr_1]*tNorm,[0, ymax]*dqNorm,'r--', 'DisplayName', 'Peak Torque')
-            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'r-', 'DisplayName', 'Peak Mechanical Power')
+            plot([t_p, t_p-fCorr_1]*tNorm,[0, ymax]*dqNorm,'r--', 'DisplayName', 'Peak Torque','linewidth',1.5)
+            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'r-', 'DisplayName', 'Peak Mechanical Power','linewidth',1)
             
             % Continuous operation 
             speedVals = p_cm ./ mVals;
@@ -641,8 +941,8 @@ classdef dataSheetGenerator
                 fCorr_1 = 0;
                 fCorr_2 = 0;
             end
-            plot((t_r*[1,1] - fCorr_1*[0, 1])*tNorm, [0,ymax]*dqNorm, 'b--', 'DisplayName', 'Maximum Continous Torque')
-            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'b-', 'DisplayName', 'Rated Mechanical Power')
+            plot((t_r*[1,1] - fCorr_1*[0, 1])*tNorm, [0,ymax]*dqNorm, 'b--', 'DisplayName', 'Maximum Continous Torque','linewidth',1.5)
+            plot((mVals-fCorr_2)*tNorm,speedVals*dqNorm, 'b-', 'DisplayName', 'Rated Mechanical Power','linewidth',1)
             
             
             
@@ -652,6 +952,7 @@ classdef dataSheetGenerator
             xlabel(xlabelStr,'interpreter','latex')
             ylabel(ylabelStr,'interpreter','latex')
             box on
+            title('Torque-speed diagram.')
             
             % CREATE COSTUMIZED LEGEND
             if legendFontSize ~= 0
@@ -822,11 +1123,11 @@ classdef dataSheetGenerator
         end
 
         
-        function createDataSheet(this)
-            % CREATEDATASHEET Main function to trigger the data sheet
+        function destFName = generateDataSheet(this)
+            % GENERATEDATASHEET Main function to trigger the data sheet
             % generation.
             %
-            %   dsg.createDataSheet
+            %   dsg.generateDataSheet
             %
             % As a result of this function call, a data sheet file will be
             % created and stored in dsg.outputDir. The filename will have 
@@ -846,7 +1147,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.            
+            % See also genericJoint, jointBuilder.            
             
             % Get local copies of all template files.
             copyfile([this.templateDir, filesep, this.texFName],this.texFName);
@@ -859,20 +1160,33 @@ classdef dataSheetGenerator
             % Produce all plots
             this.makeDataSheetPlots;
             
-            % Compile the Tex source
-            this.compileTexFile
-            
-            % Put the generated datasheet in the final destination.
-            [~, fName] = fileparts(this.texFName);
+            % Make sure, the output directory exists
             if ~exist(this.outputDir,'dir')
                 mkdir(this.outputDir)
             end
-            copyfile([fName,'.pdf'],[this.outputDir,filesep, this.assembleOutFileName ]);
+            
+            % Compile the Tex source. 
+            [flag, cmdout] = this.compileTexFile;
+
+            % Ouptut last console output, if desired.
+            if this.verbose
+                disp(cmdout);
+            end
+            
+            % Put the generated datasheet in the final destination.
+            [~, fName] = fileparts(this.texFName);
+
+            destFName = [this.outputDir,filesep, this.assembleOutFileName ];
+            srcFName =  [this.outputDir,filesep, fName, '.pdf'];
+            copyfile(srcFName,destFName);
 
             % Clean up.
             delete([fName,'.*'])
             delete([this.torqueSpeedFName])
-            
+            delete([this.efficiencyFName])
+            delete([this.thermalCharFName])
+            delete([this.torFreqLoadFName])
+            delete([this.torFreqLockFName])
         end
         
         function fName = assembleOutFileName(this)
@@ -897,7 +1211,7 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.   
+            % See also generateDataSheet, genericJoint, jointBuilder.   
             
             fName = [this.jointModel.name, '_', this.outFName];
             
@@ -926,12 +1240,17 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.    
+            % See also generateDataSheet, genericJoint, jointBuilder.    
             
+            close all;
             
             % Torque-Speed curve
-            h = this.draw_torque_speed_curve;
-                        
+            h = this.drawTorqueSpeedCurve;
+                      
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            ax = get(gcf,'children');
+            set(ax,'Title',[])
+            
             set(gcf,'Units','centimeters');
             set(gcf,'PaperUnits','centimeters');
             pos = get(gcf,'Position');
@@ -945,7 +1264,91 @@ classdef dataSheetGenerator
             printpdf(gcf,this.torqueSpeedFName,['-r',num2str(this.plotResolution)])
 
             close(h);
+            
+            % Efficiency curve
+            h = this.drawEfficiencyCurve;
+            
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 10.5;
              
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            printpdf(gcf,this.efficiencyFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+             
+            % Thermal characteristics
+            h = this.drawThermalCharacteristics;
+
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            title('') 
+            
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 8;
+             
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            printpdf(gcf,this.thermalCharFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+            
+            % Torque Frequency Characteristics varying load
+            h = this.drawTorqueFrequencyCurveLoad;
+
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            title('') 
+            
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 9;
+             
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            hCbar = findobj(gcf,'Type','colorbar');
+            hCbar.AxisLocation = 'out';
+            
+            printpdf(gcf,this.torFreqLoadFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+            
+            % Torque Frequency Characteristics varying load
+            h = this.drawTorqueFrequencyCurveLocked;
+
+            % In the datasheet we are going to have a figure caption. Remove the axes title to save space.
+            title('') 
+            
+            set(gcf,'Units','centimeters');
+            set(gcf,'PaperUnits','centimeters');
+            pos = get(gcf,'Position');
+            pos(3) = 18;
+            pos(4) = 9;
+             
+            set(gcf,'Position',pos)
+            set(gcf,'PaperPositionMode','Auto','PaperSize',[pos(3), pos(4)])          
+            set(gca,'LooseInset',get(gca,'TightInset'))
+            
+            hCbar = findobj(gcf,'Type','colorbar');
+            hCbar.FontSize = get(gca,'FontSize');
+            hCbar.AxisLocation = 'in';
+                        
+            printpdf(gcf,this.torFreqLockFName,['-r',num2str(this.plotResolution)])
+
+            close(gcf);
+            
         end
         
         function createDefFile(this)
@@ -985,14 +1388,22 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.    
+            % See also generateDataSheet, genericJoint, jointBuilder.    
             %
             
             jM = this.jointModel; % Shorthand
             
             fid = fopen(this.cfgFName,'w+');
             %
-            fprintf(fid,'\\def \\valJointName{%s}\n'                 , jM.name                          );
+            fprintf(fid,'\\def \\valJointName{%s}\n'                 , strrep(jM.name,'_',' ')          );
+            %
+            % File names of plots to include
+            %
+            fprintf(fid,'\\def \\valTorqueSpeedFName{%s}\n'           , this.torqueSpeedFName           );
+            fprintf(fid,'\\def \\valEfficiencyFName{%s}\n'            , this.efficiencyFName            );
+            fprintf(fid,'\\def \\valThermalCharFName{%s}\n'           , this.thermalCharFName           );
+            fprintf(fid,'\\def \\valTorFreqLoadFName{%s}\n'           , this.torFreqLoadFName           );
+            fprintf(fid,'\\def \\valTorFreqLockFName{%s}\n'           , this.torFreqLockFName           );       
             %
             fprintf(fid,'%s\n','% Mechanical Properties');
             fprintf(fid,'%s\n','%');
@@ -1190,20 +1601,47 @@ classdef dataSheetGenerator
             %  Joern Malzahn
             %  Wesley Roozing
             %
-            % See also createDataSheet, genericJoint, jointBuilder.    
+            % See also system, generateDataSheet, genericJoint, jointBuilder.    
             %
             
             % Tested with MiKTeX/2.9 under Windows 7 x64 and
             % TexLive 2015.20160320-1 under Linux (Ubuntu 16.04)
             if (isunix)
-                cmd = ['pdflatex -synctex=-1 -interaction=nonstopmode ', this.texFName];
+%                 cmd = ['pdflatex -synctex=-1 -interaction=nonstopmode ', this.texFName];
+                  cmd = sprintf('pdflatex -synctex=-1 -interaction=nonstopmode -output-directory %s %s',...
+                      this.outputDir, this.texFName);
             else
-                cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
+%                 cmd = ['lualatex.exe -synctex=-1 -interaction=nonstopmode ', this.texFName];
+                cmd = sprintf('lualatex.exe -synctex=-1 -interaction=nonstopmode -output-directory=%s %s',...
+                      this.outputDir, this.texFName);
             end
             
-            % Make the system call invoking the LuaLatex compiler.
+            % Make the system call invoking the \Latex compiler.
+            % We compile three times to get all references right.
+            cmdout = [];
+            flag = 0;
+            for it = 1:3 
             [flag, cmdout] = system(cmd);
-                        
+                if flag ~= 0
+                    disp('Datasheet compilation failed. See compiler output for details: ')
+                    disp(cmdout)
+                    
+                    if (isunix)
+                        disp('-------');
+                        disp('Warning: If the above error references libstdc++, this issue arises due to MATLAB including libraries which are too old for your system. Try removing the following symlinks:');
+                        disp('- /MATLAB/sys/os/glnxa64/libstdc++.so.6');
+                        disp('- /MATLAB/bin/glnxa64/libtiff.so.5');
+                        disp('See also: https://mathworks.com/matlabcentral/answers/329796-issue-with-libstdc-so-6');
+                        disp('-------');
+                    end
+                end
+            end
+            
+            % Ouptut last console output, if desired.
+            if this.verbose
+                disp(cmdout);
+            end
+                                    
         end
         
         

@@ -81,7 +81,6 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 classdef jointBuilder
-    %JOINTBUILDER Builds joint model files
     
     properties
         buildDir = ['.',filesep,'build'];
@@ -122,13 +121,60 @@ classdef jointBuilder
         %__________________________________________________________________
         % Build a joint object file
         function className = buildJoint(this, paramName, modelName, nonlinearModelName, electricalDynamicsName, className)
+        % buildJoint(paramName, modelName[, nonlinearModelName, electricalDynamicsName, className]) 
+        % Builds a joint model file in the build/ directory based on
+        % the supplied parameter and model names
+        %
+        % **paramName**: The name of an m-file defining a structure called 'param' with the fields defined in the
+        % genericJoint class. The genericJoint class already specifies default values for all parameters. The 
+        % parameter file therefore has to define those parameters deviating from the default. 
+        %
+        % **paramName** is a |REQUIRED| input parameter.
+        %
+        % **modelName**: This is the name of the linear model template to be used. The following linear model templates can
+        % be selected here:
+        %   * *full_dyn*: Three mass system with motor, gear and load inertia. Gearbox and sensor are compliant.
+        %   * *full_dyn_no_friction*: As above, but without friction terms.
+        %   * *output_fixed*: Two mass system with motor and gear inertia. The system output is locked.
+        %   * *output_fixed_no_friction*: Same as above, but without friction terms.
+        %   * *output_fixed_rigid_gearbox*: Single mass spring damper system with locked output.
+        %   * *output_fixed_rigid_gearbox_no_friction*: As above, but without friction terms.
+        %   * *rigid*: Single mass system without compliant elements.
+        %   * *rigid_no_friction*: As above, but without friction terms.
+        %   * *rigid_gearbox*: Two mass system with combined motor-gearbox ineartia.
+        %   * *rigid_gearbox_no_friction*: As above, but without friction terms.
+        %
+        %
+        % **modelName** is an |OPTIONAL| input parameter and defaults to *full_dyn*
+        %
+        % **nonlinearModelName**: Specifies the nonlinear dynamics added to the linear model. The parameter is of cell
+        % type and can contain a list of multiple effects. Possible "ingredients" are:
+        %
+        %   * *coulomb*: Symmetric Coulomb friction, parameters d_cx are used.
+        %   * *coulomb_asym*: Asymmetric Coulomb friction, parameters d_cx and d_cx_n are used.
+        %   * *torque_ripple*: Harmonic torque ripple, parameters rip_a1, rip_a2 and rip_f are used.
+        %   * *viscous_asym*: Asymmetric viscous friction, parameters d_x_n are used.
+        %
+        % **nonlinearModelName** is an |OPTIONAL| input parameter. Defaults to an empty list and purely linear dynamics
+        % models.
+        %
+        % **electricalDynamicsName**: Specifies the dynamics to be considered for the electrical subsystem. Possible
+        % choices are:
+        %
+        %  * *electric_dyn*: Linear electrical dynamics including armature resistance and inductance. May result in slow
+        %  simulations!
+        %  * *electric_dyn_zero_inductance*: Static model of the delectrical dynamics, inductance is ignored. 
+        %
+        % **electricalDynamicsName** is an |OPTIONAL| input parameter. Defaults to *electric_dyn_zero_inductance*.
+        %
+        % **className**: Allows to give the derived joint model a custom name.
+        % **className**:  is an |OPTIONAL| input parameter. If no custom name is given, the method creates one from the
+        % specified parameters and dynamics.
         
-            % buildJoint(paramName, modelName, nonlinearModelName)
-            % Builds a joint model file in the build/ directory based on
-            % the supplied parameter and model names
+
             
             % Check whether the params exist
-            if (~exist(paramName, 'file'))
+            if (exist(paramName, 'file') ~= 2)
                 error(['jointBuilder.buildJoint error: Parameters ''' paramName ''' do not exist!']);
             end
 
@@ -136,7 +182,7 @@ classdef jointBuilder
             eval(paramName);
             
             % If model name is empty, use "full_dyn" by default
-            if isempty(modelName)
+            if (~exist('modelName', 'var') || isempty(modelName))
                 modelName = 'full_dyn'; 
             end
             % Otherwise, check whether the linear model exists
@@ -275,7 +321,7 @@ classdef jointBuilder
             paramsStr = fileread([paramName '.m']);
             paramsStr = regexprep(paramsStr, '^', '\t', 'emptymatch', 'lineanchors');
             constructorStr = fileread('constructor.m');
-            constructorStr = sprintf(constructorStr, className, paramsStr, jointName, paramName, modelName, nonlinearModelNameCellStr);
+            constructorStr = sprintf(constructorStr, className, paramsStr, jointName, paramName, modelName, nonlinearModelNameCellStr, electricalDynamicsName);
             constructorStr = regexprep(constructorStr, '^', '\t\t', 'emptymatch', 'lineanchors');
             constructorStr = regexprep(constructorStr, '%', '%%', 'emptymatch', 'lineanchors');
             fprintf(fid, [constructorStr '\n\n']);
@@ -307,7 +353,12 @@ classdef jointBuilder
             % getElectricalDynamicsMatrices
             getDynStr = fileread('getElectricalDynamicsMatrices.m');
             getDynStr = regexprep(getDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
-            fprintf(fid, [getDynStr '\n\n'], electricalDynamicsName);
+            if (strcmp(electricalDynamicsName, 'electric_dyn_dq'))
+                errStr = sprintf('error(''This joint was built with nonlinear electrical dynamics. Therefore, getElectricalDynamicsMatrices() is not valid.'');');
+                fprintf(fid, [getDynStr '\n\n'], errStr);
+            else
+                fprintf(fid, [getDynStr '\n\n'], ['[A, B, C, D] = ' electricalDynamicsName '(obj);']);
+            end
             
             % End methods
             fprintf(fid,'\tend\n\n');

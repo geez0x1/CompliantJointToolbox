@@ -37,11 +37,14 @@
 
 \RequirePackage{multicol}
 
-% Fonts
-\RequirePackage[sc]{mathpazo}       % Palatino (not Palatino Linotype!) as font with serifs
-\linespread{1.05}                   % Palatino needs more space between lines
-\RequirePackage[scaled=.90]{helvet} % Helvetica as font without serifs
-\RequirePackage{courier} 			% Courier as type writer font
+\RequirePackage{ifluatex}
+\ifluatex
+	\RequirePackage{luatex85} % For outdated PDF commands ...
+	\RequirePackage{luaotfload}
+	\RequirePackage{fontspec} % Font handling in Lualatex
+\else
+	\RequirePackage[T1]{fontenc} 	
+\fi
 
 \RequirePackage{fancyhdr}
 \fancypagestyle{cjtpage}{%
@@ -73,22 +76,22 @@
 \definecolor{cjtblue}{rgb}{ 0.0314, 0.2157, 0.3882}
 \definecolor{cjtlightblue}{rgb}{ 0.4314, 0.6157, 0.7882}
 \definecolor{cjtred}{rgb}{ 0.7529, 0, 0}
+\definecolor{cjtlightred}{rgb}{ 0.7529, 0.25, 0.25}
 
-
-\RequirePackage[justification=raggedright,
+\RequirePackage[justification=centering,
                 singlelinecheck=false, 
-                font={bf,color=cjtred},
+                font={bf,color=cjtlightred},
                 labelfont+={it},
-                position=top,
+                position=bottom,
                 skip=0.5\baselineskip
                 ]{caption}
-\RequirePackage{subcaption}
+%\RequirePackage{subcaption}
 
 
 \newcommand{\actuatorname}[1]
 {
 \begin{Huge}
-	\Huge{\textcolor{cjtred}{\textbf{#1}}}
+	\textbf{\Huge{\textcolor{cjtred}{#1}}}
 \end{Huge}
 
 \vspace{0.3cm}
@@ -98,3 +101,13 @@
 \renewcommand\emph[1]{
     \textcolor{cjtblue}{\textbf{#1}}
 }
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\color{cjtblue}\LARGE\bfseries}
+	{\color{cjtblue}\bfseries\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\color{cjtred}\large\bfseries}
+	{\color{cjtred}\bfseries\thesubsection}{1em}{}
+

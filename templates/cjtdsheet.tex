@@ -1,8 +1,6 @@
 %\documentclass[letterpaper, 9 pt, conference]{article}  % Comment this line out if you need a4paper
 \documentclass[a4paper,10pt]{cjtdsheet}      % Use this line for a4 paper
 
-\usepackage{lipsum}
-
 \begin{document}
 \renewcommand{\arraystretch}{1.2}
 \actuatorname{\valJointName}
@@ -73,9 +71,9 @@
     Rated Speed                     & $\symRatedspeed  $         & rad/s            & \valRatedspeed          \tabularnewline    \rowcolor{lightgray}
     Rated El. Power                 & $\symRatedpowere $         & W                & \valRatedpowere         \tabularnewline    
     Rated Mech. Power               & $\symRatedpowerm $         & W                & \valRatedpowerm         \tabularnewline    \rowcolor{lightgray}
-    No Load Current                 & $\symNoloadcurrent$        & A                & \valNoloadcurrent       \tabularnewline    
-    No Load Torque                  & $\symNoloadtorque $        & Nm               & \valNoloadtorque        \tabularnewline    \rowcolor{lightgray}
-    No Load Speed                   & $\symNoloadspeed  $        & rad/s            & \valNoloadspeed         \tabularnewline    
+    No-Load Current                 & $\symNoloadcurrent$        & A                & \valNoloadcurrent       \tabularnewline    
+    No-Load Torque                  & $\symNoloadtorque $        & Nm               & \valNoloadtorque        \tabularnewline    \rowcolor{lightgray}
+    No-Load Speed                   & $\symNoloadspeed  $        & rad/s            & \valNoloadspeed         \tabularnewline    
     Stall Torque                    & $\symStalltorque  $        & Nm               & \valStalltorque         \tabularnewline    \rowcolor{lightgray}
     Starting Current                & $\symStartingcurrent$      & A                & \valStartingcurrent     \tabularnewline    
     Torque Speed \newline Gradient  & $\symSpeedtorquegradient$  & rad/Nms          & \valSpeedtorquegradient \tabularnewline    \rowcolor{lightgray}
@@ -98,29 +96,116 @@
     \end{tabularx}
 
 \end{multicols}
+Each of the parameters is explained in more detail at the end of this document.
 
-\begin{figure}[b!]
-	\caption{Torque-Speed Diagram of the actuator.}
-    \includegraphics{torqueSpeedCurve.pdf}
+\begin{figure}[hb!]
+	\centering
+    \includegraphics[width=\textwidth]{\valTorqueSpeedFName}
+		\caption{Torque-speed diagram of the actuator.}
 	\label{fig:TorqueSpeedCurve}
 \end{figure}
 
+\newpage % Force a new page
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Torque-Speed Characteristics}
+
+\begin{multicols}{2}
+The diagram show in Fig.~\ref{fig:TorqueSpeedCurve} is frequently used to obtain an overview over the actuator capabilities. It illustrates the steady state operation (no acceleration) of the actuator when supplied with the rated voltage $\symRatedvoltage$. The available supply voltage is used to produce the motor current and to compensate for the voltage induced by the spinning motor. This results in the torque-speed boundary indicated by the solid black line in the figure. The boundary connects the No-Load point characterized by the no-load torque $\symNoloadtorque$ and the no-load speed $\symNoloadspeed$ with the stall point at the stall torque $\symStalltorque$.  The intersection with the rated torque limit $\symRatedtorque$ (blue dashed line) is the rated operating point. The speed at this point along the line is the rated speed $\symRatedspeed$. The product of the two quantities is the rated mechanical power $\symRatedpowerm$. Operating points with a delivered mechanical power equal to the rated power are connected by a solid blue line. 
+
+The intersection of the torque-speed boundary with the peak torque $\symMaxtorque$ (red dashed line) defines the peak operating point. The product with the speed at this point defines the peak mechanical power (red solid curve).
+
+The diagram indicates the rated operating range as blue shaded area. The amount of electrically generated torque required to overcome friction is illustrated as red shaded area.
+
+The true actuator behavior varies from the depicted nominal diagram due to parameter tolerances (winding resistance, torque constant, friction) and thermal influences (friction, permanent magnet properties) on the torque generation. 
+
+Note, that the diagram ignores acceleration and deceleration of the actuator shaft. When choosing a motor based on this diagram, torque and speed reserves should therefore be taken into account.
+%
+\end{multicols}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Actuator Efficiency}
+\begin{figure}%[b!]
+		\includegraphics[width=\textwidth]{\valEfficiencyFName}
+		\caption{Efficiency $\eta$ of the power transmission ($P$) as a function of the generated torque $\tau$.}
+	\label{fig:EfficiencyCurve}
+\end{figure}
+
+\begin{multicols}{2}
+
+The actuator efficiency varies with the operating point as visible in Fig.~\ref{fig:EfficiencyCurve}. BLDC motors typically display poor efficiency at very low torques, where most of the generated mechanical power is used to overcome friction. The efficiency also drops for very high torques, where electrical losses dominate.
+
+\end{multicols}
+
 \newpage
 
-\section*{\textcolor{cjtred}{Parameter Definitions}}
-The parameters listed in the table on the previous page are briefly explained in the following.
+\section{Thermal Characteristics}\label{sec:ThermalChar}
+
+\begin{figure}%[tb]
+		\includegraphics[width=\textwidth]{\valThermalCharFName}
+	\caption{Expected steady state temperature and time to critical temperature as a function of the generated torque $\tau$.}
+	\label{fig:ThermalCharacteristics}
+\end{figure}
+
+\begin{multicols}{2}
+
+The actuator can be continuously operated within the rated operation limits. Figure~\ref{fig:ThermalCharacteristics} shows the rated operation limit as blue shaded area. Up to these limits, the actuator temperature will reside below the maximum admissible temperature $\symTmpWindMax$ (red dashed line). 
+
+The actuator can be intermittently overloaded up to the peak operation limits indicated by the red shaded area. During this intermittent operation, the actuator temperature will rise towards the maximum admissible temperature and eventually exceed it. For a given generated torque, the blue graph in Fig.~\ref{fig:ThermalCharacteristics} illustrates the time it takes the motor to heat up from ambient temperature ($25\:{^{\circ}}$C) to $\symTmpWindMax$. If the actuator heats up beyond this temperature, thermal wear to the windings must be expected.
+
+Note that the characteristics displayed in Fig.~\ref{fig:ThermalCharacteristics} must not be considered sharp boundaries. They are theoretical values considering the thermal resistances and time constants in the parameter table. Those parameters are obtained from a standardized experiment where the actuator without active cooling is mounted in free air against a plastic flange. The true thermal characteristics for a given application depends on many other parameters, such as the actuator operation history (actual winding temperature), true ambient temperature, humidity, the actual mounting and potential cooling of the motor.
+
+For further reading on thermal operating conditions \cite{Leonhard_2001} is suggested.
+
+\end{multicols}
+
+
+
+\section{Torque Bandwidth}
+
+\begin{multicols}{2}
+
+While the torque-speed diagram Fig.~\ref{fig:TorqueSpeedCurve} considers static actuator operation, many robotic applications demand dynamic torque generation. A way to characterize the dynamic torque generation capability of an actuator consists of looking at the 3 dB cut-off frequency of the torque transfer function magnitude. Due to nonlinear friction, actuator compliance, current and voltage saturation as well as back-emf generation and the influence of the actual load seen by the actuator, the torque bandwidth of an actuator cannot be characterized by just a single value.
+
+A common technique to assess the achievable torque bandwidth of an actuator is to lock its output and control the actuator to track a sweep reference, i.e. a sinusoidal input signal with growing frequency. By determining the cut-off frequency of the resulting response, this technique yields the locked torque bandwidth of the actuator controlled by the implemented controller in the specific parameter tuning for the chosen sweep amplitude. The illustration in Fig.~\ref{fig:TorqueBandwidthLocked} emerges from a different procedure. For any electrically generated torque between zero and peak torque, the graphic shows, what 3 dB cut-off frequency can be ideally attained with the actuator irrespective of any controller. The dotted light gray line represents the case of rated torque generation. Analogously, the black dotted line corresponds to peak torque generation. The gray solid line illustrates the operation feasibility boundary. It computes from the minimum of the peak torque generation curve (black dotted line) and the back-EMF generation limit (black dashed line). The gray dashed line is the natural actuator frequency. The color shade encodes the thermally admissible operation time at each frequency and torque amplitude considering the operation starts from motor windings at ambient temperature. The restrictions mentioned in Sec.~\ref{sec:ThermalChar} apply.
+
+In a similar way, Fig.~\ref{fig:TorqueBandwidthLoad} illustrates the controller independent achievable torque bandwidth across different load inertias. This addresses fact that the actuator in practice is supposed to drive a certain link mechanism as a load. The graphic exclusively considers peak operation. The line colors from green to blue encode the ratio of the load inertia to the actuator inertia. The red solid line corresponds to the locked output case illustrated in Fig.~\ref{fig:TorqueBandwidthLocked}, where the ratio becomes infinite. The black solid curve represents a link inertia equal to the actuator inertia, where the ratio equals one. The dashed black line is again the back-EMF generation limit for a damping-free actuator compliance. The gray dotted lines illustrate the same limit for non-zero internal damping. The set of theoretically reachable operating conditions is indicated by the red shaded area.
+
+For further reading on how the torque bandwidth plots are obtained, please refer to: \cite{Malzahn_2017}.
+
+\end{multicols}
+
+
+\begin{figure}%[ftb]
+		\includegraphics[width=\textwidth]{\valTorFreqLockFName}
+		\caption{Torque Bandwidth for locked output with thermal admissability of the operation.}
+	\label{fig:TorqueBandwidthLocked}
+\end{figure}
+
+%\lipsum[1-3]
+
+
+\begin{figure}%[ftb]
+		\includegraphics[width=\textwidth]{\valTorFreqLoadFName}
+		\caption{Maximum torque bandwidth for variable load inertias when generating peak torque.}
+	\label{fig:TorqueBandwidthLoad}
+\end{figure}
+
+\section*{Parameter Definitions}
+The parameters listed in the table on the first page of this document are briefly explained in the following.
 
 \begin{multicols}{2}
 
 %
 %------------------------------------------------------
 %
-\subsection*{\textcolor{cjtred}{Mechanical Properties}}
+\subsection*{Mechanical Properties}
 The mechanical properties define the outer shape of the actuator and the transmission of power generated by the motor to the load.
 
 \emph{Transmission Ratio:} The actuator typically comprises a transmission mechanism such as a gear box, that amplifies the torque output trading off the deliverable speed. The value is the ratio of the transmission input speed to the obtained output speed. Conversely, it describes the ratio of the output torque over the input torque.
 
-\emph{Mass:} The actuator comprises of three main parts: the motor, the transmission mechanism and the torque sensor. The value is the summed mass of all three components.
+\emph{Mass:} The actuator comprises three main parts: the motor, the transmission mechanism and the torque sensor. The value is the summed mass of all three components.
 
 \emph{Rotor Inertia:} The rotary inertia of the motor shaft.
 
@@ -132,7 +217,7 @@ The mechanical properties define the outer shape of the actuator and the transmi
 
 \emph{Length:} The overall length of the actuator including the motor, transmission mechanism and torque sensor.
 
-\emph{Mechanical Time Constant:} Describes the acceleration of the actuator when a constant voltage is applied, under the condition that the required starting current can be provided. The value is the time for the actuator output to arrive at 63 \% of the steady state velocity for the applied voltage ignoring friction and additional load. The mechanical time constant is computed to:
+\emph{Mechanical Time Constant:} Describes the acceleration of the actuator when a constant voltage is applied, under the condition that the required starting current can be provided. The value is the time for the actuator output to arrive at 63 \% of the steady state velocity corresponding to the applied voltage ignoring friction and additional load. The mechanical time constant is computed to:
 \begin{equation}
 \symTmech = \frac{
 	\left(
@@ -147,23 +232,23 @@ The mechanical properties define the outer shape of the actuator and the transmi
 	}.
 \end{equation}
 
-\emph{Viscous Friction:} Coefficient for the speed dependent friction torque. The value is an approximation of the effect. Due to individual assembly and manufacturing tolerances of each actuator, the actual friction torque at a given speed will differ. Moreover the friction torque varies with temperature, lubrication changes, load, wear and tear.
+\emph{Viscous Friction:} Coefficient for the speed dependent friction torque. The value is an approximation of the effect. Due to individual assembly and manufacturing tolerances of each actuator, the actual friction torque at a given speed observed for a specific motor will differ. Moreover the friction torque varies with temperature, lubrication changes, load and wear. The value given here should therefore be treated as a ballpark number.
 
-\emph{Coulomb Friction:} Constant friction torque. The constant friction torque is subject to the same variations and tolerances as the viscous friction coefficient.
+\emph{Coulomb Friction:} Constant friction torque. The constant friction torque is subject to the same variations and tolerances as the viscous friction coefficient. It is a ballpark number.
 
 %
 %------------------------------------------------------
 %
-\subsection*{\textcolor{cjtred}{Electrical Properties}}
-The electrical properties describe the windings, which form the core element of the actuator. 
+\subsection*{Electrical Properties}
+The electrical properties characterize the motor windings, which form the core element of the actuator. 
 
-\emph{Winding Resistance:} Manufacturing tolerances (wire diameter) can cause variations in the order of 8~\%. The value is given for the windings with leads at a temperature of $25^\circ$C. The resistance variation with respect to a temperature increase by $\Delta \nu$ is:
+\emph{Winding Resistance:} Manufacturing tolerances (wire diameter) can cause variations in the order of 10~\%. The value is given for the windings with leads at a temperature of $25^{\circ}$ C. The resistance variation with respect to a temperature increase by $\Delta \nu$ is:
 \begin{equation}
 	\symArmatureresistance(\nu) = \symArmatureresistance(25^\circ\text{ C})\:\left(1+\alpha_{CU} 	\: \Delta \nu\right)	\:.
 \end{equation}
 The temperature coefficient of copper $\alpha_{CU}$ is 0.0039~$K^{-1}$. As a consequence the Joule losses increase with higher winding temperatures.
  
-\emph{Winding Inductance:} The inductance of the motor windings. The effective inductance can vary with the frequency of the current signal. The apparent inductance can be smaller when the motor is operated using pulse-width modulation.
+\emph{Winding Inductance:} The inductance of the motor windings. The observed inductance may vary depending on the implementation of the current modulation. The The effective inductance depends on the modulation frequency and shape.
 
 \emph{Electrical Time Constant:} Describes the time for the motor current to reach the 63~\% of the steady state value, when a constant voltage is applied to the windings. The value is computed from the winding inductance and resistance to:
 \begin{equation}
@@ -174,7 +259,7 @@ The temperature coefficient of copper $\alpha_{CU}$ is 0.0039~$K^{-1}$. As a con
 \begin{equation}
 	\tau = \symTorqueconstant \: i\:.
 \end{equation}
-The electrical torque is the amplified by the transmission system. The torque constant is determined by the rotor magnet. The rotor magnetisation has a tolerance in the order of 8~\%. Moreover magnetisation weakens with increasing temperature. The effect is reversible as long as the winding current does not exceed the admissible peak current.
+The electrical torque is the amplified by the transmission system. The torque constant is determined by the rotor magnet. The rotor magnetisation has a tolerance in the order of typically 10~\%. Moreover magnetization weakens with increasing temperature. The effect is reversible as long as the winding current does not exceed the admissible peak current.
 
 \emph{Generator Constant:} Relates the voltage induced in the windings to the rotor speed:
 \begin{equation}
@@ -185,8 +270,8 @@ The generator constant is the inverse of the torque constant $\symTorqueconstant
 %
 %------------------------------------------------------
 %
-\subsection*{\textcolor{cjtred}{Thermal Properties}}
-The thermal properties represent a simplified and practical set of parameters to model the thermodynamics of the actuator. They are the foundation for the definition of the current and power ratings as well as the intermittend operating times beyond the limit of the rated operation.
+\subsection*{Thermal Properties}
+The thermal properties represent a simplified and practical set of parameters to model the thermodynamics of the actuator. They are the foundation for the definition of the current and power ratings as well as the intermittent operating times beyond the limit of the rated operation.
 
 \emph{Maximum Temperature:} Defines the maximum winding temperature before heat induced irreversible damage occurs.
 
@@ -196,12 +281,12 @@ The thermal properties represent a simplified and practical set of parameters to
 
 \emph{Thermal Resistance Winding-Housing:} Thermal resistance to a heat flow between the motor windings and housing. Defines the winding temperature increase for a given Joule power loss.
 
-\emph{Thermal Resistance Housing-Air:} Thermal resistance to a heat flow between the motor housing and the surrounding environment. Defines the housing temperature increase for a given Joule power loss. The value is typically obtained with standard experiment. In that experiment the motor is flanged to a plastic plate with the motor body being free and sorrounded by air.
+\emph{Thermal Resistance Housing-Air:} Thermal resistance to a heat flow between the motor housing and the surrounding environment. Defines the housing temperature increase for a given Joule power loss. The value is typically obtained with standard experiment. In that experiment the motor is flanged to a plastic plate with the motor body being free and surrounded by air.
 
 %
 %------------------------------------------------------
 %
-\subsection*{\textcolor{cjtred}{Rated Operation}}
+\subsection*{Rated Operation}
 The rated parameters together with the No-Load parameters frame the conditions at which the actuator can be operated continuously without risking any damage.
 
 \emph{Rated Voltage:} Serves as a reference for the definition of further actuator parameters. It is recommended but not mandatory to operate the actuator at the rated voltage. The rated voltage determines the speed axis offset of the torque-speed curve in Fig.~\ref{fig:TorqueSpeedCurve}. 
@@ -220,7 +305,7 @@ The rated parameters together with the No-Load parameters frame the conditions a
 
 \emph{No-Load Torque:} Torque that is generated by the No-Load current $\symNoloadcurrent$. It is equivalent to the friction torque.
 
-\emph{No-Load Speed:} Rotor speed that emerges when the rated voltage is applied to the load free actuator. The theoretical No-Load speed $\dot{\theta}_0$ for a frictionless actuator would be computed from the rated voltage $\symRatedvoltage$ and the generator constant $\symGeneratorconstant$:
+\emph{No-Load Speed:} Rotor speed that emerges when the rated voltage is applied to the load free actuator. The theoretical No-Load Speed $\dot{\theta}_0$ for a frictionless actuator would be computed from the rated voltage $\symRatedvoltage$ and the generator constant $\symGeneratorconstant$:
 \begin{equation}
 	\dot{\theta}_0 = \symRatedvoltage / \symGeneratorconstant\:.
 \end{equation}
@@ -234,7 +319,7 @@ The rated parameters together with the No-Load parameters frame the conditions a
 %
 %------------------------------------------------------
 %
-\subsection*{\textcolor{cjtred}{Peak Operation}}
+\subsection*{Peak Operation}
 The peak operation parameters define the maximum intermittend operating conditions. Exceeding these values even for short time yields irriversible damage to the actuator.
 
 \emph{Peak Current:} The maximum permissible current that does not lead to a demagnetization of the permanent magnet. If the winding current exceeds this value irreversible weakening of the motor occurs.
@@ -248,5 +333,23 @@ The peak operation parameters define the maximum intermittend operating conditio
 \emph{Peak Mechanical Power:} Computed as the product of the peak torque $\symMaxtorque$ and peak speed $\symMaxspeed$.
 
 \end{multicols}
+
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+
+\begin{thebibliography}{99}
+%
+\bibitem{Leonhard_2001} 
+W. Leonhard: 
+\newblock "Control of Electrical Drives". 
+\newblock \textit{3rd Edition, Springer-Verlag Berlin Heidelberg NewYork 2001}.
+%
+\bibitem{Malzahn_2017} 
+J. Malzahn, N. Kashiri, W. Roozing, N. Tsagarakis and D. Caldwell: 
+\newblock "What is the torque bandwidth of this actuator?". 
+\newblock In: \textit{2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, Vancouver, BC, 2017, pp. 4762-4768. doi: 10.1109/IROS.2017.8206351.
+%
+\end{thebibliography}
 
 \end{document}

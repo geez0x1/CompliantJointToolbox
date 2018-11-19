@@ -75,13 +75,12 @@ set(figHandle,'PaperSize',[mypos(3) mypos(4)]);
 % printer driver to honor the figure properties
 set(figHandle,'PaperPositionMode', 'manual');
 
-% Use the PaperPosition four-element vector [left, bottom, width, height]
-% to control the location on printed page; place it using horizontal and
-% vertical negative offsets equal to the lower-left coordinates of the
-% rectangular convex hull of the plot, and increase the size of the figure
-% accordingly
-set(figHandle,'PaperPosition',[-mypos(1) -mypos(2) ...
-    mypos(3)+mypos(1) mypos(4)+mypos(2)]);
+% % Use the PaperPosition four-element vector [left, bottom, width, height]
+% % to control the location on printed page; place it using horizontal and
+% % vertical negative offsets equal to the lower-left coordinates of the
+% % rectangular convex hull of the plot, and increase the size of the figure
+% % accordingly
+ set(figHandle,'PaperPositionMode','auto')
 
 % Print stuff and pass optional parameters of the print command
 if verLessThan('matlab','9.1') % check for backwards compatibility

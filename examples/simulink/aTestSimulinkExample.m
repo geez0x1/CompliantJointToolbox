@@ -36,6 +36,9 @@ dispText = ...
  ' '
  'Nothing productive here'
  ' '
+ 'If you wish to write your own example, you can use this file or any' 
+ 'existing example as a template.' 
+ ' '
  'Happy Testing!'
 };
 

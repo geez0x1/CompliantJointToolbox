@@ -1,10 +1,11 @@
 %ELECTRIC_DYN Get linear dynamics matrices for the electrical subsystem
 %
-% [A, B, C, D] = jointObj.electric_dyn
+% [A, B, C, D] = electric_dyn(jointObj)
 %
 % jointObj is the instance of the joint class object for which this
-% function has been called.
-%
+% function has been called. Alternatively, it can be called for joints
+% which were built with these dynamics as:
+% [A, B, C, D] = jointObj.getElectricalDynamicsMatrices()
 %
 % Outputs::
 %   A:   System matrix

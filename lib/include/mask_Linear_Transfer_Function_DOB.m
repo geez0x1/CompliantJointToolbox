@@ -42,7 +42,7 @@ if (loadData)
     end
 else
     % Get linear DOB based on model
-    [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, 2*pi*f_c, measIdx, doPlot);
+    [Pc, Q_td, PQ_td] = getLinearDOB(jointObj, 2*pi*f_c, measIdx);
 end
 
 % Check if the necessary variables exist
@@ -53,6 +53,10 @@ end
 % Get linear dynamics matrices
 [A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();
 
-% Discretize using Tustin transform
-Q_td_tust   = c2d(Q_td, jointObj.Ts, 'tustin');
-PQ_td_tust  = c2d(PQ_td, jointObj.Ts, 'tustin');
+% Discretize
+% Using impulse-invariant transform for Q_td as that makes the filter not
+% have feed-through, to avoid algebraic loops.
+% This works well for simple low-pass filters. NOT advised for PQ_td, as it
+% results in very wrong discretisation.
+Q_td_d      = c2d(Q_td, jointObj.Ts, 'impulse');
+PQ_td_d     = c2d(PQ_td, jointObj.Ts, 'tustin');

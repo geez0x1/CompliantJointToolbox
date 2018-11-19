@@ -1,0 +1,8 @@
+@article{Compliant_Joint_Toolbox_2018,
+  title = {{The Compliant Joint Toolbox for MATLAB: An Introduction with Examples}},
+  shorttitle = {{The Compliant Joint Toolbox for MATLAB}},
+  language = {en},
+  author = {Malzahn, J/"orn and Roozing, Wesley and Tsagarakis, Nikos},
+  year = {2018},
+  pages = {submitted}
+}

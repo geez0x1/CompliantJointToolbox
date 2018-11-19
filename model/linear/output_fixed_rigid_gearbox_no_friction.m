@@ -74,7 +74,7 @@ function [A, B, C, D, I, R, K] = output_fixed_rigid_gearbox_no_friction(obj)
     % State-space matrices
     A = [   zeros(size(I)),     zeros(size(I,1),1),     eye(size(I));
             0,                  0,                      0;
-            -I\K,               k_b/I,                  -I\R            ];
+            -I\K,               I\K,                    -I\R            ];
         
     % Input
     % u = [tau_m, q_l_dot]
