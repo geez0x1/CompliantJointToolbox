@@ -1,6 +1,6 @@
 %%GETNONLINEARDYNAMICS Template for obtaining the linear dynamics expression.
 %%
-%% tau = jointObj.getNonlinearDynamics(x)
+%% [tau, y] = jointObj.getNonlinearDynamics(x)
 %%
 %% jointObj is the instance of the joint class object for which this
 %% function has been called.
@@ -10,6 +10,7 @@
 %%
 %% Outputs::
 %%   tau: Generalized force vector
+%%   y:   Nonlinear output components
 %%
 %% Notes::
 %%
@@ -42,5 +43,5 @@
 %% For more information on the toolbox and contact to the authors visit
 %% <https://github.com/geez0x1/CompliantJointToolbox>
 function [tau, y] = getNonlinearDynamics(obj, x)
-    [tau, y] = %s
+    %s
 end

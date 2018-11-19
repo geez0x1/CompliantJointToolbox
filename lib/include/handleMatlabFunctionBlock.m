@@ -167,14 +167,20 @@ end
 
 if (~isempty(nonlinearModelName) && nonlinearModelName_multiple)
     % Multiple nonlinear terms
-    fStr = '[tau, y] = ';
+    fStr        = '';
+    sumStrTau   = '';
+    sumStry     = '';
     for i=1:length(nonlinearModelName)
-        fStr = strcat(fStr, nonlinearModelName(i), argStr);
+        fStr = strcat(fStr, sprintf('\n[tau_%i, y_%i] = %s%s;', i, i, char(nonlinearModelName(i)), argStr));
+        sumStrTau = strcat(sumStrTau, sprintf('tau_%i', i));
+        sumStry   = strcat(sumStry, sprintf('y_%i', i));
         if (i < length(nonlinearModelName))
-            fStr = strcat(fStr, char(' + '));
+            sumStrTau = strcat(sumStrTau, ' + ');
+            sumStry   = strcat(sumStry, ' + ');
         end
     end
-    fStr = strcat(fStr, ';');
+    fStr = strcat(fStr, sprintf('\ntau = %s;\ny = %s;\n', sumStrTau, sumStry));
+
 elseif ~isempty(nonlinearModelName)
     % Single nonlinear term
     fStr = strcat('[tau, y] = ', nonlinearModelName, argStr, ';');

@@ -170,8 +170,7 @@ classdef jointBuilder
         % **className**: Allows to give the derived joint model a custom name.
         % **className**:  is an |OPTIONAL| input parameter. If no custom name is given, the method creates one from the
         % specified parameters and dynamics.
-        
-
+            
             
             % Check whether the params exist
             if (exist(paramName, 'file') ~= 2)
@@ -300,7 +299,6 @@ classdef jointBuilder
                     fid = fopen(classFName,'w+');
             end
             
-            
             % Class definition
             fprintf(fid,'%% %s\n\n', classNameLong);
             fprintf(fid,'classdef %s < genericJoint\n\n', className);
@@ -308,11 +306,9 @@ classdef jointBuilder
             % Description
             % ...
             
-            
             % Private properties
             fprintf(fid,'\tproperties (SetAccess = private)\n');
             fprintf(fid,'\tend\n\n');
-            
             
             % Methods
             fprintf(fid,'\tmethods\n');
@@ -334,19 +330,25 @@ classdef jointBuilder
             % getNonlinearDynamics
             getNonlinDynStr = fileread('getNonlinearDynamics.m');
             getNonlinDynStr = regexprep(getNonlinDynStr, '^', '\t\t', 'emptymatch', 'lineanchors');
+            argStr = '(obj, x)';
             if (~isempty(nonlinearModelName))
                 % There are nonlinear terms
-                fStr = '';
+                fStr        = '';
+                sumStrTau   = '';
+                sumStry     = '';
                 for i=1:length(nonlinearModelName)
-                   fStr = strcat(fStr, nonlinearModelName(i), '(obj, x)');
-                   if (i < length(nonlinearModelName))
-                       fStr = strcat(fStr, '+');
-                   end
+                    fStr = strcat(fStr, sprintf('\n[tau_%i, y_%i] = %s%s;', i, i, char(nonlinearModelName(i)), argStr));
+                    sumStrTau = strcat(sumStrTau, sprintf('tau_%i', i));
+                    sumStry   = strcat(sumStry, sprintf('y_%i', i));
+                    if (i < length(nonlinearModelName))
+                        sumStrTau = strcat(sumStrTau, ' + ');
+                        sumStry   = strcat(sumStry, ' + ');
+                    end
                 end
-                fStr = strcat(fStr, ';');
+                fStr = strcat(fStr, sprintf('\ntau = %s;\ny = %s;\n', sumStrTau, sumStry));
             else
                 % No nonlinear terms
-                fStr = 'zeros(size(x)); % No nonlinear dynamics!';
+                fStr = sprintf('[tau, y] = no_nonlinear_dynamics%s; % No nonlinear dynamics!', argStr);
             end
             fprintf(fid, [getNonlinDynStr '\n\n'], char(fStr));
             
