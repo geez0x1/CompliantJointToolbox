@@ -1,6 +1,6 @@
 %COULOMB_ASYM Calculate asymetric Coulomb friction torques
 %
-% [tau] = coulomb_asym(jointObj, x)
+% [ tau, y ] = coulomb_asym(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -16,6 +16,7 @@
 %
 % Outputs::
 %   tau: friction torque
+%   y:   output components
 %
 % Notes::
 %
@@ -48,7 +49,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ tau ] = coulomb_asym(obj, x)
+function [ tau, y ] = coulomb_asym(obj, x)
     
     % Preallocate coefficient vectors
     c       = zeros(size(x));
@@ -89,6 +90,9 @@ function [ tau ] = coulomb_asym(obj, x)
     
     % Calculate Coulomb friction torques
     tau = -cc .* tanh(500 * x);
+    
+    % No nonlinear output components
+    y = zeros(7,1);
 
 end
 
