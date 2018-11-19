@@ -1,15 +1,20 @@
 Library {
-  Name			  "cjt_library_models_compat"
-  Version		  8.7
-  MdlSubVersion		  "1"
+  Name			  "cjt_library_models"
+  Version		  8.9
   SavedCharacterEncoding  "UTF-8"
+  LogicAnalyzerGraphicalSettings ""
+  LogicAnalyzerPlugin	  "on"
+  LogicAnalyzerSignalOrdering ""
+  DiagnosticSuppressor	  "on"
+  SuppressorTable	  "22 serialization::archive 11 0 6 0 0 0 11 0"
+  SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "win64"
+  LastSavedArchitecture	  "glnxa64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -42,28 +47,54 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"4"
-	Extents			[2247.0, 1227.0]
-	ZoomFactor		[1.75]
-	Offset			[-416.14285714285717, -15.0]
+	LoadSaveID		"3"
+	Extents			[1447.0, 800.0]
+	ZoomFactor		[1.0]
+	Offset			[-5.6843418860808015e-13, 0.0]
       }
+      Object {
+	$PropName		"DockComponentsInfo"
+	$ObjectID		6
+	$ClassName		"Simulink.DockComponentInfo"
+	Type			"GLUE2:PropertyInspector"
+	ID			"Property Inspector"
+	Visible			[0]
+	CreateCallback		""
+	UserData		""
+	Floating		[0]
+	DockPosition		"Right"
+	Width			[640]
+	Height			[480]
+      }
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAADXvwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAOAAAA14AAABiAP///wAAAAEAAAAAAAAAAPwCA"
+      "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
+      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAXNAAADXgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAE7/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
+  HideAutomaticNames	  off
   Created		  "Thu Nov 05 10:47:58 2015"
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "J�rn"
+  LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 30 08:48:48 2018"
-  RTWModifiedTimeStamp	  454841327
-  ModelVersionFormat	  "1.%<AutoIncrement:198>"
+  LastModifiedDate	  "Mon Nov 19 08:14:10 2018"
+  RTWModifiedTimeStamp	  464516000
+  ModelVersionFormat	  "1.%<AutoIncrement:202>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
+  PortDataTypeDisplayFormat "AliasTypeOnly"
   ShowEditTimeErrors	  on
   ShowEditTimeWarnings	  on
   ShowEditTimeAdvisorChecks off
@@ -90,6 +121,7 @@ Library {
   FunctionConnectors	  off
   BrowserLookUnderMasks	  off
   SimulationMode	  "normal"
+  VisualizeLoggedSignalsWhenLoggingToFile off
   PauseTimes		  "5"
   NumberOfSteps		  1
   SnapshotBufferSize	  10
@@ -121,23 +153,29 @@ Library {
   ExtModeAutoUpdateStatusClock on
   ShowModelReferenceBlockVersion off
   ShowModelReferenceBlockIO off
+  OrderedModelArguments	  on
   Array {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      7
-      Version		      "1.16.2"
+      Version		      "1.17.0"
+      DisabledProps	      []
+      Description	      ""
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  8
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
+	  DisabledProps		  []
+	  Description		  ""
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -148,7 +186,7 @@ Library {
 	  MinStep		  "auto"
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
-	  SolverMode		  "Auto"
+	  EnableMultiTasking	  on
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
@@ -165,10 +203,13 @@ Library {
 	  AutoInsertRateTranBlk	  off
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
+	  SampleTimeProperty	  []
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  9
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
+	  DisabledProps		  []
+	  Description		  ""
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -201,12 +242,13 @@ Library {
 	  ReturnWorkspaceOutputsName "out"
 	  Refine		  "1"
 	  LoggingToFile		  off
+	  DatasetSignalFormat	  "timeseries"
 	  LoggingFileName	  "out.mat"
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  10
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -220,6 +262,7 @@ Library {
 	    Cell		    "UseSpecifiedMinMax"
 	    PropName		    "DisabledProps"
 	  }
+	  Description		  ""
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
@@ -235,6 +278,7 @@ Library {
 	  CachingGlobalReferences off
 	  GlobalBufferReuse	  on
 	  StrengthReduction	  off
+	  AdvancedOptControl	  ""
 	  ExpressionFolding	  on
 	  BooleansAsBitfields	  off
 	  BitfieldContainerType	  "uint_T"
@@ -254,16 +298,25 @@ Library {
 	  NoFixptDivByZeroProtection off
 	  EfficientFloat2IntCast  off
 	  EfficientMapNaN2IntZero on
-	  OptimizeModelRefInitCode off
 	  LifeSpan		  "inf"
 	  MaxStackSize		  "Inherit from target"
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "off"
 	  AccelVerboseBuild	  off
+	  OptimizeBlockOrder	  "off"
+	  OptimizeDataStoreBuffers on
+	  BusAssignmentInplaceUpdate on
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  11
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "UseOnlyExistingSharedCode"
+	    PropName		    "DisabledProps"
+	  }
+	  Description		  ""
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -311,11 +364,12 @@ Library {
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
 	  InvalidFcnCallConnMsg	  "error"
-	  FcnCallInpInsideContextMsg "EnableAllAsError"
+	  FcnCallInpInsideContextMsg "error"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
+	  UseOnlyExistingSharedCode "error"
 	  SFcnCompatibilityMsg	  "none"
 	  FrameProcessingCompatibilityMsg "error"
 	  UniqueDataStoreMsg	  "none"
@@ -323,6 +377,7 @@ Library {
 	  RootOutportRequireBusObject "warning"
 	  AssertControl		  "UseLocalSettings"
 	  AllowSymbolicDim	  off
+	  RowMajorDimensionSupport off
 	  ModelReferenceIOMsg	  "none"
 	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
 	  ModelReferenceVersionMismatchMessage "none"
@@ -341,24 +396,32 @@ Library {
 	  SymbolicDimMinMaxWarning "warning"
 	  LossOfSymbolicDimsSimulationWarning "warning"
 	  LossOfSymbolicDimsCodeGenerationWarning "error"
+	  SymbolicDimsDataTypeCodeGenerationDiagnostic "error"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
 	  SFInvalidInputDataAccessInChartInitDiag "warning"
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
-	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUnreachableExecutionPathDiag "warning"
 	  SFUndirectedBroadcastEventsDiag "warning"
 	  SFTransitionActionBeforeConditionDiag	"warning"
 	  SFOutputUsedAsStateInMooreChartDiag "error"
+	  SFTemporalDelaySmallerThanSampleTimeDiag "warning"
+	  SFSelfTransitionDiag	  "warning"
+	  SFExecutionAtInitializationDiag "none"
+	  SFMachineParentedDataDiag "warning"
 	  IntegerSaturationMsg	  "warning"
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
+	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  12
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
+	  DisabledProps		  []
+	  Description		  ""
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -367,6 +430,8 @@ Library {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
+	  ProdBitPerSizeT	  32
+	  ProdBitPerPtrDiffT	  32
 	  ProdLargestAtomicInteger "Char"
 	  ProdLargestAtomicFloat  "None"
 	  ProdIntDivRoundTo	  "Undefined"
@@ -383,6 +448,8 @@ Library {
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
+	  TargetBitPerSizeT	  32
+	  TargetBitPerPtrDiffT	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
@@ -400,7 +467,9 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  13
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
+	  DisabledProps		  []
+	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  EnableRefExpFcnMdlSchedulingChecks on
 	  CheckModelReferenceTargetMessage "error"
@@ -409,6 +478,7 @@ Library {
 	  ParallelModelReferenceMATLABWorkerInit "None"
 	  ModelReferenceNumInstancesAllowed "Multi"
 	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelDependencies	  ""
 	  ModelReferencePassRootInputsByReference on
 	  ModelReferenceMinAlgLoopOccurrences off
 	  PropagateSignalLabelsOutOfModel off
@@ -416,7 +486,20 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  14
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
+	  DisabledProps		  []
+	  Description		  ""
+	  SimCustomSourceCode	  ""
+	  SimCustomHeaderCode	  ""
+	  SimCustomInitializer	  ""
+	  SimCustomTerminator	  ""
+	  SimReservedNameArray	  []
+	  SimUserSources	  ""
+	  SimUserIncludeDirs	  ""
+	  SimUserLibraries	  ""
+	  SimUserDefines	  ""
+	  SimCustomCompilerFlags  ""
+	  SimCustomLinkerFlags	  ""
 	  SFSimEcho		  on
 	  SimCtrlC		  on
 	  SimIntegrity		  on
@@ -424,11 +507,16 @@ Library {
 	  SimParseCustomCode	  on
 	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
+	  ModelFunctionsGlobalVisibility "on"
+	  CompileTimeRecursionLimit 50
+	  EnableRuntimeRecursion  on
+	  MATLABDynamicMemAlloc	  on
+	  MATLABDynamicMemAllocThreshold 65536
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  15
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -457,20 +545,33 @@ Library {
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
 	  PostCodeGenCommand	  ""
+	  Description		  ""
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
 	  RetainRTWFile		  off
+	  RTWBuildHooks		  []
 	  ProfileTLC		  off
 	  TLCDebug		  off
 	  TLCCoverage		  off
 	  TLCAssert		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomDefine		  ""
+	  CustomLAPACKCallback	  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
 	  BuildConfiguration	  "Faster Builds"
+	  CustomToolchainOptions  []
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
 	  PortableWordSizes	  off
@@ -492,6 +593,7 @@ Library {
 	  GenerateCodeReplacementReport	off
 	  GenerateMissedCodeReplacementReport off
 	  RTWCompilerOptimization "off"
+	  ObjectivePriorities	  []
 	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
 	  SharedConstantsCachingThreshold 1024
@@ -500,7 +602,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      16
-	      Version		      "1.16.2"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		27
@@ -533,46 +635,61 @@ Library {
 		Cell			"CustomUserTokenString"
 		PropName		"DisabledProps"
 	      }
+	      Description	      ""
+	      Comment		      ""
 	      ForceParamTrailComments off
 	      GenerateComments	      on
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
+	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
 	      MangleLength	      1
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
 	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrModelFcn "$R$N"
 	      CustomSymbolStrFcnArg   "rt$I$N$M"
 	      CustomSymbolStrBlkIO    "rtb_$N$M"
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
 	      CustomSymbolStrUtil     "$N$C"
+	      CustomSymbolStrEmxType  "emxArray_$M$N"
+	      CustomSymbolStrEmxFcn   "emx$M$N"
+	      CustomUserTokenString   ""
+	      CustomCommentsFcn	      ""
 	      DefineNamingRule	      "None"
+	      DefineNamingFcn	      ""
 	      ParamNamingRule	      "None"
+	      ParamNamingFcn	      ""
 	      SignalNamingRule	      "None"
+	      SignalNamingFcn	      ""
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
+	      InternalIdentifierFile  ""
 	      InternalIdentifier      "Shortened"
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
+	      ReservedNameArray	      []
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      17
-	      Version		      "1.16.2"
+	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
 		Dimension		17
@@ -595,6 +712,7 @@ Library {
 		Cell			"RemoveResetFunc"
 		PropName		"DisabledProps"
 	      }
+	      Description	      ""
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ""
 	      TargetPreCompLibLocation ""
@@ -602,10 +720,11 @@ Library {
 	      TargetLangStandard      "C89/C90 (ANSI)"
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
-	      ERTMultiwordTypeDef     "System defined"
+	      MultiwordTypeDef	      "System defined"
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
 	      InferredTypesCompatibility off
+	      ExistingSharedCode      ""
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
 	      ModelReferenceCompliant on
@@ -617,6 +736,7 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -629,6 +749,8 @@ Library {
 	      PurelyIntegerCode	      off
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
+	      RemoveDisableFunc	      off
+	      RemoveResetFunc	      off
 	      SupportVariableSizeSignals off
 	      ParenthesesLevel	      "Nominal"
 	      CastingMode	      "Nominal"
@@ -636,10 +758,14 @@ Library {
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
+	      MDXCompliant	      off
 	      GRTInterface	      off
 	      GenerateAllocFcn	      off
 	      UseToolchainInfoCompliant	on
 	      GenerateSharedConstants on
+	      CoderGroups	      []
+	      AccessMethods	      []
+	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -647,6 +773,7 @@ Library {
 	      ExtModeStaticAllocSize  1000000
 	      ExtModeTransport	      0
 	      ExtModeMexFile	      "ext_comm"
+	      ExtModeMexArgs	      ""
 	      ExtModeIntrfLevel	      "Level1"
 	      RTWCAPISignals	      off
 	      RTWCAPIParams	      off
@@ -660,7 +787,8 @@ Library {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  18
-	  Version		  "1.16.2"
+	  Version		  "1.17.0"
+	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
 	  CovEnable		  off
@@ -669,7 +797,10 @@ Library {
 	  RecordCoverage	  off
 	  CovPath		  "/"
 	  CovSaveName		  "covdata"
+	  CovCompData		  ""
 	  CovMetricSettings	  "dw"
+	  CovFilter		  ""
+	  CovHTMLOptions	  ""
 	  CovNameIncrementing	  off
 	  CovHtmlReporting	  on
 	  CovForceBlockReductionOff on
@@ -681,8 +812,10 @@ Library {
 	  CovSaveOutputData	  on
 	  CovOutputDir		  "slcov_output/$ModelName$"
 	  CovDataFileName	  "$ModelName$_cvdata"
+	  CovShowResultsExplorer  on
 	  CovReportOnPause	  on
 	  CovModelRefEnable	  "off"
+	  CovModelRefExcluded	  ""
 	  CovExternalEMLEnable	  off
 	  CovSFcnEnable		  off
 	  CovBoundaryAbsTol	  1e-05
@@ -690,10 +823,12 @@ Library {
 	  CovUseTimeInterval	  off
 	  CovStartTime		  0
 	  CovStopTime		  0
+	  CovMcdcMode		  "Masking"
 	}
 	PropName		"Components"
       }
       Name		      "Configuration"
+      ExtraOptions	      ""
       CurrentDlgPage	      "Solver"
       ConfigPrmDlgPosition    [ 300, 589, 1380, 1229 ]
     }
@@ -710,6 +845,7 @@ Library {
     FontWeight		    "normal"
     FontAngle		    "normal"
     ShowName		    on
+    HideAutomaticName	    on
     BlockRotation	    0
     BlockMirror		    off
   }
@@ -735,7 +871,7 @@ Library {
     SelfModifiable	    "off"
     IconFrame		    "on"
     IconOpaque		    "opaque"
-    RunInitForIconRedraw    "off"
+    RunInitForIconRedraw    "analyze"
     IconRotate		    "none"
     PortRotate		    "default"
     IconUnits		    "autoscale"
@@ -759,8 +895,6 @@ Library {
     }
     Block {
       BlockType		      BusSelector
-      OutputSignals	      "signal1,signal2,signal3"
-      OutputAsBus	      "off"
     }
     Block {
       BlockType		      Constant
@@ -878,10 +1012,11 @@ Library {
       SampleTime	      "-1"
       SignalType	      "auto"
       SamplingMode	      "auto"
+      EnsureOutportIsVirtual  off
       SourceOfInitialOutputValue "Dialog"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
-      OutputWhenUnConnected   off
+      MustResolveToSignalObject	off
     }
     Block {
       BlockType		      Quantizer
@@ -949,6 +1084,7 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
+      PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
@@ -998,9 +1134,10 @@ Library {
     }
   }
   System {
-    Name		    "cjt_library_models_compat"
+    Name		    "cjt_library_models"
     Location		    [0, 27, 1680, 1050]
     Open		    off
+    PortBlocksUseCompactNotation off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -1027,6 +1164,7 @@ Library {
 	Name			"Joint models"
 	Location		[0, 27, 1680, 1004]
 	Open			off
+	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"[0.941176, 0.701961, 0.615686]"
@@ -1037,7 +1175,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"175"
+	ZoomFactor		"100"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
@@ -1179,6 +1317,7 @@ Library {
 	    Name		    "JointElectricalSubsystem"
 	    Location		    [8, 35, 1303, 1012]
 	    Open		    off
+	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1241,6 +1380,7 @@ Library {
 	      ZOrder		      252
 	      ShowName		      off
 	      OutputSignals	      "MotorVelNoNoise"
+	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
 		Name			"<MotorVelNoNoise>"
@@ -1338,6 +1478,7 @@ Library {
 		Name			"Quantize"
 		Location		[0, 27, 1680, 1050]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -1379,6 +1520,7 @@ Library {
 		    Name		    "Quantizer"
 		    Location		    [0, 27, 1680, 1050]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -1616,6 +1758,7 @@ Library {
 		Name			"input_delay"
 		Location		[8, 35, 1303, 1012]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -1667,6 +1810,7 @@ Library {
 		    Name		    "delay"
 		    Location		    [0, 27, 1680, 1050]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -1732,8 +1876,10 @@ Library {
 		    SID			    "143"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -1809,6 +1955,8 @@ Library {
 	      LibraryVersion	      "1.401"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
 	      Cov		      "var_u * Ts_elec"
 	      Ts		      "Ts_elec"
@@ -2015,8 +2163,10 @@ Library {
 	      SID		      "180"
 	      Name		      "This avoids an algebraic loop being generated when\nthe zero-inductance model is used and the mech"
 	      "anical\nmodel does not have input/output delays."
-	      Position		      [816, 134, 1059, 172]
+	      Position		      [816, 134, 1059, 181]
 	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      ZOrder		      -1
@@ -2165,6 +2315,7 @@ Library {
 	    Name		    "JointElectricalSubsystem with d-q axes"
 	    Location		    [0, 27, 1680, 1050]
 	    Open		    off
+	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2211,6 +2362,7 @@ Library {
 	      ZOrder		      252
 	      ShowName		      off
 	      OutputSignals	      "MotorVelNoNoise"
+	      OutputAsBus	      off
 	      Port {
 		PortNumber		1
 		Name			"<MotorVelNoNoise>"
@@ -2272,6 +2424,7 @@ Library {
 		Name			"MATLAB Function"
 		Location		[223, 338, 826, 833]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -2283,7 +2436,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"63"
+		SIDHighWatermark	"66"
 		Block {
 		  BlockType		  Inport
 		  Name			  "params"
@@ -2313,24 +2466,25 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "131::62"
+		  SID			  "131::65"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  29
+		  ZOrder		  32
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "131::61"
-		  Tag			  "Stateflow S-Function cjt_library_models_compat 1"
+		  SID			  "131::64"
+		  Tag			  "Stateflow S-Function cjt_library_models 1"
 		  Ports			  [3, 3]
 		  Position		  [180, 100, 230, 180]
-		  ZOrder		  28
+		  ZOrder		  31
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 3]"
 		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
+		  SFcnIsStateOwnerBlock	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "x_dot"
@@ -2343,9 +2497,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "131::63"
+		  SID			  "131::66"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  30
+		  ZOrder		  33
 		}
 		Block {
 		  BlockType		  Outport
@@ -2365,21 +2519,21 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  69
+		  ZOrder		  76
 		  SrcBlock		  "params"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  70
+		  ZOrder		  77
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  71
+		  ZOrder		  78
 		  SrcBlock		  "u"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2387,7 +2541,7 @@ Library {
 		}
 		Line {
 		  Name			  "x_dot"
-		  ZOrder		  72
+		  ZOrder		  79
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2396,7 +2550,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau_m"
-		  ZOrder		  73
+		  ZOrder		  80
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2404,14 +2558,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  74
+		  ZOrder		  81
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  75
+		  ZOrder		  82
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2553,6 +2707,7 @@ Library {
 		Name			"input_delay"
 		Location		[0, 27, 1680, 1050]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -2604,6 +2759,7 @@ Library {
 		    Name		    "delay"
 		    Location		    [0, 27, 1680, 1050]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -2669,8 +2825,10 @@ Library {
 		    SID			    "154"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -2749,6 +2907,7 @@ Library {
 		Name			"input_delay1"
 		Location		[0, 27, 1680, 1050]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -2800,6 +2959,7 @@ Library {
 		    Name		    "delay"
 		    Location		    [0, 27, 1680, 1050]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -2865,8 +3025,10 @@ Library {
 		    SID			    "165"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -2942,6 +3104,8 @@ Library {
 	      LibraryVersion	      "1.401"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
 	      Cov		      "var_u * Ts_elec"
 	      Ts		      "Ts_elec"
@@ -2958,6 +3122,8 @@ Library {
 	      LibraryVersion	      "1.401"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
 	      Cov		      "var_u * Ts_elec"
 	      Ts		      "Ts_elec"
@@ -3301,8 +3467,9 @@ Library {
 	  }
 	  System {
 	    Name		    "JointMechanicalSubsystem"
-	    Location		    [0, 27, 1680, 1050]
-	    Open		    off
+	    Location		    [0, 27, 1680, 1004]
+	    Open		    on
+	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3314,7 +3481,7 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "2515"
+	    SIDHighWatermark	    "2603"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -3427,9 +3594,11 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 412, 1965, 448]
 	      ZOrder		      157
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
+	      SourceProductName	      "Control System Toolbox"
+	      SourceProductBaseCode   "CT"
 	      ContentPreviewEnabled   off
 	      sys		      "c2d(tf([2*pi*fc_vel 0], [1 2*pi*fc_vel]), Ts, 'tustin')"
 	      IC		      "[]"
@@ -3441,9 +3610,11 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 172, 1965, 208]
 	      ZOrder		      145
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
+	      SourceProductName	      "Control System Toolbox"
+	      SourceProductBaseCode   "CT"
 	      ContentPreviewEnabled   off
 	      sys		      "c2d(tf([2*pi*fc_vel 0], [1 2*pi*fc_vel]), Ts, 'tustin')"
 	      IC		      "[]"
@@ -3455,9 +3626,11 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 892, 1965, 928]
 	      ZOrder		      154
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
+	      SourceProductName	      "Control System Toolbox"
+	      SourceProductBaseCode   "CT"
 	      ContentPreviewEnabled   off
 	      sys		      "c2d(tf([2*pi*fc_torque], [1 2*pi*fc_torque]), Ts, 'tustin')"
 	      IC		      "[]"
@@ -3469,9 +3642,11 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 652, 1965, 688]
 	      ZOrder		      200
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
+	      SourceProductName	      "Control System Toolbox"
+	      SourceProductBaseCode   "CT"
 	      ContentPreviewEnabled   off
 	      sys		      "c2d(tf([2*pi*fc_vel 0], [1 2*pi*fc_vel]), Ts, 'tustin')"
 	      IC		      "[]"
@@ -3494,9 +3669,11 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 20, 1540, 50]
 	      ZOrder		      167
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
 	      Cov		      "var_y * Ts"
 	      Ts		      "Ts"
@@ -3510,9 +3687,11 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 260, 1540, 290]
 	      ZOrder		      170
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
 	      Cov		      "var_y * Ts"
 	      Ts		      "Ts"
@@ -3526,9 +3705,11 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 500, 1540, 530]
 	      ZOrder		      199
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
 	      Cov		      "var_y * Ts"
 	      Ts		      "Ts"
@@ -3548,6 +3729,7 @@ Library {
 		Name			"Quantize"
 		Location		[1358, -312, 3294, 780]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -3589,6 +3771,7 @@ Library {
 		    Name		    "Quantizer"
 		    Location		    [-1632, 27, 64, 1089]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -3733,6 +3916,7 @@ Library {
 		Name			"Quantize1"
 		Location		[2553, -7, 4488, 1048]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -3774,6 +3958,7 @@ Library {
 		    Name		    "Quantizer"
 		    Location		    [-1632, 27, 64, 1089]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -3918,6 +4103,7 @@ Library {
 		Name			"Quantize2"
 		Location		[-1632, 27, 64, 1089]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -3959,6 +4145,7 @@ Library {
 		    Name		    "Quantizer"
 		    Location		    [-1632, 27, 64, 1089]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -4126,12 +4313,11 @@ Library {
 	      BlockType		      Sum
 	      Name		      "Sum2"
 	      SID		      "3:32"
-	      Ports		      [2, 1]
-	      Position		      [1045, 445, 1065, 465]
+	      Ports		      [3, 1]
+	      Position		      [1045, 395, 1065, 465]
 	      ZOrder		      160
 	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "++|"
+	      Inputs		      "+++"
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -4284,6 +4470,7 @@ Library {
 		Name			"input_delay"
 		Location		[0, 27, 1680, 1050]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -4335,6 +4522,7 @@ Library {
 		    Name		    "delay"
 		    Location		    [0, 27, 1680, 1050]
 		    Open		    off
+		    PortBlocksUseCompactNotation off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -4400,8 +4588,10 @@ Library {
 		    SID			    "3:2075"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -4471,8 +4661,8 @@ Library {
 	      BlockType		      SubSystem
 	      Name		      "nonLinDynamicsFcn"
 	      SID		      "3:1886"
-	      Ports		      [1, 1]
-	      Position		      [630, 312, 700, 358]
+	      Ports		      [1, 2]
+	      Position		      [630, 314, 700, 361]
 	      ZOrder		      248
 	      BlockMirror	      on
 	      ErrorFcn		      "Stateflow.Translate.translate"
@@ -4485,6 +4675,7 @@ Library {
 		Name			"nonLinDynamicsFcn"
 		Location		[223, 338, 826, 833]
 		Open			off
+		PortBlocksUseCompactNotation off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -4496,7 +4687,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"71"
+		SIDHighWatermark	"80"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -4508,35 +4699,40 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "3:1886::70"
+		  SID			  "3:1886::78"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  26
+		  ZOrder		  29
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "3:1886::69"
-		  Tag			  "Stateflow S-Function cjt_library_models_compat 2"
-		  Ports			  [1, 2]
-		  Position		  [180, 100, 230, 160]
-		  ZOrder		  25
+		  SID			  "3:1886::77"
+		  Tag			  "Stateflow S-Function cjt_library_models 2"
+		  Ports			  [1, 3]
+		  Position		  [180, 100, 230, 180]
+		  ZOrder		  28
 		  FunctionName		  "sf_sfun"
-		  PortCounts		  "[1 2]"
+		  PortCounts		  "[1 3]"
 		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
+		  SFcnIsStateOwnerBlock	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "tau"
+		  }
+		  Port {
+		    PortNumber		    3
+		    Name		    "y"
 		  }
 		}
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "3:1886::71"
+		  SID			  "3:1886::79"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  27
+		  ZOrder		  30
 		}
 		Block {
 		  BlockType		  Outport
@@ -4547,8 +4743,17 @@ Library {
 		  IconDisplay		  "Port number"
 		  PortDimensions	  "3"
 		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "3:1886::80"
+		  Position		  [460, 136, 480, 154]
+		  ZOrder		  31
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
 		Line {
-		  ZOrder		  21
+		  ZOrder		  29
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -4556,7 +4761,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau"
-		  ZOrder		  22
+		  ZOrder		  30
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -4564,14 +4769,23 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  23
+		  Name			  "y"
+		  ZOrder		  31
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  3
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  32
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  24
+		  ZOrder		  33
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -4584,7 +4798,7 @@ Library {
 	      Name		      "nonLinearDynamicsScope"
 	      SID		      "3:45"
 	      Ports		      [1]
-	      Position		      [505, 319, 535, 351]
+	      Position		      [505, 309, 535, 341]
 	      ZOrder		      165
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
@@ -4823,9 +5037,11 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [105, 380, 135, 410]
 	      ZOrder		      172
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
+	      SourceProductName	      "Simulink"
+	      SourceProductBaseCode   "SL"
 	      ContentPreviewEnabled   off
 	      Cov		      "var_u * Ts"
 	      Ts		      "Ts"
@@ -4853,13 +5069,13 @@ Library {
 	      SrcPort		      1
 	      Points		      [-55, 0]
 	      Branch {
-		ZOrder			3
-		DstBlock		"nonLinearDynamicsScope"
+		ZOrder			363
+		DstBlock		"B_nonlinear"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			4
-		DstBlock		"B_nonlinear"
+		ZOrder			3
+		DstBlock		"nonLinearDynamicsScope"
 		DstPort			1
 	      }
 	    }
@@ -5013,7 +5229,7 @@ Library {
 	      Points		      [10, 0]
 	      Branch {
 		ZOrder			28
-		Points			[0, -120]
+		Points			[0, -115]
 		DstBlock		"nonLinDynamicsFcn"
 		DstPort			1
 	      }
@@ -5040,8 +5256,8 @@ Library {
 	      SrcPort		      1
 	      Points		      [140, 0]
 	      Branch {
-		ZOrder			33
-		Points			[0, 35]
+		ZOrder			364
+		Points			[0, 60]
 		Branch {
 		  ZOrder		  34
 		  DstBlock		  "selectGearVelocity"
@@ -5065,7 +5281,7 @@ Library {
 	      }
 	      Branch {
 		ZOrder			38
-		Points			[0, -85]
+		Points			[0, -60]
 		Branch {
 		  ZOrder		  39
 		  Points		  [0, -120]
@@ -5411,16 +5627,16 @@ Library {
 	      ZOrder		      90
 	      SrcBlock		      "D"
 	      SrcPort		      1
-	      Points		      [310, 0]
+	      Points		      [285, 0]
 	      DstBlock		      "Sum2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      91
+	      ZOrder		      365
 	      SrcBlock		      "C"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
-	      DstPort		      2
+	      DstPort		      3
 	    }
 	    Line {
 	      ZOrder		      92
@@ -5444,6 +5660,14 @@ Library {
 	      DstBlock		      "TorsionBarDamping"
 	      DstPort		      1
 	    }
+	    Line {
+	      ZOrder		      366
+	      SrcBlock		      "nonLinDynamicsFcn"
+	      SrcPort		      2
+	      Points		      [-16, 0; 0, -69; 411, 0; 0, 149]
+	      DstBlock		      "Sum2"
+	      DstPort		      2
+	    }
 	  }
 	}
 	Annotation {
@@ -5453,8 +5677,10 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Electrical Models</span></p></body></html>"
-	  Position		  [-251, 59, -249, 80]
+	  Position		  [-251, 59, -249, 75]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
@@ -5468,8 +5694,10 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Mechanical Models</span></p></body></html>"
-	  Position		  [83, 59, 85, 80]
+	  Position		  [83, 59, 85, 75]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
@@ -5482,17 +5710,17 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow 80000012
+#   Stateflow 80000011
 #
 #
 Stateflow {
   machine {
     id			    1
-    name		    "cjt_library_models_compat"
+    name		    "cjt_library_models"
     created		    "06-Feb-2016 20:55:41"
     isLibrary		    1
-    sfVersion		    80000009
-    firstTarget		    19
+    sfVersion		    80000011
+    firstTarget		    20
   }
   chart {
     id			    2
@@ -5708,8 +5936,11 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 13 0 0]
     viewObj		    12
+    visible		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    ssIdHighWaterMark	    5
+    subviewS {
+    }
+    ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     chartFileNumber	    2
@@ -5718,8 +5949,8 @@ Stateflow {
       name		      "nonLinDynamics"
     }
     firstData		    14
-    firstTransition	    17
-    firstJunction	    16
+    firstTransition	    18
+    firstJunction	    17
   }
   state {
     id			    13
@@ -5735,20 +5966,10 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;"
-      "\nparams.c_FE = 460.000000;\nparams.diam = 93.000000;\nparams.len = 163.000000;\nparams.m = 1.000000;\nparams.I_"
-      "m = 0.230000;\nparams.I_g = 0.071700;\nparams.I_l = 0.000100;\nparams.k_g = 16000.000000;\nparams.k_b = 6000.000"
-      "000;\nparams.d_m = 0.003600;\nparams.d_g = 2.200000;\nparams.d_l = 0.000000;\nparams.d_m_n = 0.003600;\nparams.d"
-      "_g_n = 2.200000;\nparams.d_l_n = 0.000000;\nparams.d_mg = 100.000000;\nparams.d_gl = 0.000000;\nparams.d_cm = 2."
-      "640000;\nparams.d_cg = 3.280000;\nparams.d_cl = 0.000000;\nparams.d_cm_n = 2.640000;\nparams.d_cg_n = 3.280000;\n"
-      "params.d_cl_n = 0.000000;\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.rip_types = [];\nparams.rip_a1"
-      " = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.318"
-      "000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 30.000000;\nparams.dq_p "
-      "= 7.728400;\nparams.r_th1 = 3.136400;\nparams.r_th2 = 32.663700;\nparams.T_thw = 98.081700;\nparams.T_thm = 4679"
-      ".965500;\nparams.Tmp_WMax = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint';\nparams.pa"
-      "ramName = 'cjt_Orange_80_6000';\nparams.modelName = 'output_fixed_rigid_gearbox';\nparams.nonlinearModelName = '"
-      "coulomb_asym';\nparams.electricalModelName = 'electric_dyn_zero_inductance';\nparams.Ts = 0.001000;\nparams.Ts_e"
-      "lec = 0.000100;\ntau =coulomb_asym(params,x);\n	end\n\n"
+      script		      "function [tau, y] = nonLinDynamics(x)\n%#codegen\n\n% Whatever is in this block is overwritten by"
+      " handleMatlabFunctionBlock on\n% a per-model basis, depending on the chosen linear and nonlinear models.\n% This"
+      " is just a prototype that makes sure it has the proper inputs and\n% outputs.\n\ntau     = 0;\ny       = 0;\n\ne"
+      "nd\n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -5795,10 +6016,35 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [12 14 0]
+    linkNode		    [12 14 16]
+  }
+  data {
+    id			    16
+    ssIdNumber		    6
+    name		    "y"
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [12 15 0]
   }
   junction {
-    id			    16
+    id			    17
     position		    [23.5747 49.5747 7]
     chart		    12
     subviewer		    12
@@ -5807,7 +6053,7 @@ Stateflow {
     linkNode		    [12 0 0]
   }
   transition {
-    id			    17
+    id			    18
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -5815,7 +6061,7 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      16
+      id		      17
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
@@ -5831,13 +6077,13 @@ Stateflow {
     linkNode		    [12 0 0]
   }
   instance {
-    id			    18
+    id			    19
     machine		    1
     name		    "Joint models/JointMechanicalSubsystem/nonLinDynamicsFcn"
     chart		    12
   }
   target {
-    id			    19
+    id			    20
     machine		    1
     name		    "sfun"
     description		    "Default Simulink S-Function Target."

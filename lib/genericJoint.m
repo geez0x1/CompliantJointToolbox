@@ -1139,7 +1139,7 @@ classdef genericJoint < handle
         %  Wesley Roozing
         %
         % See also getDynamicsMatrices, getStateSpace, getTFd, genericJoint.
-        tau = getNonlinearDynamics(obj, x, dx)
+        [tau, y] = getNonlinearDynamics(obj, x, dx)
         
         %__________________________________________________________________
         % GETELECTRICALDYNAMICSMATRICES Get Linear Dynamics Matrices for the Electrical Dynamics

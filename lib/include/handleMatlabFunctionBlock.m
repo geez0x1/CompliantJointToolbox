@@ -41,7 +41,7 @@ function [  ] = handleMatlabFunctionBlock( thisBlock, jointObj )
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 % Get linear dynamics matrices
-[A, ~, ~, ~, ~, ~] = jointObj.getDynamicsMatrices();
+[A, ~, C, ~, ~, ~] = jointObj.getDynamicsMatrices();
 
 % ---------------------------------
 % Edit contents of nonLinDynamicsFcn block
@@ -61,26 +61,39 @@ scriptBlock = r.find('-isa','Stateflow.EMChart','path',fcnBlock);
 if isempty(scriptBlock)
     load_system('simulink');
     
+    % Delete the old lines and block
     delete_line(thisBlock,['B_nonlinear/1'], ['Sum/1']);
     delete_line(thisBlock,[funName '/1'], ['B_nonlinear/1']);
     delete_line(thisBlock,[funName '/1'], ['nonLinearDynamicsScope/1']);
-    delete_line(thisBlock,'Integrator/1',[funName '/1'])
-    delete_block(fcnBlock)
-
+    delete_line(thisBlock,'Integrator/1',[funName '/1']);
+    delete_line(thisBlock,[funName '/2'], ['Sum2/2']);
+    delete_block(fcnBlock);
+    
+    % Add the new function block
     add_block('simulink/User-Defined Functions/MATLAB Function',fcnBlock,...
         'Position', [630 312 700 358],...
         'Orientation', 'left');
-    add_line(thisBlock,[funName '/1'], ['B_nonlinear/1'],'AutoRouting','On');
-    add_line(thisBlock,['B_nonlinear/1'], ['Sum/1'],'AutoRouting','On');
-    add_line(thisBlock,[funName '/1'], ['nonLinearDynamicsScope/1'],'AutoRouting','On');
-    add_line(thisBlock,'Integrator/1',[funName '/1'],'AutoRouting','On')
     
-
+    % Find the new function block
     scriptBlock = r.find('-isa','Stateflow.EMChart','path',fcnBlock);
     if isempty(scriptBlock)
         error(message('symbolic:sym:matlabFunctionBlock:CouldNotCreate', fcnBlock));
     end
+    
+    % Modify the block's script here already with a header that has two
+    % outputs so we can route them in the diagram
+    scriptBlock.Script = sprintf('function [tau, y] = fun(u)\ntau=0;\ny=0;');
+    
+    % New routing
+    add_line(thisBlock,[funName '/1'], ['B_nonlinear/1'],'AutoRouting','On');
+    add_line(thisBlock,['B_nonlinear/1'], ['Sum/1'],'AutoRouting','On');
+    add_line(thisBlock,[funName '/1'], ['nonLinearDynamicsScope/1'],'AutoRouting','On');
+    add_line(thisBlock,[funName '/2'], ['Sum2/2'],'AutoRouting','On');
+    add_line(thisBlock,'Integrator/1',[funName '/1'],'AutoRouting','On')
+    
 end
+
+% Error checks
 if size(scriptBlock) > 1
     error(message('symbolic:sym:matlabFunctionBlock:AmbiguousBlock', fcnBlock));
 end
@@ -96,7 +109,7 @@ file = 'nonLinDynamicsFcnTMP.m';
 fid = fopen(file,'wt+');
 tmp = onCleanup(@()delete(file)); % file guard -> removes temporary file upon crash.
 
-fprintf(fid,'%s\n',['function tau = nonLinDynamics(x)']);   % write signature
+fprintf(fid,'%s\n',['function [tau, y] = nonLinDynamics(x)']);  % write signature
 fprintf(fid,'%s\n\n',['%#codegen']);                            % indicate possibility of code generation
 
 % Make parameters available inside the function
@@ -152,38 +165,41 @@ if (iscell(nonlinearModelName) && length(nonlinearModelName) > 1)
     nonlinearModelName_multiple = 1;
 end
 
-fStr = '';
 if (~isempty(nonlinearModelName) && nonlinearModelName_multiple)
     % Multiple nonlinear terms
+    fStr = '[tau, y] = ';
     for i=1:length(nonlinearModelName)
         fStr = strcat(fStr, nonlinearModelName(i), argStr);
         if (i < length(nonlinearModelName))
             fStr = strcat(fStr, char(' + '));
         end
     end
+    fStr = strcat(fStr, ';');
 elseif ~isempty(nonlinearModelName)
     % Single nonlinear term
-    fStr = strcat(nonlinearModelName,argStr);
+    fStr = strcat('[tau, y] = ', nonlinearModelName, argStr, ';');
 else
     % No nonlinear terms
-    fStr = sprintf('%s',  'zeros(size(x))');
+    fStr = sprintf('tau = zeros(%i,1);\ny = zeros(%i,1);', size(A,1), size(C,1));
 end
-fStr = strcat('tau = ', fStr, ';');
 fprintf(fid, '%s\n', char(fStr));
 
 % End methods
 fprintf(fid,'\tend\n\n');
 
-
+% Set contents to Script field of new function block
 contents = fileread(file);
 scriptBlock.Script = sprintf('%s',contents);
 
+% Close file
 fclose(fid);
 clear('tmp');
 
+% Output port dimensions
 outPortAddress = [fcnBlock, '/', 'tau'];
 set_param(outPortAddress,'PortDimensions',num2str(size(A,1)));
-
+outPortAddress = [fcnBlock, '/', 'y'];
+set_param(outPortAddress,'PortDimensions',num2str(size(C,1)));
 
 end
 
