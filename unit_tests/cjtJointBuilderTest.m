@@ -114,36 +114,16 @@ end
 %
 % A test function is also called a "Qualification". There exist different
 % conceptual types of qualifications.
-function testNoFrictionModels(testCase)
-% Test specific code
-
-% shorthands
-jb = testCase.('TestData').JB;
-allParams = testCase.('TestData').allParams;
-nPar = numel(allParams);
-
-% tests
-    for iPar = 1:nPar
-        jb.buildJoint(allParams{iPar},'full_dyn_no_friction');
-        jb.buildJoint(allParams{iPar},'output_fixed_no_friction');
-        jb.buildJoint(allParams{iPar},'rigid_gearbox_no_friction');
-        jb.buildJoint(allParams{iPar},'output_fixed_rigid_gearbox_no_friction');
-        jb.buildJoint(allParams{iPar},'rigid_no_friction');
-    end
-
-    verifyTrue(testCase,true) % If we arrive here, everything is fine.
-    
-end
 
 function testCoulombModels(testCase)
-% Test to build models with coulomb friction.
+    % Test to build models with coulomb friction.
 
-% shorthands
-jb = testCase.('TestData').JB;
-allParams = testCase.('TestData').allParams;
-nPar = numel(allParams);
+    % shorthands
+    jb = testCase.('TestData').JB;
+    allParams = testCase.('TestData').allParams;
+    nPar = numel(allParams);
 
-% tests
+    % tests
     for iPar = 1:nPar
         jb.buildJoint(allParams{iPar}, 'full_dyn', 'coulomb');
         jb.buildJoint(allParams{iPar}, 'output_fixed', 'coulomb');
@@ -160,14 +140,14 @@ nPar = numel(allParams);
 end
 
 function testMultipleNonlinearTerms(testCase)
-% Test to build models with combinations of nonlinear terms
+    % Test to build models with combinations of nonlinear terms
 
-% shorthands
-jb = testCase.('TestData').JB;
-allParams = testCase.('TestData').allParams;
-nPar = numel(allParams);
+    % shorthands
+    jb = testCase.('TestData').JB;
+    allParams = testCase.('TestData').allParams;
+    nPar = numel(allParams);
 
-% tests
+    % tests
     for iPar = 1:nPar
     
         jb.buildJoint(allParams{iPar}, 'full_dyn', {'coulomb', 'viscous_asym'});

@@ -23,7 +23,7 @@
 %  Joern Malzahn
 %  Wesley Roozing
 %
-% See also full_dyn_no_friction, output_fixed.
+% See also output_fixed, rigid_gearbox.
 
 % Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %

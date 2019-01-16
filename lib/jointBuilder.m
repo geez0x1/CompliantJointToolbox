@@ -134,16 +134,10 @@ classdef jointBuilder
         % **modelName**: This is the name of the linear model template to be used. The following linear model templates can
         % be selected here:
         %   * *full_dyn*: Three mass system with motor, gear and load inertia. Gearbox and sensor are compliant.
-        %   * *full_dyn_no_friction*: As above, but without friction terms.
         %   * *output_fixed*: Two mass system with motor and gear inertia. The system output is locked.
-        %   * *output_fixed_no_friction*: Same as above, but without friction terms.
         %   * *output_fixed_rigid_gearbox*: Single mass spring damper system with locked output.
-        %   * *output_fixed_rigid_gearbox_no_friction*: As above, but without friction terms.
         %   * *rigid*: Single mass system without compliant elements.
-        %   * *rigid_no_friction*: As above, but without friction terms.
         %   * *rigid_gearbox*: Two mass system with combined motor-gearbox ineartia.
-        %   * *rigid_gearbox_no_friction*: As above, but without friction terms.
-        %
         %
         % **modelName** is an |OPTIONAL| input parameter and defaults to *full_dyn*
         %

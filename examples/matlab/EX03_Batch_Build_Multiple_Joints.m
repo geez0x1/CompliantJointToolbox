@@ -49,13 +49,6 @@ nPar = numel(allParams);
 
 % For each parameter file..
 for iPar = 1:nPar
-    % * No friction
-    jb.buildJoint(allParams{iPar}, 'full_dyn_no_friction');
-    jb.buildJoint(allParams{iPar}, 'output_fixed_no_friction');
-    jb.buildJoint(allParams{iPar}, 'rigid_gearbox_no_friction');
-    jb.buildJoint(allParams{iPar}, 'output_fixed_rigid_gearbox_no_friction');
-    jb.buildJoint(allParams{iPar}, 'rigid_no_friction');
-    
     % * No nonlinearities
     jb.buildJoint(allParams{iPar}, 'full_dyn');
     jb.buildJoint(allParams{iPar}, 'output_fixed');
