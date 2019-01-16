@@ -101,6 +101,9 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
     nIn     = size(B,2);
     nOut    = size(C,1);
     D       = zeros(nOut,nIn);
+    if (obj.isSym())
+        D = sym(D);
+    end
     D(7,2)  = 1;        
     D       = -d_gl * D;     % Torque
     D(6,2)  = 1;             % Link velocity
