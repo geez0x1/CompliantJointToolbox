@@ -95,7 +95,7 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
             0, 0,   0,      1,      0;      % motor velocity
             0, 0,   0,      0,      1;      % gear velocity
             0, 0,   0,      0,      0;      % link velocity
-            0, k_b, -k_b,   d_gl,   0   ];  % Torsion bar torque
+            0, k_b, -k_b,   0,      d_gl];  % Torsion bar torque
         
     % Direct Feedthrough
     nIn     = size(B,2);
@@ -104,10 +104,8 @@ function [A, B, C, D, I, R, K] = output_fixed(obj)
     if (obj.isSym())
         D = sym(D);
     end
-    D(7,2)  = 1;        
-    D       = -d_gl * D;     % Torque
-    D(6,2)  = 1;             % Link velocity
-    
+    D(6,2)  = 1;        % Link velocity
+    D(7,2)  = -d_gl;    % Torque
     
 end
 
