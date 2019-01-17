@@ -1,6 +1,7 @@
-%COULOMB Calculate Coulomb friction torques
+%NONONLINEARYDNAMICS Function that returns empty tau and y of appropriate
+%size, used for when a model has no nonlinear dynamics
 %
-% [ tau, y ] = coulomb(jointObj, x)
+% [ tau, y ] = no_nonlinear_dynamics(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -15,8 +16,8 @@
 %     x = [q_g, q_g_dot]'                               rigid
 %
 % Outputs::
-%   tau: friction torque
-%   y:   output components
+%   tau: friction torque (all zero)
+%   y:   output components (all zero)
 %
 % Notes::
 %
@@ -27,7 +28,7 @@
 %  Joern Malzahn
 %  Wesley Roozing
 %
-% See also full_dyn, coulomb_asym, viscous_asym.
+% See also full_dyn, coulomb, viscous_asym.
 
 % Copyright (C) 2016, by Joern Malzahn, Wesley Roozing
 %
@@ -49,36 +50,10 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ tau, y ] = coulomb(obj, x)
+function [ tau, y ] = no_nonlinear_dynamics(obj, x)
     
-    % Preallocate coefficient vector
-    c = zeros(size(x));
-    
-    % Build coefficient vector
-    if (strcmp(obj.modelName, 'full_dyn'))
-        c = [0, 0, 0, obj.d_cm, obj.d_cg, obj.d_cl]';
-        
-    elseif (strcmp(obj.modelName, 'rigid_gearbox'))
-        c = [0, 0, obj.d_cm + obj.d_cg, obj.d_cl]';
-        
-    elseif (strcmp(obj.modelName, 'output_fixed'))
-        c = [0, 0, 0, obj.d_cm, obj.d_cg]';
-        
-    elseif (strcmp(obj.modelName, 'output_fixed_rigid_gearbox'))
-        c = [0, 0, obj.d_cm + obj.d_cg]';
-        
-    elseif (strcmp(obj.modelName, 'rigid'))
-        c = [0, obj.d_cm + obj.d_cg + obj.d_cl].';
-        
-    end
-
-    % If we have values over time per variable, pad the coefficients
-    if (size(x,2) > 1)
-        c = padarray(c, [1 size(x,2)-1], 'replicate', 'post');
-    end
-
-    % Calculate Coulomb friction torques
-    tau = -c .* tanh(500 * x);
+    % No dynamic torques
+    tau = zeros(size(x));
     
     % No nonlinear output components
     y = zeros(7,1);

@@ -1,6 +1,6 @@
 %VISCOUS_ASYM Calculate asymetric viscous friction torques
 %
-% [tau] = viscous_asym(jointObj, x)
+% [ tau, y ] = viscous_asym(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -16,6 +16,7 @@
 %
 % Outputs::
 %   tau: friction torque
+%   y:   output components
 %
 % Notes::
 %
@@ -48,7 +49,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ tau ] = viscous_asym(obj, x)
+function [ tau, y ] = viscous_asym(obj, x)
     
     % Preallocate coefficient vectors
     c       = zeros(size(x));
@@ -100,6 +101,9 @@ function [ tau ] = viscous_asym(obj, x)
     
     % Calculate asymmetric viscous friction torques
     tau = -cc .* x;
+    
+    % No nonlinear output components
+    y = zeros(7,1);
 
 end
 

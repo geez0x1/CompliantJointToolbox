@@ -9,7 +9,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "win64"
+  LastSavedArchitecture	  "glnxa64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -19,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1680.0, 977.0]
+      Location		      [693.0, 86.0, 1680.0, 977.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -42,10 +42,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"4"
-	Extents			[2247.0, 1227.0]
-	ZoomFactor		[1.75]
-	Offset			[-416.14285714285717, -15.0]
+	LoadSaveID		"3"
+	Extents			[1447.0, 800.0]
+	ZoomFactor		[0.8]
+	Offset			[1090.9060525471366, 180.07588133905722]
       }
     }
   }
@@ -53,11 +53,12 @@ Library {
   Creator		  "wesley"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "J�rn"
+  LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 30 08:48:48 2018"
-  RTWModifiedTimeStamp	  454841327
-  ModelVersionFormat	  "1.%<AutoIncrement:198>"
+  LastModifiedDate	  "Thu Jan 17 14:28:06 2019"
+  RTWModifiedTimeStamp	  469636086
+  ModelVersionFormat	  "1.%<AutoIncrement:214>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -138,6 +139,7 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -538,14 +540,17 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
+	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
 	      MangleLength	      1
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
@@ -617,6 +622,7 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -881,7 +887,6 @@ Library {
       SourceOfInitialOutputValue "Dialog"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
-      OutputWhenUnConnected   off
     }
     Block {
       BlockType		      Quantizer
@@ -949,6 +954,7 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
+      PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
@@ -1037,7 +1043,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"175"
+	ZoomFactor		"100"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "JointElectricalSubsystem"
@@ -1554,7 +1560,7 @@ Library {
 	      "dth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none'"
 	      ",'Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement"
 	      "',1)),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Mea"
-	      "surements',true,'Version','2017a')),'Version','2017b','Location',[188 365 512 604])"
+	      "surements',true,'Version','2017a')),'Version','2017a','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -1732,8 +1738,10 @@ Library {
 		    SID			    "143"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -1806,7 +1814,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [125, 210, 155, 240]
 	      ZOrder		      244
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -2015,8 +2023,10 @@ Library {
 	      SID		      "180"
 	      Name		      "This avoids an algebraic loop being generated when\nthe zero-inductance model is used and the mech"
 	      "anical\nmodel does not have input/output delays."
-	      Position		      [816, 134, 1059, 172]
+	      Position		      [816, 134, 1059, 181]
 	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      ZOrder		      -1
@@ -2283,7 +2293,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"63"
+		SIDHighWatermark	"69"
 		Block {
 		  BlockType		  Inport
 		  Name			  "params"
@@ -2313,20 +2323,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "131::62"
+		  SID			  "131::68"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  29
+		  ZOrder		  35
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "131::61"
+		  SID			  "131::67"
 		  Tag			  "Stateflow S-Function cjt_library_models_compat 1"
 		  Ports			  [3, 3]
 		  Position		  [180, 100, 230, 180]
-		  ZOrder		  28
+		  ZOrder		  34
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 3]"
 		  SFunctionDeploymentMode off
@@ -2343,9 +2353,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "131::63"
+		  SID			  "131::69"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  30
+		  ZOrder		  36
 		}
 		Block {
 		  BlockType		  Outport
@@ -2365,21 +2375,21 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  69
+		  ZOrder		  83
 		  SrcBlock		  "params"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  70
+		  ZOrder		  84
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  71
+		  ZOrder		  85
 		  SrcBlock		  "u"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2387,7 +2397,7 @@ Library {
 		}
 		Line {
 		  Name			  "x_dot"
-		  ZOrder		  72
+		  ZOrder		  86
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2396,7 +2406,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau_m"
-		  ZOrder		  73
+		  ZOrder		  87
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2404,14 +2414,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  74
+		  ZOrder		  88
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  75
+		  ZOrder		  89
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2437,7 +2447,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 144, 195, 176]
 	      ZOrder		      273
-	      LibraryVersion	      "1.197"
+	      LibraryVersion	      "1.213"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2449,7 +2459,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [165, 299, 195, 331]
 	      ZOrder		      274
-	      LibraryVersion	      "1.197"
+	      LibraryVersion	      "1.213"
 	      SourceBlock	      "cjt_library_models/Joint models/JointElectricalSubsystem/Quantize"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2509,7 +2519,7 @@ Library {
 	      "dth',0.8,'Marker','none','Visible','on'),struct('Color',[0 0 1],'LineStyle','-','LineWidth',0.8,'Marker','none'"
 	      ",'Visible','on')}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement"
 	      "',1)),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutoscale','XY'),extmgr.C"
-	      "onfiguration('Tools','Measurements',true,'Version','2017a')),'Version','2017b','Location',[183 377 763 682])"
+	      "onfiguration('Tools','Measurements',true,'Version','2017a')),'Version','2017a','Location',[183 377 763 682])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -2669,8 +2679,10 @@ Library {
 		    SID			    "154"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -2865,8 +2877,10 @@ Library {
 		    SID			    "165"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -2939,7 +2953,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [225, 80, 255, 110]
 	      ZOrder		      244
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -2955,7 +2969,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [225, 235, 255, 265]
 	      ZOrder		      265
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -3301,7 +3315,7 @@ Library {
 	  }
 	  System {
 	    Name		    "JointMechanicalSubsystem"
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [693, 86, 2373, 1063]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -3313,8 +3327,8 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "2515"
+	    ZoomFactor		    "80"
+	    SIDHighWatermark	    "2788"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "motorTorque [Nm]"
@@ -3427,7 +3441,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 412, 1965, 448]
 	      ZOrder		      157
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3441,7 +3455,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 172, 1965, 208]
 	      ZOrder		      145
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3455,7 +3469,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 892, 1965, 928]
 	      ZOrder		      154
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3469,7 +3483,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1835, 652, 1965, 688]
 	      ZOrder		      200
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -3494,7 +3508,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 20, 1540, 50]
 	      ZOrder		      167
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -3510,7 +3524,7 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [1510, 260, 1540, 290]
 	      ZOrder		      170
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -3521,12 +3535,28 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Reference
+	      Name		      "Noise3"
+	      SID		      "3:2693"
+	      Ports		      [0, 1]
+	      Position		      [1510, 860, 1540, 890]
+	      ZOrder		      255
+	      LibraryVersion	      "1.391"
+	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+	      SourceType	      "Band-Limited White Noise."
+	      ContentPreviewEnabled   off
+	      Cov		      "sqrt(2) * var_y * Ts % sqrt(2) accounts for subtracting two encoders"
+	      Ts		      "Ts"
+	      seed		      "[960834]"
+	      VectorParams1D	      on
+	    }
+	    Block {
+	      BlockType		      Reference
 	      Name		      "Noise5"
 	      SID		      "3:27"
 	      Ports		      [0, 1]
 	      Position		      [1510, 500, 1540, 530]
 	      ZOrder		      199
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -4091,6 +4121,18 @@ Library {
 	      }
 	    }
 	    Block {
+	      BlockType		      Reference
+	      Name		      "Quantize3"
+	      SID		      "3:2694"
+	      Ports		      [1, 1]
+	      Position		      [1450, 892, 1480, 928]
+	      ZOrder		      256
+	      LibraryVersion	      "1.213"
+	      SourceBlock	      "cjt_library_models/Joint models/JointMechanicalSubsystem/Quantize2"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum"
 	      SID		      "3:29"
@@ -4111,13 +4153,13 @@ Library {
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum1"
-	      SID		      "3:30"
+	      SID		      "3:2695"
 	      Ports		      [2, 1]
-	      Position		      [1660, 780, 1680, 800]
-	      ZOrder		      152
+	      Position		      [1550, 900, 1570, 920]
+	      ZOrder		      254
 	      ShowName		      off
 	      IconShape		      "round"
-	      Inputs		      "-+|"
+	      Inputs		      "++|"
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -4126,12 +4168,11 @@ Library {
 	      BlockType		      Sum
 	      Name		      "Sum2"
 	      SID		      "3:32"
-	      Ports		      [2, 1]
-	      Position		      [1045, 445, 1065, 465]
+	      Ports		      [3, 1]
+	      Position		      [1045, 395, 1065, 465]
 	      ZOrder		      160
 	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "++|"
+	      Inputs		      "+++"
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -4181,42 +4222,29 @@ Library {
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum6"
-	      SID		      "3:1804"
+	      SID		      "3:2699"
 	      Ports		      [2, 1]
-	      Position		      [1925, 840, 1945, 860]
-	      ZOrder		      245
+	      Position		      [1410, 875, 1430, 895]
+	      ZOrder		      257
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
 	      ShowName		      off
 	      IconShape		      "round"
-	      Inputs		      "++|"
+	      Inputs		      "|+-"
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
-	      Port {
-		PortNumber		1
-		Name			"TorqueNoNoise"
-	      }
 	    }
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum7"
 	      SID		      "3:1806"
 	      Ports		      [2, 1]
-	      Position		      [1760, 745, 1780, 765]
+	      Position		      [1715, 760, 1735, 780]
 	      ZOrder		      247
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "-+|"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum8"
-	      SID		      "3:38"
-	      Ports		      [2, 1]
-	      Position		      [1615, 840, 1635, 860]
-	      ZOrder		      177
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
 	      ShowName		      off
 	      IconShape		      "round"
 	      Inputs		      "-+|"
@@ -4242,31 +4270,11 @@ Library {
 	      BlockType		      Gain
 	      Name		      "TorsionBarDamping"
 	      SID		      "3:1805"
-	      Position		      [1805, 742, 1895, 768]
+	      Position		      [1590, 757, 1680, 783]
 	      ZOrder		      246
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
 	      Gain		      "d_gl"
-	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "TorsionBarStiffness"
-	      SID		      "3:40"
-	      Position		      [1695, 777, 1790, 803]
-	      ZOrder		      153
-	      Gain		      "k_b"
-	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "TorsionBarStiffness1"
-	      SID		      "3:41"
-	      Position		      [1700, 837, 1790, 863]
-	      ZOrder		      178
-	      Gain		      "k_b"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -4400,8 +4408,10 @@ Library {
 		    SID			    "3:2075"
 		    Name		    "The delay value here is computed so that it is >0 when delay is DISABLED,\nto avoid MATLAB throwing w"
 		    "arnings unnecessarily."
-		    Position		    [-25, -24, 309, 2]
+		    Position		    [-25, -24, 308, 8]
 		    InternalMargins	    [0, 0, 0, 0]
+		    FixedHeight		    off
+		    FixedWidth		    off
 		    HorizontalAlignment	    "left"
 		    VerticalAlignment	    "top"
 		    ZOrder		    -1
@@ -4471,8 +4481,8 @@ Library {
 	      BlockType		      SubSystem
 	      Name		      "nonLinDynamicsFcn"
 	      SID		      "3:1886"
-	      Ports		      [1, 1]
-	      Position		      [630, 312, 700, 358]
+	      Ports		      [1, 2]
+	      Position		      [630, 314, 700, 361]
 	      ZOrder		      248
 	      BlockMirror	      on
 	      ErrorFcn		      "Stateflow.Translate.translate"
@@ -4496,7 +4506,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"71"
+		SIDHighWatermark	"95"
 		Block {
 		  BlockType		  Inport
 		  Name			  "x"
@@ -4508,35 +4518,39 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "3:1886::70"
+		  SID			  "3:1886::88"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  26
+		  ZOrder		  33
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "3:1886::69"
+		  SID			  "3:1886::87"
 		  Tag			  "Stateflow S-Function cjt_library_models_compat 2"
-		  Ports			  [1, 2]
-		  Position		  [180, 100, 230, 160]
-		  ZOrder		  25
+		  Ports			  [1, 3]
+		  Position		  [180, 100, 230, 180]
+		  ZOrder		  32
 		  FunctionName		  "sf_sfun"
-		  PortCounts		  "[1 2]"
+		  PortCounts		  "[1 3]"
 		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "tau"
 		  }
+		  Port {
+		    PortNumber		    3
+		    Name		    "y"
+		  }
 		}
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "3:1886::71"
+		  SID			  "3:1886::89"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  27
+		  ZOrder		  34
 		}
 		Block {
 		  BlockType		  Outport
@@ -4547,8 +4561,17 @@ Library {
 		  IconDisplay		  "Port number"
 		  PortDimensions	  "3"
 		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "3:1886::80"
+		  Position		  [460, 136, 480, 154]
+		  ZOrder		  31
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
 		Line {
-		  ZOrder		  21
+		  ZOrder		  34
 		  SrcBlock		  "x"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -4556,7 +4579,7 @@ Library {
 		}
 		Line {
 		  Name			  "tau"
-		  ZOrder		  22
+		  ZOrder		  35
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -4564,14 +4587,23 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  23
+		  Name			  "y"
+		  ZOrder		  36
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  3
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  37
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  24
+		  ZOrder		  38
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -4584,7 +4616,7 @@ Library {
 	      Name		      "nonLinearDynamicsScope"
 	      SID		      "3:45"
 	      Ports		      [1]
-	      Position		      [505, 319, 535, 351]
+	      Position		      [505, 309, 535, 341]
 	      ZOrder		      165
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
@@ -4599,7 +4631,7 @@ Library {
 	      "7647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<Sig"
 	      "nalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowConte"
 	      "nt',true,'Placement',1)),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Mea"
-	      "surements',true)),'Version','2017b','Location',[188 365 512 604])"
+	      "surements',true)),'Version','2017a','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -4817,13 +4849,30 @@ Library {
 	      }
 	    }
 	    Block {
+	      BlockType		      Selector
+	      Name		      "selectTorque"
+	      SID		      "3:2692"
+	      Ports		      [1, 1]
+	      Position		      [1285, 831, 1325, 869]
+	      ZOrder		      252
+	      NumberOfDimensions      "2"
+	      InputPortWidth	      "3"
+	      IndexOptions	      "Index vector (dialog),Select all"
+	      Indices		      "7,1"
+	      OutputSizes	      "1,1"
+	      Port {
+		PortNumber		1
+		Name			"TorqueNoNoise"
+	      }
+	    }
+	    Block {
 	      BlockType		      Reference
 	      Name		      "torqueNoise"
 	      SID		      "3:42"
 	      Ports		      [0, 1]
 	      Position		      [105, 380, 135, 410]
 	      ZOrder		      172
-	      LibraryVersion	      "1.401"
+	      LibraryVersion	      "1.391"
 	      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
 	      SourceType	      "Band-Limited White Noise."
 	      ContentPreviewEnabled   off
@@ -4853,13 +4902,13 @@ Library {
 	      SrcPort		      1
 	      Points		      [-55, 0]
 	      Branch {
-		ZOrder			3
-		DstBlock		"nonLinearDynamicsScope"
+		ZOrder			363
+		DstBlock		"B_nonlinear"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			4
-		DstBlock		"B_nonlinear"
+		ZOrder			3
+		DstBlock		"nonLinearDynamicsScope"
 		DstPort			1
 	      }
 	    }
@@ -4885,62 +4934,36 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      8
-	      SrcBlock		      "Sum8"
-	      SrcPort		      1
-	      DstBlock		      "TorsionBarStiffness1"
-	      DstPort		      1
-	    }
-	    Line {
 	      ZOrder		      9
 	      SrcBlock		      "Sum5"
 	      SrcPort		      1
-	      Points		      [72, 0]
+	      Points		      [216, 0]
 	      Branch {
-		ZOrder			10
-		Points			[144, 0]
-		Branch {
-		  ZOrder		  11
-		  Points		  [0, 120]
-		  DstBlock		  "LTI System1"
-		  DstPort		  1
-		}
-		Branch {
-		  ZOrder		  12
-		  DstBlock		  "output_delay4"
-		  DstPort		  1
-		}
+		ZOrder			11
+		Points			[0, 120]
+		DstBlock		"LTI System1"
+		DstPort			1
 	      }
 	      Branch {
-		ZOrder			13
-		Points			[0, 480]
-		DstBlock		"Sum1"
-		DstPort			2
+		ZOrder			12
+		DstBlock		"output_delay4"
+		DstPort			1
 	      }
 	    }
 	    Line {
 	      ZOrder		      14
 	      SrcBlock		      "Sum4"
 	      SrcPort		      1
-	      Points		      [95, 0]
+	      Points		      [214, 0]
 	      Branch {
-		ZOrder			15
-		Points			[119, 0]
-		Branch {
-		  ZOrder		  16
-		  Points		  [0, 120]
-		  DstBlock		  "LTI System2"
-		  DstPort		  1
-		}
-		Branch {
-		  ZOrder		  17
-		  DstBlock		  "output_delay"
-		  DstPort		  1
-		}
+		ZOrder			16
+		Points			[0, 120]
+		DstBlock		"LTI System2"
+		DstPort			1
 	      }
 	      Branch {
-		ZOrder			18
-		DstBlock		"Sum1"
+		ZOrder			17
+		DstBlock		"output_delay"
 		DstPort			1
 	      }
 	    }
@@ -4999,13 +5022,6 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      26
-	      SrcBlock		      "Sum1"
-	      SrcPort		      1
-	      DstBlock		      "TorsionBarStiffness"
-	      DstPort		      1
-	    }
-	    Line {
 	      Name		      "states"
 	      ZOrder		      27
 	      SrcBlock		      "Integrator"
@@ -5013,7 +5029,7 @@ Library {
 	      Points		      [10, 0]
 	      Branch {
 		ZOrder			28
-		Points			[0, -120]
+		Points			[0, -115]
 		DstBlock		"nonLinDynamicsFcn"
 		DstPort			1
 	      }
@@ -5040,8 +5056,8 @@ Library {
 	      SrcPort		      1
 	      Points		      [140, 0]
 	      Branch {
-		ZOrder			33
-		Points			[0, 35]
+		ZOrder			364
+		Points			[0, 60]
 		Branch {
 		  ZOrder		  34
 		  DstBlock		  "selectGearVelocity"
@@ -5053,8 +5069,17 @@ Library {
 		  Branch {
 		    ZOrder		    36
 		    Points		    [0, 120]
+		    Branch {
+		    ZOrder		    457
+		    Points		    [0, 120]
+		    DstBlock		    "selectTorque"
+		    DstPort		    1
+		    }
+		    Branch {
+		    ZOrder		    456
 		    DstBlock		    "selectMotorVelocity"
 		    DstPort		    1
+		    }
 		  }
 		  Branch {
 		    ZOrder		    37
@@ -5065,7 +5090,7 @@ Library {
 	      }
 	      Branch {
 		ZOrder			38
-		Points			[0, -85]
+		Points			[0, -60]
 		Branch {
 		  ZOrder		  39
 		  Points		  [0, -120]
@@ -5125,18 +5150,10 @@ Library {
 	      }
 	      Branch {
 		ZOrder			48
-		Points			[0, 60; 209, 0]
-		Branch {
-		  ZOrder		  49
-		  DstBlock		  "Sum8"
-		  DstPort		  1
-		}
-		Branch {
-		  ZOrder		  50
-		  Labels		  [-1, 0]
-		  DstBlock		  "Bus\nCreator"
-		  DstPort		  2
-		}
+		Labels			[-1, 0]
+		Points			[0, 60]
+		DstBlock		"Bus\nCreator"
+		DstPort			2
 	      }
 	    }
 	    Line {
@@ -5153,17 +5170,17 @@ Library {
 	      ZOrder		      52
 	      SrcBlock		      "selectLinkVelocity"
 	      SrcPort		      1
-	      Points		      [440, 0]
+	      Points		      [395, 0]
+	      Branch {
+		ZOrder			523
+		Labels			[-1, 0]
+		DstBlock		"Bus\nCreator"
+		DstPort			4
+	      }
 	      Branch {
 		ZOrder			53
 		DstBlock		"Sum7"
 		DstPort			1
-	      }
-	      Branch {
-		ZOrder			54
-		Labels			[-1, 0]
-		DstBlock		"Bus\nCreator"
-		DstPort			4
 	      }
 	    }
 	    Line {
@@ -5189,19 +5206,9 @@ Library {
 	      }
 	      Branch {
 		ZOrder			58
-		Points			[184, 0]
-		Branch {
-		  ZOrder		  59
-		  Points		  [0, 480]
-		  DstBlock		  "Sum8"
-		  DstPort		  2
-		}
-		Branch {
-		  ZOrder		  60
-		  Labels		  [-1, 0]
-		  DstBlock		  "Bus\nCreator"
-		  DstPort		  6
-		}
+		Labels			[-1, 0]
+		DstBlock		"Bus\nCreator"
+		DstPort			6
 	      }
 	    }
 	    Line {
@@ -5218,16 +5225,16 @@ Library {
 	      ZOrder		      62
 	      SrcBlock		      "selectGearVelocity"
 	      SrcPort		      1
-	      Points		      [408, 0]
+	      Points		      [425, 0]
 	      Branch {
-		ZOrder			63
+		ZOrder			524
 		Labels			[-1, 0]
 		DstBlock		"Bus\nCreator"
 		DstPort			8
 	      }
 	      Branch {
 		ZOrder			64
-		Points			[0, 265]
+		Points			[0, 280]
 		DstBlock		"Sum7"
 		DstPort			2
 	      }
@@ -5271,12 +5278,21 @@ Library {
 	    }
 	    Line {
 	      Name		      "TorqueNoNoise"
-	      ZOrder		      70
-	      Labels		      [-1, 0]
-	      SrcBlock		      "Sum6"
+	      ZOrder		      459
+	      SrcBlock		      "selectTorque"
 	      SrcPort		      1
-	      DstBlock		      "Bus\nCreator"
-	      DstPort		      14
+	      Points		      [90, 0]
+	      Branch {
+		ZOrder			526
+		DstBlock		"Sum6"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			468
+		Labels			[-1, 0]
+		DstBlock		"Bus\nCreator"
+		DstPort			14
+	      }
 	    }
 	    Line {
 	      Name		      "TorqueFiltered"
@@ -5370,18 +5386,18 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      84
-	      SrcBlock		      "TorsionBarStiffness"
+	      ZOrder		      470
+	      SrcBlock		      "Sum1"
 	      SrcPort		      1
-	      Points		      [16, 0]
+	      Points		      [204, 0]
 	      Branch {
-		ZOrder			85
+		ZOrder			531
+		Points			[0, -120]
 		DstBlock		"output_delay10"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			86
-		Points			[0, 120]
+		ZOrder			471
 		DstBlock		"LTI System3"
 		DstPort			1
 	      }
@@ -5411,31 +5427,24 @@ Library {
 	      ZOrder		      90
 	      SrcBlock		      "D"
 	      SrcPort		      1
-	      Points		      [310, 0]
+	      Points		      [285, 0]
 	      DstBlock		      "Sum2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      91
+	      ZOrder		      365
 	      SrcBlock		      "C"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
-	      DstPort		      2
+	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      92
-	      SrcBlock		      "TorsionBarStiffness1"
-	      SrcPort		      1
-	      DstBlock		      "Sum6"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      93
+	      ZOrder		      529
 	      SrcBlock		      "TorsionBarDamping"
 	      SrcPort		      1
-	      Points		      [35, 0]
+	      Points		      [-131, 0; 0, 115]
 	      DstBlock		      "Sum6"
-	      DstPort		      1
+	      DstPort		      2
 	    }
 	    Line {
 	      ZOrder		      94
@@ -5443,6 +5452,76 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "TorsionBarDamping"
 	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      366
+	      SrcBlock		      "nonLinDynamicsFcn"
+	      SrcPort		      2
+	      Points		      [-16, 0; 0, -69; 411, 0; 0, 149]
+	      DstBlock		      "Sum2"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      466
+	      SrcBlock		      "Quantize3"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      467
+	      SrcBlock		      "Noise3"
+	      SrcPort		      1
+	      Points		      [15, 0]
+	      DstBlock		      "Sum1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      528
+	      SrcBlock		      "Sum6"
+	      SrcPort		      1
+	      Points		      [0, 10]
+	      DstBlock		      "Quantize3"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "3:2698"
+	      Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
+	      "\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap"
+	      "; }\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;"
+	      "\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text"
+	      "-indent:0px; line-height:100%;\"><span style=\" font-size:10px; font-weight:600;\">Subtract damping component t"
+	      "o</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inden"
+	      "t:0; text-indent:0px; line-height:100%;\"><span style=\" font-size:10px; font-weight:600;\">compute the 'sensed"
+	      "' torque</span></p></body></html>"
+	      Position		      [1458, 774, 1460, 790]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
+	      Interpreter	      "rich"
+	      ZOrder		      -1
+	    }
+	    Annotation {
+	      SID		      "3:2700"
+	      Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
+	      "\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap"
+	      "; }\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;"
+	      "\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text"
+	      "-indent:0px; line-height:100%;\"><span style=\" font-size:18px; font-weight:600;\">&quot;*NoNoise&quot; signals"
+	      " denote PHYSICAL quantities (no noise, delays, etc.)</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px;"
+	      " margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:100%;\"><span style=\" fon"
+	      "t-size:18px; font-weight:600;\">Others are affected by delays, noise, quantization, etc (if enabled), and possi"
+	      "bly filtered (&quot;*Filtered&quot;)</span></p></body></html>"
+	      Position		      [2297, 388, 2299, 404]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
+	      Interpreter	      "rich"
+	      ZOrder		      -2
 	    }
 	  }
 	}
@@ -5453,8 +5532,10 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Electrical Models</span></p></body></html>"
-	  Position		  [-251, 59, -249, 80]
+	  Position		  [-251, 59, -249, 75]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
@@ -5468,8 +5549,10 @@ Library {
 	  "e></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n<p style=\""
 	  " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-he"
 	  "ight:100%;\"><span style=\" font-size:20px;\">Mechanical Models</span></p></body></html>"
-	  Position		  [83, 59, 85, 80]
+	  Position		  [83, 59, 85, 75]
 	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
 	  BackgroundColor	  "[0.941176, 0.701961, 0.615686]"
@@ -5482,7 +5565,7 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow 80000012
+#   Stateflow 80000011
 #
 #
 Stateflow {
@@ -5492,7 +5575,7 @@ Stateflow {
     created		    "06-Feb-2016 20:55:41"
     isLibrary		    1
     sfVersion		    80000009
-    firstTarget		    19
+    firstTarget		    20
   }
   chart {
     id			    2
@@ -5709,7 +5792,7 @@ Stateflow {
     treeNode		    [0 13 0 0]
     viewObj		    12
     toolbarMode		    LIBRARY_TOOLBAR
-    ssIdHighWaterMark	    5
+    ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     chartFileNumber	    2
@@ -5718,8 +5801,8 @@ Stateflow {
       name		      "nonLinDynamics"
     }
     firstData		    14
-    firstTransition	    17
-    firstJunction	    16
+    firstTransition	    18
+    firstJunction	    17
   }
   state {
     id			    13
@@ -5735,20 +5818,10 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function tau = nonLinDynamics(x)\n%#codegen\n\nparams.a_CU = 0.003900;\nparams.c_CU = 380.000000;"
-      "\nparams.c_FE = 460.000000;\nparams.diam = 93.000000;\nparams.len = 163.000000;\nparams.m = 1.000000;\nparams.I_"
-      "m = 0.230000;\nparams.I_g = 0.071700;\nparams.I_l = 0.000100;\nparams.k_g = 16000.000000;\nparams.k_b = 6000.000"
-      "000;\nparams.d_m = 0.003600;\nparams.d_g = 2.200000;\nparams.d_l = 0.000000;\nparams.d_m_n = 0.003600;\nparams.d"
-      "_g_n = 2.200000;\nparams.d_l_n = 0.000000;\nparams.d_mg = 100.000000;\nparams.d_gl = 0.000000;\nparams.d_cm = 2."
-      "640000;\nparams.d_cg = 3.280000;\nparams.d_cl = 0.000000;\nparams.d_cm_n = 2.640000;\nparams.d_cg_n = 3.280000;\n"
-      "params.d_cl_n = 0.000000;\nparams.d_s = 0.000000;\nparams.v_s = 0.000000;\nparams.rip_types = [];\nparams.rip_a1"
-      " = [];\nparams.rip_a2 = [];\nparams.rip_f = [];\nparams.n = 80.000000;\nparams.k_t = 0.078000;\nparams.r = 0.318"
-      "000;\nparams.x = 0.000200;\nparams.p = 6.000000;\nparams.v_0 = 48.000000;\nparams.i_p = 30.000000;\nparams.dq_p "
-      "= 7.728400;\nparams.r_th1 = 3.136400;\nparams.r_th2 = 32.663700;\nparams.T_thw = 98.081700;\nparams.T_thm = 4679"
-      ".965500;\nparams.Tmp_WMax = 155.000000;\nparams.Tmp_ANom = 25.000000;\nparams.name = 'example_joint';\nparams.pa"
-      "ramName = 'cjt_Orange_80_6000';\nparams.modelName = 'output_fixed_rigid_gearbox';\nparams.nonlinearModelName = '"
-      "coulomb_asym';\nparams.electricalModelName = 'electric_dyn_zero_inductance';\nparams.Ts = 0.001000;\nparams.Ts_e"
-      "lec = 0.000100;\ntau =coulomb_asym(params,x);\n	end\n\n"
+      script		      "function [tau, y] = nonLinDynamics(x)\n%#codegen\n\n% Whatever is in this block is overwritten by"
+      " handleMatlabFunctionBlock on\n% a per-model basis, depending on the chosen linear and nonlinear models.\n% This"
+      " is just a prototype that makes sure it has the proper inputs and\n% outputs.\n\ntau     = 0;\ny       = 0;\n\ne"
+      "nd\n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -5795,10 +5868,35 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [12 14 0]
+    linkNode		    [12 14 16]
+  }
+  data {
+    id			    16
+    ssIdNumber		    6
+    name		    "y"
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [12 15 0]
   }
   junction {
-    id			    16
+    id			    17
     position		    [23.5747 49.5747 7]
     chart		    12
     subviewer		    12
@@ -5807,7 +5905,7 @@ Stateflow {
     linkNode		    [12 0 0]
   }
   transition {
-    id			    17
+    id			    18
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -5815,7 +5913,7 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      16
+      id		      17
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
@@ -5831,13 +5929,13 @@ Stateflow {
     linkNode		    [12 0 0]
   }
   instance {
-    id			    18
+    id			    19
     machine		    1
     name		    "Joint models/JointMechanicalSubsystem/nonLinDynamicsFcn"
     chart		    12
   }
   target {
-    id			    19
+    id			    20
     machine		    1
     name		    "sfun"
     description		    "Default Simulink S-Function Target."

@@ -1,6 +1,6 @@
 %TORQUE_RIPPLE Calculate torque ripple torques
 %
-% [tau] = torque_ripple(jointObj, x)
+% [ tau, y ] = torque_ripple(jointObj, x)
 %
 % jointObj is the instance of the joint class object for which this
 % function has been called.
@@ -16,6 +16,7 @@
 %
 % Outputs::
 %   tau: torque vector of appropriate size
+%   y:   output components
 %
 % Notes::
 %   Supported torque ripple types (indexes are values of rip_types):
@@ -56,7 +57,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ tau ] = torque_ripple(jointObj, x)
+function [ tau, y ] = torque_ripple(jointObj, x)
     
     % Torque_ripple parameters
     types   = jointObj.rip_types;   % Torque ripple types
@@ -130,6 +131,9 @@ function [ tau ] = torque_ripple(jointObj, x)
 
     % Calculate cogging torques
     tau = c;
+    
+    % No nonlinear output components
+    y = zeros(7,1);
 
 end
 

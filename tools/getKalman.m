@@ -91,9 +91,7 @@ function [kest, L, Cc, inputIdx] = getKalman(jointObj, inputIdx, outputIdx, var_
     % refactoring.
     if (~any(inputIdx == 2))
         if (    strcmp(jointObj.modelName, 'output_fixed')                              || ...
-                strcmp(jointObj.modelName, 'output_fixed_no_friction')                  || ...
-                strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox')                || ...
-                strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox_no_friction')    )
+                strcmp(jointObj.modelName, 'output_fixed_rigid_gearbox')                )
             warning('getKalman warning: Adding secondary input (load velocity) as required input for Kalman filter for the system to be observable.');
             inputIdx = [inputIdx(:) 2];
         end
