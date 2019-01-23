@@ -122,17 +122,17 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     figure();
     
     % Magnitude
-    subplot(2,1,1); hold on;
-    semilogx(f,mag_db);
+    subplot(2,1,1);
+    semilogx(f,mag_db); hold on;
     semilogx(f,mag_db_Pc, 'r');
     grid on
     xlim(roi);
     ylabel('Magnitude [dB]');
-    legend('Experimental data', 'Pc');
+    legend('Data', 'Model');
 
     % Phase
-    subplot(2,1,2); hold on;
-    semilogx(f,phase);
+    subplot(2,1,2);
+    semilogx(f,phase); hold on;
     semilogx(f,phase_Pc, 'r');
     grid on;
     xlim(roi);
