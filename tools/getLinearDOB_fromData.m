@@ -1,7 +1,7 @@
 % GETLINEARDOB_FROMDATA Estimate linear disturbance observer transfer
 % functions from experimental data.
 %
-%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB [, roi])
+%   [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB [, DOB_order, roi])
 %
 %  This function calculates the estimated closed-loop transfer function
 %  Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
@@ -20,6 +20,7 @@
 %   id_Nz: Number of zeroes in model identification
 %   f_c_FF: Feed-forward Q-filter cut-off frequency in [Hz]
 %   f_c_DOB: DOB Q-filter cut-off frequency in [Hz]
+%   DOB_order: DOB order (>= relative order of plant, i.e. id_Np-id_Nz)
 %   roi: Frequency range of interest in [Hz], sets x limits in produced plots (default [0.1,100])
 %
 % Outputs::
@@ -61,7 +62,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB, roi)
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, y, id_Np, id_Nz, f_c_FF, f_c_DOB, DOB_order, roi)
     %% Default parameters
     if (~exist('id_Np', 'var') || isequal(id_Np,[]))
         id_Np   = 4;        % Model number of poles []
@@ -74,6 +75,12 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     end
     if (~exist('f_c_DOB', 'var') || isequal(f_c_DOB,[]))
         f_c_DOB = 60;       % DOB cutoff frequency [Hz]
+    end
+    if (~exist('DOB_order', 'var') || isequal(DOB_order,[]))
+        DOB_order = id_Np - id_Nz; % Minimum order by default
+    end
+    if (DOB_order < id_Np - id_Nz)
+        error('DOB order needs to be equal to or larger than the relative order of the plant.');
     end
     if (~exist('roi', 'var') || isequal(roi,[]))
         roi = [0.1, 100];	% Region of interest [[Hz], [Hz]]
@@ -143,11 +150,11 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     %% Design low-pass Butterworth filters
 
     % Q_td
-    [a, b] = butter(order(Pc), omega_c_DOB, 's');
+    [a, b] = butter(DOB_order, omega_c_DOB, 's');
     Q_td = tf(a,b);
 
     % Q_ff
-    [a, b] = butter(order(Pc), omega_c_FF, 's');
+    [a, b] = butter(DOB_order, omega_c_FF, 's');
     Q_ff = tf(a,b);
 
     % Pc^-1 * Q_td
@@ -168,16 +175,6 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = getLinearDOB_fromData(jointObj, t, u, 
     xlim(roi);
     grid on;
     legend('P_c', 'P_c^{-1}', 'Q_{td}', 'Q_{ff}', 'PQ_{td}', 'PQ_{ff}');
-
-
-    %% Optionally save results
     
-    % Disabled as this causes problems when calling automatically from
-    % Simulink masks
-%     fname = 'DOB_fromData_results.mat';
-%     if confirm(['Do you want to save the results to ' fname ' [Y/n]?'], 1)
-%         save(fname, 'jointObj', 'Pc', 'Q_td', 'Q_ff', 'PQ_td', 'PQ_ff');
-%         disp(['Data saved to ' fname]);
-%     end
     
 end
