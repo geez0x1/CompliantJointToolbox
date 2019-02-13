@@ -11,7 +11,7 @@
 %   jointObj: Joint object
 %   omega_c: DOB Q-filter cut-off frequency in [rad/s]
 %   outputIdx: Joint outputs measured by the observer
-%   doPlot: Whether to plot the results
+%   DOB_order: Order of the DOB (>= relative order of plant)
 %
 % Outputs::
 %   P: Plant transfer function
@@ -50,10 +50,10 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx, doPlot)
+function [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx, DOB_order)
     % Default parameters
-    if (~exist('doPlot','var') || isequal(doPlot,[]))
-        doPlot = 0;
+    if (~exist('DOB_order', 'var') || isequal(DOB_order,[]))
+        DOB_order = 0;
     end
 
     
@@ -70,43 +70,24 @@ function [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx, doPlot)
         error('getLinearDOB error: Plant P has zero order for the chosen output, cannot continue.');
     end
     
+    % Check selected DOB order
+    % If it was set to zero before (no argument given), set it to the
+    % relative order of P.
+    if (DOB_order == 0)
+        DOB_order = relativeOrder(P);
+    end
+    if (DOB_order < relativeOrder(P))
+        error('DOB order needs to be equal to or larger than the relative order of the plant.');
+    end
     
     %% Design low-pass Butterworth filters
 
     % Q_td
-    [a, b]  = butter(order(P), omega_c, 's');
+    [a, b]  = butter(DOB_order, omega_c, 's');
     Q_td    = tf(a,b);
 
     % P^-1 * Q_td
     PQ_td   = inv(P) * Q_td;
-
-
-    %% Show Bode plots of results
-    % Bode options
-    bodeOpt             = bodeoptions;
-    bodeOpt.FreqUnits   = 'Hz';
     
-    % Plot if required
-    if doPlot
-        figure(5); clf; hold on;
-        bode(P, bodeOpt);
-        bode(inv(P), bodeOpt);
-        bode(Q_td, bodeOpt);
-        bode(PQ_td, bodeOpt);
-        xlim([0.1 100]);
-        grid on;
-        legend('P', 'P^{-1}', 'Q_{td}', 'PQ_{td}');
-    end
-
-    
-    %% Optionally save results
-    
-    % Disabled as this causes problems when calling automatically from
-    % Simulink masks
-%     fname = 'DOB_results.mat';
-%     if confirm(['Do you want to save the results to ' fname ' [y/N]?'], 0)
-%         save(fname, 'jointObj', 'P', 'Q_td', 'PQ_td');
-%         disp(['Data saved to ' fname]);
-%     end
     
 end

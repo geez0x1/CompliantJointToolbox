@@ -9,7 +9,7 @@ Library {
   DisableAllScopes	  off
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "win64"
+  LastSavedArchitecture	  "glnxa64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -43,7 +43,7 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"1"
-	Extents			[1203.0, 994.0]
+	Extents			[816.0, 645.0]
 	ZoomFactor		[1.25]
 	Offset			[0.0, 0.0]
       }
@@ -53,11 +53,12 @@ Library {
   Creator		  "joern"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "J�rn"
+  LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 30 08:48:51 2018"
-  RTWModifiedTimeStamp	  454841331
-  ModelVersionFormat	  "1.%<AutoIncrement:134>"
+  LastModifiedDate	  "Sat Feb 09 18:21:50 2019"
+  RTWModifiedTimeStamp	  471637310
+  ModelVersionFormat	  "1.%<AutoIncrement:136>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -138,6 +139,7 @@ Library {
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -538,14 +540,17 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
+	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
 	      MangleLength	      1
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
@@ -616,6 +621,7 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -860,7 +866,6 @@ Library {
       SourceOfInitialOutputValue "Dialog"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
-      OutputWhenUnConnected   off
     }
     Block {
       BlockType		      Scope
@@ -901,6 +906,7 @@ Library {
       MaskHideContents	      off
       SFBlockType	      "NONE"
       GeneratePreprocessorConditionals off
+      PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
@@ -1522,7 +1528,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [955, 187, 1050, 223]
 	      ZOrder		      263
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1823,7 +1829,7 @@ Library {
 	    RunInitForIconRedraw    "on"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      5
+	      Dimension		      6
 	      Object {
 		$ObjectID		46
 		Type			"checkbox"
@@ -1831,7 +1837,7 @@ Library {
 		Prompt			"Load model/filters/parameters from file"
 		Value			"off"
 		Callback		"toggleMaskFields(gcbh, 'loadData', 'modelFname', 'on');\ntoggleMaskFields(gcbh, 'loadData', {'jointObj', "
-		"'f_c', 'doPlot'}, 'off');"
+		"'f_c', 'measIdx', 'DOB_order'}, 'off');"
 	      }
 	      Object {
 		$ObjectID		47
@@ -1862,6 +1868,13 @@ Library {
 		Name			"measIdx"
 		Prompt			"Measurement index"
 		Value			"7"
+	      }
+	      Object {
+		$ObjectID		51
+		Type			"edit"
+		Name			"DOB_order"
+		Prompt			"DOB order (0 = auto minimum order)"
+		Value			"0"
 	      }
 	      PropName		      "Parameters"
 	    }
@@ -1949,7 +1962,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [455, 177, 550, 213]
 	      ZOrder		      288
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -1963,7 +1976,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [455, 262, 550, 298]
 	      ZOrder		      289
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -2158,7 +2171,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    51
+	    $ObjectID		    52
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Luenberger observer"
 	    Description		    "This block implements a standard Luenberger state estimator based on a linear state-space model"
@@ -2180,21 +2193,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		52
+		$ObjectID		53
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		53
+		$ObjectID		54
 		Type			"edit"
 		Name			"outputIdx"
 		Prompt			"Measured outputs (indices)"
 		Value			"[1 7]"
 	      }
 	      Object {
-		$ObjectID		54
+		$ObjectID		55
 		Type			"edit"
 		Name			"poles"
 		Prompt			"Observer poles"
@@ -2304,7 +2317,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [1030, 242, 1125, 278]
 	      ZOrder		      262
-	      LibraryVersion	      "1.338"
+	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
 	      SourceType	      "LTI Block"
 	      ContentPreviewEnabled   off
@@ -2416,7 +2429,7 @@ Library {
 	      "7647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<Sig"
 	      "nalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowConte"
 	      "nt',true,'Placement',1)),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Mea"
-	      "surements',true)),'Version','2017b','Location',[188 365 512 604])"
+	      "surements',true)),'Version','2017a','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
@@ -2437,7 +2450,7 @@ Library {
 	      "7647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<Sig"
 	      "nalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowConte"
 	      "nt',true,'Placement',1)),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Mea"
-	      "surements',true)),'Version','2017b','Location',[188 365 512 604])"
+	      "surements',true)),'Version','2017a','Location',[188 365 512 604])"
 	      NumInputPorts	      "1"
 	    }
 	    Block {
