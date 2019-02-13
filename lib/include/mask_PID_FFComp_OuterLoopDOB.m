@@ -57,7 +57,7 @@ if (DOB_enable_switch == 2)
                                                                 Kp, Ki, Kd, N, 'parallel', ...
                                                                 7, ... % Torque output
                                                                 ff_comp_switch, ...
-                                                                f_c_FF, f_c_DOB             );
+                                                                f_c_FF, f_c_DOB, DOB_order  );
     end
 else
     % If the DOB is disabled, make sure the prefilter is also disabled
