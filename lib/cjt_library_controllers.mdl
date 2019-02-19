@@ -42,10 +42,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"272"
+	LoadSaveID		"3"
 	Extents			[1687.0, 876.0]
-	ZoomFactor		[1.25]
-	Offset			[-153.44285714285638, -100.34761904761899]
+	ZoomFactor		[1.5]
+	Offset			[-206.4166666666668, -181.60000000000002]
       }
     }
   }
@@ -55,9 +55,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 19 13:45:15 2019"
-  RTWModifiedTimeStamp	  472484715
-  ModelVersionFormat	  "1.%<AutoIncrement:300>"
+  LastModifiedDate	  "Tue Feb 19 14:07:50 2019"
+  RTWModifiedTimeStamp	  472486070
+  ModelVersionFormat	  "1.%<AutoIncrement:303>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -995,7 +995,7 @@ Library {
   }
   System {
     Name		    "cjt_library_controllers_compat"
-    Location		    [1920, 27, 3840, 1080]
+    Location		    [0, 27, 1920, 1080]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1009,7 +1009,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "636"
+    SIDHighWatermark	    "643"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -1034,7 +1034,7 @@ Library {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Controller Template"
@@ -3637,7 +3637,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "Reference"
 	      SID		      "78"
-	      Position		      [675, 538, 705, 552]
+	      Position		      [640, 538, 670, 552]
 	      ZOrder		      214
 	      IconDisplay	      "Port number"
 	    }
@@ -3645,7 +3645,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "jointBus"
 	      SID		      "79"
-	      Position		      [465, 550, 495, 565]
+	      Position		      [430, 550, 460, 565]
 	      ZOrder		      215
 	      BlockRotation	      270
 	      Port		      "2"
@@ -3656,7 +3656,7 @@ Library {
 	      Name		      "Bus\nSelector1"
 	      SID		      "80"
 	      Ports		      [1, 1]
-	      Position		      [590, 453, 595, 537]
+	      Position		      [555, 453, 560, 537]
 	      ZOrder		      213
 	      ShowName		      off
 	      OutputSignals	      "TorqueFiltered"
@@ -3675,12 +3675,32 @@ Library {
 	      Value		      "ff_comp_switch"
 	    }
 	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant3"
+	      SID		      "641"
+	      Position		      [800, 702, 885, 728]
+	      ZOrder		      495
+	      ShowName		      off
+	      Value		      "derivative_select"
+	    }
+	    Block {
 	      BlockType		      Gain
 	      Name		      "D"
 	      SID		      "179"
 	      Position		      [960, 615, 990, 645]
 	      ZOrder		      323
 	      Gain		      "Kd"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "D2"
+	      SID		      "642"
+	      Position		      [830, 640, 860, 670]
+	      ZOrder		      493
+	      Gain		      "-1"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -3777,6 +3797,17 @@ Library {
 	      }
 	    }
 	    Block {
+	      BlockType		      MultiPortSwitch
+	      Name		      "Multiport\nSwitch3"
+	      SID		      "643"
+	      Ports		      [3, 1]
+	      Position		      [910, 594, 940, 666]
+	      ZOrder		      494
+	      Inputs		      "2"
+	      InputSameDT	      off
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
 	      BlockType		      Gain
 	      Name		      "P"
 	      SID		      "182"
@@ -3792,7 +3823,7 @@ Library {
 	      Name		      "Sum"
 	      SID		      "85"
 	      Ports		      [2, 1]
-	      Position		      [850, 535, 870, 555]
+	      Position		      [815, 535, 835, 555]
 	      ZOrder		      210
 	      ShowName		      off
 	      IconShape		      "round"
@@ -3800,6 +3831,10 @@ Library {
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"e"
+	      }
 	    }
 	    Block {
 	      BlockType		      Sum
@@ -3837,16 +3872,20 @@ Library {
 	      BlockType		      ZeroOrderHold
 	      Name		      "Zero-Order\nHold1"
 	      SID		      "310"
-	      Position		      [755, 530, 790, 560]
+	      Position		      [720, 530, 755, 560]
 	      ZOrder		      343
 	      ShowName		      off
 	      SampleTime	      "jointObj.Ts"
+	      Port {
+		PortNumber		1
+		Name			"r"
+	      }
 	    }
 	    Block {
 	      BlockType		      ZeroOrderHold
 	      Name		      "Zero-Order\nHold2"
 	      SID		      "311"
-	      Position		      [755, 480, 790, 510]
+	      Position		      [720, 480, 755, 510]
 	      ZOrder		      344
 	      ShowName		      off
 	      SampleTime	      "jointObj.Ts"
@@ -3860,31 +3899,14 @@ Library {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
-	      Labels		      [-1, 1]
-	      SrcBlock		      "Zero-Order\nHold2"
-	      SrcPort		      1
-	      Points		      [19, 0]
-	      Branch {
-		ZOrder			2
-		Points			[46, 0]
-		DstBlock		"Sum"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			3
-		Points			[0, -200]
-		DstBlock		"Multiport\nSwitch"
-		DstPort			2
-	      }
-	    }
-	    Line {
+	      Name		      "r"
 	      ZOrder		      4
+	      Labels		      [1, 1]
 	      SrcBlock		      "Zero-Order\nHold1"
 	      SrcPort		      1
-	      Points		      [34, 0]
+	      Points		      [20, 0]
 	      Branch {
-		ZOrder			5
+		ZOrder			42
 		DstBlock		"Sum"
 		DstPort			2
 	      }
@@ -4026,18 +4048,65 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      25
-	      SrcBlock		      "Sum"
+	      ZOrder		      29
+	      SrcBlock		      "DOB enable"
 	      SrcPort		      1
-	      Points		      [48, 0]
+	      DstBlock		      "Sum1"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Zero-Order\nHold2"
+	      SrcPort		      1
+	      Points		      [12, 0]
 	      Branch {
-		ZOrder			26
-		Points			[0, 85]
-		DstBlock		"D"
-		DstPort			1
+		ZOrder			41
+		Labels			[-1, 1]
+		Points			[29, 0]
+		Branch {
+		  ZOrder		  40
+		  Points		  [0, 160]
+		  DstBlock		  "D2"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  39
+		  Points		  [24, 0]
+		  DstBlock		  "Sum"
+		  DstPort		  1
+		}
 	      }
 	      Branch {
-		ZOrder			27
+		ZOrder			3
+		Points			[0, -200]
+		DstBlock		"Multiport\nSwitch"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      ZOrder		      31
+	      SrcBlock		      "D2"
+	      SrcPort		      1
+	      DstBlock		      "Multiport\nSwitch3"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      32
+	      SrcBlock		      "Constant3"
+	      SrcPort		      1
+	      Points		      [4, 0; 0, -110]
+	      DstBlock		      "Multiport\nSwitch3"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "e"
+	      ZOrder		      25
+	      Labels		      [1, 1]
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      Points		      [36, 0]
+	      Branch {
+		ZOrder			37
 		DstBlock		"I"
 		DstPort			1
 	      }
@@ -4047,13 +4116,19 @@ Library {
 		DstBlock		"P"
 		DstPort			1
 	      }
+	      Branch {
+		ZOrder			38
+		Points			[0, 85]
+		DstBlock		"Multiport\nSwitch3"
+		DstPort			2
+	      }
 	    }
 	    Line {
-	      ZOrder		      29
-	      SrcBlock		      "DOB enable"
+	      ZOrder		      36
+	      SrcBlock		      "Multiport\nSwitch3"
 	      SrcPort		      1
-	      DstBlock		      "Sum1"
-	      DstPort		      3
+	      DstBlock		      "D"
+	      DstPort		      1
 	    }
 	  }
 	}
@@ -4360,7 +4435,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "Reference"
 	      SID		      "55"
-	      Position		      [370, 343, 400, 357]
+	      Position		      [305, 343, 335, 357]
 	      ZOrder		      204
 	      IconDisplay	      "Port number"
 	    }
@@ -4368,7 +4443,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "jointBus"
 	      SID		      "56"
-	      Position		      [15, 325, 45, 340]
+	      Position		      [-50, 325, -20, 340]
 	      ZOrder		      205
 	      BlockRotation	      270
 	      Port		      "2"
@@ -4379,7 +4454,7 @@ Library {
 	      Name		      "Bus\nSelector1"
 	      SID		      "57"
 	      Ports		      [1, 3]
-	      Position		      [125, 188, 130, 392]
+	      Position		      [60, 188, 65, 392]
 	      ZOrder		      203
 	      ShowName		      off
 	      OutputSignals	      "GearPos,LinkPos,TorqueFiltered"
@@ -4409,7 +4484,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant1"
 	      SID		      "59"
-	      Position		      [545, 410, 660, 440]
+	      Position		      [480, 410, 595, 440]
 	      ZOrder		      273
 	      ShowName		      off
 	      Value		      "DOB_enable_switch"
@@ -4418,10 +4493,19 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant2"
 	      SID		      "156"
-	      Position		      [485, 275, 600, 305]
+	      Position		      [420, 275, 535, 305]
 	      ZOrder		      277
 	      ShowName		      off
 	      Value		      "premult_enable_switch"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant3"
+	      SID		      "637"
+	      Position		      [905, 477, 990, 503]
+	      ZOrder		      358
+	      ShowName		      off
+	      Value		      "derivative_select"
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -4435,11 +4519,22 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      Gain
+	      Name		      "D2"
+	      SID		      "639"
+	      Position		      [935, 415, 965, 445]
+	      ZOrder		      356
+	      Gain		      "-1"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
 	      BlockType		      Delay
 	      Name		      "Delay"
 	      SID		      "608"
 	      Ports		      [1, 1]
-	      Position		      [728, 460, 762, 500]
+	      Position		      [663, 460, 697, 500]
 	      ZOrder		      354
 	      BlockRotation	      270
 	      InputPortMap	      "u0"
@@ -4475,7 +4570,7 @@ Library {
 	      BlockType		      Ground
 	      Name		      "Ground"
 	      SID		      "61"
-	      Position		      [690, 440, 710, 460]
+	      Position		      [625, 440, 645, 460]
 	      ZOrder		      270
 	    }
 	    Block {
@@ -4501,7 +4596,7 @@ Library {
 	      Name		      "LTI System"
 	      SID		      "300"
 	      Ports		      [1, 1]
-	      Position		      [780, 547, 875, 583]
+	      Position		      [715, 547, 810, 583]
 	      ZOrder		      335
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
@@ -4517,7 +4612,7 @@ Library {
 	      Name		      "LTI System1"
 	      SID		      "301"
 	      Ports		      [1, 1]
-	      Position		      [615, 547, 710, 583]
+	      Position		      [550, 547, 645, 583]
 	      ZOrder		      336
 	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
@@ -4531,7 +4626,7 @@ Library {
 	      Name		      "LTI System2"
 	      SID		      "302"
 	      Ports		      [1, 1]
-	      Position		      [505, 332, 600, 368]
+	      Position		      [440, 332, 535, 368]
 	      ZOrder		      337
 	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
@@ -4559,7 +4654,7 @@ Library {
 	      Name		      "Multiport\nSwitch1"
 	      SID		      "63"
 	      Ports		      [3, 1]
-	      Position		      [698, 370, 752, 405]
+	      Position		      [633, 370, 687, 405]
 	      ZOrder		      269
 	      BlockRotation	      270
 	      Inputs		      "2"
@@ -4571,8 +4666,19 @@ Library {
 	      Name		      "Multiport\nSwitch2"
 	      SID		      "64"
 	      Ports		      [3, 1]
-	      Position		      [625, 275, 660, 365]
+	      Position		      [560, 275, 595, 365]
 	      ZOrder		      271
+	      Inputs		      "2"
+	      InputSameDT	      off
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      MultiPortSwitch
+	      Name		      "Multiport\nSwitch3"
+	      SID		      "640"
+	      Ports		      [3, 1]
+	      Position		      [1015, 369, 1045, 441]
+	      ZOrder		      357
 	      Inputs		      "2"
 	      InputSameDT	      off
 	      SaturateOnIntegerOverflow	off
@@ -4629,7 +4735,7 @@ Library {
 	      Name		      "Sum2"
 	      SID		      "71"
 	      Ports		      [2, 1]
-	      Position		      [715, 310, 735, 330]
+	      Position		      [650, 310, 670, 330]
 	      ZOrder		      252
 	      ShowName		      off
 	      IconShape		      "round"
@@ -4647,7 +4753,7 @@ Library {
 	      Name		      "Sum3"
 	      SID		      "72"
 	      Ports		      [2, 1]
-	      Position		      [735, 555, 755, 575]
+	      Position		      [670, 555, 690, 575]
 	      ZOrder		      256
 	      BlockRotation	      270
 	      ShowName		      off
@@ -4675,7 +4781,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "Terminator"
 	      SID		      "73"
-	      Position		      [195, 210, 215, 230]
+	      Position		      [130, 210, 150, 230]
 	      ZOrder		      274
 	      ShowName		      off
 	    }
@@ -4683,7 +4789,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "Terminator1"
 	      SID		      "74"
-	      Position		      [195, 280, 215, 300]
+	      Position		      [130, 280, 150, 300]
 	      ZOrder		      275
 	      ShowName		      off
 	    }
@@ -4691,7 +4797,7 @@ Library {
 	      BlockType		      ZeroOrderHold
 	      Name		      "Zero-Order\nHold1"
 	      SID		      "325"
-	      Position		      [425, 335, 460, 365]
+	      Position		      [360, 335, 395, 365]
 	      ZOrder		      353
 	      ShowName		      off
 	      SampleTime	      "jointObj.Ts"
@@ -4700,7 +4806,7 @@ Library {
 	      BlockType		      ZeroOrderHold
 	      Name		      "Zero-Order\nHold2"
 	      SID		      "324"
-	      Position		      [235, 345, 270, 375]
+	      Position		      [170, 345, 205, 375]
 	      ZOrder		      352
 	      ShowName		      off
 	      SampleTime	      "jointObj.Ts"
@@ -4758,17 +4864,27 @@ Library {
 	      }
 	      Branch {
 		ZOrder			8
-		Points			[0, -150; 635, 0]
+		Points			[0, -139; 700, 0]
 		Branch {
-		  ZOrder		  9
-		  Points		  [0, -150]
-		  DstBlock		  "Multiport\nSwitch"
-		  DstPort		  2
+		  ZOrder		  52
+		  Points		  [0, 55]
+		  Branch {
+		    ZOrder		    10
+		    DstBlock		    "Sum"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    51
+		    Points		    [-24, 0; 0, 154]
+		    DstBlock		    "D2"
+		    DstPort		    1
+		  }
 		}
 		Branch {
-		  ZOrder		  10
-		  DstBlock		  "Sum"
-		  DstPort		  1
+		  ZOrder		  50
+		  Points		  [0, -161]
+		  DstBlock		  "Multiport\nSwitch"
+		  DstPort		  2
 		}
 	      }
 	    }
@@ -4845,22 +4961,18 @@ Library {
 	      ZOrder		      19
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
-	      Points		      [111, 0]
+	      Points		      [176, 0]
 	      Branch {
 		ZOrder			20
-		Labels			[-1, 0]
-		Points			[43, 0]
-		Branch {
-		  ZOrder		  21
-		  Points		  [0, 245]
-		  DstBlock		  "LTI System"
-		  DstPort		  1
-		}
-		Branch {
-		  ZOrder		  22
-		  DstBlock		  "Sum"
-		  DstPort		  2
-		}
+		Labels			[1, 1]
+		DstBlock		"Sum"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			21
+		Points			[0, 245]
+		DstBlock		"LTI System"
+		DstPort			1
 	      }
 	      Branch {
 		ZOrder			23
@@ -4979,20 +5091,36 @@ Library {
 	      DstPort		      2
 	    }
 	    Line {
+	      ZOrder		      43
+	      SrcBlock		      "Constant3"
+	      SrcPort		      1
+	      Points		      [4, 0; 0, -110]
+	      DstBlock		      "Multiport\nSwitch3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      44
+	      SrcBlock		      "D2"
+	      SrcPort		      1
+	      DstBlock		      "Multiport\nSwitch3"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      47
+	      SrcBlock		      "Multiport\nSwitch3"
+	      SrcPort		      1
+	      DstBlock		      "D"
+	      DstPort		      1
+	    }
+	    Line {
 	      Name		      "e"
 	      ZOrder		      39
 	      Labels		      [1, 1]
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
-	      Points		      [83, 0]
+	      Points		      [29, 0]
 	      Branch {
-		ZOrder			40
-		Points			[0, 85]
-		DstBlock		"D"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			41
+		ZOrder			48
 		DstBlock		"I"
 		DstPort			1
 	      }
@@ -5001,6 +5129,12 @@ Library {
 		Points			[0, -65]
 		DstBlock		"P"
 		DstPort			1
+	      }
+	      Branch {
+		ZOrder			49
+		Points			[0, 85]
+		DstBlock		"Multiport\nSwitch3"
+		DstPort			2
 	      }
 	    }
 	  }

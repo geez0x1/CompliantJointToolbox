@@ -1,7 +1,7 @@
 % DESIGN_DOB_CONTROLLER Designs all parameters of a DOB based torque control
 % scheme, with the DOB as an OUTER loop (closed-loop DOB).
 %
-% [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB, DOB_order])
+% [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, derivative_select, f_c_FF, f_c_DOB, DOB_order])
 %
 % This function calculates the approximated closed-loop transfer function
 % Pc, low-pass Q-filters, and the inverted models for a DOB with premulti-
@@ -26,8 +26,8 @@
 %   pid_form: Flag that determines whether PID controller is constructed in
 %             product or summation form (default: ideal/series form)
 %   outputIdx: Controlled/observed plant output (default: 7, torque)
-%   ff_comp_switch: Flag that determins whether torque feedforward is
-%                   active or not (default: true)
+%   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
+%   derivative_select: Derivative action on error or output (1 = error, 2 = output)
 %   f_c_FF: Feed-forward cutoff frequency [Hz] (default: 40)
 %   f_c_DOB: DOB cutoff frequency [Hz] (default: 60)
 %   DOB_order: DOB order (>= relative order of plant+controller)
@@ -72,7 +72,7 @@
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 
-function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, f_c_FF, f_c_DOB, DOB_order)
+function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, derivative_select, f_c_FF, f_c_DOB, DOB_order)
     %% Default parameters
     if (~exist('pid_form', 'var') || isequal(pid_form,[]))
         pid_form = 'ideal';     % Ideal PID form (series) by default
@@ -83,6 +83,10 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
     if (~exist('ff_comp_switch', 'var') || isequal(ff_comp_switch,[]))
         ff_comp_switch = 1;     % Feed-forward/compensation
                                 % (1=Compensation (default), 2=Feed-forward)
+    end
+    if (~exist('derivative_select', 'var') || isequal(derivative_select,[]))
+        derivative_select = 1;  % Derivative action on error or output
+                                % (1 = error (default), 2 = output)
     end
     if (~exist('f_c_FF', 'var') || isequal(f_c_FF,[]))
         f_c_FF  = 40;           % Feed-forward cutoff frequency [Hz]
@@ -109,7 +113,7 @@ function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki
     %% Build closed-loop system
 
     % Get controlled closed loop dynamics
-    [~, ~, Pc, ~] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch);
+    [~, ~, Pc, ~] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, derivative_select);
 
     % Check selected DOB order
     % If it was set to zero before (no argument given), set it to the

@@ -1,6 +1,6 @@
 % GET_CONTROLLED_CLOSED_LOOP Outputs closed loop transfer functions.
 %
-%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch] )
+%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, derivative_select] )
 %
 %   Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
 %   H transfer functions, and the PD derivative gain Kd_opt that critically
@@ -14,6 +14,7 @@
 %             product (ideal) or summation (parallel) form
 %   outputIdx: Controlled/observed plant output (default: 7, torque)
 %   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
+%   derivative_select: Derivative action on error or output (1 = error, 2 = output)
 %
 % Outputs::
 %   P: Plant transfer function
@@ -54,7 +55,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
+function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, derivative_select)
     %% Default arguments
     if (~exist('pid_form', 'var') || isequal(pid_form,[]))
         pid_form = 'ideal';     % Ideal PID form (series) by default
@@ -65,6 +66,10 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     if (~exist('ff_comp_switch', 'var') || isequal(ff_comp_switch,[]))
         ff_comp_switch = 1;     % Feed-forward/compensation
                                 % (1=Compensation (default), 2=Feed-forward)
+    end
+    if (~exist('derivative_select', 'var') || isequal(derivative_select,[]))
+        derivative_select = 1;  % Derivative action on error or output
+                                % (1 = error (default), 2 = output)
     end
     
     
