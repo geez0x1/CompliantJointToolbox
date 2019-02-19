@@ -42,10 +42,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3"
+	LoadSaveID		"272"
 	Extents			[1687.0, 876.0]
-	ZoomFactor		[1.2500000000000002]
-	Offset			[-265.27777777777794, -227.63809523809584]
+	ZoomFactor		[1.25]
+	Offset			[-153.44285714285638, -100.34761904761899]
       }
     }
   }
@@ -55,9 +55,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Feb 09 18:21:49 2019"
-  RTWModifiedTimeStamp	  471637308
-  ModelVersionFormat	  "1.%<AutoIncrement:295>"
+  LastModifiedDate	  "Tue Feb 19 13:45:15 2019"
+  RTWModifiedTimeStamp	  472484715
+  ModelVersionFormat	  "1.%<AutoIncrement:300>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1009,7 +1009,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "633"
+    SIDHighWatermark	    "636"
     Block {
       BlockType		      SubSystem
       Name		      "Controllers"
@@ -3747,7 +3747,7 @@ Library {
 	      Ports		      [2, 1]
 	      Position		      [1010, 760, 1160, 820]
 	      ZOrder		      491
-	      LibraryVersion	      "1.135"
+	      LibraryVersion	      "1.136"
 	      SourceBlock	      "cjt_library_observers/Observers/Linear transfer function DOB"
 	      SourceType	      "Linear Transfer Function Disturbance Observer"
 	      ContentPreviewEnabled   off
@@ -5030,7 +5030,7 @@ Library {
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      6
+	      Dimension		      7
 	      Object {
 		$ObjectID		119
 		Type			"edit"
@@ -5071,6 +5071,20 @@ Library {
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
+		  Dimension		  2
+		  Cell			  "Error"
+		  Cell			  "Output"
+		  PropName		  "TypeOptions"
+		}
+		Name			"derivative_select"
+		Prompt			"Derivative action on:"
+		Value			"Error"
+	      }
+	      Object {
+		$ObjectID		125
+		Type			"popup"
+		Array {
+		  Type			  "Cell"
 		  Dimension		  3
 		  Cell			  "Compensation"
 		  Cell			  "Feed-forward"
@@ -5086,7 +5100,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp."
-	    Location		    [0, 27, 1680, 1050]
+	    Location		    [0, 27, 1920, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -5103,7 +5117,7 @@ Library {
 	      BlockType		      Inport
 	      Name		      "Reference"
 	      SID		      "273"
-	      Position		      [385, 298, 415, 312]
+	      Position		      [355, 298, 385, 312]
 	      ZOrder		      204
 	      IconDisplay	      "Port number"
 	      Port {
@@ -5144,12 +5158,32 @@ Library {
 	      Value		      "ff_comp_switch"
 	    }
 	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant1"
+	      SID		      "636"
+	      Position		      [540, 452, 625, 478]
+	      ZOrder		      345
+	      ShowName		      off
+	      Value		      "derivative_select"
+	    }
+	    Block {
 	      BlockType		      Gain
 	      Name		      "D"
 	      SID		      "276"
-	      Position		      [710, 375, 740, 405]
+	      Position		      [710, 365, 740, 395]
 	      ZOrder		      330
 	      Gain		      "Kd"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "D1"
+	      SID		      "634"
+	      Position		      [570, 390, 600, 420]
+	      ZOrder		      343
+	      Gain		      "-1"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -5159,7 +5193,7 @@ Library {
 	      Name		      "Differential filter"
 	      SID		      "277"
 	      Ports		      [1, 1]
-	      Position		      [765, 372, 910, 408]
+	      Position		      [765, 362, 910, 398]
 	      ZOrder		      334
 	      LibraryVersion	      "1.224"
 	      SourceBlock	      "cstblocks/LTI System"
@@ -5212,6 +5246,17 @@ Library {
 	      }
 	    }
 	    Block {
+	      BlockType		      MultiPortSwitch
+	      Name		      "Multiport\nSwitch1"
+	      SID		      "635"
+	      Ports		      [3, 1]
+	      Position		      [650, 344, 680, 416]
+	      ZOrder		      344
+	      Inputs		      "2"
+	      InputSameDT	      off
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
 	      BlockType		      Gain
 	      Name		      "P"
 	      SID		      "281"
@@ -5227,7 +5272,7 @@ Library {
 	      Name		      "Sum"
 	      SID		      "282"
 	      Ports		      [2, 1]
-	      Position		      [585, 295, 605, 315]
+	      Position		      [535, 295, 555, 315]
 	      ZOrder		      192
 	      ShowName		      off
 	      IconShape		      "round"
@@ -5272,7 +5317,7 @@ Library {
 	      BlockType		      ZeroOrderHold
 	      Name		      "Zero-Order\nHold"
 	      SID		      "308"
-	      Position		      [455, 290, 490, 320]
+	      Position		      [425, 290, 460, 320]
 	      ZOrder		      341
 	      ShowName		      off
 	      SampleTime	      "jointObj.Ts"
@@ -5301,9 +5346,18 @@ Library {
 	      Points		      [44, 0]
 	      Branch {
 		ZOrder			2
-		Points			[276, 0]
-		DstBlock		"Sum"
-		DstPort			2
+		Points			[226, 0]
+		Branch {
+		  ZOrder		  27
+		  Points		  [0, 15]
+		  DstBlock		  "D1"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  26
+		  DstBlock		  "Sum"
+		  DstPort		  2
+		}
 	      }
 	      Branch {
 		ZOrder			3
@@ -5317,17 +5371,17 @@ Library {
 	      ZOrder		      4
 	      SrcBlock		      "Zero-Order\nHold"
 	      SrcPort		      1
-	      Points		      [35, 0]
+	      Points		      [27, 0]
+	      Branch {
+		ZOrder			24
+		DstBlock		"Sum"
+		DstPort			1
+	      }
 	      Branch {
 		ZOrder			5
 		Points			[0, -220]
 		DstBlock		"Multiport\nSwitch"
 		DstPort			3
-	      }
-	      Branch {
-		ZOrder			6
-		DstBlock		"Sum"
-		DstPort			1
 	      }
 	    }
 	    Line {
@@ -5336,7 +5390,13 @@ Library {
 	      Labels		      [1, 0]
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
-	      Points		      [63, 0]
+	      Points		      [59, 0]
+	      Branch {
+		ZOrder			28
+		Points			[0, 75]
+		DstBlock		"Multiport\nSwitch1"
+		DstPort			2
+	      }
 	      Branch {
 		ZOrder			8
 		Points			[0, -65]
@@ -5346,12 +5406,6 @@ Library {
 	      Branch {
 		ZOrder			9
 		DstBlock		"I"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			10
-		Points			[0, 85]
-		DstBlock		"D"
 		DstPort			1
 	      }
 	    }
@@ -5455,6 +5509,28 @@ Library {
 	      DstBlock		      "Sum1"
 	      DstPort		      1
 	    }
+	    Line {
+	      ZOrder		      30
+	      SrcBlock		      "D1"
+	      SrcPort		      1
+	      DstBlock		      "Multiport\nSwitch1"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "Multiport\nSwitch1"
+	      SrcPort		      1
+	      DstBlock		      "D"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      31
+	      SrcBlock		      "Constant1"
+	      SrcPort		      1
+	      Points		      [4, 0; 0, -110]
+	      DstBlock		      "Multiport\nSwitch1"
+	      DstPort		      1
+	    }
 	  }
 	}
 	Block {
@@ -5468,7 +5544,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    125
+	    $ObjectID		    126
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Passivity Based Torque Controller with Optional Generalized Momentum Based Disturbance Observer"
 	    Description		    "This block implements a passivity based torque controller. It has two positive valued parameter"
@@ -5503,28 +5579,28 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
 	      Object {
-		$ObjectID		126
+		$ObjectID		127
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		127
+		$ObjectID		128
 		Type			"edit"
 		Name			"BBinv"
 		Prompt			"Inertia Scaling"
 		Value			"4"
 	      }
 	      Object {
-		$ObjectID		128
+		$ObjectID		129
 		Type			"edit"
 		Name			"Ds"
 		Prompt			"Damping"
 		Value			"25"
 	      }
 	      Object {
-		$ObjectID		129
+		$ObjectID		130
 		Type			"checkbox"
 		Name			"isDOBActive"
 		Prompt			"DOB Active"
@@ -5532,7 +5608,7 @@ Library {
 		Callback		"maskObj = Simulink.Mask.get(gcb);\n\nmaskObj.Parameters(5).Enabled = maskObj.Parameters(4).Value;"
 	      }
 	      Object {
-		$ObjectID		130
+		$ObjectID		131
 		Type			"edit"
 		Name			"L"
 		Prompt			"Gain L"
@@ -5544,12 +5620,12 @@ Library {
 	      Type		      "Simulink.dialog.Control"
 	      Dimension		      4
 	      Object {
-		$ObjectID		131
+		$ObjectID		132
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  132
+		  $ObjectID		  133
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -5557,23 +5633,23 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		133
+		$ObjectID		134
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		134
+		$ObjectID		135
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Controller"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Edit"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    135
+		    $ObjectID		    136
 		    Name		    "BBinv"
 		  }
 		  Object {
-		    $ObjectID		    136
+		    $ObjectID		    137
 		    Name		    "Ds"
 		  }
 		  PropName		  "DialogControls"
@@ -5581,19 +5657,19 @@ Library {
 		Name			"Controller_container"
 	      }
 	      Object {
-		$ObjectID		137
+		$ObjectID		138
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Disturbance Observer (DOB)"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    138
+		    $ObjectID		    139
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "isDOBActive"
 		  }
 		  Object {
-		    $ObjectID		    139
+		    $ObjectID		    140
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    PromptLocation	    "left"
 		    Name		    "L"
@@ -5724,7 +5800,7 @@ Library {
 	      Ports		      [2, 1]
 	      Position		      [1225, 578, 1350, 642]
 	      ZOrder		      488
-	      LibraryVersion	      "1.135"
+	      LibraryVersion	      "1.136"
 	      SourceBlock	      "cjt_library_observers/Observers/Generalized Momentum Based DOB"
 	      SourceType	      "Generalized Momentum Based Disturbance Observer (DOB)"
 	      ContentPreviewEnabled   off
