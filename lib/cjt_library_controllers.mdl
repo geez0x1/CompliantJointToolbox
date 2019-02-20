@@ -19,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1920.0, 1053.0]
+      Location		      [3848.0, 179.0, 1920.0, 1053.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -55,9 +55,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "wesley"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 19 14:07:50 2019"
-  RTWModifiedTimeStamp	  472486070
-  ModelVersionFormat	  "1.%<AutoIncrement:303>"
+  LastModifiedDate	  "Wed Feb 20 18:16:07 2019"
+  RTWModifiedTimeStamp	  472587366
+  ModelVersionFormat	  "1.%<AutoIncrement:306>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1022,7 +1022,7 @@ Library {
       Variant		      off
       System {
 	Name			"Controllers"
-	Location		[0, 27, 1920, 1080]
+	Location		[3848, 179, 5768, 1232]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -3444,7 +3444,7 @@ Library {
 	    Initialization	    "% Get linear dynamics matrices\n[A, B, C, D, I, R, K] = jointObj.getDynamicsMatrices();"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      10
+	      Dimension		      11
 	      Object {
 		$ObjectID		62
 		Type			"edit"
@@ -3477,11 +3477,25 @@ Library {
 		$ObjectID		66
 		Type			"edit"
 		Name			"N"
-		Prompt			"Filter coefficient N"
+		Prompt			"Derivative filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
 		$ObjectID		67
+		Type			"popup"
+		Array {
+		  Type			  "Cell"
+		  Dimension		  2
+		  Cell			  "Error"
+		  Cell			  "Output"
+		  PropName		  "TypeOptions"
+		}
+		Name			"derivative_select"
+		Prompt			"Derivative action on:"
+		Value			"Error"
+	      }
+	      Object {
+		$ObjectID		68
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -3496,7 +3510,7 @@ Library {
 		Value			"Feed-forward"
 	      }
 	      Object {
-		$ObjectID		68
+		$ObjectID		69
 		Type			"checkbox"
 		Name			"DOB_enabled"
 		Prompt			"DOB enabled"
@@ -3505,21 +3519,21 @@ Library {
 		"\n         };\ntoggleMaskFields(gcbh, 'DOB_enabled', fields, 'on');"
 	      }
 	      Object {
-		$ObjectID		69
+		$ObjectID		70
 		Type			"edit"
 		Name			"f_c"
 		Prompt			"DOB cut-off frequency [Hz]"
 		Value			"100"
 	      }
 	      Object {
-		$ObjectID		70
+		$ObjectID		71
 		Type			"edit"
 		Name			"measIdx"
 		Prompt			"Measurement index"
 		Value			"[7]"
 	      }
 	      Object {
-		$ObjectID		71
+		$ObjectID		72
 		Type			"edit"
 		Name			"DOB_order"
 		Prompt			"DOB order (0 = auto minimum order)"
@@ -3531,12 +3545,12 @@ Library {
 	      Type		      "Simulink.dialog.Control"
 	      Dimension		      4
 	      Object {
-		$ObjectID		72
+		$ObjectID		73
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  73
+		  $ObjectID		  74
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -3544,39 +3558,44 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		74
+		$ObjectID		75
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		75
+		$ObjectID		76
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Controller"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
-		  Dimension		  5
+		  Dimension		  6
 		  Object {
-		    $ObjectID		    76
+		    $ObjectID		    77
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kp"
 		  }
 		  Object {
-		    $ObjectID		    77
+		    $ObjectID		    78
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Ki"
 		  }
 		  Object {
-		    $ObjectID		    78
+		    $ObjectID		    79
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kd"
 		  }
 		  Object {
-		    $ObjectID		    79
+		    $ObjectID		    80
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "N"
 		  }
 		  Object {
-		    $ObjectID		    80
+		    $ObjectID		    81
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "derivative_select"
+		  }
+		  Object {
+		    $ObjectID		    82
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "ff_comp_switch"
 		  }
@@ -3585,29 +3604,29 @@ Library {
 		Name			"Container3"
 	      }
 	      Object {
-		$ObjectID		81
+		$ObjectID		83
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"DOB parameters"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  4
 		  Object {
-		    $ObjectID		    82
+		    $ObjectID		    84
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "DOB_enabled"
 		  }
 		  Object {
-		    $ObjectID		    83
+		    $ObjectID		    85
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "f_c"
 		  }
 		  Object {
-		    $ObjectID		    84
+		    $ObjectID		    86
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "measIdx"
 		  }
 		  Object {
-		    $ObjectID		    85
+		    $ObjectID		    87
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "DOB_order"
 		  }
@@ -3620,7 +3639,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF with inner-loop DOB"
-	    Location		    [0, 27, 1920, 1080]
+	    Location		    [3848, 179, 5768, 1232]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4144,7 +4163,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    86
+	    $ObjectID		    88
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "PID + FF/comp with outer-loop DOB and optional prefilter"
 	    Description		    "This block implements a PID torque controller with optional feed-forward or compensation term, "
@@ -4174,44 +4193,58 @@ Library {
 	    Initialization	    "mask_PID_FFComp_OuterLoopDOB"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
-	      Dimension		      13
+	      Dimension		      14
 	      Object {
-		$ObjectID		87
+		$ObjectID		89
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		88
+		$ObjectID		90
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
 		Value			"0.1"
 	      }
 	      Object {
-		$ObjectID		89
+		$ObjectID		91
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		90
+		$ObjectID		92
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
 		Value			"0.001"
 	      }
 	      Object {
-		$ObjectID		91
+		$ObjectID		93
 		Type			"edit"
 		Name			"N"
 		Prompt			"Derivative filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
-		$ObjectID		92
+		$ObjectID		94
+		Type			"popup"
+		Array {
+		  Type			  "Cell"
+		  Dimension		  2
+		  Cell			  "Error"
+		  Cell			  "Output"
+		  PropName		  "TypeOptions"
+		}
+		Name			"derivative_select"
+		Prompt			"Derivative action on:"
+		Value			"Error"
+	      }
+	      Object {
+		$ObjectID		95
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -4226,7 +4259,7 @@ Library {
 		Value			"Feed-forward"
 	      }
 	      Object {
-		$ObjectID		93
+		$ObjectID		96
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -4246,7 +4279,7 @@ Library {
 		"end"
 	      }
 	      Object {
-		$ObjectID		94
+		$ObjectID		97
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -4260,7 +4293,7 @@ Library {
 		Value			"Off"
 	      }
 	      Object {
-		$ObjectID		95
+		$ObjectID		98
 		Type			"checkbox"
 		Name			"loadData"
 		Prompt			"Load model/filters from file (see getLinearDOB_fromData)"
@@ -4270,7 +4303,7 @@ Library {
 		"OB_order'}, 'off');\nend"
 	      }
 	      Object {
-		$ObjectID		96
+		$ObjectID		99
 		Type			"edit"
 		Name			"modelFname"
 		Prompt			"Model/filters file (.mat)"
@@ -4279,21 +4312,21 @@ Library {
 		Enabled			"off"
 	      }
 	      Object {
-		$ObjectID		97
+		$ObjectID		100
 		Type			"edit"
 		Name			"f_c_FF"
 		Prompt			"Premultiplication (model inversion) cutoff frequency [Hz]"
 		Value			"50"
 	      }
 	      Object {
-		$ObjectID		98
+		$ObjectID		101
 		Type			"edit"
 		Name			"f_c_DOB"
 		Prompt			"DOB cutoff frequency [Hz]"
 		Value			"80"
 	      }
 	      Object {
-		$ObjectID		99
+		$ObjectID		102
 		Type			"edit"
 		Name			"DOB_order"
 		Prompt			"DOB order (0 = auto minimum order)"
@@ -4305,12 +4338,12 @@ Library {
 	      Type		      "Simulink.dialog.Control"
 	      Dimension		      4
 	      Object {
-		$ObjectID		100
+		$ObjectID		103
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  101
+		  $ObjectID		  104
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -4318,39 +4351,44 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		102
+		$ObjectID		105
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		103
+		$ObjectID		106
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Controller"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
-		  Dimension		  5
+		  Dimension		  6
 		  Object {
-		    $ObjectID		    104
+		    $ObjectID		    107
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kp"
 		  }
 		  Object {
-		    $ObjectID		    105
+		    $ObjectID		    108
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Ki"
 		  }
 		  Object {
-		    $ObjectID		    106
+		    $ObjectID		    109
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "Kd"
 		  }
 		  Object {
-		    $ObjectID		    107
+		    $ObjectID		    110
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "N"
 		  }
 		  Object {
-		    $ObjectID		    108
+		    $ObjectID		    111
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "derivative_select"
+		  }
+		  Object {
+		    $ObjectID		    112
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "ff_comp_switch"
 		  }
@@ -4359,50 +4397,50 @@ Library {
 		Name			"Container2"
 	      }
 	      Object {
-		$ObjectID		109
+		$ObjectID		113
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"DOB and premultiplication"
 		Array {
 		  Type			  "Simulink.dialog.Control"
 		  Dimension		  5
 		  Object {
-		    $ObjectID		    110
+		    $ObjectID		    114
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    PromptLocation	    "top"
 		    Name		    "DOB_enable_switch"
 		  }
 		  Object {
-		    $ObjectID		    111
+		    $ObjectID		    115
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "premult_enable_switch"
 		  }
 		  Object {
-		    $ObjectID		    112
+		    $ObjectID		    116
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "loadData"
 		  }
 		  Object {
-		    $ObjectID		    113
+		    $ObjectID		    117
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "modelFname"
 		  }
 		  Object {
-		    $ObjectID		    114
+		    $ObjectID		    118
 		    $ClassName		    "Simulink.dialog.Group"
 		    Prompt		    "Analytical DOB"
 		    Array {
 		    Type		    "Simulink.dialog.parameter.Edit"
 		    Dimension		    3
 		    Object {
-		    $ObjectID		    115
+		    $ObjectID		    119
 		    Name		    "f_c_FF"
 		    }
 		    Object {
-		    $ObjectID		    116
+		    $ObjectID		    120
 		    Name		    "f_c_DOB"
 		    }
 		    Object {
-		    $ObjectID		    117
+		    $ObjectID		    121
 		    Name		    "DOB_order"
 		    }
 		    PropName		    "DialogControls"
@@ -4418,7 +4456,7 @@ Library {
 	  }
 	  System {
 	    Name		    "PID + FF/comp with outer-loop\nDOB and optional prefilter"
-	    Location		    [0, 27, 1920, 1080]
+	    Location		    [3848, 179, 5768, 1232]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -5151,7 +5189,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    118
+	    $ObjectID		    122
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "PID + FF/comp."
 	    Description		    "This block implements a PID torque controller with optional feed-forward or compensation term.\n"
@@ -5166,42 +5204,42 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      7
 	      Object {
-		$ObjectID		119
+		$ObjectID		123
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		120
+		$ObjectID		124
 		Type			"edit"
 		Name			"Kp"
 		Prompt			"Proportional gain Kp"
 		Value			"2"
 	      }
 	      Object {
-		$ObjectID		121
+		$ObjectID		125
 		Type			"edit"
 		Name			"Ki"
 		Prompt			"Integral gain Ki"
 		Value			"0"
 	      }
 	      Object {
-		$ObjectID		122
+		$ObjectID		126
 		Type			"edit"
 		Name			"Kd"
 		Prompt			"Derivative gain Kd"
 		Value			"0.01"
 	      }
 	      Object {
-		$ObjectID		123
+		$ObjectID		127
 		Type			"edit"
 		Name			"N"
-		Prompt			"Filter coefficient N"
+		Prompt			"Derivative filter coefficient N"
 		Value			"2*pi*200"
 	      }
 	      Object {
-		$ObjectID		124
+		$ObjectID		128
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -5215,7 +5253,7 @@ Library {
 		Value			"Error"
 	      }
 	      Object {
-		$ObjectID		125
+		$ObjectID		129
 		Type			"popup"
 		Array {
 		  Type			  "Cell"
@@ -5678,7 +5716,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    126
+	    $ObjectID		    130
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Passivity Based Torque Controller with Optional Generalized Momentum Based Disturbance Observer"
 	    Description		    "This block implements a passivity based torque controller. It has two positive valued parameter"
@@ -5713,28 +5751,28 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      5
 	      Object {
-		$ObjectID		127
+		$ObjectID		131
 		Type			"edit"
 		Name			"jointObj"
 		Prompt			"Joint Object"
 		Value			"jointObj"
 	      }
 	      Object {
-		$ObjectID		128
+		$ObjectID		132
 		Type			"edit"
 		Name			"BBinv"
 		Prompt			"Inertia Scaling"
 		Value			"4"
 	      }
 	      Object {
-		$ObjectID		129
+		$ObjectID		133
 		Type			"edit"
 		Name			"Ds"
 		Prompt			"Damping"
 		Value			"25"
 	      }
 	      Object {
-		$ObjectID		130
+		$ObjectID		134
 		Type			"checkbox"
 		Name			"isDOBActive"
 		Prompt			"DOB Active"
@@ -5742,7 +5780,7 @@ Library {
 		Callback		"maskObj = Simulink.Mask.get(gcb);\n\nmaskObj.Parameters(5).Enabled = maskObj.Parameters(4).Value;"
 	      }
 	      Object {
-		$ObjectID		131
+		$ObjectID		135
 		Type			"edit"
 		Name			"L"
 		Prompt			"Gain L"
@@ -5754,12 +5792,12 @@ Library {
 	      Type		      "Simulink.dialog.Control"
 	      Dimension		      4
 	      Object {
-		$ObjectID		132
+		$ObjectID		136
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"%<MaskType>"
 		Object {
 		  $PropName		  "DialogControls"
-		  $ObjectID		  133
+		  $ObjectID		  137
 		  $ClassName		  "Simulink.dialog.Text"
 		  Prompt		  "%<MaskDescription>"
 		  Name			  "DescTextVar"
@@ -5767,23 +5805,23 @@ Library {
 		Name			"DescGroupVar"
 	      }
 	      Object {
-		$ObjectID		134
+		$ObjectID		138
 		$ClassName		"Simulink.dialog.parameter.Edit"
 		Name			"jointObj"
 	      }
 	      Object {
-		$ObjectID		135
+		$ObjectID		139
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Controller"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Edit"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    136
+		    $ObjectID		    140
 		    Name		    "BBinv"
 		  }
 		  Object {
-		    $ObjectID		    137
+		    $ObjectID		    141
 		    Name		    "Ds"
 		  }
 		  PropName		  "DialogControls"
@@ -5791,19 +5829,19 @@ Library {
 		Name			"Controller_container"
 	      }
 	      Object {
-		$ObjectID		138
+		$ObjectID		142
 		$ClassName		"Simulink.dialog.Group"
 		Prompt			"Disturbance Observer (DOB)"
 		Array {
 		  Type			  "Simulink.dialog.parameter.Control"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    139
+		    $ObjectID		    143
 		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
 		    Name		    "isDOBActive"
 		  }
 		  Object {
-		    $ObjectID		    140
+		    $ObjectID		    144
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    PromptLocation	    "left"
 		    Name		    "L"
