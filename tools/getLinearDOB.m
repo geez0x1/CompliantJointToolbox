@@ -1,11 +1,10 @@
 % GETLINEARDOB Compute linear disturbance observer transfer functions.
 %
-%   [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx, doPlot)
+%   [P, Q_td, PQ_td] = getLinearDOB(jointObj, omega_c, outputIdx [, DOB_order])
 %
 %   This function creates a DOB from a linear model jointObj with outputs
 %   specified by [outputIdx]. It returns the plant model, Q-filter with
-%   cut-off frequency omega_c, and the inverted plant + filter. The doPlot
-%   flag plots Bode plots of the resulting transfer functions.
+%   cut-off frequency omega_c, and the inverted plant + filter.
 %
 % Inputs::
 %   jointObj: Joint object

@@ -122,11 +122,4 @@ function [ P ] = getModel_fromData(t, u, y, id_Np, id_Nz, roi)
     subplot(2,1,1);
     title(['Data vs approximation: Np = ' num2str(id_Np) ', Nz = ' num2str(id_Nz) ' (fit: ' num2str(P.Report.Fit.FitPercent, 3) '%)']);
     
-
-    %% Show Bode plots of results
-    figure(); hold on;
-    bode(P, bodeOpt);
-    xlim(roi);
-    grid on;
-    
 end
