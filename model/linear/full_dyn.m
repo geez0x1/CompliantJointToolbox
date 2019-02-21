@@ -56,6 +56,12 @@ function [A, B, C, D, I, R, K] = full_dyn(obj)
     %
     % The '_dot' denotes the temporal derivative.
 
+    % NOTE
+    % The size of I, R, K needs to be identical, square, and the number of
+    % rows needs to equal the number of derivatives in the state x.
+    % This is important for the construction of B_nonlinear in
+    % mask_JointMechanicalSubsystem.
+    
     % Inertia matrix
     I = diag([obj.I_m, obj.I_g, obj.I_l]);
 
