@@ -188,5 +188,8 @@ function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, 
         error('ff_comp_switch not set to ''comp'', ''ff'', or ''off''.');
     end
     
+    % Cast to transfer function
+    H = tf(H);
+    
 end
 
