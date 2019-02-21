@@ -52,7 +52,27 @@ if (DOB_enable_switch == 2)
         % If no filename is given with model&filters from experimental
         % identification, do a linear simulation to obtain their
         % approximate values (this will significantly influence the results)
-
+        
+        % Interpret mask dropdowns
+        if (ff_comp_switch == 1)
+            ff_comp_switch = 'comp';
+        elseif (ff_comp_switch == 2)
+            ff_comp_switch = 'ff';
+        elseif (ff_comp_switch == 3)
+            ff_comp_switch = 'off';
+        else
+            error('ff_comp_switch error');
+        end
+        
+        if (derivative_select == 1)
+            derivative_select = 'error';
+        elseif (derivative_select == 2)
+            derivative_select = 'output';
+        else
+            error('derivative_select error');
+        end
+        
+        % Design DOB
         [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller( jointObj, ...
                                                                 Kp, Ki, Kd, N, 'parallel', ...
                                                                 7, ... % Torque output
