@@ -26,8 +26,8 @@
 %   pid_form: Flag that determines whether PID controller is constructed in
 %             product or summation form (default: ideal/series form)
 %   outputIdx: Controlled/observed plant output (default: 7, torque)
-%   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
-%   derivative_select: Derivative action on error or output (1 = error, 2 = output)
+%   ff_comp_switch: Feed-forward/compensation ('comp' (compensation, default), 'ff' (feed-forward), or 'off')
+%   derivative_select: Derivative action on error or output ('error' (default) or 'output')
 %   f_c_FF: Feed-forward cutoff frequency [Hz] (default: 40)
 %   f_c_DOB: DOB cutoff frequency [Hz] (default: 60)
 %   DOB_order: DOB order (>= relative order of plant+controller)
@@ -75,27 +75,27 @@
 function [Pc, Q_td, Q_ff, PQ_td, PQ_ff] = design_DOB_controller(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, derivative_select, f_c_FF, f_c_DOB, DOB_order)
     %% Default parameters
     if (~exist('pid_form', 'var') || isequal(pid_form,[]))
-        pid_form = 'ideal';     % Ideal PID form (series) by default
+        pid_form = 'ideal';             % Ideal PID form (series) by default
     end
     if (~exist('outputIdx', 'var') || isequal(outputIdx,[]))
-        outputIdx = 7;          % Controlled/observed plant output (default: 7, torque)
+        outputIdx = 7;                  % Controlled/observed plant output (default: 7, torque)
     end
     if (~exist('ff_comp_switch', 'var') || isequal(ff_comp_switch,[]))
-        ff_comp_switch = 1;     % Feed-forward/compensation
-                                % (1=Compensation (default), 2=Feed-forward)
+        ff_comp_switch = 'comp';        % Feed-forward/compensation
+                                        % ('comp' (compensation, default), 'ff' (feed-forward), or 'off')
     end
     if (~exist('derivative_select', 'var') || isequal(derivative_select,[]))
-        derivative_select = 1;  % Derivative action on error or output
-                                % (1 = error (default), 2 = output)
+        derivative_select = 'error';    % Derivative action on error or output
+                                        % ('error' (default) or 'output')
     end
     if (~exist('f_c_FF', 'var') || isequal(f_c_FF,[]))
-        f_c_FF  = 40;           % Feed-forward cutoff frequency [Hz]
+        f_c_FF  = 40;                   % Feed-forward cutoff frequency [Hz]
     end
     if (~exist('f_c_DOB', 'var') || isequal(f_c_DOB,[]))
-        f_c_DOB = 60;           % DOB cutoff frequency [Hz]
+        f_c_DOB = 60;                   % DOB cutoff frequency [Hz]
     end
     if (~exist('DOB_order', 'var') || isequal(DOB_order,[]))
-        DOB_order = 0;          % DOB order []
+        DOB_order = 0;                  % DOB order []
     end
 
     % Bode options
