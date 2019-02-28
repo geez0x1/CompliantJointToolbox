@@ -1,6 +1,6 @@
 % GET_CONTROLLED_CLOSED_LOOP Outputs closed loop transfer functions.
 %
-%   [ P, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, derivative_select] )
+%   [ P, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, derivative_select, zeta] )
 %
 %   Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
 %   H transfer functions, and the PD derivative gain Kd_opt that critically
@@ -15,6 +15,7 @@
 %   outputIdx: Controlled/observed plant output (default: 7, torque)
 %   ff_comp_switch: Feed-forward/compensation ('comp' (compensation, default), 'ff' (feed-forward), or 'off')
 %   derivative_select: Derivative action on error or output ('error' (default) or 'output')
+%   zeta: Pole damping to use for Kd_opt (default: 1.0)
 %
 % Outputs::
 %   P: Plant transfer function
@@ -54,7 +55,7 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, derivative_select)
+function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, derivative_select, zeta)
     %% Default arguments
     if (~exist('pid_form', 'var') || isequal(pid_form,[]))
         pid_form = 'ideal';             % Ideal PID form (series) by default
@@ -69,6 +70,9 @@ function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, 
     if (~exist('derivative_select', 'var') || isequal(derivative_select,[]))
         derivative_select = 'error';    % Derivative action on error or output
                                         % ('error' (default) or 'output')
+    end
+    if (~exist('zeta', 'var') || isequal(zeta,[]))
+        zeta = 1.0;                     % Pole damping to use for Kd_opt (default: 1.0)
     end
     
     
@@ -85,7 +89,6 @@ function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, 
     d_gl    = jointObj.d_gl;    % Torsion bar internal damping [Nms/rad]
     
     % Optimal (specified damping ratio of poles) gains
-    zeta = 1.0; % Critical damping
     Kd_opt =    (   2 * (I_m + I_g) * ...
                     sqrt( ...
                         (k_b * Kp + k_b) / ...
