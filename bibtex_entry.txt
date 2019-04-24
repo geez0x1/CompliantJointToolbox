@@ -3,6 +3,6 @@
   shorttitle = {{The Compliant Joint Toolbox for MATLAB}},
   language = {en},
   author = {Malzahn, J/"orn and Roozing, Wesley and Tsagarakis, Nikos},
-  year = {2018},
-  pages = {submitted}
+  journal = {IEEE Robotics and Automation Magazine},
+  year = {2019}
 }
