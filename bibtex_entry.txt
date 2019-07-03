@@ -1,8 +1,12 @@
 @article{Compliant_Joint_Toolbox_2018,
-  title = {{The Compliant Joint Toolbox for MATLAB: An Introduction with Examples}},
-  shorttitle = {{The Compliant Joint Toolbox for MATLAB}},
-  language = {en},
-  author = {Malzahn, J/"orn and Roozing, Wesley and Tsagarakis, Nikos},
-  journal = {IEEE Robotics and Automation Magazine},
-  year = {2019}
+  title = "The Compliant Joint Toolbox for MATLAB: An Introduction with Examples",
+  author = "J/"orn Malzahn and Wesley Roozing and Nikolaos Tsagarakis",
+  year = "2019",
+  month = "4",
+  day = "9",
+  doi = "10.1109/MRA.2019.2896360",
+  language = "English",
+  journal = "Robotics & Automation Magazine",
+  issn = "1070-9932",
+  publisher = "IEEE",
 }
