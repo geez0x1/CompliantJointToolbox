@@ -249,17 +249,19 @@ fig_handles = guidata(gcbo);
 listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
-% Get m filename
-switch listboxTag
-    case 'matlabListbox'
-        mFileName = fig_handles.matlabExamples(index_selected).fileName;
-    case 'simulinkListbox'
-        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
-end
+% For each selected demo...
+for idx = index_selected
+    % ...get m filename and open it
+    switch listboxTag
+        case 'matlabListbox'
+            mFileName = fig_handles.matlabExamples(index_selected(idx)).fileName;
+        case 'simulinkListbox'
+            mFileName = fig_handles.simulinkExamples(index_selected(idx)).fileName;
+    end
 
-% Open in editor
-open(mFileName);
-
+    % Open in editor
+    open(mFileName);
+end 
 end
 
 
