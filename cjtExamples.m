@@ -260,7 +260,7 @@ listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
 % For each selected demo...
-for idx = index_selected
+for idx = 1:numel(index_selected)
     % ...get m filename and open it
     switch listboxTag
         case 'matlabListbox'
@@ -290,7 +290,7 @@ listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
 % For each selected demo...
-for idx = index_selected
+for idx = 1:numel(index_selected)
     % ...get m filename and run it
     switch listboxTag
         case 'matlabListbox'
@@ -333,7 +333,6 @@ fig_handles.activeListbox = hObject;
 
 % If a double-click has occurred, directly run the example.
 if strcmp(get(fig_handles.mainFig,'SelectionType'),'open')
-    disp('Double Click detected!')
     localRun_callback(hObject, [], [])
 end
 
