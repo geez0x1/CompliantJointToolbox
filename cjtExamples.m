@@ -166,9 +166,13 @@ descriptionString = ['Welcome to CJT. Select a Matlab or ',...
 fig_handles.descriptionListbox = uicontrol('Style','listbox',...
     'units','normalized',...
     'String',descriptionString,...
-    'Tag','matlabListbox',...
+    'Tag','dListbox',...
+    'Enable','Off',...
+    'Min',0,...
+    'Max',2,...
     'Position',[listX 0.1 0.9 0.43 ],...
     'Callback', {@localDescription_callback});
+set(fig_handles.descriptionListbox, 'Value',[])
 
 fig_handles.descriptionTitle = uicontrol('Style','text',...
     'units','normalized',...
@@ -206,18 +210,22 @@ fig_handles = guidata(gcbo);
 listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
-% Get m filename
-switch listboxTag
-    case 'matlabListbox'
-        mFileName = fig_handles.matlabExamples(index_selected).fileName;
-    case 'simulinkListbox'
-        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+if ~isempty(index_selected)
+    % Get m filename
+    switch listboxTag
+        case 'matlabListbox'
+            mFileName = fig_handles.matlabExamples(index_selected).fileName;
+        case 'simulinkListbox'
+            mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+    end
+
+    % Extract example description
+    descriptionText = extractExampleDescription(mFileName);
+
+    set(fig_handles.descriptionListbox,'string', descriptionText);
+    
+    set(fig_handles.descriptionListbox, 'Value',[])
 end
-
-% Extract example description
-descriptionText = extractExampleDescription(mFileName);
-
-set(fig_handles.descriptionListbox,'string', descriptionText);
 
 end
 
@@ -315,9 +323,9 @@ function localListbox_callback(hObject, eventdata, handles)
 fig_handles = guidata(gcbo);
 
 % Activate Buttons
-set(fig_handles.run_btn,'Enable','on')
-set(fig_handles.open_btn,'Enable','on')
-
+set(fig_handles.run_btn, 'Enable', 'on')
+set(fig_handles.open_btn, 'Enable', 'on')
+set(fig_handles.descriptionListbox, 'Enable', 'on')
 
 % Update the active listbox property.
 fig_handles.activeListbox = hObject;
