@@ -32,6 +32,7 @@ function cjtExamples
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 close all;
+setCJTPaths;
 
 %% Basic setup of the GUI
 figname = 'Compliant Joint Toolbox Examples';
