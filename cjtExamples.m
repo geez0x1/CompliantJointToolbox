@@ -32,6 +32,7 @@ function cjtExamples
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
 close all;
+setCJTPaths;
 
 %% Basic setup of the GUI
 figname = 'Compliant Joint Toolbox Examples';
@@ -94,6 +95,8 @@ fig_handles.matlabListbox = uicontrol('Style','listbox',...
     'units','normalized',...
     'String',matlabExampleStrings,...
     'BackgroundColor','w',...
+    'Min',0,...
+    'Max',2,...
     'Tag','matlabListbox',...
     'Position',[listX listY listWidth listHeight ],...
     'Callback', {@localListbox_callback});
@@ -109,6 +112,8 @@ fig_handles.simulinkTitle = uicontrol('Style','text',...
     'Position', [0.5+listX 0.91 listWidth 0.05],...
     'Callback', {@localListbox_callback});
 
+set(fig_handles.matlabListbox, 'Value',[])
+
 % Simulink examples to list
 nSimulinkExamples = numel(simulinkExamples);
 simulinkExampleStrings = cell(nSimulinkExamples,1);
@@ -120,9 +125,13 @@ fig_handles.simulinkListbox = uicontrol('Style','listbox',...
     'units','normalized',...
     'String',simulinkExampleStrings,...
     'BackgroundColor','w',...
+    'Min',0,...
+    'Max',2,...
     'Tag','simulinkListbox',...
     'Position',[0.5+listX listY listWidth listHeight ],...
     'Callback', {@localListbox_callback});
+
+ set(fig_handles.simulinkListbox, 'Value',[])
 
 %% Common uicontrols
 % Run an example
@@ -130,6 +139,7 @@ fig_handles.run_btn = uicontrol('Style','pushbutton',...
     'units','normalized',...
     'String','Run Example',...
     'Tag','run_btn',...
+    'Enable','off',...
     'Position',[listX btnY btnWidth 0.05],...
     'Callback',{@localRun_callback});
 
@@ -138,10 +148,11 @@ fig_handles.open_btn = uicontrol('Style','pushbutton',...
     'units','normalized',...
     'String','Open Example',...
     'Tag','open_btn',...
+    'Enable','off',...
     'Position',[listX+btnWidth+0.05 btnY btnWidth 0.05],...
     'Callback',{@localOpen_callback});
 
-% Open the example m-file
+% Close the dialog
 fig_handles.close_btn = uicontrol('Style','pushbutton',...
     'units','normalized',...
     'String','Close Dialog',...
@@ -150,13 +161,19 @@ fig_handles.close_btn = uicontrol('Style','pushbutton',...
     'Callback',{@localClose_callback});
 
 % Display the example description
-descriptionString = '';
+descriptionString = ['Welcome to CJT. Select a Matlab or ',...
+    'Simulink Example and then click on the "Run" or "Open" ',... 
+    'to start.'];
 fig_handles.descriptionListbox = uicontrol('Style','listbox',...
     'units','normalized',...
     'String',descriptionString,...
-    'Tag','matlabListbox',...
+    'Tag','dListbox',...
+    'Enable','Off',...
+    'Min',0,...
+    'Max',2,...
     'Position',[listX 0.1 0.9 0.43 ],...
     'Callback', {@localDescription_callback});
+set(fig_handles.descriptionListbox, 'Value',[])
 
 fig_handles.descriptionTitle = uicontrol('Style','text',...
     'units','normalized',...
@@ -194,18 +211,22 @@ fig_handles = guidata(gcbo);
 listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
-% Get m filename
-switch listboxTag
-    case 'matlabListbox'
-        mFileName = fig_handles.matlabExamples(index_selected).fileName;
-    case 'simulinkListbox'
-        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+if ~isempty(index_selected)
+    % Get m filename
+    switch listboxTag
+        case 'matlabListbox'
+            mFileName = fig_handles.matlabExamples(index_selected).fileName;
+        case 'simulinkListbox'
+            mFileName = fig_handles.simulinkExamples(index_selected).fileName;
+    end
+
+    % Extract example description
+    descriptionText = extractExampleDescription(mFileName);
+
+    set(fig_handles.descriptionListbox,'string', descriptionText);
+    
+    set(fig_handles.descriptionListbox, 'Value',[])
 end
-
-% Extract example description
-descriptionText = extractExampleDescription(mFileName);
-
-set(fig_handles.descriptionListbox,'string', descriptionText);
 
 end
 
@@ -239,17 +260,19 @@ fig_handles = guidata(gcbo);
 listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
-% Get m filename
-switch listboxTag
-    case 'matlabListbox'
-        mFileName = fig_handles.matlabExamples(index_selected).fileName;
-    case 'simulinkListbox'
-        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
-end
+% For each selected demo...
+for idx = 1:numel(index_selected)
+    % ...get m filename and open it
+    switch listboxTag
+        case 'matlabListbox'
+            mFileName = fig_handles.matlabExamples(index_selected(idx)).fileName;
+        case 'simulinkListbox'
+            mFileName = fig_handles.simulinkExamples(index_selected(idx)).fileName;
+    end
 
-% Open in editor
-open(mFileName);
-
+    % Open in editor
+    open(mFileName);
+end 
 end
 
 
@@ -267,17 +290,20 @@ fig_handles = guidata(gcbo);
 listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
-% Get m filename
-switch listboxTag
-    case 'matlabListbox'
-        mFileName = fig_handles.matlabExamples(index_selected).fileName;
-        % Run example and display results
-        pubPath = publish(mFileName);
-        web(pubPath)
-        
-    case 'simulinkListbox'
-        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
-        run(mFileName);
+% For each selected demo...
+for idx = 1:numel(index_selected)
+    % ...get m filename and run it
+    switch listboxTag
+        case 'matlabListbox'
+            mFileName = fig_handles.matlabExamples(index_selected(idx)).fileName;
+            % Run example and display results
+            pubPath = publish(mFileName);
+            web(pubPath)
+
+        case 'simulinkListbox'
+            mFileName = fig_handles.simulinkExamples(index_selected(idx)).fileName;
+            run(mFileName);
+    end
 end
 
 
@@ -297,12 +323,17 @@ function localListbox_callback(hObject, eventdata, handles)
 % Get the structure using guidata in the local function
 fig_handles = guidata(gcbo);
 
+% Activate Buttons
+set(fig_handles.run_btn, 'Enable', 'on')
+set(fig_handles.open_btn, 'Enable', 'on')
+set(fig_handles.descriptionListbox, 'Enable', 'on')
+
 % Update the active listbox property.
 fig_handles.activeListbox = hObject;
 
+
 % If a double-click has occurred, directly run the example.
 if strcmp(get(fig_handles.mainFig,'SelectionType'),'open')
-    disp('Double Click detected!')
     localRun_callback(hObject, [], [])
 end
 
