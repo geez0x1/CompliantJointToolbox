@@ -277,17 +277,20 @@ fig_handles = guidata(gcbo);
 listboxTag = get(fig_handles.activeListbox,'Tag');
 index_selected = get(fig_handles.activeListbox,'Value');
 
-% Get m filename
-switch listboxTag
-    case 'matlabListbox'
-        mFileName = fig_handles.matlabExamples(index_selected).fileName;
-        % Run example and display results
-        pubPath = publish(mFileName);
-        web(pubPath)
-        
-    case 'simulinkListbox'
-        mFileName = fig_handles.simulinkExamples(index_selected).fileName;
-        run(mFileName);
+% For each selected demo...
+for idx = index_selected
+    % ...get m filename and run it
+    switch listboxTag
+        case 'matlabListbox'
+            mFileName = fig_handles.matlabExamples(index_selected(idx)).fileName;
+            % Run example and display results
+            pubPath = publish(mFileName);
+            web(pubPath)
+
+        case 'simulinkListbox'
+            mFileName = fig_handles.simulinkExamples(index_selected(idx)).fileName;
+            run(mFileName);
+    end
 end
 
 
@@ -314,6 +317,7 @@ set(fig_handles.open_btn,'Enable','on')
 
 % Update the active listbox property.
 fig_handles.activeListbox = hObject;
+
 
 % If a double-click has occurred, directly run the example.
 if strcmp(get(fig_handles.mainFig,'SelectionType'),'open')
