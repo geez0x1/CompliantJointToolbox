@@ -80,7 +80,12 @@ function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, 
     end
     
     
-    %% Get variables
+    %% Get state-space system with current input and specified output
+    sys         = jointObj.getStateSpace();
+    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
+    
+    
+    %% Get parameters/variables
     
     % Control/system parameters
     k_b     = jointObj.k_b;     % Torsion bar stiffness [Nm/rad]
@@ -103,6 +108,11 @@ function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, 
     
     % Set derivative gain Kd to Kd_opt if set to -1
     if (Kd == -1)
+        % Check the order of the system and warn if not 2nd order
+        if (order(minreal(sys)) ~= 2)
+            warning(['The system is not second order. Automatically computed derivative gain might not (exactly) yield the desired zeta = ' num2str(zeta)]);
+        end
+        
         % The above optimal D-gain was computed for parallel PID form.
         % Convert it for ideal PID form.
         if (strcmpi(pid_form, 'ideal'))
@@ -111,11 +121,6 @@ function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, 
             Kd = Kd_opt;
         end
     end
-    
-    
-    %% Get state-space system with current input and specified output
-    sys         = jointObj.getStateSpace();
-    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
     
     
     %% Build closed-loop system
