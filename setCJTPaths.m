@@ -27,23 +27,26 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
+fun_path = mfilename('fullpath');
+tbx_path = fileparts(fun_path);
+
 % Add files in root
-addpath(pwd);
+addpath(tbx_path);
 
 % Create build directory if it doesn't exist
-if ~exist([pwd, filesep, 'build'], 'dir')
-    mkdir([pwd, filesep, 'build']);
+if ~exist([tbx_path, filesep, 'build'], 'dir')
+    mkdir([tbx_path, filesep, 'build']);
 end
 
 % Add paths recursively
-addpath(genpath([pwd, filesep, 'build']));
-addpath(genpath([pwd, filesep, 'examples']));
-addpath(genpath([pwd, filesep, 'lib']));
-addpath(genpath([pwd, filesep, 'lib', filesep,'include']));
-addpath(genpath([pwd, filesep, 'model']));
-addpath(genpath([pwd, filesep, 'param']));
-addpath(genpath([pwd, filesep, 'templates']));
-addpath(genpath([pwd, filesep, 'tools']));
+addpath(genpath([tbx_path, filesep, 'build']));
+addpath(genpath([tbx_path, filesep, 'examples']));
+addpath(genpath([tbx_path, filesep, 'lib']));
+addpath(genpath([tbx_path, filesep, 'lib', filesep,'include']));
+addpath(genpath([tbx_path, filesep, 'model']));
+addpath(genpath([tbx_path, filesep, 'param']));
+addpath(genpath([tbx_path, filesep, 'templates']));
+addpath(genpath([tbx_path, filesep, 'tools']));
 
 % Status
 disp('Added Compliant Joint Toolbox (CJT) paths.');
