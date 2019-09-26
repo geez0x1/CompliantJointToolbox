@@ -1,7 +1,7 @@
 % GETOPENLOOPDOBTF Compute the transfer function resulting from
 % interconnecting a plant P with DOB enforcing a nominal plant model Pn.
 %
-%   [H_dob, Q_td, PQ_td] = getOpenLoopDOBTF(jointObj_P, jointObj_Pn, omega_c, outputIdx, doPlot)
+%   [H_dob, Q_td, PQ_td] = getOpenLoopDOBTF(jointObj_P, jointObj_Pn, omega_c, outputIdx [, doPlot])
 %
 %   This function creates a DOB from the nominal plant model jointObj_Pn,
 %   and closes it around the 'real' plant model P, based on the output
@@ -15,7 +15,7 @@
 %   jointObj_Pn: Nominal plant joint object
 %   omega_c: DOB Q-filter cut-off frequency in [rad/s]
 %   outputIdx: Joint outputs measured by the observer
-%   doPlot: Whether to plot the results
+%   doPlot: Whether to plot the results (default: 0)
 %
 % Outputs::
 %   H_dob: Input-output transfer function of the plant+DOB
@@ -81,7 +81,7 @@ function [H_dob, Q_td, PQ_td] = getOpenLoopDOBTF(jointObj_P, jointObj_Pn, omega_
     
     %% Design low-pass Butterworth filter and nominal plant inversion
 
-    [~, Q_td, PQ_td] = getLinearDOB(jointObj_Pn, omega_c, outputIdx, 0); % don't plot here, as we also plot below
+    [~, Q_td, PQ_td] = getLinearDOB(jointObj_Pn, omega_c, outputIdx); % auto DOB order
     
     
     %% Calculate full loop of plant + DOB

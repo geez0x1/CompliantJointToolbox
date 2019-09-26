@@ -1,6 +1,6 @@
 % GET_CONTROLLED_CLOSED_LOOP Outputs closed loop transfer functions.
 %
-%   [ P, G, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch] )
+%   [ P, H, Kd_opt ] = get_controlled_closed_loop( jointObj, Kp, Ki, Kd, N [, pid_form, outputIdx, ff_comp_switch, derivative_select, zeta] )
 %
 %   Gets a plant P, PD controller G, PD+(FF or compensation) closed loop
 %   H transfer functions, and the PD derivative gain Kd_opt that critically
@@ -13,11 +13,12 @@
 %   pid_form: Flag that determines whether PID controller is constructed in
 %             product (ideal) or summation (parallel) form
 %   outputIdx: Controlled/observed plant output (default: 7, torque)
-%   ff_comp_switch: Feed-forward/compensation (1=Compensation, 2=Feed-forward)
+%   ff_comp_switch: Feed-forward/compensation ('comp' (compensation, default), 'ff' (feed-forward), or 'off')
+%   derivative_select: Derivative action on error or output ('error' (default) or 'output')
+%   zeta: Pole damping to use for Kd_opt (default: 1.0)
 %
 % Outputs::
 %   P: Plant transfer function
-%   G: PID Controller transfer function
 %   H: Closed-loop transfer function
 %   Kd_opt: Optimal PD derivative gain that critically damps the closed-loop poles for
 %           fixed-output force control.
@@ -54,21 +55,37 @@
 % For more information on the toolbox and contact to the authors visit
 % <https://github.com/geez0x1/CompliantJointToolbox>
 
-function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch)
+function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, pid_form, outputIdx, ff_comp_switch, derivative_select, zeta)
     %% Default arguments
     if (~exist('pid_form', 'var') || isequal(pid_form,[]))
-        pid_form = 'ideal';     % Ideal PID form (series) by default
+        pid_form = 'ideal';             % Ideal PID form (series) by default
     end
     if (~exist('outputIdx', 'var') || isequal(outputIdx,[]))
-        outputIdx = 7;          % Controlled/observed plant output (default: 7, torque)
+        outputIdx = 7;                  % Controlled/observed plant output (default: 7, torque)
     end
     if (~exist('ff_comp_switch', 'var') || isequal(ff_comp_switch,[]))
-        ff_comp_switch = 1;     % Feed-forward/compensation
-                                % (1=Compensation (default), 2=Feed-forward)
+        ff_comp_switch = 'comp';        % Feed-forward/compensation
+                                        % ('comp' (compensation, default), 'ff' (feed-forward), or 'off')
+    end
+    if (~exist('derivative_select', 'var') || isequal(derivative_select,[]))
+        derivative_select = 'error';    % Derivative action on error or output
+                                        % ('error' (default) or 'output')
+    end
+    if (~exist('zeta', 'var') || isequal(zeta,[]))
+        zeta = 1.0;                     % Pole damping to use for Kd_opt (default: 1.0)
+    else
+        if (Kd >= 0)
+            warning('Kd set to >=0; zeta will be ignored.');
+        end
     end
     
     
-    %% Get variables
+    %% Get state-space system with current input and specified output
+    sys         = jointObj.getStateSpace();
+    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
+    
+    
+    %% Get parameters/variables
     
     % Control/system parameters
     k_b     = jointObj.k_b;     % Torsion bar stiffness [Nm/rad]
@@ -81,7 +98,6 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     d_gl    = jointObj.d_gl;    % Torsion bar internal damping [Nms/rad]
     
     % Optimal (specified damping ratio of poles) gains
-    zeta = 1.0; % Critical damping
     Kd_opt =    (   2 * (I_m + I_g) * ...
                     sqrt( ...
                         (k_b * Kp + k_b) / ...
@@ -92,6 +108,11 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     
     % Set derivative gain Kd to Kd_opt if set to -1
     if (Kd == -1)
+        % Check the order of the system and warn if not 2nd order
+        if (order(minreal(sys)) ~= 2)
+            warning(['The system is not second order. Automatically computed derivative gain might not (exactly) yield the desired zeta = ' num2str(zeta)]);
+        end
+        
         % The above optimal D-gain was computed for parallel PID form.
         % Convert it for ideal PID form.
         if (strcmpi(pid_form, 'ideal'))
@@ -102,37 +123,56 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
     end
     
     
-    %% Get state-space system with current input and specified output
-    sys         = jointObj.getStateSpace();
-    sys         = ss(sys.A, sys.B(:,1), sys.C(outputIdx,:), sys.D(outputIdx,1));
-    
-    
     %% Build closed-loop system
     
-    % PID controller
+    % PI controller
     if (strcmpi(pid_form, 'ideal'))
-        G = pidstd(Kp, 1/Ki, Kd, N);    % ideal PID controller
+        G1 = pidstd(Kp, 1/Ki, 0, N);   % ideal PI controller
     elseif (strcmpi(pid_form, 'parallel'))
-        G = pid(Kp, Ki, Kd, 1/N);       % parallel PID controller
+        G1 = pid(Kp, Ki, 0, 1/N);      % parallel PI controller
     else
         error('Invalid PID form');
     end
-    G.u    = 'e';
-    G.y    = 'pid_u';
+    G1.u    = 'e';
+    G1.y    = 'pid_pi_u';
+    
+    % Derivative action
+    % Check the PID form to set the D-gain correctly
+    if (strcmpi(pid_form, 'ideal'))
+        Kd_D = Kp * Kd; % Multiply by Kp for 'ideal' form
+    else
+        Kd_D = Kd; % Parallel form is independent
+    end
+    if (strcmpi(derivative_select, 'error'))
+        G2      = pid(0, 0, Kd_D, 1/N); % D controller
+        G2.u    = 'e'; % derivative action on error
+    elseif (strcmpi(derivative_select, 'output'))
+        G2      = pid(0, 0, -Kd_D, 1/N); % D controller (negative gain for sign of y)
+        G2.u    = 'y'; % derivative action on output
+    else
+        error('Invalid value for derivative_select.');
+    end
+    G2.y    = 'pid_d_u';
 
     
     % See whether we need to build a closed-loop system with compensation or
     % feed-forward for the spring force
-    if (ff_comp_switch == 1)            % Compensation
+    if (strcmpi(ff_comp_switch, 'comp'))    % Compensation
         % Compensation term
         C2      = tf(1);
+        C2.u    = 'y';
+        C2.y    = 'comp_u';
         
         % Closed-loop transfer function
         P       = tf(sys);
-        P2      = feedback(P, C2, +1);  % Positive feedback for the comp/FF
-        Pf      = feedback(P2 * G, 1);
+        P.u     = 'u';
+        P.y     = 'y';
+        sum_e   = sumblk('e = r - y');
+        sum_pid = sumblk('pid_u = pid_pi_u + pid_d_u');
+        sum_comp= sumblk('u = pid_u + comp_u');
+        H       = connect(P, G1, G2, C2, sum_e, sum_pid, sum_comp, 'r', 'y');
         
-    elseif (ff_comp_switch == 2)        % Feed-forward
+    elseif (strcmpi(ff_comp_switch, 'ff'))  % Feed-forward
         % Feed-forward term
         C2      = tf(1);
         C2.u    = 'r';
@@ -143,20 +183,25 @@ function [ P, G, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, 
         P.u     = 'u';
         P.y     = 'y';
         sum_e   = sumblk('e = r - y');
+        sum_pid = sumblk('pid_u = pid_pi_u + pid_d_u');
         sum_ff  = sumblk('u = pid_u + ff_u');
-        Pf      = connect(P, G, C2, sum_e, sum_ff, 'r', 'y');
+        H       = connect(P, G1, G2, C2, sum_e, sum_pid, sum_ff, 'r', 'y');
         
-    elseif (ff_comp_switch == 3)    % Spring force compensation off
+    elseif (strcmpi(ff_comp_switch, 'off')) % Spring force compensation off
         % Closed-loop transfer function
         P       = tf(sys);
-        Pf      = feedback(P * G, 1);
+        P.u     = 'u';
+        P.y     = 'y';
+        sum_e   = sumblk('e = r - y');
+        sum_pid = sumblk('u = pid_pi_u + pid_d_u');
+        H       = connect(P, G1, G2, sum_e, sum_pid, 'r', 'y');
         
     else
-        error('Error: ff_comp_switch not set to 1, 2 or 3.');
+        error('ff_comp_switch not set to ''comp'', ''ff'', or ''off''.');
     end
     
-    % The closed loop H is equal to Pf
-    H = tf(Pf);
+    % Cast to transfer function
+    H = tf(H);
     
 end
 
