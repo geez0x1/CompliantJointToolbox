@@ -10,7 +10,7 @@
 %   jointObj: Joint object
 %   omega_c: DOB Q-filter cut-off frequency in [rad/s]
 %   outputIdx: Joint outputs measured by the observer
-%   DOB_order: Order of the DOB (>= relative order of plant)
+%   DOB_order: Order of the DOB (>= relative order of plant) (0 = auto)
 %
 % Outputs::
 %   P: Plant transfer function

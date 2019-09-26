@@ -73,6 +73,10 @@ function [ P, H, Kd_opt ] = get_controlled_closed_loop(jointObj, Kp, Ki, Kd, N, 
     end
     if (~exist('zeta', 'var') || isequal(zeta,[]))
         zeta = 1.0;                     % Pole damping to use for Kd_opt (default: 1.0)
+    else
+        if (Kd >= 0)
+            warning('Kd set to >=0; zeta will be ignored.');
+        end
     end
     
     

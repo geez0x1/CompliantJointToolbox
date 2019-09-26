@@ -81,7 +81,7 @@ function [H_dob, Q_td, PQ_td] = getOpenLoopDOBTF(jointObj_P, jointObj_Pn, omega_
     
     %% Design low-pass Butterworth filter and nominal plant inversion
 
-    [~, Q_td, PQ_td] = getLinearDOB(jointObj_Pn, omega_c, outputIdx, 0); % don't plot here, as we also plot below
+    [~, Q_td, PQ_td] = getLinearDOB(jointObj_Pn, omega_c, outputIdx); % auto DOB order
     
     
     %% Calculate full loop of plant + DOB

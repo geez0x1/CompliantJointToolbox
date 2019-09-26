@@ -30,7 +30,7 @@
 %   derivative_select: Derivative action on error or output ('error' (default) or 'output')
 %   f_c_FF: Feed-forward cutoff frequency [Hz] (default: 40)
 %   f_c_DOB: DOB cutoff frequency [Hz] (default: 60)
-%   DOB_order: DOB order (>= relative order of plant+controller)
+%   DOB_order: DOB order (>= relative order of plant+controller) (0 = auto)
 %
 % Outputs::
 %   Pc: Estimated closed-loop transfer function
