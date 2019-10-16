@@ -42,7 +42,7 @@
 %
 
 function [ relOrder ] = relativeOrder( P )
-    % Check whether t and signal are equal length
+    % Check whether P is actually a transfer function
     if (~isequal(P, tf(P)))
         error('Error: P is not a transfer function');
     end
