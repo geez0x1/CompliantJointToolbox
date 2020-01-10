@@ -88,6 +88,7 @@ classdef jointBuilder
         basePath;
         nonlinModelPath;
         linModelPath;
+        electricalModelPath;
     end
     
     methods
@@ -108,6 +109,9 @@ classdef jointBuilder
             
             % 4) location of the linear models
             this.linModelPath = [this.basePath, filesep, 'model', filesep, 'linear'];
+            
+            % 5) location of the electrical models
+            this.electricalModelPath = [this.basePath, filesep, 'model', filesep, 'electrical'];
         end
         
         %__________________________________________________________________
@@ -202,7 +206,7 @@ classdef jointBuilder
                         % Check whether it exists
                         % This relies on the model function name being equal to
                         % the filename (which we require)
-                        if (~exist(nonlinearModelName{i}, 'file'))
+                        if (~exist([this.nonlinModelPath, filesep, nonlinearModelName{i}], 'file'))
                             error(['jointBuilder.buildJoint error: Nonlinear model ''' nonlinearModelName{i} ''' does not exist!']);
                         end
                     end
@@ -242,7 +246,7 @@ classdef jointBuilder
             % Check whether the linear model for electrical dynamics exists
             % This relies on the model function name being equal to
             % the filename (which we require)
-            if (~exist(electricalDynamicsName, 'file'))
+            if (~exist([this.electricalModelPath, filesep, electricalDynamicsName], 'file'))
                 error(['jointBuilder.buildJoint error: Electrical subsystem model ''' electricalDynamicsName ''' do not exist!']);
             end
             
